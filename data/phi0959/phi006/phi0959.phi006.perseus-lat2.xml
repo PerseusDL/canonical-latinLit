@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
-
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
 <teiHeader type="text">
 <fileDesc>
 <titleStmt>
@@ -51,7 +48,14 @@
 </fileDesc>
 
 
-        <encodingDesc>
+        <encodingDesc><refsDecl id="CTS">
+            <cRefPattern matchPattern="(\\w+).(\\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div[@n=\'$1\']/tei:l[@n=\'$2\'])">
+                <p>This pointer pattern extracts book and line</p>
+            </cRefPattern>
+            <cRefPattern matchPattern="(\\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div[@n=\'$1\'])">
+                <p>This pointer pattern extracts book</p>
+            </cRefPattern>
+        </refsDecl>
             <refsDecl>
                 <refState unit="book"/>
                 <refState unit="line"/>
@@ -95,7 +99,7 @@
 </revisionDesc>
 </teiHeader>
 
-<text xml:lang="lat"  n="urn:cts:latinLit:phi0959.phi006.perseus-lat2"><body>
+<text xml:lang="lat" n="urn:cts:latinLit:phi0959.phi006.perseus-lat2"><body>
 <div type="textpart" subtype="book" n="1">
 <milestone n="1" unit="card"/>
 <milestone ed="Magnus" n="Invocatio." unit="tale"/>
