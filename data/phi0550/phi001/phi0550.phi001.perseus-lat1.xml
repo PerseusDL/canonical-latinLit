@@ -1,24 +1,36 @@
-<?xml version="1.0"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersVerse PUBLIC "-//Perseus P4//DTD Perseus Verse//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersVerse.dtd" >
-%PersVerse;
-]>
-<TEI.2>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
 <teiHeader>
 <fileDesc>
 <titleStmt>
 <title>De Rerum Natura</title>
 <author n="Lucr.">Lucretius</author>
-&responsibility;
+<sponsor>Perseus Project, Tufts University</sponsor>
+    <principal>Gregory Crane</principal>
+    <respStmt>
+      <resp>Prepared under the supervision of</resp>
+      <name>Lisa Cerrato</name>
+      <name>William Merrill</name>
+      <name>Elli Mylonas</name>
+      <name>David Smith</name>
+    </respStmt>
 </titleStmt>
-&Perseus.publish;
+<publicationStmt>
+    <publisher>Trustees of Tufts University</publisher>
+    <pubPlace>Medford, MA</pubPlace>
+    <authority>Perseus Project</authority>
+</publicationStmt>
 <sourceDesc>
 <biblStruct>
 <monogr>
 <author>Lucretius</author>
 <title>De Rerum Natura</title>
 <imprint>
+    <publisher>Lost information</publisher>
 </imprint>
 </monogr>
 </biblStruct>
@@ -26,57 +38,38 @@
 </fileDesc>
 
 <encodingDesc>
-<refsDecl>
-<step refunit="book" delim="."
-      from="DESCENDANT (1 DIV1 N %1)" to="DITTO" />
-<step refunit="line"
-      from="DESCENDANT (%2 L)" to="DITTO" />
-</refsDecl>
+   <refsDecl n="CTS">
+      <cRefPattern matchPattern="(\w+).(\w+)"
+                   replacementPattern="#xpath(/tei:TEI.2/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:l[@n='$2'])" n="line">
+          <p>This pointer pattern extracts book and line</p>
+      </cRefPattern>
+      <cRefPattern matchPattern="(\w+)"
+                   replacementPattern="#xpath(/tei:TEI.2/tei:text/tei:body/tei:div/tei:div[@n='$1'])" n="book">
+          <p>This pointer pattern extracts book</p>
+      </cRefPattern>
+  </refsDecl>
 </encodingDesc>
 
 <profileDesc>
 <langUsage>
-<language id="la">Latin</language>
+<language ident="lat">Latin</language>
 </langUsage>
 </profileDesc>
 <revisionDesc>
-<change><date>12/5/03</date>
-<respStmt><name>DM</name><resp>ed.</resp></respStmt>
-<item>
-$Log: lucretius_lat.xml,v $
-Revision 1.1  2013-09-13 11:17:40  balmas01
-moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory
-
-Revision 1.3  2013-06-08 12:13:35  gcrane
-TEI XML converted to facilitate CTS compatibility
-
-Revision 1.2  2011-09-07 14:00:59  rsingh04
-adding rend=displayNum to lb tags
-
-Revision 1.1  2011-01-16 13:35:05  gcrane
-sdl file -- with LB milestones in place of L tags
-
-Revision 1.1  2009/12/01 18:28:02  rsingh04
-moved more xml files around based on copyright status
-
-Revision 1.4  2004/03/19 14:58:23  mimno
-moved some translation passages around and added a few cards
-
-Revision 1.3  2004/03/04 22:47:49  mimno
-finished cardbreaks
-
-Revision 1.2  2004/03/01 21:45:29  mimno
-milestones done through book 3
-
-Revision 1.1  2003/12/05 19:42:38  mimno
-card breaks not yet aligned
-
-</item>
-</change>
+  <change when="2013-09-13" who="balmas01">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change>
+  <change when="2013-06-08" who="gcrane">TEI XML converted to facilitate CTS compatibility</change>
+  <change when="2011-09-07" who="rsingh04">adding rend=displayNum to lb tags</change>
+  <change when="2011-01-16" who="gcrane">sdl file -- with LB milestones in place of L tags</change>
+  <change when="2009-12-01" who="rsingh04">moved more xml files around based on copyright status</change>
+  <change when="2004-03-19" who="mimno">moved some translation passages around and added a few cards</change>
+  <change when="2004-03-04" who="mimno">finished cardbreaks</change>
+  <change when="2004-03-01" who="mimno">milestones done through book 3</change>
+  <change when="2003-12-05" who="mimno">card breaks not yet aligned</change>
 </revisionDesc>
 </teiHeader>
-<text id="stoa0045.stoa0"><body>
-<div1 type="book" n="1">
+<text><body>
+<div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0550.phi001.perseus-lat1" >
+<div type="textpart" subtype="book" n="1">
 <head>Liber Primus</head>
 <milestone unit="card" n="1"/>
 <l>Aeneadum genetrix, hominum divomque voluptas,</l>
@@ -1204,9 +1197,9 @@ card breaks not yet aligned
 <l n="1115">namque alid ex alio clarescet nec tibi caeca</l>
 <l>nox iter eripiet, quin ultima naturai</l>
 <l>pervideas: ita res accendent lumina rebus.</l>
-</div1>
+</div>
 
-<div1 type="book" n="2">
+<div type="textpart" subtype="book" n="2">
 <head>Liber Secundus</head>
 <milestone unit="card" n="1"/>
 <l>Suave, mari magno turbantibus aequora ventis</l>
@@ -2392,8 +2385,8 @@ card breaks not yet aligned
 <l>cum minor esset agri multo modus ante viritim;</l>
 <l>nec tenet omnia paulatim tabescere et ire</l>
 <l>ad capulum spatio aetatis defessa vetusto.</l>
-</div1>
-<div1 type="book" n="3">
+</div>
+<div type="textpart" subtype="book" n="3">
 <head>Liber Tertius</head>
 <milestone unit="card" n="1"/>
 <l>E tenebris tantis tam clarum extollere lumen</l>
@@ -2496,7 +2489,7 @@ card breaks not yet aligned
 <l n="95">in quo consilium vitae regimenque locatum est,</l>
 <l>esse hominis partem nihilo minus ac manus et pes</l>
 <l>atque oculei partes animantis totius extant.</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l>sensum animi certa non esse in parte locatum,</l>
 <l>verum habitum quendam vitalem corporis esse,</l>
 <l n="100">harmoniam Grai quam dicunt, quod faciat nos</l>
@@ -2521,7 +2514,7 @@ card breaks not yet aligned
 <l>principio fit uti detracto corpore multo</l>
 <l n="120">saepe tamen nobis in membris vita moretur.</l>
 <l>Atque eadem rursum, cum corpora pauca caloris</l>
-<l>diffugere forasque per os est editus a&euml;r,</l>
+<l>diffugere forasque per os est editus <choice><reg>aeg</reg><orig>aër</orig></choice>,</l>
 <l>deserit extemplo venas atque ossa relinquit;</l>
 <l>noscere ut hinc possis non aequas omnia partis</l>
 <l n="125">corpora habere neque ex aequo fulcire salutem,</l>
@@ -2635,10 +2628,10 @@ card breaks not yet aligned
 <l n="230">seminibus, quoniam fugiens nil ponderis aufert.</l>
 <l>Nec tamen haec simplex nobis natura putanda est.</l>
 <l>tenvis enim quaedam moribundos deserit aura</l>
-<l>mixta vapore, vapor porro trahit a&euml;ra secum;</l>
-<l>nec calor est quisquam, cui non sit mixtus et a&euml;r;</l>
+<l>mixta vapore, vapor porro trahit <choice><reg>aera</reg><orig>aëra</orig></choice> secum;</l>
+<l>nec calor est quisquam, cui non sit mixtus et <choice><reg>aer</reg><orig>aër</orig></choice>;</l>
 <l n="235">rara quod eius enim constat natura, necessest</l>
-<l>a&euml;ris inter eum primordia multa moveri.</l>
+<l><choice><reg>aeris</reg><orig>aëris</orig></choice> inter eum primordia multa moveri.</l>
 <l>iam triplex animi est igitur natura reperta;</l>
 <l>nec tamen haec sat sunt ad sensum cuncta creandum,</l>
 <l>nil horum quoniam recipit mens posse creare</l>
@@ -2650,7 +2643,7 @@ card breaks not yet aligned
 <l n="245">sensiferos motus quae didit prima per artus.</l>
 <l>prima cietur enim, parvis perfecta figuris,</l>
 <l>inde calor motus et venti caeca potestas</l>
-<l>accipit, inde a&euml;r, inde omnia mobilitantur:</l>
+<l>accipit, inde <choice><reg>aer</reg><orig>aër</orig></choice>, inde omnia mobilitantur:</l>
 <l>concutitur sanguis, tum viscera persentiscunt</l>
 <l n="250">omnia, postremis datur ossibus atque medullis</l>
 <l>sive voluptas est sive est contrarius ardor.</l>
@@ -2672,7 +2665,7 @@ card breaks not yet aligned
 <l>quod genus in quovis animantum viscere volgo</l>
 <l>est odor et quidam color et sapor, et tamen ex his</l>
 <l>omnibus est unum perfectum corporis augmen,</l>
-<l>sic calor atque a&euml;r et venti caeca potestas</l>
+<l>sic calor atque <choice><reg>aer</reg><orig>aër</orig></choice> et venti caeca potestas</l>
 <l n="270">mixta creant unam naturam et mobilis illa</l>
 <l>vis, initum motus ab se quae dividit ollis,</l>
 <l>sensifer unde oritur primum per viscera motus.</l>
@@ -2685,18 +2678,18 @@ card breaks not yet aligned
 <l>sic tibi nominis haec expers vis, facta minutis</l>
 <l n="280">corporibus, latet atque animae quasi totius ipsa</l>
 <l>proporrost anima et dominatur corpore toto.</l>
-<l>consimili ratione necessest ventus et a&euml;r</l>
+<l>consimili ratione necessest ventus et <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l>et calor inter se vigeant commixta per artus</l>
 <l>atque aliis aliud subsit magis emineatque,</l>
 <l n="285">ut quiddam fieri videatur ab omnibus unum,</l>
 <l>ni calor ac ventus seorsum seorsumque potestas</l>
-<l>a&euml;ris interemant sensum diductaque solvant.</l>
+<l><choice><reg>aeris</reg><orig>aëris</orig></choice> interemant sensum diductaque solvant.</l>
 <milestone unit="card" n="288"/>
 <l>est etiam calor ille animo, quem sumit, in ira</l>
 <l>cum fervescit et ex oculis micat acrius ardor;</l>
 <l n="290">est et frigida multa, comes formidinis, aura,</l>
 <l>quae ciet horrorem membris et concitat artus;</l>
-<l>est etiam quoque pacati status a&euml;ris ille,</l>
+<l>est etiam quoque pacati status <choice><reg>aeris</reg><orig>aëris</orig></choice> ille,</l>
 <l>pectore tranquillo fit qui voltuque sereno.</l>
 <l>sed calidi plus est illis quibus acria corda</l>
 <l n="295">iracundaque mens facile effervescit in ira,</l>
@@ -2706,7 +2699,7 @@ card breaks not yet aligned
 <l>at ventosa magis cervorum frigida mens est</l>
 <l n="300">et gelidas citius per viscera concitat auras,</l>
 <l>quae tremulum faciunt membris existere motum.</l>
-<l>at natura boum placido magis a&euml;re vivit</l>
+<l>at natura boum placido magis <choice><reg>aere</reg><orig>aëre</orig></choice> vivit</l>
 <l>nec nimis irai fax umquam subdita percit</l>
 <l>fumida, suffundens caecae caliginis umbra,</l>
 <l n="305">nec gelidis torpet telis perfixa pavoris;</l>
@@ -2802,7 +2795,7 @@ card breaks not yet aligned
 <l>semina corporibus nostris inmixta per artus,</l>
 <l>et quam in his intervallis tuditantia possint</l>
 <l n="395">concursare coire et dissultare vicissim.</l>
-<l>Et magis est animus vitai claustra co&euml;rcens</l>
+<l>Et magis est animus vitai claustra <choice><reg>coercens</reg><orig>coërcens</orig></choice></l>
 <l>et dominantior ad vitam quam vis animai.</l>
 <l>nam sine mente animoque nequit residere per artus</l>
 <l>temporis exiguam partem pars ulla animai,</l>
@@ -2835,12 +2828,12 @@ card breaks not yet aligned
 <l n="425">Principio quoniam tenuem constare minutis</l>
 <l>corporibus docui multoque minoribus esse</l>
 <l>principiis factam quam liquidus umor aquai</l>
-<l>aut nebula aut fumus &mdash; nam longe mobilitate</l>
+<l>aut nebula aut fumus —; nam longe mobilitate</l>
 <l>praestat et a tenui causa magis icta movetur,</l>
 <l n="430">quippe ubi imaginibus fumi nebulaeque movetur;</l>
 <l>quod genus in somnis sopiti ubi cernimus alte</l>
 <l>exhalare vaporem altaria ferreque fumum;</l>
-<l>nam procul haec dubio nobis simulacra geruntur&AElig;</l>
+<l>nam procul haec dubio nobis simulacra <choice><reg>gerunturae</reg><orig>gerunturæ</orig></choice></l>
 <l>nunc igitur quoniam quassatis undique vasis</l>
 <l n="435">diffluere umorem et laticem discedere cernis,</l>
 <l>et nebula ac fumus quoniam discedit in auras,</l>
@@ -2850,7 +2843,7 @@ card breaks not yet aligned
 <l n="440">quippe etenim corpus, quod vas quasi constitit eius,</l>
 <l>cum cohibere nequit conquassatum ex aliqua re</l>
 <l>ac rarefactum detracto sanguine venis,</l>
-<l>a&euml;re qui credas posse hanc cohiberier ullo,</l>
+<l><choice><reg>aere</reg><orig>aëre</orig></choice> qui credas posse hanc cohiberier ullo,</l>
 <l>corpore qui nostro rarus magis incohibens sit?</l>
 <milestone unit="card" n="445"/>
 <l n="445">Praeterea gigni pariter cum corpore et una</l>
@@ -2864,7 +2857,7 @@ card breaks not yet aligned
 <l>claudicat ingenium, delirat lingua <del>labat</del> mens,</l>
 <l>omnia deficiunt atque uno tempore desunt.</l>
 <l n="455">ergo dissolui quoque convenit omnem animai</l>
-<l>naturam, ceu fumus, in altas a&euml;ris auras;</l>
+<l>naturam, ceu fumus, in altas <choice><reg>aeris</reg><orig>aëris</orig></choice> auras;</l>
 <l>quando quidem gigni pariter pariterque videmus</l>
 <l>crescere et, <del>ut</del> docui, simul aevo fessa fatisci.</l>
 <l>Huc accedit uti videamus, corpus ut ipsum</l>
@@ -2917,7 +2910,7 @@ card breaks not yet aligned
 <l n="505">paulatim redit in sensus animamque receptat.</l>
 <l>haec igitur tantis ubi morbis corpore in ipso</l>
 <l>iactentur miserisque modis distracta laborent,</l>
-<l>cur eadem credis sine corpore in a&euml;re aperto</l>
+<l>cur eadem credis sine corpore in <choice><reg>aere</reg><orig>aëre</orig></choice> aperto</l>
 <l>cum validis ventis aetatem degere posse?</l>
 <l n="510">Et quoniam mentem sanari corpus ut aegrum</l>
 <l>cernimus et flecti medicina posse videmus,</l>
@@ -2981,9 +2974,9 @@ card breaks not yet aligned
 <l>nec magnis intervallis primordia possunt</l>
 <l>libera dissultare, ideo conclusa moventur</l>
 <l n="570">sensiferos motus, quos extra corpus in auras</l>
-<l>a&euml;ris haut possunt post mortem eiecta moveri</l>
+<l><choice><reg>aeris</reg><orig>aëris</orig></choice> haut possunt post mortem eiecta moveri</l>
 <l>propterea quia non simili ratione tenentur;</l>
-<l>corpus enim atque animans erit a&euml;r, si cohibere</l>
+<l>corpus enim atque animans erit <choice><reg>aer</reg><orig>aër</orig></choice>, si cohibere</l>
 <l>sese anima atque in eos poterit concludere motus,</l>
 <l n="575">quos ante in nervis et in ipso corpore agebat.</l>
 <l>quare etiam atque etiam resoluto corporis omni</l>
@@ -3001,7 +2994,7 @@ card breaks not yet aligned
 <l>atque foramina? multimodis ut noscere possis</l>
 <l>dispertitam animae naturam exisse per artus</l>
 <l n="590">et prius esse sibi distractam corpore in ipso,</l>
-<l>quam prolapsa foras enaret in a&euml;ris auras.</l>
+<l>quam prolapsa foras enaret in <choice><reg>aeris</reg><orig>aëris</orig></choice> auras.</l>
 <milestone unit="card" n="592"/>
 <l>Quin etiam finis dum vitae vertitur intra,</l>
 <l>saepe aliqua tamen e causa labefacta videtur</l>
@@ -3104,10 +3097,10 @@ card breaks not yet aligned
 <l>nam neque tanto opere adnecti potuisse putandumst</l>
 <l>corporibus nostris extrinsecus insinuatas,</l>
 <l n="690">quod fieri totum contra manifesta docet res</l>
-<l>&AElig;namque ita conexa est per venas viscera nervos</l>
+<l><choice><reg>aenamque</reg><orig>ænamque</orig></choice> ita conexa est per venas viscera nervos</l>
 <l>ossaque, uti dentes quoque sensu participentur;</l>
 <l>morbus ut indicat et gelidai stringor aquai</l>
-<l>et lapis oppressus subitis e frugibus asper&AElig;</l>
+<l>et lapis oppressus subitis e frugibus <choice><reg>asperae</reg><orig>asperæ</orig></choice></l>
 <l n="695">nec, tam contextae cum sint, exire videntur</l>
 <l>incolumes posse et salvas exsolvere sese</l>
 <l>omnibus e nervis atque ossibus articulisque,</l>
@@ -3167,7 +3160,7 @@ card breaks not yet aligned
 <l>corpora, permixtis animantes moribus essent,</l>
 <l n="750">effugeret canis Hyrcano de semine saepe</l>
 <l>cornigeri incursum cervi tremeretque per auras</l>
-<l>a&euml;ris accipiter fugiens veniente columba,</l>
+<l><choice><reg>aeris</reg><orig>aëris</orig></choice> accipiter fugiens veniente columba,</l>
 <l>desiperent homines, saperent fera saecla ferarum.</l>
 <l>illud enim falsa fertur ratione, quod aiunt</l>
 <l n="755">inmortalem animam mutato corpore flecti;</l>
@@ -3241,7 +3234,7 @@ card breaks not yet aligned
 <l>aut quia non veniunt omnino aliena salutis,</l>
 <l> aut quia quae veniunt aliqua ratione recedunt</l>
 <l>pulsa prius quam quid noceant sentire queamus,</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l>praeter enim quam quod morbis cum corporis aegret,</l>
 <l n="825">advenit id quod eam de rebus saepe futuris</l>
 <l>macerat inque metu male habet curisque fatigat,</l>
@@ -3403,7 +3396,7 @@ card breaks not yet aligned
 <milestone unit="card" n="978"/>
 <l>Atque ea ni mirum quae cumque Acherunte profundo</l>
 <l>prodita sunt esse, in vita sunt omnia nobis.</l>
-<l n="980">nec miser inpendens magnum timet a&euml;re saxum</l>
+<l n="980">nec miser inpendens magnum timet <choice><reg>aere</reg><orig>aëre</orig></choice> saxum</l>
 <l>Tantalus, ut famast, cassa formidine torpens;</l>
 <l>sed magis in vita divom metus urget inanis</l>
 <l>mortalis casumque timent quem cuique ferat fors.</l>
@@ -3521,8 +3514,8 @@ card breaks not yet aligned
 <l>nec minus ille diu iam non erit, ex hodierno</l>
 <l>lumine qui finem vitai fecit, et ille,</l>
 <l>mensibus atque annis qui multis occidit ante.</l>
-</div1>
-<div1 type="book" n="4">
+</div>
+<div type="textpart" subtype="book" n="4">
 <head>Liber Quartus</head>
 <milestone unit="card" n="1"/>
 <l>Avia Pieridum peragro loca nullius ante</l>
@@ -3655,7 +3648,7 @@ card breaks not yet aligned
 <l>expirant acrem, panaces absinthia taetra</l>
 <l n="125">habrotonique graves et tristia centaurea,</l>
 <l>quorum unum quidvis leviter si forte duobus</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l>quin potius noscas rerum simulacra vagari</l>
 <l>multa modis multis, nulla vi cassaque sensu?</l>
 <l>Sed ne forte putes ea demum sola vagari,</l>
@@ -3665,7 +3658,7 @@ card breaks not yet aligned
 <l>quae multis formata modis sublime feruntur,</l>
 <l>ut nubes facile inter dum concrescere in alto</l>
 <l n="135">cernimus et mundi speciem violare serenam</l>
-<l>a&euml;ra mulcentes motu; nam saepe Gigantum</l>
+<l><choice><reg>aera</reg><orig>aëra</orig></choice> mulcentes motu; nam saepe Gigantum</l>
 <l>ora volare videntur et umbram ducere late,</l>
 <l>inter dum magni montes avolsaque saxa</l>
 <l>montibus ante ire et solem succedere praeter,</l>
@@ -3675,7 +3668,7 @@ card breaks not yet aligned
 <milestone unit="card" n="143"/>
 <l>Nunc ea quam facili et celeri ratione genantur</l>
 <l>perpetuoque fluant ab rebus lapsaque cedant</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l n="145">semper enim summum quicquid de rebus abundat,</l>
 <l>quod iaculentur. et hoc alias cum pervenit in res,</l>
 <l>transit, ut in primis vestem; sed ubi aspera saxa</l>
@@ -3719,7 +3712,7 @@ card breaks not yet aligned
 <l>corporibus factas celeris licet esse videre.</l>
 <l n="185">in quo iam genere est solis lux et vapor eius,</l>
 <l>propterea quia sunt e primis facta minutis,</l>
-<l>quae quasi cuduntur perque a&euml;ris intervallum</l>
+<l>quae quasi cuduntur perque <choice><reg>aeris</reg><orig>aëris</orig></choice> intervallum</l>
 <l>non dubitant transire sequenti concita plaga;</l>
 <l>suppeditatur enim confestim lumine lumen</l>
 <l n="190">et quasi protelo stimulatur fulgere fulgur.</l>
@@ -3730,7 +3723,7 @@ card breaks not yet aligned
 <l n="195">quod super est, ubi tam volucri levitate ferantur,</l>
 <l>deinde quod usque adeo textura praedita rara</l>
 <l>mittuntur, facile ut quasvis penetrare queant res</l>
-<l>et quasi permanare per a&euml;ris intervallum.</l>
+<l>et quasi permanare per <choice><reg>aeris</reg><orig>aëris</orig></choice> intervallum.</l>
 <milestone unit="card" n="199"/>
 <l>Praeterea si quae penitus corpuscula rerum</l>
 <l n="200">ex altoque foras mittuntur, solis uti lux</l>
@@ -3782,11 +3775,11 @@ card breaks not yet aligned
 <l>et quantum quaeque ab nobis res absit, imago</l>
 <l n="245">efficit ut videamus et internoscere curat;</l>
 <l>nam cum mittitur, extemplo protrudit agitque</l>
-<l>a&euml;ra qui inter se cumque est oculosque locatus,</l>
+<l><choice><reg>aera</reg><orig>aëra</orig></choice> qui inter se cumque est oculosque locatus,</l>
 <l>isque ita per nostras acies perlabitur omnis</l>
 <l>et quasi perterget pupillas atque ita transit.</l>
 <l n="250">propterea fit uti videamus quam procul absit</l>
-<l>res quaeque. et quanto plus a&euml;ris ante agitatur</l>
+<l>res quaeque. et quanto plus <choice><reg>aeris</reg><orig>aëris</orig></choice> ante agitatur</l>
 <l>et nostros oculos perterget longior aura,</l>
 <l>tam procul esse magis res quaeque remota videtur.</l>
 <l>scilicet haec summe celeri ratione geruntur,</l>
@@ -3810,25 +3803,25 @@ card breaks not yet aligned
 <l>quod genus illa foris quae vere transpiciuntur,</l>
 <l> ianua cum per se transpectum praebet apertum,</l>
 <l>multa facitque foris ex aedibus ut videantur;</l>
-<l>is quoque enim duplici geminoque fit a&euml;re visus.</l>
-<l n="275">primus enim citra postes tum cernitur a&euml;r,</l>
+<l>is quoque enim duplici geminoque fit <choice><reg>aere</reg><orig>aëre</orig></choice> visus.</l>
+<l n="275">primus enim citra postes tum cernitur <choice><reg>aer</reg><orig>aër</orig></choice>,</l>
 <l>inde fores ipsae dextra laevaque secuntur,</l>
-<l>post extraria lux oculos perterget et a&euml;r</l>
+<l>post extraria lux oculos perterget et <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l>alter, et illa foris quae vere transpiciuntur.</l>
 <l>sic ubi se primum speculi proiecit imago,</l>
 <l n="280">dum venit ad nostras acies, protrudit agitque</l>
-<l>a&euml;ra qui inter se cumquest oculosque locatus,</l>
+<l><choice><reg>aera</reg><orig>aëra</orig></choice> qui inter se cumquest oculosque locatus,</l>
 <l>et facit, ut prius hunc omnem sentire queamus</l>
 <l>quam speculum; sed ubi <del>in</del> speculum quoque sensimus ipsum,</l>
 <l>continuo a nobis in eum quae fertur imago</l>
 <l n="285">pervenit, et nostros oculos reiecta revisit</l>
-<l>atque alium prae se propellens a&euml;ra volvit,</l>
+<l>atque alium prae se propellens <choice><reg>aera</reg><orig>aëra</orig></choice> volvit,</l>
 <l>et facit ut prius hunc quam se videamus, eoque</l>
 <l>distare ab speculo tantum semota videtur.</l>
 <l>quare etiam atque etiam minime mirarier est par</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l n="290">illis quae reddunt speculorum ex aequore visum,</l>
-<l>a&euml;ribus binis quoniam res confit utraque.</l>
+<l><choice><reg>aeribus</reg><orig>aëribus</orig></choice> binis quoniam res confit utraque.</l>
 <l>Nunc ea quae nobis membrorum dextera pars est,</l>
 <l>in speculis fit ut in laeva videatur eo quod</l>
 <l>planitiem ad speculi veniens cum offendit imago,</l>
@@ -3841,7 +3834,7 @@ card breaks not yet aligned
 <l>nunc sit laevus et e laevo sit mutua dexter.</l>
 <milestone unit="card" n="302"/>
 <l>Fit quoque de speculo in speculum ut tradatur imago,</l>
-<l>quinque etiam <del>aut</del> sex ut fieri simulacra su&euml;rint.</l>
+<l>quinque etiam <del>aut</del> sex ut fieri simulacra <choice><reg>suerint</reg><orig>suërint</orig></choice>.</l>
 <l>nam quae cumque retro parte interiore latebunt,</l>
 <l n="305">inde tamen, quamvis torte penitusque remota,</l>
 <l>omnia per flexos aditus educta licebit</l>
@@ -3865,7 +3858,7 @@ card breaks not yet aligned
 <l>Splendida porro oculi fugitant vitantque tueri.</l>
 <l n="325"> sol etiam caecat, contra si tendere pergas,</l>
 <l>propterea quia vis magnast ipsius et alte</l>
-<l>a&euml;ra per purum simulacra feruntur</l>
+<l><choice><reg>aera</reg><orig>aëra</orig></choice> per purum simulacra feruntur</l>
 <l>et feriunt oculos turbantia composituras.</l>
 <l>Praeterea splendor qui cumque est acer adurit</l>
 <l n="330">saepe oculos ideo quod semina possidet ignis</l>
@@ -3877,18 +3870,18 @@ card breaks not yet aligned
 <l>quae contage sua palloribus omnia pingunt.</l>
 <milestone unit="card" n="337"/>
 <l>E tenebris autem quae sunt in luce tuemur</l>
-<l>propterea quia, cum propior caliginis a&euml;r</l>
+<l>propterea quia, cum propior caliginis <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l>ater init oculos prior et possedit apertos,</l>
-<l n="340">insequitur candens confestim lucidus a&euml;r,</l>
+<l n="340">insequitur candens confestim lucidus <choice><reg>aer</reg><orig>aër</orig></choice>,</l>
 <l>qui quasi purgat eos ac nigras discutit umbras</l>
-<l>a&euml;ris illius; nam multis partibus hic est</l>
+<l><choice><reg>aeris</reg><orig>aëris</orig></choice> illius; nam multis partibus hic est</l>
 <l>mobilior multisque minutior et mage pollens.</l>
 <l>qui simul atque vias oculorum luce replevit</l>
-<l n="345">atque pate fecit, quas ante obsederat a&euml;r</l>
+<l n="345">atque pate fecit, quas ante obsederat <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l><add>ATER</add>, continuo rerum simulacra secuntur,</l>
 <l>quae sita sunt in luce, lacessuntque ut videamus.</l>
 <l>quod contra facere in tenebris e luce nequimus</l>
-<l>propterea quia posterior caliginis a&euml;r</l>
+<l>propterea quia posterior caliginis <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l n="350">crassior insequitur, qui cuncta foramina complet</l>
 <l>obsiditque vias oculorum, ne simulacra</l>
 <l>possint ullarum rerum coniecta moveri.</l>
@@ -3897,18 +3890,18 @@ card breaks not yet aligned
 <l n="355">angulus optusus quia longe cernitur omnis</l>
 <l>sive etiam potius non cernitur ac perit eius</l>
 <l>plaga nec ad nostras acies perlabitur ictus,</l>
-<l>a&euml;ra per multum quia dum simulacra feruntur,</l>
-<l>cogit hebescere eum crebris offensibus a&euml;r.</l>
+<l><choice><reg>aera</reg><orig>aëra</orig></choice> per multum quia dum simulacra feruntur,</l>
+<l>cogit hebescere eum crebris offensibus <choice><reg>aer</reg><orig>aër</orig></choice>.</l>
 <l n="360">hoc ubi suffugit sensum simul angulus omnis.</l>
 <l>fit quasi ut ad turnum saxorum structa tuantur;</l>
 <l>non tamen ut coram quae sunt vereque rutunda,</l>
 <l>sed quasi adumbratim paulum simulata videntur.</l>
 <l>Umbra videtur item nobis in sole moveri</l>
 <l n="365">et vestigia nostra sequi gestumque imitari,</l>
-<l>a&euml;ra si credis privatum lumine posse</l>
+<l><choice><reg>aera</reg><orig>aëra</orig></choice> si credis privatum lumine posse</l>
 <l>indugredi, motus hominum gestumque sequentem;</l>
 <l>nam nihil esse potest aliud nisi lumine cassus</l>
-<l>a&euml;r id quod nos umbram perhibere su&euml;mus.</l>
+<l><choice><reg>aer</reg><orig>aër</orig></choice> id quod nos umbram perhibere <choice><reg>suemus</reg><orig>suëmus</orig></choice>.</l>
 <l n="370">ni mirum, quia terra locis ex ordine certis</l>
 <l>lumine privatur solis qua cumque meantes</l>
 <l>officimus, repletur item quod liquimus eius,</l>
@@ -4104,7 +4097,7 @@ card breaks not yet aligned
 <l n="555">plane exaudiri discernique articulatim;</l>
 <l>servat enim formaturam servatque figuram.</l>
 <l>at si inter positum spatium sit longius aequo,</l>
-<l>a&euml;ra per multum confundi verba necessest</l>
+<l><choice><reg>aera</reg><orig>aëra</orig></choice> per multum confundi verba necessest</l>
 <l>et conturbari vocem, dum transvolat auras.</l>
 <l n="560">ergo fit, sonitum ut possis sentire neque illam</l>
 <l>internoscere, verborum sententia quae sit;</l>
@@ -4168,7 +4161,7 @@ card breaks not yet aligned
 <l>plusculum habent in se rationis, plus operai.</l>
 <l>principio sucum sentimus in ore, cibum cum</l>
 <l>mandendo exprimimus, ceu plenam spongiam aquai</l>
-<l>siquis forte manu premere ac siccare co&euml;pit.</l>
+<l>siquis forte manu premere ac siccare <choice><reg>coepit</reg><orig>coëpit</orig></choice>.</l>
 <l n="620">inde quod exprimimus per caulas omne palati</l>
 <l>diditur et rarae per flexa foramina linguae,</l>
 <l>hoc ubi levia sunt manantis corpora suci,</l>
@@ -4196,7 +4189,7 @@ card breaks not yet aligned
 <l>semina multimodis in rebus mixta teneri.</l>
 <l n="645">porro omnes quae cumque cibum capiunt animantes,</l>
 <l>ut sunt dissimiles extrinsecus et generatim</l>
-<l>extima membrorum circumcaesura co&euml;rcet,</l>
+<l>extima membrorum circumcaesura <choice><reg>coercet</reg><orig>coërcet</orig></choice>,</l>
 <l>proinde et seminibus constant variantque figura.</l>
 <l>semina cum porro distent, differre necessest</l>
 <l n="650">intervalla viasque, foramina quae perhibemus,</l>
@@ -4206,7 +4199,7 @@ card breaks not yet aligned
 <l>multa rutunda, modis multis multangula quaedam.</l>
 <l n="655"> namque figurarum ratio ut motusque reposcunt,</l>
 <l>proinde foraminibus debent differe figurae</l>
-<l>et variare viae proinde ac textura co&euml;rcet.</l>
+<l>et variare viae proinde ac textura <choice><reg>coercet</reg><orig>coërcet</orig></choice>.</l>
 <l>hoc ubi quod suave est aliis aliis fit amarum,</l>
 <l>illi, cui suave est, levissima corpora debent</l>
 <l n="660">contractabiliter caulas intrare palati,</l>
@@ -4243,7 +4236,7 @@ card breaks not yet aligned
 <l n="690">quam sonitus, quam vox, mitto iam dicere quam res</l>
 <l>quae feriunt oculorum acies visumque lacessunt.</l>
 <l>errabundus enim tarde venit ac perit ante</l>
-<l>paulatim facilis distractus in a&euml;ris auras;</l>
+<l>paulatim facilis distractus in <choice><reg>aeris</reg><orig>aëris</orig></choice> auras;</l>
 <l>ex alto primum quia vix emittitur ex re;</l>
 <l n="695">nam penitus fluere atque recedere rebus odores</l>
 <l>significat quod fracta magis redolere videntur</l>
@@ -4287,7 +4280,7 @@ card breaks not yet aligned
 <l>Cerbereasque canum facies simulacraque eorum</l>
 <l>quorum morte obita tellus amplectitur ossa;</l>
 <l n="735">omnigenus quoniam passim simulacra feruntur,</l>
-<l>partim sponte sua quae fiunt a&euml;re in ipso,</l>
+<l>partim sponte sua quae fiunt <choice><reg>aere</reg><orig>aëre</orig></choice> in ipso,</l>
 <l>partim quae variis ab rebus cumque recedunt</l>
 <l>et quae confiunt ex horum facta figuris.</l>
 <l>nam certe ex vivo Centauri non fit imago,</l>
@@ -4376,7 +4369,7 @@ card breaks not yet aligned
 <l>aut alia ex alia facies aetasque sequatur.</l>
 <l>quod ne miremur sopor atque oblivia curant.</l>
 <milestone unit="card" n="823"/>
-<l>Illud in his rebus vitium vehementer &Auml;inesse</l>
+<l>Illud in his rebus vitium vehementer <choice><reg>ainesse</reg><orig>äinesse</orig></choice></l>
 <l>effugere errorem vitareque praemetuenter,</l>
 <l n="825">lumina ne facias oculorum clara creata,</l>
 <l>prospicere ut possimus, et ut proferre queamus</l>
@@ -4399,7 +4392,7 @@ card breaks not yet aligned
 <l>at contra conferre manu certamina pugnae</l>
 <l>et lacerare artus foedareque membra cruore</l>
 <l n="845">ante fuit multo quam lucida tela volarent,</l>
-<l>et volnus vitare prius natura co&euml;git</l>
+<l>et volnus vitare prius natura <choice><reg>coegit</reg><orig>coëgit</orig></choice></l>
 <l>quam daret obiectum parmai laeva per artem.</l>
 <l>scilicet et fessum corpus mandare quieti</l>
 <l>multo antiquius est quam lecti mollia strata,</l>
@@ -4447,7 +4440,7 @@ card breaks not yet aligned
 <l>et facilest factu, quoniam coniuncta tenetur.</l>
 <l n="890">inde ea proporro corpus ferit, atque ita tota</l>
 <l>paulatim moles protruditur atque movetur.</l>
-<l>praeterea tum rarescit quoque corpus et a&euml;r,</l>
+<l>praeterea tum rarescit quoque corpus et <choice><reg>aer</reg><orig>aër</orig></choice>,</l>
 <l>scilicet ut debet qui semper mobilis extat,</l>
 <l>per patefacta venit penetratque foramina largus,</l>
 <l n="895">et dispargitur ad partis ita quasque minutas</l>
@@ -4490,11 +4483,11 @@ card breaks not yet aligned
 <l n="930"> perturbari anima et corpus languescere possit,</l>
 <l>expediam: tu fac ne ventis verba profundam.</l>
 <l>Principio externa corpus de parte necessum est,</l>
-<l>a&euml;riis quoniam vicinum tangitur auris,</l>
+<l><choice><reg>aeriis</reg><orig>aëriis</orig></choice> quoniam vicinum tangitur auris,</l>
 <l>tundier atque eius crebro pulsarier ictu,</l>
 <l n="935">proptereaque fere res omnes aut corio sunt</l>
 <l>aut etiam conchis aut callo aut cortice tectae.</l>
-<l>interiorem etiam partem spirantibus a&euml;r</l>
+<l>interiorem etiam partem spirantibus <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l>verberat hic idem, cum ducitur atque reflatur.</l>
 <l>quare utrimque secus cum corpus vapulet et cum</l>
 <l n="940">perveniant plagae per parva foramina nobis</l>
@@ -4511,7 +4504,7 @@ card breaks not yet aligned
 <l>debile fit corpus languescuntque omnia membra,</l>
 <l>bracchia palpebraeque cadunt poplitesque cubanti</l>
 <l>saepe tamen summittuntur virisque resolvunt.</l>
-<l>Deinde cibum sequitur somnus, quia, quae facit a&euml;r,</l>
+<l>Deinde cibum sequitur somnus, quia, quae facit <choice><reg>aer</reg><orig>aër</orig></choice>,</l>
 <l n="955">haec eadem cibus, in venas dum diditur omnis,</l>
 <l>efficit. et multo sopor ille gravissimus exstat,</l>
 <l>quem satur aut lassus capias, quia plurima tum se</l>
@@ -4855,8 +4848,8 @@ card breaks not yet aligned
 <l n="1285">vincitur in longo spatio tamen atque labascit.</l>
 <l>nonne vides etiam guttas in saxa cadentis</l>
 <l>umoris longo in spatio pertundere saxa?</l>
-</div1>
-<div1 type="book" n="5">
+</div>
+<div type="textpart" subtype="book" n="5">
 <head>Liber Quintus</head>
 <milestone unit="card" n="1"/>
 <l>Quis potis est dignum pollenti pectore carmen</l>
@@ -5118,7 +5111,7 @@ card breaks not yet aligned
 <l>principio pars terrai non nulla, perusta</l>
 <l>solibus adsiduis, multa pulsata pedum vi,</l>
 <l>pulveris exhalat nebulam nubesque volantis,</l>
-<l>quas validi toto dispergunt a&euml;re venti.</l>
+<l>quas validi toto dispergunt <choice><reg>aere</reg><orig>aëre</orig></choice> venti.</l>
 <l n="255">pars etiam glebarum ad diluviem revocatur</l>
 <l>imbribus et ripas radentia flumina rodunt.</l>
 <l>praeterea pro parte sua, quod cumque alit auget,</l>
@@ -5139,12 +5132,12 @@ card breaks not yet aligned
 <l>convenit, inde super terras fluit agmine dulci</l>
 <l>qua via secta semel liquido pede detulit undas.</l>
 <milestone unit="card" n="273"/>
-<l>A&euml;ra nunc igitur dicam, qui corpore toto</l>
+<l><choice><reg>Aera</reg><orig>Aëra</orig></choice> nunc igitur dicam, qui corpore toto</l>
 <l> innumerabiliter privas mutatur in horas.</l>
 <l n="275">semper enim, quod cumque fluit de rebus, id omne</l>
-<l>a&euml;ris in magnum fertur mare; qui nisi contra</l>
+<l><choice><reg>aeris</reg><orig>aëris</orig></choice> in magnum fertur mare; qui nisi contra</l>
 <l>corpora retribuat rebus recreetque fluentis,</l>
-<l>omnia iam resoluta forent et in a&euml;ra versa.</l>
+<l>omnia iam resoluta forent et in <choice><reg>aera</reg><orig>aëra</orig></choice> versa.</l>
 <l>haut igitur cessat gigni de rebus et in res</l>
 <l n="280">reccidere, adsidue quoniam fluere omnia constat.</l>
 <milestone unit="card" n="281"/>
@@ -5197,7 +5190,7 @@ card breaks not yet aligned
 <l>Praeterea si nulla fuit genitalis origo</l>
 <l n="325">terrarum et caeli semperque aeterna fuere,</l>
 <l>cur supera bellum Thebanum et funera Troiae</l>
-<l>non alias alii quoque res cecinere po&euml;tae?</l>
+<l>non alias alii quoque res cecinere <choice><reg>poetae</reg><orig>poëtae</orig></choice>?</l>
 <l>quo tot facta virum totiens cecidere neque usquam</l>
 <l> aeternis famae monimentis insita florent?</l>
 <l n="330">verum, ut opinor, habet novitatem summa recensque</l>
@@ -5277,7 +5270,7 @@ card breaks not yet aligned
 <l>obvius aeternam succepit lampada mundi</l>
 <l>disiectosque redegit equos iunxitque trementis,</l>
 <l>inde suum per iter recreavit cuncta gubernans,</l>
-<l n="405">scilicet ut veteres Graium cecinere po&euml;tae.</l>
+<l n="405">scilicet ut veteres Graium cecinere <choice><reg>poetae</reg><orig>poëtae</orig></choice>.</l>
 <l>quod procul a vera nimis est ratione repulsum.</l>
 <l>ignis enim superare potest ubi materiai</l>
 <l>ex infinito sunt corpora plura coorta;</l>
@@ -5308,7 +5301,7 @@ card breaks not yet aligned
 <milestone unit="card" n="432"/>
 <l>Hic neque tum solis rota cerni lumine largo</l>
 <l>altivolans poterat nec magni sidera mundi</l>
-<l>nec mare nec caelum nec denique terra neque a&euml;r</l>
+<l>nec mare nec caelum nec denique terra neque <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l n="435">nec similis nostris rebus res ulla videri,</l>
 <l>sed nova tempestas quaedam molesque coorta.</l>
 <l>diffugere inde loci partes coepere paresque</l>
@@ -5365,7 +5358,7 @@ card breaks not yet aligned
 <l>tam magis expressus salsus de corpore sudor</l>
 <l>augebat mare manando camposque natantis,</l>
 <l>et tanto magis illa foras elapsa volabant</l>
-<l n="490">corpora multa vaporis et a&euml;ris altaque caeli</l>
+<l n="490">corpora multa vaporis et <choice><reg>aeris</reg><orig>aëris</orig></choice> altaque caeli</l>
 <l>densabant procul a terris fulgentia templa.</l>
 <l>sidebant campi, crescebant montibus altis</l>
 <l>ascensus; neque enim poterant subsidere saxa</l>
@@ -5374,11 +5367,11 @@ card breaks not yet aligned
 <l n="495">Sic igitur terrae concreto corpore pondus</l>
 <l>constitit atque omnis mundi quasi limus in imum</l>
 <l>confluxit gravis et subsedit funditus ut faex;</l>
-<l>inde mare, inde a&euml;r, inde aether ignifer ipse</l>
+<l>inde mare, inde <choice><reg>aer</reg><orig>aër</orig></choice>, inde aether ignifer ipse</l>
 <l>corporibus liquidis sunt omnia pura relicta</l>
 <l n="500">et leviora aliis alia, et liquidissimus aether</l>
-<l>atque levissimus a&euml;rias super influit auras</l>
-<l>nec liquidum corpus turbantibus a&euml;ris auris</l>
+<l>atque levissimus <choice><reg>aerias</reg><orig>aërias</orig></choice> super influit auras</l>
+<l>nec liquidum corpus turbantibus <choice><reg>aeris</reg><orig>aëris</orig></choice> auris</l>
 <l>commiscet; sinit haec violentis omnia verti</l>
 <l>turbinibus, sinit incertis turbare procellis,</l>
 <l n="505">ipse suos ignis certo fert impete labens.</l>
@@ -5388,7 +5381,7 @@ card breaks not yet aligned
 <milestone unit="card" n="509"/>
 <l>Motibus astrorum nunc quae sit causa canamus.</l>
 <l n="510">principio magnus caeli si vortitur orbis,</l>
-<l>ex utraque polum parti premere a&euml;ra nobis</l>
+<l>ex utraque polum parti premere <choice><reg>aera</reg><orig>aëra</orig></choice> nobis</l>
 <l>dicendum est extraque tenere et claudere utrimque;</l>
 <l>inde alium supra fluere atque intendere eodem</l>
 <l>quo volvenda micant aeterni sidera mundi;</l>
@@ -5399,7 +5392,7 @@ card breaks not yet aligned
 <l>sive quod inclusi rapidi sunt aetheris aestus</l>
 <l n="520">quaerentesque viam circum versantur et ignes</l>
 <l>passim per caeli volvunt summania templa,</l>
-<l>sive aliunde fluens alicunde extrinsecus a&euml;r</l>
+<l>sive aliunde fluens alicunde extrinsecus <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l>versat agens ignis, sive ipsi serpere possunt,</l>
 <l>quo cuiusque cibus vocat atque invitat euntis,</l>
 <l n="525">flammea per caelum pascentis corpora passim.</l>
@@ -5416,7 +5409,7 @@ card breaks not yet aligned
 <l n="535">evanescere paulatim et decrescere pondus</l>
 <l>convenit atque aliam naturam supter habere</l>
 <l>ex ineunte aevo coniunctam atque uniter aptam</l>
-<l>partibus a&euml;riis mundi, quibus insita vivit.</l>
+<l>partibus <choice><reg>aeriis</reg><orig>aëriis</orig></choice> mundi, quibus insita vivit.</l>
 <l>propterea non est oneri neque deprimit auras,</l>
 <l n="540">ut sua cuique homini nullo sunt pondere membra</l>
 <l>nec caput est oneri collo nec denique totum</l>
@@ -5431,7 +5424,7 @@ card breaks not yet aligned
 <l n="550">Praeterea grandi tonitru concussa repente</l>
 <l>terra supra quae se sunt concutit omnia motu;</l>
 <l>quod facere haut ulla posset ratione, nisi esset</l>
-<l>partibus a&euml;riis mundi caeloque revincta;</l>
+<l>partibus <choice><reg>aeriis</reg><orig>aëriis</orig></choice> mundi caeloque revincta;</l>
 <l>nam communibus inter se radicibus haerent</l>
 <l n="555">ex ineunte aevo coniuncta atque uniter aucta.</l>
 <l>Nonne vides etiam quam magno pondere nobis</l>
@@ -5440,7 +5433,7 @@ card breaks not yet aligned
 <l>Denique iam saltu pernici tollere corpus</l>
 <l n="560">quid potis est nisi vis animae, quae membra gubernat?</l>
 <l>iamne vides quantum tenuis natura valere</l>
-<l>possit, ubi est coniuncta gravi cum corpore, ut a&euml;r</l>
+<l>possit, ubi est coniuncta gravi cum corpore, ut <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l>coniunctus terris et nobis est animi vis?</l>
 <milestone unit="card" n="564"/>
 <l>Nec nimio solis maior rota nec minor ardor</l>
@@ -5459,7 +5452,7 @@ card breaks not yet aligned
 <l>quidquid id est, nihilo fertur maiore figura</l>
 <l>quam, nostris oculis qua cernimus, esse videtur.</l>
 <l>nam prius omnia, quae longe semota tuemur</l>
-<l n="580">a&euml;ra per multum, specie confusa videntur</l>
+<l n="580"><choice><reg>aera</reg><orig>aëra</orig></choice> per multum, specie confusa videntur</l>
 <l>quam minui filum. quapropter luna necesse est,</l>
 <l>quandoquidem claram speciem certamque figuram</l>
 <l>praebet, ut est oris extremis cumque notata,</l>
@@ -5485,8 +5478,8 @@ card breaks not yet aligned
 <l>nonne vides etiam quam late parvus aquai</l>
 <l>prata riget fons inter dum campisque redundet?</l>
 <l> est etiam quoque uti non magno solis ab igni</l>
-<l n="605">a&euml;ra percipiat calidis fervoribus ardor,</l>
-<l>opportunus ita est si forte et idoneus a&euml;r,</l>
+<l n="605"><choice><reg>aera</reg><orig>aëra</orig></choice> percipiat calidis fervoribus ardor,</l>
+<l>opportunus ita est si forte et idoneus <choice><reg>aer</reg><orig>aër</orig></choice>,</l>
 <l>ut queat accendi parvis ardoribus ictus;</l>
 <l>quod genus inter dum segetes stipulamque videmus</l>
 <l>accidere ex una scintilla incendia passim.</l>
@@ -5518,7 +5511,7 @@ card breaks not yet aligned
 <l>hanc adipiscuntur circum praeterque feruntur.</l>
 <l n="635">propterea fit ut haec ad signum quodque reverti</l>
 <l>mobilius videatur, ad hanc quia signa revisunt.</l>
-<l>fit quoque ut e mundi transversis partibus a&euml;r</l>
+<l>fit quoque ut e mundi transversis partibus <choice><reg>aer</reg><orig>aër</orig></choice></l>
 <l>alternis certo fluere alter tempore possit,</l>
 <l>qui queat aestivis solem detrudere signis</l>
 <l n="640">brumalis usque ad flexus gelidumque rigorem,</l>
@@ -5526,7 +5519,7 @@ card breaks not yet aligned
 <l>aestiferas usque in partis et fervida signa.</l>
 <l>et ratione pari lunam stellasque putandumst,</l>
 <l>quae volvunt magnos in magnis orbibus annos,</l>
-<l n="645">a&euml;ribus posse alternis e partibus ire.</l>
+<l n="645"><choice><reg>aeribus</reg><orig>aëribus</orig></choice> posse alternis e partibus ire.</l>
 <l>nonne vides etiam diversis nubila ventis</l>
 <l>diversas ire in partis inferna supernis?</l>
 <l>qui minus illa queant per magnos aetheris orbis</l>
@@ -5535,7 +5528,7 @@ card breaks not yet aligned
 <l n="650">At nox obruit ingenti caligine terras,</l>
 <l>aut ubi de longo cursu sol ultima caeli</l>
 <l>impulit atque suos efflavit languidus ignis</l>
-<l>concussos itere et labefactos a&euml;re multo,</l>
+<l>concussos itere et labefactos <choice><reg>aere</reg><orig>aëre</orig></choice> multo,</l>
 <l>aut quia sub terras cursum convortere cogit</l>
 <l n="655">vis eadem, supra quae terras pertulit orbem.</l>
 <l>Tempore item certo roseam Matuta per oras</l>
@@ -5579,7 +5572,7 @@ card breaks not yet aligned
 <l>obliquo terras et caelum lumine lustrans,</l>
 <l>ut ratio declarat eorum qui loca caeli</l>
 <l n="695">omnia dispositis signis ornata notarunt.</l>
-<l>aut quia crassior est certis in partibus a&euml;r,</l>
+<l>aut quia crassior est certis in partibus <choice><reg>aer</reg><orig>aër</orig></choice>,</l>
 <l>sub terris ideo tremulum iubar haesitat ignis</l>
 <l>nec penetrare potest facile atque emergere ad ortus;</l>
 <l>propterea noctes hiberno tempore longae</l>
@@ -5712,7 +5705,7 @@ card breaks not yet aligned
 <l>terra tenet merito, quoniam genus ipsa creavit</l>
 <l>humanum atque animal prope certo tempore fudit</l>
 <l> omne quod in magnis bacchatur montibus passim,</l>
-<l n="825">a&euml;riasque simul volucres variantibus formis.</l>
+<l n="825"><choice><reg>aeriasque</reg><orig>aëriasque</orig></choice> simul volucres variantibus formis.</l>
 <l>sed quia finem aliquam pariendi debet habere,</l>
 <l>destitit, ut mulier spatio defessa vetusto.</l>
 <l>mutat enim mundi naturam totius aetas</l>
@@ -5801,7 +5794,7 @@ card breaks not yet aligned
 <l>nixus in hoc uno novitatis nomine inani,</l>
 <l n="910">multa licet simili ratione effutiat ore,</l>
 <l>aurea tum dicat per terras flumina vulgo</l>
-<l>fluxisse et gemmis florere arbusta su&euml;sse</l>
+<l>fluxisse et gemmis florere arbusta <choice><reg>suesse</reg><orig>suësse</orig></choice></l>
 <l>aut hominem tanto membrorum esse impete natum,</l>
 <l>trans maria alta pedum nisus ut ponere posset</l>
 <l n="915">et manibus totum circum se vertere caelum.</l>
@@ -5905,7 +5898,7 @@ card breaks not yet aligned
 <milestone unit="card" n="1011"/>
 <l>Inde casas postquam ac pellis ignemque pararunt</l>
 <l>et mulier coniuncta viro concessit in unum</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l>cognita sunt, prolemque ex se videre creatam,</l>
 <l>tum genus humanum primum mollescere coepit.</l>
 <l n="1015">ignis enim curavit, ut alsia corpora frigus</l>
@@ -6257,7 +6250,7 @@ card breaks not yet aligned
 <l>textile post ferrumst, quia ferro tela paratur,</l>
 <l>nec ratione alia possunt tam levia gigni</l>
 <l>insilia ac fusi, radii, scapique sonantes.</l>
-<l>et facere ante viros lanam natura co&euml;git</l>
+<l>et facere ante viros lanam natura <choice><reg>coegit</reg><orig>coëgit</orig></choice></l>
 <l n="1355">quam muliebre genus; nam longe praestat in arte</l>
 <l>et sollertius est multo genus omne virile;</l>
 <l>agricolae donec vitio vertere severi,</l>
@@ -6351,7 +6344,7 @@ card breaks not yet aligned
 <l>et divisa colebatur discretaque tellus,</l>
 <l>tum mare velivolis florebat navibus ponti,</l>
 <l>auxilia ac socios iam pacto foedere habebant,</l>
-<l>carminibus cum res gestas coepere po&euml;tae</l>
+<l>carminibus cum res gestas coepere <choice><reg>poetae</reg><orig>poëtae</orig></choice></l>
 <l n="1445">tradere; nec multo prius sunt elementa reperta.</l>
 <l>propterea quid sit prius actum respicere aetas</l>
 <l>nostra nequit, nisi qua ratio vestigia monstrat.</l>
@@ -6365,8 +6358,8 @@ card breaks not yet aligned
 <l n="1455">in medium ratioque in luminis erigit oras;</l>
 <l>namque alid ex alio clarescere corde videbant,</l>
 <l>artibus ad summum donec venere cacumen.</l>
-</div1>
-<div1 type="book" n="6">
+</div>
+<div type="textpart" subtype="book" n="6">
 <head>Liber Sextus</head>
 <milestone unit="card" n="1"/>
 <l>Primae frugiparos fetus mortalibus aegris</l>
@@ -6417,14 +6410,14 @@ card breaks not yet aligned
 <l n="45">et quae cumque in eo fiunt fierique necessest</l>
 <l>pleraque dissolui, qui restant percipe porro,</l>
 <l>quandoquidem semel insignem conscendere currum</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l>tu mihi supremae praescripta ad candida callis</l>
 <l>currenti spatium praemonstra, callida musa</l>
 <l n="50">Calliope, requies hominum divomque voluptas,</l>
 <l>te duce ut insigni capiam cum laude coronam.</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l> ventorum existant, placentur <del>ut</del> omnia rursum</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l>quae fuerint, sint placato conversa furore.</l>
 <l>cetera quae fieri in terris caeloque tuentur</l>
 <l n="55">mortales, pavidis cum pendent mentibus saepe</l>
@@ -6629,11 +6622,11 @@ card breaks not yet aligned
 <l>nubibus extructis; nam caelo nulla sereno</l>
 <l>nec leviter densis mittuntur nubibus umquam.</l>
 <l>nam dubio procul hoc fieri manifesta docet res;</l>
-<l n="250">quod tunc per totum concrescunt ae&euml;ra nubes,</l>
+<l n="250">quod tunc per totum concrescunt <choice><reg>aeera</reg><orig>aeëra</orig></choice> nubes,</l>
 <l>undique uti tenebras omnis Acherunta reamur</l>
 <l>liquisse et magnas caeli complesse cavernas,</l>
-<l>&AElig;usque adeo tetra nimborum nocte coorta</l>
-<l>inpendent atrae formidinis ora superne,&AElig;</l>
+<l><choice><reg>aeusque</reg><orig>æusque</orig></choice> adeo tetra nimborum nocte coorta</l>
+<l>inpendent atrae formidinis ora superne,<choice><reg>ae</reg><orig>æ</orig></choice></l>
 <l n="255">cum commoliri tempestas fulmina coeptat.</l>
 <l>praeterea persaepe niger quoque per mare nimbus,</l>
 <l>ut picis e caelo demissum flumen, in undas</l>
@@ -6684,7 +6677,7 @@ card breaks not yet aligned
 <l>igniscat tamen in spatio longoque meatu,</l>
 <l>dum venit amittens in cursu corpora quaedam</l>
 <l>grandia, quae nequeunt pariter penetrare per auras,</l>
-<l>atque alia ex ipso conradens ae&euml;re portat</l>
+<l>atque alia ex ipso conradens <choice><reg>aeere</reg><orig>aeëre</orig></choice> portat</l>
 <l n="305">parvola, quae faciunt ignem commixta volando;</l>
 <l>non alia longe ratione ac plumbea saepe</l>
 <l>fervida fit glans in cursu, cum multa rigoris</l>
@@ -6727,7 +6720,7 @@ card breaks not yet aligned
 <l>nam facit ut quae sint illius semina cumque</l>
 <l>e regione locum quasi in unum cuncta ferantur,</l>
 <l n="345">omnia coniciens in eum volventia cursum.</l>
-<l>Forsitan ex ipso veniens trahat ae&euml;re quaedam</l>
+<l>Forsitan ex ipso veniens trahat <choice><reg>aeere</reg><orig>aeëre</orig></choice> quaedam</l>
 <l>corpora, quae plagis incendunt mobilitatem.</l>
 <l>incolumisque venit per res atque integra transit</l>
 <l>multa, foraminibus liquidus quia transviat ignis.</l>
@@ -6749,7 +6742,7 @@ card breaks not yet aligned
 <l>nam fretus ipse anni permiscet frigus <del>ad</del> aestum.</l>
 <l n="365">quorum utrumque opus est fabricanda ad fulmina nubi,</l>
 <l>ut discordia <del>sit</del> rerum magnoque tumultu</l>
-<l>ignibus et ventis furibundus fluctuet ae&euml;r.</l>
+<l>ignibus et ventis furibundus fluctuet <choice><reg>aeer</reg><orig>aeër</orig></choice>.</l>
 <l>prima caloris enim pars est postrema rigoris;</l>
 <l>tempus id est vernum; quare pugnare necessest</l>
 <l n="370">dissimilis <del>res</del> inter se turbareque mixtas.</l>
@@ -6829,7 +6822,7 @@ card breaks not yet aligned
 <l>excitat ingenti sonitu mare fervere cogens.</l>
 <milestone unit="card" n="443"/>
 <l>Fit quoque ut involvat venti se nubibus ipse</l>
-<l>vertex conradens ex ae&euml;re semina nubis</l>
+<l>vertex conradens ex <choice><reg>aeere</reg><orig>aeëre</orig></choice> semina nubis</l>
 <l n="445">et quasi demissum caelo prestera imitetur;</l>
 <l>hic ubi se in terras demisit dissoluitque,</l>
 <l>turbinis immanem vim provomit atque procellae.</l>
@@ -6997,7 +6990,7 @@ card breaks not yet aligned
 <l n="605">ne pedibus raptim tellus subtracta feratur</l>
 <l>in barathrum rerumque sequatur prodita summa</l>
 <l>funditus et fiat mundi confusa ruina.</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <milestone unit="card" n="608"/>
 <l>Principio mare mirantur non reddere maius</l>
 <l>naturam, quo sit tantus decursus aquarum,</l>
@@ -7077,8 +7070,8 @@ card breaks not yet aligned
 <l>flamma foras vastis Aetnae fornacibus efflet,</l>
 <l>expediam. primum totius subcava montis</l>
 <l>est natura fere silicum suffulta cavernis.</l>
-<l>omnibus est porro in speluncis ventus et ae&euml;r.</l>
-<l n="685">ventus enim fit, ubi est agitando percitus ae&euml;r.</l>
+<l>omnibus est porro in speluncis ventus et <choice><reg>aeer</reg><orig>aeër</orig></choice>.</l>
+<l n="685">ventus enim fit, ubi est agitando percitus <choice><reg>aeer</reg><orig>aeër</orig></choice>.</l>
 <l>hic ubi percaluit cale fecitque omnia circum</l>
 <l>saxa furens, qua contingit, terramque et ab ollis</l>
 <l>excussit calidum flammis velocibus ignem,</l>
@@ -7091,7 +7084,7 @@ card breaks not yet aligned
 <l n="695">radices frangit fluctus aestumque resolvit.</l>
 <l>ex hoc usque mari speluncae montis ad altas</l>
 <l>perveniunt subter fauces. hac ire fatendumst</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <l>et penetrare mari penitus res cogit aperto</l>
 <l>atque efflare foras ideoque extollere flammam</l>
 <l n="700">saxaque subiectare et arenae tollere nimbos.</l>
@@ -7150,7 +7143,7 @@ card breaks not yet aligned
 <l>quo numquam pennis appellunt corpora raucae</l>
 <l>cornices, non cum fumant altaria donis;</l>
 <l>usque adeo fugitant non iras Palladis acris</l>
-<l>pervigili causa, Graium ut cecinere poe&euml;tae,</l>
+<l>pervigili causa, Graium ut cecinere <choice><reg>poeetae</reg><orig>poeëtae</orig></choice>,</l>
 <l n="755">sed natura loci opus efficit ipsa suapte.</l>
 <l>in Syria quoque fertur item locus esse videri,</l>
 <l>quadripedes quoque quo simul ac vestigia primum</l>
@@ -7229,7 +7222,7 @@ card breaks not yet aligned
 <l>in fontis ipsos, ibi sit quoque vita vomenda,</l>
 <l>propterea quod magna mali fit copia circum.</l>
 <l n="830">Fit quoque ut inter dum vis haec atque aestus Averni</l>
-<l>ae&euml;ra, qui inter avis cumquest terramque locatus.</l>
+<l><choice><reg>aeera</reg><orig>aeëra</orig></choice>, qui inter avis cumquest terramque locatus.</l>
 <l>discutiat, prope uti locus hic linquatur inanis.</l>
 <l>cuius ubi e regione loci venere volantis,</l>
 <l>claudicat extemplo pinnarum nisus inanis</l>
@@ -7238,7 +7231,7 @@ card breaks not yet aligned
 <l>scilicet in terram delabi pondere cogit</l>
 <l>natura, et vacuum prope iam per inane iacentes</l>
 <l>dispergunt animas per caulas corporis omnis.</l>
-<l><gap desc="*" /></l>
+<l><gap reason="lost" /></l>
 <milestone unit="card" n="840"/>
 <l n="840">frigidior porro in puteis aestate fit umor,</l>
 <l>arescit quia terra calore et semina si qua</l>
@@ -7356,8 +7349,8 @@ card breaks not yet aligned
 <l n="950">atque per argentum, cum pocula plena tenemus.</l>
 <l>denique per dissaepta domorum saxea voces</l>
 <l>pervolitant, permanat odor frigusque vaposque</l>
-<l>ignis, qui ferri quoque vim penetrare sue&euml;vit,</l>
-<l>denique qua circum caeli lorica coe&euml;rcet,</l>
+<l>ignis, qui ferri quoque vim penetrare <choice><reg>sueevit</reg><orig>sueëvit</orig></choice>,</l>
+<l>denique qua circum caeli lorica <choice><reg>coeercet</reg><orig>coeërcet</orig></choice>,</l>
 <l n="955">morbida visque simul, cum extrinsecus insinuatur;</l>
 <l>et tempestate in terra caeloque coorta</l>
 <l>in caelum terrasque remotae iure facessunt;</l>
@@ -7409,7 +7402,7 @@ card breaks not yet aligned
 <l>causa pate fiet, quae ferri pelliciat vim.</l>
 <milestone unit="card" n="1002"/>
 <l>Principio fluere e lapide hoc permulta necessest</l>
-<l>semina sive aestum, qui discutit ae&euml;ra plagis,</l>
+<l>semina sive aestum, qui discutit <choice><reg>aeera</reg><orig>aeëra</orig></choice> plagis,</l>
 <l>inter qui lapidem ferrumque est cumque locatus.</l>
 <l n="1005">hoc ubi inanitur spatium multusque vace fit</l>
 <l>in medio locus, extemplo primordia ferri</l>
@@ -7430,20 +7423,20 @@ card breaks not yet aligned
 <l>sponte sua sursum possunt consurgere in auras.</l>
 <l>huc accedit item, quare queat id magis esse,</l>
 <l>haec quoque res adiumento motuque iuvatur,</l>
-<l>quod, simul a fronte est anelli rarior ae&euml;r</l>
+<l>quod, simul a fronte est anelli rarior <choice><reg>aeer</reg><orig>aeër</orig></choice></l>
 <l n="1025">factus inanitusque locus magis ac vacuatus,</l>
 <l>continuo fit uti qui post est cumque locatus</l>
-<l>ae&euml;r a tergo quasi provehat atque propellat.</l>
-<l>semper enim circum positus res verberat ae&euml;r;</l>
+<l><choice><reg>aeer</reg><orig>aeër</orig></choice> a tergo quasi provehat atque propellat.</l>
+<l>semper enim circum positus res verberat <choice><reg>aeer</reg><orig>aeër</orig></choice>;</l>
 <l>sed tali fit uti propellat tempore ferrum,</l>
 <l n="1030">parte quod ex una spatium vacat et capit in se.</l>
 <l>hic, tibi quem memoro, per crebra foramina ferri</l>
 <l>parvas ad partis subtiliter insinuatus</l>
 <l>trudit et inpellit, quasi navem velaque ventus.</l>
 <l> denique res omnes debent in corpore habere</l>
-<l n="1035">ae&euml;ra, quandoquidem raro sunt corpore et ae&euml;r</l>
+<l n="1035"><choice><reg>aeera</reg><orig>aeëra</orig></choice>, quandoquidem raro sunt corpore et <choice><reg>aeer</reg><orig>aeër</orig></choice></l>
 <l>omnibus est rebus circum datus adpositusque.</l>
-<l>hic igitur, penitus qui in ferrost abditus ae&euml;r,</l>
+<l>hic igitur, penitus qui in ferrost abditus <choice><reg>aeer</reg><orig>aeër</orig></choice>,</l>
 <l>sollicito motu semper iactatur eoque</l>
 <l>verberat anellum dubio procul et ciet intus,</l>
 <l n="1040">scilicet illo eodem fertur, quo praecipitavit</l>
@@ -7506,7 +7499,7 @@ card breaks not yet aligned
 <l>esse supra docui quae sint vitalia nobis,</l>
 <l n="1095">et contra quae sint morbo mortique necessest</l>
 <l>multa volare; ea cum casu sunt forte coorta</l>
-<l>et perturbarunt caelum, fit morbidus ae&euml;r.</l>
+<l>et perturbarunt caelum, fit morbidus <choice><reg>aeer</reg><orig>aeër</orig></choice>.</l>
 <l>atque ea vis omnis morborum pestilitasque</l>
 <l>aut extrinsecus ut nubes nebulaeque superne</l>
 <l n="1100">per caelum veniunt aut ipsa saepe coorta</l>
@@ -7527,9 +7520,9 @@ card breaks not yet aligned
 <l n="1115">gignitur Aegypto in media neque praeterea usquam.</l>
 <l>Atthide temptantur gressus oculique in Achaeis</l>
 <l>finibus. inde aliis alius locus est inimicus</l>
-<l>partibus ac membris; varius concinnat id ae&euml;r.</l>
+<l>partibus ac membris; varius concinnat id <choice><reg>aeer</reg><orig>aeër</orig></choice>.</l>
 <l>proinde ubi se caelum, quod nobis forte alienum,</l>
-<l n="1120">commovet atque ae&euml;r inimicus serpere coepit,</l>
+<l n="1120">commovet atque <choice><reg>aeer</reg><orig>aeër</orig></choice> inimicus serpere coepit,</l>
 <l>ut nebula ac nubes paulatim repit et omne</l>
 <l>qua graditur conturbat et immutare coactat,</l>
 <l>fit quoque ut, in nostrum cum venit denique caelum,</l>
@@ -7537,7 +7530,7 @@ card breaks not yet aligned
 <l n="1125">haec igitur subito clades nova pestilitasque</l>
 <l>aut in aquas cadit aut fruges persidit in ipsas</l>
 <l>aut alios hominum pastus pecudumque cibatus,</l>
-<l>aut etiam suspensa manet vis ae&euml;re in ipso</l>
+<l>aut etiam suspensa manet vis <choice><reg>aeere</reg><orig>aeëre</orig></choice> in ipso</l>
 <l>et, cum spirantes mixtas hinc ducimus auras,</l>
 <l n="1130">illa quoque in corpus pariter sorbere necessest.</l>
 <l>consimili ratione venit bubus quoque saepe</l>
@@ -7552,7 +7545,7 @@ card breaks not yet aligned
 <l>finibus in Cecropis funestos reddidit agros</l>
 <l n="1140">vastavitque vias, exhausit civibus urbem.</l>
 <l>nam penitus veniens Aegypti finibus ortus,</l>
-<l>ae&euml;ra permensus multum camposque natantis,</l>
+<l><choice><reg>aeera</reg><orig>aeëra</orig></choice> permensus multum camposque natantis,</l>
 <l>incubuit tandem populo Pandionis omni.</l>
 <l> inde catervatim morbo mortique dabantur.</l>
 <l n="1145">principio caput incensum fervore gerebant</l>
@@ -7639,7 +7632,7 @@ card breaks not yet aligned
 <l>extorquebat enim vitam vis morbida membris.</l>
 <l n="1225">incomitata rapi certabant funera vasta</l>
 <l>nec ratio remedii communis certa dabatur;</l>
-<l>nam quod ali dederat vitalis ae&euml;ris auras</l>
+<l>nam quod ali dederat vitalis <choice><reg>aeeris</reg><orig>aeëris</orig></choice> auras</l>
 <l>volvere in ore licere et caeli templa tueri,</l>
 <l>hoc aliis erat exitio letumque parabat.</l>
 <milestone unit="card" n="1230"/>
@@ -7701,6 +7694,7 @@ card breaks not yet aligned
 <l>inde bonam partem in lectum maerore dabantur;</l>
 <l n="1285">nec poterat quisquam reperiri, quem neque morbus</l>
 <l>nec mors nec luctus temptaret tempore tali.</l>
-</div1>
+</div>
+</div>
 </body></text>
-</TEI.2>
+</TEI>
