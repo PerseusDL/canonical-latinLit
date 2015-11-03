@@ -1,172 +1,174 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" 
-         schematypens="http://relaxng.org/ns/structure/1.0"?> <TEI xmlns="http://www.tei-c.org/ns/1.0">
-<teiHeader type="text">
-<fileDesc>
-<titleStmt>
-<title type="work" n="Aeneid">Aeneid</title>
-<title type="sub">Machine readable text</title>
-<author n="Verg.">P. Vergilius Maro</author>
-<editor role="editor" n="Greenough">J. B. Greenough</editor>
-<principal>Gregory Crane</principal>
-<respStmt>
-    <resp>Prepared under the supervision of</resp>
-    <name>Bridget Almas</name>
-</respStmt>
-<funder n="org:NEH">The National Endowment for the Humanities/Project</funder>
-</titleStmt>
-<extent>about 505Kb</extent>
-<publicationStmt>
-    <publisher>Trustees of Tufts Universities</publisher>
-    <pubPlace>Medford, MA</pubPlace>
-    <authority>Perseus Project</authority>
-</publicationStmt>
-<sourceDesc>
-<biblStruct>
-<monogr>
-<author>Vergil</author>
-<title>Bucolics, Aeneid, and Georgics Of Vergil</title>
-<editor role="editor">J. B. Greenough</editor>
-<imprint>
-<pubPlace>Boston</pubPlace>
-<publisher>Ginn &amp; Co.</publisher>
-<date>1900</date>
-</imprint>
-</monogr>
-</biblStruct>
-</sourceDesc>
-</fileDesc>
-
-<encodingDesc>
-    <refsDecl n="CTS">
-<cRefPattern n="line"
-                         matchPattern="(\\w+).(\\w+)"
-                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body//tei:div[@Book=\'$1\']//tei:l[@n=\'$2\'])">
-                <p>This pointer pattern extracts book and line</p>
-            </cRefPattern>
-<cRefPattern n="Book"
-                         matchPattern="(\\w+)"
-                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.21/tei-epidoc.rng"
+                         schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.21/tei-epidoc.rng"
+                         schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader type="text">
+        <fileDesc>
+            <titleStmt>
+                <title type="work" n="Aeneid">Aeneid</title>
+                <title type="sub">Machine readable text</title>
+                <author n="Verg.">P. Vergilius Maro</author>
+                <editor role="editor" n="Greenough">J. B. Greenough</editor>
+                <principal>Gregory Crane</principal>
+                <respStmt>
+                    <resp>Prepared under the supervision of</resp>
+                    <name>Bridget Almas</name>
+                </respStmt>
+                <funder n="org:NEH">The National Endowment for the Humanities/Project</funder>
+            </titleStmt>
+            <extent>about 505Kb</extent>
+            <publicationStmt>
+                <publisher>Trustees of Tufts Universities</publisher>
+                <pubPlace>Medford, MA</pubPlace>
+                <authority>Perseus Project</authority>
+            </publicationStmt>
+            <sourceDesc>
+                <biblStruct>
+                    <monogr>
+                        <author>Vergil</author>
+                        <title>Bucolics, Aeneid, and Georgics Of Vergil</title>
+                        <editor role="editor">J. B. Greenough</editor>
+                        <imprint>
+                            <pubPlace>Boston</pubPlace>
+                            <publisher>Ginn &amp; Co.</publisher>
+                            <date>1900</date>
+                        </imprint>
+                    </monogr>
+                </biblStruct>
+            </sourceDesc>
+        </fileDesc>
+        
+        <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="line"
+                    matchPattern="(\w+).(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']//tei:l[@n='$2'])">
+                    <p>This pointer pattern extracts book and line</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                    matchPattern="(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
                     <p>This pointer pattern extracts book</p>
                 </cRefPattern>
-	</refsDecl>
-    <refsDecl>
-                <refState unit="Book" delim="."/>
-		        <refState unit="line"/>
-    </refsDecl>
-</encodingDesc>	
-<profileDesc>
-<langUsage>
-<language ident="lat">Latin</language>
-</langUsage>
-</profileDesc>
-
-<revisionDesc>
-    <change when="2015-08-14" who="Zach Himes">
-        Converted from TEI edition at 
-        https://github.com/PerseusDL/canonical-latinLit/blob/master/data/phi0690/phi003/phi0690.phi003.perseus-lat1.xml
-        Conversion involved: converting to CTS EpiDoc, 
-                             converting div1 to div
-                             changed ldquo,rdquo,uuml,ouuml,iuml to corresponding correct characters.
-                             fixed gap at 12.732
-    </change>
-    <change when="1996-10-16" who="WM">
-	Mark up public domain text 
-downloaded from Libellus; did diereses; pathetic lines tagged as L PART="Y"; 
-needs line nos.</change>
-
-<change when="2011-10-28" who="lcerrato">
-fixed line number issue 795 appeared twice
-</change>
-
-<change when="2011-01-17" who="gcrane">
-base SDL files
-</change>
-
-<change when="2010-07-13" who="lcerrato">
-2.338 ullo fremitus changed to quo fremitus verified against source
-</change>
-
-<change when="2009-12-09" who="rsingh04">
-moved more xml files around based on copyright status
-</change>
-
-<change when="2009-01-12" who="rsingh04">
-commented out extra chunking scheme
-</change>
-
-<change when="2005-10-18" who="lcerrato">
-candientem on 12.91 changed to candentem based on user report and PHI
-</change>
-
-<change when="2005-08-01" who="packel">
-removed stray item tags
-</change>
-
-<change when="2005-07-25" who="packel">
-Converted to XML
-</change>
-
-<change when="2005-03-23" who="lcerrato">
-changed visus line 10.447 to visu based on multiple sources
-</change>
-
-<change when="2004-04-02" who="mimno">
-added line 1 cards
-</change>
-
-<change when="2003-07-01" who="yorkc">
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-</change>
-
-<change when="2003-02-06" who="lcerrato">
-fixed typo 5.627 eum freta to cum freta
-</change>
-
-<change when="2000-03-04" who="dasmith">
-Added separate funder entity to TEI header
-</change>
-
-<change when="2000-02-22" who="textgod">
-fixed multiple typos
-</change>
-
-<change when="1999-10-25" who="lcerrato">
-fixed typo 1.90
-</change>
-
-<change when="1999-10-16" who="lcerrato">
-fixed typo
-</change>
-
-<change when="1999-08-04" who="textgod">
-Turned line milestones into cards.
-</change>
-
-<change when="1999-08-04" who="textgod">
-Remove TEXT N
-</change>
-
-<change when="1999-08-04" who="textgod">
-Don't use [lr]sqb.
-</change>
-
-<change when="1999-08-04" who="textgod">
-Fixed typos.
-</change>
-
-<change when="1997-09-24" who="textgod">
-Changed names and redid headers.
-</change>
-
-</revisionDesc>
-</teiHeader>
+            </refsDecl>
+            <refsDecl>
+                <refState unit="book" delim="."/>
+                <refState unit="line"/>
+            </refsDecl>
+        </encodingDesc>	
+        <profileDesc>
+            <langUsage>
+                <language ident="lat">Latin</language>
+            </langUsage>
+        </profileDesc>
+        
+        <revisionDesc>
+            <change when="2015-08-14" who="Zach Himes">
+                Converted from TEI edition at 
+                https://github.com/PerseusDL/canonical-latinLit/blob/master/data/phi0690/phi003/phi0690.phi003.perseus-lat1.xml
+                Conversion involved: converting to CTS EpiDoc, 
+                converting div1 to div
+                changed ldquo,rdquo,uuml,ouuml,iuml to corresponding correct characters.
+                fixed gap at 12.732
+            </change>
+            <change when="1996-10-16" who="WM">
+                Mark up public domain text 
+                downloaded from Libellus; did diereses; pathetic lines tagged as L PART="Y"; 
+                needs line nos.</change>
+            
+            <change when="2011-10-28" who="lcerrato">
+                fixed line number issue 795 appeared twice
+            </change>
+            
+            <change when="2011-01-17" who="gcrane">
+                base SDL files
+            </change>
+            
+            <change when="2010-07-13" who="lcerrato">
+                2.338 ullo fremitus changed to quo fremitus verified against source
+            </change>
+            
+            <change when="2009-12-09" who="rsingh04">
+                moved more xml files around based on copyright status
+            </change>
+            
+            <change when="2009-01-12" who="rsingh04">
+                commented out extra chunking scheme
+            </change>
+            
+            <change when="2005-10-18" who="lcerrato">
+                candientem on 12.91 changed to candentem based on user report and PHI
+            </change>
+            
+            <change when="2005-08-01" who="packel">
+                removed stray item tags
+            </change>
+            
+            <change when="2005-07-25" who="packel">
+                Converted to XML
+            </change>
+            
+            <change when="2005-03-23" who="lcerrato">
+                changed visus line 10.447 to visu based on multiple sources
+            </change>
+            
+            <change when="2004-04-02" who="mimno">
+                added line 1 cards
+            </change>
+            
+            <change when="2003-07-01" who="yorkc">
+                Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
+            </change>
+            
+            <change when="2003-02-06" who="lcerrato">
+                fixed typo 5.627 eum freta to cum freta
+            </change>
+            
+            <change when="2000-03-04" who="dasmith">
+                Added separate funder entity to TEI header
+            </change>
+            
+            <change when="2000-02-22" who="textgod">
+                fixed multiple typos
+            </change>
+            
+            <change when="1999-10-25" who="lcerrato">
+                fixed typo 1.90
+            </change>
+            
+            <change when="1999-10-16" who="lcerrato">
+                fixed typo
+            </change>
+            
+            <change when="1999-08-04" who="textgod">
+                Turned line milestones into cards.
+            </change>
+            
+            <change when="1999-08-04" who="textgod">
+                Remove TEXT N
+            </change>
+            
+            <change when="1999-08-04" who="textgod">
+                Don't use [lr]sqb.
+            </change>
+            
+            <change when="1999-08-04" who="textgod">
+                Fixed typos.
+            </change>
+            
+            <change when="1997-09-24" who="textgod">
+                Changed names and redid headers.
+            </change>
+            
+        </revisionDesc>
+    </teiHeader>
 <text xml:lang="lat" >
     <body>
         <div type="edition"
             xml:lang="lat"
-            n="urn:cts:latinLit:phi0690.phi003.perseus-lat2">
-<div n="1" type="textpart" subtype="Book">
+            n="urn:cts:latinLit:phi0690.phi003.perseus-lat2" subtype="book">
+<div n="1" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Arma virumque cano, Troiae qui primus ab oris</l>
 <l n="2">Italiam, fato profugus, Laviniaque venit</l>
@@ -962,7 +964,7 @@ Changed names and redid headers.
 <l n="754">insidias,” inquit, “Danaum, casusque tuorum,</l>
 <l n="755">erroresque tuos; nam te iam septima portat</l>
 <l n="756">omnibus errantem terris et fluctibus aestas.”</l></div>
-<div n="2" type="textpart" subtype="Book">
+<div n="2" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Conticuere omnes, intentique ora tenebant.</l>
 <l n="2">Inde toro pater Aeneas sic orsus ab alto:</l>
@@ -1799,7 +1801,7 @@ Changed names and redid headers.
 <l n="802">ducebatque diem, Danaique obsessa tenebant</l>
 <l n="803">limina portarum, nec spes opis ulla dabatur;</l>
 <l n="804">cessi, et sublato montes genitore petivi.</l></div>
-    <div n="3" type="textpart" subtype="Book">
+    <div n="3" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Postquam res Asiae Priamique evertere gentem</l>
 <l n="2">immeritam visum Superis, ceciditque superbum</l>
@@ -2548,7 +2550,7 @@ Changed names and redid headers.
 <l n="716">Sic pater Aeneas intentis omnibus unus</l>
 <l n="717">fata renarrabat divom, cursusque docebat.</l>
 <l n="718">Conticuit tandem, factoque hic fine quievit.</l></div>
-    <div n="4" type="textpart" subtype="Book">
+    <div n="4" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">At regina gravi iamdudum saucia cura</l>
 <l n="2">volnus alit venis, et caeco carpitur igni.</l>
@@ -3282,7 +3284,7 @@ Changed names and redid headers.
 <l n="703">sacrum iussa fero, teque isto corpore solvo.”</l>
 <l n="704">Sic ait, et dextra crinem secat: omnis et una</l>
 <l n="705">dilapsus calor, atque in ventos vita recessit.</l></div>
-    <div n="5" type="textpart" subtype="Book">
+    <div n="5" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Interea medium Aeneas iam classe tenebat</l>
 <l n="2">certus iter, fluctusque atros Aquilone secabat,</l>
@@ -4188,7 +4190,7 @@ Changed names and redid headers.
 <l n="869">multa gemens, casuque animum concussus amici</l>
 <l n="870">“O nimium caelo et pelago confise sereno,</l>
 <l n="871">nudus in ignota, Palinure, iacebis harena!”</l></div>
-    <div n="6" type="textpart" subtype="Book">
+    <div n="6" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Sic fatur lacrimans, classique immittit habenas,</l>
 <l n="2">et tandem Euboïcis Cumarum adlabitur oris.</l>
@@ -5123,7 +5125,7 @@ Changed names and redid headers.
 <l n="899">ille viam secat ad naves sociosque revisit:</l>
 <l n="900">tum se ad Caietae recto fert litore portum.</l>
 <l n="901"><del>Ancora de prora iacitur, stant litore puppes.</del></l></div>
-    <div n="7" type="textpart" subtype="Book">
+    <div n="7" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Tu quoque litoribus nostris, Aeneia nutrix,</l>
 <l n="2">aeternam moriens famam, Caieta, dedisti;</l>
@@ -5979,7 +5981,7 @@ Changed names and redid headers.
 <l n="815">velet honos levis umeros, ut fibula crinem</l>
 <l n="816">auro internectat, Lyciam ut gerat ipsa pharetram</l>
 <l n="817">et pastoralem praefixa cuspide myrtum.</l></div>
-    <div n="8" type="textpart" subtype="Book">
+    <div n="8" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Ut belli signum Laurenti Turnus ab arce</l>
 <l n="2">extulit et rauco strepuerunt cornua cantu,</l>
@@ -6739,7 +6741,7 @@ Changed names and redid headers.
 <l n="729">Talia per clipeum Volcani, dona parentis,</l>
 <l n="730">miratur rerumque ignarus imagine gaudet,</l>
 <l n="731">attollens umero famamque et fata nepotum.</l></div>
-    <div n="9" type="textpart" subtype="Book">
+    <div n="9" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Atque ea diversa penitus dum parte geruntur,</l>
 <l n="2">Irim de caelo misit Saturnia Iuno</l>
@@ -7586,7 +7588,7 @@ Changed names and redid headers.
 <l n="816">in fluvium dedit: ille suo cum gurgite flavo</l>
 <l n="817">accepit venientem ac mollibus extulit undis</l>
 <l n="818">et laetum sociis abluta caede remisit.</l></div>
-    <div n="10" type="textpart" subtype="Book">
+    <div n="10" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Panditur interea domus omnipotentis Olympi,</l>
 <l n="2">conciliumque vocat divom pater atque hominum rex</l>
@@ -8531,7 +8533,7 @@ Changed names and redid headers.
 <l n="906">et me consortem nati concede sepulchro.”</l>
 <l n="907">Haec loquitur iuguloque haud inscius accipit ensem</l>
 <l n="908">undantique animam diffundit in arva cruore.</l></div>
-    <div n="11" type="textpart" subtype="Book">
+    <div n="11" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Oceanum interea surgens Aurora reliquit:</l>
 <l n="2">Aeneas, quamquam et sociis dare tempus humandis</l>
@@ -9479,7 +9481,7 @@ Changed names and redid headers.
 <l n="913">ni roseus fessos iam gurgite Phoebus Hibero</l>
 <l n="914">tinguat equos noctemque die labente reducat:</l>
 <l n="915">considunt castris ante urbem et moenia vallant.</l></div>
-    <div n="12" type="textpart" subtype="Book">
+    <div n="12" type="textpart" subtype="book">
 <milestone ed="p" n="1" unit="card"/>
 <l n="1">Turnus ut infractos adverso Marte Latinos</l>
 <l n="2">defecisse videt, sua nunc promissa reposci,</l>
