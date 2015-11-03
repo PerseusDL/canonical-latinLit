@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI.2>
-   <teiHeader type="text" status="new">
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.21/tei-epidoc.rng"
+                         schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.21/tei-epidoc.rng"
+                         schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader type="text">
       <fileDesc>
          <titleStmt>
             <title>Eclogues</title>
@@ -8,22 +12,22 @@
             <author n="Verg.">P. Vergilius Maro</author>
             <editor role="editor" n="Greenough">J. B. Greenough</editor>
             <sponsor>Perseus Project, Tufts University</sponsor>
-		          <principal>Gregory Crane</principal>
-		          <respStmt>
-		             <resp>Prepared under the supervision of</resp>
-		             <name>Lisa Cerrato</name>
-		             <name>William Merrill</name>
-		             <name>Elli Mylonas</name>
-		             <name>David Smith</name>
-		          </respStmt>
+         	<principal>Gregory Crane</principal>
+         	<respStmt>
+         		<resp>Prepared under the supervision of</resp>
+         		<name>Lisa Cerrato</name>
+         		<name>William Merrill</name>
+         		<name>Elli Mylonas</name>
+         		<name>David Smith</name>
+         	</respStmt>
             <funder n="org:NEH">The National Endowment for the Humanities</funder>
          </titleStmt>
          <extent>about 60Kb</extent>
-         <publicationStmt>
-		          <publisher>Trustees of Tufts University</publisher>
-		          <pubPlace>Medford, MA</pubPlace>
-		          <authority>Perseus Project</authority>
-		       </publicationStmt>
+      	<publicationStmt>
+      		<publisher>Trustees of Tufts University</publisher>
+      		<pubPlace>Medford, MA</pubPlace>
+      		<authority>Perseus Project</authority>
+      	</publicationStmt>
          <sourceDesc>
             <biblStruct>
                <monogr>
@@ -41,79 +45,46 @@
       </fileDesc>
 
       <encodingDesc>
-         <refsDecl doctype="TEI.2">
-            <step delim="." refunit="poem" from="DESCENDANT (1 DIV1 N %1)"/>
-            <step refunit="line" from="DESCENDANT (1 L N %2)"/>
+      	<refsDecl n="CTS">
+      		<cRefPattern n="line"
+      			matchPattern="(\w+).(\w+)"
+      			replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']//tei:l[@n='$2'])">
+      			<p>This pointer pattern extracts book and line</p>
+      		</cRefPattern>
+      		<cRefPattern n="Book"
+      			matchPattern="(\w+)"
+      			replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+      			<p>This pointer pattern extracts book</p>
+      		</cRefPattern>
+      	</refsDecl>
+         <refsDecl n="TEI">
+            <refState unit="poem"/>
+            <refState unit="line"/>
          </refsDecl>
       </encodingDesc>
 
       <profileDesc>
          <langUsage>
-            <language id="en">English</language>
+            <language ident="eng">English</language>
          </langUsage>
       </profileDesc>
 
       <revisionDesc>
-         <change>
-            <date>3/97</date>
-            <respStmt>
-               <name>KW</name>
-               <resp>ed. asst.</resp>
-            </respStmt>
-            <item>converted mdashes, quotes; added speaker, LG, div2 tags, designated capital letters at line beginnings to keep with an *.</item>
-         </change>
-         <change>
-            <date>4/8/97</date>
-            <respStmt>
-               <name>DAS</name>
-               <resp>ed.</resp>
-            </respStmt>
-            <item>
-$Log: verg.ecl_eng.xml,v $
-Revision 1.2  2010-07-01 18:17:37  student
-fixed place tags - zr
-
-Revision 1.1  2009/12/09 18:06:47  rsingh04
-moved more xml files around based on copyright status
-
-Revision 1.3  2006/02/10 20:50:32  packel
-places/dates now actually tagged
-
-Revision 1.2  2005/08/01 16:34:36  packel
-removed stray item tags
-
-Revision 1.1  2005/07/25 15:06:53  packel
-Converted to XML
-
-Revision 1.14  2003/07/01 22:18:59  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.13  2003/02/05 14:00:51  amahoney
-don't EVER put angle brackets in comments: it fouls up the whole file
-
-Revision 1.12  2003/02/04 16:02:57  gcrane
-systematic error -- we have lots of places where closing L tags were missing a bracket
-
-Revision 1.11  2000/12/04 17:47:36  amahoney
-fix misspelling of title
-
-Revision 1.10  2000/03/06 22:14:19  amahoney
-remove headers so poem numbers get into short toc
-
-Revision 1.9  2000/03/04 20:35:31  dasmith
-Added separate funder entity to TEI header.
-
-Revision 1.8  1999/08/12 17:24:54  dasmith
-Changed line tags to handle verse translation.
-
-Revision 1.7  1999/08/04 23:08:06  textgod
-Changed header.
-
-Revision 1.6  1997/09/24 20:17:03  textgod
-Changed names and redid headers.
-
-</item>
-         </change>
+      	<change when="2010-07-01" who="student">fixed place tags - zr</change>
+      	<change when="2009-12-09" who="rsingh04">moved more xml files around based on copyright status</change>
+      	<change when="2006-02-10" who="packel">places/dates now actually tagged</change>
+      	<change when="2005-08-01" who="packel">removed stray item tags</change>
+      	<change when="2005-07-25" who="packel">Converted to XML</change>
+      	<change when="2003-07-01" who="yorkc">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change>
+      	<change when="2003-02-05" who="amahoney">don't EVER put angle brackets in comments: it fouls up the whole file</change>
+      	<change when="2003-02-04" who="gcrane">systematic error -- we have lots of places where closing L tags were missing a bracket</change>
+      	<change when="2000-12-04" who="amahoney">fix misspelling of title</change>
+      	<change when="2000-03-06" who="amahoney">remove headers so poem numbers get into short toc</change>
+      	<change when="2000-03-04" who="dasmith">Added separate funder entity to TEI header.</change>
+      	<change when="1999-08-12" who="dasmith">Changed line tags to handle verse translation.</change>
+      	<change when="1999-08-04" who="textgod">Changed header.</change>
+      	<change when="1997-09-24" who="textgod">Changed names and redid headers.</change>
+      	<change when="1997-03-01" who="KW">converted mdashes, quotes; added speaker, LG, div2 tags, designated capital letters at line beginnings to keep with an *.</change>
       </revisionDesc>
    </teiHeader>
    <text>
@@ -1546,4 +1517,4 @@ Changed names and redid headers.
          </div1>
       </body>
    </text>
-</TEI.2>
+</TEI>
