@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI.2 xmlns="http://www.tei-c.org/ns/1.0">
-  <teiHeader type="text" status="new">
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.21/tei-epidoc.rng"
+    schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.21/tei-epidoc.rng"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader type="text">
       <fileDesc>
          <titleStmt>
              <title>Eclogues</title>
@@ -41,93 +45,47 @@
       </fileDesc>
     
       <encodingDesc>
-         <refsDecl doctype="TEI.2">
-             <step delim="." refunit="poem" from="DESCENDANT (1 DIV1 N %1)"/>
-             <step refunit="line" from="DESCENDANT (%2 L)"/>
+        <refsDecl n="CTS">
+          <cRefPattern n="line" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']//tei:l[@n='$2'])">
+            <p>This pointer pattern extracts poem and line</p>
+          </cRefPattern>
+          <cRefPattern n="poem" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+            <p>This pointer pattern extracts poem</p>
+          </cRefPattern>
+        </refsDecl>
+         <refsDecl n="TEI">
+            <refState unit="poem"/>
+            <refState unit="line"/>
          </refsDecl>
       </encodingDesc>
     
-      <profileDesc>
-         <langUsage>
-             <language id="la">Latin
-      </language>
-         </langUsage>
-      </profileDesc>
+     <profileDesc>
+        <langUsage>
+           <language ident="lat">Latin
+           </language>
+        </langUsage>
+     </profileDesc>
     
       <revisionDesc>
-         <change>
-            <date>11/96</date>
-             <respStmt>
-               <name>WM</name>
-               <resp>ed.</resp>
-            </respStmt>
-             <item>Mark up public domain text 
-downloaded from Libellus; did diereses; needs line nos.</item>
-         </change>
-         <change>
-            <date>4/7/96</date>
-             <respStmt>
-               <name>DAS</name>
-               <resp>ed.</resp>
-            </respStmt>
-             <item>
-$Log: verg.ecl_lat.xml,v $
-Revision 1.2  2011-10-31 18:14:23  lcerrato
-fixed typo at start of line 68 of ecl 1
-
-Revision 1.1  2011-01-17 00:45:56  gcrane
-base SDL files
-
-Revision 1.1  2009/12/09 18:06:48  rsingh04
-moved more xml files around based on copyright status
-
-Revision 1.5  2009/03/17 20:26:48  rsingh04
-is now well-formed
-
-Revision 1.4  2009/01/21 20:31:23  lcerrato
-fixed two typos checked against source
-
-Revision 1.3  2005/11/21 20:06:11  lcerrato
-changed pallelltis to pallentis 2.47
-
-Revision 1.2  2005/08/01 16:34:36  packel
-removed stray item tags
-
-  Revision 1.1  2005/07/25 15:06:56  packel
-  Converted to XML
-  
-Revision 1.16  2003/07/01 22:18:59  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.15  2003/05/21 19:51:06  lcerrato
-added missing first word of 5.1: cur; confirmed with source
-
-Revision 1.14  2003/02/06 21:07:00  lcerrato
-fixed typo calaunos 8.24 to calamos
-
-Revision 1.13  2003/02/04 20:12:43  lcerrato
-fixed typo in 10.77: te to Ite
-
-Revision 1.12  2003/02/04 18:53:18  gcrane
-missing period
-
-Revision 1.11  2001/03/12 14:35:23  amahoney
-add line numbers
-
-Revision 1.10  2000/03/06 22:14:19  amahoney
-remove headers so poem numbers get into short toc
-
-Revision 1.9  2000/03/04 20:35:31  dasmith
-Added separate funder entity to TEI header.
-
-Revision 1.8  1999/08/04 23:08:07  textgod
-Changed header.
-
-Revision 1.7  1997/09/24 20:17:04  textgod
-Changed names and redid headers.
-
-</item>
-         </change>
+        <change when="2011-10-31" who="lcerrato">fixed typo at start of line 68 of ecl 1</change>
+        <change when="2011-01-17" who="gcrane">base SDL files</change>
+        <change when="2009-12-09" who="rsingh04">moved more xml files around based on copyright status</change>
+        <change when="2009-03-17" who="rsingh04">is now well-formed</change>
+        <change when="2009-01-21" who="lcerrato">fixed two typos checked against source</change>
+        <change when="2005-11-21" who="lcerrato">changed pallelltis to pallentis 2.47</change>
+        <change when="2005-08-01" who="packel">removed stray item tags</change>
+        <change when="2005-07-25" who="packel">Converted to XML</change>
+        <change when="2003-07-01" who="yorkc">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change>
+        <change when="2003-05-21" who="lcerrato">added missing first word of 5.1: cur; confirmed with source</change>
+        <change when="2003-02-06" who="lcerrato">fixed typo calaunos 8.24 to calamos</change>
+        <change when="2003-02-04" who="lcerrato">fixed typo in 10.77: te to Ite</change>
+        <change when="2003-02-04" who="gcrane">missing period</change>
+        <change when="2001-03-12" who="amahoney">add line numbers</change>
+        <change when="2000-03-06" who="amahoney">remove headers so poem numbers get into short toc</change>
+        <change when="2000-03-04" who="dasmith">Added separate funder entity to TEI header.</change>
+        <change when="1999-08-04" who="textgod">Changed header.</change>
+        <change when="1997-09-24" who="textgod">Changed names and redid headers.</change>
+        <change when="1996-11-01" who="WM">Mark up public domain text downloaded from Libellus; did diereses; needs line nos.</change>
       </revisionDesc>
   </teiHeader>
    <text>
@@ -1335,4 +1293,4 @@ Changed names and redid headers.
        </div>
       </body>
    </text>
-</TEI.2>
+</TEI>
