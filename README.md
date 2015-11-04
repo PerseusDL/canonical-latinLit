@@ -1,6 +1,6 @@
 [![Hook Status](http://ci.perseids.org/api/rest/v1.0/code/PerseusDL/canonical-latinLit/status.svg?branch=refs%2Fheads%2Fmaster)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
-[![Hook Coverage](http://ci.perseids.org/api/rest/v1.0/code/PerseusDL/canonical-latinLit/coverage.svg?branch=refs%2Fheads%2Fmaster)](http://ci.perseids.org/Hook/repo/PerseusDL/canonical-latinLit)
-[![Hook Texts](http://ci.perseids.org/api/rest/v1.0/code/PerseusDL/canonical-latinLit/cts.svg?branch=refs%2Fheads%2Fmaster)](http://ci.perseids.org/Hook/repo/PerseusDL/canonical-latinLit)
+[![Hook Coverage](http://ci.perseids.org/api/rest/v1.0/code/PerseusDL/canonical-latinLit/coverage.svg?branch=refs%2Fheads%2Fmaster)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
+[![Hook Texts](http://ci.perseids.org/api/rest/v1.0/code/PerseusDL/canonical-latinLit/cts.svg?branch=refs%2Fheads%2Fmaster)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
 
 
 Canonical - Latin Literature
