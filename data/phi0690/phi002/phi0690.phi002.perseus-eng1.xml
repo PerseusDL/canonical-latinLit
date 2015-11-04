@@ -1,5 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><TEI.2 xmlns="http://www.tei-c.org/ns/1.0">
-  <teiHeader type="text" status="new">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.21/tei-epidoc.rng"
+                         schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.21/tei-epidoc.rng"
+                         schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader type="text">
       <fileDesc>
          <titleStmt>
 	           <title>Georgics</title>
@@ -33,104 +38,56 @@
 	                    <pubPlace>Boston</pubPlace>
 	                    <publisher>Ginn &amp; Co.</publisher>
 	                    <date>1900</date>
-	                 </imprint#>
+	                 </imprint>
 	              </monogr>
 	           </biblStruct>
          </sourceDesc>
       </fileDesc>
     
-      <encodingDesc>
+     <encodingDesc>
+        <refsDecl n="NTS">
+           <cRefPattern n="line" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']//tei:l[@n='$2'])">
+              <p>This pointer pattern extracts book and line</p>
+           </cRefPattern>
+           <cRefPattern n="book" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+              <p>This pointer pattern extracts book</p>
+           </cRefPattern>
+        </refsDecl>
          <refsDecl n="CTS">
-            <cRefPattern matchPattern="(\\w+).(\\w+)" replacementPattern="#xpath(/tei:TEI.2/tei:text/tei:body/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+            <cRefPattern n="card" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
                 <p>This pointer pattern extracts book and card</p>
             </cRefPattern>
-            <cRefPattern matchPattern="(\\w+)" replacementPattern="#xpath(/tei:TEI.2/tei:text/tei:body/tei:div[@n=\'$1\'])">
+            <cRefPattern n="book" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
                 <p>This pointer pattern extracts book</p>
             </cRefPattern>
         </refsDecl>
-         <refsDecl doctype="TEI.2">
-	           <step delim="." refunit="book" from="DESCENDANT (1 DIV1 N %2)" to="DITTO"/>
-	           <step delim="trans" refunit="line" from="DESCENDANT (1 MILESTONE UNIT line N %3)" to="DITTO"/>
-         </refsDecl>
-         <refsDecl doctype="TEI.2">
-            <state unit="book"/>
-            <state n="chunk" unit="card"/>
+         <refsDecl n="TEI.2">
+            <refState unit="book"/>
+            <refState unit="card"/>
          </refsDecl>
       </encodingDesc>
     
-      <profileDesc>
-         <langUsage>
-	           <language id="en">English
-      </language>
-         </langUsage>
-      </profileDesc>
+     <profileDesc>
+        <langUsage>
+           <language ident="eng">English</language>
+        </langUsage>
+     </profileDesc>
     
       <revisionDesc>
-         <change>
-            <date>10/24/96</date>
-	           <respStmt>
-               <name>WM</name>
-               <resp>ed.</resp>
-            </respStmt>
-	           <item>Mark up public domain text 
-downloaded from vatech; needs line nos.
-</item>
-         </change>
-         <change>
-            <date>July 1997</date>
-	           <respStmt>
-               <name>WM</name>
-               <resp>ed.</resp>
-            </respStmt>
-	           <item>Lined up chunks of text with latin
-</item>
-         </change>
-         <change>
-            <date>7/22/97</date>
-	           <respStmt>
-               <name>DAS</name>
-               <resp>ed.</resp>
-            </respStmt>
-	           <item>
-$Log: verg.g_eng.xml,v $
-Revision 1.2  2010-07-01 17:04:14  student
-fixed place tags - zr
-
-Revision 1.1  2009/12/09 18:06:49  rsingh04
-moved more xml files around based on copyright status
-
-Revision 1.4  2009/06/19 17:14:09  rsingh04
-removed place name references to Neath
-
-Revision 1.3  2006/02/10 20:50:32  packel
-places/dates now actually tagged
-
-Revision 1.2  2005/08/01 16:34:36  packel
-removed stray item tags
-
-	Revision 1.1  2005/07/25 15:07:00  packel
-	Converted to XML
-	
-Revision 1.6  2004/04/02 19:47:44  mimno
-added line 1 cards
-
-Revision 1.5  2003/07/01 22:18:59  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.4  2000/03/04 20:35:31  dasmith
-Added separate funder entity to TEI header.
-
-Revision 1.3  1999/08/12 17:24:55  dasmith
-Changed line tags to handle verse translation.
-
-Revision 1.2  1999/08/04 23:29:15  textgod
-Added ED=p to cards.
-
-Revision 1.1  1997/09/24 20:17:05  textgod
-Changed names and redid headers.
-
-</item>
-         </change>
+<change when="2010-07-01" who="student">fixed place tags - zr</change>
+<change when="2009-12-09" who="rsingh04">moved more xml files around based on copyright status</change>
+<change when="2009-06-19" who="rsingh04">removed place name references to Neath</change>
+<change when="2006-02-10" who="packel">places/dates now actually tagged</change>
+<change when="2005-08-01" who="packel">removed stray item tags</change>
+<change when="2005-07-25" who="packel">Converted to XML</change>
+<change when="2004-04-02" who="mimno">added line 1 cards</change>
+<change when="2003-07-01" who="yorkc">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change>
+<change when="2000-03-04" who="dasmith">Added separate funder entity to TEI header.</change>
+<change when="1999-08-12" who="dasmith">Changed line tags to handle verse translation.</change>
+<change when="1999-08-04" who="textgod">Added ED=p to cards.</change>
+<change when="1997-09-24" who="textgod">Changed names and redid headers.</change>
+<change when="1997-07-01" who="WM">Lined up chunks of text with latin</change>
+<change when="1996-10-24" who="WM">Mark up public domain text downloaded from vatech; needs line nos.</change>
       </revisionDesc>
   </teiHeader>
 
@@ -3048,4 +3005,4 @@ Changed names and redid headers.
          </div>
       </body>
    </text>
-</TEI.2>
+</TEI>
