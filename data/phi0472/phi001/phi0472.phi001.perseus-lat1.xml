@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><TEI.2>
-<teiHeader type="text" status="new">
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader type="text">
     <fileDesc>
       <titleStmt>
   <title>Carmina</title>
@@ -24,108 +26,82 @@
     <authority>Perseus Project</authority>
     </publicationStmt>
       <sourceDesc>
-  <bibl/>
+        <biblStruct>
+          <monogr>
+            <author>Catullus</author>
+            <title>Catullus</title>
+            <editor role="editor">Elmer Truesdell Merrill</editor>
+            <imprint>
+              <pubPlace>Boston</pubPlace>
+              <publisher>Ginn and Company</publisher>
+              <date>1893</date>
+            </imprint>
+          </monogr>
+          <ref target="https://archive.org/details/orationesrecogno01ciceuoft">Internet Archive</ref>
+        </biblStruct>
       </sourceDesc>
     </fileDesc>
 
     <encodingDesc>
-      <refsDecl doctype="TEI.2">
-  <step delim="." refunit="poem" from="DESCENDANT (1 DIV2 TYPE POEM N %1)"/>
-  <step refunit="line" from="DESCENDANT (1 L N %2)"/>
+
+      <refsDecl n="TEI.2">
+        <refState unit="poem"/>
+        <refState unit="line"/>
       </refsDecl>
+      <refsDecl n="CTS">
+            <cRefPattern n="line"
+                         matchPattern="(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1']//tei:l[@n='$2'])">
+                <p>This pointer pattern extracts poem and line</p>
+            </cRefPattern>
+            <cRefPattern n="poem"
+                         matchPattern="(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1'])">
+                <p>This pointer pattern extracts poem</p>
+            </cRefPattern>
+        </refsDecl>
     </encodingDesc>
     
     <profileDesc>
       <langUsage>
-  <language id="la">Latin
-  </language><language id="en">English
+  <language ident="lat">Latin
+  </language><language ident="eng">English
       </language></langUsage>
     </profileDesc>
 
     <revisionDesc>
-      <change><date>1/97</date>
-  <respStmt><name>WM</name><resp>ed.</resp></respStmt>
-  <item>scan, proofread, mark up text
-$Log: cat_lat.xml,v $
-Revision 1.1  2013-09-13 11:17:35  balmas01
-moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory
-
-Revision 1.2  2013-06-08 12:13:27  gcrane
-TEI XML converted to facilitate CTS compatibility
-
-Revision 1.1  2011-01-15 23:14:22  gcrane
-base SDL file
-
-Revision 1.1  2009/10/09 19:49:24  rsingh04
-more reorganizing of texts module by collection
-
-Revision 1.2  2005/10/18 17:21:34  lcerrato
-changed two words in poem 68b: incundum to iucundum and quendam to quondam checked with another source (not same)
-
-Revision 1.1  2005/07/25 14:30:47  packel
-Converted to XML
-
-Revision 1.28  2004/04/21 20:45:53  amahoney
-mark headers in 62 as English
-
-Revision 1.27  2003/07/01 22:14:50  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.26  2000/10/24 16:27:32  lcerrato
-changed lustrault to lustravit 63, 40
-
-Revision 1.25  2000/06/08 15:34:14  amahoney
-found a typo
-
-Revision 1.24  2000/05/04 16:12:22  amahoney
-fix language
-
-Revision 1.23  2000/03/04 20:34:08  dasmith
-Added separate funder entity to TEI header.
-
-Revision 1.22  2000/01/28 23:03:32  dasmith
-Removed bad idno.
-
-Revision 1.21  1999/08/03 21:09:45  textgod
-Fixed bad poem number.
-Fixed refsDecl
-
-Revision 1.20  1999/08/03 21:01:26  dasmith
-Removed N
-
-Revision 1.19  1999/07/08 23:24:38  textgod
-Rethought lookup scheme.
-
-Revision 1.18  1999/07/08 19:28:12  textgod
-Changed stuff relating to refsDecl.
-
-Revision 1.17  1997/10/24 00:25:18  textgod
-Typo
-
-Revision 1.16  1997/10/07 18:37:39  textgod
-Put MET attribute into DIV2s.
-
-Revision 1.15  1997/09/24 22:03:39  textgod
-Added header info.
-
-Revision 1.14  1997/08/20 22:31:33  textgod
-Author abb.
-
-Revision 1.13  1997/02/18 22:13:22  textgod
-Fixed line-group and paragraph tagging.
-
-Revision 1.12  1997/02/18 20:12:14  textgod
-Tweaked tagging to be TEI-conformant.
-
-Revision 1.11  1997/01/24 21:11:22  wmerrill
-needs line nos
-</item></change>
+      <change when="2013-09-13" who="balmas01">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change>
+      <change when="2013-06-08" who="gcrane">TEI XML converted to facilitate CTS compatibility</change>
+      <change when="2011-01-15" who="gcrane">base SDL file</change>
+      <change when="2009-10-09" who="rsingh04">more reorganizing of texts module by collection</change>
+      <change when="2005-10-18" who="lcerrato">changed two words in poem 68b: incundum to iucundum and quendam to quondam checked with another source (not same)</change>
+      <change when="2005-07-25" who="packel">Converted to XML</change>
+      <change when="2004-04-21" who="amahoney">mark headers in 62 as English</change>
+      <change when="2003-07-01" who="yorkc">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change>
+      <change when="2000-10-24" who="lcerrato">changed lustrault to lustravit 63, 40</change>
+      <change when="2000-06-08" who="amahoney">found a typo</change>
+      <change when="2000-05-04" who="amahoney">fix language</change>
+      <change when="2000-03-04" who="dasmith">Added separate funder entity to TEI header.</change>
+      <change when="2000-01-28" who="dasmith">Removed bad idno.</change>
+      <change when="1999-08-03" who="textgod">Fixed bad poem number. Fixed refsDecl</change>
+      <change when="1999-08-03" who="dasmith">Removed N</change>
+      <change when="1999-07-08" who="textgod">Rethought lookup scheme.</change>
+      <change when="1999-07-08" who="textgod">Changed stuff relating to refsDecl.</change>
+      <change when="1997-10-24" who="textgod">Typo</change>
+      <change when="1997-10-07" who="textgod">Put MET attribute into DIV2s.</change>
+      <change when="1997-09-24" who="textgod">Added header info.</change>
+      <change when="1997-08-20" who="textgod">Author abb.</change>
+      <change when="1997-02-18" who="textgod">Fixed line-group and paragraph tagging.</change>
+      <change when="1997-02-18" who="textgod">Tweaked tagging to be TEI-conformant.</change>
+      <change when="1997-01-24" who="wmerrill">needs line nos</change>
+      <change when="1997-01-01" who="wmerrill">scan, proofread, mark up text</change>
     </revisionDesc>
   </teiHeader>
-<text lang="la">
+<text>
 <body>
-<div1 type="Lyrics">
-<div2 type="Poem" n="1"><milestone unit="meter" n="Phalaecean"/>
+<div type="edition" xml:lang="eng" n="urn:cts:latinLit:phi0472.phi001.perseus-lat1">
+<div type="textpart" subtype="Lyrics">
+<div type="textpart" subtype="poem" n="1"><milestone unit="meter" n="Phalaecean"/>
 <l>Cui dono lepidum novum libellum</l>
 <l>arido modo pumice expolitum?</l>
 <l>Corneli, tibi; namque tu solebas</l>
@@ -135,8 +111,8 @@ needs line nos
 <l>doctis, Iuppiter, et laboriosis!</l>
 <l>quare habe tibi quidquid hoc libelli</l>
 <l>qualecumque, quod, o patrona virgo,</l>
-<l>plus uno maneat perenne saeclo.</l></div2>
-<div2 type="Poem" n="2"><milestone unit="meter" n="Phalaecean"/>
+<l>plus uno maneat perenne saeclo.</l></div>
+<div type="textpart" subtype="poem" n="2"><milestone unit="meter" n="Phalaecean"/>
 <l>Passer, deliciae meae puellae,</l>
 <l>quicum ludere, quem in sinu tenere,</l>
 <l>cui primum digitum dare adpetenti</l>
@@ -147,10 +123,10 @@ needs line nos
 <l>credo, ut tum gravis adquiescat ardor),</l>
 <l>tecum ludere sicut ipsa possem</l>
 <l>et tristis animi levare curas!</l>
-<l><gap/>Tam gratum est mihi quam ferunt puellae</l>
+<l><gap reason="omitted"/>Tam gratum est mihi quam ferunt puellae</l>
 <l>pernici aureolum fuisse malum,</l>
-<l>quod zonam solvit diu ligatam.</l></div2>
-<div2 type="Poem" n="3"><milestone unit="meter" n="Phalaecean"/>
+<l>quod zonam solvit diu ligatam.</l></div>
+<div type="textpart" subtype="poem" n="3"><milestone unit="meter" n="Phalaecean"/>
 <l>Lugete, o Veneres Cupidinesque</l>
 <l>et quantum est hominum venustiorum!</l>
 <l>passer mortuus est meae puellae,</l>
@@ -168,8 +144,8 @@ needs line nos
 <l>tam bellum mihi passerem abstulistis.</l>
 <l>o factum male! o miselle passer!</l>
 <l>tua nunc opera meae puellae</l>
-<l>flendo turgiduli rubent ocelli.</l></div2>
-<div2 type="Poem" n="4"><milestone unit="meter" n="Iambic trimeter"/>
+<l>flendo turgiduli rubent ocelli.</l></div>
+<div type="textpart" subtype="poem" n="4"><milestone unit="meter" n="Iambic trimeter"/>
 <l>Phasellus ille, quem videtis, hospites,</l>
 <l>ait fuisse navium celerrimus,</l>
 <l>neque ullius natantis impetum trabis</l>
@@ -196,8 +172,8 @@ needs line nos
 <l>novissimo hunc ad usque limpidum lacum.</l>
 <l>sed haec prius fuere: nunc recondita</l>
 <l>senet quiete seque dedicat tibi,</l>
-<l>gemelle Castor et gemelle Castoris.</l></div2>
-<div2 type="Poem" n="5"><milestone unit="meter" n="Phalaecean"/>
+<l>gemelle Castor et gemelle Castoris.</l></div>
+<div type="textpart" subtype="poem" n="5"><milestone unit="meter" n="Phalaecean"/>
 <l>Vivamus, mea Lesbia, atque amemus,</l>
 <l>rumoresque senum severiorum</l>
 <l>omnes unius aestimemus assis.</l>
@@ -210,8 +186,8 @@ needs line nos
 <l>dein, cum milia multa fecerimus,</l>
 <l>conturbabimus illa, ne sciamus,</l>
 <l>aut ne quis malus invidere possit,</l>
-<l>cum tantum sciat esse basiorum.</l></div2>
-<div2 type="Poem" n="6"><milestone unit="meter" n="Phalaecean"/>
+<l>cum tantum sciat esse basiorum.</l></div>
+<div type="textpart" subtype="poem" n="6"><milestone unit="meter" n="Phalaecean"/>
 <l>Flavi, delicias tuas Catullo,</l>
 <l>ni sint inlepidae atque inelegantes,</l>
 <l>velles dicere, nec tacere posses.</l>
@@ -228,8 +204,8 @@ needs line nos
 <l>ni tu quid facias ineptiarum.</l>
 <l>quare, quidquid habes boni malique,</l>
 <l>dic nobis: volo te ac tuos amores</l>
-<l>ad caelum lepido vocare versu.</l></div2>
-<div2 type="Poem" n="7"><milestone unit="meter" n="Phalaecean"/>
+<l>ad caelum lepido vocare versu.</l></div>
+<div type="textpart" subtype="poem" n="7"><milestone unit="meter" n="Phalaecean"/>
 <l>Quaeris quot mihi basiationes</l>
 <l>tuae, Lesbia, sint satis superque.</l>
 <l>quam magnus numerus Libyssae harenae</l>
@@ -241,8 +217,8 @@ needs line nos
 <l>tam te basia multa basiare</l>
 <l>vesano satis et super Catullo est,</l>
 <l>quae nec pernumerare curiosi</l>
-<l>possint nec mala fascinare lingua.</l></div2>
-<div2 type="Poem" n="8"><milestone unit="meter" n="Choliambic"/>
+<l>possint nec mala fascinare lingua.</l></div>
+<div type="textpart" subtype="poem" n="8"><milestone unit="meter" n="Choliambic"/>
 <l>Miser Catulle, desinas ineptire,</l>
 <l>et quod vides perisse perditum ducas.</l>
 <l>fulsere quondam candidi tibi soles,</l>
@@ -261,8 +237,8 @@ needs line nos
 <l>quis nunc te adibit? cui videberis bella?</l>
 <l>quem nunc amabis? cuius esse diceris?</l>
 <l>quem basiabis? cui labella mordebis?</l>
-<l>at tu, Catulle, destinatus obdura.</l></div2>
-<div2 type="Poem" n="9"><milestone unit="meter" n="Phalaecean"/>
+<l>at tu, Catulle, destinatus obdura.</l></div>
+<div type="textpart" subtype="poem" n="9"><milestone unit="meter" n="Phalaecean"/>
 <l>Verani, omnibus e meis amicis</l>
 <l>antistans mihi milibus trecentis,</l>
 <l>venistine domum ad tuos penates</l>
@@ -273,8 +249,8 @@ needs line nos
 <l>ut mos est tuus, applicansque collum</l>
 <l>iucundum os oculosque saviabor.</l>
 <l>o, quantum est hominum beatiorum,</l>
-<l>quid me laetius est beatiusve?</l></div2>
-<div2 type="Poem" n="10"><milestone unit="meter" n="Phalaecean"/>
+<l>quid me laetius est beatiusve?</l></div>
+<div type="textpart" subtype="poem" n="10"><milestone unit="meter" n="Phalaecean"/>
 <l>Varus me meus ad suos amores</l>
 <l>visum duxerat e foro otiosum,</l>
 <l>scortillum, ut mihi tunc repente visum est,</l>
@@ -308,8 +284,8 @@ needs line nos
 <l>verum, utrum illius an mei, quid ad me?</l>
 <l>utor tam bene quam mihi pararim.</l>
 <l>sed tu insulsa male et molesta vivis,</l>
-<l>per quam non licet esse neglegentem.”</l></div2>
-<div2 type="Poem" n="11"><milestone unit="meter" n="Lesser Sapphic"/>
+<l>per quam non licet esse neglegentem.”</l></div>
+<div type="textpart" subtype="poem" n="11"><milestone unit="meter" n="Lesser Sapphic"/>
 <lg type="stanza">
 <l>Furi et Aureli, comites Catulli,</l>
 <l>sive in extremos penetrabit Indos,</l>
@@ -345,8 +321,8 @@ needs line nos
 <l>qui illius culpa cecidit velut prati</l>
 <l>ultimi flos, praetereunte postquam</l>
 <l>tactus aratro est.</l>
-</lg></div2>
-<div2 type="Poem" n="12"><milestone unit="meter" n="Phalaecean"/>
+</lg></div>
+<div type="textpart" subtype="poem" n="12"><milestone unit="meter" n="Phalaecean"/>
 <l>Marrucine Asini, manu sinistra</l>
 <l>non belle uteris in ioco atque vino:</l>
 <l>tollis lintea neglegentiorum.</l>
@@ -363,8 +339,8 @@ needs line nos
 <l>nam sudaria Saetaba ex Hiberis</l>
 <l>miserunt mihi muneri Fabullus</l>
 <l>et Veranius: haec amem necesse est</l>
-<l>et Veraniolum meum et Fabullum.</l></div2>
-<div2 type="Poem" n="13"><milestone unit="meter" n="Phalaecean"/>
+<l>et Veraniolum meum et Fabullum.</l></div>
+<div type="textpart" subtype="poem" n="13"><milestone unit="meter" n="Phalaecean"/>
 <l>Cenabis bene, mi Fabulle, apud me</l>
 <l>paucis, si tibi di favent, diebus,</l>
 <l>si tecum attuleris bonam atque magnam</l>
@@ -378,8 +354,8 @@ needs line nos
 <l>nam unguentum dabo, quod meae puellae</l>
 <l>donarunt Veneres Cupidinesque,</l>
 <l>quod tu cum olfacies, deos rogabis</l>
-<l>totum ut te faciant, Fabulle, nasum.</l></div2>
-<div2 type="Poem" n="14"><milestone unit="meter" n="Phalaecean"/>
+<l>totum ut te faciant, Fabulle, nasum.</l></div>
+<div type="textpart" subtype="poem" n="14"><milestone unit="meter" n="Phalaecean"/>
 <l>Ni te plus oculis meis amarem,</l>
 <l>iucundissime Calve, munere isto</l>
 <l>odissem te odio Vatiniano:</l>
@@ -402,12 +378,12 @@ needs line nos
 <l>ac te his suppliciis remunerabor.</l>
 <l>vos hinc interea valete, abite</l>
 <l>illuc unde malum pedem attulistis,</l>
-<l>saecli incommoda, pessimi poetae.</l></div2>
-<div2 type="Poem" n="14b"><milestone unit="meter" n="Phalaecean"/>
+<l>saecli incommoda, pessimi poetae.</l></div>
+<div type="textpart" subtype="poem" n="14b"><milestone unit="meter" n="Phalaecean"/>
 <l>Si qui forte mearum ineptiarum</l>
 <l>lectores eritis manusque vestras</l>
-<l>non horrebitis admovere nobis,</l></div2>
-<div2 type="Poem" n="15"><milestone unit="meter" n="Phalaecean"/>
+<l>non horrebitis admovere nobis,</l></div>
+<div type="textpart" subtype="poem" n="15"><milestone unit="meter" n="Phalaecean"/>
 <l>Commendo tibi me ac meos amores,</l>
 <l>Aureli. Veniam peto pudentem,</l>
 <l>ut, si quicquam animo tuo cupisti</l>
@@ -426,8 +402,8 @@ needs line nos
 <l>ut nostrum insidiis caput lacessas,</l>
 <l>ah tum te miserum malique fati,</l>
 <l>quem attractis pedibus patente porta</l>
-<l>percurrent raphanique mugilesque.</l></div2>
-<div2 type="Poem" n="16"><milestone unit="meter" n="Phalaecean"/>
+<l>percurrent raphanique mugilesque.</l></div>
+<div type="textpart" subtype="poem" n="16"><milestone unit="meter" n="Phalaecean"/>
 <l>Pedicabo ego vos et irrumabo,</l>
 <l>Aureli pathice et cinaede Furi,</l>
 <l>qui me ex versiculis meis putastis,</l>
@@ -441,8 +417,8 @@ needs line nos
 <l>qui duros nequeunt movere lumbos.</l>
 <l>vos quod milia multa basiorum</l>
 <l>legistis, male me marem putatis?</l>
-<l>pedicabo ego vos et irrumabo.</l></div2>
-<div2 type="Poem" n="17"><milestone unit="meter" n="Priapean"/>
+<l>pedicabo ego vos et irrumabo.</l></div>
+<div type="textpart" subtype="poem" n="17"><milestone unit="meter" n="Priapean"/>
 <l>O Colonia, quae cupis ponte ludere longo,</l>
 <l>et salire paratum habes, sed vereris inepta</l>
 <l>crura ponticuli assulis stantis in redivivis,</l>
@@ -468,9 +444,9 @@ needs line nos
 <l>nunc eum volo de tuo ponte mittere pronum,</l>
 <l>si pote stolidum repente excitare veternum</l>
 <l>et supinum animum in gravi derelinquere caeno,</l>
-<l>ferream ut soleam tenaci in voragine mula.</l></div2>
-<div2 type="Poem" n="21"><milestone unit="meter" n="Phalaecean"/>
-<l><gap desc="desunt cc. 18-20"/>Aureli, pater esuritionum,</l>
+<l>ferream ut soleam tenaci in voragine mula.</l></div>
+<div type="textpart" subtype="poem" n="21"><milestone unit="meter" n="Phalaecean"/>
+<l><gap reason="omitted" extent="desunt cc. 18-20"/>Aureli, pater esuritionum,</l>
 <l>non harum modo, sed quot aut fuerunt</l>
 <l>aut sunt aut aliis erunt in annis,</l>
 <l>pedicare cupis meos amores.</l>
@@ -482,8 +458,8 @@ needs line nos
 <l>nunc ipsum id doleo, quod esurire,</l>
 <l>ah me me, puer et sitire discet.</l>
 <l>quare desine, dum licet pudico,</l>
-<l>ne finem facias, sed irrumatus.</l></div2>
-<div2 type="Poem" n="22"><milestone unit="meter" n="Choliambic"/>
+<l>ne finem facias, sed irrumatus.</l></div>
+<div type="textpart" subtype="poem" n="22"><milestone unit="meter" n="Choliambic"/>
 <l>Suffenus iste, Vare, quem probe nosti,</l>
 <l>homo est venustus et dicax et urbanus,</l>
 <l>idemque longe plurimos facit versus.</l>
@@ -504,8 +480,8 @@ needs line nos
 <l>nimirum idem omnes fallimur, neque est quisquam</l>
 <l>quem non in aliqua re videre Suffenum</l>
 <l>possis.  Suus cuique attributus est error,</l>
-<l>sed non videmus manticae quod in tergo est.</l></div2>
-<div2 type="Poem" n="23"><milestone unit="meter" n="Phalaecean"/>
+<l>sed non videmus manticae quod in tergo est.</l></div>
+<div type="textpart" subtype="poem" n="23"><milestone unit="meter" n="Phalaecean"/>
 <l>Furi, cui neque servus est neque arca</l>
 <l>nec cimex neque araneus neque ignis,</l>
 <l>verum est et pater et noverca, quorum</l>
@@ -532,8 +508,8 @@ needs line nos
 <l>haec tu commoda tam beata, Furi,</l>
 <l>noli spernere nec putare parvi,</l>
 <l>et sestertia quae soles precari</l>
-<l>centum desine: nam satis beatu's.</l></div2>
-<div2 type="Poem" n="24"><milestone unit="meter" n="Phalaecean"/>
+<l>centum desine: nam satis beatu's.</l></div>
+<div type="textpart" subtype="poem" n="24"><milestone unit="meter" n="Phalaecean"/>
 <l>O qui flosculus es Iuventiorum,</l>
 <l>non horum modo, sed quot aut fuerunt</l>
 <l>aut posthac aliis erunt in annis,</l>
@@ -543,8 +519,8 @@ needs line nos
 <l>“quid? Non est homo bellus?” inquies. est:</l>
 <l>sed bello huic neque servus est neque arca.</l>
 <l>hoc tu quam libet abice elevaque :</l>
-<l>nec servum tamen ille habet neque arcam.</l></div2>
-<div2 type="Poem" n="25"><milestone unit="meter" n="Iambic tetrameter catalectic"/>
+<l>nec servum tamen ille habet neque arcam.</l></div>
+<div type="textpart" subtype="poem" n="25"><milestone unit="meter" n="Iambic tetrameter catalectic"/>
 <l>Cinaede Thalle, mollior cuniculi capillo</l>
 <l>vel anseris medullula vel imula auricilla</l>
 <l>vel pene languido senis situque araneoso,</l>
@@ -557,22 +533,22 @@ needs line nos
 <l>ne laneum latusculum manusque mollicellas</l>
 <l>inusta turpiter tibi flagella conscribillent,</l>
 <l>et insolenter aestues velut minuta magno</l>
-<l>deprensa navis in mari vesaniente vento.</l></div2>
-<div2 type="Poem" n="26"><milestone unit="meter" n="Phalaecean"/>
+<l>deprensa navis in mari vesaniente vento.</l></div>
+<div type="textpart" subtype="poem" n="26"><milestone unit="meter" n="Phalaecean"/>
 <l>Furi, villula vestra non ad Austri</l>
 <l>flatus opposita est neque ad Favoni</l>
 <l>nec saevi Boreae aut Apeliotae,</l>
 <l>verum ad milia quindecim et ducentos.</l>
-<l>o ventum horribilem atque pestilentem!</l></div2>
-<div2 type="Poem" n="27"><milestone unit="meter" n="Phalaecean"/>
+<l>o ventum horribilem atque pestilentem!</l></div>
+<div type="textpart" subtype="poem" n="27"><milestone unit="meter" n="Phalaecean"/>
 <l>Minister vetuli puer Falerni</l>
 <l>inger mi calices amariores,</l>
 <l>ut lex Postumiae iubet magistrae,</l>
 <l>ebrioso acino ebriosioris.</l>
 <l>at vos quo libet hinc abite, lymphae,</l>
 <l>vini pernicies, et ad severos</l>
-<l>migrate: hic merus est Thyonianus.</l></div2>
-<div2 type="Poem" n="28"><milestone unit="meter" n="Phalaecean"/>
+<l>migrate: hic merus est Thyonianus.</l></div>
+<div type="textpart" subtype="poem" n="28"><milestone unit="meter" n="Phalaecean"/>
 <l>Pisonis comites, cohors inanis</l>
 <l>aptis sarcinulis et expeditis,</l>
 <l>Verani optime tuque mi Fabulle,</l>
@@ -587,8 +563,8 @@ needs line nos
 <l>casu: nam nihilo minore verpa</l>
 <l>farti estis. pete nobiles amicos.</l>
 <l>at vobis mala multa di deaeque</l>
-<l>dent, opprobria Romuli Remique.</l></div2>
-<div2 type="Poem" n="29"><milestone unit="meter" n="Iambic trimeter"/>
+<l>dent, opprobria Romuli Remique.</l></div>
+<div type="textpart" subtype="poem" n="29"><milestone unit="meter" n="Iambic trimeter"/>
 <l>Quis hoc potest videre, quis potest pati,</l>
 <l>nisi impudicus et vorax et aleo,</l>
 <l>Mamurram habere quod comata GaIlia</l>
@@ -612,8 +588,8 @@ needs line nos
 <l>quid hunc malum fovetis? aut quid hic potest</l>
 <l>nisi uncta devorare patrimonia?</l>
 <l>eone nomine † urbis opulentissime</l>
-<l>socer generque, perdidistis omnia?</l></div2>
-<div2 type="Poem" n="30"><milestone unit="meter" n="Asclepiadean major"/>
+<l>socer generque, perdidistis omnia?</l></div>
+<div type="textpart" subtype="poem" n="30"><milestone unit="meter" n="Asclepiadean major"/>
 <l>Alfene immemor atque unanimis false sodalibus,</l>
 <l>iam te nil miseret, dure, tui dulcis amiculi?</l>
 <l>iam me prodere, iam non dubitas fallere, perfide?</l>
@@ -625,8 +601,8 @@ needs line nos
 <l>idem nunc retrahis te ac tua dicta omnia factaque</l>
 <l>ventos irrita ferre ac nebulas aerias sinis.</l>
 <l>si tu oblitus es, at di meminerunt, meminit Fides,</l>
-<l>quae te ut paeniteat postmodo facti faciet tui.</l></div2>
-<div2 type="Poem" n="31"><milestone unit="meter" n="Choliambic"/>
+<l>quae te ut paeniteat postmodo facti faciet tui.</l></div>
+<div type="textpart" subtype="poem" n="31"><milestone unit="meter" n="Choliambic"/>
 <l>Paene insularum, Sirmio, insularumque</l>
 <l>ocelle, quascumque in liquentibus stagnis</l>
 <l>marique vasto fert uterque Neptunus,</l>
@@ -640,8 +616,8 @@ needs line nos
 <l>hoc est quod unum est pro laboribus tantis.</l>
 <l>salve, o venusta Sirmio, atque ero gaude;</l>
 <l>gaudete vosque, o Lydiae lacus undae;</l>
-<l>ridete, quidquid est domi cachinnorum.</l></div2>
-<div2 type="Poem" n="32"><milestone unit="meter" n="Phalaecean"/>
+<l>ridete, quidquid est domi cachinnorum.</l></div>
+<div type="textpart" subtype="poem" n="32"><milestone unit="meter" n="Phalaecean"/>
 <l>Amabo, mea dulcis Ipsithilla,</l>
 <l>meae deliciae, mei lepores,</l>
 <l>iube ad te veniam meridiatum.</l>
@@ -652,8 +628,8 @@ needs line nos
 <l>novem continuas fututiones.</l>
 <l>verum, si quid ages, statim iubeto:</l>
 <l>nam pransus iaceo et satur supinus</l>
-<l>pertundo tunicamque palliumque.</l></div2>
-<div2 type="Poem" n="33"><milestone unit="meter" n="Phalaecean"/>
+<l>pertundo tunicamque palliumque.</l></div>
+<div type="textpart" subtype="poem" n="33"><milestone unit="meter" n="Phalaecean"/>
 <l>O furum optime balneariorum</l>
 <l>Vibenni pater, et cinaede fili,</l>
 <l>(nam dextra pater inquinatiore,</l>
@@ -661,8 +637,8 @@ needs line nos
 <l>cur non exsilium malasque in oras</l>
 <l>itis, quandoquidem patris rapinae</l>
 <l>notae sunt populo, et natis pilosas,</l>
-<l>fili, non potes asse venditare?</l></div2>
-<div2 type="Poem" n="34"><milestone unit="meter" n="Three second Glyconics catalectic and one second Pherecratic acatalectic"/>
+<l>fili, non potes asse venditare?</l></div>
+<div type="textpart" subtype="poem" n="34"><milestone unit="meter" n="Three second Glyconics catalectic and one second Pherecratic acatalectic"/>
 <lg><l>Dianae sumus in fide</l>
 <l>puellae et pueri integri;</l>
 <l>Dianam pueri integri</l>
@@ -686,8 +662,8 @@ needs line nos
 <lg><l>sis quocumque tibi placet</l>
 <l>sancta nomine, Romulique,</l>
 <l>antique ut solita es, bona</l>
-<l>sospites ope gentem.</l></lg></div2>
-<div2 type="Poem" n="35"><milestone unit="meter" n="Phalaecean"/>
+<l>sospites ope gentem.</l></lg></div>
+<div type="textpart" subtype="poem" n="35"><milestone unit="meter" n="Phalaecean"/>
 <l>Poetae tenero, meo sodali</l>
 <l>velim Caecilio, papyre, dicas,</l>
 <l>Veronam veniat, Novi relinquens</l>
@@ -705,8 +681,8 @@ needs line nos
 <l>ignes interiorem edunt medullam.</l>
 <l>ignosco tibi, Sapphica puella</l>
 <l>Musa doctior: est enim venuste</l>
-<l>Magna Caecilio incohata Mater.</l></div2>
-<div2 type="Poem" n="36"><milestone unit="meter" n="Phalaecean"/>
+<l>Magna Caecilio incohata Mater.</l></div>
+<div type="textpart" subtype="poem" n="36"><milestone unit="meter" n="Phalaecean"/>
 <l>Annales Volusi, cacata charta,</l>
 <l>votum solvite pro mea puella:</l>
 <l>nam sanctae Veneri Cupidinique</l>
@@ -726,8 +702,8 @@ needs line nos
 <l>si non inlepidum neque invenustum est.</l>
 <l>at vos interea venite in ignem,</l>
 <l>pleni ruris et inficetiarum</l>
-<l>Annales Volusi, cacata charta.</l></div2>
-<div2 type="Poem" n="37"><milestone unit="meter" n="Choliambic"/>
+<l>Annales Volusi, cacata charta.</l></div>
+<div type="textpart" subtype="poem" n="37"><milestone unit="meter" n="Choliambic"/>
 <l>Salax taberna vosque contubernales,</l>
 <l>a pilleatis nona fratribus pila,</l>
 <l>solis putatis esse mentulas vobis,</l>
@@ -747,8 +723,8 @@ needs line nos
 <l>tu praeter omnes une de capillatis,</l>
 <l>cuniculosae Celtiberiae fili,</l>
 <l>Egnati, opaca quem bonum facit barba</l>
-<l>et dens Hibera defricatus urina.</l></div2>
-<div2 type="Poem" n="38"><milestone unit="meter" n="Phalaecean"/>
+<l>et dens Hibera defricatus urina.</l></div>
+<div type="textpart" subtype="poem" n="38"><milestone unit="meter" n="Phalaecean"/>
 <l>Male est, Cornifici, tuo Catullo,</l>
 <l>male est me hercule ei et laboriose,</l>
 <l>et magis magis in dies et horas.</l>
@@ -756,8 +732,8 @@ needs line nos
 <l>qua solatus es adlocutione?</l>
 <l>irascor tibi.  sic meos amores?</l>
 <l>paulum quid libet adlocutionis,</l>
-<l>maestius lacrimis Simonideis.</l></div2>
-<div2 type="Poem" n="39"><milestone unit="meter" n="Choliambic"/>
+<l>maestius lacrimis Simonideis.</l></div>
+<div type="textpart" subtype="poem" n="39"><milestone unit="meter" n="Choliambic"/>
 <l>Egnatius, quod candidos habet dentes,</l>
 <l>renidet usque quaque.  si ad rei ventum est</l>
 <l>subsellium, cum orator excitat fletum,</l>
@@ -778,8 +754,8 @@ needs line nos
 <l>quod quisque minxit, hoc sibi solet mane</l>
 <l>dentem atque russam defricare gingivam,</l>
 <l>ut quo iste vester expolitior dens est,</l>
-<l>hoc te amplius bibisse praedicet loti.</l></div2>
-<div2 type="Poem" n="40"><milestone unit="meter" n="Phalaecean"/>
+<l>hoc te amplius bibisse praedicet loti.</l></div>
+<div type="textpart" subtype="poem" n="40"><milestone unit="meter" n="Phalaecean"/>
 <l>Quaenam te mala mens, miselle Ravide,</l>
 <l>agit praecipitem in meos iambos?</l>
 <l>quis deus tibi non bene advocatus</l>
@@ -787,8 +763,8 @@ needs line nos
 <l>an ut pervenias in ora vulgi?</l>
 <l>quid vis? qua libet esse notus optas?</l>
 <l>eris, quandoquidem meos amores</l>
-<l>cum longa voluisti amare poena.</l></div2>
-<div2 type="Poem" n="41"><milestone unit="meter" n="Phalaecean"/>
+<l>cum longa voluisti amare poena.</l></div>
+<div type="textpart" subtype="poem" n="41"><milestone unit="meter" n="Phalaecean"/>
 <l>Ameana puella defututa</l>
 <l>tota milia me decem poposcit,</l>
 <l>ista turpiculo puella naso,</l>
@@ -796,8 +772,8 @@ needs line nos
 <l>propinqui, quibus est puella curae,</l>
 <l>amicos medicosque convocate:</l>
 <l>non est sana puella, nec rogare</l>
-<l>qualis sit solet aes imaginosum.</l></div2>
-<div2 type="Poem" n="42"><milestone unit="meter" n="Phalaecean"/>
+<l>qualis sit solet aes imaginosum.</l></div>
+<div type="textpart" subtype="poem" n="42"><milestone unit="meter" n="Phalaecean"/>
 <l>Adeste, hendecasyllabi, quot estis</l>
 <l>omnes undique, quotquot estis omnes.</l>
 <l>iocum me putat esse moecha turpis</l>
@@ -821,8 +797,8 @@ needs line nos
 <l>sed nil proficimus, nihil movetur.</l>
 <l>mutanda est ratio modusque nobis,</l>
 <l>si quid proficere amplius potestis,</l>
-<l>“pudica et proba, redde codicillos.”</l></div2>
-<div2 type="Poem" n="43"><milestone unit="meter" n="Phalaecean"/>
+<l>“pudica et proba, redde codicillos.”</l></div>
+<div type="textpart" subtype="poem" n="43"><milestone unit="meter" n="Phalaecean"/>
 <l>Salve, nec minimo puella naso</l>
 <l>nec bello pede nec nigris ocellis</l>
 <l>nec longis digitis nec ore sicco</l>
@@ -830,8 +806,8 @@ needs line nos
 <l>decoctoris amica Formiani.</l>
 <l>ten provincia narrat esse bellam?</l>
 <l>tecum Lesbia nostra comparatur?</l>
-<l>o saeclum insapiens et infacetum!</l></div2>
-<div2 type="Poem" n="44"><milestone unit="meter" n="Choliambic"/>
+<l>o saeclum insapiens et infacetum!</l></div>
+<div type="textpart" subtype="poem" n="44"><milestone unit="meter" n="Choliambic"/>
 <l>O funde noster seu Sabine seu Tiburs</l>
 <l>(nam te esse Tiburtem autumant quibus non est</l>
 <l>cordi Catullum laedere: at quibus cordi est</l>
@@ -852,8 +828,8 @@ needs line nos
 <l>nec deprecor iam, si nefaria scripta</l>
 <l>Sesti recepso, quin gravedinem et tussim</l>
 <l>non mi, sed ipsi Sestio ferat frigus,</l>
-<l>qui tunc vocat me cum malum librum 1egi.</l></div2>
-<div2 type="Poem" n="45"><milestone unit="meter" n="Phalaecean"/>
+<l>qui tunc vocat me cum malum librum 1egi.</l></div>
+<div type="textpart" subtype="poem" n="45"><milestone unit="meter" n="Phalaecean"/>
 <l>Acmen Septimius suos amores</l>
 <l>tenens in gremio “mea,” inquit, “Acme,</l>
 <l>ni te perdite amo atque amare porro</l>
@@ -879,8 +855,8 @@ needs line nos
 <l>uno in Septimio fidelis Acme</l>
 <l>facit delicias libidinesque.</l>
 <l>quis ullos homines beatiores</l>
-<l>vidit, quis Venerem auspicatiorem?</l></div2>
-<div2 type="Poem" n="46"><milestone unit="meter" n="Phalaecean"/>
+<l>vidit, quis Venerem auspicatiorem?</l></div>
+<div type="textpart" subtype="poem" n="46"><milestone unit="meter" n="Phalaecean"/>
 <l>Iam ver egelidos refert tepores,</l>
 <l>iam caeli furor aequinoctialis</l>
 <l>iucundis Zephyri silescit auris.</l>
@@ -891,31 +867,31 @@ needs line nos
 <l>iam laeti studio pedes vigescunt.</l>
 <l>o dulces comitum valete coetus,</l>
 <l>longe quos simul a domo profectos</l>
-<l>diversae variae viae reportant.</l></div2>
-<div2 type="Poem" n="47"><milestone unit="meter" n="Phalaecean"/>
+<l>diversae variae viae reportant.</l></div>
+<div type="textpart" subtype="poem" n="47"><milestone unit="meter" n="Phalaecean"/>
 <l>Porci et Socration, duae sinistrae</l>
 <l>Pisonis, scabies famesque mundi,</l>
 <l>vos Veraniolo meo et Fabullo</l>
 <l>verpus praeposuit Priapus ille?</l>
 <l>vos convivia lauta sumptuose</l>
 <l>de die facitis? mei sodales</l>
-<l>quaerunt in trivio vocationes?</l></div2>
-<div2 type="Poem" n="48"><milestone unit="meter" n="Phalaecean"/>
+<l>quaerunt in trivio vocationes?</l></div>
+<div type="textpart" subtype="poem" n="48"><milestone unit="meter" n="Phalaecean"/>
 <l>Mellitos oculos tuos, Iuventi,</l>
 <l>siquis me sinat usque basiare,</l>
 <l>usque ad milia basiem trecenta,</l>
 <l>nec unquam videar satur futurus,</l>
 <l>non si densior aridis aristis</l>
-<l>sit nostrae seges osculationis.</l></div2>
-<div2 type="Poem" n="49"><milestone unit="meter" n="Phalaecean"/>
+<l>sit nostrae seges osculationis.</l></div>
+<div type="textpart" subtype="poem" n="49"><milestone unit="meter" n="Phalaecean"/>
 <l>Disertissime Romuli nepotum,</l>
 <l>quot sunt quotque fuere, Marce Tulli,</l>
 <l>quotque post aliis erunt in annis,</l>
 <l>gratias tibi maximas Catullus</l>
 <l>agit pessimus omnium poeta,</l>
 <l>tanto pessimus omnium poeta</l>
-<l>quanto tu optimus omnium patronus.</l></div2>
-<div2 type="Poem" n="50"><milestone unit="meter" n="Phalaecean"/>
+<l>quanto tu optimus omnium patronus.</l></div>
+<div type="textpart" subtype="poem" n="50"><milestone unit="meter" n="Phalaecean"/>
 <l>Hesterno, Licini, die otiosi</l>
 <l>multum lusimus in meis tabellis,</l>
 <l>ut convenerat esse delicatos.</l>
@@ -936,8 +912,8 @@ needs line nos
 <l>nunc audax cave sis, precesque nostras,</l>
 <l>oramus, cave despuas, ocelle,</l>
 <l>ne poenas Nemesis reposcat a te.</l>
-<l>est vehemens dea: laedere hanc caveto.</l></div2>
-<div2 type="Poem" n="51"><milestone unit="meter" n="Lesser Sapphic"/>
+<l>est vehemens dea: laedere hanc caveto.</l></div>
+<div type="textpart" subtype="poem" n="51"><milestone unit="meter" n="Lesser Sapphic"/>
 <lg><l>Ille mi par esse deo videtur,</l>
 <l>ille, si fas est, superare divos</l>
 <l>qui sedens adversus identidem te</l>
@@ -945,7 +921,7 @@ needs line nos
 <lg><l>dulce ridentem, misero quod omnis</l>
 <l>eripit sensus mihi: nam simul te,</l>
 <l>Lesbia, adspexi, nihil est super mi</l>
-<l><gap desc="deest v. 1"/></l></lg>
+<l><gap reason="omitted" extent="deest v. 1"/></l></lg>
 <lg><l>lingua sed torpet, tenuis sub artus</l>
 <l>flamma demanat, sonitu suopte</l>
 <l>tintinant aures, gemina teguntur</l>
@@ -953,27 +929,27 @@ needs line nos
 <lg><l>otium, Catulle, tibi molestum est:</l>
 <l>otio exsultas nimiumque gestis.</l>
 <l>otium et reges prius et beatas</l>
-<l>perdidit urbes.</l></lg></div2>
-<div2 type="Poem" n="52"><milestone unit="meter" n="Iambic trimeter"/>
+<l>perdidit urbes.</l></lg></div>
+<div type="textpart" subtype="poem" n="52"><milestone unit="meter" n="Iambic trimeter"/>
 <l>Quid est, Catulle? quid moraris emori?</l>
 <l>sella in curuli struma Nonius sedet,</l>
 <l>per consulatum perierat Vatinius:</l>
-<l>quid est, Catulle? quid moraris emori?</l></div2>
-<div2 type="Poem" n="53"><milestone unit="meter" n="Phalaecean"/>
+<l>quid est, Catulle? quid moraris emori?</l></div>
+<div type="textpart" subtype="poem" n="53"><milestone unit="meter" n="Phalaecean"/>
 <l>Risi nescio quem modo e corona,</l>
 <l>qui, cum mirifice Vatiniana</l>
 <l>meus crimina Calvus explicasset,</l>
 <l>admirans ait haec manusque tollens</l>
-<l>“di magni, salaputium disertum!”</l></div2>
-<div2 type="Poem" n="54"><milestone unit="meter" n="Phalaecean"/>
+<l>“di magni, salaputium disertum!”</l></div>
+<div type="textpart" subtype="poem" n="54"><milestone unit="meter" n="Phalaecean"/>
 <l>Othonis caput oppido est pusillum,</l>
-<l><gap desc="lacunam proposuit Merrill; mss have 50.16-17"/>et eri rustica semilauta crura,</l>
+<l><gap reason="omitted" extent="lacunam proposuit Merrill; mss have 50.16-17"/>et eri rustica semilauta crura,</l>
 <l>subtile et leve peditum Libonis,</l>
-<l><gap/>si non omnia, displicere vellem</l>
+<l><gap reason="omitted"/>si non omnia, displicere vellem</l>
 <l>tibi et Fuficio, seni recocto</l>
-<l><gap/>irascere iterum meis iambis</l>
-<l>immerentibus, unice imperator.</l></div2>
-<div2 type="Poem" n="55"><milestone unit="meter" n="Irregular Phalaecean"/>
+<l><gap reason="omitted"/>irascere iterum meis iambis</l>
+<l>immerentibus, unice imperator.</l></div>
+<div type="textpart" subtype="poem" n="55"><milestone unit="meter" n="Irregular Phalaecean"/>
 <l>Oramus, si forte non molestum est,</l>
 <l>demonstres ubi sint tuae tenebrae.</l>
 <l>te campo quaesivimus minore,</l>
@@ -995,16 +971,16 @@ needs line nos
 <l>fructus proicies amoris omnes:</l>
 <l>verbosa gaudet Venus loquella.</l>
 <l>vel vi vis, licet obseres palatum,</l>
-<l>dum veri sis particeps amoris.</l></div2>
-<div2 type="Poem" n="56"><milestone unit="meter" n="Phalaecean"/>
+<l>dum veri sis particeps amoris.</l></div>
+<div type="textpart" subtype="poem" n="56"><milestone unit="meter" n="Phalaecean"/>
 <l>O rem ridiculam, Cato, et iocosam</l>
 <l>dignamque auribus et tuo cachinno.</l>
 <l>ride, quidquid amas, Cato, Catullum:</l>
 <l>res est ridicula et nimis iocosa.</l>
 <l>deprendi modo pupulum puellae</l>
 <l>trusantem: hunc ego, si placet Dionae,</l>
-<l>pro telo rigida mea cecidi.</l></div2>
-<div2 type="Poem" n="57"><milestone unit="meter" n="Phalaecean"/>
+<l>pro telo rigida mea cecidi.</l></div>
+<div type="textpart" subtype="poem" n="57"><milestone unit="meter" n="Phalaecean"/>
 <l>Pulchre convenit improbis cinaedis,</l>
 <l>Mamurrae pathicoque Caesarique.</l>
 <l>nec mirum: maculae pares utrisque,</l>
@@ -1014,14 +990,14 @@ needs line nos
 <l>uno in lecticulo erudituli ambo,</l>
 <l>non hic quam ille magis vorax adulter,</l>
 <l>rivales socii puellularum:</l>
-<l>pulchre convenit improbis cinaedis.</l></div2>
-<div2 type="Poem" n="58"><milestone unit="meter" n="Phalaecean"/>
+<l>pulchre convenit improbis cinaedis.</l></div>
+<div type="textpart" subtype="poem" n="58"><milestone unit="meter" n="Phalaecean"/>
 <l>Caeli, Lesbia nostra, Lesbia illa,</l>
 <l>illa Lesbia, quam Catullus unam</l>
 <l>plus quam se atque suos amavit omnes,</l>
 <l>nunc in quadriviis et angiportis</l>
-<l>glubit magnanimi Remi nepotes.</l></div2>
-<div2 type="Poem" n="58b"><milestone unit="meter" n="Phalaecean"/>
+<l>glubit magnanimi Remi nepotes.</l></div>
+<div type="textpart" subtype="poem" n="58b"><milestone unit="meter" n="Phalaecean"/>
 <l>Non custos si fingar ille Cretum,</l>
 <l>non si Pegaseo ferar volatu,</l>
 <l>non Ladas ego pinnipesve Perseus,</l>
@@ -1031,20 +1007,20 @@ needs line nos
 <l>quos vinctos, Cameri, mihi dicares:</l>
 <l>defessus tamen omnibus medullis</l>
 <l>et multis langoribus peresus</l>
-<l>essem te mihi, amice, quaeritando.</l></div2>
-<div2 type="Poem" n="59"><milestone unit="meter" n="Choliambic"/>
+<l>essem te mihi, amice, quaeritando.</l></div>
+<div type="textpart" subtype="poem" n="59"><milestone unit="meter" n="Choliambic"/>
 <l>Bononiensis Rufa Rufulum fellat,</l>
 <l>uxor Meneni, saepe quam in sepulcretis</l>
 <l>vidistis ipso rapere de rogo cenam,</l>
 <l>cum devolutum ex igne prosequens panem</l>
-<l>ab semiraso tunderetur ustore.</l></div2>
-<div2 type="Poem" n="60"><milestone unit="meter" n="Choliambic"/>
+<l>ab semiraso tunderetur ustore.</l></div>
+<div type="textpart" subtype="poem" n="60"><milestone unit="meter" n="Choliambic"/>
 <l>Num te leaena montibus Libystinis</l>
 <l>aut Scylla latrans infima inguinum parte</l>
 <l>tam mente dura procreavit ac taetra,</l>
 <l>ut supplicis vocem in novissimo casu</l>
-<l>contemptam haberes, ah nimis fero corde?</l></div2></div1>
-<div1 type="Long Poems"><div2 type="Poem" n="61"><milestone unit="meter" n="Four second Glyconics catalectic and one second Pherecratic acatalectic"/>
+<l>contemptam haberes, ah nimis fero corde?</l></div></div>
+<div type="textpart" subtype="longpoems"><div type="textpart" subtype="poem" n="61"><milestone unit="meter" n="Four second Glyconics catalectic and one second Pherecratic acatalectic"/>
 <lg><l>Collis o Heliconii</l>
 <l>cultor, Uraniae genus,</l>
 <l>qui rapis teneram ad virum</l>
@@ -1122,10 +1098,10 @@ needs line nos
 <l>compararier ausit?</l></lg>
 <lg><l>claustra pandite ianuae,</l>
 <l>virgo adest. viden ut faces</l>
-<l>splendidas quatiunt comas?<gap desc="desunt vv. 2"/></l>
+<l>splendidas quatiunt comas?<gap reason="omitted" extent="desunt vv. 2"/></l>
 </lg>
 <lg>
-<l><gap desc="desunt vv. 2"/>tardet ingenuus pudor:</l>
+<l><gap reason="omitted" extent="desunt vv. 2"/>tardet ingenuus pudor:</l>
 <l>quem tamen magis audiens</l>
 <l>flet quod ire necesse est.</l></lg>
 <lg><l>flere desine. Non tibi, Au-</l>
@@ -1153,7 +1129,7 @@ needs line nos
 <l>implicabitur in tuum</l>
 <l>complexum.  Sed abit dies:</l>
 <l>prodeas, nova nupta.</l></lg>
-<lg><l>o cubile quod omnibus<gap desc="desunt vv. 3"/></l>
+<lg><l>o cubile quod omnibus<gap reason="omitted" extent="desunt vv. 3"/></l>
 <l>candido pede lecti,</l></lg>
 <lg><l>quae tuo veniunt ero,</l>
 <l>quanta gaudia, quac vaga</l>
@@ -1274,21 +1250,21 @@ needs line nos
 <l>lusimus satis. at, boni</l>
 <l>coniuges, bene vivite et</l>
 <l>munere adsiduo valentem</l>
-<l>exercete iuventam.</l></lg></div2>
-<div2 type="Poem" n="62"><milestone unit="meter" n="Dactylic hexameter"/>
-<lg><head lang="en">youths</head>
+<l>exercete iuventam.</l></lg></div>
+<div type="textpart" subtype="poem" n="62"><milestone unit="meter" n="Dactylic hexameter"/>
+<lg><head xml:lang="eng">youths</head>
 <l>Vesper adest: iuvenes, consurgite: vesper Olympo</l>
 <l>exspectata diu vix tandem lumina tollit.</l>
 <l>surgere iam tempus, iam pinguis linquere mensas;</l>
 <l>iam veniet virgo, iam dicetur hymenaeus.</l>
 <l>Hymen O Hymenaee, Hymen ades O Hymenaee.</l></lg>
-<lg><head lang="en">maidens</head>
+<lg><head xml:lang="eng">maidens</head>
 <l>cernitis, innuptae, iuvenes? consurgite contra:</l>
 <l>nimirum Oetaeos ostendit Noctifer ignes.</l>
 <l>sic certe est: viden ut perniciter exsiluere?</l>
 <l>non temere exsiluere; canent quod vincere par est.</l>
 <l>Hymen O Hymenaee, Hymen ades O Hymenaee.</l></lg>
-<lg><head lang="en">youths</head>
+<lg><head xml:lang="eng">youths</head>
 <l>non facilis nobis, aequales, palma parata est:</l>
 <l>adspicite, innuptae secum ut meditata requirunt.</l>
 <l>non frustra meditantur; habent memorabile quod sit.</l>
@@ -1298,30 +1274,30 @@ needs line nos
 <l>quare nunc animos saltem convertite vestros:</l>
 <l>dicere iam incipient, iam respondere decebit.</l>
 <l>Hymen o Hymenaee, Hymen ades o Hymenaee.</l></lg>
-<lg><head lang="en">maidens</head>
+<lg><head xml:lang="eng">maidens</head>
 <l>Hespere, qui caelo fertur crudelior ignis?</l>
 <l>qui natam possis complexu avellere matris,</l>
 <l>complexu matris retinentem avellere natam</l>
 <l>et iuveni ardenti castam donare puellam.</l>
 <l>quid faciunt hostes capta crudelius urbe?</l>
 <l>Hymen o Hymenaee, Hymen ades o Hymenaee.</l></lg>
-<lg><head lang="en">youths</head>
+<lg><head xml:lang="eng">youths</head>
 <l>Hespere, qui caelo lucet iucundior ignis?</l>
 <l>qui desponsa tua firmes conubia flammma,</l>
 <l>quae pepigere viri, pepigerunt ante parentes,</l>
 <l>nec iunxere prius quam se tuus extulit ardor.</l>
 <l>quid datur a divis felici optatius hora?</l>
 <l>Hymen o Hymenaee, Hymen ades o Hymenaee.</l></lg>
-<lg><head lang="en">maidens</head>
-<l>Hesperus e nobis, aequales, abstulit unam<gap/></l></lg>
-<lg><head lang="en">youths</head>
+<lg><head xml:lang="eng">maidens</head>
+<l>Hesperus e nobis, aequales, abstulit unam<gap reason="omitted"/></l></lg>
+<lg><head xml:lang="eng">youths</head>
 <l>namque tuo adventu vigilat custodia semper.</l>
 <l>nocte latent fures, quos idem saepe revertens,</l>
 <l>Hespere, mutato comprendis nomine eosdem.</l>
 <l>at libet innuptis ficto te carpere questu.</l>
 <l>quid tum, si carpunt tacita quem mente requirunt?</l>
 <l>Hymen o Hymenaee, Hymen ades o Hymenaee.</l></lg>
-<lg><head lang="en">maidens</head>
+<lg><head xml:lang="eng">maidens</head>
 <l>ut flos in saeptis secretus nascitur hortis,</l>
 <l>ignotus pecori, nullo convulsus aratro,</l>
 <l>quem mulcent aurae, firmat sol, educat imber,</l>
@@ -1332,7 +1308,7 @@ needs line nos
 <l>cum castum amisit polluto corpore florem,</l>
 <l>nec pueris iucunda manet nec cara puellis.</l>
 <l>Hymen o Hymenaee, Hymen ades o Hymenaee.</l></lg>
-<lg><head lang="en">youths</head>
+<lg><head xml:lang="eng">youths</head>
 <l>ut vidua in nudo vitis quac nascitur arvo</l>
 <l>nunquam se extollit, nunquam mitem educat unam,</l>
 <l>sed tenerum prono deflectens pondere corpus</l>
@@ -1350,8 +1326,8 @@ needs line nos
 <l>tertia pars patri, pars est data tertia matri,</l>
 <l>tertia sola tua est.  noli pugnare duobus,</l>
 <l>qui genero sua iura simul cum dote dederunt.</l>
-<l>Hymen o Hymenaee, Hymen ades o Hymenaee.</l></lg></div2>
-<div2 type="Poem" n="63"><milestone unit="meter" n="Galliambic"/>
+<l>Hymen o Hymenaee, Hymen ades o Hymenaee.</l></lg></div>
+<div type="textpart" subtype="poem" n="63"><milestone unit="meter" n="Galliambic"/>
 <l>Super alta vectus Attis celeri rate maria</l>
 <l>Phrygium ut nemus citato cupide pede tetigit</l>
 <l>adiitque opaca silvis redimita loca deae,</l>
@@ -1444,8 +1420,8 @@ needs line nos
 <l>ibi semper omne vitae spatium famula fuit.</l>
 <l><milestone ed="P" unit="para"/>dea magna, dea Cybelle, dea domina Dindymi,</l>
 <l>procul a mea tuus sit furor omnis, era, domo:</l>
-<l>alios age incitatos, alios age rabidos.</l></div2>
-<div2 type="Poem" n="64"><milestone unit="meter" n="Dactylic hexameter"/>
+<l>alios age incitatos, alios age rabidos.</l></div>
+<div type="textpart" subtype="poem" n="64"><milestone unit="meter" n="Dactylic hexameter"/>
 <l>Peliaco quondam prognatae vertice pinus</l>
 <l>dicuntur liquidas Neptuni nasse per undas</l>
 <l>Phasidos ad fluctus et fines Aeeteos,</l>
@@ -1700,7 +1676,7 @@ needs line nos
 <l>at parte ex alia florens volitabat Iacchus</l>
 <l>cum thiaso satyrorum et Nysigenis silenis</l>
 <l>te quaerens, Ariadna, tuoque incensus arnore.</l>
-<l><gap/>quae tum alacres passim lymphata mente furebant</l>
+<l><gap reason="omitted"/>quae tum alacres passim lymphata mente furebant</l>
 <l>euhoe bacchantes, euhoe capita inflectentes.</l>
 <l>harum pars tecta quatiebant cuspide thyrsos,</l>
 <l>pars e divulso iactabant membra iuvenco,</l>
@@ -1854,8 +1830,8 @@ needs line nos
 <l>omnia fanda nefanda malo permixta furore</l>
 <l>iustificam nobis mentem avertere deorum.</l>
 <l>quare nec talis dignantur visere coetus</l>
-<l>nec se contingi patiuntur lumine claro.</l></div2></div1>
-<div1 type="Elegies"><div2 type="Poem" n="65"><milestone unit="meter" n="Elegiac"/>
+<l>nec se contingi patiuntur lumine claro.</l></div></div>
+<div type="textpart" subtype="Elegies"><div type="textpart" subtype="poem" n="65"><milestone unit="meter" n="Elegiac"/>
 <l>Etsi me adsiduo defectum cura dolore</l>
 <l>sevocat a doctis, Ortale, virginibus,</l>
 <l>nec potis est dulcis Musarum expromere fetus</l>
@@ -1864,7 +1840,7 @@ needs line nos
 <l>pallidulum manans adluit unda pedem,</l>
 <l>Troia Rhoeteo quem subter litore tellus</l>
 <l>Ereptum nostris obterit ex oculis.</l>
-<l><gap desc="deest v. 1"/></l>
+<l><gap reason="omitted" extent="deest v. 1"/></l>
 <l>nunquam ego te vita frater amabilior</l>
 <l>adspiciam posthac: at certe semper amabo,</l>
 <l>semper maesta tua carmina morte canam,</l>
@@ -1879,8 +1855,8 @@ needs line nos
 <l>quod miserae oblitae molli sub veste locatum,</l>
 <l>dum adventu matris prosilit, excutitur;</l>
 <l>atque illud prono praeceps agitur decursu,</l>
-<l>huic manat tristi conscius ore rubor.</l></div2>
-<div2 type="Poem" n="66"><milestone unit="meter" n="Elegiac"/>
+<l>huic manat tristi conscius ore rubor.</l></div>
+<div type="textpart" subtype="poem" n="66"><milestone unit="meter" n="Elegiac"/>
 <l>Omnia qui magni dispexit lumina mundi,</l>
 <l>qui stellarum ortus comperit atque obitus,</l>
 <l>flammeus ut rapidi solis nitor obscuretur,</l>
@@ -1974,8 +1950,8 @@ needs line nos
 <l>unguinis expertem non siris esse tuam me,</l>
 <l>sed potius largis adfice muneribus.</l>
 <l>sidera cur retinent? utinam coma regia fiam</l>
-<l>proximus Hydrochoi fulgeret Oarion.</l></div2>
-<div2 type="Poem" n="67"><milestone unit="meter" n="Elegiac"/>
+<l>proximus Hydrochoi fulgeret Oarion.</l></div>
+<div type="textpart" subtype="poem" n="67"><milestone unit="meter" n="Elegiac"/>
 <l>O dulci iucunda viro, iucunda parenti,</l>
 <l>salve, teque bona Iuppiter auctet ope,</l>
 <l>Ianua, quam Balbo dicunt servisse benigne</l>
@@ -2023,8 +1999,8 @@ needs line nos
 <l>praeterea addebat quendam, quem dicere nolo</l>
 <l>nomine ne tollat rubra supercilia.</l>
 <l>longus homo est, magnas cui lites intulit olim</l>
-<l>falsum mendaci ventre puerperium.”</l></div2>
-<div2 type="Poem" n="68a"><milestone unit="meter" n="Elegiac"/>
+<l>falsum mendaci ventre puerperium.”</l></div>
+<div type="textpart" subtype="poem" n="68a"><milestone unit="meter" n="Elegiac"/>
 <l>Quod mihi fortuna casuque oppressus acerbo</l>
 <l>conscriptum hoc lacrimis mittis epistolium,</l>
 <l>naufragum ut eiectum spumantibus aequoris undis</l>
@@ -2064,15 +2040,15 @@ needs line nos
 <l>quod cum ita sit, nolim statuas nos mente maligna</l>
 <l>id facere aut animo non satis ingenuo</l>
 <l>quod tibi non utriusque petenti copia parta est:</l>
-<l>ultro ego deferrem, copia si qua foret.</l></div2>
-<div2 type="Poem" n="68b"><milestone unit="meter" n="Elegiac"/>
+<l>ultro ego deferrem, copia si qua foret.</l></div>
+<div type="textpart" subtype="poem" n="68b"><milestone unit="meter" n="Elegiac"/>
 <l>non possum reticere, deae, qua me Allius in re</l>
 <l>iuverit aut quantis iuverit officiis,</l>
 <l>ne fugiens saeclis obliviscentibus aetas</l>
 <l>illius hoc caeca nocte tegat studium:</l>
 <l>sed dicam vobis, vos porro dicite multis</l>
 <l>milibus et facite haec charta loquatur anus</l>
-<l><gap desc="deest 1 v"/></l>
+<l><gap reason="omitted" extent="deest 1 v"/></l>
 <l>notescatque magis mortuus atque magis,</l>
 <l>nec tenuem texens sublimis aranea telam</l>
 <l>in deserto Alli nomine opus faciat.</l>
@@ -2167,7 +2143,7 @@ needs line nos
 <l>coniugis in culpa flagrantem concoquit iram</l>
 <l>noscens omnivoli plurima furta Iovis.</l>
 <l>atqui nec divis homines componier aequum est</l>
-<l><gap/>ingratum tremuli tolle parentis onus.</l>
+<l><gap reason="omitted"/>ingratum tremuli tolle parentis onus.</l>
 <l>nec tamen illa mihi dextra deducta paterna</l>
 <l>fragrantem Assyrio venit odore domum,</l>
 <l>sed furtiva dedit mira munuscula nocte</l>
@@ -2185,8 +2161,8 @@ needs line nos
 <l>et qui principio nobis † terram dedit aufert,</l>
 <l>a quo sunt primo omnia nata bona,</l>
 <l>et longe ante omnes mihi quae me carior ipso est,</l>
-<l>lux mea, qua viva vivere dulce mihi est.</l></div2>
-<div2 type="Poem" n="69"><milestone unit="meter" n="Elegiac"/>
+<l>lux mea, qua viva vivere dulce mihi est.</l></div>
+<div type="textpart" subtype="poem" n="69"><milestone unit="meter" n="Elegiac"/>
 <l>Noli admirari quare tibi femina nulla,</l>
 <l>Rufe, velit tenerum supposuisse femur,</l>
 <l>non si illam rarae labefactes munere vestis</l>
@@ -2196,20 +2172,20 @@ needs line nos
 <l>hunc metuunt omnes. neque mirum: nam mala valde est</l>
 <l>bestia, nec quicum bella puella cubet.</l>
 <l>quare aut crudelem nasorum interfice pestem,</l>
-<l>aut admirari desine cur fugiunt.</l></div2>
-<div2 type="Poem" n="70"><milestone unit="meter" n="Elegiac"/>
+<l>aut admirari desine cur fugiunt.</l></div>
+<div type="textpart" subtype="poem" n="70"><milestone unit="meter" n="Elegiac"/>
 <l>Nulli se dicit mulier mea nubere malle</l>
 <l>quam mihi, non si se Iuppiter ipse petat.</l>
 <l>dicit: sed mulier cupido quod dicit amanti</l>
-<l>in vento et rapida scribere oportet aqua.</l></div2>
-<div2 type="Poem" n="71"><milestone unit="meter" n="Elegiac"/>
+<l>in vento et rapida scribere oportet aqua.</l></div>
+<div type="textpart" subtype="poem" n="71"><milestone unit="meter" n="Elegiac"/>
 <l>Si cui iure bono sacer alarum obstitit hircus,</l>
 <l>aut si quem merito tarda podagra secat,</l>
 <l>Aemulus iste tuus, qui vestrum exercet amorem,</l>
 <l>mirifice est a te nactus utrumque malum.</l>
 <l>nam quotiens futuit totiens ulciscitur ambos:</l>
-<l>illam adfligit odore, ipse perit podagra.</l></div2>
-<div2 type="Poem" n="72"><milestone unit="meter" n="Elegiac"/>
+<l>illam adfligit odore, ipse perit podagra.</l></div>
+<div type="textpart" subtype="poem" n="72"><milestone unit="meter" n="Elegiac"/>
 <l>Dicebas quondam solum te nosse Catullum,</l>
 <l>Lesbia, nec prae me velle tenere Iovem.</l>
 <l>dilexi tum te non tantum ut vulgus amicam,</l>
@@ -2217,27 +2193,27 @@ needs line nos
 <l>nunc te cognovi: quare etsi impensius uror,</l>
 <l>multo mi tamen es vilior et levior.</l>
 <l>qui potis est? inquis. quod amantem iniuria talis</l>
-<l>cogit amare magis, sed bene velle minus.</l></div2>
-<div2 type="Poem" n="73"><milestone unit="meter" n="Elegiac"/>
+<l>cogit amare magis, sed bene velle minus.</l></div>
+<div type="textpart" subtype="poem" n="73"><milestone unit="meter" n="Elegiac"/>
 <l>Desine de quoquam quicquam bene velle mereri</l>
 <l>aut aliquem fieri posse putare pium.</l>
 <l>omnia sunt ingrata, nihil fecisse benigne:</l>
 <l>immo etiam taedet, taedet obestque magis:</l>
 <l>ut mihi, quem nemo gravius nec acerbius urget</l>
-<l>Quam modo qui me unum atque unicum amicum habuit.</l></div2>
-<div2 type="Poem" n="74"><milestone unit="meter" n="Elegiac"/>
+<l>Quam modo qui me unum atque unicum amicum habuit.</l></div>
+<div type="textpart" subtype="poem" n="74"><milestone unit="meter" n="Elegiac"/>
 <l>Gellius audierat patruum obiurgare solere,</l>
 <l>si quis delicias diceret aut faceret.</l>
 <l>hoc ne ipsi accideret, patrui perdepsuit ipsam</l>
 <l>uxorem et patruum reddidit Harpocratem.</l>
 <l>quod voluit fecit: nam, quamvis irrumet ipsum</l>
-<l>nunc patruum, verbum non faciet patruus.</l></div2>
-<div2 type="Poem" n="75"><milestone unit="meter" n="Elegiac"/>
+<l>nunc patruum, verbum non faciet patruus.</l></div>
+<div type="textpart" subtype="poem" n="75"><milestone unit="meter" n="Elegiac"/>
 <l>Huc est mens deducta tua, mea Lesbia, culpa,</l>
 <l>atque ita se officio perdidit ipsa suo,</l>
 <l>ut iam nec bene velle queat tibi, si optuma fias,</l>
-<l>nec desistere amare, omnia si facias.</l></div2>
-<div2 type="Poem" n="76"><milestone unit="meter" n="Elegiac"/>
+<l>nec desistere amare, omnia si facias.</l></div>
+<div type="textpart" subtype="poem" n="76"><milestone unit="meter" n="Elegiac"/>
 <l>Si qua recordanti benefacta priora voluptas</l>
 <l>est homini, cum se cogitat esse pium,</l>
 <l>nec sanctam violasse fidem, nec foedere in ullo</l>
@@ -2263,33 +2239,33 @@ needs line nos
 <l>non iam illud quaero, contra ut me diligat illa,</l>
 <l>aut, quod non potis est, esse pudica velit:</l>
 <l>ipse valere opto et taetrum hunc deponere morbum.</l>
-<l>o di, reddite mi hoc pro pietate mea.</l></div2>
-<div2 type="Poem" n="77"><milestone unit="meter" n="Elegiac"/>
+<l>o di, reddite mi hoc pro pietate mea.</l></div>
+<div type="textpart" subtype="poem" n="77"><milestone unit="meter" n="Elegiac"/>
 <l>Rufe mihi frustra ac nequiquam credite amice</l>
 <l>(frustra? immo magno cum pretio atque malo),</l>
 <l>sicine subrepsti mi atque intestina perurens</l>
 <l>hei misero eripuisti omnia nostra bona?</l>
 <l>eripuisti, eheu nostrae crudele venenum</l>
-<l>vitae, eheu nostrae pestis amicitiae.</l></div2>
-<div2 type="Poem" n="78"><milestone unit="meter" n="Elegiac"/>
+<l>vitae, eheu nostrae pestis amicitiae.</l></div>
+<div type="textpart" subtype="poem" n="78"><milestone unit="meter" n="Elegiac"/>
 <l>Gallus habet fratres, quorum est lepidissima coniunx</l>
 <l>alterius, lepidus filius alterius.</l>
 <l>Gallus homo est bellus: nam dulces iungit amores,</l>
 <l>cum puero ut bello bella puella cubet.</l>
 <l>Gallus homo est stultus nec se videt esse maritum,</l>
-<l>qui patruus patrui monstret adulterium.</l></div2>
-<div2 type="Poem" n="78b"><milestone unit="meter" n="Elegiac"/>
-<l><gap desc="desunt vv. 2"/></l>
+<l>qui patruus patrui monstret adulterium.</l></div>
+<div type="textpart" subtype="poem" n="78b"><milestone unit="meter" n="Elegiac"/>
+<l><gap reason="omitted" extent="desunt vv. 2"/></l>
 <l n="3">Sed nunc id doleo quod purae pura puellae</l>
 <l>savia comminxit spurca saliva tua.</l>
 <l>verum id non impune feres: nam te omnia saecla</l>
-<l>noscent et qui sis fama loquetur anus.</l></div2>
-<div2 type="Poem" n="79"><milestone unit="meter" n="Elegiac"/>
+<l>noscent et qui sis fama loquetur anus.</l></div>
+<div type="textpart" subtype="poem" n="79"><milestone unit="meter" n="Elegiac"/>
 <l>Lesbius est pulcher: quid ni? quem Lesbia malit</l>
 <l>quam te cum tota gente, Catulle, tua.</l>
 <l>sed tamen hic pulcher vendat cum gente Catullum,</l>
-<l>si tria notorum savia reppererit.</l></div2>
-<div2 type="Poem" n="80"><milestone unit="meter" n="Elegiac"/>
+<l>si tria notorum savia reppererit.</l></div>
+<div type="textpart" subtype="poem" n="80"><milestone unit="meter" n="Elegiac"/>
 <l>Quid dicam, Gelli, quare rosea ista labella</l>
 <l>Hiberna fiant candidiora nive,</l>
 <l>mane domo cum exis et cum te octava quiete</l>
@@ -2297,27 +2273,27 @@ needs line nos
 <l>nescio quid certe est: an vere fama susurrat</l>
 <l>grandia te medii tenta vorare viri?</l>
 <l>sic certe est: clamant Victoris rupta miselli</l>
-<l>ilia, et emulso labra notata sero.</l></div2>
-<div2 type="Poem" n="81"><milestone unit="meter" n="Elegiac"/>
+<l>ilia, et emulso labra notata sero.</l></div>
+<div type="textpart" subtype="poem" n="81"><milestone unit="meter" n="Elegiac"/>
 <l>Nemone in tanto potuit populo esse, Iuventi,</l>
 <l>bellus homo quem tu diligere inciperes</l>
 <l>praeterquam iste tuus moribunda ab sede Pisauri</l>
 <l>hospes inaurata pallidior statua?</l>
 <l>qui tibi nunc cordi est, quem tu praeponere nobis</l>
-<l>audes et nescis quod facinus facias.</l></div2>
-<div2 type="Poem" n="82"><milestone unit="meter" n="Elegiac"/>
+<l>audes et nescis quod facinus facias.</l></div>
+<div type="textpart" subtype="poem" n="82"><milestone unit="meter" n="Elegiac"/>
 <l>Quinti, si tibi vis oculos debere Catullum</l>
 <l>aut aliud si quid carius est oculis,</l>
 <l>eripere ei noli multo quod carius illi</l>
-<l>est oculis seu quid carius est oculis.</l></div2>
-<div2 type="Poem" n="83"><milestone unit="meter" n="Elegiac"/>
+<l>est oculis seu quid carius est oculis.</l></div>
+<div type="textpart" subtype="poem" n="83"><milestone unit="meter" n="Elegiac"/>
 <l>Lesbia mi praesente viro mala plurima dicit:</l>
 <l>haec illi fatuo maxima laetitia est.</l>
 <l>mule, nihil sentis. si nostri oblita taceret,</l>
 <l>sana esset: nunc quod gannit et obloquitur,</l>
 <l>non solum meminit, sed, quae multo acrior est res,</l>
-<l>irata est: hoc est, uritur et loquitur.</l></div2>
-<div2 type="Poem" n="84"><milestone unit="meter" n="Elegiac"/>
+<l>irata est: hoc est, uritur et loquitur.</l></div>
+<div type="textpart" subtype="poem" n="84"><milestone unit="meter" n="Elegiac"/>
 <l>Chommoda dicebat, si quando commode vellet</l>
 <l>dicere, et insidias Arrius hinsidias,</l>
 <l>et tum mirifice sperabat se esse locutum</l>
@@ -2329,23 +2305,23 @@ needs line nos
 <l>nec sibi postilla metuebant talia verba,</l>
 <l>cum subito adfertur nuntius horribilis</l>
 <l>Ionios fluctus, postquam illuc Arrius isset,</l>
-<l>iam non Ionios esse, sed Hionios.</l></div2>
-<div2 type="Poem" n="85"><milestone unit="meter" n="Elegiac"/>
+<l>iam non Ionios esse, sed Hionios.</l></div>
+<div type="textpart" subtype="poem" n="85"><milestone unit="meter" n="Elegiac"/>
 <l>Odi et amo. quare id faciam fortasse requiris</l>
-<l>nescio, sed fieri sentio et excrucior.</l></div2>
-<div2 type="Poem" n="86"><milestone unit="meter" n="Elegiac"/>
+<l>nescio, sed fieri sentio et excrucior.</l></div>
+<div type="textpart" subtype="poem" n="86"><milestone unit="meter" n="Elegiac"/>
 <l>Quintia formosa est multis, mihi candida, longa,</l>
 <l>recta est. haec ego sic singula confiteor,</l>
 <l>totum illud “formosa” nego: nam nulla venustas,</l>
 <l>nulla in tam magno est corpore mica salis.</l>
 <l>Lesbia formosa est, quae cum pulcherrima tota est,</l>
-<l>tum omnibus una omnis subripuit Veneres.</l></div2>
-<div2 type="Poem" n="87"><milestone unit="meter" n="Elegiac"/>
+<l>tum omnibus una omnis subripuit Veneres.</l></div>
+<div type="textpart" subtype="poem" n="87"><milestone unit="meter" n="Elegiac"/>
 <l>Nulla potest mulier tantum se dicere amatam</l>
 <l>vere, quantum a me Lesbia amata mea es</l>
 <l>nulla fides ullo fuit unquam in foedere tanta</l>
-<l>quanta in amore tuo ex parte reperta mea est.</l></div2>
-<div2 type="Poem" n="88"><milestone unit="meter" n="Elegiac"/>
+<l>quanta in amore tuo ex parte reperta mea est.</l></div>
+<div type="textpart" subtype="poem" n="88"><milestone unit="meter" n="Elegiac"/>
 <l>Quid facit is, Gelli, qui cum matre atque sorore</l>
 <l>prurit et abiectis pervigilat tunicis?</l>
 <l>quid facit is patruum qui non sinit esse maritum?</l>
@@ -2353,22 +2329,22 @@ needs line nos
 <l>suscipit, o Gelli, quantum non ultima Tethys</l>
 <l>nec genitor nympharum abluit Oceanus:</l>
 <l>nam nihil est quicquam sceleris quo prodeat ultra,</l>
-<l>non si demisso se ipse voret capite.</l></div2>
-<div2 type="Poem" n="89"><milestone unit="meter" n="Elegiac"/>
+<l>non si demisso se ipse voret capite.</l></div>
+<div type="textpart" subtype="poem" n="89"><milestone unit="meter" n="Elegiac"/>
 <l>Gellius est tenuis: quid ni? cui tam bona mater</l>
 <l>tamque valens vivat tamque venusta soror</l>
 <l>tamque bonus patruus tamque omnia plena puellis</l>
 <l>cognatis, quare is desinat esse macer?</l>
 <l>qui ut nihil attingat, nisi quod fas tangere non est,</l>
-<l>quantumvis quare sit macer invenies.</l></div2>
-<div2 type="Poem" n="90"><milestone unit="meter" n="Elegiac"/>
+<l>quantumvis quare sit macer invenies.</l></div>
+<div type="textpart" subtype="poem" n="90"><milestone unit="meter" n="Elegiac"/>
 <l>Nascatur magus ex Gelli matrisque nefando</l>
 <l>coniugio et discat Persicum haruspicium:</l>
 <l>nam magus ex matre et gnato gignatur oportet,</l>
 <l>si vera est Persarum impia religio,</l>
 <l>gratus ut accepto veneretur carmine divos</l>
-<l>omentum in flamma pingue liquefaciens.</l></div2>
-<div2 type="Poem" n="91"><milestone unit="meter" n="Elegiac"/>
+<l>omentum in flamma pingue liquefaciens.</l></div>
+<div type="textpart" subtype="poem" n="91"><milestone unit="meter" n="Elegiac"/>
 <l>Non ideo, Gelli, sperabam te mihi fidum</l>
 <l>in misero hoc nostro, hoc perdito amore fore</l>
 <l>quod te cognossem bene constantemve putarem</l>
@@ -2378,37 +2354,37 @@ needs line nos
 <l>et quamvis tecum multo coniungerer usu,</l>
 <l>non satis id causae credideram esse tibi.</l>
 <l>tu satis id duxti: tantum tibi gaudium in omni</l>
-<l>culpa est in quacumque est aliquid sceleris.</l></div2>
-<div2 type="Poem" n="92"><milestone unit="meter" n="Elegiac"/>
+<l>culpa est in quacumque est aliquid sceleris.</l></div>
+<div type="textpart" subtype="poem" n="92"><milestone unit="meter" n="Elegiac"/>
 <l>Lesbia mi dicit semper male nec tacet unquam</l>
 <l>de me: Lesbia me dispeream nisi amat.</l>
 <l>quo signo? quia sunt totidem mea: deprecor illam</l>
-<l>adsidue, verum dispeream nisi amo.</l></div2>
-<div2 type="Poem" n="93"><milestone unit="meter" n="Elegiac"/>
+<l>adsidue, verum dispeream nisi amo.</l></div>
+<div type="textpart" subtype="poem" n="93"><milestone unit="meter" n="Elegiac"/>
 <l>Nil nimium studeo, Caesar, tibi velle placere,</l>
-<l>nec scire utrum sis albus an ater homo.</l></div2>
-<div2 type="Poem" n="94"><milestone unit="meter" n="Elegiac"/>
+<l>nec scire utrum sis albus an ater homo.</l></div>
+<div type="textpart" subtype="poem" n="94"><milestone unit="meter" n="Elegiac"/>
 <l>Mentula moechatur. moechatur mentula certe.</l>
-<l>hoc est quod dicunt, ipsa olera olla legit.</l></div2>
-<div2 type="Poem" n="95"><milestone unit="meter" n="Elegiac"/>
+<l>hoc est quod dicunt, ipsa olera olla legit.</l></div>
+<div type="textpart" subtype="poem" n="95"><milestone unit="meter" n="Elegiac"/>
 <l>Zmyrna mei Cinnae nonam post denique messem</l>
 <l>quam coepta est nonamque edita post hiemem,</l>
 <l>milia cum interea quingenta Hortensius uno</l>
-<l><gap desc="deest v 1"/></l>
+<l><gap reason="omitted" extent="deest v 1"/></l>
 <l>Zmyrna cavas Satrachi penitus mittetur ad undas,</l>
 <l>Zmyrnam cana diu saecula pervolvent.</l>
 <l>at Volusi annales Paduam morientur ad ipsam</l>
 <l>et laxas scombris saepe dabunt tunicas.</l>
 <l>parva mei mihi sint cordi monumenta sodalis:</l>
-<l>at populus tumido gaudeat Antimacho.</l></div2>
-<div2 type="Poem" n="96"><milestone unit="meter" n="Elegiac"/>
+<l>at populus tumido gaudeat Antimacho.</l></div>
+<div type="textpart" subtype="poem" n="96"><milestone unit="meter" n="Elegiac"/>
 <l>Si quicquam mutis gratum acceptumve sepulcris</l>
 <l>accidere a nostro, Calve, dolore potest,</l>
 <l>quo desiderio veteres renovamus amores</l>
 <l>atque olim missas flemus amicitias,</l>
 <l>certe non tanto mors immatura dolori est</l>
-<l>Quintiliae, quantum gaudet amore tuo.</l></div2>
-<div2 type="Poem" n="97"><milestone unit="meter" n="Elegiac"/>
+<l>Quintiliae, quantum gaudet amore tuo.</l></div>
+<div type="textpart" subtype="poem" n="97"><milestone unit="meter" n="Elegiac"/>
 <l>Non (ita me di ament) quicquam referre putavi</l>
 <l>utrumne os an culum olfacerem Aemilio.</l>
 <l>nilo mundius hoc, nihiloque immundius illud,</l>
@@ -2420,15 +2396,15 @@ needs line nos
 <l>hic futuit multas et se facit esse venustum,</l>
 <l>et non pistrino traditur atque asino?</l>
 <l>quem si qua attingit, non illam posse putemus</l>
-<l>aegroti culum lingere carnificis?</l></div2>
-<div2 type="Poem" n="98"><milestone unit="meter" n="Elegiac"/>
+<l>aegroti culum lingere carnificis?</l></div>
+<div type="textpart" subtype="poem" n="98"><milestone unit="meter" n="Elegiac"/>
 <l>In te, si in quemquam, dici pose, putide Victi,</l>
 <l>id quod verbosis dicitur et fatuis:</l>
 <l>ista cum lingua, si usus veniat tibi, possis</l>
 <l>culos et crepidas lingere carpatinas.</l>
 <l>si nos omnino vis omnes perdere, Victi,</l>
-<l>hiscas: omnino quod cupis efficies.</l></div2>
-<div2 type="Poem" n="99"><milestone unit="meter" n="Elegiac"/>
+<l>hiscas: omnino quod cupis efficies.</l></div>
+<div type="textpart" subtype="poem" n="99"><milestone unit="meter" n="Elegiac"/>
 <l>Subripui tibi, dum ludis, mellite Iuventi,</l>
 <l>saviolum dulci dulcius ambrosia.</l>
 <l>verum id non impune tuli: namque amplius horam</l>
@@ -2444,8 +2420,8 @@ needs line nos
 <l>ut mi ex ambrosia mutatum iam fores illud</l>
 <l>saviolum tristi tristius elleboro.</l>
 <l>quam quoniam poenam misero proponis amori,</l>
-<l>nunquam iam posthac basia subripiam.</l></div2>
-<div2 type="Poem" n="100"><milestone unit="meter" n="Elegiac"/>
+<l>nunquam iam posthac basia subripiam.</l></div>
+<div type="textpart" subtype="poem" n="100"><milestone unit="meter" n="Elegiac"/>
 <l>Caelius Aufilenum et Quintius Aufilenam</l>
 <l>flos Veronensum depereunt iuvenum,</l>
 <l>hic fratrem, ille sororem. hoc est quod dicitur illud</l>
@@ -2453,8 +2429,8 @@ needs line nos
 <l>cui faveam potius? Caeli, tibi: nam tua nobis</l>
 <l>per facta exhibita est unica amicitia</l>
 <l>cum vesana meas torreret flamma medullas.</l>
-<l>sis felix, Caeli, sis in amore potens.</l></div2>
-<div2 type="Poem" n="101"><milestone unit="meter" n="Elegiac"/>
+<l>sis felix, Caeli, sis in amore potens.</l></div>
+<div type="textpart" subtype="poem" n="101"><milestone unit="meter" n="Elegiac"/>
 <l>Multas per gentes et multa per aequora vectus</l>
 <l>advenio has miseras, frater, ad inferias,</l>
 <l>ut te postremo donarem munere mortis</l>
@@ -2464,29 +2440,29 @@ needs line nos
 <l>nunc tamen interea haec, prisco quae more parentum</l>
 <l>tradita sunt tristi munere ad inferias,</l>
 <l>accipe fraterno multum manantia fletu</l>
-<l>atque in perpetuum, frater, ave atque vale.</l></div2>
-<div2 type="Poem" n="102"><milestone unit="meter" n="Elegiac"/>
+<l>atque in perpetuum, frater, ave atque vale.</l></div>
+<div type="textpart" subtype="poem" n="102"><milestone unit="meter" n="Elegiac"/>
 <l>Si quicquam tacito commissum est fido ab amico</l>
 <l>cuius sit penitus nota fides animi,</l>
 <l>meque esse invenies illorum iure sacratum,</l>
-<l>Corneli, et factum me esse puta Harpocratem.</l></div2>
-<div2 type="Poem" n="103"><milestone unit="meter" n="Elegiac"/>
+<l>Corneli, et factum me esse puta Harpocratem.</l></div>
+<div type="textpart" subtype="poem" n="103"><milestone unit="meter" n="Elegiac"/>
 <l>Aut sodes mihi redde decem sestertia, Silo,</l>
 <l>deinde esto quamvis saevus et indomitus:</l>
 <l>aut, si te nummi deIectant, desine quaeso</l>
-<l>Leno esse atque idem saevus et indomitus.</l></div2>
-<div2 type="Poem" n="104"><milestone unit="meter" n="Elegiac"/>
+<l>Leno esse atque idem saevus et indomitus.</l></div>
+<div type="textpart" subtype="poem" n="104"><milestone unit="meter" n="Elegiac"/>
 <l>Credis me potuisse meae maledicere vitae,</l>
 <l>ambobus mihi quae carior est oculis?</l>
 <l>non potui, nec, si possem, tam perdite amarem:</l>
-<l>sed tu cum Tappone omnia monstra facis.</l></div2>
-<div2 type="Poem" n="105"><milestone unit="meter" n="Elegiac"/>
+<l>sed tu cum Tappone omnia monstra facis.</l></div>
+<div type="textpart" subtype="poem" n="105"><milestone unit="meter" n="Elegiac"/>
 <l>Mentula conatur Pipleum scandere montem:</l>
-<l>Musae furcillis praecipitem eiciunt.</l></div2>
-<div2 type="Poem" n="106"><milestone unit="meter" n="Elegiac"/>
+<l>Musae furcillis praecipitem eiciunt.</l></div>
+<div type="textpart" subtype="poem" n="106"><milestone unit="meter" n="Elegiac"/>
 <l>Cum puero bello praeconem qui videt esse,</l>
-<l>quid credat, nisi se vendere discupere?</l></div2>
-<div2 type="Poem" n="107"><milestone unit="meter" n="Elegiac"/>
+<l>quid credat, nisi se vendere discupere?</l></div>
+<div type="textpart" subtype="poem" n="107"><milestone unit="meter" n="Elegiac"/>
 <l>Si cui quid cupido optantique obtigit unquam</l>
 <l>insperanti, hoc est gratum animo proprie.</l>
 <l>quare hoc est gratum nobis quoque, carius auro,</l>
@@ -2494,22 +2470,22 @@ needs line nos
 <l>restituis cupido atque insperanti, ipsa refers te</l>
 <l>nobis. o lucem candidiore nota!</l>
 <l>quis me uno vivit felicior, aut magis hac res</l>
-<l>optandas vita dicere quis poterit?</l></div2>
-<div2 type="Poem" n="108"><milestone unit="meter" n="Elegiac"/>
+<l>optandas vita dicere quis poterit?</l></div>
+<div type="textpart" subtype="poem" n="108"><milestone unit="meter" n="Elegiac"/>
 <l>Si, Comini, populi arbitrio tua cana senectus</l>
 <l>spurcata impuris moribus intereat,</l>
 <l>non equidem dubito quin primum inimica bonorum</l>
 <l>lingua exsecta avido sit data vulturio,</l>
 <l>effossos oculos voret atro gutture corvus,</l>
-<l>intestina canes, cetera membra lupi.</l></div2>
-<div2 type="Poem" n="109"><milestone unit="meter" n="Elegiac"/>
+<l>intestina canes, cetera membra lupi.</l></div>
+<div type="textpart" subtype="poem" n="109"><milestone unit="meter" n="Elegiac"/>
 <l>Iucundum, mea vita, mihi proponis amorem</l>
 <l>hunc nostrum inter nos perpetuumque fore.</l>
 <l>di magni, facite ut vere promittere possit</l>
 <l>atque id sincere dicat et ex animo,</l>
 <l>ut liceat nobis tota perducere vita</l>
-<l>aeternum hoc sanctae foedus amicitiae.</l></div2>
-<div2 type="Poem" n="110"><milestone unit="meter" n="Elegiac"/>
+<l>aeternum hoc sanctae foedus amicitiae.</l></div>
+<div type="textpart" subtype="poem" n="110"><milestone unit="meter" n="Elegiac"/>
 <l>Aufilena, bonae semper laudantur amicae:</l>
 <l>accipiunt pretium quod facere instituunt.</l>
 <l>tu, quod promisti mihi, quod mentita, inimica es;</l>
@@ -2517,28 +2493,28 @@ needs line nos
 <l>aut facere ingenuae est, aut non promisse pudicae,</l>
 <l>Aufilena, fuit: sed data corripere</l>
 <l>fraudando † efficit plus quam meretricis avarae,</l>
-<l>quae sese toto corpore prostituit.</l></div2>
-<div2 type="Poem" n="111"><milestone unit="meter" n="Elegiac"/>
+<l>quae sese toto corpore prostituit.</l></div>
+<div type="textpart" subtype="poem" n="111"><milestone unit="meter" n="Elegiac"/>
 <l>Aufilena, viro contentam vivere solo</l>
 <l>nuptarum laus e laudibus eximiis:</l>
 <l>sed cuivis quamvis potius succumbere par est</l>
-<l>quam matrem fratres ex patruo parere.</l></div2>
-<div2 type="Poem" n="112"><milestone unit="meter" n="Elegiac"/>
+<l>quam matrem fratres ex patruo parere.</l></div>
+<div type="textpart" subtype="poem" n="112"><milestone unit="meter" n="Elegiac"/>
 <l>Multus homo est, Naso, neque tecum multus homo est qui</l>
-<l>descendit: Naso, multus es et pathicus.</l></div2>
-<div2 type="Poem" n="113"><milestone unit="meter" n="Elegiac"/>
+<l>descendit: Naso, multus es et pathicus.</l></div>
+<div type="textpart" subtype="poem" n="113"><milestone unit="meter" n="Elegiac"/>
 <l>Consule Pompeio primum duo, Cinna, solebant</l>
 <l>Maeciliam: facto consule nunc iterum</l>
 <l>manserunt duo, sed creverunt milia in unum</l>
-<l>singula. fecundum semen adulterio.</l></div2>
-<div2 type="Poem" n="114"><milestone unit="meter" n="Elegiac"/>
+<l>singula. fecundum semen adulterio.</l></div>
+<div type="textpart" subtype="poem" n="114"><milestone unit="meter" n="Elegiac"/>
 <l>Firmanus saltu non falso Mentula dives</l>
 <l>fertur, qui tot res in se habet egregias,</l>
 <l>aucupium omne genus, piscis, prata, arva, ferasque.</l>
 <l>nequiquam: fructus sumptibus exsuperat.</l>
 <l>quare concedo sit dives, dum omnia desint;</l>
-<l>saltum laudemus, dum domo ipse egeat.</l></div2>
-<div2 type="Poem" n="115"><milestone unit="meter" n="Elegiac"/>
+<l>saltum laudemus, dum domo ipse egeat.</l></div>
+<div type="textpart" subtype="poem" n="115"><milestone unit="meter" n="Elegiac"/>
 <l>Mentula habet iuxta triginta iugera prati,</l>
 <l>quadraginta arvi: cetera sunt maria.</l>
 <l>cur non divitiis Croesum superare potis sit</l>
@@ -2546,8 +2522,8 @@ needs line nos
 <l>prata, arva, ingentis silvas saltusque paludesque</l>
 <l>usque ad Hyperboreos et mare ad Oceanum?</l>
 <l>omnia magna haec sunt, tamen ipse est maximus ultro,</l>
-<l>non homo, sed vero mentula magna minax.</l></div2>
-<div2 type="Poem" n="116"><milestone unit="meter" n="Elegiac"/>
+<l>non homo, sed vero mentula magna minax.</l></div>
+<div type="textpart" subtype="poem" n="116"><milestone unit="meter" n="Elegiac"/>
 <l>Saepe tibi studioso animo venante requirens</l>
 <l>carmina uti possem mittere Battiadae</l>
 <l>qui te lenirem nobis, neu conarere</l>
@@ -2555,5 +2531,6 @@ needs line nos
 <l>hunc video mihi nunc frustra sumptum esse laborem,</l>
 <l>Gelli, nec nostras hic valuisse preces.</l>
 <l>contra nos tela ista tua evitamus amictu:</l>
-<l>at fixus nostris tu dabis supplicium.</l></div2></div1>
-</body></text></TEI.2>
+<l>at fixus nostris tu dabis supplicium.</l></div></div>
+</div>
+</body></text></TEI>
