@@ -1,18 +1,24 @@
-<?xml version="1.0"?> 
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [ 
-<!ENTITY % TEI.XML "INCLUDE"> 
-<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" > 
-%PersProse; 
-]>
-<TEI.2>
-    <teiHeader type="text" status="new">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader type="text">
         <fileDesc>
             <titleStmt>
                 <title type="sub">De Providentia</title>
                 <author n="Sen.">Seneca</author>
                 <editor role="editor" n="Basore">John W. Basore</editor>
-                &fund.NEH; </titleStmt>
-            <extent>About 100Kb</extent> &Perseus.publish; <sourceDesc>
+                <funder n="org:NEH">The National Endowment for the Humanities</funder> 
+         </titleStmt>
+            <extent>About 100Kb</extent> 
+         <publicationStmt>
+		          <publisher>Trustees of Tufts University</publisher>
+		          <pubPlace>Medford, MA</pubPlace>
+		          <authority>Perseus Project</authority>
+		       </publicationStmt> 
+         <sourceDesc>
                 <biblStruct>
                     <monogr>
                         <author>L. Annaeus Seneca</author>
@@ -25,34 +31,42 @@
                         </imprint>
                     </monogr>
                 </biblStruct>
-            </sourceDesc>
+         </sourceDesc>
         </fileDesc>
         <encodingDesc>
-        	<refsDecl doctype="TEI.2">
-        		<state unit="book"/>
-        		<state unit="chapter" n="chunk"/>
-        		<state unit="section"/>
-        	</refsDecl>
-        </encodingDesc>
+         <refsDecl n="CTS">
+                <cRefPattern n="section"
+                    matchPattern="(\w+).(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+                    <p>This pointer pattern extracts book, chapter and section</p>
+                </cRefPattern>
+                <cRefPattern n="chapter"
+                    matchPattern="(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts book and chapter</p>
+                </cRefPattern>
+         </refsDecl>
+         <refsDecl n="TEI.2">
+            <refState unit="card"/>
+         </refsDecl>
+      </encodingDesc>
         <profileDesc>
             <langUsage>
-                <language id="la">Latin</language>
-                <language id="greek">Greek</language>
+                <language ident="lat">Latin</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change>
-                <date>2009</date>
-                <respStmt>
-                    <name>GRC</name>
-                    <resp>tagging</resp>
-                </respStmt>
-                <item/>
-            </change>
-        </revisionDesc>
+         <change who="gcrane" when="2009-01-01">tagging</change>
+      </revisionDesc>
     </teiHeader>
-<text><body><head>L. Annaei Senecae dialogorum
-<pb id="p.2"/>
+   <text>
+      <body>
+         <div xml:lang="lat"
+              type="edition"
+              n="urn:cts:latinLit:stoa0255.stoa012.perseus-lat1">
+            <head>L. Annaei Senecae dialogorum
+<pb n="p.2"/>
 
 liber I
 ad Lucilium
@@ -60,23 +74,26 @@ quare aliqua incommoda bonis viris
 accidant, cum providentia sit
 
 (De Providentia)</head>
-<div1 type="book" n="1">
-<div2 type="chapter" n="1">
-<div3 type="section" n="1"><p>  Quaesisti a me, Lucili, quid ita, si providentia
+            <div type="textpart" n="1" subtype="book">
+               <div type="textpart" n="1" subtype="chapter">
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Quaesisti a me, Lucili, quid ita, si providentia
 mundus regeretur, multa bonis viris mala acciderent.
 Hoc commodius in contextu operis redderetur, cum
 praeesse universis providentiam probaremus et interesse nobis deum ; sed quoniam a toto particulam
 revelli placet et unam contradictionem manente lite
 integra solvere, faciam rem non difficilem, causam
 deorum agam.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Supervacuum est in praesentia ostendere non sine
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Supervacuum est in praesentia ostendere non sine
 aliquo custode tantum opus stare nec hunc siderum
 coetum discursumque fortuiti impetus esse, et quae
 casus incitat saepe turbari et cito arietare, hanc inoffensarn velocitatem procedere aeternae legis imperio
 
-<pb id="p.4"/>
+<pb n="p.4"/>
 tantum rerum terra marique gestantem, tantum
 clarissimorum luminum et ex disposito relucentium ;
 non esse materiae errantis hunc ordinem nec quae
@@ -85,9 +102,11 @@ gravissimum pondus sedeat immotum et circa se
 properantis caeli fugam spectet, ut infusa vallibus
 maria molliant terras nec ullum incrementum fluminum sentiant, ut ex minimis seminibus nascantur
  ingentia.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Ne illa quidem quae videntur confusa et
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Ne illa quidem quae videntur confusa et
 incerta, pluvias dico nubesque et elisorum fulminum
 iactus et incendia ruptis montium verticibus effusa,
 tremores labantis soli aliaque quae tumultuosa pars
@@ -96,9 +115,11 @@ sint, accidunt, sed suas et illa causas habent non
 minus quam quae alienis locis conspecta miraculo
 sunt, ut in mediis fluctibus calentes aquae et nova
  insularum in vasto exsilientium mari spatia.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Iam
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Iam
 vero si quis observaverit nudari litora pelago in se
 recedente eademque intra exiguum tempus operiri,
 credet caeca quadam volutatione modo contrahi undas
@@ -106,14 +127,16 @@ et introrsum agi, modo erumpere et magno cursu
 repetere sedem suam, cum interim illae portionibus
 crescunt et ad horam ac diem subeunt ampliores
 
-<pb id="p.6"/>
+<pb n="p.6"/>
 minoresque, prout illas lunare sidus elicuit, ad cuius
 arbitrium oceanus exundat. Suo ista tempori re-
 serventur, eo quidem magis quod tu non dubitas de
  providentia sed querens.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> In gratiam te reducam cum
+                  <div type="textpart" n="5" subtype="section">
+                     <p> In gratiam te reducam cum
 diis adversus optimos optimis. Neque enim rerum
 natura patitur ut umquam bona bonis noceant ; inter
 bonos viros ac deos amicitia est conciliante virtute.
@@ -121,9 +144,11 @@ Amicitiam dico ? Immo etiam necessitudo et similitudo, quoniam quidem bonus temp
 differt, discipulus eius aemulatorque et vera progenies,
 quam parens ille magnificus, virtutum non lenis
  exactor, sicut severi patres, durius educat.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> Itaque
+                  <div type="textpart" n="6" subtype="section">
+                     <p> Itaque
 cum videris bonos viros acceptosque diis laborare,
 sudare, per arduum escendere, malos autem lascivire
 et voluptatibus fluere, cogita filiorum nos modestia
@@ -133,55 +158,67 @@ liqueat. Bonum virum in deliciis non habet, experitur,
 indurat, sibi illum parat.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="2">
+               <div type="textpart" n="2" subtype="chapter">
 
-<div3 type="section" n="1"><p>  " Quare multa bonis viris adversa eveniunt ? "
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  " Quare multa bonis viris adversa eveniunt ? "
 Nihil accidere bono viro mali potest ; non miscentur
 contraria. Quemadmodum tot amnes, tantum superne
 deiectorum imbrium, tanta medicatorum vis fontium
 non mutant saporem maris, ne remittunt quidem, ita
 adversarum impetus rerum viri fortis non vertit ani-
 
-<pb id="p.8"/>
+<pb n="p.8"/>
 mum. Manet in statu et quicquid evenit in suum
 colorem trahit ; est enim omnibus externis potentior.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Nec hoc dico : non sentit illa, sed vincit et alioqui
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Nec hoc dico : non sentit illa, sed vincit et alioqui
 quietus placidusque contra incurrentia attollitur.
 Omnia adversa exercitationes putat. Quis autem, vir
 modo et erectus ad honesta, non est laboris adpetens
 iusti et ad officia eum periculo promptus ? Cui non
  industrio otium poena est ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Athletas videmus, quibus
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Athletas videmus, quibus
 virium cura est, eum fortissimis quibusque confligere
 et exigere ab is per quos certamini praeparantur, ut
 totis contra ipsos viribus utantur ; caedi se vexarique
 patiuntur et si non inveniunt singulos pares, pluribus
  simul obiciuntur. Marcet sine adversario virtus;
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p>
+                  <div type="textpart" n="4" subtype="section">
+                     <p>
 tunc apparet quanta sit quantumque polleat, cum
 quid possit patientia ostendit. Scias licet idem viris
 bonis esse faciendum, ut dura ac difficilia non reformident nec de fato querantur, quicquid accidit boni
 consulant, in bonum vertant. Non quid sed quemadmodum feras interest.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Non vides quanto aliter patres, aliter matres indulgeant ? Illi excitari iubent liberos ad studia obeunda
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Non vides quanto aliter patres, aliter matres indulgeant ? Illi excitari iubent liberos ad studia obeunda
 mature, feriatis quoque diebus non patiuntur esse
 otiosos et sudorem illis et interdum lacrimas excutiunt; at matres fovere in sinu, continere in umbra
 volunt, numquam contristari, numquam flere, num-
  quam laborare.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> Patrium deus habet adversus bonos
+                  <div type="textpart" n="6" subtype="section">
+                     <p> Patrium deus habet adversus bonos
 
-<pb id="p.10"/>
+<pb n="p.10"/>
 viros animum et illos fortiter amat et " Operibus,"
 inquit, " doloribus, damnis exagitentur, ut verum
 colligant robur." Languent per inertiam saginata nec
@@ -190,24 +227,30 @@ Non fert ullum ictum inlaesa felicitas ; at cui assidua
 fuit cum incommodis suis rixa, callum per iniurias
 duxit nec ulli malo cedit sed etiam si cecidit de
  genu pugnat.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="7"><p> Miraris tu, si deus ille bonorum
+                  <div type="textpart" n="7" subtype="section">
+                     <p> Miraris tu, si deus ille bonorum
 amantissimus, qui illos quam optimos esse atque excellentissimos vult, fortunam illis cum qua exerceantur
 adsignat ? Ego vero non miror, si aliquando impetum
 capiunt spectandi magnos viros conluctantis cum
  aliqua calamitate.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="8"><p> Nobis interdum voluptati est, si
+                  <div type="textpart" n="8" subtype="section">
+                     <p> Nobis interdum voluptati est, si
 adulescens constantis animi irruentem feram venabulo excepit, si leonis incursum interritus pertulit,
 tantoque hoc spectaculum est gratius, quanto id
 honestior fecit. Non sunt ista, quae possint deorum
 in se vultum convertere, puerilia et humanae oblecta-
  menta levitatis.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="9"><p> Ecce spectaculum dignum ad quod
+                  <div type="textpart" n="9" subtype="section">
+                     <p> Ecce spectaculum dignum ad quod
 respiciat intentus operi suo deus, ecce par deo
 dignum, vir fortis cum fortuna mala compositus,
 utique si et provocavit. Non video, inquam, quid
@@ -216,11 +259,13 @@ habeat in terris Iuppiter pulchrius, si eo<note> eo added by Goerenz.
 animum velit, quam ut spectet Catonem iam partibus
 non semel fractis stantem nihilo minus inter ruinas
  publicas rectum.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="10"><p> " Licet," inquit, "omnia in unius
+                  <div type="textpart" n="10" subtype="section">
+                     <p> " Licet," inquit, "omnia in unius
 
-<pb id="p.12"/>
+<pb n="p.12"/>
 dicionem concesserint, custodiantur legionibus terrae,
 classibus maria, Caesarianus portas miles obsideat ;
 Cato qua exeat habet ; una manu latam libertati
@@ -231,17 +276,21 @@ Aggredere, anime, diu meditatum opus, eripe te
 rebus humanis. Iam Petreius et Iuba concucurrerunt iacentque alter alterius manu caesi. Fortis
 et egregia fati conventio, sed quae non deceat magnitudinem nostram ; tam turpe est Catoni mortem ab
  ullo petere quam vitam."
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="11"><p> Liquet mihi cum magno
+                  <div type="textpart" n="11" subtype="section">
+                     <p> Liquet mihi cum magno
 spectasse gaudio deos, dum ille vir, acerrimus sui vindex, alienae saluti consulit et instruit discedendum
 fugam, dum studia etiam nocte ultima tractat, dum
 gladium sacro pectori infigit, dum viscera spargit et
 illam sanctissimam animam indignamque quae ferro
  contaminaretur manu educit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="12"><p> Inde crediderim fuisse
+                  <div type="textpart" n="12" subtype="section">
+                     <p> Inde crediderim fuisse
 parum certum et efficax vulnus ; non fuit diis immortalibus satis spectare Catonem semel. Retenta ac
 revocata virtus est, ut in difficiliore parte se ostenderet ; non enim tam magno animo mors initur quam
 repetitur. Quidni libenter spectarent alumnum suum
@@ -249,13 +298,15 @@ tam claro ac memorabili exitu evadentem ? Mors illos
 consecrat, quorum exitum et qui timent laudant.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="3">
+               <div type="textpart" n="3" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Sed iam procedente oratione ostendam, quam
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Sed iam procedente oratione ostendam, quam
 
-<pb id="p.14"/>
+<pb n="p.14"/>
 non sint quae videntur mala. Nunc illud dico, ista
 quae tu vocas aspera, quae adversa et abominanda,
 primum pro ipsis esse quibus accidunt, deinde pro universis, quorum maior diis cura quam singulorum est,
@@ -265,9 +316,11 @@ nolint. His adiciam fato ista sic et recte<note> et recte Petschenig from A : ir
 bonis evenire qua sunt boni. Persuadebo deinde tibi,
 ne umquam boni viri miserearis; potest enim miser
 dici, non potest esse.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Difficillimum ex omnibus quae proposui videtur
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Difficillimum ex omnibus quae proposui videtur
 quod primum dixi, pro ipsis esse quibus e veniunt
 ista quae horremus ac tremimus. " Pro ipsis est,"
 inquis, " in exilium proici, in egestatem deduci, liberos coniugem ecferre, ignominia affici, debilitari ? "
@@ -279,13 +332,15 @@ membra quae sine totius pernicie corporis haerere non
 poterant, hoc quoque patieris probari tibi, quaedam
 incommoda pro is esse quibus accidunt, tam me
 
-<pb id="p.16"/>
+<pb n="p.16"/>
 hercules quam quaedam quae laudantur atque appetuntur contra eos esse quos delectaverunt, simillima
 cruditatibus ebrietatibusque et ceteris quae necant
  per voluptatem.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Inter multa magnifica Demetri
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Inter multa magnifica Demetri
 nostri et haec vox est, a qua recens sum ; sonat
 adhuc et vibrat in auribus meis : " Nihil," inquit,
 " mihi videtur infelicius eo, cui nihil umquam evenit
@@ -299,9 +354,11 @@ opus est in illum tota potentia mea, levi comminatione
 pelletur, non potest sustinere vultum meum. Alius
 circumspiciatur cum quo conferre possimus manum ;
  pudet congredi cum homine vinci parato.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p>" Ignominiam iudicat gladiator cum inferiore componi et scit
+                  <div type="textpart" n="4" subtype="section">
+                     <p>" Ignominiam iudicat gladiator cum inferiore componi et scit
 eum sine gloria vinci, qui sine periculo vincitur. Idem
 facit fortuna : fortissimos sibi pares quaerit, quosdam
 fastidio transit. Contumacissimum quemque et rectissimum aggreditur, adversus quem vim suam intendat:
@@ -310,17 +367,21 @@ exilium in Rutilio, tormenta in Regulo, venenum in
 Socrate, mortem in Catone. Magnum exemplum nisi
 mala fortuna non invenit.
 
-<pb id="p.18"/>
-</p></div3>
+<pb n="p.18"/>
+                     </p>
+                  </div>
 
-<div3 type="section" n="5"><p> Infelix est Mucius, quod dextra ignes hostium
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Infelix est Mucius, quod dextra ignes hostium
 premit et ipse a se exigit erroris sui poenas ? Quod
 regem, quem armata manu non potuit, exusta fugat ?
 Quid ergo ? Felicior esset, si in sinu amicae foveret
 manum ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> Infelix est Fabricius, quod rus suum, quantum a re
+                  <div type="textpart" n="6" subtype="section">
+                     <p> Infelix est Fabricius, quod rus suum, quantum a re
 publica vacavit, fodit ? Quod bellum tam eum Pyrrho
 quam eum divitiis gerit ? Quod ad focum cenat
 illas ipsas radices et herbas quas in repurgando agro
@@ -329,9 +390,11 @@ si in ventrem suum longinqui litoris pisces et peregrina aucupia congereret, si 
 inferi maris pigritiam stomachi nausiantis erigeret, si
 ingenti pomorum strue cingeret primae formae feras,
 captas multa caede venantium ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="7"><p> Infelix est Rutilius, quod qui illum damnaverunt
+                  <div type="textpart" n="7" subtype="section">
+                     <p> Infelix est Rutilius, quod qui illum damnaverunt
 causam dicent omnibus saeculis ? Quod aequiore
 animo passus est se patriae eripi quam sibi exilium ?
 Quod Sullae dictatori solus aliquid negavit et revocatus
@@ -340,21 +403,25 @@ inquit, " isti quos Romae deprehendit felicitas tua.
 Videant largum in foro sanguinem et supra Servilianum
 lacum (id enim proscriptionis Sullanae spoliarium est)
 
-<pb id="p.20"/>
+<pb n="p.20"/>
 senatorum capita et passim vagantis per urbem percussorum greges et multa milia civium Romanorum
 uno loco post fidem, immo per ipsam fidem trucidata ;
  videant ista qui exulare non possunt." Quid ergo ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="8"><p>
+                  <div type="textpart" n="8" subtype="section">
+                     <p>
 Felix est L. Sulla, quod illi descendenti ad forum gladio
 summovetur, quod capita sibi consularium virorum
 patitur ostendi et pretium caedis per quaestorem ac
 tabulas publicas numerat ? Et haec omnia facit ille,
 ille qui legem Corneliam tulit !
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="9"><p> Veniamus ad Regulum : quid illi fortuna nocuit,
+                  <div type="textpart" n="9" subtype="section">
+                     <p> Veniamus ad Regulum : quid illi fortuna nocuit,
 quod illum documentum fidei, documentum patientiae
 fecit ? Figunt cutem clavi et quocumque fatigatum
 corpus reclinavit, vulneri incumbit, in perpetuam
@@ -362,9 +429,11 @@ vigiliam suspensa sunt lumina. Quanto plus tormenti
 tanto plus erit gloriae. Vis scire quam non paeniteat
 hoc pretio aestimasse virtutem ? Refice illum et mitte
  in senatum ; eandem sententiam dicet.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="10"><p> Feliciorem
+                  <div type="textpart" n="10" subtype="section">
+                     <p> Feliciorem
 ergo tu Maecenatem putas, cui amoribus anxio et
 morosae uxoris cotidiana repudia deflenti somnus per
 symphoniarum cantum ex longinquo lene resonantium quaeritur ? Mero se licet sopiat et aquarum
@@ -374,40 +443,48 @@ cruce ; sed illi solacium est pro honesto dura tolerare
 et ad causam a patientia respicit, hunc voluptatibus
 marcidum et felicitate nimia laborantem magis his
 
-<pb id="p.22"/>
+<pb n="p.22"/>
  quae patitur vexat causa patiendi.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="11"><p> Non usque eo in
+                  <div type="textpart" n="11" subtype="section">
+                     <p> Non usque eo in
 possessionem generis humani vitia venerunt, ut
 dubium sit an electione fati data plures nasci Reguli
 quam Maecenates velint; aut si quis fuerit, qui audeat
 dicere Maecenatem se quam Regulum nasci maluisse,
 idem iste, taceat licet, nasci se Terentiam maluit !
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="12"><p> Male tractatum Socratem iudicas, quod illam potionem publice mixtam non aliter quam medicamentum
+                  <div type="textpart" n="12" subtype="section">
+                     <p> Male tractatum Socratem iudicas, quod illam potionem publice mixtam non aliter quam medicamentum
 immortalitatis obduxit et de morte disputavit usque
 ad ipsam ? Male cum illo actum est, quod gelatus
 est sanguis ac paulatim frigore inducto venarum vigor
  constitit ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="13"><p> Quanto magis huic invidendum est quam
+                  <div type="textpart" n="13" subtype="section">
+                     <p> Quanto magis huic invidendum est quam
 illis quibus gemma ministratur, quibus exoletus omnia
 pati doctus exsectae virilitatis aut dubiae suspensam
 auro nivem diluit ! Hi quicquid biberunt vomitu
 remetientur tristes et bilem suam regustantes, at ille
 venenum laetus et libens hauriet.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="14"><p> Quod ad Catonem pertinet, satis dictum est summamque illi felicitatem contigisse consensus hominum
+                  <div type="textpart" n="14" subtype="section">
+                     <p> Quod ad Catonem pertinet, satis dictum est summamque illi felicitatem contigisse consensus hominum
 fatebitur, quem sibi rerum natura delegit cum quo
 metuenda confideret. " Inimicitiae potentium graves
 sunt; opponatur simul Pompeio, Caesari, Crasso.
 Grave est a deterioribus honore anteiri; Vatinio
 
-<pb id="p.24"/>
+<pb n="p.24"/>
 postferatur. Grave est civilibus bellis interesse;
 toto terrarum orbe pro causa bona tam infeliciter
 quam pertinaciter militet. Grave est manus sibi
@@ -416,41 +493,49 @@ omnes sciant non esse haec mala quibus ego dignum
 Catonem putavi."
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="4">
+               <div type="textpart" n="4" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Prosperae res et in plebem ac vilia ingenia
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Prosperae res et in plebem ac vilia ingenia
 deveniunt ; at calamitates terroresque mortalium sub
 iugum mittere proprium magni viri est. Semper vero
 esse felicem et sine morsu animi transire vitam igno-
  rare est rerum naturae alteram partem.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Magnus vir
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Magnus vir
 es ; sed unde scio, si tibi fortuna non dat facultatem
 exhibendae virtutis ? Descendisti ad Olympia, sed
 nemo praeter te ; coronam habes, victoriam non
 habes. Non gratulor tamquam viro forti, sed tanquam consulatum praeturamve adepto; honore
  auctus es.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Item dicere et bono viro possum, si illi
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Item dicere et bono viro possum, si illi
 	nullam occasionem difficilior casus dedit in qua una<note> una Gertz and Hermes omit.
 	</note>
-vim animi sui ostenderet : &ldquo;Miserum te iudico, quod
+vim animi sui ostenderet : “Miserum te iudico, quod
 numquam fuisti miser. Transisti sine adversario
-vitam ; nemo sciet quid potueris, ne tu quidem ipse.&rdquo; Opus est enim ad notitiam sui experimento ; quid
+vitam ; nemo sciet quid potueris, ne tu quidem ipse.” Opus est enim ad notitiam sui experimento ; quid
 quisque posset nisi temptando non didicit. Itaque
 quidam ipsi ultro se cessantibus malis obtulerunt et
 virtuti iturae in obscurum occasionem per quam
  enitesceret quaesierunt.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Gaudent, inquam, magni
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Gaudent, inquam, magni
 viri aliquando rebus adversis, non aliter quam fortes
 
-<pb id="p.26"/>
+<pb n="p.26"/>
 milites bello. Triumphum ego murmillonem sub
 Tib. Caesare de raritate munerum audivi querentem :
 " Quam bella," inquit, " aetas perit ! "
@@ -460,9 +545,11 @@ gloriae pars est. Militares viri gloriantur vulneribus,
 laeti fluentem meliori casu sanguinem ostentant ;
 idem licet fecerint qui integri revertuntur ex acie,
  magis spectatur qui saucius redit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Ipsis, inquam,
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Ipsis, inquam,
 deus consulit, quos esse quam honestissimos cupit,
 quotiens illis materiam praebet aliquid animose
 fortiterque faciendi, ad quam rem opus est aliqua
@@ -477,19 +564,23 @@ Unde scio quam aequo animo laturus sis orbitatem,
 si quoscumque sustulisti vides ? Audivi te, cum alios
 consolareris : tunc conspexissem, si te ipse consolatus
  esses, si te ipse dolere vetuisses.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> Nolite, obsecro vos,
+                  <div type="textpart" n="6" subtype="section">
+                     <p> Nolite, obsecro vos,
 expavescere ista, quae dii immortales velut stimulos
 admovent animis : calamitas virtutis occasio est.
 Illos merito quis dixerit miseros qui nimia felicitate
 
-<pb id="p.28"/>
+<pb n="p.28"/>
 torpescunt, quos velut in mari lento tranquillitas
 iners detinet ; quicquid illis inciderit, novum veniet.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="7"><p> Magis urgent saeva inexpertos, grave est tenerae
+                  <div type="textpart" n="7" subtype="section">
+                     <p> Magis urgent saeva inexpertos, grave est tenerae
 cervici iugum. Ad suspicionem vulneris tiro pallescit,
 audacter veteranus cruorem suum spectat, qui scit se
 saepe vicisse post sanguinem. Hos itaque deus quos
@@ -500,9 +591,11 @@ iudicatis exceptum. Veniet et<note> et Gruter inserts.
 </note> ad illum diu felicem
 sua portio ; quisquis videtur dimissus esse, dilatus
  est. Quare deus optimum quemque aut mala valetudine aut luctu aut aliis incommodis afficit ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="8"><p> Quia
+                  <div type="textpart" n="8" subtype="section">
+                     <p> Quia
 in castris quoque periculosa fortissimis imperantur ;
 dux lectissimos mittit, qui nocturnis hostes aggrediantur insidiis aut explorent iter aut praesidium loco
 deiciant. Nemo eorum qui exeunt dicit : " Male de
@@ -510,36 +603,44 @@ me imperator meruit," sed " bene iudicavit." Item
 dicant quicumque iubentur pati timidis ignavisque
 flebilia: " Digni visi sumus deo in quibus experiretur
 quantum humana natura posset pati."
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="9"><p> Fugite delicias, fugite enervantem felicitatem, qua
+                  <div type="textpart" n="9" subtype="section">
+                     <p> Fugite delicias, fugite enervantem felicitatem, qua
 animi permadescunt et nisi aliquid intervenit quod
 humanae sortis admoneat, manent<note>manent Hermes inserts.</note> velut perpetua
 ebrietate sopiti. Quem specularia semper ab afflatu
 
-<pb id="p.30"/>
+<pb n="p.30"/>
 vindicaverunt, cuius pedes inter fomenta subinde
 mutata tepuerunt, cuius cenationes subditus et parietibus circumfusus calor temperavit, hunc levis aura non
  sine periculo stringet.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="10"><p> Cum omnia quae excesserunt
+                  <div type="textpart" n="10" subtype="section">
+                     <p> Cum omnia quae excesserunt
 modum noceant, periculosissima felicitatis intemperantia est : movet cerebrum, in vanas mentes imagines
 evocat, multum inter falsum ac verum mediae caliginis fundit. Quidni satius sit perpetuam infelicitatem advocata virtute sustinere quam infinitis atque
 immodicis bonis rumpi ? Lenior ieiunio mors est,
 cruditate dissiliunt.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="11"><p> Hanc itaque rationem dii sequuntur in bonis viris
+                  <div type="textpart" n="11" subtype="section">
+                     <p> Hanc itaque rationem dii sequuntur in bonis viris
 quam in discipulis suis praeceptores, qui plus laboris
 ab is exigunt, in quibus certior spes est. Numquid
 tu invisos esse Lacedaemoniis liberos suos credis,
 quorum experiuntur indolem publice verberibus admotis ? Ipsi illos patres adhortantur, ut ictus
 flagellorum fortiter perferant, et laceros ac semianimes rogant, perseverent vulnera praebere vulne-
  ribus.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="12"><p> Quid mirum, si dure generosos spiritus deus
+                  <div type="textpart" n="12" subtype="section">
+                     <p> Quid mirum, si dure generosos spiritus deus
 temptat ? Numquam virtutis molle documentum est.
 Verberat nos et lacerat fortuna ; patiamur ! Non
 est saevitia, certamen est, quod quo<note> quod quo Hermes, after Thomas : quo id Gertz : quod
@@ -549,28 +650,34 @@ quam frequens usus agitavit. Praebendi fortunae
 sumus, ut contra illam ab ipsa duremur ; paulatim
 nos sibi pares faciet, contemptum periculorum ad-
  siduitas periclitandi dabit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="13"><p> Sic sunt nauticis corpora
+                  <div type="textpart" n="13" subtype="section">
+                     <p> Sic sunt nauticis corpora
 
-<pb id="p.32"/>
+<pb n="p.32"/>
 ferendo mari dura, agricolis manus tritae, ad excutienda tela militares lacerti valent, agilia Sunt
 membra cursoribus ; id in quoque solidissimum est
 quod exercuit. Ad contemnendam patientiam malorum animus patientia pervenit; quae quid in nobis
 efficere possit scies, si aspexeris quantum nationibus
  nudis et inopia fortioribus labor praestet.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="14"><p> Omnes
+                  <div type="textpart" n="14" subtype="section">
+                     <p> Omnes
 considera gentes in quibus Romana pax desinit.
 Germanos dico et quicquid circa Histrum vagarum
 gentium occursat. Perpetua illos hiemps, triste
 caelum premit, maligne solum sterile sustentat;
 imbrem culmo aut fronde defendunt, super durata
 glacie stagna persultant, in alimentum feras captant.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="15"><p> Miseri tibi videntur ? Nihil miserum est quod in
+                  <div type="textpart" n="15" subtype="section">
+                     <p> Miseri tibi videntur ? Nihil miserum est quod in
 naturam consuetudo perduxit; paulatim enim
 voluptati sunt quae necessitate coeperunt. Nulla
 illis domicilia nullaeque sedes sunt nisi quas lassitudo
@@ -578,34 +685,40 @@ in diem posuit ; vilis et hic quaerendus manu victus,
 horrenda iniquitas caeli, intecta corpora ; hoc quod
 tibi calamitas videtur tot gentium vita est ! Quid
  miraris bonos viros, ut confirmentur, concuti ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="16"><p> Non
+                  <div type="textpart" n="16" subtype="section">
+                     <p> Non
 est arbor solida nec fortis nisi in quam frequens
 ventus incursat ; ipsa enim vexatione constringitur
 et radices certius figit ; fragiles sunt quae in aprica
 valle creverunt. Pro ipsis ergo bonis viris est, ut
 esse interriti possint, multum inter formidolosa
 
-<pb id="p.34"/>
+<pb n="p.34"/>
 versari et aequo animo ferre quae non sunt mala
 nisi male sustinenti.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="5">
+               <div type="textpart" n="5" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Adice nunc, quod pro omnibus est optimum
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Adice nunc, quod pro omnibus est optimum
 quemque, ut ita dicam, militare et edere operas.
 Hoc est propositum deo quod sapienti viro, ostendere
 haec quae vulgus appetit, quae reformidat, nec bona
 esse nec mala ; apparebit autem bona esse, si illa
 non nisi bonis viris tribu erit, et mala esse, si tantum
  malis irrogaverit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Detestabilis erit caecitas, si nemo
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Detestabilis erit caecitas, si nemo
 oculos perdiderit, nisi cui eruendi sunt : itaque
 careant luce Appius et Metellus. Non sunt divitiae
 bonum ; itaque habeat illas et Elius leno, ut homines
@@ -613,9 +726,11 @@ pecuniam, cum in templis consecraverint, videant et
 in fornice. Nullo modo magis potest deus concupita
 traducere, quam si illa ad turpissimos defert, ab
  optimis abigit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> " At iniquum est virum bonum
+                  <div type="textpart" n="3" subtype="section">
+                     <p> " At iniquum est virum bonum
 debilitari aut configi aut alligari, malos integris corporibus solutos ac delicatos incedere." Quid porro ?
 Non est iniquum fortes viros arma sumere et in castris
 pernoctare et pro vallo obligatis stare vulneribus,
@@ -623,21 +738,25 @@ interim in urbe securos esse percisos et professos
 impudicitiam ? Quid porro ? Non est iniquum no-
 bilissimas virgines ad sacra facienda noctibus excitari,
  altissimo somno inquinatas frui ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Labor optimos
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Labor optimos
 citat. Senatus per totum diem saepe consulitur,
 cum illo tempore vilissimus quisque aut in campo
 
-<pb id="p.36"/>
+<pb n="p.36"/>
 Otium suum Oblectet aut in popina lateat aut tempus
 in aliquo circulo terat. Idem in hac magna re publica
 fit ; boni viri laborant, impendunt, impenduntur et
 volentes quidem ; non trahuntur a fortuna, sequuntur
 illam et aequant gradus. Si scissent, antecessissent.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Hanc quoque animosam Demetri fortissimi viri vocem
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Hanc quoque animosam Demetri fortissimi viri vocem
 audisse me memini: " Hoc unum," inquit, " de vobis,
 di immortales, queri possum, quod non ante mihi
 notam voluntatem vestram fecistis ; prior enim ad
@@ -646,31 +765,37 @@ liberos sumere ? vobis illos sustuli. Vultis aliquam
 partem corporis ? sumite ; non magnam rem promitto, cito totum relinquam. Vultis spiritum ? quidni ?
 nullam moram faciam, quo minus recipiatis quod
  dedistis. A volente feretis quicquid petieritis.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> Quid
+                  <div type="textpart" n="6" subtype="section">
+                     <p> Quid
 ergo est ? Maluissem offerre quam tradere. Quid
 opus fuit auferre ? Accipere potuistis ; sed ne nunc
 quidem auferetis, quia nihil eripitur nisi retinenti."
 Nihil cogor, nihil patior invitus nec servio deo sed
 assentior, eo quidem magis, quod scio omnia certa et
  in aeternum dicta lege decurrere.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="7"><p> Fata nos ducunt
+                  <div type="textpart" n="7" subtype="section">
+                     <p> Fata nos ducunt
 et quantum cuique temporis restat prima nascentium
 hora disposuit. Causa pendet ex causa, privata ac
 
-<pb id="p.38"/>
+<pb n="p.38"/>
 publica longus ordo rerum trahit. Ideo fortiter Omne
 patiendum est, quia non, ut putamus, incidunt cuncta
 sed veniunt. Olim constitutum est quid gaudeas,
 quid fleas, et quamvis magna videatur varietate
 singulorum vita distingui, summa in unum venit;
  accipimus peritura perituri. Quid itaque indignamur ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="8"><p>
+                  <div type="textpart" n="8" subtype="section">
+                     <p>
 	Quid querimur ? Ad hoc parti <note> parti Hermes : parati A.
 	</note> sumus. Utatur ut
 vult suis natura corporibus ; nos laeti ad omnia et
@@ -682,9 +807,11 @@ deos alligat. Irrevocabilis humana pariter ac divina
 cursus vehit. Ille ipse omnium conditor et rector
 scripsit quidem fata, sed sequitur ; semper paret,
  semel iussit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="9"><p> " Quare tamen deus tam iniquus in
+                  <div type="textpart" n="9" subtype="section">
+                     <p> " Quare tamen deus tam iniquus in
 distributione fati fuit, ut bonis viris paupertatem et
 vulnera et acerba funera ascriberet ? " Non potest
 artifex mutare materiam ; hoc passa est. Quaedam
@@ -694,56 +821,66 @@ aut in vigiliam somno simillimam inertibus nectuntur
 elementis ; ut efficiatur vir cum cura dicendus, fortiore
 fato opus est. Non erit illi planum iter ; sursum
 
-<pb id="p.40"/>
+<pb n="p.40"/>
 oportet ac deorsum eat, fluctuetur ac navigium in
 turbido regat. Contra fortunam illi tenendus est
 cursus ; multa accident dura, aspera, sed quae molliat
  et complanet ipse.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="10"><p> Ignis aurum probat, miseria fortes
+                  <div type="textpart" n="10" subtype="section">
+                     <p> Ignis aurum probat, miseria fortes
 viros. Vide quam alte escendere debeat virtus ; scies
 illi non per secura vadendum :
 <quote rend="blockquote">
-<l>Ardua prima via est et quam vix mane recentes</l>
-<l>enituntur equi; medio est altissima caelo,</l>
-<l>unde mare et terras ipsi mihi saepe videre</l>
-<l>sit timor et pavida trepidet formidine pectus,</l>
-<l>ultima prona via est et eget moderamine certo ;</l>
-<l>tunc etiam quae me subiectis excipit undis,</l>
-<l>ne ferar in praeceps. Tethys solet ima vereri.</l>
-</quote>
-</p></div3>
+                           <l>Ardua prima via est et quam vix mane recentes</l>
+                           <l>enituntur equi; medio est altissima caelo,</l>
+                           <l>unde mare et terras ipsi mihi saepe videre</l>
+                           <l>sit timor et pavida trepidet formidine pectus,</l>
+                           <l>ultima prona via est et eget moderamine certo ;</l>
+                           <l>tunc etiam quae me subiectis excipit undis,</l>
+                           <l>ne ferar in praeceps. Tethys solet ima vereri.</l>
+                        </quote>
+                     </p>
+                  </div>
 
-<div3 type="section" n="11"><p> Haec cum audisset ille generosus adulescens :
+                  <div type="textpart" n="11" subtype="section">
+                     <p> Haec cum audisset ille generosus adulescens :
 " Placet," inquit, " via ; escendo. Est tanti per ista
 ire casuro." Non desinit acrem animum metu
 territare :
-<quote rend="blockquote"><l>Utque viam teneas nulloque errore traharis,</l>
-<l>per tamen adversi gradieris cornua tauri</l>
-<l>Haemoniosque arcus violentique ora leonis.</l></quote>
+<quote rend="blockquote">
+                           <l>Utque viam teneas nulloque errore traharis,</l>
+                           <l>per tamen adversi gradieris cornua tauri</l>
+                           <l>Haemoniosque arcus violentique ora leonis.</l>
+                        </quote>
 Post haec ait : " Iunge datos currus ! His quibus
 deterreri me putas incitor. Libet illic stare ubi ipse
 Sol trepidat." Humilis et inertis est tuta sectari;
 per alta virtus it.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="6">
+               <div type="textpart" n="6" subtype="chapter">
 
-<div3 type="section" n="1"><p>  " Quare tamen bonis viris patitur aliquid mali
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  " Quare tamen bonis viris patitur aliquid mali
 deus fieri ? " Ille vero non patitur. Omnia mala
 
-<pb id="p.42"/>
+<pb n="p.42"/>
 ab illis removit, scelera et flagitia et cogitationes improbas et avida consilia et libidinem caecam et alieno
 imminentem avaritiam ; ipsos tuetur ac vindicat :
 numquid hoc quoque aliquis a deo exigit, ut bonorum
 virorum etiam sarcinas servet ? Remittunt ipsi hanc
  deo curam: externa contemnunt.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Democritus divitias
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Democritus divitias
 proiecit onus illas bonae mentis existimans. Quid
 ergo miraris, si id deus bono viro accidere patitur
 quod vir bonus aliquando vult sibi accidere ? Filios
@@ -751,31 +888,37 @@ amittunt viri boni; quidni, cum aliquando et occidant ? In exilium mittuntur; qu
 ipsi patriam non repetituri relinquant ? Occiduntur ;
 quidni, cum aliquando ipsi sibi manus afferant ? Quare
  quaedam dura patiuntur ? Ut alios pati doceant ;
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p>
+                  <div type="textpart" n="3" subtype="section">
+                     <p>
 nati sunt in exemplar. Puta itaque deum dicere :
 " Quid habetis quod de me queri possitis, vos,
 quibus recta placuerunt ? Aliis bona falsa circumdedi
 et animos inanes velut longo fallacique somnio
 lusi. Auro illos et argento et ebore adornavi, intus
  boni nihil est.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Isti quos pro felicibus aspicis, si non
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Isti quos pro felicibus aspicis, si non
 qua occurrunt sed qua latent videris, miseri sunt,
 sordidi, turpes, ad similitudinem parietum suorum
 extrinsecus culti; non est ista solida et sincera
 felicitas ; crusta est et quidem tenuis. Itaque dum
 illis licet stare et ad arbitrium suum ostendi, nitent
 
-<pb id="p.44"/>
+<pb n="p.44"/>
 et imponunt ; cum aliquid incidit quod disturbet ac
 detegat, tunc apparet quantum altae ac verae
  foeditatis alienus splendor absconderit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Vobis dedi
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Vobis dedi
 bona certa, mansura, quanto magis versaverit aliquis
 et undique inspexerit, meliora maioraque : permisi
 vobis metuenda contemnere, cupiditates fastidire ;
@@ -783,9 +926,11 @@ non fulgetis extrinsecus, bona vestra introrsus obversa
 sunt. Sic mundus exteriora contempsit spectaculo
 sui laetus. Intus omne posui bonum ; non egere
 felicitate felicitas vestra est.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> ' At multa incidunt tristia, horrenda, dura toleratu.'
+                  <div type="textpart" n="6" subtype="section">
+                     <p> ' At multa incidunt tristia, horrenda, dura toleratu.'
 Quia non poteram vos istis subducere, animos vestros
 adversus omnia armavi ; ferte fortiter. Hoc est quo
 deum antecedatis ; ille extra patientiam malorum est,
@@ -794,9 +939,11 @@ nemo tam pauper vivit quam natus est. Contemnite
 dolorem; aut solvetur aut solvet. Contemnite mortem;
 quae vos aut finit aut transfert. Contemnite for-
 tunam ; nullum illi telum quo feriret animum dedi.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="7"><p> Ante omnia cavi, ne quid vos teneret invitos ; patet
+                  <div type="textpart" n="7" subtype="section">
+                     <p> Ante omnia cavi, ne quid vos teneret invitos ; patet
 exitus. Si pugnare non vultis, licet fugere. Ideo ex
 omnibus rebus quas esse vobis necessarias volui nihil
 feci facilius quam mori. Prono animam loco posui ;
@@ -805,11 +952,13 @@ libertatem et quam expedita ducat via. Non tam
 longas in exitu vobis quam intrantibus moras posui ;
 alioqui magnum in vos regnum fortuna tenuisset,
 
-<pb id="p.46"/>
+<pb n="p.46"/>
  si homo tam tarde moreretur quam nascitur.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="8"><p> Omne
+                  <div type="textpart" n="8" subtype="section">
+                     <p> Omne
 tempus, omnis vos locus doceat quam facile sit
 renuntiare naturae et munus illi suum impingere ;
 inter ipsa altaria et sollemnes sacrificantium ritus,
@@ -819,9 +968,11 @@ virium animalia humanae manus ictus impellit ; tenui
 ferro commissura cervicis abrumpitur, et cum articulus
 ille qui caput collumque committit incisus est, tanta
  illa moles corruit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="9"><p> Non in alto latet spiritus nec
+                  <div type="textpart" n="9" subtype="section">
+                     <p> Non in alto latet spiritus nec
 utique ferro eruendus est ; non sunt vulnere penitus
 impresso scrutanda praecordia : in proximo mors est.
 Non certum ad hos ictus destinavi locum ; quacumque
@@ -833,8 +984,10 @@ subiacentis soli duritia comminuit, sive haustus ignis
 cursum animae remeantis interscidit ; quicquid est,
 properat. Ecquid erubescitis ? Quod tam cito fit,
 timetis diu ! "</p>
-</div3></div2>
-</div1>
-</body>
-</text>
-</TEI.2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </body>
+   </text>
+</TEI>
