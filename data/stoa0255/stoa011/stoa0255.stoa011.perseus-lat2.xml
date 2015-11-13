@@ -1,18 +1,24 @@
-<?xml version="1.0"?> 
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [ 
-<!ENTITY % TEI.XML "INCLUDE"> 
-<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" > 
-%PersProse; 
-]>
-<TEI.2>
-    <teiHeader type="text" status="new">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader type="text">
         <fileDesc>
             <titleStmt>
              <title type="sub">De Otio</title>
                 <author n="Sen.">Seneca</author>
                 <editor role="editor" n="Basore">John W. Basore</editor>
-                &fund.NEH; </titleStmt>
-            <extent>About 100Kb</extent> &Perseus.publish; <sourceDesc>
+                <funder n="org:NEH">The National Endowment for the Humanities</funder> 
+         </titleStmt>
+            <extent>About 100Kb</extent> 
+         <publicationStmt>
+		          <publisher>Trustees of Tufts University</publisher>
+		          <pubPlace>Medford, MA</pubPlace>
+		          <authority>Perseus Project</authority>
+		       </publicationStmt> 
+         <sourceDesc>
                 <biblStruct>
                     <monogr>
                         <author>L. Annaeus Seneca</author>
@@ -25,46 +31,58 @@
                         </imprint>
                     </monogr>
                 </biblStruct>
-            </sourceDesc>
+            
+         </sourceDesc>
         </fileDesc>
         <encodingDesc>
-        	<refsDecl doctype="TEI.2">
-        		<state unit="book"/>
-        		<state unit="chapter" n="chunk"/>
-        		<state unit="section"/>
-        	</refsDecl>
-        </encodingDesc>
+         <refsDecl n="CTS">
+                <cRefPattern n="section"
+                    matchPattern="(\w+).(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+                    <p>This pointer pattern extracts book, chapter and section</p>
+                </cRefPattern>
+                <cRefPattern n="chapter"
+                    matchPattern="(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts book and chapter</p>
+                </cRefPattern>
+         </refsDecl>
+         <refsDecl n="TEI.2">
+            <refState unit="card"/>
+         </refsDecl>
+      </encodingDesc>
         <profileDesc>
             <langUsage>
-                <language id="la">Latin</language>
-                <language id="greek">Greek</language>
+                <language ident="lat">Latin</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change>
-                <date>2009</date>
-                <respStmt>
-                    <name>GRC</name>
-                    <resp>tagging</resp>
-                </respStmt>
-                <item/>
-            </change>
-        </revisionDesc>
-    </teiHeader>
-<text>
-<body>
-	<div1 type="book" n="8">
+         <change who="gcrane" when="2009-01-01">tagging</change>
 
-<pb id="p.180"/>
-<head>Liber VIII,
+
+         <change who="Thibault Clerice" when="2015-11-13">Bumped URN after CTS and Epidoc conversion</change>
+      </revisionDesc>
+    </teiHeader>
+   <text>
+      <body>
+         <div xml:lang="lat"
+              type="edition"
+              n="urn:cts:latinLit:stoa0255.stoa011.perseus-lat2">
+	           <div type="textpart" n="8" subtype="book">
+
+               <pb n="p.180"/>
+               <head>Liber VIII,
 ad Serenvm:
 de otio</head>
 
-<div2 type="chapter" n="1">
-<div3 type="section" n="1"><p>  </p>
+               <div type="textpart" n="1" subtype="chapter">
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  </p>
 
-<p>
-<milestone unit="chapter2" n="29"/> <gap/>cit, nobis magno consensu vitia
+                     <p>
+                        <milestone unit="chapter2" n="29"/> 
+                        <gap reason="omitted"/>cit, nobis magno consensu vitia
 commendant. Licet nihil aliud, quod sit salutare,
 temptemus, proderit tamen per se ipsum secedere ;
 meliores erimus singuli. Quid, quod secedere ad
@@ -75,67 +93,81 @@ ubi nemo intervenit, qui iudicium adhuc imbecillum
 populo adiutore detorqueat; tunc potest vita
 aequali et uno tenore procedere, quam propositis
  diversissimis scindimus.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Nam inter cetera mala
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Nam inter cetera mala
 illud pessimum est, quod vitia ipsa mutamus. Sic
 ne hoc quidem nobis contingit permanere in malo
 iam familiari. Aliud ex alio placet vexatque nos hoc
 quoque, quod iudicia nostra non tantum prava, sed
 etiam levia sunt. Fluctuamur aliudque ex alio com-
 
-<pb id="p.182"/>
+<pb n="p.182"/>
  prendimus, petita relinquimus, relicta repetimus,
 alternae inter cupiditatem nostram et paenitentiam
 vices sunt ;
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> pendemus enim toti ex alienis iudiciis
+                  <div type="textpart" n="3" subtype="section">
+                     <p> pendemus enim toti ex alienis iudiciis
 et id optimum nobis videtur, quod petitores laudatoresque multos habet, non id quod laudandum
 petendumque est, nec viam bonam ac malam per
 se aestimamus, sed turba vestigiorum, in quibus
 nulla sunt redeuntium.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Dices mihi: " Quid agis. Seneca ? Deseris partes ?
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Dices mihi: " Quid agis. Seneca ? Deseris partes ?
 Certe Stoici vestri dicunt: ' Usque ad ultimum vitae
 finem in actu erimus, non desinemus communi bono
 operam dare, adiuvare singulos, opem ferre etiam
 inimicis senili manu. Nos sumus, qui nullis annis
 vacationem damus et, quod ait ille vir disertissimus,
-<quote rend="blockquote"><l part="N">Canitiem galea premimus.</l></quote>
+<quote rend="blockquote">
+                           <l part="N">Canitiem galea premimus.</l>
+                        </quote>
 Nos sumus, apud quos usque eo nihil ante mortem
 otiosum est, ut, si res patitur, non sit ipsa mors
 otiosa.' Quid nobis Epicuri praecepta in ipsis
 Zenonis principiis loqueris ? Quin tu bene gnaviter,
 si partium piget, transfugis potius quam prodis ? "
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Hoc tibi in praesentia respondebo : " Numquid vis
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Hoc tibi in praesentia respondebo : " Numquid vis
 amplius, quam ut me similem ducibus meis praestem ? Quid ergo est ? Non quo miserint me illi,
 sed quo duxerint, ibo."
 </p>
 
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="2">
-<div3 type="section" n="1"><p> </p>
+               <div type="textpart" n="2" subtype="chapter">
+                  <div type="textpart" n="1" subtype="section">
+                     <p> </p>
 
-<p>
-<milestone unit="chapter2" n="29"/> Nunc probabo tibi non desciscere me a
+                     <p>
+                        <milestone unit="chapter2" n="29"/> Nunc probabo tibi non desciscere me a
 praeceptis Stoicorum ; nam ne ipsi quidem a suis
 
-<pb id="p.184"/>
+<pb n="p.184"/>
 desciverunt; et tamen excusatissimus essem, etiam
 si non praecepta illorum sequerer, sed exempla.
 Hoc quod dico in duas dividam partes : primum,
 ut possit aliquis vel a prima aetate contemplationi
 veritatis totum se tradere, rationem vivendi quaerere
  atque exercere secreto;
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> deinde, ut possit hoc
+                  <div type="textpart" n="2" subtype="section">
+                     <p> deinde, ut possit hoc
 aliquis emeritis iam stipendiis, profligatae aetatis,
 iure optimo facere et ad alios actus animum<note> animum Ruhkopf: animos A.</note> referre
 virginum Vestalium more, quae annis inter officia
@@ -143,13 +175,15 @@ divisis discunt facere sacra et cum didicerunt docent.
 </p>
 
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="3">
-<div3 type="section" n="1"><p> </p>
+               <div type="textpart" n="3" subtype="chapter">
+                  <div type="textpart" n="1" subtype="section">
+                     <p> </p>
 
-<p>
-<milestone unit="chapter2" n="30"/> Hoc Stoicis quoque placere ostendam, non
+                     <p>
+                        <milestone unit="chapter2" n="30"/> Hoc Stoicis quoque placere ostendam, non
 quia mihi legem dixerim nihil contra dictum Zenonis
 Chrysippive committere, sed quia res ipsa patitur
 me ire in illorum sententiam, quoniam si quis semper
@@ -157,28 +191,34 @@ unius sequitur, non in curia sed in factione est.
 Utinam quidem iam tenerentur omnia et in aperto
 confessa veritas esset nihilque ex decretis mutaremus ! Nunc veritatem cum eis ipsis qui docent
 quaerimus.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Duae maxime et in hac re dissident sectae,
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Duae maxime et in hac re dissident sectae,
 Epicureorum et Stoicorum, sed utraque ad otium
 diversa via mittit. Epicurus ait : " Non accedet
 ad rem publicam sapiens, nisi si quid intervenerit ";
 Zenon ait : " Accedet ad rem publicam, nisi si
  quid impedient."
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Alter otium ex proposito petit,
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Alter otium ex proposito petit,
 
-<pb id="p.186"/>
+<pb n="p.186"/>
 alter ex causa ; causa autem illa late patet. Si res
 publica corruptior est quam ut<note> ut commonly supplied.</note> adiuvari possit, si
 occupata est malis, non nitetur sapiens in supervacuum
 nec se nihil profuturus impendet. Si parum habebit
 auctoritatis aut virium nec illum erit admissura
 res publica, si valetudo illum impediet,
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> quomodo
+                  <div type="textpart" n="4" subtype="section">
+                     <p> quomodo
 navem quassam non deduceret in mare, quomodo
 nomen in militiam non daret debilis, sic ad iter, quod
 inhabile sciet, non accedet. Potest ergo et ille, cui
@@ -186,9 +226,11 @@ omnia adhuc in integro sunt, antequam ullas experiatur tempestates, in tuto subs
 commendare se bonis artibus et inlibatum otium
 exigere, virtutium cultor, quae exerceri etiam
  quietissimis possunt.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Hoc nempe ab homine exigitur, ut prosit hominibus, si fieri potest, multis,
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Hoc nempe ab homine exigitur, ut prosit hominibus, si fieri potest, multis,
 si minus, paucis, si minus, proximis, si minus, sibi.
 Nam cum se utilem ceteris efficit, commune agit
 negotium. Quomodo qui se deteriorem facit non
@@ -196,30 +238,34 @@ sibi tantummodo nocet, sed etiam omnibus eis,
 quibus melior factus prodesse potuisset, sic quis-
 quis bene de se meretur hoc ipso aliis prodest, quod
 illis profuturum parat.
-<note n="marg" place="unspecified" anchored="yes">1</note> 
-</p>
+<note n="marg" place="unspecified" anchored="true">1</note> 
+                     </p>
 
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="4">
-<div3 type="section" n="1"><p> </p>
+               <div type="textpart" n="4" subtype="chapter">
+                  <div type="textpart" n="1" subtype="section">
+                     <p> </p>
 
-<p>
-<milestone unit="chapter2" n="31"/> Duas res publicas animo complectamur,
+                     <p>
+                        <milestone unit="chapter2" n="31"/> Duas res publicas animo complectamur,
 alteram magnam et vere publicam, qua dii atque
 homines continentur, in qua non ad hunc angulum respicimus aut ad illum, sed terminos civitatis nostrae
 cum sole metimur; alteram, cui nos adscripsit condicio
 
-<pb id="p.188"/>
+<pb n="p.188"/>
 nascendi. Haec aut Atheniensium erit aut Carthaginiensium,aut alterius alicuius urbis, quae non ad omnis
 pertineat homines sed ad certos. Quidam eodem
 tempore utrique rei publicae dant operam, maiori
 minorique, quidam tantum minori, quidam tantum
  maiori.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Huic maiori rei publicae et in otio deservire possumus, immo vero nescio an in otio melius,
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Huic maiori rei publicae et in otio deservire possumus, immo vero nescio an in otio melius,
 ut quaeramus quid sit virtus, una pluresne sint ;
 natura an ars bonos viros faciat ; unum sit hoc,
 quod maria terrasque et mari ac terris inserta
@@ -235,39 +281,47 @@ eius opera sine teste sit.
 </p>
 
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="5">
+               <div type="textpart" n="5" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Solemus dicere summum bonum esse secundum
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Solemus dicere summum bonum esse secundum
 naturam vivere. Natura nos ad utrumque genuit, et
 contemplationi rerum et actioni. </p>
 
-<p>
-<milestone unit="chapter2" n="32"/> Nunc id probemus, quod prius diximus. Quid porro ? Hoc non
+                     <p>
+                        <milestone unit="chapter2" n="32"/> Nunc id probemus, quod prius diximus. Quid porro ? Hoc non
 erit probatum, si se unusquisque consuluerit, quantam cupidinem habeat ignota noscendi, quam ad
  omnis fabulas excitetur ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Navigant quidam et
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Navigant quidam et
 
-<pb id="p.190"/>
+<pb n="p.190"/>
 labores peregrinationis longissimae una mercede
 perpetiuntur cognoscendi aliquid abditum remotum-
 que. Haec res ad spectacula populos contrahit,
 haec cogit praeclusa rimari, secretiora exquirere,
 antiquitates evolvere, mores barbararum audire
  gentium.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Curiosum nobis natura ingenium dedit
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Curiosum nobis natura ingenium dedit
 et artis sibi ac pulchritudinis suae conscia spectatores
 nos tantis rerum spectaculis genuit, perditura fructum sui, si tam magna, tam clara, tam subtiliter
 ducta, tam nitida et non uno genere formosa soli-
  tudini ostenderet.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Ut scias illam spectari voluisse,
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Ut scias illam spectari voluisse,
 non tantum aspici, vide quem nobis locum dederit.
 In media nos sui parte constituit et circumspectum
 omnium nobis dedit; nec erexit tantummodo
@@ -278,15 +332,17 @@ fecit illi caput et collo flexili imposuit; deinde sena
 per diem, sena per noctem signa perducens nullam
 non partem sui explicuit, ut per haec, quae optulerat
 oculis eius, cupiditatem faceret etiam ceterorum.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Nec enim omnia nec tanta visimus quanta sunt,
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Nec enim omnia nec tanta visimus quanta sunt,
 sed acies nostra aperit sibi investigandi viam et
 fundamenta vero iacit, ut inquisitio transeat ex
 apertis in obscura et aliquid ipso mundo inveniat
 antiquius : unde ista sidera exierint ; quis fuerit
 
-<pb id="p.192"/>
+<pb n="p.192"/>
 universi status, antequam singula in partes discederent ; quae ratio mersa et confusa diduxerit ;
 quis loca rebus adsignaverit, suapte natura gravia
 descenderint, evolaverint levia, an praeter nisum
@@ -295,9 +351,11 @@ dixerit ; an illud verum sit, quo maxime probatur
 homines divini esse spiritus, partem ac veluti scintillas
 quasdam astrorum in terram desiluisse atque alieno
  loco haesisse.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> Cogitatio nostra caeli munimenta
+                  <div type="textpart" n="6" subtype="section">
+                     <p> Cogitatio nostra caeli munimenta
 perrumpit nec contenta est id, quod ostenditur,
 scire. " Illud," inquit, "scrutor, quod ultra mundum
 iacet, utrumne profunda vastitas sit an et hoc
@@ -311,11 +369,13 @@ futurumque est, an continua eorum materia sit
 et per totum mutabilis ; utrum contraria inter se
 elementa sint, an non pugnent sed per diversa con-
 
-<pb id="p.194"/>
+<pb n="p.194"/>
  Spirent."
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="7"><p> Ad haec quaerenda natus, aestima, quam
+                  <div type="textpart" n="7" subtype="section">
+                     <p> Ad haec quaerenda natus, aestima, quam
 non multum acceperit temporis, etiam si illud
 totum sibi vindicat. Cui licet nihil facilitate eripi,
 nihil neglegentia patiatur excidere, licet horas
@@ -324,9 +384,11 @@ humanae terminum procedat nec quicquam illi
 ex eo, quod natura constituit, fortuna concutiat,
 tamen homo ad immortalium cognitionem nimis
  mortalis est.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="8"><p> Ergo secundum naturam vivo, si
+                  <div type="textpart" n="8" subtype="section">
+                     <p> Ergo secundum naturam vivo, si
 totum me illi dedi, si illius admirator cultorque sum.
 Natura autem utrumque facere me voluit, et agere
 et contemplationi vacare. Utrumque facio, quoniam
@@ -334,39 +396,47 @@ ne contemplatio quidem sine actione est.
 </p>
 
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="6">
+               <div type="textpart" n="6" subtype="chapter">
 
-<div3 type="section" n="1"><p>  "Sed refert," inquis, "an ad illam voluptatis
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  "Sed refert," inquis, "an ad illam voluptatis
 causa accesseris nihil aliud ex illa petens quam adsiduam contemplationem sine exitu ; est enim dulcis
 et habet inlecebras suas." Adversus hoc tibi
 respondeo : aeque refert, quo animo civilem agas
 vitam, an semper inquietus sis nec tibi umquam
 sumas ullum tempus, quo ab humanis ad divina
  respicias.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Quomodo res adpetere sine ullo virtutum
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Quomodo res adpetere sine ullo virtutum
 amore et sine cultu ingeni ac nudas edere operas
-minime probabile est &mdash; misceri enim ista inter se
-et conseri debent&mdash;, sic imperfectum ac languidum
+minime probabile est — misceri enim ista inter se
+et conseri debent—, sic imperfectum ac languidum
 bonum est in otium sine actu proiecta virtus, num-
  quam id, quod didicit, ostendens.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Quis negat
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Quis negat
 illam debere profectus suos in opere temptare,
 
-<pb id="p.196"/>
+<pb n="p.196"/>
 nec tantum quid faciendum sit cogitare, sed etiam
 aliquando manum exercere et ea, quae meditata
 sunt, ad verum perducere ? Quodsi per ipsum
 sapientem non est mora, si non actor deest, sed
 agenda desunt, ecquid illi secum esse permittes ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Quo animo ad otium sapiens secedit ? Ut sciat se
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Quo animo ad otium sapiens secedit ? Ut sciat se
 tum quoque ea acturum, per quae posteris prosit.
 Nos certe sumus qui dicimus et Zenonem et Chrysippum maiora egisse, quam si duxissent exercitus,
 gessissent honores, leges tulissent. Quas non uni
@@ -375,9 +445,11 @@ est ergo, quare tale otium non conveniat viro bono,
 per quod futura saecula ordinet nec apud paucos
 contionetur, sed apud omnis omnium gentium
  homines, quique sunt quique erunt ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Ad summam
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Ad summam
 quaero, an ex praeceptis suis vixerint Cleanthes et
 Chrysippus et Zenon. Non<note> non commonly added.</note> dubie respondebis sic
 illos vixisse, quemadmodum dixerant esse vivendum.
@@ -391,14 +463,16 @@ sunt, quamvis nihil publice agerent.
 </p>
 
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="7">
+               <div type="textpart" n="7" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Praeterea tria genera sunt vitae, inter quae
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Praeterea tria genera sunt vitae, inter quae
 quod sit optimum quaeri solet. Unum voluptati
 
-<pb id="p.198"/>
+<pb n="p.198"/>
 vacat, alterum contemplatione tertium actioni.
 Primum deposita contentione depositoque odio
 quod implacabile diversa sequentibus indiximus,
@@ -406,38 +480,46 @@ videamus, ut haec omnia ad idem sub alio atque
 alio titulo perveniant. Nec ille, qui voluptatem probat, sine contemplatione est, nec ille, qui contemplationi inservit, sine voluptate est, nec ille, cuius
 vita actionibus destinata est, sine contemplatione
  est.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> " Plurimum," inquis, " discriminis est, utrum
+                  <div type="textpart" n="2" subtype="section">
+                     <p> " Plurimum," inquis, " discriminis est, utrum
 aliqua res propositum sit an propositi alterius accessio." Sit sane grande discrimen, tamen alterum
 sine altero non est. Nec ille sine actione contemplatus nec hic sine contemplatione agit, nec
 ille tertius, de quo male existimare consensimus,
 voluptatem inertem probat, sed eam, quam ratione
  efficit firmam sibi ;
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> ita et haec ipsa voluptaria secta
+                  <div type="textpart" n="3" subtype="section">
+                     <p> ita et haec ipsa voluptaria secta
 in actu est. Quidni in actu sit ? cum ipse dicat
 Epicurus aliquando se recessurum a voluptate,
 dolorem etiam adpetiturum, si aut voluptati imminebit paenitentia aut dolor minor pro graviore
  sumetur ? Quo pertinet haec dicere ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Ut appareat
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Ut appareat
 contemplationem placere omnibus ; alii petunt
 illam, nobis haec statio, non portus est.
 </p>
 
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="8">
+               <div type="textpart" n="8" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Adice nunc,<note> nunc Haase : nunc huc A.</note> quod e lege Chrysippi vivere
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Adice nunc,<note> nunc Haase : nunc huc A.</note> quod e lege Chrysippi vivere
 otioso licet ; non dico, ut otium patiatur, sed ut
 eligat. Negant nostri sapientem ad quamlibet rem
 
-<pb id="p.200"/>
+<pb n="p.200"/>
 publicam accessurum ; quid autem interest, quo-
 modo sapiens ad otium veniat, utrum quia res
 publica illi deest, an quia ipse rei publicae, si non
@@ -447,28 +529,36 @@ rem publicam sapiens sit accessurus. Ad Atheniensium, in qua Socrates damnatur, 
 damnetur, fugit ? in qua opprimit invidia virtutes ?
 Negabis mihi accessurum ad hanc rem publicam
  sapientem.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Ad Carthaginiensium ergo rem publicam sapiens accedet, in qua adsidua seditio et
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Ad Carthaginiensium ergo rem publicam sapiens accedet, in qua adsidua seditio et
 optimo cuique infesta libertas est, summa aequi
 ac boni vilitas, adversus hostes inhumana crudelitas, etiam adversus suos hostilis ? Et hanc
  fugiet.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Si percensere singulas voluero, nullam
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Si percensere singulas voluero, nullam
 inveniam, quae sapientem aut quam sapiens pati
 possit. Quodsi non invenitur illa res publica,
 quam nobis fingimus, incipit omnibus esse otium
 necessarium, quia quod unum praeferri poterat otio,
  nusquam est.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Si quis dicit optimum esse navigare,
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Si quis dicit optimum esse navigare,
 deinde negat navigandum in eo mari, in quo naufragia fieri soleant et frequenter subitae tempestates
 sint, quae rectorem in contrarium rapiant, puto hic
 me vetat navem solvere, quamquam<note> quamquam Hermes: quam A.</note> laudet navigationem.</p>
-</div3></div2>
-</div1>
-</body>
-</text>
-</TEI.2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </body>
+   </text>
+</TEI>

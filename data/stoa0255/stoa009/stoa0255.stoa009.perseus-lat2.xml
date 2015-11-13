@@ -1,18 +1,24 @@
-<?xml version="1.0"?> 
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [ 
-<!ENTITY % TEI.XML "INCLUDE"> 
-<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" > 
-%PersProse; 
-]>
-<TEI.2>
-    <teiHeader type="text" status="new">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader type="text">
         <fileDesc>
             <titleStmt>
              <title type="sub">De Constantia</title>
                 <author n="Sen.">Seneca</author>
                 <editor role="editor" n="Basore">John W. Basore</editor>
-                &fund.NEH; </titleStmt>
-            <extent>About 100Kb</extent> &Perseus.publish; <sourceDesc>
+                <funder n="org:NEH">The National Endowment for the Humanities</funder> 
+         </titleStmt>
+            <extent>About 100Kb</extent> 
+         <publicationStmt>
+		          <publisher>Trustees of Tufts University</publisher>
+		          <pubPlace>Medford, MA</pubPlace>
+		          <authority>Perseus Project</authority>
+		       </publicationStmt> 
+         <sourceDesc>
                 <biblStruct>
                     <monogr>
                         <author>L. Annaeus Seneca</author>
@@ -25,41 +31,54 @@
                         </imprint>
                     </monogr>
                 </biblStruct>
-            </sourceDesc>
+            
+         </sourceDesc>
         </fileDesc>
         <encodingDesc>
-        	<refsDecl doctype="TEI.2">
-        		<state unit="book"/>
-        		<state unit="chapter" n="chunk"/>
-        		<state unit="section"/>
-        	</refsDecl>
-        </encodingDesc>
+         <refsDecl n="CTS">
+                <cRefPattern n="section"
+                    matchPattern="(\w+).(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+                    <p>This pointer pattern extracts book, chapter and section</p>
+                </cRefPattern>
+                <cRefPattern n="chapter"
+                    matchPattern="(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts book and chapter</p>
+                </cRefPattern>
+         </refsDecl>
+         <refsDecl n="TEI.2">
+            <refState unit="card"/>
+         </refsDecl>
+      </encodingDesc>
         <profileDesc>
             <langUsage>
-                <language id="la">Latin</language>
-                <language id="greek">Greek</language>
+                <language ident="lat">Latin</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change>
-                <date>2009</date>
-                <respStmt>
-                    <name>GRC</name>
-                    <resp>tagging</resp>
-                </respStmt>
-                <item/>
-            </change>
-        </revisionDesc>
+         <change who="gcrane" when="2009-01-01">tagging</change>
+
+
+         <change who="Thibault Clerice" when="2015-11-13">Bumped URN after CTS and Epidoc conversion</change>
+      </revisionDesc>
     </teiHeader>
-<text>
-<body><div1 type="book" n="2"><head>Liber II
+   <text>
+      <body>
+         <div xml:lang="lat"
+              type="edition"
+              n="urn:cts:latinLit:stoa0255.stoa009.perseus-lat2">
+            <div type="textpart" n="2" subtype="book">
+               <head>Liber II
 ad Serenum
 nec iniuriam nec contumeliam
 accipere sapientem
 (De Constantia Sapientis)</head>
-<div2 type="chapter" n="1">
+               <div type="textpart" n="1" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Tantum inter Stoicos, Serene, et ceteros sapientiam professos interesse quantum inter feminas et
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Tantum inter Stoicos, Serene, et ceteros sapientiam professos interesse quantum inter feminas et
 mares non immerito dixerim, cum utraque turba ad
 vitae societatem tantundem conferat, sed altera pars
 ad obsequendum, altera imperio nata sit. Ceteri
@@ -71,22 +90,26 @@ videatur curae habent, sed ut quam primum nos
 eripiat et in illum editum verticem educat, qui adeo
 extra omnem teli iactum surrexit, ut supra fortunam
  emineat.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> " At ardua per quae vocamur et confragosa
+                  <div type="textpart" n="2" subtype="section">
+                     <p> " At ardua per quae vocamur et confragosa
 sunt." Quid enim ? Plano aditur excelsum ? Sed
 ne tam abrupta quidem sunt quam quidam putant.
 Prima tantum pars saxa rupesque habet et invii
 speciem, sicut pleraque ex longinquo speculantibus
 
-<pb id="p.50"/>
+<pb n="p.50"/>
 abscisa et conexa videri solent, cum aciem longinquitas fallat, deinde propius adeuntibus eadem illa,
 quae in unum congesserat error oculorum, paulatim
 adaperiuntur, tum illis quae praecipitia ex intervallo
 apparebant redit lene fastigium.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Nuper cum incidisset mentio M. Catonis, indigne
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Nuper cum incidisset mentio M. Catonis, indigne
 ferebas, sicut es iniquitatis impatiens, quod Catonem
 aetas sua parum intellexisset, quod supra Pompeios
 et Caesares surgentem infra Vatinios posuisset, et
@@ -97,11 +120,13 @@ traditus voces improbas et sputa et omnis alias
 insanae multitudinis contumelias pertulisset.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="2">
+               <div type="textpart" n="2" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Tum ego respondi habere te, quod rei publicae
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Tum ego respondi habere te, quod rei publicae
 nomine movereris, quam hinc P. Clodius, hinc
 Vatinius ac pessimus quisque venundabat et caeca
 cupiditate correpti non intellegebant se dum vendunt
@@ -112,11 +137,13 @@ quam Ulixen et Herculem prioribus saeculis. Hos
 enim Stoici nostri sapientes pronuntiaverunt, invictos
 laboribus et contemptores voluptatis et victores
  omnium terrorum.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Cato non cum feris manus contulit, quas consectari venatoris agrestisque est, nec
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Cato non cum feris manus contulit, quas consectari venatoris agrestisque est, nec
 
-<pb id="p.52"/>
+<pb n="p.52"/>
 monstra igne ac ferro persecutus est nec in ea
 tempora incidit quibus credi posset caelum umeris
 unius inniti. Excussa iam antiqua credulitate et
@@ -128,9 +155,11 @@ manu poterat, tenuit, donec abstractus comitem se
 diu sustentatae ruinae dedit simulque exstincta sunt
 quae nefas erat dividi; neque enim Cato post
  libertatem vixit nec libertas post Catonem.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Huic tu
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Huic tu
 putas iniuriam fieri potuisse a populo, quod aut
 praeturam illi detraxit aut togam ? Quod sacrum
 illud caput purgamentis oris adspersit ? Tutus est
@@ -138,11 +167,13 @@ sapiens nec ulla affici aut iniuria aut contumelia
 potest.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="3">
+               <div type="textpart" n="3" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Videor mihi intueri animum tuum incensum et
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Videor mihi intueri animum tuum incensum et
 effervescentem ; paras adclamare : " Haec sunt quae
 auctoritatem praeceptis vestris detrahant. Magna
 promittitis et quae ne optari quidem, nedum credi
@@ -150,15 +181,17 @@ possint; deinde ingentia locuti cum pauperem
 negastis esse sapientem, non negatis solere illi et
 servum et tectum et cibum deesse, cum sapientem negatis insanire, non negatis et alienari et
 
-<pb id="p.54"/>
+<pb n="p.54"/>
 parum sana verba emittere et quicquid vis morbi
 cogit audere, cum sapientem negastis servum esse,
 idem non itis infitias et veniturum et imperata
 facturum et domino suo servilia praestaturum ministeria. Ita sublato alte supercilio in eadem quae
  ceteri descenditis mutatis rerum nominibus.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Tale
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Tale
 itaque aliquid et in hoc esse suspicor, quod prima
 specie pulchrum atque magnificum est, nec iniuriam
 nec contumeliam accepturum esse sapientem. Multum autem interest, utrum sapientem extra indignationem an extra iniuriam ponas. Nam si dicis
@@ -166,9 +199,11 @@ illum aequo animo laturum, nullum habet privilegium,
 contigit illi res vulgaris et quae discitur ipsa iniuriarum assiduitate, patientia ; si negas accepturum
 iniuriam, id est neminem illi temptaturum facere,
 omnibus relictis negotiis Stoicus fio."
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Ego vero sapientem non imaginario honore verborum exornare constitui, sed eo loco ponere quo
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Ego vero sapientem non imaginario honore verborum exornare constitui, sed eo loco ponere quo
 nulla permittatur iniuria. " Quid ergo ? Nemo erit
 qui lacessat, qui temptet ? " Nihil in rerum natura
 tam sacrum est, quod sacrilegum non inveniat, sed
@@ -177,21 +212,25 @@ qui magnitudinem multum ultra se positam non
 tacturi appetant ; invulnerabile est non quod non
 feritur, sed quod non laeditur ; ex hac tibi nota
  sapientem exhibebo.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Numquid dubium est, quin
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Numquid dubium est, quin
 certius robur sit quod non vincitur quam quod non
 
-<pb id="p.56"/>
+<pb n="p.56"/>
 lacessitus cum dubiae sint vires inexpertae, at merito
 certissima firmitas habeatur, quae omnis incursus
 respuit ? Sic tu sapientem melioris scito esse
 naturae, si nulla illi iniuria nocet, quam si nulla fit.
 Et illum fortem virum dicam, quem bella non subigunt nec admota vis hostilis exterret, non cui pingue
  otium est inter desides populos.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Hoc igitur dico,
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Hoc igitur dico,
 sapientem nulli esse iniuriae obnoxium ; itaque non
 refert, quam multa in illum coiciantur tela, cum sit
 nulli penetrabilis. Quomodo quorundam lapidum
@@ -205,11 +244,13 @@ animus solidus est et id roboris collegit, ut tam tutus
 sit ab iniuria quam illa quae rettuli.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="4">
+               <div type="textpart" n="4" subtype="chapter">
 
-<div3 type="section" n="1"><p>  " Quid ergo ? Non erit aliquis qui sapienti
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  " Quid ergo ? Non erit aliquis qui sapienti
 facere temptet iniuriam ? " Temptabit, sed non
 perventuram ad eum ; maiore enim intervallo a
 contactu inferiorum abductus est, quam ut ulla vis
@@ -218,12 +259,14 @@ cum potentes et imperio editi et consensu servientium
 validi nocere intendent, tam citra sapientiam omnes
 eorum impetus deficient, quam quae nervo tormentis-
 
-<pb id="p.58"/>
+<pb n="p.58"/>
 ve in altum exprimuntur, cum extra visum exsilierint,
  citra caelum tamen flectuntur. Quid ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Tu putas
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Tu putas
 tum, eum stolidus ille rex multitudine telorum diem
 obscuraret, ullam sagittam in solem incidisse aut
 demissis in profundum catenis Neptunum potuisse
@@ -240,11 +283,13 @@ lacessentia, sicut maximum argumentum est imperatoris armis virisque pollentis t
 hostium terra.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="5">
+               <div type="textpart" n="5" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Dividamus, si tibi videtur. Serene, iniuriam a
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Dividamus, si tibi videtur. Serene, iniuriam a
 contumelia. Prior illa natura gravior est, haec levior
 et tantum delicatis gravis, qua non laeduntur homines
 sed offenduntur. Tanta est tamen animorum dissolutio
@@ -252,20 +297,24 @@ et vanitas, ut quidam nihil acerbius putent. Sic in-
 venies servum qui flagellis quam colaphis caedi malit
 et qui mortem ac verbera tolerabiliora credat quam
  contumeliosa verba.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Ad tantas ineptias perventum
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Ad tantas ineptias perventum
 est, ut non dolore tantum sed doloris opinione
 
-<pb id="p.60"/>
+<pb n="p.60"/>
 vexemur more puerorum, quibus metum incutit
 umbra et personarum deformitas et depravata facies,
 lacrimas vero evocant nomina parum grata auribus et
 digitorum motus et alia quae impetu quodam erroris
  improvidi refugiunt.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Iniuria propositum hoc habet
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Iniuria propositum hoc habet
 aliquem malo adficere ; malo autem sapientia non
 relinquit locum, unum enim illi malum est turpitudo,
 quae intrare eo ubi iam virtus honestumque est non
@@ -275,9 +324,11 @@ occupatum pervenire non potest, iniuria ad sapientem
 non pervenit. Nam si iniuria alicuius mali patientia
 est, sapiens autem nullius mali est patiens, nulla ad
  sapientem iniuria pertinet.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Omnis iniuria deminutio
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Omnis iniuria deminutio
 eius est in quem incurrit, nec potest quisquam iniuriam accipere sine aliquo detrimento vel dignitatis
 vel corporis vel rerum extra nos positarum. Sapiens
 autem nihil perdere potest ; omnia in se reposuit,
@@ -288,13 +339,15 @@ fortuna nisi quod dedit ; virtutem autem non dat,
 ideo nec detrahit ; libera est, inviolabilis, immota,
 inconcussa, sic contra casus indurat, ut ne inclinari
  quidem, nedum vinci possit;
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> adversus adparatus
+                  <div type="textpart" n="5" subtype="section">
+                     <p> adversus adparatus
 terribilium rectos oculos tenet, nihil ex vultu mutat,
 sive illi dura sive secunda ostentantur. Itaque nihil
 
-<pb id="p.62"/>
+<pb n="p.62"/>
 perdet quod perire sensurus sit; unius enim in
 possessione virtutis est, ex qua depelli numquam
 potest, ceteris precario utitur quis autem iactura
@@ -302,17 +355,21 @@ movetur alieni ? Quodsi iniuria nihil laedere potest
 ex his quae propria sapientis sunt, quia virtute salva <note> salva added by Madvig.
 </note>
 sua salva sunt, iniuria sapienti non potest fieri.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> Megaram Demetrius ceperat, cui cognomen Poliorcetes fuit. Ab hoc Stilbon philosophus interrogatus,
+                  <div type="textpart" n="6" subtype="section">
+                     <p> Megaram Demetrius ceperat, cui cognomen Poliorcetes fuit. Ab hoc Stilbon philosophus interrogatus,
 num aliquid perdidisset : " Nihil," inquit, " omnia
 mea mecum sunt." Atqui et patrimonium eius in
 praedam cesserat et filias rapuerat hostis et patria in
 alienam dicionem pervenerat et ipsum rex circumfusus
 victoris exercitus armis ex superiore loco rogitabat.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="7"><p> At ille victoriam illi excussit et se urbe capta non
+                  <div type="textpart" n="7" subtype="section">
+                     <p> At ille victoriam illi excussit et se urbe capta non
 invictum tantum sed indemnem esse testatus est.
 Habebat enim vera secum bona, in quae non est
 manus iniectio, at quae dissipata et direpta ferebantur, non iudicabat sua sed adventicia et nutum
@@ -321,20 +378,24 @@ omnium enim extrinsecus adfluentium lubrica et
 incerta possessio est.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="6">
+               <div type="textpart" n="6" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Cogita nunc, an huic fur aut calumniator aut
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Cogita nunc, an huic fur aut calumniator aut
 vicinus impotens aut dives aliquis regnum orbae
 senectutis exercens facere iniuriam possit, cui bellum
 et hostis et ille egregiam artem quassandarum urbium
  professus eripere nihil potuit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Inter micantis ubique
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Inter micantis ubique
 
-<pb id="p.64"/>
+<pb n="p.64"/>
 gladios et militarem in rapina tumultum, inter
 flammas et sanguinem stragemque impulsae civitatis,
 inter fragorem templorum super deos suos cadentium
@@ -343,9 +404,11 @@ iudices promissum, cuius tibi, si parum fidei habeo,
 sponsorem dabo. Vix enim credis tantum firmitatis
 in hominem aut tantam animi magnitudinem cadere ;
  sed is prodit in medium qui dicat :
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> " Non est quod
+                  <div type="textpart" n="3" subtype="section">
+                     <p> " Non est quod
 dubites, an attollere se homo natus supra humana
 possit, an dolores, damna, ulcerationes, vulnera,
 magnos motus rerum circa se frementium securus
@@ -353,40 +416,50 @@ aspiciat et dura placide ferat et secunda moderate, nec
 illis cedens nec his fretus, unus idemque inter diversa
 sit nec quicquam suum nisi se putet, et se quoque
  ea parte qua melior est.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> En adsum hoc vobis probaturus, sub isto tot civitatium eversore munimenta
+                  <div type="textpart" n="4" subtype="section">
+                     <p> En adsum hoc vobis probaturus, sub isto tot civitatium eversore munimenta
 incussu arietis labefieri et turrium altitudinem cuniculis
 ac latentibus fossis repente desidere et aequaturum
 editissimas arces aggerem crescere, at nulla machinamenta posse reperiri, quae bene fundatum animum
  agitent. Erepsi modo e ruinis domus et incendis undique relucentibus flammas per sanguinem fugi;
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> filias
+                  <div type="textpart" n="5" subtype="section">
+                     <p> filias
 meas quis casus habeat, an peior publico, nescio ; solus
 et senior et hostilia circa me omnia videns tamen integrum incolumemque esse censum meum profiteor.
 
-<pb id="p.66"/>
+<pb n="p.66"/>
  Teneo, habeo quicquid mei habui.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> Non est quod
+                  <div type="textpart" n="6" subtype="section">
+                     <p> Non est quod
 me victum victoremque te credas. Vicit fortuna tua
 fortunam meam. Caduca illa et dominum mutantia
 ubi sint nescio ; quod ad res meas pertinet, mecum
  sunt, mecum erunt.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="7"><p> Perdiderunt isti divites patrimonia, libidinosi amores suos et magno pudoris impendio dilecta scorta, ambitiosi curiam et forum et
+                  <div type="textpart" n="7" subtype="section">
+                     <p> Perdiderunt isti divites patrimonia, libidinosi amores suos et magno pudoris impendio dilecta scorta, ambitiosi curiam et forum et
 loca exercendis in publico vitiis destinata ; feneratores
 perdiderunt tabellas, quibus avaritia falso laeta
 divitias imaginatur. Ego quidem omnia integra
 illibataque habeo. Proinde istos interroga qui flent,
 lamentantur, qui strictis gladiis nuda pro pecunia
 corpora opponunt, qui hostem onerato sinu fugiunt."
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="8"><p> Ergo ita habe. Serene, perfectum illum virum,
+                  <div type="textpart" n="8" subtype="section">
+                     <p> Ergo ita habe. Serene, perfectum illum virum,
 humanis divinisque virtutibus plenum, nihil perdere.
 Bona eius solidis et inexsuperabilibus munimentis
 praecincta sunt. Non Babylonios illis muros contuleris, quos Alexander intravit, non Carthaginis aut
@@ -396,23 +469,27 @@ sapientem tuentur, et a flamma et ab incursu tuta
 sunt, nullum introitum praebent, excelsa, inexpugnabilia, diis aequa.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="7">
+               <div type="textpart" n="7" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Non est quod dicas, ita ut soles, hunc sapientem
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Non est quod dicas, ita ut soles, hunc sapientem
 nostrum nusquam inveniri. Non fingimus istud
 
-<pb id="p.68"/>
+<pb n="p.68"/>
 humani ingenii vanum decus nec ingentem imaginem falsae rei concipimus, sed qualem conformamus,
 exhibuimus, exhibebimus, raro forsitan magnisque
 aetatium intervallis unum; neque enim magna et
 excedentia solitum ac vulgarem modum crebro gignuntur. Ceterum hic ipse M. Cato, a cuius mentione
 haec disputatio processit, vereor ne supra nostrum
 exemplar sit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Denique validius debet esse quod laedit eo quod
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Denique validius debet esse quod laedit eo quod
 laeditur ; non est autem fortior nequitia virtute ;
 non potest ergo laedi sapiens. Iniuria in bonos nisi
 a malis non temptatur ; bonis inter se pax est, mali
@@ -422,38 +499,46 @@ est, nec iniuria bonis nisi a dispari verenda est;
 iniuria in sapientem virum non cadit. Illud enim
 iam non es admonendus neminem bonum esse nisi
  sapientem. " Si iniuste," inquit, " Socrates damnatus est, iniuriam accepit."
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Hoc loco intellegere
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Hoc loco intellegere
 nos oportet posse evenire, ut faciat aliquis iniuriam
 mihi et ego non accipiam. Tamquam si quis rem,
 quam e villa mea subripuit, in domo mea ponat, ille
  furtum fecerit, ego nihil perdiderim.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Potest aliquis
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Potest aliquis
 nocens fieri, quamvis non nocuerit. Si quis cum
 uxore sua tamquam cum aliena concumbat, adulter
 
-<pb id="p.70"/>
+<pb n="p.70"/>
 erit, quamvis illa adultera non sit. Aliquis mihi
 venenum dedit, sed vim suam remixtum cibo perdidit;
 venenum ille dando sceleri se obligavit, etiam si non
 nocuit ; non minus latro est, cuius telum obposita
 veste elusum est. Omnia scelera etiam ante effectum
 operis, quantum culpae satis est, perfecta sunt.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Quaedam eius condicionis sunt et hac vice copulantur,
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Quaedam eius condicionis sunt et hac vice copulantur,
 ut alterum sine altero esse possit, alterum sine altero
 non possit. Quod dico conabor facere manifestum.
 Possum pedes movere, ut non curram ; currere non
 possum, ut pedes non moveam. Possum, quamvis
 in aqua sim, non natare ; si nato, non possum in
  aqua non esse.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="6"><p> Ex hac sorte et hoc est de quo
+                  <div type="textpart" n="6" subtype="section">
+                     <p> Ex hac sorte et hoc est de quo
 agitur. Si iniuriam accepi, necesse est factam esse ;
 si est facta, non est necesse accepisse me; multa
 enim incidere possunt quae submoveant iniuriam.
@@ -463,24 +548,28 @@ potest aliqua res repellere et in medio intercipere,
 ut et factae sint nec acceptae.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="8">
+               <div type="textpart" n="8" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Praeterea iustitia nihil iniustum pati potest,
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Praeterea iustitia nihil iniustum pati potest,
 quia non coeunt contraria. Iniuria autem non potest
 fieri nisi iniuste ; ergo sapienti iniuria non potest
 fieri. Nec est quod mireris ; si nemo illi potest
 iniuriam facere, ne prodesse quidem quisquam potest.
 Et sapienti nihil deest quod accipere possit loco
 
-<pb id="p.72"/>
+<pb n="p.72"/>
 muneris, et malus nihil potest dignum tribuere sapiente ; habere enim prius debet quam dare, nihil
 autem habet quod ad se transferri sapiens gavisurus
  sit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Non potest ergo quisquam aut nocere sapienti
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Non potest ergo quisquam aut nocere sapienti
 aut prodesse, quoniam divina nec iuvari desiderant
 nec laedi possunt, sapiens autem vicinus proximusque
 dis consistit, excepta mortalitate similis deo. Ad illa
@@ -488,11 +577,13 @@ nitens pergensque excelsa, ordinata, intrepida,
 aequali et concordi cursu fluentia, secura, benigna,
 bono publico nata, et sibi et aliis salutaria nihil
  humile concupiscet, nihil flebit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Qui rationi innixus
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Qui rationi innixus
 per humanos casus divino incedit animo, non habet
-ubi accipiat iniuriam&mdash;ab homine me tantum dicere
+ubi accipiat iniuriam—ab homine me tantum dicere
 putas ? Ne a fortuna quidem, quae quotiens cum
 virtute congressa est, numquam par recessit. Si
 maximum illud ultra quod nihil habent iratae leges
@@ -507,16 +598,18 @@ etiam si universa circumveniant, non mergunt,
 nedum ut ad singulorum impulsus maereat. Et
 si fortunae iniurias moderate fert, quanto magis
 
-<pb id="p.74"/>
+<pb n="p.74"/>
 hominum potentium quos scit fortunae manus
 esse!
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="9">
+               <div type="textpart" n="9" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Omnia itaque sic patitur ut hiemis rigorem et
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Omnia itaque sic patitur ut hiemis rigorem et
 intemperantiam caeli, ut fervores morbosque et
 cetera forte accidentia, nec de quoquam tam bene
 iudicat, ut illum quicquam putet consilio fecisse, quod
@@ -524,9 +617,11 @@ in uno sapiente est. Aliorum omnium non consilia,
 sed fraudes et insidiae et motus animorum inconditi
 sunt, quos casibus adnumerat ; omne autem fortuitum circa nos saevit et in vilia. <note> in vilia Madvig: invitia A.
 </note>
-</p></div3>
+                     </p>
+                  </div>
 
-<div3 type="section" n="2"><p> Illud quoque cogita, iniuriarum latissime patere
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Illud quoque cogita, iniuriarum latissime patere
 	materiam in <note> in added by Madvig.
 	</note> illis per quae periculum nobis quaesitum est, ut accusatore submisso aut criminatione
 falsa aut irritatis in nos potentiorum odiis quaeque
@@ -536,14 +631,16 @@ diu captatum, si magno labore adfectata hereditas
 aversa est et quaestuosae domus gratia erepta. Haec
 effugit sapiens qui nescit nec in spem nec in metum
  vivere.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Adice nunc quod iniuriam nemo inmota
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Adice nunc quod iniuriam nemo inmota
 mente accipit, sed ad sensum eius perturbatur, caret
 autem perturbatione vir ereptus erroribus, moderator
 sui, altae quietis et placidae. Nam si tangit illum
 
-<pb id="p.76"/>
+<pb n="p.76"/>
 	iniuria, et movet et impellit,<note>s impellit Bentley : impedit A.
 	</note> caret autem ira sapiens,
 quam excitat iniuriae species, nec aliter careret ira
@@ -551,9 +648,11 @@ nisi et iniuria, quam scit sibi non posse fieri. Inde
 tam erectus laetusque est, inde continuo gaudio
 elatus ; adeo autem ad offensiones rerum hominumque non contrahitur, ut ipsa illi iniuria usui sit, per
 quam experimentum sui capit et virtutem temptat.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Faveamus, obsecro vos, huic proposito aequisque et
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Faveamus, obsecro vos, huic proposito aequisque et
 animis et auribus adsimus, dum sapiens iniuriae
 excipitur ! Nec quicquam ideo petulantiae vestrae
 aut rapacissimis cupiditatibus aut caecae temeritati
@@ -562,29 +661,35 @@ sapienti libertas quaeritur. Non ut vobis facere non
 liceat iniuriam, agimus, sed ut ille omnes iniurias in
 altum demittat patientiaque se ac magnitudine animi
  defendat.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Sic in certaminibus sacris plerique vicerunt
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Sic in certaminibus sacris plerique vicerunt
 caedentium manus obstinata patientia fatigando. Ex
 hoc puta genere sapientem eorum, qui exercitatione
 longa ac fideli robur perpetiendi lassandique omnem
 inimicam vim consecuti sunt.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="10">
+               <div type="textpart" n="10" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Quoniam priorem partem percucurrimus, ad
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Quoniam priorem partem percucurrimus, ad
 alteram transeamus, qua quibusdam propriis, plerisque vero communibus contumeliam refutabimus.
 
-<pb id="p.78"/>
+<pb n="p.78"/>
 Est minor iniuria, quam queri magis quam exsequi
 possumus, quam leges quoque nulla dignam vindicta
  putaverunt.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Hunc affectum movet humilitas animi
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Hunc affectum movet humilitas animi
 	contrahentis se ob dictum factumve <note> factumve Gertz : factumque A.
 	</note> inhonorificum:
 " Ille me hodie non admisit, cum alios admitteret,"
@@ -594,9 +699,11 @@ collocavit," et alia huius notae, quae quid vocem nisi
 querellas nausiantis animi ? In quae fere delicati
 et felices incidunt ; non vacat enim haec notare cui
  peiora instant.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Nimio otio ingenia natura infirma et
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Nimio otio ingenia natura infirma et
 muliebria et inopia verae iniuriae lascivientia his
 commoventur, quorum pars maior constat vitio interpretantis. Itaque nec prudentiae quicquam in se
 esse nec fiduciae ostendit qui contumelia afficitur ;
@@ -606,12 +713,14 @@ se ac descendentis. Sapiens autem a nullo contemnitur, magnitudinem suam novit n
 de se licere renuntiat sibi et omnis has, quas non
 miserias animorum sed molestias dixerim, non vincit
 sed ne sentit quidem.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Alia sunt quae sapientem feriunt, etiam si non
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Alia sunt quae sapientem feriunt, etiam si non
 pervertunt, ut dolor corporis et debilitas aut amicorum
 
-<pb id="p.80"/>
+<pb n="p.80"/>
 liberorumque amissio et patriae bello flagrantis
 calamitas. Haec non nego sentire sapientem ; nec
 enim lapidis illi duritiam ferrive adserimus. Nulla
@@ -622,18 +731,22 @@ quidem nec adversus ea solita illa virtute utitur dura
 tolerandi, sed aut non adnotat aut digna risu putat.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="11">
+               <div type="textpart" n="11" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Praeterea cum magnam partem contumeliarum superbi insolentesque faciant et male felicitatem ferentes, habet quo istum affectum inflatum
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Praeterea cum magnam partem contumeliarum superbi insolentesque faciant et male felicitatem ferentes, habet quo istum affectum inflatum
 	respuat, pulcherrimam virtutem omnium,<note> followed by animi in A.
 	</note> magnanimitatem. Illa, quicquid eiusmodi est, transcurrit ut
 vanas species somniorum visusque nocturnos nihil
  habentis solidi atque veri.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Simul illud cogitat omnes
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Simul illud cogitat omnes
 inferiores esse, quam ut illis audacia sit tanto excelsiora despicere. Contumelia a contemptu dicta est,
 quia nemo nisi quem contempsit tali iniuria notat;
 nemo autem maiorem melioremque contemnit, etiam
@@ -643,11 +756,13 @@ laceravitque infans et sputo adspersit aut nudavit in
 conspectu suorum tegenda et verbis obscenioribus
 non pepercit, et nihil horum contumeliam dicimus.
 
-<pb id="p.82"/>
+<pb n="p.82"/>
 Quare ? Quia qui facit contemnere non potest.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Eadem causa est, cur nos mancipiorum nostrorum
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Eadem causa est, cur nos mancipiorum nostrorum
 urbanitas in dominos contumeliosa delectet, quorum
 audacia ita demum sibi in convivas ius facit, si coepit
 a domino ; et ut quisque contemptissimus et vel ludibrium est,ita solutissimae linguae est. Pueros quidam
@@ -659,11 +774,13 @@ modo offendi, et rem ab amico dictam maledictum
 vocare, a servulo ioculare convicium !
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="12">
+               <div type="textpart" n="12" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Quem animum nos adversus pueros habemus,
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Quem animum nos adversus pueros habemus,
 hunc sapiens adversus omnes, quibus etiam post iuventam canosque puerilitas est. An quicquam isti
 profecerunt, quibus puerilis <note> puerilis added by Gertz.
 	
@@ -672,25 +789,29 @@ in maius errores, qui a pueris magnitudine tantum
 formaque corporum differunt, ceterum non minus vagi
 incertique, voluptatium sine dilectu adpetentes,
  trepidi et non ingenio sed formidine quieti ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Non
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Non
 ideo quicquam inter illos puerosque interesse quis
 dixerit, quod illis talorum nucumve et aeris minuti
 avaritia est, his auri argentique et urbium, quod illi
 inter ipsos magistratus gerunt et praetextam
 fascesque ac tribunal imitantur, hi eadem in campo
 
-<pb id="p.84"/>
+<pb n="p.84"/>
 foroque et in curia serio ludunt, illi in litoribus
 harenae congestu simulacra domuum excitant, hi ut
 magnum aliquid agentes in lapidibus ac parietibus et
 tectis moliendis occupati tutelae corporum inventa
 in periculum verterunt. Ergo par pueris longiusque
  progressis, sed in alia maioraque error est.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Non immerito itaque horum contumelias sapiens ut iocos
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Non immerito itaque horum contumelias sapiens ut iocos
 accipit, et aliquando illos tanquam pueros malo
 poenaque admonet, adficit, non quia accepit iniuriam,
 sed quia fecerunt et ut desinant facere ; sic enim
@@ -702,47 +823,55 @@ iniuriam sapiens nec contumeliam, punit eos qui
 fecerunt ?" Non enim se ulciscitur, sed illos emendat.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="13">
+               <div type="textpart" n="13" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Quid est autem, quare hanc animi firmitatem
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Quid est autem, quare hanc animi firmitatem
 non credas in virum sapientem cadere, cum tibi in
 aliis idem notare sed non ex eadem causa liceat ?
 Quis enim phrenetico medicus irascitur ? Quis
 febricitantis et a frigida prohibiti maledicta in malam
  partem accipit ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Hunc affectum adversus omnis
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Hunc affectum adversus omnis
 habet sapiens, quem adversus aegros suos medicus,
 quorum nec obscena, si remedio egent, contrectare
 nec reliquias et effusa intueri dedignatur nec per
 furorem saevientium excipere convicia. Scit sapiens
 
-<pb id="p.86"/>
+<pb n="p.86"/>
 	omnis hos, qui togati purpuratique incedunt ut <note> ut added by Weidner.
 	</note>
 valentes, coloratos male sanos esse, quos non aliter
 videt quam aegros intemperantis. Itaque ne succenset quidem, si quid in morbo petulantius ausi sunt
 adversus medentem, et quo animo honores eorum
 nihilo aestimat, eodem parum honorifice facta.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Quemadmodum non placebit sibi, si illum mendicus
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Quemadmodum non placebit sibi, si illum mendicus
 coluerit, nec contumeliam iudicabit, si illi homo
 plebis ultimae salutanti mutuam salutationem non
 reddiderit, sic ne suspiciet quidem, si illum multi
-divites suspexerint&mdash;scit enim illos nihil a mendicis
+divites suspexerint—scit enim illos nihil a mendicis
 differre, immo miseriores esse, illi enim exiguo, hi
-multo egent&mdash;et rursus non tangetur, si illum rex
+multo egent—et rursus non tangetur, si illum rex
 Medorum Attalusve Asiae salutantem silentio ac
 vultu arroganti transierit. Scit statum eius non magis
 habere quicquam invidendum quam eius, cui in magna
 familia cura optigit aegros insanosque compescere.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Num moleste feram, si mihi non reddiderit nomen
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Num moleste feram, si mihi non reddiderit nomen
 aliquis ex his, qui ad Castoris negotiantur nequam
 mancipia ementes vendentesque, quorum tabernae
 pessimorum servorum turba refertae sunt ? Non, ut
@@ -751,12 +880,14 @@ malus est ? Ergo ut huius humanitatem inhumanitatemque neglegit, ita et regis : 
 Parthos et Medos et Bactrianos, sed quos metu
 contines, sed propter quos remittere arcum tibi non
 
-<pb id="p.88"/>
+<pb n="p.88"/>
 contigit, sed hostes teterrimos, sed venales, sed novum
  aucupantes dominum.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p>" Nullius ergo movebitur
+                  <div type="textpart" n="5" subtype="section">
+                     <p>" Nullius ergo movebitur
 contumelia. Omnes enim inter se differant, sapiens
 quidem pares illos ob aequalem stultitiam omnis
 putat ; nam si semel se demiserit eo, ut aut iniuria
@@ -768,11 +899,13 @@ enim, a quo quisque contemni moleste ferat, suspici
 gaudeat.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="14">
+               <div type="textpart" n="14" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Tanta quosdam dementia tenet, ut sibi contumeliam fieri putent posse a muliere. Quid refert
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Tanta quosdam dementia tenet, ut sibi contumeliam fieri putent posse a muliere. Quid refert
 quam habeant, quot lecticarios habentem, quam oneratas aures, quam laxam sellam ? Aeque inprudens
 animal est et, nisi scientia accessit ac multa eruditio,
 ferum, cupiditatium incontinens. Quidam se a cinerario impulsos moleste ferunt et contumeliam vocant
@@ -780,15 +913,17 @@ ostiari difficultatem, nomenculatoris superbiam, cubiculari supercilium. O quant
 tollendus est ! quanta voluptate implendus animus ex
 alienorum errorum tumultu contemplanti quietem
  suam ! " Quid ergo ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Sapiens non accedet ad fores,
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Sapiens non accedet ad fores,
 quas durus ianitor obsidet ? " Ille vero, si res
 necessaria vocabit, experietur et illum, quisquis erit,
 tanquam canem acrem obiecto cibo leniet nec
 indignabitur aliquid impendere, ut limen transeat,
 
-<pb id="p.90"/>
+<pb n="p.90"/>
 cogitans et in pontibus quibusdam pro transitu dari.
 Itaque illi quoque, quisquis erit, qui hoc salutationum
 publicum exerceat, donabit ; scit emi aere venalia.
@@ -796,9 +931,11 @@ Ille pusilli animi est, qui sibi placet, quod ostiario
 libere respondit, quod virgam eius fregit, quod ad
 dominum accessit et petit corium. Facit se adver-
  sarium qui contendit, et ut vincat, par fuit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> " At
+                  <div type="textpart" n="3" subtype="section">
+                     <p> " At
 sapiens colapho percussus quid faciet ? " Quod Cato,
 cum illi os percussum esset ; non excanduit, non
 vindicavit iniuriam, ne remisit quidem, sed factam
@@ -806,30 +943,36 @@ negavit ; maiore animo non agnovit quam ignovisset.
 Non diu in hoc haerebimus ; quis enim nescit nihil
 ex his, quae creduntur mala aut bona, ita videri
  sapienti ut omnibus ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Non respicit, quid homines
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Non respicit, quid homines
 turpe iudicent aut miserum, non it qua populus, sed
 ut sidera contrarium mundo iter intendunt, ita hic
 adversus opinionem omnium vadit.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="15">
+               <div type="textpart" n="15" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Desinite itaque dicere : " Non accipiet ergo
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Desinite itaque dicere : " Non accipiet ergo
 sapiens iniuriam, si caedetur, si oculus illi eruetur ?
 Non accipiet contumeliam, si obscenorum vocibus
 improbis per forum agetur ? Si in convivio regis
 recumbere infra mensam vescique cum servis ignominiosa officia sortitis iubebitur ? Si quid aliud ferre
 cogetur eorum quae excogitari pudori ingenuo
  molesta possunt ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> " In quantumcumque ista vel
+                  <div type="textpart" n="2" subtype="section">
+                     <p> " In quantumcumque ista vel
 
-<pb id="p.92"/>
+<pb n="p.92"/>
 numero vel magnitudine creverint, eiusdem naturae
 erunt. Si non tangent illum parva, ne maiora qui-
 dem ; si non tangent pauca, ne plura quidem. Sed
@@ -838,46 +981,56 @@ animi, et cum cogitastis quantum putetis vos pati
 posse, sapientis patientiae paulo ulteriorem terminum
 poni tis. At illum in aliis mundi finibus sua virtus
  collocavit nihil vobiscum commune habentem.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Quaere
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Quaere
 et aspera et quaecumque toleratu gravia sunt
 audituque et visu refugienda. Non obruetur eorum
 coetu et qualis singulis, talis universis obsistet. Qui
 dicit illud tolerabile sapienti, illud intolerabile, et
 animi magnitudinem intra certos fines tenet, male
 agit ; vincit nos fortuna, nisi tota vincitur.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Ne putes istam Stoicam esse duritiam, Epicurus,
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Ne putes istam Stoicam esse duritiam, Epicurus,
 quem vos patronum inertiae vestrae assumitis putatisque mollia ac desidiosa praecipere et ad voluptates
 ducentia, " Raro," inquit, " sapienti fortuna intervenit." Quam paene emisit viri vocem ! Vis tu
  fortius loqui et illam ex toto summovere !
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="5"><p> Domus
+                  <div type="textpart" n="5" subtype="section">
+                     <p> Domus
 haec sapientis angusta, sine cultu, sine strepitu, sine
 apparatu, nullis adservatur ianitoribus turbam venali
 fastidio digerentibus, sed per hoc limen vacuum et
 ab ostiaris liberum fortuna non transit. Scit non esse
 illic sibi locum, ubi sui nihil est.
 
-<pb id="p.94"/>
-</p>
+<pb n="p.94"/>
+                     </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="16">
+               <div type="textpart" n="16" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Quodsi Epicurus quoque, qui corpori plurimum
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Quodsi Epicurus quoque, qui corpori plurimum
 indulsit, adversus iniurias exsurgit, qui id apud nos
 incredibile videri potest aut supra humanae naturae
 mensuram ? Ille ait iniurias tolerabiles esse sapienti,
 nos iniurias non esse. Nec enim est, quod dicas hoc
  naturae repugnare.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Non negamus rem incommodam
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Non negamus rem incommodam
 esse verberari et impelli et aliquo membro carere,
 sed omnia ista negamus iniurias esse ; non sensum
 illis doloris detrahimus, sed nomen iniuriae, quod non
@@ -886,9 +1039,11 @@ consentit. Quaeris quid inter duos intersit ? Quod
 inter gladiatores fortissimos, quorum alter premit
 vulnus et stat in gradu, alter respiciens ad clamantem
 populum significat nihil esse et intercedi non patitur.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Non est, quod putes magnum, quo dissidemus ; illud
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Non est, quod putes magnum, quo dissidemus ; illud
 quo de agitur, quod unum ad vos pertinet, utraque
 exempla hortantur, contemnere iniurias et, quas
 iniuriarum umbras ac suspiciones dixerim, contumelias, ad quas despiciendas non sapiente opus est
@@ -896,33 +1051,39 @@ viro, sed tantum consipiente, qui sibi possit dicere :
 " Utrum merito mihi ista accidunt an inmerito ? Si
 merito, non est contumelia, iudicium est ; si inmerito,
  illi qui iniusta facit erubescendum est."
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Et quid est
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Et quid est
 illud quod contumelia dicitur ? In capitis mei levitatem iocatus est et in oculorum valitudinem et in
 crurum gracilitatem et in staturam. Quae contumelia est quod apparet audire ? Coram uno ali-
 
-<pb id="p.96"/>
+<pb n="p.96"/>
 quid dictum ridemus, coram pluribus indignamur, et
 eorum aliis libertatem non relinquimus, quae ipsi in
 nos dicere adsuevimus ; iocis temperatis delectamur,
 immodicis irascimur.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="17">
+               <div type="textpart" n="17" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Chrysippus ait quendam indignatum, quod
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Chrysippus ait quendam indignatum, quod
 illum aliquis vervecem marinum dixerat. In senatu
 flentem vidimus Fidum Cornelium, Nasonis Ovidii
 generum, cum illum Corbulo struthocamelum depilatum dixisset ; adversus alia maledicta mores et
 vitam convulnerantia frontis illi firmitas constitit,
 adversus hoc tam absurdum lacrimae prociderunt ;
 tanta animorum inbecillitas est, ubi ratio discessit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Quid, quod offendimur, si quis sermonem nostrum
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Quid, quod offendimur, si quis sermonem nostrum
 imitatur, si quis incessum, si quis vitium aliquod
 corporis aut linguae exprimit ? Quasi notiora illa
 fiant alio imitante quam nobis facientibus ! Senectutem quidam inviti audiunt et canos et alia ad quae
@@ -931,9 +1092,11 @@ perussit, quam sibi obiecit quisquis abscondit. Itaque
 materia petulantibus et per contumeliam urbanis
 detrahitur, si ultro illam et prior occupes ; nemo
  risum praebuit qui ex se cepit.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Vatinium, hominem
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Vatinium, hominem
 natum et ad risum et ad odium, scurram fuisse et
 venustum ac dicacem memoriae proditum est. In
 pedes suos ipse plurima dicebat et in fauces concisas ;
@@ -941,12 +1104,14 @@ sic inimicorum, quos plures habebat quam morbos,
 et in primis Ciceronis urbanitatem effugerat. Si hoc
 potuit ille duritia oris, qui assiduis conviciis pudere
 
-<pb id="p.98"/>
+<pb n="p.98"/>
 dedidicerat, cur is non possit, qui studiis liberalibus
 et sapientiae cultu ad aliquem profectum pervenerit ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Adice quod genus ultionis est eripere ei, qui fecit,
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Adice quod genus ultionis est eripere ei, qui fecit,
 factae contumeliae voluptatem ; solent dicere : "O
 miserum me ! Puto, non intellexit." Adeo fructus
 contumeliae in sensu et indignatione patientis est.
@@ -954,11 +1119,13 @@ Deinde non deerit illi aliquando par; invenietur qui
 te quoque vindicet.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="18">
+               <div type="textpart" n="18" subtype="chapter">
 
-<div3 type="section" n="1"><p>  C. Caesar inter cetera vitia, quibus abundabat,
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  C. Caesar inter cetera vitia, quibus abundabat,
 contumeliosus mira libidine ferebatur omnis aliqua
 nota feriendi, ipse materia risus benignissima : tanta
 illi palloris insaniam testantis foeditas erat, tanta
@@ -968,20 +1135,24 @@ est, si velim singula referre, per quae in parentes
 avesque suos contumeliosus fuit, per quae in uni-
 versos ordines; ea referam, quae illum exitio
 dederunt.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> Asiaticum Valerium in primis amicis habebat,
+                  <div type="textpart" n="2" subtype="section">
+                     <p> Asiaticum Valerium in primis amicis habebat,
 ferocem virum et vix aequo animo alienas contumelias laturum ; huic in convivio, id est in contione,
 voce clarissima, qualis in concubitu esset uxor eius,
 obiecit. Di boni, hoc virum audire, principem scire et
 usque eo licentiam pervenisse, ut, non dico consulari,
 
-<pb id="p.100"/>
+<pb n="p.100"/>
 non dico amico, sed tantum marito princeps et
  adulterium suum narret et fastidium!
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Chaereae
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Chaereae
 contra, tribuno militum, sermo non pro manu erat,
 languidus sono et, ni facta nosses, suspectior. Huic
 Gaius signum petenti modo Veneris, modo Priapi
@@ -992,23 +1163,27 @@ mediam uno ictu decidit ; plurimum deinde undique
 publicas ac privatas iniurias ulciscentium gladiorum
 ingestum est, sed primus vir fuit, qui minime visus
  est.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> At idem Gaius omnia contumelias putabat, ut
+                  <div type="textpart" n="4" subtype="section">
+                     <p> At idem Gaius omnia contumelias putabat, ut
 sunt ferendarum impatientes faciendarum cupidissimi; iratus fuit Herennio Macro, quod illum Gaium
 salutaverat, nec impune cessit primipilari, quod
 Caligulam dixerat; hoc enim in castris natus et
 alumnus legionum vocari solebat, nullo nomine militibus familiarior umquam factus, sed iam Caligulam
 convicium et probrum iudicabat cothurnatus.<note> cothurnatus Pincianus, cf. Suetonius, Cal. 52 : conturbatus A.
 </note>
-</p></div3>
+                     </p>
+                  </div>
 
-<div3 type="section" n="5"><p>  Ergo
+                  <div type="textpart" n="5" subtype="section">
+                     <p>  Ergo
 hoc ipsum solacio erit, etiam si nostra facilitas
 ultionem omiserit, futurum aliquem qui poenas
 exigat a procace et superbo et iniurioso, quae vitia
 
-<pb id="p.102"/>
+<pb n="p.102"/>
 numquam in uno homine et in una contumelia consumuntur.
 Respiciamus eorum exempla, quorum laudamus
 patientiam, ut Socratis, qui comoediarum publicatos
@@ -1019,18 +1194,22 @@ barbara et Thraessa obiciebatur ; respondit et deorum
 matrem Idaeam esse.
 </p>
 
-</div3></div2>
+                  </div>
+               </div>
 
-<div2 type="chapter" n="19">
+               <div type="textpart" n="19" subtype="chapter">
 
-<div3 type="section" n="1"><p>  Non est in rixam conluctationemque veniendum. Procul auferendi pedes sunt et quicquid horum ab
+                  <div type="textpart" n="1" subtype="section">
+                     <p>  Non est in rixam conluctationemque veniendum. Procul auferendi pedes sunt et quicquid horum ab
 imprudentibus fiet (fieri autem nisi ab imprudentibus
 non potest) neglegendum et honores iniuriaeque vulgi
 in promiscuo habendae. Nec his dolendum nec illis
  gaudendum ;
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="2"><p> alioqui multa timore contumeliarum aut
+                  <div type="textpart" n="2" subtype="section">
+                     <p> alioqui multa timore contumeliarum aut
 taedio necessaria omittemus publicisque et privatis
 officiis, aliquando etiam salutaribus non occurremus,
 dum muliebris nos cura angit aliquid contra animum
@@ -1042,11 +1221,13 @@ quo solo sibi gaudenda veniant, exteriora diducere a
 se, ne inquieta agenda sit vita omnium risus, omnium
 linguas timenti. Quis enim est, qui non possit con-
  tumeliam facere, si quisquam potest ?
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="3"><p> Diverso autem
+                  <div type="textpart" n="3" subtype="section">
+                     <p> Diverso autem
 
-<pb id="p.104"/>
+<pb n="p.104"/>
 remedio utetur sapiens affectatorque sapientiae.
 Imperfectis enim et adhuc ad publicum se iudicium
 derigentibus hoc proponendum est inter iniurias ipsos
@@ -1061,17 +1242,21 @@ ne motus quidem gradu sustineat. Etiam si premens
 et infesta vi urgere, cedere tamen turpe est ; ad-
 signatum a natura locum tuere. Quaeris quis hic
  sit locus ? Viri.
-</p></div3>
+</p>
+                  </div>
 
-<div3 type="section" n="4"><p> Sapienti aliud auxilium est huic
+                  <div type="textpart" n="4" subtype="section">
+                     <p> Sapienti aliud auxilium est huic
 contrarium ; vos enim rem geritis, illi parta victoria
 est. Ne repugnate vestro bono et hanc spem, dum ad
 verum pervenistis, alite in animis libentesque meliora
 excipite et opinione ac voto iuvate. Esse aliquid in-
 victum, esse aliquem, in quem nihil fortuna possit, e
 re publica est generis humani.</p>
-</div3></div2>
-</div1>
-</body>
-</text>
-</TEI.2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </body>
+   </text>
+</TEI>

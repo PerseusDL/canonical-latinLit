@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
@@ -27,6 +31,18 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="section"
+                    matchPattern="(\w+).(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+                    <p>This pointer pattern extracts book, chapter and section</p>
+                </cRefPattern>
+                <cRefPattern n="chapter"
+                    matchPattern="(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts book and chapter</p>
+                </cRefPattern>
+            </refsDecl>
         	<refsDecl>
         		<refState unit="book"/>
         		<refState unit="chapter" n="chunk"/>
@@ -35,21 +51,20 @@
         </encodingDesc>
         <profileDesc>
             <langUsage>
-                <language ident="la">Latin</language>
-                <language ident="greek">Greek</language>
+                <language ident="lat">Latin</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="GRC">
-                <date>2009</date>
-                <name>GRC</name>
-                tagging
-            </change>
+         <change who="gcrane" when="2009-01-01">tagging</change>
+
+
+         <change who="Thibault Clerice" when="2015-11-13">Bumped URN after CTS and Epidoc conversion</change>
         </revisionDesc>
     </teiHeader>
 <text>
 <body>
-    <div type="edition" n="urn:cts:stoa0255.stoa004.perseus-lat1">
+    <div xml:lang="lat" type="edition" n="urn:cts:latinLit:stoa0255.stoa004.perseus-lat2">
 	<pb n="p.286"/>
 	<div type="textpart" subtype="book" n="10">
 	<head>Liber X,
