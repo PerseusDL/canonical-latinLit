@@ -1,4 +1,5 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
@@ -6,8 +7,8 @@
                 <title type="sub">Machine readable text</title>
                 <author n="Quint.">Quintilian</author>
                 <editor n="Butler" role="editor">Harold Edgeworth Butler</editor>
+		<principal>Gregory Crane</principal>
                 <sponsor>Perseus Project, Tufts University</sponsor>
-                <principal>Gregory Crane</principal>
                 <respStmt>
                     <resp>Prepared under the supervision of</resp>
                     <name>Lisa Cerrato</name>
@@ -16,15 +17,14 @@
                     <name>David Smith</name>
                 </respStmt>
                 <funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
-            </titleStmt><publicationStmt><publisher>Trustees of Tufts University</publisher><pubPlace>Medford, MA</pubPlace><authority>Perseus Project</authority></publicationStmt>
-            
-            <publicationStmt>
+            </titleStmt>
+	    <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
                 <authority>Perseus Project</authority>
             </publicationStmt>
-            <sourceDesc default="NO">
-                <biblStruct default="NO">
+            <sourceDesc default="false">
+                <biblStruct default="false">
                     <monogr>
                         <author>Quintilian</author>
                         <title>With An English Translation</title>
@@ -39,6 +39,23 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+	    <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                         matchPattern="(\\w+).(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\']/tei:div[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                         matchPattern="(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                         matchPattern="(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
                 <refState unit="book"/>
                 <refState unit="chapter"/>
@@ -49,13 +66,13 @@
             </refsDecl>
         </encodingDesc>
         <profileDesc>
-            <langUsage default="NO">
-                <language ident="en">English</language>
+            <langUsage default="false">
                 <language ident="la">Latin</language>
-                <language ident="greek">Greek</language>
+                <language ident="en">English</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
-        <revisionDesc><!--
+        <revisionDesc><change who="GRC" when="2006">tagging</change><!--
             <change>
                 <date>2006</date>
                 <respStmt>
@@ -64,11 +81,12 @@
                 </respStmt>
                 <item/>
             </change>
-        --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+        --><change when="2014-08-01" who="Stella Dee">edited markup</change>
+	   <change who="Zach Himes" when="2015-11-17">edited teiHeader, converted to TEI P5 and EpiDoc</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
+    <text xml:lang="eng">
         <body>
-            <div part="N" sample="complete" org="uniform" n="7" type="book">
+            <div part="N" sample="complete" org="uniform" n="7" subtype="book" type="translation">
                 <head>Book VII</head>
                 <p>
                     <milestone n="pr" unit="chapter"/>
@@ -89,7 +107,7 @@ and firmness of structure.
 reason that arrangement is treated as the second of
 the five departments of oratory,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         vi. iv. 1. Invention, arrangement, style, memory,
 delivery.
                     </note>
@@ -99,7 +117,7 @@ statue have been cast does not make it a statue: they
 must be put together; and if you were to interchange some one portion of our bodies or of those
 of other animals with another, although the body
 would be in possession of all the same members
-                    <pb id="p.5"/>
+                    <pb xml:id="p.5"/>
                     as before, you would none the less have produced
 a monster. Again even a slight dislocation will
 deprive a limb of its previous use and vigour, and
@@ -137,27 +155,27 @@ accordingly I shall be careful not to pass by.
                 <p>
                     <milestone n="1" unit="chapter"/>
                     <milestone n="1" unit="section"/>
-                    <hi rend="italics">Division,</hi>
+                    <hi rend="italic">Division,</hi>
                     as I have already stated,
                     <note anchored="true" place="unspecified">v. x. 63.</note>
                     means the
 division of a group of things into its component
 parts,
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     is the separation of an individual
 whole into its elements,
-                    <hi rend="italics">order</hi>
+                    <hi rend="italic">order</hi>
                     the correct disposition
-                    <pb id="p.7"/>
+                    <pb xml:id="p.7"/>
                     of things in such a way that what follows coheres
 with what precedes, while
-                    <hi rend="italics">arrangement</hi>
+                    <hi rend="italic">arrangement</hi>
                     is the distribution of things and parts to the places which it is
 expedient that they should occupy.
                     <milestone n="2" unit="section"/>
                     But we must
 remember that
-                    <hi rend="italics">arrangement</hi>
+                    <hi rend="italic">arrangement</hi>
                     is generally dependent
 on expediency, and that the same question will not
 always be discussed first by both parties. An
@@ -176,9 +194,9 @@ different points first; otherwise the pleading would
 always be determined by the good pleasure of the
 prosecution. Finally, in a case of mutual accusation,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III.
-                        <hi rend="italics">x.</hi>
+                        <hi rend="italic">x.</hi>
                         4.
                     </note>
                     where both parties have to defend themselves before
@@ -194,23 +212,23 @@ my own reasoning.
                     When engaged in forensic disputes I made it a
 point to make myself familiar with every circumstance connected with the case.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp</hi>
+                        <hi rend="italic">cp</hi>
                         iv. iv. 8; IV. ii. 28.
                     </note>
                     (In the schools,
 of course, the facts of the case are definite and
 limited in number and are moreover set out before
 we begin to declaim: the Greeks call them
-                    <hi rend="italics">themes,</hi>
+                    <hi rend="italic">themes,</hi>
                     which Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Top.,</hi>
+                        <hi rend="italic">Top.,</hi>
                         21.
                     </note>
                     translates by
-                    <hi rend="italics">propositions.</hi>
+                    <hi rend="italic">propositions.</hi>
                     ) When I
-                    <pb id="p.9"/>
+                    <pb xml:id="p.9"/>
                     had formed a general idea of these circumstances, I
 proceeded to consider them quite as much from my
 opponent's point of view as from my own.
@@ -251,11 +269,11 @@ prosecution;
                     say the defence. Here
 then is the question at issue: there is a doubt as to
 the facts, and it is therefore a question of
-                    <hi rend="italics">conjecure.</hi>
+                    <hi rend="italic">conjecure.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         a question as to facts.
-                        <hi rend="italics">cv.</hi>
+                        <hi rend="italic">cv.</hi>
                         VII. ii.
                     </note>
                     Sometimes even the third point may be admitted;
@@ -275,7 +293,7 @@ hand, if when the prosecution says,
                     the
 issue is raised without more delay.
                 </p>
-                <pb id="p.11"/>
+                <pb xml:id="p.11"/>
                 <p>
                     If it requires some search to discover where the
 dispute really begins, we must consider what constitutes the first question. The charge may be simple,
@@ -283,7 +301,7 @@ dispute really begins, we must consider what constitutes the first question. The
                     as for example
                     <quote>Rabirius killed Saturninus,</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         v. xi. 6.
                     </note>
                     or
@@ -296,27 +314,27 @@ wounding of Gnaeus Varenus and also the murder
 of Salarius.
                     </quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         v. xiii. 38.
                     </note>
                     In the latter case there will be a
 number of propositions, a statement which also
 applies to civil suits as well. But in a complex case
 there may be a number of
-                    <hi rend="italics">questions</hi>
+                    <hi rend="italic">questions</hi>
                     and
-                    <hi rend="italics">bases</hi>
+                    <hi rend="italic">bases</hi>
                     :
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 1
-                        <hi rend="italics">sq.</hi>
+                        <hi rend="italic">sq.</hi>
                     </note>
                     for
 instance the accused may deny one fact, justify
 another and plead technical grounds to show
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 23 and 52.
                     </note>
                     that
@@ -343,7 +361,7 @@ fixed on those arguments should regard the defence
 of other points with disfavour. Sometimes, however,
 this order is subject to alteration; for example if the
 minor arguments are obviously false and the refutation of the most serious argument a matter of some
-                    <pb id="p.13"/>
+                    <pb xml:id="p.13"/>
                     difficulty, we should attack it last of all, after discrediting the prosecution by demonstrating the falsity
 of the former, thereby disposing the judges to believe that all their arguments are equally unreliable.
 We shall, however, require to preface our remarks by
@@ -357,7 +375,7 @@ we are afraid of it.
 past life of the accused should generally be dealt
 with first in order that the judge may be well disposed to listen to our defence on that point on which
 lie has to give his verdict. But Cicero in the
-                    <hi rend="italics">pro Vareno</hi>
+                    <hi rend="italic">pro Vareno</hi>
                     postpones his treatment of such charges to
 the conclusion, being guided not by the general rule,
 but by the special circumstances of the case.
@@ -382,7 +400,7 @@ arguments of the cases. Take the following case:
                     <quote>
                         A father who recognises a son whom he has exposed in infancy, shall only take him back after paying
 for his keep. A disobedient son may be disinherited.
-                        <pb id="p.15"/>
+                        <pb xml:id="p.15"/>
                         A man who took back a son whom he had exposed
 orders him to marry a wealthy neighbour. The son
 desires to marry the daughter of the poor man who
@@ -401,7 +419,7 @@ love for his foster-sister is based on life-long acquaintance.
 The father, on the other hand, will urge that his payment
 for his son's nurture has discharged the debt due to the poor
 man and that his son is once more under the
-                        <hi rend="italics">patria potestas.</hi>
+                        <hi rend="italic">patria potestas.</hi>
                         The introduction of the first law thus enables the pleader to
 introduce fresh arguments and is thus said to link up the
 arguments.
@@ -411,7 +429,7 @@ turn on more laws than one, as in cases of
                     <foreign xml:lang="grc">a)ntinomi/a</foreign>
                     or contradictory laws.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 46. and vii.
                     </note>
                     It is by consideration of such
@@ -422,7 +440,7 @@ the point of law out of which the dispute arises.
                     <milestone n="16" unit="section"/>
                     As an example of complex defence I may quote
 the
-                    <hi rend="italics">pro Rabirio:</hi>
+                    <hi rend="italic">pro Rabirio:</hi>
                     <quote>If he had killed him, he would have been justified in so doing: but he did not kill him.</quote>
                     But when we advance a number of points in
 answer to a single proposition, we must first of all
@@ -433,12 +451,12 @@ those which I admitted a little while ago
                     <note anchored="true" place="unspecified">§ 10.</note>
                     on the
 subject of
-                    <hi rend="italics">propositions</hi>
+                    <hi rend="italic">propositions</hi>
                     and on that of
-                    <hi rend="italics">arguments</hi>
+                    <hi rend="italic">arguments</hi>
                     in
 the section which I devoted to
-                    <hi rend="italics">proofs,</hi>
+                    <hi rend="italic">proofs,</hi>
                     <note anchored="true" place="unspecified">v. xii. 14.</note>
                     to the effect
 that we may sometimes begin with the strongest.
@@ -458,7 +476,7 @@ be infinite complication where questions of law are concerned, but questions of 
 point to be considered,
                         <quote>was such and such an act committed?</quote>
                     </note>
-                    <pb id="p.17"/>
+                    <pb xml:id="p.17"/>
                     but the order to be followed is the same in both
 cases. We must, however, deal first with points that
 differ in character. In such cases the weakest
@@ -484,7 +502,7 @@ then raise the question whether the person in whose
 name the action is brought has the right to employ
 an agent. Let us yield this point also.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. 6, 8.
                     </note>
                     The case
@@ -502,11 +520,11 @@ is of a similar character.
                     <quote>
                         You may not disinherit
 your adopted son. And if you may disinherit him
-                        <hi rend="italics">quâ</hi>
+                        <hi rend="italic">quâ</hi>
                         adopted son, you may not disinherit one who is
 so brave. And if you may disinherit one who is so
 brave, you may not disinherit him because he has
-                        <pb id="p.19"/>
+                        <pb xml:id="p.19"/>
                         not obeyed your every command; and if he was
 bound to obey you in all else, you may not disinherit
 him on the ground of his choice of a reward; and
@@ -516,10 +534,10 @@ as he actually made.
                         <note anchored="true" place="unspecified">
                             The adopted son has done some heroic deed, bringing
 him under the scholastic law
-                            <hi rend="italics">vir fortis optet quod uolet,</hi>
+                            <hi rend="italic">vir fortis optet quod uolet,</hi>
                             <quote>Let a hero choose what reward he will</quote>
                             (
-                            <hi rend="italics">cp.</hi>
+                            <hi rend="italic">cp.</hi>
                             v. x. 97). A
 scandalous choice might give ground for disinheriting him
 (cp. § 24 below), but the choice in question is not
@@ -547,31 +565,31 @@ first three can be dropped, but not the last.
                     <milestone n="23" unit="section"/>
                     I
 went back from the ultimate
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     (which generally
 contains the vital point of the case) to the first
 general question or descended from the
-                    <hi rend="italics">genus</hi>
+                    <hi rend="italic">genus</hi>
                     to the
 ultimate
-                    <hi rend="italics">species,</hi>
+                    <hi rend="italic">species,</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         v. x. 5, 6. The statement
                         <quote>man is an animal</quote>
                         is
 insufficient as a definition,
                         <quote>animal</quote>
                         being the
-                        <hi rend="italics">genus.</hi>
+                        <hi rend="italic">genus.</hi>
                         <quote>Man is mortal</quote>
                         introduces a
-                        <hi rend="italics">species,</hi>
+                        <hi rend="italic">species,</hi>
                         but one common to other
 animals.
                         <quote>Man is rational</quote>
                         introduces the
-                        <hi rend="italics">ultima species.</hi>
+                        <hi rend="italic">ultima species.</hi>
                     </note>
                     applying this method even to deliberative themes.
                     <milestone n="24" unit="section"/>
@@ -589,16 +607,16 @@ a king as myself?
                     So too in controversial themes.
 Suppose a brave man to choose another man's wife
 as his reward. The ultimate
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     is found in the
 question whether lie is allowed to choose another
 man's wife. The
-                    <hi rend="italics">general</hi>
+                    <hi rend="italic">general</hi>
                     question is whether he
 should be given whatever he chooses. Next come
 questions such as whether he can choose his reward
 from the property of private individuals, whether he
-                    <pb id="p.21"/>
+                    <pb xml:id="p.21"/>
                     can choose a bride as his reward, and if so, whether
 he can choose one who is already married.
                     <milestone n="25" unit="section"/>
@@ -607,7 +625,7 @@ our search for such questions we follow an order
 quite different from that which we employ in actual
 speaking.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. ix. 6.
                     </note>
                     For that which as a rule occurs to us first,
@@ -635,7 +653,7 @@ necessity of making a reply, that answer will probably suggest itself. On the ot
                     <milestone n="27" unit="section"/>
                     if this is
 impossible, we should put aside whatever first
-                    <hi rend="italics">occurs</hi>
+                    <hi rend="italic">occurs</hi>
                     to us and reason with ourselves as follows:
                     <quote>What if this were not the case?</quote>
                     We must then repeat
@@ -647,23 +665,23 @@ better disposed to us when we come to the main
 issue.
                     <milestone n="28" unit="section"/>
                     The rule that we should descend from the
-                    <hi rend="italics">common</hi>
+                    <hi rend="italic">common</hi>
                     to the
-                    <hi rend="italics">particular</hi>
+                    <hi rend="italic">particular</hi>
                     is much the same, since
-                    <pb id="p.23"/>
+                    <pb xml:id="p.23"/>
                     what is
-                    <hi rend="italics">common</hi>
+                    <hi rend="italic">common</hi>
                     is usually
-                    <hi rend="italics">general.</hi>
+                    <hi rend="italic">general.</hi>
                     For example,
                     <quote>He killed a tyrant</quote>
                     is
-                    <hi rend="italics">common,</hi>
+                    <hi rend="italic">common,</hi>
                     while
                     <quote>A tyrant was killed by his son, by a woman or by his wife</quote>
                     are all
-                    <hi rend="italics">particular.</hi>
+                    <hi rend="italic">particular.</hi>
                 </p>
                 <p>
                     <milestone n="29" unit="section"/>
@@ -711,7 +729,7 @@ defence to separate them.
 of the case, to do what I have already mentioned
                     <note anchored="true" place="unspecified">V. x. 66.</note>
                     as being done with arguments, namely, after first
-                    <pb id="p.25"/>
+                    <pb xml:id="p.25"/>
                     setting forth all the facts without exception, I then
 disposed of all of them with the one exception
 of the fact which I wished to be believed. For
@@ -755,7 +773,7 @@ is impossible. It is admitted then that he killed
 him. The act must then have been either right or
 wrong. We urge that it was right. If so, the act
 must have either been deliberate or under
-                    <pb id="p.27"/>
+                    <pb xml:id="p.27"/>
                     compulsion of necessity, for it is impossible to plead
 ignorance.
                     <milestone n="35" unit="section"/>
@@ -784,7 +802,7 @@ was rightly killed.
 words,
                     <quote>As every man would have wished his slaves to do under similar circumstances.</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         x. 29.
 V. iv. 8.
                     </note>
@@ -795,7 +813,7 @@ have got to say something. Let us therefore consider every possible point; for t
 any rate what is least bad. Sometimes, as I have
 already said in the appropriate context,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         x. 29.
 V. iv. 8.
                     </note>
@@ -808,7 +826,7 @@ both parties.
                     I am aware that some authors have written
 thousands of lines to show how we may discover
 which party ought to speak first. But in the actual
-                    <pb id="p.29"/>
+                    <pb xml:id="p.29"/>
                     practice of the courts this is decided either by some
 brutally rigid formula, or by the character of the
 suit, or finally by lot.
@@ -834,21 +852,21 @@ It is uncertain who should speak first, but our
 course is clear enough. For we shall begin with the
 son whose role we assume. So much for the general
 rules by which we should be guided in making our
-                    <hi rend="italics">division.</hi>
+                    <hi rend="italic">division.</hi>
                 </p>
                 <p>
                     <milestone n="40" unit="section"/>
                     But how shall we discover those
-                    <hi rend="italics">questions</hi>
+                    <hi rend="italic">questions</hi>
                     which
 present abnormal difficulty? Just as we discover
 reflexions, words, figures or the appropriate
-                    <hi rend="italics">nuances</hi>
+                    <hi rend="italic">nuances</hi>
                     of style,
                     <note anchored="true" place="unspecified">
                         Or perhaps
                         <quote>glosses,</quote>
-                        <hi rend="italics">i. e.</hi>
+                        <hi rend="italic">i. e.</hi>
                         the giving of a special aspect
 to the case by skilful representation of facts.
                     </note>
@@ -869,7 +887,7 @@ meets the eye.
                 </p>
                 <p>
                     To make my meaning clearer, I will cite a
-                    <pb id="p.31"/>
+                    <pb xml:id="p.31"/>
                     solitary example from the controversial themes of
 the schools; it is neither novel nor complicated.
                     <milestone n="42" unit="section"/>
@@ -909,7 +927,7 @@ will think they have given the theme a brilliant
 treatment by ranting and raving over it. Those, on
 the other hand, whose ideals are higher, but who
 restrict themselves merely to the obvious, will note
-                    <pb id="p.33"/>
+                    <pb xml:id="p.33"/>
                     the following points, which are, however, purely
 superficial.
                     <milestone n="45" unit="section"/>
@@ -919,7 +937,7 @@ could contribute nothing to his father's defence: but
 even the orator has no claim on the gratitude of
 the accused, since the latter was condemned:
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Sc.</hi>
+                        <hi rend="italic">Sc.</hi>
                         in spite of his own eloquence.
                     </note>
                     the
@@ -961,7 +979,7 @@ denunciation of the man who failed to appear.
                 <p>
                     <milestone n="48" unit="section"/>
                     So far we have been dealing entirely with
-                    <pb id="p.35"/>
+                    <pb xml:id="p.35"/>
                     admitted facts. Let us now return to the claimant.
 Unless he is hopelessly unintelligent, surely the
 following argument will suggest itself:—
@@ -1008,7 +1026,7 @@ military service or on an embassy?
                     </quote>
                     We have
 gained a considerable amount of ground; for we
-                    <pb id="p.37"/>
+                    <pb xml:id="p.37"/>
                     have established the fact that a man may fail to
 appear for his father and still inherit.
                     <milestone n="51" unit="section"/>
@@ -1016,7 +1034,7 @@ appear for his father and still inherit.
 who has thought out this line of argument, must now
 pass over like a Latin flute-player, as Cicero says,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Mur.</hi>
+                        <hi rend="italic">Pro Mur.</hi>
                         xii. 26. The flute-player went from one actor
 to another, according as each required accompaniment.
                     </note>
@@ -1065,7 +1083,7 @@ intention of the law.
                     Let us pursue the matter
 further and see if we can discover any additional
 arguments. How is that to be done? I am deliberately imitating the actual train of thought of one
-                    <pb id="p.39"/>
+                    <pb xml:id="p.39"/>
                     who is engaged in such an enquiry with a view to
 showing how such enquiry should be conducted. I
 shall therefore put aside the more showy kind of
@@ -1106,7 +1124,7 @@ from the enactment that the person condemned for
 treason should be banished together with his
 advocate. It seems almost impossible that in one
 and the same case a son should incur a penalty,
-                    <pb id="p.41"/>
+                    <pb xml:id="p.41"/>
                     both if he appeared in his father's defence and if
 he did not appear. Further, exiles are outlaws.
 Therefore the letter of the law cannot conceivably apply to the advocate of the condemned
@@ -1123,19 +1141,19 @@ fathers by the risk of banishment, and he will assert
 that his brother failed to appear in defence of
 his innocent father. It may therefore be worth
 while pointing out that two
-                    <hi rend="italics">general questions</hi>
+                    <hi rend="italic">general questions</hi>
                     may
 arise out of one
-                    <hi rend="italics">basis</hi>
+                    <hi rend="italic">basis</hi>
                     —
                     <note anchored="true" place="unspecified">
                         III. vi. 1
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                         The
-                        <hi rend="italics">basis</hi>
+                        <hi rend="italic">basis</hi>
                         or main point on which the case
 turns is that of the intention of the law (
-                        <hi rend="italics">voluntas</hi>
+                        <hi rend="italic">voluntas</hi>
                         ).
                     </note>
                     for we may ask,
@@ -1148,7 +1166,7 @@ turns is that of the intention of the law (
                     So far all our questions have been derived from
 two of the persons involved.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i. e.</hi>
+                        <hi rend="italic">i. e.</hi>
                         the father and the uneducated son.
                     </note>
                     With regard to the
@@ -1162,22 +1180,22 @@ at once to the obvious point that he was recalled
 by the agency of the uneducated son. A little
 ingenuity will lead us to look further a field:
 for as
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     comes after
-                    <hi rend="italics">genus,</hi>
+                    <hi rend="italic">genus,</hi>
                     so
-                    <hi rend="italics">genus</hi>
+                    <hi rend="italic">genus</hi>
                     precedes
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <milestone n="60" unit="section"/>
                         species.
                     </hi>
                     Let us therefore assume that the father
 was recalled by someone else. This will give rise
-                    <pb id="p.43"/>
+                    <pb xml:id="p.43"/>
                     to a question of the ratiocinative or syllogistic type,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 15, 43, 46, 51; vii. viii. 1.
                     </note>
                     namely whether recall from exile cancels the sentence of the court and is tantamount to the trial
@@ -1193,10 +1211,10 @@ never defended his father at all.
                     <note anchored="true" place="unspecified">
                         The reward to be chosen, it is argued, covered the
 recall of one person only. The only means by which
-                        <hi rend="italics">both</hi>
+                        <hi rend="italic">both</hi>
                         father and son could be recalled was by the restoration of
 the father, whose amnesty would
-                        <hi rend="italics">ipso facto</hi>
+                        <hi rend="italic">ipso facto</hi>
                         extend to the son
 as well.
                     </note>
@@ -1226,17 +1244,17 @@ points, an appeal to the memory of his father will
 carry great weight with the judges, more especially
 as the dispute is about the father's estate. This
 will give rise to conjecture as to what the intentions
-                    <pb id="p.45"/>
+                    <pb xml:id="p.45"/>
                     of the father were at the time of his dying intestate.
 This conjecture, however, involves a question of
-                    <hi rend="italics">quality,</hi>
+                    <hi rend="italic">quality,</hi>
                     and is employed in the service of a
 different
-                    <hi rend="italics">basis.</hi>
+                    <hi rend="italic">basis.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         qualitative,
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 43.
                     </note>
                     <milestone n="63" unit="section"/>
@@ -1255,16 +1273,16 @@ judge by dealing with the question of equity first.
 We will now proceed to consider the several parts
 of forensic cases, and although I cannot follow them
 to the
-                    <hi rend="italics">ultimate species,</hi>
+                    <hi rend="italic">ultimate species,</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         VI. i. 23.
                     </note>
                     that is to say, I cannot deal
 with individual suits and controversies, I shall be
 able to discuss them on general lines in such a way
 as to show what
-                    <hi rend="italics">bases</hi>
+                    <hi rend="italic">bases</hi>
                     most of them involve. And
 since the first question naturally is whether an
 alleged fact has taken place, I will begin with this.
@@ -1286,22 +1304,22 @@ turns on some fact, the point on which doubt arises
 is either what has been done, or what is being done,
 or what is likely to be done. For example, in general
 questions we discuss whether the universe
-                    <hi rend="italics">has been</hi>
+                    <hi rend="italic">has been</hi>
                     formed of a concourse of atoms, or
-                    <hi rend="italics">is</hi>
+                    <hi rend="italic">is</hi>
                     governed by
-                    <pb id="p.47"/>
+                    <pb xml:id="p.47"/>
                     providence, or
-                    <hi rend="italics">is likely</hi>
+                    <hi rend="italic">is likely</hi>
                     some day to come to an end.
 In definite questions, on the other hand, we discuss whether Roscius
-                    <hi rend="italics">has</hi>
+                    <hi rend="italic">has</hi>
                     murdered his father,
 whether Manlius
-                    <hi rend="italics">is</hi>
+                    <hi rend="italic">is</hi>
                     aiming at making himself king,
 or Quintus Caecilius
-                    <hi rend="italics">will be</hi>
+                    <hi rend="italic">will be</hi>
                     justified in appearing
 as the accuser of Verres.
                     <milestone n="3" unit="section"/>
@@ -1334,7 +1352,7 @@ it necessary, as in questions of personal identity,
 which may be illustrated by the action brought
 against the heirs of Urbinia,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cv.</hi>
+                        <hi rend="italic">cv.</hi>
                         IV. i. 11 and VII. ii. 26.
                     </note>
                     where the question
@@ -1342,13 +1360,13 @@ was whether the man who claimed the property as
 being the son of the deceased, was Figulus or Sosipater.
                     <milestone n="5" unit="section"/>
                     In this case the actual person was before the
-                    <pb id="p.49"/>
+                    <pb xml:id="p.49"/>
                     eyes of the court, so that there could be no question
 whether he existed (as there is, for instance, when
 we ask whether there exists any land beyond the
 Ocean)
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         <milestone n="3" unit="chapter"/>
                         <milestone n="1" unit="section"/>
                         viii. 16.
@@ -1357,7 +1375,7 @@ Ocean)
 question was simply, who he was. But this kind of
 dispute also depends on past time. The problem is
 whether this man Clusinius Figulus
-                    <hi rend="italics">was</hi>
+                    <hi rend="italic">was</hi>
                     born of
 Urbinia. Such disputes have arisen even in our
 own day, indeed I myself have pleaded in such.
@@ -1366,16 +1384,16 @@ On the other hand,
                     conjecture as to intention is
 obviously concerned with all three times. We ask
 with what purpose Ligarius
-                    <hi rend="italics">went</hi>
+                    <hi rend="italic">went</hi>
                     to Africa, with
 what purpose Pyrrhus
-                    <hi rend="italics">is</hi>
+                    <hi rend="italic">is</hi>
                     asking for a treaty, and
 how Caesar
-                    <hi rend="italics">will</hi>
+                    <hi rend="italic">will</hi>
                     take it if Ptolemy kills Pompey.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. viii. 56.
                     </note>
                 </p>
@@ -1405,7 +1423,7 @@ is by whom it was committed.
                     <milestone n="8" unit="section"/>
                     The act itself again
 sometimes involves a single question, as, for example,
-                    <pb id="p.51"/>
+                    <pb xml:id="p.51"/>
                     whether a man is dead, and sometimes two, as, for
 instance, whether he died of poison or of some internal
 disease. Another form of conjecture is concerned
@@ -1421,14 +1439,14 @@ confines himself to denying that he did it or accuses
 another of having done it. Further, there is more
 than one way of transferring the charge to another.
 At times this results in
-                    <hi rend="italics">mutual accusation,</hi>
+                    <hi rend="italic">mutual accusation,</hi>
                     which the
 Greeks call
                     <foreign xml:lang="grc">a)ntikathgori/a,</foreign>
                     and some of our own authors
-                    <hi rend="italics">concertative accusation.</hi>
+                    <hi rend="italic">concertative accusation.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         mutual or reciprocal accusation, see VII. i. 3.
                     </note>
                     At times, on the other hand,
@@ -1443,10 +1461,10 @@ suicide.
 motives and other circumstances in the same way
 as in eases of mutual accusation. Cicero, for instance,
 in the
-                    <hi rend="italics">pro Vareno</hi>
+                    <hi rend="italic">pro Vareno</hi>
                     diverts the charge from the
 accused to the slaves of Ancharius and in the
-                    <hi rend="italics">pro Scauro</hi>
+                    <hi rend="italic">pro Scauro</hi>
                     throws the suspicion of Bostar's murder upon
 his mother.
                     <milestone n="11" unit="section"/>
@@ -1457,7 +1475,7 @@ but as between two acts; that is to say, the
 question is not which of the two committed an act,
 but which of two acts was committed. Finally,
 if the act and the identity of the author are both
-                    <pb id="p.53"/>
+                    <pb xml:id="p.53"/>
                     admitted, we may still raise the question of his
 intention.
                 </p>
@@ -1501,7 +1519,7 @@ person concerned.
                     For example, it makes a difference whether the deceased was cheerful or depressed,
 had been working or taking his ease, had been awake
 or sleeping previous to the festive gathering that
-                    <pb id="p.55"/>
+                    <pb xml:id="p.55"/>
                     was followed by his death. The age of the deceased
 is also an important factor, and it is desirable to
 know whether he died suddenly or after a long
@@ -1548,7 +1566,7 @@ man who had been disinherited by his father took
 to the study of medicine. His father fell sick and,
 his life being despaired of by the other doctors, the
 son was called in, and said he would cure him if
-                        <pb id="p.57"/>
+                        <pb xml:id="p.57"/>
                         he would take a draught prescribed by himself.
 The father after drinking part of the draught said
 that he had been poisoned: the son drank the
@@ -1590,7 +1608,7 @@ courts, which insists on two separate trials. On the
 other hand, mutual accusation is possible in cases
 tried before the senate or the emperor, and even in
 the courts the fact of mutual accusation will involve
-                    <pb id="p.59"/>
+                    <pb xml:id="p.59"/>
                     no difference in the pleadings, since the same
 methods will be required whether the verdict is
 given on both charges simultaneously or only on
@@ -1620,7 +1638,7 @@ adversary, or we may compare individual arguments.
 The choice between these two methods can only
 be determined by the requirements of the case. For
 example, in the
-                    <hi rend="italics">pro Vareno,</hi>
+                    <hi rend="italic">pro Vareno,</hi>
                     Cicero, in dealing with
 the first charge, compares the individual arguments:
 for it would have been rash in connexion with the
@@ -1628,7 +1646,7 @@ second charge to compare the position of a stranger
 with that of a mother.
                     <note anchored="true" place="unspecified">
                         The
-                        <hi rend="italics">pro Vareno</hi>
+                        <hi rend="italic">pro Vareno</hi>
                         being lost, it is impossible to say to
 what this refers, and for the same reason Halm's conjecture must be regarded as quite uncertain.
                     </note>
@@ -1647,7 +1665,7 @@ formal accusation (as Roscius
 Cicero.
                     </note>
                     did without indicting
-                    <pb id="p.61"/>
+                    <pb xml:id="p.61"/>
                     his accusers), or the responsibility for the deed be
 placed on the victims themselves, whom we allege
 to have perished by their own hand, the arguments
@@ -1687,7 +1705,7 @@ physicians claim a reward for slaying the tyrant.
                     </quote>
                     Now just as in cases of mutual accusation where each
 party shifts the guilt to his opponent, so in this
-                    <pb id="p.63"/>
+                    <pb xml:id="p.63"/>
                     case we compare the characters, motives, means,
 opportunities, instruments and evidence of the
 persons who claim the reward.
@@ -1700,7 +1718,7 @@ parties make and defend their own statement of
 the case. Thus in the suit concerning the estate
 of Urbinia
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         <milestone n="4" unit="chapter"/>
                         <milestone n="1" unit="section"/>
                         i. 11. and VII. ii. 4.
@@ -1717,7 +1735,7 @@ freedom, inserted himself into a gang of slaves who
 were for sale
                     <note anchored="true" place="unspecified">
                         For another meaning of
-                        <hi rend="italics">venalis,</hi>
+                        <hi rend="italic">venalis,</hi>
                         newly-bought, see VIII.
 ii. 8.
                     </note>
@@ -1741,7 +1759,7 @@ our attention is the character of the accused.
                     <milestone n="28" unit="section"/>
                     It is
 the business of the accuser to make any charge that
-                    <pb id="p.65"/>
+                    <pb xml:id="p.65"/>
                     he may bring against the accused not merely discreditable, but as consistent as possible with the
 crime for which he is arraigned. For example, if
 he calls a man accused of murder a debauchee or
@@ -1778,7 +1796,7 @@ times urge on general grounds that it is incredible
 that a father has been killed by his son or that a
 commander has betrayed his country to the enemy.
 The answer to such arguments is easy, for we may
-                    <pb id="p.67"/>
+                    <pb xml:id="p.67"/>
                     urge that bad men are capable of every crime, as
 is shown by every-day occurrences, or that the
 atrocious nature of a crime is but a poor argument
@@ -1816,7 +1834,7 @@ life of the accused than to attack him with slight
 or frivolous charges which are manifestly false,
 since such a proceeding discredits the rest of
 our argument. Further, the advocate who brings
-                    <pb id="p.69"/>
+                    <pb xml:id="p.69"/>
                     no charges against the accused may be believed to
 have omitted all reference to past offences on the
 ground that such reference was not necessary, while
@@ -1834,7 +1852,7 @@ discussed them in connexion with
 argument.
                     <note anchored="true" place="unspecified">
                         v. x. 20, where
-                        <hi rend="italics">argumentorum loci</hi>
+                        <hi rend="italic">argumentorum loci</hi>
                         are defined as "the
 dwellings of arguments, where they hide and where we must
 look for them.
@@ -1866,7 +1884,7 @@ condemned.
                     <milestone n="37" unit="section"/>
                     But if the prosecution do allege some
 motive, he will either say that the motive alleged is
-                    <pb id="p.71"/>
+                    <pb xml:id="p.71"/>
                     false or inadequate or unknown to the accused. For
 it is possible that a man may be quite ignorant of
 motives imputed to him. He may not, for example,
@@ -1908,7 +1926,7 @@ leading to error, such as drunkenness or ignorance.
 For just as such considerations lessen the guilt of a
 crime when regarded from the point of view of its
 quality, so they tell heavily against the criminal as
-                    <pb id="p.73"/>
+                    <pb xml:id="p.73"/>
                     far as the question of fact is concerned.
                     <milestone n="41" unit="section"/>
                     I should
@@ -1938,10 +1956,10 @@ incurring the penalty;
 have done the deed at some other time and in some
 other way, or with greater ease or security, as Cicero
 says in the
-                    <hi rend="italics">pro Milone,</hi>
+                    <hi rend="italic">pro Milone,</hi>
                     <note anchored="true" place="unspecified">
                         c. xiv.
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     where he mentions the
 numerous occasions when his client could have killed
@@ -1959,7 +1977,7 @@ saying that crimes are irrational), or finally, whether
 he was led astray by the fact that crime had become
 a habit with him.
                 </p>
-                <pb id="p.75"/>
+                <pb xml:id="p.75"/>
                 <p>
                     Having dealt with the question whether he
 intended to commit the crime, we proceed to the
@@ -1992,7 +2010,7 @@ is almost, though not actually contemporary: under
 this latter head come circumstances such as noise,
 cries or groans,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         <milestone n="5" unit="chapter"/>
                         <milestone n="1" unit="section"/>
                         x. 45.
@@ -2007,7 +2025,7 @@ elsewhere,
                     These words and acts are either
 our own or those of others. With regard to words,
 our own do us greater harm and bring us less profit
-                    <pb id="p.77"/>
+                    <pb xml:id="p.77"/>
                     than do those of others, while those of others bring
 us greater profit and do us less harm than our own.
 On the other hand, with regard to deeds, it is sometimes from our own and sometimes from those of
@@ -2050,7 +2068,7 @@ can be disposed of in a number of different ways.
 confined to one very important class of conjectural
 cases, but something of what I have said will apply
 to all cases. For example, in cases concerned with
-                    <pb id="p.79"/>
+                    <pb xml:id="p.79"/>
                     theft, deposits and loans, arguments are derived both
 from possibilities (as when we enquire whether there
 was any money to deposit), and from persons, as when
@@ -2090,7 +2108,7 @@ and love-letters whose destination cannot be ascertained.
                     <milestone n="53" unit="section"/>
                     The case is similar in accusations of
 forgery: for either there are several accused or only
-                    <pb id="p.81"/>
+                    <pb xml:id="p.81"/>
                     one. The writer of a document always regards it as
 necessary to support the signatory, but the signatory
 does not always support the writer of the document,
@@ -2099,7 +2117,7 @@ on the matter.
                     <note anchored="true" place="unspecified">
                         The writer will always support the signatory's statement that he signed the document. The signatory will not
 always support the writer;
-                        <hi rend="italics">e.</hi>
+                        <hi rend="italic">e.</hi>
                         g. he may not know the nature
 of the document which he signed.
                     </note>
@@ -2115,11 +2133,11 @@ tyranny will be drawn from the same sources.
                     But the custom prevalent in the schools of regarding everything not definitely stated in the theme as
 being in the speaker's favour,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         IV. ii. 28. As the examples which follow show, the
 declaimer assumes that his imaginary opponent has no good
 evidence to support his case:
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         no witness, no informer,
 no weapons, no bodyguard.
                     </note>
@@ -2153,7 +2171,7 @@ one or more examples of this method are not to be
 found.
                     <milestone n="56" unit="section"/>
                     Similar to this is the practice which some
-                    <pb id="p.83"/>
+                    <pb xml:id="p.83"/>
                     declaimers allow themselves in their perorations
 of assigning children, parents and nurses to their
 characters at will, though it is more reasonable to
@@ -2161,7 +2179,7 @@ call for evidence which is not explicitly mentioned
 in the statement of the theme than to introduce it
 ourselves.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         it is safer to ask the imaginary opponent
                         <quote>where is your evidence?</quote>
                         than to produce imaginary evidence
@@ -2194,30 +2212,30 @@ suited to be placed together.
                 </p>
                 <p>
                     III.
-                    <hi rend="italics">Conjecture</hi>
+                    <hi rend="italic">Conjecture</hi>
                     is followed by
-                    <hi rend="italics">definition.</hi>
+                    <hi rend="italic">definition.</hi>
                     For the
 man who cannot assert that he has done nothing,
 must needs take refuge in the assertion that lie has
 not committed the act which is alleged against him.
 Consequently the laws which govern
-                    <hi rend="italics">definition</hi>
+                    <hi rend="italic">definition</hi>
                     are
 for the most part the same as those which govern
-                    <hi rend="italics">conjecture,</hi>
+                    <hi rend="italic">conjecture,</hi>
                     the only difference lying in the method to be
 employed in defence in cases such as those concerned
 with theft, deposits or adultery. For just as we say,
-                    <pb id="p.85"/>
+                    <pb xml:id="p.85"/>
                     <quote>I have not committed theft, I never received a deposit, I am not guilty of adultery,</quote>
                     so we say,
                     <quote>This is not theft, this is not a deposit, this is not adultery.</quote>
                     <milestone n="2" unit="section"/>
                     Sometimes we may pass from
-                    <hi rend="italics">quality</hi>
+                    <hi rend="italic">quality</hi>
                     to
-                    <hi rend="italics">definition,</hi>
+                    <hi rend="italic">definition,</hi>
                     as in actions concerned with lunacy, cruelty
 and offences against the State. In such cases if it
 is impossible to assert that the acts alleged were
@@ -2230,19 +2248,19 @@ question in appropriate, clear and concise language.
                     <note anchored="true" place="unspecified">V. x. 55.</note>
                     it consists mainly in the
 statement of
-                    <hi rend="italics">genus, species, difference</hi>
+                    <hi rend="italic">genus, species, difference</hi>
                     and
-                    <hi rend="italics">property.</hi>
+                    <hi rend="italic">property.</hi>
                     For example, if you wish to define a horse (for I will
 take a familiar example), the
-                    <hi rend="italics">genus</hi>
+                    <hi rend="italic">genus</hi>
                     is animal, the
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     mortal, the
-                    <hi rend="italics">diffrence</hi>
+                    <hi rend="italic">diffrence</hi>
                     irrational (since man also
 is mortal) and the
-                    <hi rend="italics">properly</hi>
+                    <hi rend="italic">properly</hi>
                     neighing. Definition is
 employed by the orator for a number of different
 reasons.
@@ -2264,7 +2282,7 @@ that the epithet
 nature, like Epicurus, who gives him a human form
 and makes him reside in the intermundane space.
 While both use the same term
-                    <hi rend="italics">god,</hi>
+                    <hi rend="italic">god,</hi>
                     both have to employ conjecture to decide which of the two meanings
 is consistent with fact.
                     <milestone n="6" unit="section"/>
@@ -2272,7 +2290,7 @@ is consistent with fact.
 recourse to quality, as in the question,
                     <quote>
                         What is
-                        <pb id="p.87"/>
+                        <pb xml:id="p.87"/>
                         rhetoric? Is it the power to persuade or the science
 of speaking well?
                     </quote>
@@ -2307,7 +2325,7 @@ same name.
                     <milestone n="8" unit="section"/>
                     Though I hardly like to differ from Cicero,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 31.
                     </note>
                     who
@@ -2316,10 +2334,10 @@ concerned with identity and difference (since he
 who denies the applicability of one term must always
 produce another term which he regards as preferable), for my own part I consider that definition
 falls into three types, which I may perhaps call
-                    <hi rend="italics">species.</hi>
+                    <hi rend="italic">species.</hi>
                     <milestone n="9" unit="section"/>
                     For at times it is convenient merely to
-                    <pb id="p.89"/>
+                    <pb xml:id="p.89"/>
                     enquire whether one particular term is applicable to
 a given thing, as in the question whether an act
 committed in a brothel is adultery. If we deny
@@ -2340,7 +2358,7 @@ by the same name, in spite of the fact that each has
 a special name of its own: for example, is tile same
 name applicable both to a love-potion and a poison?
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         VIII. V. 31.
                     </note>
                     But in all disputes of this kind the question is
@@ -2364,18 +2382,18 @@ to be regarded as identical with another.
                     There is
 moreover great variety in definitions. For instance,
 persons will give different verbal expression to
-                    <pb id="p.91"/>
+                    <pb xml:id="p.91"/>
                     things about which they are really in agreement:
 thus rhetoric is defined as the science of
-                    <hi rend="italics">speaking well,</hi>
+                    <hi rend="italic">speaking well,</hi>
                     as the science of
-                    <hi rend="italics">correct conception</hi>
+                    <hi rend="italic">correct conception</hi>
                     or
-                    <hi rend="italics">correct expression</hi>
+                    <hi rend="italic">correct expression</hi>
                     of what we have to say, as the science of
-                    <hi rend="italics">speading in accordance with the excellence of an orator</hi>
+                    <hi rend="italic">speading in accordance with the excellence of an orator</hi>
                     and again of
-                    <hi rend="italics">speaking to the purpose.</hi>
+                    <hi rend="italic">speaking to the purpose.</hi>
                     And we must
 take care to discover how it is that definitions,
 identical in meaning, differ in the form in which
@@ -2384,17 +2402,17 @@ discussion and not for a quarrel.
                     <milestone n="13" unit="section"/>
                     Definition is sometimes required to explain rare or obscure words such
 as
-                    <hi rend="italics">clarigatio</hi>
+                    <hi rend="italic">clarigatio</hi>
                     <note anchored="true" place="unspecified">A formal demand for redress under threat of war.</note>
                     or
-                    <hi rend="italics">erctum citum,</hi>
+                    <hi rend="italic">erctum citum,</hi>
                     <note anchored="true" place="unspecified">An undivided inheritance.</note>
                     or again to explain
 familiar words such as
-                    <hi rend="italics">penus</hi>
+                    <hi rend="italic">penus</hi>
                     <note anchored="true" place="unspecified">Store of provisions.</note>
                     or
-                    <hi rend="italics">litus.</hi>
+                    <hi rend="italic">litus.</hi>
                     <note anchored="true" place="unspecified">
                         Shore, see v. xiv. 34, where its derivation is explained
 as qua fiuctus eludit.
@@ -2425,7 +2443,7 @@ And what need has a pleader for such precision of
 definition? Even if I do not say that man is an
 animal, mortal and rational, surely I shall still be
 able, by setting forth the numerous properties of his
-                    <pb id="p.93"/>
+                    <pb xml:id="p.93"/>
                     body and mind in more general terms, to distinguish
 him from gods or dumb beasts.
                     <milestone n="16" unit="section"/>
@@ -2434,7 +2452,7 @@ same thing be defined in more than one way, as
 Cicero does when he says,
                     <quote>What do we mean when we say' commonly ': surely we mean 'by all men'?</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Mur.</hi>
+                        <hi rend="italic">Pro Mur.</hi>
                         xxxv. 73.
                     </note>
                     May it not be given a wide and varied treatment
@@ -2443,10 +2461,10 @@ it is rare to find orators falling victims to that form
 of slavery introduced from the practice of the philosophers and tying themselves down to certain
 definite words; indeed it is absolutely forbidden by
 Marcus Antonius in the
-                    <hi rend="italics">de Oratore</hi>
+                    <hi rend="italic">de Oratore</hi>
                     <note anchored="true" place="unspecified">
                         II xxv. 108
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     of Cicero.
 For it is a most dangerous practice, since,
@@ -2455,7 +2473,7 @@ For it is a most dangerous practice, since,
 a mistake in a single word, we are like to lose our
 whole case, and consequently the compromise adopted
 by Cicero in the
-                    <hi rend="italics">pro Caecina</hi>
+                    <hi rend="italic">pro Caecina</hi>
                     <note anchored="true" place="unspecified">XV. 42.</note>
                     is the safest course to
 follow; this consists in setting forth the facts without
@@ -2471,7 +2489,7 @@ condition of stability.
                     <milestone n="18" unit="section"/>
                     Or again, we may prove
 before we define, as Cicero does in the
-                    <hi rend="italics">Philippics,</hi>
+                    <hi rend="italic">Philippics,</hi>
                     <note anchored="true" place="unspecified">IX. iii. 7.</note>
                     where he proves that Servius Sulpicius was killed by
 Antony and introduces his definition at the conclusion in the following terms:—
@@ -2481,18 +2499,18 @@ employed, if it will help our case, and that, if we
 can produce a definition which is at once strong and
 concise, it will be not merely an ornament to our
 speech, but will also produce the strongest
-                    <pb id="p.95"/>
+                    <pb xml:id="p.95"/>
                     impression, provided always that it cannot be overthrown.
                 </p>
                 <p>
                     <milestone n="19" unit="section"/>
                     The order to be followed in definition is invariable.
 We first ask
-                    <hi rend="italics">what</hi>
+                    <hi rend="italic">what</hi>
                     a thing is, and then, whether it is
-                    <hi rend="italics">this.</hi>
+                    <hi rend="italic">this.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i. e.</hi>
+                        <hi rend="italic">i. e.</hi>
                         the thing under consideration.
                     </note>
                     And there is generally more difficulty in the
@@ -2529,7 +2547,7 @@ accuser employs this term on the ground that the
 money was stolen from a temple: the accused denies
 that the act is sacrilege, on the ground that the
 money stolen was private property, but admits that
-                    <pb id="p.97"/>
+                    <pb xml:id="p.97"/>
                     it is theft. The prosecutor will therefore give the
 following definitions,
                     <quote>It is sacrilege to steal anything from a sacred place.</quote>
@@ -2578,13 +2596,13 @@ the name itself is derived from this fact.
                     </quote>
                     <note anchored="true" place="unspecified">
                         Cic.
-                        <hi rend="italics">Phil.</hi>
+                        <hi rend="italic">Phil.</hi>
                         VIII. i. 3.
-                        <hi rend="italics">Tumultus</hi>
+                        <hi rend="italic">Tumultus</hi>
                         is here used by Cicero in
 its special sense, civil war or Gallic invasion. He derives it
 from
-                        <hi rend="italics">timor multus.</hi>
+                        <hi rend="italic">timor multus.</hi>
                     </note>
                     <milestone n="26" unit="section"/>
                     Great
@@ -2592,10 +2610,10 @@ ingenuity may be exercised with regard to properties
 and differences, as for instance in the question
 whether a person assigned to his creditor for debt,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 25.
                     </note>
-                    <pb id="p.99"/>
+                    <pb xml:id="p.99"/>
                     who is condemned by the law to remain in a state
 of servitude until he has paid his debt, is actually a
 slave. One party will advance the following definition,
@@ -2639,11 +2657,11 @@ produce a definition that is applicable to our case.
 Now the most important element in a definition is
 provided by quality, as, for example, in the question
 whether love be a form of madness. To this point
-                    <pb id="p.101"/>
+                    <pb xml:id="p.101"/>
                     in our procedure belong those proofs which according
 to Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Top.</hi>
+                        <hi rend="italic">Top.</hi>
                         xxiii. 88.
                     </note>
                     are peculiar to definition, that is, proofs
@@ -2652,7 +2670,7 @@ nature of which I have already dealt.
                     <note anchored="true" place="unspecified">V. x. 73.</note>
                     <milestone n="29" unit="section"/>
                     I will, however, quote a passage from the
-                    <hi rend="italics">pro Caecina</hi>
+                    <hi rend="italic">pro Caecina</hi>
                     <note anchored="true" place="unspecified">XV. 44.</note>
                     in which
 Cicero includes brief proofs drawn from origins,
@@ -2699,7 +2717,7 @@ definition given by the accused will be,
                     <quote>
                         He who
 wittingly commits an act which must necessarily lead
-                        <pb id="p.103"/>
+                        <pb xml:id="p.103"/>
                         to another's death, is the cause of his death.
                     </quote>
                     Without any formal definition it would be sufficient for
@@ -2746,29 +2764,29 @@ homicide is lacking save only the contributory act?
 both parties are agreed, as in the following example
 from Cicero:
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Part. Or.</hi>
+                        <hi rend="italic">Part. Or.</hi>
                         xxx. 105.
-                        <hi rend="italics">maiestatem iminuere</hi>
+                        <hi rend="italic">maiestatem iminuere</hi>
                         = to commit
 lèse-majesté or treason.
                     </note>
                     <quote>Majesty resides in the dignity of the Roman power and the Roman people.</quote>
                     The
 question however, is, whether that majesty has been
-                    <pb id="p.105"/>
+                    <pb xml:id="p.105"/>
                     impaired, as for example in the ease of Cornelius.
                     <note anchored="true" place="unspecified">
                         No fragments of the
-                        <hi rend="italics">pro Cornelio contain any trace of this.</hi>
+                        <hi rend="italic">pro Cornelio contain any trace of this.</hi>
                     </note>
                     But even although the case may seem to turn on
 definition, the point for decision is one of quality,
 since there is no doubt about the definition, and
 must be assigned to the
-                    <hi rend="italics">qualitative basis.</hi>
+                    <hi rend="italic">qualitative basis.</hi>
                     <note anchored="true" place="unspecified">
                         See III. vi. 31,
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     It is a
 mere accident that I have come to mention quality
@@ -2805,11 +2823,11 @@ former with the future.
 of demonstrative
                     <note anchored="true" place="unspecified">
                         See III. iv. 12
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     oratory involve a
-                    <hi rend="italics">qualitative basis.</hi>
-                    <pb id="p.107"/>
+                    <hi rend="italic">qualitative basis.</hi>
+                    <pb xml:id="p.107"/>
                     The facts are admitted, and the question turns on
 their quality, the dispute being entirely concerned
 with rewards or penalties or their quantity. The
@@ -2839,7 +2857,7 @@ defendant's plea.
                         is the technical term for this form of defence
 which turns not on the facts, but on the justice of the case.
 The meaning of
-                        <hi rend="italics">ad intellectum id nomen referentes</hi>
+                        <hi rend="italic">ad intellectum id nomen referentes</hi>
                         is obscure.
 If the words are correct (and no satisfactory correction seems
 possible), their meaning must be that the defence turns not
@@ -2865,7 +2883,7 @@ imply injustice on the part of the aggressor, while
 on the other hand it does not follow that the first
 act was just merely because the two acts were alike.
 In cases where there is justice on both sides, the
-                    <pb id="p.109"/>
+                    <pb xml:id="p.109"/>
                     two parties must both come under the same law
 and the same conditions, and it would not perhaps
 be untrue to say that things can never be spoken
@@ -2880,7 +2898,7 @@ agreements.
 defend an act in itself indefensible by arguments
 drawn from without.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i. e.</hi>
+                        <hi rend="italic">i. e.</hi>
                         from motives derived from facts lying outside the
 actual case.
                     </note>
@@ -2905,7 +2923,7 @@ person whom our opponents are seeking to vindicate.
 of defence based on an appeal to the motives of
 the act which is the opposite of that which I have
 just described It consists not in defending the act
-                    <hi rend="italics">per se,</hi>
+                    <hi rend="italic">per se,</hi>
                     as we do when we employ the absolute
 defence, nor in opposing another act to it, but
 in appealing to the interests of the State, of a
@@ -2915,7 +2933,7 @@ in question is such as we might lawfully do in our
 own interests. If, however, the accuser is a stranger
 and insists on the letter of the law, this form
 of defence will invariably be useless, though it may
-                    <pb id="p.111"/>
+                    <pb xml:id="p.111"/>
                     serve our turn if the dispute is of a domestic
 character.
                     <milestone n="10" unit="section"/>
@@ -2959,20 +2977,20 @@ the Greeks, while we style it defence by comparison.
                 <p>
                     <milestone n="13" unit="section"/>
                     Such are the methods by which we may
-                    <pb id="p.113"/>
+                    <pb xml:id="p.113"/>
                     defend an act. If it is impossible to defend an
 act either on its merits or with the assistance of
 arguments from without, the next best course will
 be to shift the charge, if possible, to another.
 It is for this reason that the
-                    <hi rend="italics">basis</hi>
+                    <hi rend="italic">basis</hi>
                     of
-                    <hi rend="italics">competence</hi>
+                    <hi rend="italic">competence</hi>
                     has
 been held to apply even to those who cannot
 plead the letter of the law in this connexion.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i e.</hi>
+                        <hi rend="italic">i e.</hi>
                         there are no legal grounds for alleging that the court
 is not competent to try the case, or the accuser to bring the
 charge, etc. See III. vi. 53, 78.
@@ -3011,14 +3029,14 @@ of these two latter forms of excuse are, however,
 so numerous and obvious that there is no need for
 me to cite them here.
                 </p>
-                <pb id="p.115"/>
+                <pb xml:id="p.115"/>
                 <p>
                     If all the above-mentioned resources prove unavailable, we must see whether it may not be
 possible to extenuate the offence. It is here that
 what some call the
-                    <hi rend="italics">quantitative basis</hi>
+                    <hi rend="italic">quantitative basis</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 23, 51, 53.
                     </note>
                     comes into
@@ -3027,7 +3045,7 @@ play.
                     But when quantity is considered in reference to punishment or reward, it is determined by
 the quality of the act, and therefore in my opinion
 comes under the
-                    <hi rend="italics">qualitative basis,</hi>
+                    <hi rend="italic">qualitative basis,</hi>
                     as also does quantity
 which is used with reference to number by the
 Greeks, who distinguish between
@@ -3049,7 +3067,7 @@ the two.
 most writers deny that this is ever admissible in the
 courts.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Lig.</hi>
+                        <hi rend="italic">Pro Lig.</hi>
                         X. 30.
                     </note>
                     Indeed Cicero himself seems to support
@@ -3076,7 +3094,7 @@ well of the state, or if there is good hope that his
 conduct will be blameless for the future and likely
 to be of some use to his fellow men; the second is
 operative if it appears that he has been sufficiently
-                    <pb id="p.117"/>
+                    <pb xml:id="p.117"/>
                     punished already on the ground that he has suffered
 other misfortunes, or that his present peril is extreme,
 or that he has repented of his sin; while thirdly we
@@ -3118,7 +3136,7 @@ defence is perfectly correct.
                     <milestone n="21" unit="section"/>
                     With regard to rewards, there are two questions
 which confront us: namely, whether the claimant is
-                    <pb id="p.119"/>
+                    <pb xml:id="p.119"/>
                     deserving of any reward, and, if so, whether he deserves so great a reward. If there are two claimants,
 we have to decide which is the more worthy of the
 two; if there are a number, who is the most worthy.
@@ -3152,41 +3170,41 @@ the occasion and the intention, that is to say, whether
 it was given in the hope of subsequent profit; and
 so on with a number of similar considerations. The
 question of
-                    <hi rend="italics">quality</hi>
+                    <hi rend="italic">quality</hi>
                     therefore makes the highest
 demands on the resources of oratory, since it affords
 the utmost scope for a display of talent on either side,
-                    <pb id="p.121"/>
+                    <pb xml:id="p.121"/>
                     while there is no topic in which the emotional appeal
 is so
-                    <hi rend="italics">effective.</hi>
+                    <hi rend="italic">effective.</hi>
                     <milestone n="24" unit="section"/>
                     For conjecture has often to introduce
 proofs from without and uses arguments drawn from
 the actual subject matter, whereas the real task of
 eloquence is to demonstrate
-                    <hi rend="italics">quality:</hi>
+                    <hi rend="italic">quality:</hi>
                     there lies its
 kingdom, there its power, and there its unique
 victory.
                 </p>
                 <p>
                     Verginius includes under
-                    <hi rend="italics">quality</hi>
+                    <hi rend="italic">quality</hi>
                     cases concerned
 with disinheritance, lunacy, cruelty to a wife, and
 claims of female orphans to marry relatives. The
 questions thus involved are, it is true, frequently questions of
-                    <hi rend="italics">quality,</hi>
+                    <hi rend="italic">quality,</hi>
                     while some writers style them questions of
-                    <hi rend="italics">moral obligation.</hi>
+                    <hi rend="italic">moral obligation.</hi>
                     <milestone n="25" unit="section"/>
                     But the laws governing
 these cases sometimes admit of other
-                    <hi rend="italics">bases.</hi>
+                    <hi rend="italic">bases.</hi>
                     For
 example,
-                    <hi rend="italics">conjecture</hi>
+                    <hi rend="italic">conjecture</hi>
                     is involved in quite a number of
 such cases, as when the accused urges either that he
 did not commit the act or, if he did, acted with the
@@ -3196,31 +3214,31 @@ precisely is meant by lunacy or cruelty to a wife.
                     <note anchored="true" place="unspecified">
                         The general sense of 25 and 26 is clear. These cases do
 not always come under the
-                        <hi rend="italics">status qualitatis:</hi>
+                        <hi rend="italic">status qualitatis:</hi>
                         they not infrequently come under the
-                        <hi rend="italics">status coniecturalis</hi>
+                        <hi rend="italic">status coniecturalis</hi>
                         and
-                        <hi rend="italics">finitivus.</hi>
+                        <hi rend="italic">finitivus.</hi>
                         They cannot however, strictly be said to come under the
-                        <hi rend="italics">states legalis,</hi>
+                        <hi rend="italic">states legalis,</hi>
                         since although the
-                        <hi rend="italics">leges</hi>
+                        <hi rend="italic">leges</hi>
                         of such scholastic themes do
 involve certain questions of law, these are not such as to constitute the
-                        <hi rend="italics">status legally.</hi>
+                        <hi rend="italic">status legally.</hi>
                         Still in the last resort such cases
 may be argued on legal grounds. The text adopted for the
 last sentence of 25 is that which involves the least change,
 but it is highly obscure and the corruption may well lie
 deeper still. For the whole question of
-                        <hi rend="italics">bases,</hi>
+                        <hi rend="italic">bases,</hi>
                         which is
 highly technical, see III, vi.
                     </note>
                     For as a rule the laws cited in such themes involve
 certain legal questions, though not to such an extent
 as to determine the
-                    <hi rend="italics">basis</hi>
+                    <hi rend="italic">basis</hi>
                     of the case.
                     <milestone n="26" unit="section"/>
                     But this notwithstanding, if the actual fact cannot be defended,
@@ -3231,7 +3249,7 @@ disinherit his son, what charges fail to justify an
 action for cruelty, and under what circumstances a
 son is not allowed to accuse his father of lunacy.
                 </p>
-                <pb id="p.123"/>
+                <pb xml:id="p.123"/>
                 <p>
                     <milestone n="27" unit="section"/>
                     Disinheritance may be of two kinds. In the first
@@ -3240,7 +3258,7 @@ who is disinherited may be a ravisher or an adulterer:
 in the second case it is for a crime which is still incomplete and terminable
                     <note anchored="true" place="unspecified">
                         Literally
-                        <hi rend="italics">conditional.</hi>
+                        <hi rend="italic">conditional.</hi>
                         The sense, however, is that the disinheritance is only conditional on the disobedience being
 continued.
                     </note>
@@ -3278,7 +3296,7 @@ such a manner that, while denouncing the act, he
 will yet express pity for the father on the ground
 that he has erred by reason of his infirmity. On the
 other hand, in the latter case, where the act has not
-                    <pb id="p.125"/>
+                    <pb xml:id="p.125"/>
                     yet taken place and there is nothing to prevent the
 father changing his purpose, he must begin by a
 prolonged attempt to induce him to change his mind,
@@ -3301,18 +3319,18 @@ alleged, will sometimes suffice to secure an acquittal.
                 <p>
                     <milestone n="32" unit="section"/>
                     There are, however, a number of other controversial themes involving
-                    <hi rend="italics">quality,</hi>
+                    <hi rend="italic">quality,</hi>
                     as, for example,
 cases of
-                    <hi rend="italics">assault.</hi>
+                    <hi rend="italic">assault.</hi>
                     In these, although at times the
 accused denies that he committed the assault, the
 pleading as a rule is concerned with fact and intention.
                     <milestone n="33" unit="section"/>
                     Then there are cases concerned with the
-                    <hi rend="italics">appointment of a prosecutor,</hi>
+                    <hi rend="italic">appointment of a prosecutor,</hi>
                     which are known as
-                    <hi rend="italics">divinations.</hi>
+                    <hi rend="italic">divinations.</hi>
                     In this connexion Cicero, who was indicting Verres on the instruction of our Sicilian allies,
 adopts the following division-to the effect that the
 main point for consideration is, by whom those the
@@ -3322,7 +3340,7 @@ the accused would least desire them to be represented.
                     <milestone n="34" unit="section"/>
                     But in the great majority of cases the
 questions raised are, which claimant has the strongest
-                    <pb id="p.127"/>
+                    <pb xml:id="p.127"/>
                     motives for undertaking the role of accuser, which is
 likely to bring the greatest energy or talent to the
 task, and which is likely to press the charge with
@@ -3330,7 +3348,7 @@ the greatest sincerity.
                     <milestone n="35" unit="section"/>
                     Next we may take cases
 concerned with
-                    <hi rend="italics">guardianship,</hi>
+                    <hi rend="italic">guardianship,</hi>
                     in which it is usual
 to enquire whether it is necessary to investigate
 anything save the accounts, and whether anything
@@ -3338,10 +3356,10 @@ can be demanded of the guardian except the
 honest execution of his trust; his sagacity and the
 success of his administration being beside the mark.
 Cases of
-                    <hi rend="italics">fraud on the part of an agent,</hi>
+                    <hi rend="italic">fraud on the part of an agent,</hi>
                     which are
 styled cases of
-                    <hi rend="italics">conduct of business</hi>
+                    <hi rend="italic">conduct of business</hi>
                     when they occur in
 the actual courts, are of a similar nature, since they
 also are concerned with the administration of a
@@ -3349,12 +3367,12 @@ trust.
                     <milestone n="36" unit="section"/>
                     In addition to these we have the fictitious
 cases of the schools which deal with
-                    <hi rend="italics">crimes not covered by the law,</hi>
+                    <hi rend="italic">crimes not covered by the law,</hi>
                     where the question is as a rule either
 whether the crime is really not covered by the law
 or whether it is a crime, though on rare occasions
 both questions are raised. Cases of
-                    <hi rend="italics">misconduct on the part of an ambassador</hi>
+                    <hi rend="italic">misconduct on the part of an ambassador</hi>
                     are of frequent occurrence
 among the Greeks, even in actual life: in these the
 legal question is raised whether it is lawful to deviate
@@ -3367,12 +3385,12 @@ as ambassador. But in such cases the most important
 question turns on the nature of the deed complained
                     <milestone n="37" unit="section"/>
                     of Next come cases of
-                    <hi rend="italics">action contrary to the interests of the state.</hi>
+                    <hi rend="italic">action contrary to the interests of the state.</hi>
                     In these we meet with legal quibbles
 as to what is the meaning of
                     <quote>
                         action contrary to the
-                        <pb id="p.129"/>
+                        <pb xml:id="p.129"/>
                         interests of the state,
                     </quote>
                     and whether the action of
@@ -3380,7 +3398,7 @@ the accused was injurious or profitable, or whether
 the interests of the state suffered at his hands or
 merely on his account: but the most important
 question is that of fact. There are also cases of
-                    <hi rend="italics">ingratitude;</hi>
+                    <hi rend="italic">ingratitude;</hi>
                     in these we raise the question whether
 the accused has really received any kindness. It is
 only rarely that the fact can be denied, as denial is
@@ -3393,34 +3411,34 @@ repaid, does this necessarily involve ingratitude?
 Was it in his power to repay? Did he really owe
 the return which was demanded of him? What is
 his intention? Somewhat simpler are cases of
-                    <hi rend="italics">unjust divorce,</hi>
+                    <hi rend="italic">unjust divorce,</hi>
                     a form of controversy which has this
 peculiarity, that the accuser defends and the defendant accuses.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         the divorced wife defends her character, while the
 husband attacks her character.
                     </note>
                     <milestone n="39" unit="section"/>
                     Further there are cases where
 a senator sets forth to the senate the
-                    <hi rend="italics">reasons which determine him to commit suicide,</hi>
+                    <hi rend="italic">reasons which determine him to commit suicide,</hi>
                     <note anchored="true" place="unspecified">
                         Based on a law of Massilia, where the state provided
 poison for the would-be suicide, provided he could justify
 himself before the senate.
                     </note>
                     in which there is one
-                    <hi rend="italics">legal</hi>
+                    <hi rend="italic">legal</hi>
                     question, namely, whether a man who desires to
 kill himself in order to escape the clutches of the
 law ought to be prevented from so doing, while the
 remaining questions are all concerned with
-                    <hi rend="italics">quality.</hi>
+                    <hi rend="italic">quality.</hi>
                     There are also fictitious cases concerned with
-                    <hi rend="italics">wills,</hi>
+                    <hi rend="italic">wills,</hi>
                     in which the only question raised is one of
-                    <hi rend="italics">quality,</hi>
+                    <hi rend="italic">quality,</hi>
                     as,
 for instance, in the controversial theme quoted above,
                     <note anchored="true" place="unspecified">VII. i. 38.</note>
@@ -3433,31 +3451,31 @@ relatives is which is the most suitable.
                     <milestone n="40" unit="section"/>
                     I do not,
 however, intend to discuss every possible theme,
-                    <pb id="p.131"/>
+                    <pb xml:id="p.131"/>
                     since fresh ones can always be invented, nor yet to
 deal with all the questions to which they give rise,
 since these vary with circumstances. But I cannot
 help expressing my astonishment that Flavus,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         Verginius mentioned in § 24.
                     </note>
                     for
 whose authority I have the highest respect, restricted
 the range of
-                    <hi rend="italics">quality</hi>
+                    <hi rend="italic">quality</hi>
                     to such an extent in the text-book
 which he composed for the special guidance of the
 schools.
                 </p>
                 <p>
                     <milestone n="41" unit="section"/>
-                    <hi rend="italics">Quantity</hi>
+                    <hi rend="italic">Quantity</hi>
                     also, as I have already stated,
                     <note anchored="true" place="unspecified">§ 16.</note>
                     falls as a
 rule, though not always, under the head of
-                    <hi rend="italics">quality,</hi>
+                    <hi rend="italic">quality,</hi>
                     whether it is concerned with measure or number.
 Measure, however, sometimes consists in the valuation
 of a deed with a view to determining the amount
@@ -3469,7 +3487,7 @@ is to be punished or rewarded.
                     For example is a
 ravisher to pay 10,000 sesterces
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         IV. ii. 69.
                     </note>
                     because that is the
@@ -3484,7 +3502,7 @@ since it is not claimed by the prosecution.
 point on which judgment has to be delivered is
 whether the accused is guilty of causing his victim's
 death. The same type of case will also bring
-                    <hi rend="italics">conjecture</hi>
+                    <hi rend="italic">conjecture</hi>
                     into play, when, for example, the question
 in dispute is whether the accused shall be punished
 with banishment for life or for five years. For the
@@ -3493,12 +3511,12 @@ willingly or not.
                     <milestone n="44" unit="section"/>
                     Again, there are questions concerned with numerical quantity which turn on a
 point of law, such as the questions whether thirty
-                    <pb id="p.133"/>
+                    <pb xml:id="p.133"/>
                     rewards are due to Thrasybulus,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         for his overthrow of the thirty tyrants;
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         II. vi. 26.
                     </note>
                     or whether, when
@@ -3506,7 +3524,7 @@ two thieves have stolen a sum of money, they are
 each to be required to refund fourfold or twofold.
 But in these cases, too, valuation of the act is
 necessary, and yet the point of law also turns on
-                    <hi rend="italics">quality.</hi>
+                    <hi rend="italic">quality.</hi>
                 </p>
                 <p>
                     V. He who neither denies nor defends his act nor
@@ -3525,24 +3543,24 @@ comes up during the course of the actual trial. Such
 discussions fall into two classes, according as the point
 in dispute arises from an argument advanced by the
 prosecution or from some
-                    <hi rend="italics">prescription</hi>
+                    <hi rend="italic">prescription</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 72.
                     </note>
                     (or demurrer)
 put forward by the defence. There have indeed
 been some writers who have held that there is a
 special
-                    <hi rend="italics">prescriptive basis;</hi>
+                    <hi rend="italic">prescriptive basis;</hi>
                     but
-                    <hi rend="italics">prescription</hi>
+                    <hi rend="italic">prescription</hi>
                     is covered
 by precisely the same questions that cover all other
 laws.
                     <milestone n="3" unit="section"/>
                     When the dispute turns on
-                    <hi rend="italics">prescription,</hi>
+                    <hi rend="italic">prescription,</hi>
                     there
 is no need to enquire into the facts of the case
 itself. For example, a son puts forward a demurrer
@@ -3553,14 +3571,14 @@ Still, wherever possible, we should attempt to create
 a favourable impression in the judge as to the facts
 of the case as well, since, if this be done, he will be
 all the more disposed to give an indulgent hearing
-                    <pb id="p.135"/>
+                    <pb xml:id="p.135"/>
                     to our point of law: for example, in actions taking
 the form of a wager and arising out of interdicts,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">sponsio</hi>
+                        <hi rend="italic">sponsio</hi>
                         (= wager) was a form of suit in which the litigant
 promised to pay a sum of money if he lost his case. The
-                        <hi rend="italics">interdict was</hi>
+                        <hi rend="italic">interdict was</hi>
                         an order issued by the praetor commanding or
 prohibiting certain action. It occurred chiefly in disputes
 about property.
@@ -3575,7 +3593,7 @@ our possession, but that it was ours to possess.
 tile other hand, the question more frequently turns
 on intention. Take the law
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         an imaginary law of the schools of rhetoric.
                     </note>
                     <quote>Let a hero choose what reward he will.</quote>
@@ -3583,7 +3601,7 @@ on intention. Take the law
 whatever he chooses. I cannot put forward any
 formal demurrer, but none the less I use the intention as against the letter of the law just as I should
 use a demurrer. In both cases the
-                    <hi rend="italics">basis</hi>
+                    <hi rend="italic">basis</hi>
                     is the same.
                 </p>
                 <p>
@@ -3600,9 +3618,9 @@ equally to wills, agreements, contracts and every
 form of document; nay, it will apply even to verbal
 agreements. And since I have classified such cases
 under four
-                    <hi rend="italics">questions</hi>
+                    <hi rend="italic">questions</hi>
                     or
-                    <hi rend="italics">bases,</hi>
+                    <hi rend="italic">bases,</hi>
                     I will deal with each in
 turn.
                 </p>
@@ -3617,7 +3635,7 @@ questions occur in the schools as well, where they
 are often invented with this special purpose. One
 form of this kind of question is found in cases where
 tile enquiry turns both on the letter and the spirit
-                    <pb id="p.137"/>
+                    <pb xml:id="p.137"/>
                     of a law.
                     <milestone n="2" unit="section"/>
                     Such questions arise when the law presents
@@ -3656,7 +3674,7 @@ of one born before his mother became a prostitute.
 as to the interpretation of the law forbidding an action
 to be brought twice on the same dispute, the problem
 being whether the word
-                    <hi rend="italics">twice</hi>
+                    <hi rend="italic">twice</hi>
                     refers to the prosecutor
 or the prosecution. Such are the points arising out
 of the obscurity of the law.
@@ -3666,10 +3684,10 @@ of the obscurity of the law.
 where the meaning is clear. Those who have given
 exclusive attention to this class of question call it
 the
-                    <hi rend="italics">basis concerned with the obvious expression of the law and its intention.</hi>
+                    <hi rend="italic">basis concerned with the obvious expression of the law and its intention.</hi>
                     In such circumstances one
 party will rest their case on the letter, the other
-                    <pb id="p.139"/>
+                    <pb xml:id="p.139"/>
                     on the intention of the law.
                     <milestone n="5" unit="section"/>
                     There are three
@@ -3717,14 +3735,14 @@ as Cicero did in his defence of Caecina.
 method becomes operative when we find something
 in the actual words of the law which enables us to
 prove that the intention of the legislator was different.
-                    <pb id="p.141"/>
+                    <pb xml:id="p.141"/>
                     The following theme will provide an example.
                     <quote>
                         Anyone who is caught at night with steel in his hands
 shall be thrown into prison. A man is found wearing a steel ring, and is imprisoned by the magistrate.
                     </quote>
                     In this case the use of the word
-                    <hi rend="italics">caught</hi>
+                    <hi rend="italic">caught</hi>
                     is sufficient
 proof that the word steel was only intended by the
 law in the sense of a weapon of offence.
@@ -3757,9 +3775,9 @@ when what is written is obviously contrary to tile
 intention of the writer, occurred quite recently. A
 man who had made a bequest of 5000 sesterces, on
 altering his will erased the word
-                    <hi rend="italics">sesterces</hi>
+                    <hi rend="italic">sesterces</hi>
                     and inserted
-                    <hi rend="italics">pounds of silver.</hi>
+                    <hi rend="italic">pounds of silver.</hi>
                     <note anchored="true" place="unspecified">About 384 sesterces go to the pound of silver.</note>
                     But it was clear that he had meant
 not 5000 but 5 pounds of silver, because the weight
@@ -3767,15 +3785,15 @@ of silver mentioned in the bequest was unparalleled
 and incredible.
                     <milestone n="12" unit="section"/>
                     The same
-                    <hi rend="italics">basis</hi>
+                    <hi rend="italic">basis</hi>
                     includes such general
 questions as to whether we should stand by the
-                    <pb id="p.143"/>
+                    <pb xml:id="p.143"/>
                     letter or the intention of the document, and what
 was the purpose of the writer, while for the treatment of such questions we must have recourse to
-                    <hi rend="italics">quality</hi>
+                    <hi rend="italic">quality</hi>
                     or
-                    <hi rend="italics">conjecture,</hi>
+                    <hi rend="italic">conjecture,</hi>
                     with which I think I have dealt
 in sufficient detail.
                 </p>
@@ -3787,7 +3805,7 @@ in sufficient detail.
                     For all writers
 of text-books are agreed that in such cases there
 are two
-                    <hi rend="italics">bases</hi>
+                    <hi rend="italic">bases</hi>
                     involving the letter and the intention
 of the law respectively. This view is justified by
 the fact that, when one law contradicts another, both
@@ -3824,23 +3842,23 @@ women,
                         Two women, both dishonoured by one man, put in
 different claims, both of which are provided for as alternatives
 in the same law.
-                        <hi rend="italics">A.</hi>
+                        <hi rend="italic">A.</hi>
                         demands the ravisher's death,
-                        <hi rend="italics">B.</hi>
+                        <hi rend="italic">B.</hi>
                         demands his hand in marriage.
                     </note>
                     when the question must turn either on
-                    <hi rend="italics">time</hi>
+                    <hi rend="italic">time</hi>
                     (that is, whose claim has priority) or on
-                    <hi rend="italics">quality</hi>
+                    <hi rend="italic">quality</hi>
                     (that
 is, whose claim is the more just). Again, we may
 have a conflict between diverse, similar or dissimilar
 laws.
                     <milestone n="4" unit="section"/>
-                    <hi rend="italics">Diverse</hi>
+                    <hi rend="italic">Diverse</hi>
                     laws are those against which arguments
-                    <pb id="p.145"/>
+                    <pb xml:id="p.145"/>
                     may be brought without reference to any contradictory law. The following theme will provide an
 example.
                     <quote>
@@ -3861,7 +3879,7 @@ in the citadel, or a sally against the enemy may have
 been necessary.
                     <milestone n="5" unit="section"/>
                     Laws are styled
-                    <hi rend="italics">similar</hi>
+                    <hi rend="italic">similar</hi>
                     when nothing can be opposed to one except the other.
                     <quote>
                         Tyrannicides shall have their statues set up in the
@@ -3875,7 +3893,7 @@ which can bar the erection of the statue of a
 tyrannicide in the gymnasium.
                     <milestone n="6" unit="section"/>
                     Laws are styled
-                    <hi rend="italics">dissimilar</hi>
+                    <hi rend="italic">dissimilar</hi>
                     when many arguments can be urged against
 one, while the only point which can be urged against
 the other is the actual subject of dispute. An
@@ -3886,7 +3904,7 @@ above, which can be urged against the law permitting
 a hero to choose whatever reward he will, but
 the letter of the law dealing with the crime of
 desertion cannot be overthrown under any
-                    <pb id="p.147"/>
+                    <pb xml:id="p.147"/>
                     circumstances save the choice of rewards to which I have
 just referred.
                 </p>
@@ -3932,7 +3950,7 @@ over the son, while the son, in virtue of his new position
 as patron, denies that his father possessed the rights
 of a father, because he was in the power of his patron.
                 </p>
-                <pb id="p.149"/>
+                <pb xml:id="p.149"/>
                 <p>
                     <milestone n="10" unit="section"/>
                     Laws containing two provisions may conflict with
@@ -3948,7 +3966,7 @@ son shall only rank as a citizen.
 said about laws will also apply to decrees of the
 senate. If decrees of the senate conflict with one
 another or with the laws, the
-                    <hi rend="italics">basis</hi>
+                    <hi rend="italic">basis</hi>
                     will be the same
 as if laws only were concerned.
                 </p>
@@ -3956,20 +3974,20 @@ as if laws only were concerned.
                     <milestone n="8" unit="chapter"/>
                     <milestone n="1" unit="section"/>
                     The
-                    <hi rend="italics">syllogistic basis</hi>
+                    <hi rend="italic">syllogistic basis</hi>
                     <note anchored="true" place="unspecified">
                         See III. vi. 43
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     has some resemblance
 to the
-                    <hi rend="italics">basis</hi>
+                    <hi rend="italic">basis</hi>
                     concerned with the
-                    <hi rend="italics">letter and intention of the law,</hi>
+                    <hi rend="italic">letter and intention of the law,</hi>
                     since whenever it comes into play, one party
 rests his case on the letter: there is, however, this
 difference between the two
-                    <hi rend="italics">bases,</hi>
+                    <hi rend="italic">bases,</hi>
                     that in the latter
 we argue against the letter, in the present beyond
 the letter, while in the latter the party defending
@@ -3977,10 +3995,10 @@ the letter aims at securing that in any case the letter
 may be carried into effect, whereas in the present his
 aim will be to prevent anything except the letter
 being carried into effect. The
-                    <hi rend="italics">syllogism</hi>
+                    <hi rend="italic">syllogism</hi>
                     is sometimes
 employed in conjunction with
-                    <hi rend="italics">definition:</hi>
+                    <hi rend="italic">definition:</hi>
                     for often if
 the definition be weak it takes refuge in the syllogism.
 Assume a law to run as follows:
@@ -3999,7 +4017,7 @@ line for the accuser to take will be to assert that
 the love-potion was a poison. This involves definition.
 If it proves weak, we shall have recourse to the
 syllogism, to which we shall proceed after virtually
-                    <pb id="p.151"/>
+                    <pb xml:id="p.151"/>
                     dropping our previous argument, and which we shall
 employ to decide the question whether she does not
 deserve to be punished for administering the lovepotion no less than if she had caused her husband's
@@ -4008,19 +4026,19 @@ death by poison.
                 <p>
                     <milestone n="3" unit="section"/>
                     The
-                    <hi rend="italics">syllogistic basis,</hi>
+                    <hi rend="italic">syllogistic basis,</hi>
                     then, deduces from the letter
 of the law that which is uncertain; and since this
 conclusion is arrived at by reason, the
-                    <hi rend="italics">basis</hi>
+                    <hi rend="italic">basis</hi>
                     is called
-                    <hi rend="italics">ratiocinative.</hi>
+                    <hi rend="italic">ratiocinative.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">See</hi>
+                        <hi rend="italic">See</hi>
                         in. vi. 43, 61.
                     </note>
                     It may be subdivided into the following
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     of question. If it is right to do a thing
 once, is it right to do it often? Example:
                     <quote>
@@ -4043,7 +4061,7 @@ The ravisher returned and the woman demands to
 be allowed her choice.
                     </quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i. e.</hi>
+                        <hi rend="italic">i. e.</hi>
                         the death of the ravisher, see n. on VII. vii. 3.
                     </note>
                     Is that which is lawful
@@ -4063,7 +4081,7 @@ provisions of the law are precise. He will say,
                     <quote>
                         The
 ravished woman demands the exercise of the
-                        <pb id="p.153"/>
+                        <pb xml:id="p.153"/>
                         choice permitted her by law,
                     </quote>
                     or
@@ -4110,25 +4128,25 @@ cases will be to appeal to equity.
                     <milestone n="9" unit="chapter"/>
                     <milestone n="1" unit="section"/>
                     I turn to tile discussion of
-                    <hi rend="italics">ambiguity,</hi>
+                    <hi rend="italic">ambiguity,</hi>
                     which will
 be found to have countless species: indeed, in the
 opinion of certain philosophers, there is not a single
 word which has not a diversity of meanings. There
 are, however, very few
-                    <hi rend="italics">genera,</hi>
+                    <hi rend="italic">genera,</hi>
                     since ambiguity must
 occur either in a single word or in a group of words.
                 </p>
-                <pb id="p.155"/>
+                <pb xml:id="p.155"/>
                 <p>
                     <milestone n="2" unit="section"/>
                     Single words give rise to error, when the same
 noun applies to a number of things or persons (the
 Greeks call this
-                    <hi rend="italics">homonymy):</hi>
+                    <hi rend="italic">homonymy):</hi>
                     for example, it is uncertain with regard to the word
-                    <hi rend="italics">gallus</hi>
+                    <hi rend="italic">gallus</hi>
                     whether it
 means a cock or a Gaul or a proper name or an
 emasculated priest of tybele; while Ajax may refer
@@ -4137,9 +4155,9 @@ Again, verbs likewise may have different meanings,
 as, for example, cerno.
                     <note anchored="true" place="unspecified">
                         See
-                        <hi rend="italics">or</hi>
+                        <hi rend="italic">or</hi>
                         decide
-                        <hi rend="italics">or</hi>
+                        <hi rend="italic">or</hi>
                         separate.
                     </note>
                     <milestone n="3" unit="section"/>
@@ -4152,21 +4170,21 @@ nature of the bequest.
                     There is another form of
 ambiguity where a word has one meaning when
 entire and another when divided, as, for example,
-                    <hi rend="italics">ingenua, armameniam</hi>
+                    <hi rend="italic">ingenua, armameniam</hi>
                     or
-                    <hi rend="italics">Corvinum.</hi>
+                    <hi rend="italic">Corvinum.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Inyenua,</hi>
+                        <hi rend="italic">Inyenua,</hi>
                         a freeborn woman;
-                        <hi rend="italics">in genua,</hi>
+                        <hi rend="italic">in genua,</hi>
                         on to the knees.
-                        <hi rend="italics">Armamentum,</hi>
+                        <hi rend="italic">Armamentum,</hi>
                         equipment;
-                        <hi rend="italics">arma mentum,</hi>
+                        <hi rend="italic">arma mentum,</hi>
                         arms, chin.
-                        <hi rend="italics">Corvinum,</hi>
+                        <hi rend="italic">Corvinum,</hi>
                         ace. of name Corvinus;
-                        <hi rend="italics">cor vimium,</hi>
+                        <hi rend="italic">cor vimium,</hi>
                         heart, wine.
                     </note>
                     The disputes
@@ -4190,21 +4208,21 @@ outrage, an occasion for dispute may be afforded by
 the question whether the words mean
                     <quote>in a cultivated place</quote>
                     (
-                    <hi rend="italics">in culto loco</hi>
+                    <hi rend="italic">in culto loco</hi>
                     ) or
                     <quote>in an uncultivated place</quote>
                     (
-                    <hi rend="italics">inculto loco</hi>
+                    <hi rend="italic">inculto loco</hi>
                     ).
                     <milestone n="6" unit="section"/>
                     Thus arises the Greek theme
-                    <pb id="p.157"/>
+                    <pb xml:id="p.157"/>
                     about Leon and Pantaleon, who go to law because
 the handwriting of a will makes it uncertain whether
 the testator has left all his property to Leon or his
 property to Pantaleon.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i. e.</hi>
+                        <hi rend="italic">i. e.</hi>
                         whether he wrote
                         <foreign xml:lang="grc">pa/nta *le/onti</foreign>
                         or
@@ -4216,10 +4234,10 @@ property to Pantaleon.
 to a case, as in the following passage:
                     <note anchored="true" place="unspecified">
                         Enn.
-                        <hi rend="italics">Ann.</hi>
+                        <hi rend="italic">Ann.</hi>
                         186. An ambiguous oracle quoted by Cicero
 (
-                        <hi rend="italics">de Div.</hi>
+                        <hi rend="italic">de Div.</hi>
                         II. lvi.). It might equally mean that Rome or
 Pyrrhus would conquer. Cp. the oracle given to Croesus:
                         <quote>If thou cross the Halys, thou shalt destroy a mighty empire.</quote>
@@ -4239,7 +4257,7 @@ there is a word in the middle of the sentence which
 may be referred either to what precedes or what
 follows, as in the line of Virgil
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Aen.</hi>
+                        <hi rend="italic">Aen.</hi>
                         i. 477.
                     </note>
                     which describes
@@ -4256,7 +4274,7 @@ controversial theme,
                     <quote>
                         A certain man in his will
 ordered his heirs to erect
-                        <hi rend="italics">statuam auream hastam tenentem,'</hi>
+                        <hi rend="italic">statuam auream hastam tenentem,'</hi>
                     </quote>
                     turns on a similar ambiguity; for it raises
 the question whether it is the statue holding the
@@ -4270,23 +4288,23 @@ the line:
                             quinquaginta uhi erant centum inde occidit Achilles.
                             <note anchored="true" place="unspecified">
                                 <quote>Achilles slew fifty out of a hundred,</quote>
-                                <hi rend="italics">or</hi>
+                                <hi rend="italic">or</hi>
                                 <quote>a hundred out of fifty.</quote>
                                 Translated from a Greek line in Arist.
-                                <hi rend="italics">Soph. El.</hi>
+                                <hi rend="italic">Soph. El.</hi>
                                 i. 4. (
                                 <foreign xml:lang="grc">penth/kont' a)ndrw=n e(kato\n li/pe di=os</foreign>
                                 ).
-                                <hi rend="italics">Quinquaginta</hi>
+                                <hi rend="italic">Quinquaginta</hi>
                                 is the object of
-                                <hi rend="italics">occidit.</hi>
+                                <hi rend="italic">occidit.</hi>
                                 Faulty reading might
 make it go with
-                                <hi rend="italics">ubi erant,</hi>
+                                <hi rend="italic">ubi erant,</hi>
                                 leaving
-                                <hi rend="italics">centum</hi>
+                                <hi rend="italic">centum</hi>
                                 as the object of
-                                <hi rend="italics">occidit,</hi>
+                                <hi rend="italic">occidit,</hi>
                                 and making nonsense of the line.
                             </note>
                         </l>
@@ -4294,7 +4312,7 @@ make it go with
                     <milestone n="9" unit="section"/>
                     It is also often doubtful to which of two antecedents
 a phrase is to be referred. Hence we get such
-                    <pb id="p.159"/>
+                    <pb xml:id="p.159"/>
                     controversial themes as,
                     <quote>My heir shall be bound to give my wife a hundred pounds of silver according to choice,</quote>
                     where it is left uncertain which of the
@@ -4310,24 +4328,24 @@ third by some addition.
                     Ambiguity resulting from
 the use of two accusatives may be removed by the
 substitution of the ablative: for example,
-                    <hi rend="italics">Lachetem audivi percussisse Demeam</hi>
+                    <hi rend="italic">Lachetem audivi percussisse Demeam</hi>
                     (I heard that Demea struck
 Laches,
-                    <hi rend="italics">or</hi>
+                    <hi rend="italic">or</hi>
                     that L. struck D.) may be rendered clear
 by writing
-                    <hi rend="italics">a Lachete percussum Demeam</hi>
+                    <hi rend="italic">a Lachete percussum Demeam</hi>
                     (that D. was
 struck by L.). There is, however, a natural ambiguity in the ablative case itself, as I pointed out
 in the first book.
                     <note anchored="true" place="unspecified">I. vii. 3.</note>
                     For example,
-                    <hi rend="italics">caelo decurrit aperto</hi>
+                    <hi rend="italic">caelo decurrit aperto</hi>
                     <note anchored="true" place="unspecified">
                         Apparently a misquotation of Virg.
-                        <hi rend="italics">Aen.</hi>
+                        <hi rend="italic">Aen.</hi>
                         v. 212,
-                        <hi rend="italics">pelago decurrit aperto.</hi>
+                        <hi rend="italic">pelago decurrit aperto.</hi>
                     </note>
                     leaves it doubtful whether the poet means he
 hastened down
@@ -4338,37 +4356,37 @@ hastened down
                     Words may
 be separated by a breathing space or pause. We
 may, for instance, say
-                    <hi rend="italics">statuam,</hi>
+                    <hi rend="italic">statuam,</hi>
                     and then, after a
 slight pause, add
-                    <hi rend="italics">auream hastam,</hi>
+                    <hi rend="italic">auream hastam,</hi>
                     or the pause may
 come between
-                    <hi rend="italics">statuam auream</hi>
+                    <hi rend="italic">statuam auream</hi>
                     and
-                    <hi rend="italics">haslam.</hi>
+                    <hi rend="italic">haslam.</hi>
                     The
 addition referred to above would take the form
-                    <hi rend="italics">quod elegerit ipse,</hi>
+                    <hi rend="italic">quod elegerit ipse,</hi>
                     where
-                    <hi rend="italics">ipse</hi>
+                    <hi rend="italic">ipse</hi>
                     will show that the reference
 to the heir, or
-                    <hi rend="italics">quod elegerit ipsa,</hi>
+                    <hi rend="italic">quod elegerit ipsa,</hi>
                     making the reference
 to the wife. In cases where ambiguity is caused
 by the addition of a word, the difficulty may be
 eliminated by the removal of a word, as in the
 sentence
-                    <hi rend="italics">nos flentes illos deprehendimus.</hi>
+                    <hi rend="italic">nos flentes illos deprehendimus.</hi>
                     <note anchored="true" place="unspecified">
                         Does this mean
-                        <hi rend="italics">we found them weeping,</hi>
+                        <hi rend="italic">we found them weeping,</hi>
                         or
-                        <hi rend="italics">we found them weeping for us?</hi>
+                        <hi rend="italic">we found them weeping for us?</hi>
                         The ambiguity is eliminated by the removal
 of
-                        <hi rend="italics">nos.</hi>
+                        <hi rend="italic">nos.</hi>
                     </note>
                     <milestone n="12" unit="section"/>
                     Where it
@@ -4377,7 +4395,7 @@ word or phrase itself is ambiguous, we shall have to
 alter several words, as, for example, in the sentence,
                     <quote>
                         My heir shall be bound to give him all his own
-                        <pb id="p.161"/>
+                        <pb xml:id="p.161"/>
                         property,
                     </quote>
                     where
@@ -4386,7 +4404,7 @@ alter several words, as, for example, in the sentence,
 commits the same fault when he says of Gaius
 Fannius,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         xxvi. 101. The sentence continues,
                         <quote>
                             (an act of
@@ -4406,18 +4424,18 @@ the younger of his sons-in-law, the preference over
 himself. .
                     </quote>
                     For
-                    <hi rend="italics">over himself</hi>
+                    <hi rend="italic">over himself</hi>
                     may refer either to his
 father-in-law or to Fannius.
                     <milestone n="13" unit="section"/>
                     Again, another source
 of ambiguity arises from leaving it doubtful in a
 written document whether a syllable is long or short.
-                    <hi rend="italics">Cato,</hi>
+                    <hi rend="italic">Cato,</hi>
                     for example, means one thing in the nominative when its second syllable is short, and another in
 the dative or ablative when the same syllable is long.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">sc.</hi>
+                        <hi rend="italic">sc.</hi>
                         of the adjective catus, shrewd.
                     </note>
                     There are also a number of other forms of ambiguity
@@ -4432,7 +4450,7 @@ far as the written or spoken word is concerned,
 it is equally important for both parties. It is
 therefore a perfectly futile rule which directs us to
 endeavour, in connexion with this
-                    <hi rend="italics">basis,</hi>
+                    <hi rend="italic">basis,</hi>
                     to turn the
 word in question to suit our own purpose, since, if
 this is feasible, there is no ambiguity.
@@ -4445,79 +4463,79 @@ most equitable, and what was the intention of the
 person who wrote or uttered the words. I have,
 however, given sufficient instructions in the course
 of my remarks on
-                    <hi rend="italics">conjecture</hi>
+                    <hi rend="italic">conjecture</hi>
                     and
-                    <hi rend="italics">quality,</hi>
+                    <hi rend="italic">quality,</hi>
                     as to the
 method of treating such questions, whether by the
 prosecution or the defence.
                 </p>
-                <pb id="p.163"/>
+                <pb xml:id="p.163"/>
                 <p>
                     <milestone n="10" unit="chapter"/>
                     <milestone n="1" unit="section"/>
                     There is, however, a certain affinity between
 all these
-                    <hi rend="italics">bases.</hi>
+                    <hi rend="italic">bases.</hi>
                     <note anchored="true" place="unspecified">III. vi. 54.</note>
                     For in
-                    <hi rend="italics">definition</hi>
+                    <hi rend="italic">definition</hi>
                     we enquire into the
 meaning of a term, and in the
-                    <hi rend="italics">syllogism,</hi>
+                    <hi rend="italic">syllogism,</hi>
                     which is
 closely connected with
-                    <hi rend="italics">definition,</hi>
+                    <hi rend="italic">definition,</hi>
                     <note anchored="true" place="unspecified">See ch. viii. 1.</note>
                     we consider what
 was the meaning of the writer, while it is obvious
 that in the case of contrary laws there are two
-                    <hi rend="italics">bases,</hi>
+                    <hi rend="italic">bases,</hi>
                     one concerned with the
-                    <hi rend="italics">letter,</hi>
+                    <hi rend="italic">letter,</hi>
                     and the other with
 the
-                    <hi rend="italics">intention.</hi>
+                    <hi rend="italic">intention.</hi>
                     Again,
-                    <hi rend="italics">definition</hi>
+                    <hi rend="italic">definition</hi>
                     is in itself a kind of
-                    <hi rend="italics">ambiguity,</hi>
+                    <hi rend="italic">ambiguity,</hi>
                     since it brings out two meanings in the
 same term.
                     <milestone n="2" unit="section"/>
                     The
-                    <hi rend="italics">basis</hi>
+                    <hi rend="italic">basis</hi>
                     concerned with the
-                    <hi rend="italics">letter</hi>
+                    <hi rend="italic">letter</hi>
                     and
 the
-                    <hi rend="italics">intention</hi>
+                    <hi rend="italic">intention</hi>
                     of the law involves a legal question as
 regards the interpretation of the words, which is
 identical with the question arising out of
-                    <hi rend="italics">contrary laws.</hi>
+                    <hi rend="italic">contrary laws.</hi>
                     Consequently some writers have asserted that
 all these
-                    <hi rend="italics">bases</hi>
+                    <hi rend="italic">bases</hi>
                     may be resolved into those concerned
 with the
-                    <hi rend="italics">letter</hi>
+                    <hi rend="italic">letter</hi>
                     and
-                    <hi rend="italics">intention,</hi>
+                    <hi rend="italic">intention,</hi>
                     while others hold that
 in all cases where the
-                    <hi rend="italics">letter</hi>
+                    <hi rend="italic">letter</hi>
                     and the
-                    <hi rend="italics">intention</hi>
+                    <hi rend="italic">intention</hi>
                     of a
 document have to be considered, it is
-                    <hi rend="italics">ambiguity</hi>
+                    <hi rend="italic">ambiguity</hi>
                     that
 gives rise to the question at issue. But all these
-                    <hi rend="italics">bases</hi>
+                    <hi rend="italic">bases</hi>
                     are really distinct, for an obscure point of law
 is not the same as an ambiguous point of law.
-                    <hi rend="italics">Definition,</hi>
+                    <hi rend="italic">Definition,</hi>
                     then,
                     <milestone n="3" unit="section"/>
                     involves a general question as to
@@ -4525,27 +4543,27 @@ the actual nature of a term, a question which may
 conceivably have no connexion whatsoever with the
 content of the case in point. In investigations as
 to the
-                    <hi rend="italics">letter</hi>
+                    <hi rend="italic">letter</hi>
                     and the
-                    <hi rend="italics">intention,</hi>
+                    <hi rend="italic">intention,</hi>
                     the dispute turns on
 the provisions contained in the law, whereas the
-                    <hi rend="italics">syllogism</hi>
+                    <hi rend="italic">syllogism</hi>
                     deals with that which is not contained in
 the law. In disputes arising out of
-                    <hi rend="italics">ambiguity</hi>
+                    <hi rend="italic">ambiguity</hi>
                     we
 are led from the ambiguous phrase to its conflicting
 meanings, whereas in the case of
-                    <hi rend="italics">contrary laws</hi>
+                    <hi rend="italic">contrary laws</hi>
                     the
 fight starts from the conflict of their provisions.
                     <milestone n="4" unit="section"/>
                     The distinction between these
-                    <hi rend="italics">bases</hi>
+                    <hi rend="italic">bases</hi>
                     has therefore
 been rightly accepted by the most learned of
-                    <pb id="p.165"/>
+                    <pb xml:id="p.165"/>
                     rhetoricians, and is still adopted by the majority
 and the wisest of the teachers of to-day.
                 </p>
@@ -4562,14 +4580,14 @@ For not only must the whole case be analysed into
 its component topics and questions, but these subdivisions themselves require to be arranged in the
 order which is appropriate to them. For example,
 in the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     each part has its own special place,
 first, second and third, etc., while each question and
 topic requires to be suitably arranged, and the same
 is true even of isolated
-                    <hi rend="italics">general questions.</hi>
+                    <hi rend="italic">general questions.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         II. iv. 24; III. v. 8.
                     </note>
                     <milestone n="6" unit="section"/>
@@ -4582,7 +4600,7 @@ claim private property, whether he may demand any
 woman in marriage, whether he may claim to marry
 a woman who already possesses a husband, or this
 particular woman,
-                    <hi rend="italics">then,</hi>
+                    <hi rend="italic">then,</hi>
                     although it is his duty to
 deal with the first question first, proceeds to deal
 with them indiscriminately as each may happen to
@@ -4595,16 +4613,16 @@ law, and fails to follow the natural order,
 demands that after beginning with this question he
 should then proceed to introduce the subsidiary
 questions, thereby making the structure of his speech
-                    <pb id="p.167"/>
+                    <pb xml:id="p.167"/>
                     as regular as that of the human body, of which, for
 example, the hand is a part, while the fingers are
 parts of the hand, and the joints of the fingers.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">fecerit</hi>
+                        <hi rend="italic">fecerit</hi>
                         and
-                        <hi rend="italics">struxerit</hi>
+                        <hi rend="italic">struxerit</hi>
                         are both negatived by the preceding
-                        <hi rend="italics">non.</hi>
+                        <hi rend="italic">non.</hi>
                         It is impossible to reproduce the conciseness of the
 original.
                     </note>
@@ -4645,22 +4663,22 @@ of colour, breathing and temperature: this will
 depend on the talent of the individual. Therefore,
 in most instances, we must rely on ourselves,
 and must study cases with the utmost care, never
-                    <pb id="p.169"/>
+                    <pb xml:id="p.169"/>
                     forgetting that men discovered our art before ever
 they proceeded to teach it.
                     <milestone n="11" unit="section"/>
                     For the most effective,
 and what is justly styled most
-                    <hi rend="italics">economical</hi>
+                    <hi rend="italic">economical</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. iii. 9.
                     </note>
                     arrangement of a case as a whole, is that which cannot be
 determined except when we have the specific facts
 before us. It consists in the power to determine
 when the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     is necessary and when it should
 be omitted; when we should make our statement of
 facts continuous, and when we should subdivide it;
@@ -4673,9 +4691,9 @@ when we should begin by dealing with the arguments
 advanced by our opponents, and when with our own;
 when we should place the strongest proofs first and
 when the weakest; in what cases we should prefix
-                    <hi rend="italics">questions</hi>
+                    <hi rend="italic">questions</hi>
                     to the
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     and what preparation is
 necessary to pave the way for these questions; what
 arguments the judge will accept at once, and to
@@ -4694,7 +4712,7 @@ be read out in the course of our speech, and what
 reserved for a later stage. This gift of arrangement
 is to oratory what generalship is to war. The skilled
 commander will know how to distribute his forces
-                    <pb id="p.171"/>
+                    <pb xml:id="p.171"/>
                     for battle, what troops he should keep back to
 garrison forts or guard cities, to secure supplies, or
 guard communications, and what dispositions to make
@@ -4736,7 +4754,7 @@ will not seem like perfect strangers thrust into
 uncongenial company from distant places, but will
 be united with what precedes and follows by an
 intimate bond of union, with the result that our
-                    <pb id="p.173"/>
+                    <pb xml:id="p.173"/>
                     speech will give the impression not merely of having
 been put together, but of natural continuity. I fear,
 however, that I have been lured on from one thing to

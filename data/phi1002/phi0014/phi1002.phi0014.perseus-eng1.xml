@@ -1,4 +1,5 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
@@ -6,8 +7,8 @@
                 <title type="sub">Machine readable text</title>
                 <author n="Quint.">Quintilian</author>
                 <editor n="Butler" role="editor">Harold Edgeworth Butler</editor>
-                <sponsor>Perseus Project, Tufts University</sponsor>
                 <principal>Gregory Crane</principal>
+                <sponsor>Perseus Project, Tufts University</sponsor>
                 <respStmt>
                     <resp>Prepared under the supervision of</resp>
                     <name>Lisa Cerrato</name>
@@ -16,15 +17,14 @@
                     <name>David Smith</name>
                 </respStmt>
                 <funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
-            </titleStmt><publicationStmt><publisher>Trustees of Tufts University</publisher><pubPlace>Medford, MA</pubPlace><authority>Perseus Project</authority></publicationStmt>
-            
-            <publicationStmt>
+            </titleStmt>
+	    <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
                 <authority>Perseus Project</authority>
             </publicationStmt>
-            <sourceDesc default="NO">
-                <biblStruct default="NO">
+            <sourceDesc default="false">
+                <biblStruct default="false">
                     <monogr>
                         <author>Quintilian</author>
                         <title>With An English Translation</title>
@@ -39,6 +39,23 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+	    <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                         matchPattern="(\\w+).(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\']/tei:div[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                         matchPattern="(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                         matchPattern="(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
                 <refState unit="book"/>
                 <refState unit="chapter"/>
@@ -49,13 +66,13 @@
             </refsDecl>
         </encodingDesc>
         <profileDesc>
-            <langUsage default="NO">
-                <language ident="en">English</language>
+            <langUsage default="false">
                 <language ident="la">Latin</language>
-                <language ident="greek">Greek</language>
+                <language ident="en">English</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
-        <revisionDesc><!--
+        <revisionDesc><change who="GRC" when="2006">tagging</change><!--
             <change>
                 <date>2006</date>
                 <respStmt>
@@ -64,11 +81,12 @@
                 </respStmt>
                 <item/>
             </change>
-        --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+        --><change when="2014-08-01" who="Stella Dee">edited markup</change>
+           <change who="Zach Himes" when="2015-11-17">Edited teiHeader, converted to TEI P5 and EpiDoc</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
+    <text xml:lang="eng">
         <body>
-            <div part="N" sample="complete" org="uniform" n="4" type="book">
+            <div part="N" sample="complete" org="uniform" n="4" subtype="book" type="translation">
                 <head>Book IV</head>
                 <p>
                     <milestone n="pr" unit="chapter"/>
@@ -96,7 +114,7 @@ clearly my duty to spare no pains in moulding
 the character of my august pupils, that they may
 earn the deserved approval of the most righteous
 of censors. The same applies to their intellectual
-                    <pb id="p.5"/>
+                    <pb xml:id="p.5"/>
                     training, for I would not be found to have disappointed the expectations of a prince pre-eminent
 in eloquence as in all other virtues.
                     <milestone n="4" unit="section"/>
@@ -125,16 +143,16 @@ yet faced me. For my next task is to explain the
 order to be followed in forensic causes, which
 present the utmost complication and variety. I must
 set forth the function of the
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     the method
 of the
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     the cogency of
-                    <hi rend="italics">proofs,</hi>
+                    <hi rend="italic">proofs,</hi>
                     whether
 we are confirming our own assertions or refuting
 those of our opponents, and the force of the
-                    <hi rend="italics">peroration,</hi>
+                    <hi rend="italic">peroration,</hi>
                     whether we have to refresh the memory of the
 judge by a brief recapitulation of the facts, or to do
 what is far more effective, stir his emotions.
@@ -143,7 +161,7 @@ what is far more effective, stir his emotions.
 have preferred to give each of these points separate
 treatment, fearing that if they undertook them as
 a whole the burden would be greater than they
-                    <pb id="p.7"/>
+                    <pb xml:id="p.7"/>
                     could bear, and consequently have published several
 books on each individual point. I have ventured
 to treat them altogether and foresee such infinite
@@ -154,10 +172,10 @@ may fail me, but my courage must not fail.
                 </p>
                 <p>
                     1. The commencement or
-                    <hi rend="italics">exorditum</hi>
+                    <hi rend="italic">exorditum</hi>
                     as we call it in
 Latin is styled a
-                    <hi rend="italics">proem</hi>
+                    <hi rend="italic">proem</hi>
                     by the Greeks. This seems
 to me a more appropriate name, because whereas we
 merely indicate that we are beginning our task, they
@@ -168,7 +186,7 @@ speak.
                     <foreign xml:lang="grc">oi)/mh</foreign>
                     means a tune, and
 players on the lyre have given the name of
-                    <hi rend="italics">proem</hi>
+                    <hi rend="italic">proem</hi>
                     to
 the prelude which they perform to win the favour of
 the audience before entering upon the regular contest
@@ -178,19 +196,19 @@ make a few introductory remarks to win the indulgence of the judges.
                     Or it may be because
                     <foreign xml:lang="grc">oi)=mos</foreign>
                     in Greek means a
-                    <hi rend="italics">way,</hi>
+                    <hi rend="italic">way,</hi>
                     that the practice has arisen of
 calling an introduction a
-                    <hi rend="italics">proem.</hi>
+                    <hi rend="italic">proem.</hi>
                     But in any case
 there can be no doubt that by
-                    <hi rend="italics">proem</hi>
+                    <hi rend="italic">proem</hi>
                     we mean the
 portion of a speech addressed to the judge before he
 has begun to consider the actual case. And it is a
 mistaken practice which we adopt in the schools of
 always assuming in our
-                    <hi rend="italics">exordia</hi>
+                    <hi rend="italic">exordia</hi>
                     that the judge is
 already acquainted with the case.
                     <milestone n="4" unit="section"/>
@@ -198,19 +216,19 @@ already acquainted with the case.
 licence arises from the fact that a sketch of the case
 is always given before actual declamation.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         the statement of the
                         <quote>hard case</quote>
                         with which the
 declaimer has to deal.
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         iv. ii. 98
                     </note>
                     Such
 kinds of
-                    <hi rend="italics">exordia</hi>
+                    <hi rend="italic">exordia</hi>
                     may, however, be employed in the
-                    <pb id="p.9"/>
+                    <pb xml:id="p.9"/>
                     courts, when a case comes on for the second time, but
 never or rarely on the first occasion, unless we are
 speaking before a judge who has knowledge of
@@ -219,7 +237,7 @@ the case from some other source.
                 <p>
                     <milestone n="5" unit="section"/>
                     The sole purpose of the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     is to prepare our
 audience in such a way that they will be disposed to
 lend a ready ear to the rest of our speech. The
@@ -240,7 +258,7 @@ three classes, the plaintiff, the defendant and the
 judge.
                     <milestone n="7" unit="section"/>
                     This classification is wrong, for the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     may sometimes derive its conciliatory force from the
 person of the pleader. For although he may be
 modest and say little about himself, yet if he is
@@ -255,7 +273,7 @@ the case out of a sense of duty to a friend or
 relative, or even better, if the point can be made,
 by a sense of patriotism or at any rate some serious
 moral consideration. No doubt it is even more
-                    <pb id="p.11"/>
+                    <pb xml:id="p.11"/>
                     necessary for the parties themselves to create the
 impression that they have been forced to take legal
 action by some weighty and honourable reason or even
@@ -268,7 +286,7 @@ or ambition, so also we shall derive some silent support
 from representing that we are weak, unprepared, and
 no match for the powerful talents arrayed against us,
 a frequent trick in the
-                    <hi rend="italics">exordia</hi>
+                    <hi rend="italic">exordia</hi>
                     of Messala.
                     <milestone n="9" unit="section"/>
                     For
@@ -291,7 +309,7 @@ judge, it would be folly for me to warn speakers
 not to say or even hint anything against him, but
 for the fact that such things do occur. Our opponent's advocate will sometimes provide us with
 material for our
-                    <hi rend="italics">exordium:</hi>
+                    <hi rend="italic">exordium:</hi>
                     we may speak of him
 in honorific terms, pretending to fear his eloquence
 and influence with a view to rendering them suspect
@@ -300,11 +318,11 @@ may abuse him, as Asinius did in his speech on behalf
 of the heirs of Urbinia, where he includes among the
 proofs of the weakness of the plaintiff's case the fact
 that he has secured Labienus as his advocate.
-                    <pb id="p.13"/>
+                    <pb xml:id="p.13"/>
                     <milestone n="12" unit="section"/>
                     Cornelius Celsus denies that such remarks can be
 considered as belonging to the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     on the
 ground that they are irrelevant to the actual case.
 Personally I prefer to follow the authority of the
@@ -327,7 +345,7 @@ in the character of wives, parents or children.
                     For pity alone may move even a strict judge.
 These points, however, should only be lightly touched
 upon in the
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     not run to death. As regards
 our opponent he is generally attacked on similar
 lines, but with the method reversed. For power is
@@ -349,7 +367,7 @@ merely by praising him,
                     <milestone n="16" unit="section"/>
                     which must be done with
 tact and is an artifice common to both parties, but
-                    <pb id="p.15"/>
+                    <pb xml:id="p.15"/>
                     by linking his praise to the furtherance of our own
 case. For instance, in pleading for a man of good
 birth we shall appeal to his own high rank, in speaking
@@ -386,7 +404,7 @@ down above. The opponent of the judge will
 emphasise his confidence in the justice of his client's
 cause, while the advocate of his interests will
 express the fear that the judge may be influenced
-                    <pb id="p.17"/>
+                    <pb xml:id="p.17"/>
                     by a quixotic delicacy.
                     <milestone n="20" unit="section"/>
                     Further, if the judge is
@@ -395,12 +413,12 @@ in favour of one side, we must try to remove or
 strengthen that prejudice as circumstances may
 demand. Again occasionally we shall have to calm
 the judges' fears, as Cicero does in the
-                    <hi rend="italics">pro Milone,</hi>
+                    <hi rend="italic">pro Milone,</hi>
                     where he strives to persuade them not to think that
 Pompey's soldiers have been stationed in the court
 as a threat to themselves. Or it may be necessary
 to frighten them, as Cicero does in the
-                    <hi rend="italics">Verrines.</hi>
+                    <hi rend="italic">Verrines.</hi>
                     <note anchored="true" place="unspecified">i. 15.</note>
                     <milestone n="21" unit="section"/>
                     There are two ways of bringing fear to bear upon
@@ -409,14 +427,14 @@ threaten them with the displeasure of the Roman
 people or the transference of the juries to another
 class
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">e.g.</hi>
+                        <hi rend="italic">e.g.</hi>
                         in the
-                        <hi rend="italics">Verrines</hi>
+                        <hi rend="italic">Verrines</hi>
                         Cicero points out to the jury, then
 drawn entirely from senators, that they are on their trial.
 If they fail in their duty, the constitution of the panels will
 be altered and the
-                        <hi rend="italics">equites</hi>
+                        <hi rend="italic">equites</hi>
                         be admitted as well.
                     </note>
                     ; the second is somewhat brutal and is rarely
@@ -427,7 +445,7 @@ checks the bad and pleases the good members of
 the jury, but I should never recommend its employment with a single judge
                     <note anchored="true" place="unspecified">
                         It must be borne in mind that
-                        <hi rend="italics">iudex</hi>
+                        <hi rend="italic">iudex</hi>
                         may be a juryman
 forming one of a large panel, or a single judge trying a civil
 action.
@@ -449,13 +467,13 @@ can threaten or lay an information.
 favour of the judge, it is important that the points
 which seem most likely to serve to our purpose
 should be selected for introduction into the
-                    <hi rend="italics">exordium.</hi>
-                    <pb id="p.19"/>
+                    <hi rend="italic">exordium.</hi>
+                    <pb xml:id="p.19"/>
                     On this subject Verginius falls into error, for he
 asserts that Theodorus lays down that some one
 reflexion on each individual question that is involved
 by the case should be introduced into the
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     As a matter of fact Theodorus does not say this,
                     <milestone n="24" unit="section"/>
                     but merely that the judge should be prepared for
@@ -474,9 +492,9 @@ questions may be mentioned, for that will sometimes
 be absolutely necessary; but can we introduce all
 the most important questions, or in other words the
 whole case? If we do we shall have completed our
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     within the limits of the
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     Again if, as often happens,
                     <milestone n="25" unit="section"/>
                     the case is somewhat
@@ -487,16 +505,16 @@ naked harshness before we have done anything to
 secure his favour. If the main questions ought
 always to be treated at the beginning of a speech,
 we might dispense with the
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     <milestone n="26" unit="section"/>
                     We shall
 then occasionally introduce certain points from the
 main questions into the
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     which will exercise
 a valuable influence in winning the judge to regard
 us with favour. It is not necessary to enumerate
-                    <pb id="p.21"/>
+                    <pb xml:id="p.21"/>
                     the points which are likely to gain us such favour,
 because they will be obvious as soon as we have
 acquainted ourselves with the circumstances of each
@@ -513,9 +531,9 @@ likely to suffer.
                     <milestone n="28" unit="section"/>
                     For I do not share the opinion
 held by some, that the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     and the
-                    <hi rend="italics">peroration</hi>
+                    <hi rend="italic">peroration</hi>
                     are to be distinguished by the fact that the latter
 deals with the past, the former with the future.
 Rather I hold that the difference between them is
@@ -526,10 +544,10 @@ give full rein to our emotions, place fictitious
 speeches in the mouths of our characters, call the
 dead to life, and produce the wife or children of the
 accused in court, practices which are less usual in
-                    <hi rend="italics">exordia.</hi>
+                    <hi rend="italic">exordia.</hi>
                     <milestone n="29" unit="section"/>
                     But it is the function of the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     not
 merely to excite the feelings to which I have alluded,
 but to do all that is possible to show that our
@@ -544,7 +562,7 @@ insolence if he prove successful.
                     But exordia are often drawn from matters which
 do not, strictly speaking, concern either cases or the
 persons involved, though not unrelated to either.
-                    <pb id="p.23"/>
+                    <pb xml:id="p.23"/>
                     In such relation to persons stand not only wives
 and children of whom I have just spoken, but also
 relations, friends, and at times districts and states
@@ -554,19 +572,19 @@ injury from the fall of the client whom we defend.
                     As regards external circumstances
                     <note anchored="true" place="unspecified">
                         In the
-                        <hi rend="italics">pro Caelio</hi>
+                        <hi rend="italic">pro Caelio</hi>
                         (c. 1) Cicero calls attention to the fact
 that the trial is taking place during a festival, all other legal
 business being suspended. In the
-                        <hi rend="italics">pro Deiotaro</hi>
+                        <hi rend="italic">pro Deiotaro</hi>
                         (c. 2) he
 calls attention to the unusual surroundings, the speech being
 delivered in a private house. For the
-                        <hi rend="italics">pro Milone</hi>
+                        <hi rend="italic">pro Milone</hi>
                         see §
                         <milestone n="20" unit="section"/>
                         of this chapter. In the first
-                        <hi rend="italics">Verrme</hi>
+                        <hi rend="italic">Verrme</hi>
                         (c. 1) he remarks that
 it is generally believed that the corruption of the courts is
 such that it is practically impossible to secure the condemnation of a wealthy man.
@@ -574,14 +592,14 @@ such that it is practically impossible to secure the condemnation of a wealthy m
                     which have a
 bearing on the case, I may mention time, which
 is introduced in the exordium of the
-                    <hi rend="italics">pro Caelio,</hi>
+                    <hi rend="italic">pro Caelio,</hi>
                     place (in the
-                    <hi rend="italics">pro Deiotaro</hi>
+                    <hi rend="italic">pro Deiotaro</hi>
                     ),the appearance of the
 court (in the
-                    <hi rend="italics">pro Milone</hi>
+                    <hi rend="italic">pro Milone</hi>
                     ),public opinion (in the
-                    <hi rend="italics">Verrines</hi>
+                    <hi rend="italic">Verrines</hi>
                     ),and finally, as I cannot mention all,
 the ill-repute of the law courts and the popular
 expectation excited by the case. None of these
@@ -589,10 +607,10 @@ actually belong to the case, but all have some
 bearing on it.
                     <milestone n="32" unit="section"/>
                     Theophrastus adds that the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     may be drawn from the speech of one's opponent,
 as that of the
-                    <hi rend="italics">pro Ctesiphonte</hi>
+                    <hi rend="italic">pro Ctesiphonte</hi>
                     of Demosthenes appears
 to be, where he asks that he may be allowed to
 speak as he pleases and not to be restricted to the
@@ -610,7 +628,7 @@ the judge's attention on the alert, if he is led to
 think the case novel, important, scandalous, or
 likely to set a precedent, still more if he is excited
 by concern for himself or the common weal, when
-                    <pb id="p.25"/>
+                    <pb xml:id="p.25"/>
                     his mind must be stirred by hope, fear, admonition,
 entreaty and even by falsehood, if it seems to us
 that it is likely to advance our case.
@@ -627,15 +645,15 @@ Virgil at the beginning of their poems.
                     <milestone n="35" unit="section"/>
                     For as regards
 the length of the
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     it should propound rather
 than expound, and should not describe how each
 thing occurred, but simply indicate the points on
 which the orator proposes to speak. I do not think
 a better example of this can be found than the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     to the
-                    <hi rend="italics">pro Cluentio</hi>
+                    <hi rend="italic">pro Cluentio</hi>
                     of Cicero.
                     <milestone n="36" unit="section"/>
                     <quote>
@@ -656,7 +674,7 @@ than the prosecutor, since the latter has merely to remind the judge, while the 
                     Nor shall any authority, however great, induce me
 to abandon my opinion that it is always desirable to
 render the judge attentive and ready to receive
-                    <pb id="p.27"/>
+                    <pb xml:id="p.27"/>
                     instruction. I am well aware that those who disagree with me urge that it is to the advantage of a
 bad case that its nature should not be understood;
 but such lack of understanding arises not from
@@ -672,16 +690,16 @@ we should cut down, depreciate and deride some of
 our opponent's arguments with a view to lessening
 the attention shown him by the judge, as Cicero did
 in the
-                    <hi rend="italics">pro Ligario.</hi>
+                    <hi rend="italic">pro Ligario.</hi>
                     <milestone n="39" unit="section"/>
                     For what was the purpose of
 Cicero's irony save that Caesar should be induced to
 regard the case as presenting only old familiar
 features and consequently to give it less attention?
 What was his purpose in the
-                    <hi rend="italics">pro Caelio</hi>
+                    <hi rend="italic">pro Caelio</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Cael.</hi>
+                        <hi rend="italic">pro Cael.</hi>
                         31.
                     </note>
                     save to
@@ -695,16 +713,16 @@ and some to another.
                     <milestone n="40" unit="section"/>
                     The majority of writers
 consider that there are five kinds of causes, the
-                    <hi rend="italics">honourable, the</hi>
-                    <hi rend="italics">mean,</hi>
+                    <hi rend="italic">honourable, the</hi>
+                    <hi rend="italic">mean,</hi>
                     the
-                    <hi rend="italics">doubtful</hi>
+                    <hi rend="italic">doubtful</hi>
                     or
-                    <hi rend="italics">ambiguous,</hi>
+                    <hi rend="italic">ambiguous,</hi>
                     the
-                    <hi rend="italics">extraordinary</hi>
+                    <hi rend="italic">extraordinary</hi>
                     and the
-                    <hi rend="italics">obscure,</hi>
+                    <hi rend="italic">obscure,</hi>
                     or as they are called in
 Greek,
                     <foreign xml:lang="grc">e)/ndocon, a)/docon, a)mfi/docon, para/docon</foreign>
@@ -712,44 +730,44 @@ Greek,
                     <foreign xml:lang="grc">dusparakolou/qhton.</foreign>
                     To these some would add a sixth,
 the
-                    <hi rend="italics">scandalous,</hi>
+                    <hi rend="italic">scandalous,</hi>
                     which some again include under the
 heading of the
-                    <hi rend="italics">mean,</hi>
+                    <hi rend="italic">mean,</hi>
                     others under the
-                    <hi rend="italics">extraordinary.</hi>
+                    <hi rend="italic">extraordinary.</hi>
                     <milestone n="41" unit="section"/>
                     The latter name is given to cases which are contrary
 to ordinary expectation. In
-                    <hi rend="italics">ambiguous</hi>
+                    <hi rend="italic">ambiguous</hi>
                     cases it is
 specially important to secure the good-will of the
 judge, in the
-                    <hi rend="italics">obscure</hi>
+                    <hi rend="italic">obscure</hi>
                     to render him ready to receive
-                    <pb id="p.29"/>
+                    <pb xml:id="p.29"/>
                     instruction, in the
-                    <hi rend="italics">mean</hi>
+                    <hi rend="italic">mean</hi>
                     to excite his attention. As
 regards the
-                    <hi rend="italics">honourable</hi>
+                    <hi rend="italic">honourable</hi>
                     the very nature of the case is
 sufficient to win the approval of the judge; in the
-                    <hi rend="italics">scandalous</hi>
+                    <hi rend="italic">scandalous</hi>
                     and
-                    <hi rend="italics">extraordinary</hi>
+                    <hi rend="italic">extraordinary</hi>
                     some kind of palliation
 is required.
                 </p>
                 <p>
                     <milestone n="42" unit="section"/>
                     Some therefore divide the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     into two parts,
 the
-                    <hi rend="italics">introduction</hi>
+                    <hi rend="italic">introduction</hi>
                     and the
-                    <hi rend="italics">insinuation,</hi>
+                    <hi rend="italic">insinuation,</hi>
                     making the former
 contain a direct appeal to the good-will and attention
 of the judge. But as this is impossible in scandalous
@@ -779,7 +797,7 @@ and concentrate on those which are likely to be of
 service. If the case itself is weak, we may derive
 help from the character of our client; if his character
 is doubtful, we may find salvation in the nature of
-                    <pb id="p.31"/>
+                    <pb xml:id="p.31"/>
                     the case. If both are hopeless, we must look out for
 something that will damage our opponent. For
 though it is desirable to secure as much positive
@@ -802,7 +820,7 @@ advantage to the case.
                     At times, like Cicero in his
 defence of Rabirius Postumus,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro</hi>
+                        <hi rend="italic">pro</hi>
                         Rab. i. 1.
                     </note>
                     he will pretend that
@@ -824,7 +842,7 @@ we are going to deliver a declamation on a theme
 that turns largely on its emotional features, we
 must give it a dramatic character suited to the
 persons concerned. For emotions are not transferable at will, nor can we give the same forcible
-                    <pb id="p.33"/>
+                    <pb xml:id="p.33"/>
                     expression to another man's emotions that we should
 give to our own.
                     <milestone n="48" unit="section"/>
@@ -845,7 +863,7 @@ and we may alleviate their boredom by the introduction of entertaining matter de
 that may be available. It will also be found advantageous to anticipate the objections that may be
 raised by our opponent, as Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Div. in</hi>
+                        <hi rend="italic">Div. in</hi>
                         Caec. i. 1.
                     </note>
                     does when he
@@ -875,10 +893,10 @@ respects in which the mind of the judge requires to
 be prepared, and enumerate many others, relating to
 the character of the judge, to opinions regarding
 matters which though outside the case have still
-                    <pb id="p.35"/>
+                    <pb xml:id="p.35"/>
                     some bearing on it, to the opinion current as to the
 case itself, and so on
-                    <hi rend="italics">ad infinitum:</hi>
+                    <hi rend="italic">ad infinitum:</hi>
                     to these they add
 others relating to the elements of which every
 dispute is composed, such as persons, deeds, words,
@@ -899,10 +917,10 @@ deters him from favouring our opponent.
                     <milestone n="52" unit="section"/>
                     It is not, however, sufficient to explain the nature
 of the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     to our pupils. We must also indicate
 the easiest method of composing an
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     I
 would therefore add that he who has a speech to
 make should consider what he has to say; before
@@ -916,22 +934,22 @@ the knowledge of what he ought to say first.
                     <milestone n="53" unit="section"/>
                     Nowadays, however, speakers think that anything with
 which they choose to start is a
-                    <hi rend="italics">proem</hi>
+                    <hi rend="italic">proem</hi>
                     and that
 whatever occurs to them, especially if it be a reflexion
 that catches their fancy, is an
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     There are,
 no doubt, many points that can be introduced into an
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     which are common to other parts of a speech,
 but the best test of the appropriateness of a point to
 any part of a speech is to consider whether it would
-                    <pb id="p.37"/>
+                    <pb xml:id="p.37"/>
                     lose effect by being placed elsewhere.
                     <milestone n="54" unit="section"/>
                     A most attractive form of
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     is that which draws its material
 from the speech of our opponent, if only for the
 reason that the fact of its not having been composed
@@ -949,7 +967,7 @@ study.
                     Indeed a certain simplicity in the thoughts,
 style, voice and look of the speaker will often
 produce so pleasing an effect in the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     that
 even in a case where there is no room for doubt the
 confidence of the speaker should not reveal itself too
@@ -960,7 +978,7 @@ orator.
                     No less care must be taken to avoid exciting
 any suspicion in this portion of our speech, and we
 should therefore give no hint of elaboration in the
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     since any art that the orator may employ
 at this point seems to be directed solely at the
 judge.
@@ -973,13 +991,13 @@ in certain trials, more especially those brought on
 capital charges or in the centumviral
                     <note anchored="true" place="unspecified">
                         The court of the
-                        <hi rend="italics">cettumviri</hi>
+                        <hi rend="italic">cettumviri</hi>
                         was specially concerned with
 cases of inheritance.
                     </note>
                     court, the
 judges themselves demand the most finished and
-                    <pb id="p.39"/>
+                    <pb xml:id="p.39"/>
                     elaborate speeches, think themselves insulted, unless
 the orator shows signs of having exercised the
 utmost diligence in the preparation of his speech,
@@ -994,7 +1012,7 @@ The old rule still holds good that no unusual word,
 no overbold metaphor, no phrase derived from the
 lumber-rooms of antiquity or from poetic licence
 should be detected in the
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     <milestone n="59" unit="section"/>
                     For our position
 is not yet established, the attention of the audience
@@ -1007,7 +1025,7 @@ being noticed in the midst of the prevailing
 splendour of the passage.
                     <milestone n="60" unit="section"/>
                     The style of the
-                    <hi rend="italics">exrordiumn</hi>
+                    <hi rend="italic">exrordiumn</hi>
                     should not resemble that of our purple patches nor
 that of the argumentative and narrative portions of
 the speech, nor yet should it be prolix or continuously ornate: it should rather seem simple and
@@ -1017,7 +1035,7 @@ pleading which conceals its art and makes no vain
 display, being as the Greeks say
                     <foreign xml:lang="grc">a)nepi/fatos</foreign>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         unobtrusive.
                     </note>
                     will
@@ -1029,24 +1047,24 @@ impress the minds of the judges.
                 <p>
                     <milestone n="61" unit="section"/>
                     There is no point in the whole speech where confusion of memory or loss of fluency has a worse effect,
-                    <pb id="p.41"/>
+                    <pb xml:id="p.41"/>
                     for a faulty
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     is like a face seamed with scars;
 and he who runs his ship ashore while leaving port
 is certainly the least efficient of pilots.
                     <milestone n="62" unit="section"/>
                     The length
 of the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     will be determined by the case;
 simple cases require a short introduction only,
 longer
-                    <hi rend="italics">exordia</hi>
+                    <hi rend="italic">exordia</hi>
                     being best suited to cases which are
 complicated, suspect or unpopular. As for those
 who have laid it down as a law applying to all
-                    <hi rend="italics">exordia</hi>
+                    <hi rend="italic">exordia</hi>
                     that they should not be more than four
 sentences long, they are merely absurd. On the
 other hand undue length is equally to be avoided,
@@ -1056,12 +1074,12 @@ wearied by that which ought to prepare him for
 what is to follow.
                     <milestone n="63" unit="section"/>
                     The figure which the Greeks
-                    <hi rend="italics">call apostrophe,</hi>
+                    <hi rend="italic">call apostrophe,</hi>
                     by which is meant the diversion of
 our words to address some person other than the
 judge, is entirely banned by some rhetoricians as
 far as the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     is concerned, and for this they
 have some reason, since it would certainly seem to
 be more natural that we should specially address
@@ -1069,7 +1087,7 @@ ourselves to those whose favour we desire to win.
                     <milestone n="64" unit="section"/>
                     Occasionally however some striking expression of
 thought is necessary in the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     which can be
 given greater point and vehemence if addressed to
 some person other than the judge. In such a case
@@ -1085,16 +1103,16 @@ to employ it for the very reason for which we are
 now forbidden to do so.
                     <milestone n="66" unit="section"/>
                     Moreover Demosthenes
-                    <pb id="p.43"/>
+                    <pb xml:id="p.43"/>
                     turns to address Aeschines in his
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Cor.</hi>
+                        <hi rend="italic">de Cor.</hi>
                     </note>
                     while
 Cicero adopts the same device in several of his
 speeches, but more especially in the
-                    <hi rend="italics">pro Ligario,</hi>
+                    <hi rend="italic">pro Ligario,</hi>
                     <note anchored="true" place="unspecified">i. 2.</note>
                     where he turns to address Tubero.
                     <milestone n="67" unit="section"/>
@@ -1118,7 +1136,7 @@ would merely have pointed out a fact. The same
 thing results if you alter the turn of the passage in
 Demosthenes. Again did not Sallust when
 speaking against Cicero himself address his
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     to him and not to the judge? In fact he actually
 opens with the words
                     <quote>I should feel deeply injured by your reflexions on my character, Marcus Tullius,</quote>
@@ -1129,7 +1147,7 @@ the words
                     <milestone n="69" unit="section"/>
                     Finally to remove all reason for
 feeling surprise at the employment of
-                    <hi rend="italics">apostrophe,</hi>
+                    <hi rend="italic">apostrophe,</hi>
                     Cicero in his defence of Scaurus,
                     <note anchored="true" place="unspecified">
                         This speech is lost: the existing speech in his defence is
@@ -1140,12 +1158,12 @@ bribery (the speech is to be found in his Notebooks;
 for he defended him twice) actually introduces an
 imaginary person speaking on behalf of the accused,
 while in his
-                    <hi rend="italics">pro Rahirio</hi>
+                    <hi rend="italic">pro Rahirio</hi>
                     and his speech in defence
 of this same Scaurus on a charge of extortion he
-                    <pb id="p.45"/>
+                    <pb xml:id="p.45"/>
                     employs illustrations, and in the
-                    <hi rend="italics">pro Cluentio,</hi>
+                    <hi rend="italic">pro Cluentio,</hi>
                     as I
 have already pointed out, introduces division into
 heads.
@@ -1155,72 +1173,72 @@ employed at times to good effect, are not to be
 indulged in indiscriminately, but only when there is
 strong reason for breaking the rule. The same remark
 applies to
-                    <hi rend="italics">simile</hi>
+                    <hi rend="italic">simile</hi>
                     (which must however be brief),
-                    <hi rend="italics">metaphor</hi>
+                    <hi rend="italic">metaphor</hi>
                     and other
-                    <hi rend="italics">tropes,</hi>
+                    <hi rend="italic">tropes,</hi>
                     all of which are forbidden
 by our cautious and pedantic teachers of rhetoric, but
 which we shall none the less occasionally employ,
 unless indeed we are to disapprove of the magnificent
 example of irony in the
-                    <hi rend="italics">pro Ligario</hi>
+                    <hi rend="italic">pro Ligario</hi>
                     to which I have
 already referred a few pages back.
                     <milestone n="71" unit="section"/>
                     The rhetoricians
 have however been nearer the truth in their censure
 of certain other faults that may occur in the
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     The stock
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     which can be suited to a number
 of different cases they style
-                    <hi rend="italics">vulgar;</hi>
+                    <hi rend="italic">vulgar;</hi>
                     it is an unpopular
 form but can sometimes be effectively employed and
 has often been adopted by some of the greatest orators.
 The
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     which might equally well be used by
 our opponent, they style
-                    <hi rend="italics">common.</hi>
+                    <hi rend="italic">common.</hi>
                     That which our
 opponent can turn to his own advantage, they call
-                    <hi rend="italics">interchangeable,</hi>
+                    <hi rend="italic">interchangeable,</hi>
                     that which is irrelevant to the case,
-                    <hi rend="italics">detached,</hi>
+                    <hi rend="italic">detached,</hi>
                     and that which is drawn from some other
 speech,
-                    <hi rend="italics">transferred.</hi>
+                    <hi rend="italic">transferred.</hi>
                     In addition to these they
 censure others as
-                    <hi rend="italics">long</hi>
+                    <hi rend="italic">long</hi>
                     and others as
-                    <hi rend="italics">contrary to rule.</hi>
+                    <hi rend="italic">contrary to rule.</hi>
                     Most of these faults are however not peculiar to the
-                    <hi rend="italics">exordinum,</hi>
+                    <hi rend="italic">exordinum,</hi>
                     but may be found in any or every portion
 of a speech.
                 </p>
                 <p>
                     <milestone n="72" unit="section"/>
                     Such are the rules for the
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     wherever it
 is employed. It may however sometimes be dispensed with. For occasionally it is superfluous, if
 the judge has been sufficiently prepared for our
 speech without it or if the case is such as to render
-                    <pb id="p.47"/>
+                    <pb xml:id="p.47"/>
                     such preparation unnecessary. Aristotle
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Rhet.</hi>
+                        <hi rend="italic">Rhet.</hi>
                         iii. 14.
                     </note>
                     indeed
 says that with good judges the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     is entirely
 unnecessary. Sometimes however it is impossible
 to employ it, even if we desire to do so, when,
@@ -1230,12 +1248,12 @@ upon the subject right away.
                     <milestone n="73" unit="section"/>
                     On the other hand
 it is at times possible to give the force of an
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     to other portions of the speech. For instance we
 may ask the judges in the course of our
-                    <hi rend="italics">statement of the facts</hi>
+                    <hi rend="italic">statement of the facts</hi>
                     or of our
-                    <hi rend="italics">arguments</hi>
+                    <hi rend="italic">arguments</hi>
                     to give us their best
 attention and good-will, a proceeding which Prodicus
 recommended as a means of wakening them when
@@ -1243,7 +1261,7 @@ they begin to nod. A good example is the
 following:
                     <note anchored="true" place="unspecified">
                         Cic.
-                        <hi rend="italics">pro Var. fr.</hi>
+                        <hi rend="italic">pro Var. fr.</hi>
                         8.
                     </note>
                     <milestone n="74" unit="section"/>
@@ -1259,17 +1277,17 @@ introduction, such as
                     or
                     <quote>I now pass to the next point.</quote>
                     Even in the
-                    <hi rend="italics">proof</hi>
+                    <hi rend="italic">proof</hi>
                     there are many passages which perform the
 same function as an
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     such as the passage in
 the
-                    <hi rend="italics">pro Cluentio</hi>
+                    <hi rend="italic">pro Cluentio</hi>
                     <note anchored="true" place="unspecified">xlii. 117.</note>
                     where Cicero introduces an attack
 on the censors and in the
-                    <hi rend="italics">pro Murena</hi>
+                    <hi rend="italic">pro Murena</hi>
                     <note anchored="true" place="unspecified">iii. 7.</note>
                     when he
 apologises to Servius. But the practice is too
@@ -1279,11 +1297,11 @@ common to need illustration.
                     <milestone n="76" unit="section"/>
                     However on all occasions when we have employed
 the
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     whether we intend to pass to the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     or direct to the
-                    <hi rend="italics">proof,</hi>
+                    <hi rend="italic">proof,</hi>
                     our intention should
 be mentioned at the conclusion of the introduction,
 with the result that the transition to what follows
@@ -1291,11 +1309,11 @@ will be smooth and easy.
                     <milestone n="77" unit="section"/>
                     There is indeed a pedantic
 and childish affectation in vogue in the schools of
-                    <pb id="p.49"/>
+                    <pb xml:id="p.49"/>
                     marking the transition by some epigram and seeking
 to win applause by this feat of legerdemain. Ovid
 is given to this form of affectation in his
-                    <hi rend="italics">Metamorphoses,</hi>
+                    <hi rend="italic">Metamorphoses,</hi>
                     but there is some excuse for him owing to the
 fact that he is compelled to weld together subjects
 of the most diverse nature so as to form a continuous
@@ -1307,24 +1325,24 @@ judge, who requires on the contrary to be warned to
 give his attention to the sequence of the various
 portions of the speech? For instance the first part
 of our
-                    <hi rend="italics">statement of the facts</hi>
+                    <hi rend="italic">statement of the facts</hi>
                     will be wasted, if the
 judge does not realise that we have reached that
 stage.
                     <milestone n="79" unit="section"/>
                     Therefore, although we should not be too
 abrupt in passing to our
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     it is best
 to do nothing to conceal our transition. Indeed, if
 the
-                    <hi rend="italics">statement of fact</hi>
+                    <hi rend="italic">statement of fact</hi>
                     on which we are about to embark
 is somewhat long and complicated, we shall do well
 to prepare the judge for it, as Cicero often does,
 most notably in the following passage:
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Cluent.</hi>
+                        <hi rend="italic">pro Cluent.</hi>
                         iv. 11.
                     </note>
                     <quote>
@@ -1336,25 +1354,25 @@ comes last.
                     </quote>
                     This is practically all that I can find
 to say on the subject of the
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                 </p>
                 <p>
                     II. It is a most natural and frequently necessary
 proceeding, that after preparing the mind of the
 judge in the manner described above we should indicate the nature of the subject on which he will have
 to give judgment: that is the
-                    <hi rend="italics">statement of facts.</hi>
+                    <hi rend="italic">statement of facts.</hi>
                     <milestone n="2" unit="section"/>
                     In
 dealing with this question I shall deliberately pass
 over the divisions made by certain writers, who make
 too many classes and err on the side of subtlety. For
-                    <pb id="p.51"/>
+                    <pb xml:id="p.51"/>
                     they demand an explanation dealing not only with the
 facts of the case which is before the court, but with the
 person involved (as in the sentence,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Sall. Hist.</hi>
+                        <hi rend="italic">Sall. Hist.</hi>
                         iv. 25.
                     </note>
                     <quote>
@@ -1366,7 +1384,7 @@ with loquacity rather than eloquence
 place where an incident occurred (as in the sentence
                     <note anchored="true" place="unspecified">
                         Cic.
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         <milestone n="1" unit="chapter"/>
                         <milestone n="1" unit="section"/>
                         xxiv. 63.
@@ -1375,7 +1393,7 @@ place where an incident occurred (as in the sentence
                     ), or of the time at which something occurred (as in the verse
                     <note anchored="true" place="unspecified">
                         Verg.
-                        <hi rend="italics">G.</hi>
+                        <hi rend="italic">G.</hi>
                         i. 43.
                     </note>
                     <quote rend="blockquote">
@@ -1388,36 +1406,36 @@ place where an incident occurred (as in the sentence
 historians are so fond of setting forth, when they
 explain the origin of a war, a rebellion or a pestilence.
 Further they style some
-                    <hi rend="italics">
+                    <hi rend="italic">
                         statements of fact
                         <quote>complete,</quote>
                     </hi>
                     and others
                     <quote>
-                        <hi rend="italics">incomplete,</hi>
+                        <hi rend="italic">incomplete,</hi>
                         <milestone n="3" unit="section"/>
                     </quote>
                     a distinction which is self-evident. To this they add that our explanation may
 refer to the past (which is of course the commonest
 form), the present (for which compare Cicero's
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Rosc. Am.</hi>
+                        <hi rend="italic">pro Rosc. Am.</hi>
                         xxii. 60.
                     </note>
                     remarks about the excitement caused among the
 friends of Chrysogonus when his name was mentioned), or of the future (a form permissible only to
 prophets): for
-                    <hi rend="italics">hypotyposis</hi>
+                    <hi rend="italic">hypotyposis</hi>
                     or picturesque description
 cannot be regarded as a
-                    <hi rend="italics">statement of facts.</hi>
+                    <hi rend="italic">statement of facts.</hi>
                     <milestone n="4" unit="section"/>
                     However
 let us pass to matters of more importance.
                 </p>
                 <p>
                     The majority regard the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     as being
 indispensable: but there are many considerations
 which show that this view is erroneous. In the first
@@ -1428,7 +1446,7 @@ statement of the facts.
                     This may apply to both
 parties to a suit, as for instance in cases where there
 is no necessity for explanation or where the facts are
-                    <pb id="p.53"/>
+                    <pb xml:id="p.53"/>
                     admitted and the whole question turns on a point of
 law, as it so often does in the centumviral court, as
 for example when we discuss, whether the heir of a
@@ -1460,7 +1478,7 @@ for the deed will be matters for the defence to expound.
                     <milestone n="8" unit="section"/>
                     On the other hand in some cases the
 accused may dispense with the
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     when for instance the charge can neither be denied
 nor palliated, but turns solely on some point of law:
 the following case will illustrate my meaning. A
@@ -1468,10 +1486,10 @@ man who has stolen from a temple money belonging
 to a private individual is accused of sacrilege: in
 such a case a confession will be more seemly than
 a full
-                    <hi rend="italics">statement of facts:</hi>
+                    <hi rend="italic">statement of facts:</hi>
                     <quote>
                         We do not deny that the
-                        <pb id="p.55"/>
+                        <pb xml:id="p.55"/>
                         money was taken from the temple; but the accuser
 is bringing a false accusation in charging my client
 with sacrilege, since the money was not consecrated,
@@ -1484,10 +1502,10 @@ committed.
                     <milestone n="9" unit="section"/>
                     While however I think that there are occasional
 cases where the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     may be dispensed
 with, I disagree with those who say that there is no
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     when the accused simply denies the
 charge. This opinion is shared by Cornelius Celsus
 who holds that most cases of murder and all of
@@ -1495,24 +1513,24 @@ bribery and extortion fall into this class.
                     <milestone n="10" unit="section"/>
                     For he
 thinks that the only
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     is that which
 gives a general account of the charge before the
 court. Yet he himself acknowledges that Cicero
 employed the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     in his defence of
 Rabirius Postumus, in spite of the fact that Cicero
 denies that any money came into the hands of
 Rabirius (and this was the question at issue) and
 gives no explanations relating to the actual charge in
 his
-                    <hi rend="italics">statement of facts.</hi>
+                    <hi rend="italic">statement of facts.</hi>
                     <milestone n="11" unit="section"/>
                     For my part I follow the very
 highest authorities in holding that there are two
 forms of
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     in forensic speeches, the
 one expounding the facts of the case itself, the other
 setting forth facts which have a bearing on the case.
@@ -1520,9 +1538,9 @@ setting forth facts which have a bearing on the case.
                     I agree that a sentence such as
                     <quote>I did not kill the man</quote>
                     does not amount to a
-                    <hi rend="italics">statement of facts:</hi>
+                    <hi rend="italic">statement of facts:</hi>
                     but there will be a
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     occasionally, too,
 a long one, in answer to the arguments put forward
 by the accuser: it will deal with the past life of the
@@ -1531,7 +1549,7 @@ innocent man into peril, and other circumstances
 such as show the charge to be incredible.
                     <milestone n="13" unit="section"/>
                     For the
-                    <pb id="p.57"/>
+                    <pb xml:id="p.57"/>
                     accuser does not merely say
                     <quote>You killed him,</quote>
                     but
@@ -1554,7 +1572,7 @@ facts.
                     and the accused says
                     <quote>I was not,</quote>
                     a
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     is involved; for he must say where he was. Consequently cases of bribery and extortion will require
 as many statements of this kind as there are
 charges: the charges themselves will be denied, but
@@ -1573,7 +1591,7 @@ province or the accuser or a witness hostile to
 himself?
                     <milestone n="16" unit="section"/>
                     If these are not
-                    <hi rend="italics">statements of facts,</hi>
+                    <hi rend="italic">statements of facts,</hi>
                     neither
 is the first portion of Cicero's
                     <note anchored="true" place="unspecified">V. 11.</note>
@@ -1581,7 +1599,7 @@ is the first portion of Cicero's
 beginning with the words
                     <quote>Aulus Cluentius Habitus.</quote>
                     For there he says nothing about the charge
-                    <pb id="p.59"/>
+                    <pb xml:id="p.59"/>
                     of poisoning, but confines himself entirely to setting
 forth the reasons for the hostility of Cluentius'
 mother to her son.
@@ -1591,7 +1609,7 @@ which do not set forth the facts of the case itself,
 but facts which are none the less relevant to the
 case: the speaker's purpose may be to illustrate the
 case by some parallel, as in the passage in the
-                    <hi rend="italics">Verrines</hi>
+                    <hi rend="italic">Verrines</hi>
                     <note anchored="true" place="unspecified">
                         V. 3. The shepherd was crucifed because the carrying
 of arms was forbidden.
@@ -1607,9 +1625,9 @@ of the speech for Rabirius Postumus,
                     <note anchored="true" place="unspecified">
                         X. 28. The charge in question was that Rabirius had
 worn the Greek
-                        <hi rend="italics">pallium</hi>
+                        <hi rend="italic">pallium</hi>
                         instead of the Roman
-                        <hi rend="italics">toga.</hi>
+                        <hi rend="italic">toga.</hi>
                         But as
 an official of the king he was forced to wear Greek dress.
                     </note>
@@ -1624,7 +1642,7 @@ of steward.
                     Or the orator may desire to heighten
 the effect of his charges, as Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         v. 10.
                     </note>
                     does in his
@@ -1635,22 +1653,22 @@ description of the journey of Verres.
                     Sometimes a fictitious statement is employed
 either to stir the emotions of the judges, as in that
 passage of the
-                    <hi rend="italics">proo Roscio Amerino</hi>
+                    <hi rend="italic">proo Roscio Amerino</hi>
                     <note anchored="true" place="unspecified">xxii. 60.</note>
                     dealing with
 Chrysogonus to which I referred just recently, or to
 entertain them with a show of wit, as in the
 passage of the
-                    <hi rend="italics">pro Cluentio</hi>
+                    <hi rend="italic">pro Cluentio</hi>
                     <note anchored="true" place="unspecified">
                         xx. 57
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     describing the brothers
 Caepasius: sometimes again a digression may be
 introduced to add beauty to the speech, as in the
 passage about Proserpine in the
-                    <hi rend="italics">Verrines,</hi>
+                    <hi rend="italic">Verrines,</hi>
                     <note anchored="true" place="unspecified">
                         IV. 48. The words quoted do not occur in our MSS of
 Cicero.
@@ -1662,12 +1680,12 @@ show that he who denies a charge may not necessarily
 refrain from stating, but may actually state that very
 fact which he denies.
                 </p>
-                <pb id="p.61"/>
+                <pb xml:id="p.61"/>
                 <p>
                     <milestone n="20" unit="section"/>
                     Even the assertion which I made above to the
 effect that a
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     of facts familiar to the judge
 is superfluous, is not to be taken too literally. My
 meaning is that it may be dispensed with, if the
@@ -1676,7 +1694,7 @@ takes a view of the facts which is favourable to our
 case.
                     <milestone n="21" unit="section"/>
                     For the purpose of the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     is
 not merely to instruct, but rather to persuade the
 judge. Therefore, when we desire to influence him
@@ -1713,7 +1731,7 @@ instance use phrases such as
                     <milestone n="23" unit="section"/>
                     Besides, if we are always to
 regard as superfluous a
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     made before
 a judge who is familiar with the case, we may even
 go so far as to regard it as superfluous at times to
@@ -1723,19 +1741,19 @@ plead the case at all.
                     <milestone n="24" unit="section"/>
                     There is a further question which is still more
 frequently raised, as to whether the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     should always follow immediately on the
-                    <pb id="p.63"/>
-                    <hi rend="italics">exordium.</hi>
+                    <pb xml:id="p.63"/>
+                    <hi rend="italic">exordium.</hi>
                     Those who hold that it should always do so
 must be admitted to have some reason on their side.
 For since the purpose of the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     is to make
 the judge more favourably disposed and more
 attentive to our case and more amenable to
 instruction, and since the
-                    <hi rend="italics">proof</hi>
+                    <hi rend="italic">proof</hi>
                     cannot be brought
 forward until the facts of the case are known, it
 seems right that the judge should be instructed in
@@ -1745,7 +1763,7 @@ the facts without delay.
 altered by circumstances, unless it is contended that
 Cicero in his magnificent published defence of Milo
 delayed his
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     too long by placing three
 questions before it; or unless it is argued that, if it
 bad been held to be impermissible to defend a man
@@ -1763,7 +1781,7 @@ Milo.
 purpose of an exordium, since they all of them were
 designed to prepare the minds of the judges.
 Again in the
-                    <hi rend="italics">pro Vareno</hi>
+                    <hi rend="italic">pro Vareno</hi>
                     Cicero delayed his
 statement of facts until he had first rebutted
 certain allegations put forward by the prosecution.
@@ -1771,10 +1789,10 @@ This may be done with advantage whenever we
 have not merely to rebut the charge, but to turn
 the tables on our opponents: thus after first
 rebutting the charge, we make
-                    <hi rend="italics">our statement of facts</hi>
+                    <hi rend="italic">our statement of facts</hi>
                     the opening of an incrimination of the other
 party just as in actual fighting we are most
-                    <pb id="p.65"/>
+                    <pb xml:id="p.65"/>
                     concerned to parry our adversary's blows before
 we strike him ourselves.
                     <milestone n="27" unit="section"/>
@@ -1802,25 +1820,25 @@ behalf?
 of the schools in accordance with which certain points
 or themes as we call them are put forward for discussion, outside which our refutation must not go,
 and consequently a
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     always follows
 the
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     It is this too that leads declaimers to
 take the liberty of inserting a
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     even
 when they speak second for their side.
                     <milestone n="29" unit="section"/>
                     For when
 they speak for the prosecution they introduce both a
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     as if they were speaking first, and a
 refutation of the arguments for the defence, as if
 they were replying: and they are right in so doing.
 For since declamation is merely an exercise in forensic
 pleading, why should they not qualify themselves to
-                    <pb id="p.67"/>
+                    <pb xml:id="p.67"/>
                     speak either first or second
                     <note anchored="true" place="unspecified">See note prefixed to Index.</note>
                     ? Those however who
@@ -1837,7 +1855,7 @@ indicting his son turned Cynic before the censors
 for indecent behaviour
                     <note anchored="true" place="unspecified">
                         See Index,
-                        <hi rend="italics">s. v.</hi>
+                        <hi rend="italic">s. v.</hi>
                         Cynicus.
                     </note>
                     ? In both cases the charge
@@ -1849,9 +1867,9 @@ points.
                     <milestone n="31" unit="section"/>
                     I will now proceed to the method to be adopted
 in making our
-                    <hi rend="italics">statement of facts.</hi>
+                    <hi rend="italic">statement of facts.</hi>
                     The
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     consists in the persuasive exposition of that
 which either has been done, or is supposed to
 have been done, or, to quote the definition given by
@@ -1865,7 +1883,7 @@ credible or probable for plausible).
                     I agree with
 this classification of its qualities, although Aristotle
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Rhet.</hi>
+                        <hi rend="italic">Rhet.</hi>
                         iii. 16.
                     </note>
                     disagrees with Isocrates on one point, and pours
@@ -1878,14 +1896,14 @@ that it is not always expedient that our exposition
 should be either short or clear.
                     <milestone n="33" unit="section"/>
                     It will be necessary
-                    <pb id="p.69"/>
+                    <pb xml:id="p.69"/>
                     therefore for me to devote some care to the differentiation of the various features of this portion of a
 speech, in order that I may show under what
 circumstances each is specially useful.
                 </p>
                 <p>
                     The
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     will be either wholly in our favour
 or wholly in that of our opponent or a mixture of
 both. If it is entirely in our own favour, we may
@@ -1895,13 +1913,13 @@ to understand, remember and believe what we say.
                     <milestone n="34" unit="section"/>
                     Now I should regret that anyone should censure my
 conduct in suggesting that a
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     which is
 wholly in our favour should be
-                    <hi rend="italics">plausible,</hi>
+                    <hi rend="italic">plausible,</hi>
                     when as
 a matter of fact it is
-                    <hi rend="italics">true.</hi>
+                    <hi rend="italic">true.</hi>
                     There are many things
 which are true, but scarcely credible, just as there
 are many things which are plausible though false.
@@ -1928,7 +1946,7 @@ labour is but lost in the remainder of the speech.
 statement of facts, first by setting forth our story in
 words which are appropriate, significant and free
 from any taint of meanness, but not on the other
-                    <pb id="p.71"/>
+                    <pb xml:id="p.71"/>
                     hand farfetched or unusual, and secondly by giving
 a distinct account of facts, persons, times, places and
 causes, while our delivery must be adapted to our
@@ -1939,7 +1957,7 @@ with the utmost readiness.
 disregarded by the majority of speakers who are
 used to the noisy applause of a large audience,
 whether it be a chance gathering or an assembly of
-                    <hi rend="italics">claqueurs,</hi>
+                    <hi rend="italic">claqueurs,</hi>
                     and consequently are unnerved by the
 attentive silence of the courts. They feel that they
 have fallen short of eloquence, if they do not make
@@ -1968,14 +1986,14 @@ and style. As a result, while the speech, from its
 very monstrosity, meets with applause, the case
 remains unintelligible. However, let us pass to
 another subject; my aim is to win favour for
-                    <pb id="p.73"/>
+                    <pb xml:id="p.73"/>
                     pointing out the right road rather than to give
 offence by rebuking such perversity.
                 </p>
                 <p>
                     <milestone n="40" unit="section"/>
                     The
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     will be brief, if in the first
 place we start at that point of the case at which it
 begins to concern the judge, secondly avoid irrelevance, and finally cut out everything the removal
@@ -2024,7 +2042,7 @@ word brevity, I mean not saying less, but not saying
 more than occasion demands. As for repetitions
 and tautologies and diffuseness, which some writers
 of textbooks tell us we must avoid, I pass them by;
-                    <pb id="p.75"/>
+                    <pb xml:id="p.75"/>
                     they are faults which we should shun for other reasons
 beside our desire for brevity.
                     <milestone n="44" unit="section"/>
@@ -2044,7 +2062,7 @@ looked at again; and whereas the reader is
 almost always a man of learning, the judge often
 comes to his panel from the country side and is
 expected to give a decision on what he can understand. Consequently we must aim, perhaps everywhere, but above all in our
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     at
 striking the happy mean in our language, and the
 happy mean may be defined as saving just what
@@ -2067,14 +2085,14 @@ which may contribute to the plausibility of our
 narrative. Simplify and curtail your statement of
 facts in every direction and you will turn it into
 something more like a confession. Moreover, the
-                    <pb id="p.77"/>
+                    <pb xml:id="p.77"/>
                     circumstances of the case will often necessitate a
 long
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     in which case, as I have
 already enjoined, the judge should be prepared for
 it at the conclusion of the
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     Next we must
 put forth all our art either to shorten it or to render
 it less tedious.
@@ -2088,7 +2106,7 @@ postpone. Take the following as an example.
 regards his motives for killing him, his accomplices
 and the manner in which he disposed his ambush,
 I will speak when I come to the
-                        <hi rend="italics">proof.</hi>
+                        <hi rend="italic">proof.</hi>
                         <milestone n="49" unit="section"/>
                     </quote>
                     Some
@@ -2096,7 +2114,7 @@ things indeed may be omitted altogether from our
 marshalling of the facts, witness the following
 example from Cicero,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Caec.</hi>
+                        <hi rend="italic">pro Caec.</hi>
                         iv. 11.
                     </note>
                     <quote>
@@ -2129,13 +2147,13 @@ start.
 our array of facts is still long, it will not be without
 advantage to append a summary at the end of it as
 a reminder: Cicero does this even at the close of a
-                    <pb id="p.79"/>
+                    <pb xml:id="p.79"/>
                     brief
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     in the
-                    <hi rend="italics">pro Ligario:</hi>
+                    <hi rend="italic">pro Ligario:</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Lig.</hi>
+                        <hi rend="italic">pro Lig.</hi>
                         ii. 4.
                     </note>
                     <quote>
@@ -2149,7 +2167,7 @@ was not the least suspicion of any war etc.
                 <p>
                     <milestone n="52" unit="section"/>
                     The
-                    <hi rend="italics">statement of fact</hi>
+                    <hi rend="italic">statement of fact</hi>
                     will be credible, if in the first
 place we take care to say nothing contrary to nature,
 secondly if we assign reasons and motives for the
@@ -2168,7 +2186,7 @@ as to give it an air of credibility, as is done in
 comedy and farce. For some things have such natural
 sequence and coherence that, if only the first
 portion of your
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     is satisfactory, the judge
 will himself anticipate what you have got to
 say in the later part.
@@ -2177,7 +2195,7 @@ say in the later part.
 scatter some hints of our proofs here and there, but
 in such a way that it is never forgotten that we are
 making a
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     and not a proof. Sometimes, however, we must also support our assertions
 by a certain amount of argument, though this must
 be short and simple: for instance in a case of
@@ -2190,7 +2208,7 @@ supervened.
                     </quote>
                     <milestone n="55" unit="section"/>
                     The same result is produced by
-                    <pb id="p.81"/>
+                    <pb xml:id="p.81"/>
                     preparatory remarks such as the following:
                     <quote>
                         The
@@ -2200,7 +2218,7 @@ evil.
                     </quote>
                     We may in fact touch on everything that we
 propose to produce in our
-                    <hi rend="italics">proof;</hi>
+                    <hi rend="italic">proof;</hi>
                     while making our
 statement of facts, as for instance points connected
 with persons, cause, place, time, the instrument and
@@ -2217,7 +2235,7 @@ case.
                     The best kind of preparatory remarks are
 those which cannot be recognised as such: Cicero,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         x. 28.
                     </note>
                     for instance, is extraordinarily happy in the way he
@@ -2244,16 +2262,16 @@ otherwise, his words would by their very sound have
 warned the judge to keep an eye on the advocate.
                     <milestone n="59" unit="section"/>
                     The majority of readers regard this passage as lacking in distinction, but this very fact merely serves
-                    <pb id="p.83"/>
+                    <pb xml:id="p.83"/>
                     to show how the art which is scarce detected by a
 reader succeeded in hoodwinking the judge. It is
 qualities of this kind that make the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     credible.
                     <milestone n="60" unit="section"/>
                     If a student requires to be told that we
 must avoid contradiction and inconsistency in our
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     it will be vain to attempt to instruct
 him on the remaining points, although some writers
 of text-books produce this precept as if it were a
@@ -2272,7 +2290,7 @@ the majority of private suits dealing with loans,
 letting and hiring and interdicts? Nor yet is it
 always expedient, as may be inferred from the
 passage just cited from the
-                    <hi rend="italics">pro Milone.</hi>
+                    <hi rend="italic">pro Milone.</hi>
                     <milestone n="62" unit="section"/>
                     We must
 remember, too, that there are many cases in which
@@ -2290,18 +2308,18 @@ this portion of the speech.
                 <p>
                     <milestone n="63" unit="section"/>
                     Theodectes asserts that the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     should not merely be magnificent, but attractive
 in style. But this quality again though suitable
 enough to the statement of facts, is equally so in
 other portions of the speech. There are others
-                    <pb id="p.85"/>
+                    <pb xml:id="p.85"/>
                     who add palpability, which the Greeks call
                     <foreign xml:lang="grc">e)na/rgeia.</foreign>
                     <milestone n="64" unit="section"/>
                     And I will not conceal the fact that Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Top.</hi>
+                        <hi rend="italic">Top.</hi>
                         xxvi. 97.
                     </note>
                     himself
@@ -2329,12 +2347,12 @@ which he narrates.
                     <milestone n="66" unit="section"/>
                     A chance turn of the discussion has led us to a
 difficult type of
-                    <hi rend="italics">statement of facts.</hi>
+                    <hi rend="italic">statement of facts.</hi>
                     I will therefore
 proceed to speak of those in which the facts are
 against us. Under such circumstances some have
 held that we should omit the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     altogether. Nothing can be more easy, except
 perhaps to throw up the case altogether. But
 suppose you undertake a case of this kind with
@@ -2346,9 +2364,9 @@ he knows we were unwilling to place before him.
                     <milestone n="67" unit="section"/>
                     I do not of course deny that just as there may be
 some points which you should deny in your
-                    <hi rend="italics">statement</hi>
-                    <pb id="p.87"/>
-                    <hi rend="italics">of facts,</hi>
+                    <hi rend="italic">statement</hi>
+                    <pb xml:id="p.87"/>
+                    <hi rend="italic">of facts,</hi>
                     others which you should add, and yet again
 others that you should alter, so there may be some
 which you should pass over in silence. But still
@@ -2389,7 +2407,7 @@ our slaves extenuate their own faults.
                     In some
 cases, too, we may mitigate a bad impression by
 words which avoid the appearance of a
-                    <hi rend="italics">statement of facts.</hi>
+                    <hi rend="italic">statement of facts.</hi>
                     We may say, for instance,
                     <quote>
                         He did not, as
@@ -2401,7 +2419,7 @@ the sight of the money (and money has always an
 undue influence on the mind of man), and so
 yielded to temptation. What does that matter?
 He committed the offence and is a thief. It is
-                        <pb id="p.89"/>
+                        <pb xml:id="p.89"/>
                         useless to defend an act to the punishment of
 which we can raise no objection.
                     </quote>
@@ -2409,7 +2427,7 @@ which we can raise no objection.
                     Again we may
 sometimes go near condemning our client ourselves.
                     <quote>
-                        <hi rend="italics">Do</hi>
+                        <hi rend="italic">Do</hi>
                         you wish me to say that you were
 under the influence of wine? that you made a mistake? that the darkness deceived you? That may
 be true. But still you committed an assault on a
@@ -2418,7 +2436,7 @@ freeborn boy; pay your 10,000 sesterces.
                     Sometimes we may fortify our case in advance by a
 preliminary summary, from which we proceed to the
 full
-                    <hi rend="italics">statement of facts.</hi>
+                    <hi rend="italic">statement of facts.</hi>
                     <milestone n="72" unit="section"/>
                     All the evidence points to
 the guilt of three sons who had conspired against
@@ -2453,7 +2471,7 @@ add,
 others who had more indulgent fathers; but their
 real feelings towards their father have been proved
 by the result; they could not bring themselves to
-                        <pb id="p.91"/>
+                        <pb xml:id="p.91"/>
                         kill him. It would have been quite unnecessary
 for them to take an oath to kill him, if they had
 really had the heart to do the deed, while the only
@@ -2470,19 +2488,19 @@ the way for them.
 an act has been committed or what its nature may
 be, even though everything be against us, how can
 we avoid a
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     without gross neglect
 of our case? The accuser has made a
-                    <hi rend="italics">statement of facts facts,</hi>
+                    <hi rend="italic">statement of facts facts,</hi>
                     and has done so not merely in such a way as
 to indicate what was done, but has added such
 comments as might excite strong prejudice against
 us and made the facts seem worse than they are
 by the language which he has used. On the top
 of this have come the
-                    <hi rend="italics">proofs,</hi>
+                    <hi rend="italic">proofs,</hi>
                     while the
-                    <hi rend="italics">peroration</hi>
+                    <hi rend="italic">peroration</hi>
                     has kindled the indignation of the judges and left
 them full of anger against us.
                     <milestone n="76" unit="section"/>
@@ -2501,7 +2519,7 @@ putting a different complexion on the case.
                     Some
 imputations we may mitigate by the use of other
 words; luxury will be softened down into generosity,
-                    <pb id="p.93"/>
+                    <pb xml:id="p.93"/>
                     avarice into economy, carelessness into simplicity,
 and I shall seek to win a certain amount of favour
 or pity by look, voice and attitude. Sometimes a
@@ -2521,20 +2539,20 @@ out to make that possible?
                     <milestone n="79" unit="section"/>
                     Or again what
 difference is there between a
-                    <hi rend="italics">proof</hi>
+                    <hi rend="italic">proof</hi>
                     and a
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     save that the latter is a
-                    <hi rend="italics">proof</hi>
+                    <hi rend="italic">proof</hi>
                     put forward
 in continuous form, while a
-                    <hi rend="italics">proof</hi>
+                    <hi rend="italic">proof</hi>
                     is a verification
 of the facts as put forward in the
-                    <hi rend="italics">statement?</hi>
+                    <hi rend="italic">statement?</hi>
                     Let
 us consider therefore whether under such circumstances the
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     should not be somewhat
 longer and fuller than usual, since we shall require
 to make some preliminary remarks and to introduce
@@ -2551,14 +2569,14 @@ best.
 statement anything that can be given a different
 complexion from that put upon it by our opponent.
 Otherwise even an
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     will be superfluous
 in a case of this kind. For what is its purpose if
-                    <pb id="p.95"/>
+                    <pb xml:id="p.95"/>
                     not to make the judge better disposed for the
 investigation of the case? And yet it will be
 agreed that the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     is never more useful than
 when it is necessary to divert the judge from some
 prejudice that he has formed against us.
@@ -2567,7 +2585,7 @@ prejudice that he has formed against us.
                     <note anchored="true" place="unspecified">
                         For this technical term = cases turning on questions of
 fact, see III. vi. 30
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     cases, on the other hand—that is to say
 questions of fact—require a statement, which will
@@ -2589,7 +2607,7 @@ statement of fact, but concerns the question how it
 should be made. For what is there to prevent us
 from amassing and producing a number of arguments
 in the
-                    <hi rend="italics">statement,</hi>
+                    <hi rend="italic">statement,</hi>
                     if that is likely to help our cause?
 Or from subdividing our statement of facts and
 appending the proofs to their respective sections
@@ -2597,14 +2615,14 @@ and so passing on to what remains to be said?
                     <milestone n="83" unit="section"/>
                     Neither do I agree with those who assert that
 the order of our
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     should always
 follow the actual order of events, but have a preference for adopting the order which I consider
 most suitable. For this purpose we can employ a
 variety of figures. Sometimes, when we bring up
 a point in a place better suited to our purpose,
 we may pretend that it had escaped our notice;
-                    <pb id="p.97"/>
+                    <pb xml:id="p.97"/>
                     occasionally, too, we may inform the judge that we
 shall adhere to the natural order for the remainder
 of our statement, since by so doing we shall make
@@ -2622,7 +2640,7 @@ delayed, applying a temporary bandage.
                     Again I
 do not regard it as a crime to repeat a statement of
 a fact more than once, as Cicero does in the
-                    <hi rend="italics">pro Cluentio.</hi>
+                    <hi rend="italic">pro Cluentio.</hi>
                     It is not merely permissible, but sometimes necessary, as in trials for extortion and all
 complicated cases; and only a lunatic will allow a
 superstitious observance of rules to lead him counter
@@ -2646,7 +2664,7 @@ book if I lie.
 for not following the order of events as a general rule.
 Indeed inversion of the order has at times a most
 unhappy effect, as for example if you should mention
-                    <pb id="p.99"/>
+                    <pb xml:id="p.99"/>
                     first that a woman has brought forth and then that
 she has conceived, or that a will has been read and
 then that it has been signed. In such cases, if you
@@ -2665,7 +2683,7 @@ sometimes consists simply in an assumption of modesty,
 which is, I imagine, the reason why it is called a
 gloss,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">color</hi>
+                        <hi rend="italic">color</hi>
                         is a technical term for
                         <quote>
                             the particular aspect given
@@ -2695,10 +2713,10 @@ ourselves, a slip which is far from rare on the part of
 spinners of fiction: for some things may put a most
 favourable complexion on portions of our case, and
 yet fail to agree as a whole. Further, what we say
-                    <pb id="p.101"/>
+                    <pb xml:id="p.101"/>
                     must not be at variance with the admitted truth. Even
 in the schools, if we desire a
-                    <hi rend="italics">gloss,</hi>
+                    <hi rend="italic">gloss,</hi>
                     we must not look
 for it outside the facts laid down by our theme.
                     <milestone n="91" unit="section"/>
@@ -2731,14 +2749,14 @@ identical with ours (for he will not contradict), or
 finally in the mouth of our opponent (for he will not
 be believed if he does deny).
                     <milestone n="94" unit="section"/>
-                    <hi rend="italics">Glosses</hi>
+                    <hi rend="italic">Glosses</hi>
                     drawn from
 dreams and superstitions have long since lost their
 value, owing to the very ease with which they can
 be invented. But it will avail us little to use
-                    <hi rend="italics">glosses</hi>
+                    <hi rend="italic">glosses</hi>
                     in a
-                    <hi rend="italics">statement of fact,</hi>
+                    <hi rend="italic">statement of fact,</hi>
                     unless they are consistent
 throughout the whole of our speech, more especially
 as certain things can only be proved by persistent
@@ -2746,11 +2764,11 @@ assertion.
                     <milestone n="95" unit="section"/>
                     Take for instance the case of the parasite
 who claims as his son a young man who has been
-                    <pb id="p.103"/>
+                    <pb xml:id="p.103"/>
                     thrice disinherited by a wealthy father and thrice
 restored to his own. He will be able to put forward
 as a
-                    <hi rend="italics">gloss</hi>
+                    <hi rend="italic">gloss</hi>
                     or plea that poverty was the reason why he
 exposed the child, that he assumed the role of a
 parasite because his son was in the house in question
@@ -2772,7 +2790,7 @@ has been suborned to bring the action.
                     It sometimes happens in the controversial themes
 of the schools, though I doubt whether it could ever
 occur in the courts, that both sides employ the same
-                    <hi rend="italics">gloss</hi>
+                    <hi rend="italic">gloss</hi>
                     and support it on their own behalf.
                     <milestone n="98" unit="section"/>
                     An
@@ -2796,7 +2814,7 @@ defence of the stepmother.
                     <milestone n="99" unit="section"/>
                     However, what is common to both sides of the case will be stated, and
 then arguments will be drawn from a comparison of
-                    <pb id="p.105"/>
+                    <pb xml:id="p.105"/>
                     the characters of the two parties, from the order in
 which they laid information against each other and
 from the silence of the divorced wife.
@@ -2804,7 +2822,7 @@ from the silence of the divorced wife.
                     Still we
 must not ignore the fact that there are some cases
 which do not admit of any form of
-                    <hi rend="italics">gloss,</hi>
+                    <hi rend="italic">gloss,</hi>
                     but must
 be defended forthright. An example is provided by
 the case of the rich man who scourged the statue
@@ -2840,7 +2858,7 @@ their bad company.
                 <p>
                     <milestone n="103" unit="section"/>
                     Further rules are laid down with regard to the
-                    <pb id="p.107"/>
+                    <pb xml:id="p.107"/>
                     statement of fact, forbidding us to indulge in
 digression, apostrophe or argumentation or to put
 our words into the mouths of others. Some even
@@ -2857,7 +2875,7 @@ having been forced from our proper course by
 some uncontrollable emotion. The passage in
 Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Clu.</hi>
+                        <hi rend="italic">pro Clu.</hi>
                         vi. 15.
                     </note>
                     about the marriage of Sasia is a good example of this.
@@ -2881,7 +2899,7 @@ the judge, it may be a means of making a point with
 greater brevity and give it greater force. On this
 subject I hold the same view that I expressed in
 dealing with the
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     as I do on the subject of
 impersonation. This artifice however is employed not
 only by Servius Sulpicius in his speech on behalf of
@@ -2889,12 +2907,12 @@ Aufidia, when he cries
                     <quote>
                         Am I to suppose that you
 were drowsed with sleep or weighed down by some
-                        <pb id="p.109"/>
+                        <pb xml:id="p.109"/>
                         heavy lethargy?
                     </quote>
                     but by Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         v. xlv. 118.
                     </note>
                     as well, when in a
@@ -2904,9 +2922,9 @@ says,
                     <milestone n="107" unit="section"/>
                     Again
 in the pro
-                    <hi rend="italics">Clueniio</hi>
+                    <hi rend="italic">Clueniio</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Clu.</hi>
+                        <hi rend="italic">pro Clu.</hi>
                         xxvi.
                     </note>
                     does not the conversation
@@ -2915,10 +2933,10 @@ enhance the credibility of the statements ? In
 case it should be thought that Cicero did this
 without design (quite an incredible supposition in
 his case), I would point out that in the
-                    <hi rend="italics">Partitiones</hi>
+                    <hi rend="italic">Partitiones</hi>
                     <note anchored="true" place="unspecified">ix. 31.</note>
                     he lays it down that the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     should
 be characterised by passages which will charm and
 excite admiration or expectation, and marked by
@@ -2927,10 +2945,10 @@ appeals to every kind of emotion.
                     <milestone n="108" unit="section"/>
                     We shall, as I
 have already said, never argue points in the
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     but we may sometimes introduce
 arguments, as for example Cicero does in the pro
-                    <hi rend="italics">Ligario,</hi>
+                    <hi rend="italic">Ligario,</hi>
                     <note anchored="true" place="unspecified">
                         ii. 4. Ligarius was accused of having fought for the Pompeians in Africa. Cicero points out that he went out to Africa
 before the outbreak of war was dreamed of and that his
@@ -2949,7 +2967,7 @@ will run as follows,
                     <quote>Quintus Ligarius went out as legate to C. Considius.</quote>
                     But how will Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Lig.</hi>
+                        <hi rend="italic">pro Lig.</hi>
                         i. 2.
                     </note>
                     put
@@ -2963,7 +2981,7 @@ was no thought of war.
                     </quote>
                     And again elsewhere
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ib.</hi>
+                        <hi rend="italic">ib.</hi>
                         ii. 4.
                     </note>
                     <milestone n="110" unit="section"/>
@@ -2971,11 +2989,11 @@ was no thought of war.
                     <quote>Not only not to war, but to a country where there was no thought of war.</quote>
                     And when the
 sense would have been sufficiently clear had he
-                    <pb id="p.111"/>
+                    <pb xml:id="p.111"/>
                     said no more than
                     <quote>Quintus Ligarius would not suffer himself to be entangled in any transaction,</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Lig.</hi>
+                        <hi rend="italic">pro Lig.</hi>
                         i. 3.
                     </note>
                     he adds
@@ -2989,13 +3007,13 @@ and at the same time coloured it with emotion.
                     I am therefore all the more surprised at those
 who hold that there should be no appeal to the
 emotions in the
-                    <hi rend="italics">statement of facts.</hi>
+                    <hi rend="italic">statement of facts.</hi>
                     If they were to
 say
                     <quote>
                         Such appeals should be brief and not on the
 scale on which they are employed in tile
-                        <hi rend="italics">peroration,</hi>
+                        <hi rend="italic">peroration,</hi>
                     </quote>
                     I should agree with them; for it is important that
 the statement should be expeditious. But why,
@@ -3011,9 +3029,9 @@ mind with anger or pity?
                     <milestone n="113" unit="section"/>
                     Does not Cicero,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         v 62. A Roman citizen might not be scourged.
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         St. Paul.
                     </note>
                     in his
@@ -3032,11 +3050,11 @@ in the law.
                     Again does he not throughout the
 whole of his statement excite the warmest indignation at the misfortunes of Philodamus
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ib.</hi>
+                        <hi rend="italic">ib.</hi>
                         i. 30
                     </note>
                     and move
-                    <pb id="p.113"/>
+                    <pb xml:id="p.113"/>
                     us even to tears when he speaks of his punishment
 and describes, or rather shows us as in a picture,
 the father weeping for the death of his son and the
@@ -3045,11 +3063,11 @@ son for the death of his father?
                     What can any
 peroration present that is more calculated to stir
 our pity? If you wait for the
-                    <hi rend="italics">peroration</hi>
+                    <hi rend="italic">peroration</hi>
                     to stir your
 hearer's emotions over circumstances which you
 have recorded unmoved in your
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     your appeal will come too late. The judge is
 already familiar with them and hears their mention
 without turning a hair, since he was unstirred when
@@ -3061,7 +3079,7 @@ of mind is formed, it is hard to change it.
                     For my own part (for I will not conceal my
 opinion, though it rests rather on actual examples
 than on rules), I hold that the
-                    <hi rend="italics">statement of fact</hi>
+                    <hi rend="italic">statement of fact</hi>
                     more
 than any portion of the speech should be adorned
 with the utmost grace and charm. But much will
@@ -3086,12 +3104,12 @@ current usage, though warranted by the authority of
 antiquity (for it is important that our language should
 be entirely normal), but should be designed to relieve
 tedium by their variety and should be frequently
-                    <pb id="p.115"/>
+                    <pb xml:id="p.115"/>
                     changed to relax the strain of attention. Thus we
 shall avoid repeating the same terminations and
 escape monotony of rhythm and a stereotyped turn
 of phrase. For the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     lacks all the
 other allurements of style and, unless it is characterised by this kind of charm, will necessarily fall flat.
                     <milestone n="119" unit="section"/>
@@ -3118,7 +3136,7 @@ palate. The best way of so doing is the interposition of a short sentence like t
 wished his own slaves to do under similar circumstances
                     </quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         x. 29.
                     </note>
                     : at times we may even be a little more
@@ -3129,7 +3147,7 @@ were no witnesses, none to sanction the union, and
 the omens were dark and sinister.
                     </quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Clu. v.</hi>
+                        <hi rend="italic">pro Clu. v.</hi>
                         14.
                     </note>
                     <milestone n="122" unit="section"/>
@@ -3138,7 +3156,7 @@ done in days when every speech was designed for
 practical purposes rather than display and the courts
 were far stricter than to-day, how much more should
 we do it now, when the passion for producing a
-                    <pb id="p.117"/>
+                    <pb xml:id="p.117"/>
                     thrill of pleasure has forced its way even into cases
 where a man's life or fortunes are in peril? I shall
 say later to what extent I think we should indulge
@@ -3178,10 +3196,10 @@ vehement in censure or more vivid in description?
                 <p>
                     <milestone n="125" unit="section"/>
                     There is another point to which I must call attention, namely the credit which accrues to the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     from the authority of the speaker. Now
 such authority should first and foremost be the reward of our manner of life, but may also be conferred
-                    <pb id="p.119"/>
+                    <pb xml:id="p.119"/>
                     by our style of eloquence. For the more dignified
 and serious our style, the greater will be the weight
 that it will lend to our assertions.
@@ -3204,7 +3222,7 @@ what we wish to display to the bystanders.
                 <p>
                     <milestone n="128" unit="section"/>
                     There is also a kind of repetition of the
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     which the Greeks call
                     <foreign xml:lang="grc">e)pidihgh/sis.</foreign>
                     It belongs to
@@ -3213,12 +3231,12 @@ the statement should be brief) to set forth his facts
 at greater length and with more profusion of ornament, as a means of exciting indignation or pity. I
 think that this should be done but rarely and that
 we should never go to the extent of repeating the
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     in its entirety. For we can attain the same
 result by a repetition only of parts. Anyone, however, who desires to employ this form of repetition,
 should touch but lightly on the facts when making
 his
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     and should content himself with merely
 indicating what was done, while promising to set
 forth how it was done more fully when the time
@@ -3227,10 +3245,10 @@ comes for it.
                 <p>
                     <milestone n="129" unit="section"/>
                     Some hold that the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     should always
 begin by referring to some person, whom we must
-                    <pb id="p.121"/>
+                    <pb xml:id="p.121"/>
                     praise if he is on our side, and abuse if he is on the
 side of our opponents. It is true that this is very
 often done for the good reason that a law-suit must
@@ -3247,7 +3265,7 @@ only in his native town of Larinum, but in all the
 surrounding district.
                     </quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Cluent.</hi>
+                        <hi rend="italic">pro Cluent.</hi>
                         v. 11.
                     </note>
                     <milestone n="131" unit="section"/>
@@ -3255,14 +3273,14 @@ surrounding district.
 passage beginning
                     <quote>For Quintus Ligarius etc.</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Lig. i.</hi>
+                        <hi rend="italic">pro Lig. i.</hi>
                         2.
                     </note>
                     Often, too, we may commence with a fact as Cicero
 does in the
-                    <hi rend="italics">pro Tullio</hi>
+                    <hi rend="italic">pro Tullio</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Tull. vi.</hi>
+                        <hi rend="italic">pro Tull. vi.</hi>
                         14.
                     </note>
                     :
@@ -3279,7 +3297,7 @@ of Thurium,
                 <p>
                     <milestone n="132" unit="section"/>
                     As regards the conclusion of the
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     there is a controversy with those who would have
 the statement end where the issue to be determined
 begins. Here is an example.
@@ -3295,7 +3313,7 @@ decide to whom this money is to go.
                     </quote>
                     <note anchored="true" place="unspecified">
                         Cic.
-                        <hi rend="italics">pro Caec.</hi>
+                        <hi rend="italic">pro Caec.</hi>
                         viii. 23.
                     </note>
                     This rule
@@ -3304,17 +3322,17 @@ always by the defendant.
                 </p>
                 <p>
                     III. In the natural order of things the
-                    <hi rend="italics">statement of fact</hi>
+                    <hi rend="italic">statement of fact</hi>
                     is followed by the
-                    <hi rend="italics">verification.</hi>
+                    <hi rend="italic">verification.</hi>
                     For it
-                    <pb id="p.123"/>
+                    <pb xml:id="p.123"/>
                     is necessary to prove the points which we stated
 with the proof in view. But before I enter on this
 portion, I have a few words to say on the opinions
 held by certain rhetoricians. Most of them are in
 the habit, as soon as they have completed the
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     of digressing to some pleasant and
 attractive topic with a view to securing the utmost
 amount of favour from their audience.
@@ -3347,10 +3365,10 @@ have already been said.
                     I admit however that this
 form of digression can be advantageously appended,
 not merely to the
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     but to each of
 the different questions or to the questions as a whole,
-                    <pb id="p.125"/>
+                    <pb xml:id="p.125"/>
                     so long as the case demand, or at any rate permit it.
 Indeed such a practice confers great distinction and
 adornment on a speech, but only if the digression
@@ -3361,18 +3379,18 @@ together.
                     <milestone n="5" unit="section"/>
                     For there is no part of a speech so closely
 connected with any other as the
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     with the
-                    <hi rend="italics">proof,</hi>
+                    <hi rend="italic">proof,</hi>
                     though of course such a digression may be
 intended as the conclusion of the
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     and the
 beginning of the
-                    <hi rend="italics">proof</hi>
+                    <hi rend="italic">proof</hi>
                     There will therefore sometimes be room for digression; for example if the end
 of the
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     has been concerned with some specially horrible theme, we may embroider the theme
 as though our indignation must find immediate
 vent.
@@ -3397,16 +3415,16 @@ heard the facts set forth in order, the judge is in a
 hurry to get to the proof and desires to satisfy himself of the correctness of his impressions at the
 earliest possible moment. Further, care must be
 taken not to nullify the effect of the
-                    <hi rend="italics">statement</hi>
+                    <hi rend="italic">statement</hi>
                     by
-                    <pb id="p.127"/>
+                    <pb xml:id="p.127"/>
                     diverting the minds of the court to some other theme
 and wearying them by useless delay.
                 </p>
                 <p>
                     <milestone n="9" unit="section"/>
                     But, though such digressions are not always necessary at the end of the
-                    <hi rend="italics">statement,</hi>
+                    <hi rend="italic">statement,</hi>
                     they may form a very
 useful preparation for the examination of the main
 question, more especially if at first sight it presents
@@ -3414,7 +3432,7 @@ an aspect unfavourable to our case, if we have to
 support a harsh law or demand severe punishment.
 For this is the place for inserting what may be
 regarded as a second
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     with a view to
 exciting or mollifying the judge or disposing him
 to lend a favouring ear to our proofs. Moreover we can do this with all the greater freedom
@@ -3438,9 +3456,9 @@ or a strict interpretation of the law, since the necessity for such digression w
 this
                     <foreign xml:lang="grc">pare/kbasis,</foreign>
                     the Romans
-                    <hi rend="italics">egressus</hi>
+                    <hi rend="italic">egressus</hi>
                     or
-                    <hi rend="italics">egressio</hi>
+                    <hi rend="italic">egressio</hi>
                     (digression). They may however, as I have said,
 be of various kinds and may deal with different
 themes in any portion of the speech. For instance
@@ -3449,17 +3467,17 @@ record historical or even legendary occurrences.
                     <milestone n="13" unit="section"/>
                     As
 examples I may cite the praise of Sicily and the rape
-                    <pb id="p.129"/>
+                    <pb xml:id="p.129"/>
                     of Proserpine
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         I vii. 27.
                     </note>
                     in the
-                    <hi rend="italics">Verrines,</hi>
+                    <hi rend="italic">Verrines,</hi>
                     or the famous recital of
 the virtues of Gneius Pompeius in the
-                    <hi rend="italics">pro Cornelio,</hi>
+                    <hi rend="italic">pro Cornelio,</hi>
                     <note anchored="true" place="unspecified">See note on IV. iv. 8.</note>
                     where the great orator as though the course of his
 eloquence had been broken by the mere mention of
@@ -3474,7 +3492,7 @@ some bearing on the case, in a passage that involves
 digression from the logical order of our speech. I do
 not see therefore why it should be assigned a special
 position immediately following on the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     any more than I understand why they think
 that the name is applicable only to a digression where
 some statement has to be made, when there are so
@@ -3500,7 +3518,7 @@ number of topics which are inserted in the midst of
 matter which has no connexion with them, when
 for example we strive to excite, admonish, appease,
 entreat or praise the judge. Such passages are
-                    <pb id="p.131"/>
+                    <pb xml:id="p.131"/>
                     innumerable. Some will have been carefully prepared beforehand, while others will be produced to
 suit the occasion or the necessity of the moment, if
 anything extraordinary should occur in the course of
@@ -3509,7 +3527,7 @@ our pleading, such as an interruption, the intervention of some individual or a 
                     For example,
 this made it necessary for Cicero to digress even in
 the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     when he was defending Milo, as is
 clear from the short speech
                     <note anchored="true" place="unspecified">
@@ -3527,9 +3545,9 @@ returning to the point from which he departed.
                 </p>
                 <p>
                     IV. After the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     some place the
-                    <hi rend="italics">proposition</hi>
+                    <hi rend="italic">proposition</hi>
                     <note anchored="true" place="unspecified">III. ix. 5; xi. 27.</note>
                     which they regard as forming a division
 of a forensic speech. I have already expressed
@@ -3537,9 +3555,9 @@ my opinion of this view.
                     <note anchored="true" place="unspecified">III. ix. 2.</note>
                     But it seems to me
 that the beginning of every
-                    <hi rend="italics">proof</hi>
+                    <hi rend="italic">proof</hi>
                     is a
-                    <hi rend="italics">proposition,</hi>
+                    <hi rend="italic">proposition,</hi>
                     such as often occurs in the demonstration of the
 main question and sometimes even in the enunciation
 of individual arguments, more especially of those
@@ -3551,9 +3569,9 @@ I shall speak of the first kind. It is not always necessary to employ it.
                     <milestone n="2" unit="section"/>
                     The nature of the main question
 is sometimes sufficiently clear without any
-                    <hi rend="italics">proposition,</hi>
+                    <hi rend="italic">proposition,</hi>
                     especially if the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     ends exactly where
 the question begins. Consequently the recapitulation generally employed in the case of arguments is
 sometimes placed immediately after the statement
@@ -3561,17 +3579,17 @@ of facts.
                     <quote>
                         The affair took place, as I have described,
 gentlemen: he that laid the ambush was defeated,
-                        <pb id="p.133"/>
+                        <pb xml:id="p.133"/>
                         violence was conquered by violence, or rather I
 should say audacity was crushed by valour.
                     </quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         xi. 30.
                     </note>
                     <milestone n="3" unit="section"/>
                     Sometimes
-                    <hi rend="italics">proposition</hi>
+                    <hi rend="italic">proposition</hi>
                     is highly advantageous, more
 especially when the fact cannot be defended and
 the question turns on the definition of the fact;
@@ -3579,10 +3597,10 @@ as for example in the case of the man who has taken
 the money of a private individual from a temple: we
 shall say,
                     <quote>
-                        <hi rend="italics">My</hi>
+                        <hi rend="italic">My</hi>
                         client is charged with sacrilege. It
 is for you to decide whether it
-                        <hi rend="italics">was</hi>
+                        <hi rend="italic">was</hi>
                         sacrilege,
                     </quote>
                     so
@@ -3605,7 +3623,7 @@ the wall. The conclusion is that you must submit
 to the penalty.
                     </quote>
                     For this
-                    <hi rend="italics">proposition</hi>
+                    <hi rend="italic">proposition</hi>
                     forces a confession upon our opponent and to a certain extent
 accelerates the decision of the court. It does more
 than indicate the question, it contributes to its
@@ -3613,23 +3631,23 @@ solution.
                 </p>
                 <p>
                     <milestone n="5" unit="section"/>
-                    <hi rend="italics">Propositions</hi>
+                    <hi rend="italic">Propositions</hi>
                     may be single, double or manifold:
 this is due to more than one reason. For several
 charges may be combined, as when Socrates was
 accused of corrupting the youth and of introducing
 new superstitions; while single
-                    <hi rend="italics">propositions</hi>
+                    <hi rend="italic">propositions</hi>
                     may be
 made up of a number of arguments, as for instance
 when Aeschines is accused of misconduct as an
 ambassador on the ground that he lied, failed to
-                    <pb id="p.135"/>
+                    <pb xml:id="p.135"/>
                     carry out his instructions, wasted time and accepted
 bribes.
                     <milestone n="6" unit="section"/>
                     The defence may also contain several
-                    <hi rend="italics">propositions:</hi>
+                    <hi rend="italic">propositions:</hi>
                     for instance against a claim for money we
 may urge,
                     <quote>
@@ -3641,20 +3659,20 @@ that I borrowed the money, nor am I his debtor.
                     </quote>
                     <milestone n="7" unit="section"/>
                     These
-                    <hi rend="italics">propositions</hi>
+                    <hi rend="italic">propositions</hi>
                     can be multiplied at pleasure, but
 it is sufficient to give an indication of my meaning.
 If
-                    <hi rend="italics">propositions</hi>
+                    <hi rend="italic">propositions</hi>
                     are put forward singly with the proofs
 appended, they will form several distinct
-                    <hi rend="italics">propositions:</hi>
+                    <hi rend="italic">propositions:</hi>
                     if they are combined, they fall under the head of
-                    <hi rend="italics">partition.</hi>
+                    <hi rend="italic">partition.</hi>
                 </p>
                 <p>
                     <milestone n="8" unit="section"/>
-                    <hi rend="italics">A proposition</hi>
+                    <hi rend="italic">A proposition</hi>
                     may also be put forward unsupported, as is generally done in conjectural cases:
                     <quote>The formal accusation is one of murder, but I also charge the accused with theft.</quote>
                     Or it may be
@@ -3673,25 +3691,25 @@ the people. This struck at a privilege usurped by the
 senate, and Servilius Globulus, another tribune, forbade the
 herald to read out the proposal. Cornelius then read it
 himself. He was accused of
-                        <hi rend="italics">maiestas,</hi>
+                        <hi rend="italic">maiestas,</hi>
                         defended by Cicero
 in 65 B.C. and acquitted.
                     </note>
                     I In addition to these forms of
-                    <hi rend="italics">proposition</hi>
+                    <hi rend="italic">proposition</hi>
                     we can also introduce a
-                    <hi rend="italics">proposition</hi>
+                    <hi rend="italic">proposition</hi>
                     of our
 own, such as
                     <quote>I accuse him of adultery,</quote>
                     or may
 use the
-                    <hi rend="italics">proposition</hi>
+                    <hi rend="italic">proposition</hi>
                     of our opponent, such as
                     <quote>The charge brought against me is one of adultery,</quote>
                     or
 finally we may employ a
-                    <hi rend="italics">proposition</hi>
+                    <hi rend="italic">proposition</hi>
                     which is common
 to both sides, such as
                     <quote>
@@ -3700,19 +3718,19 @@ between myself and my opponent is, which of the
 two is next-of-kin to the deceased who died intestate.
                     </quote>
                     Sometimes we may even couple contradictory
-                    <hi rend="italics">propositions,</hi>
+                    <hi rend="italic">propositions,</hi>
                     as for instance
                     <quote>I say this, my opponent says that.</quote>
                 </p>
-                <pb id="p.137"/>
+                <pb xml:id="p.137"/>
                 <p>
                     <milestone n="9" unit="section"/>
                     We may at times produce the effect of a
-                    <hi rend="italics">proposition,</hi>
+                    <hi rend="italic">proposition,</hi>
                     even though it is not in itself a
-                    <hi rend="italics">proposition, by</hi>
+                    <hi rend="italic">proposition, by</hi>
                     adding after the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     some phrase such
 as the following:
                     <quote>These are the points on which you will give your decision,</quote>
@@ -3720,19 +3738,19 @@ as the following:
 judge to give special attention to the question and
 giving him a fillip to emphasise the point that we
 have finished the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     and are beginning
 the
-                    <hi rend="italics">proof,</hi>
+                    <hi rend="italic">proof,</hi>
                     so that when we start to verify our statements he may realise that he has reached a fresh stage
 where he must begin to listen with renewed attention.
                 </p>
                 <p>
                     V.
-                    <hi rend="italics">Partition</hi>
+                    <hi rend="italic">Partition</hi>
                     may be defined as the enumeration in
 order of our own
-                    <hi rend="italics">propositions,</hi>
+                    <hi rend="italic">propositions,</hi>
                     those of our adversary
 or both. It is held by some that this is indispensable on the ground that it makes the case clearer
 and the judge more attentive and more ready to be
@@ -3744,36 +3762,36 @@ dangerous to the speaker on two grounds, namely
 that sometimes we may forget to perform what we
 have promised and may, on the other hand, come
 upon something which we have omitted in the
-                    <hi rend="italics">partition.</hi>
+                    <hi rend="italic">partition.</hi>
                     But this will never happen to anyone unless
 he is either a fool or has come into court without
 thinking out his speech in detail beforehand.
                     <milestone n="3" unit="section"/>
                     Besides, what can be simpler or clearer than a straightforward
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     ? It follows nature as a guide and
 the adhesion to a definite method is actually of the
 greatest assistance to the speaker's memory. Therefore I cannot approve the view even of those who
 lay down that
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     should not extend beyond
 the length of three
-                    <hi rend="italics">propositions.</hi>
+                    <hi rend="italic">propositions.</hi>
                     No doubt there is
 a danger, if our
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     is too complicated, that it
-                    <pb id="p.139"/>
+                    <pb xml:id="p.139"/>
                     may slip the memory of the judge and disturb his
 attention. But that is no reason why it should be
 tied down to a definite number of
-                    <hi rend="italics">propositions,</hi>
+                    <hi rend="italic">propositions,</hi>
                     since
 the case may quite conceivably require more.
                     <milestone n="4" unit="section"/>
                     There
 are further reasons why we should sometimes dispense with
-                    <hi rend="italics">partition.</hi>
+                    <hi rend="italic">partition.</hi>
                     In the first place there are
 many points which can be produced in a more
 attractive manner, if they appear to be discovered on
@@ -3795,7 +3813,7 @@ have to hoodwink the judge and work upon him by
 various artifices so that he may think that our aim is
 other than what it really is. For there are cases
 when a
-                    <hi rend="italics">proposition</hi>
+                    <hi rend="italic">proposition</hi>
                     may be somewhat startling: if the
 judge foresees this, he will shrink from it in advance,
 like a patient who catches sight of the surgeon's
@@ -3811,7 +3829,7 @@ the point.
 distinguishing between the various questions, but must
 omit them altogether, while our audience must be
 distracted by appeals to the emotion and their attention diverted. For the duty of the orator is not
-                    <pb id="p.141"/>
+                    <pb xml:id="p.141"/>
                     merely to instruct: the power of eloquence is greatest
 in emotional appeals. Now there is no room for
 passion if we devote our attention to minute and
@@ -3831,21 +3849,21 @@ which is apparently irrational.
                     <milestone n="8" unit="section"/>
                     In addition it must
 be pointed out that in any
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     there is always
 some one point of such special importance, that when
 the judge has heard it he is impatient with the remainder, which he regards as superfluous. Consequently if we have to prove or refute a number of
 points
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     will be both useful and attractive,
 since it will indicate in order what we propose to say
 on each subject. On the other hand, if we are defending one point on various grounds
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     will
 be unnecessary.
                     <milestone n="9" unit="section"/>
                     If you were to make a
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     such
 as the following,
                     <quote>
@@ -3862,7 +3880,7 @@ proof, must needs seem superfluous to the judge.
                     For the judge is always in a hurry to reach the most
 important point. If he has a patient disposition he
 will merely make a silent appeal to the advocate,
-                    <pb id="p.143"/>
+                    <pb xml:id="p.143"/>
                     whom he will treat as bound by his promise. On
 the other hand, if he is busy, or holds exalted
 position, or is intolerant by nature, he will insist in
@@ -3870,9 +3888,9 @@ no very courteous manner on his coming to the point.
                     <milestone n="11" unit="section"/>
                     For these reasons there are some who disapprove of
 the
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     adopted by Cicero in the
-                    <hi rend="italics">pro Cluentio,</hi>
+                    <hi rend="italic">pro Cluentio,</hi>
                     <note anchored="true" place="unspecified">
                         iv. 9. Oppianicus had been indicted by Cluentius for an
 attempt upon his life and condemned. The
@@ -3899,9 +3917,9 @@ need to have urged the two preceding.
                     On the
 other hand you will find no one so unreasonable or so
 foolish as to deny that the
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     in the
-                    <hi rend="italics">pro Murena</hi>
+                    <hi rend="italic">pro Murena</hi>
                     <note anchored="true" place="unspecified">v. 11.</note>
                     is admirable.
                     <quote>
@@ -3925,7 +3943,7 @@ a form of defence which I may exemplify as follows:
 first part, if the second can be proved, since they are
 mutually inconsistent, and if anyone employs both
 arguments, we should believe neither? This contention is partially justified; we should employ the
-                    <pb id="p.145"/>
+                    <pb xml:id="p.145"/>
                     second alone only if the fact can be proved without
 a doubt.
                     <milestone n="14" unit="section"/>
@@ -3942,7 +3960,7 @@ well to launch several and give fortune a chance to
 come to his assistance.
                     <milestone n="15" unit="section"/>
                     Cicero in the
-                    <hi rend="italics">pro Milone</hi>
+                    <hi rend="italic">pro Milone</hi>
                     reveals the utmost skill in showing first that Clodius
 laid an ambush for Milo and then in adding as a
 supernumerary argument that, even if he had not
@@ -3974,7 +3992,7 @@ must aim at making the first argument support the
 credibility of the second. For he who might without danger to himself have confessed to the commission of the act, can have no motive for lying
 when he denies the commission.
                 </p>
-                <pb id="p.147"/>
+                <pb xml:id="p.147"/>
                 <p>
                     <milestone n="18" unit="section"/>
                     Above all it is important, whenever we suspect
@@ -3996,7 +4014,7 @@ pretend to say certain things against the wishes of
 our clients, as Cicero
                     <note anchored="true" place="unspecified">lii.</note>
                     does in the
-                    <hi rend="italics">pro Cluentio</hi>
+                    <hi rend="italic">pro Cluentio</hi>
                     when
 he discusses the law dealing with judicial corruption.
 Occasionally we may stop, as though interrupted by
@@ -4019,10 +4037,10 @@ we have proved our point of law.
                 <p>
                     <milestone n="22" unit="section"/>
                     But although
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     is neither always necessary
 nor useful, it will, if judiciously employed, greatly
-                    <pb id="p.149"/>
+                    <pb xml:id="p.149"/>
                     add to the lucidity and grace of our speech. For
 it not only makes our arguments clearer by isolating
 the points from the crowd in which they would
@@ -4043,13 +4061,13 @@ how far it is to the end.
                     Quintus Hortensius
 deserves the high praise which has been awarded
 him for the care which he took over his
-                    <hi rend="italics">partitions,</hi>
+                    <hi rend="italic">partitions,</hi>
                     although Cicero more than once indulges in kindly
 mockery of his habit of counting his headings on his
 fingers. For there is a limit to gesture, and we must
 be specially careful to avoid excessive minuteness and
 any suggestion of articulated structure in
-                    <hi rend="italics">our partition.</hi>
+                    <hi rend="italic">our partition.</hi>
                     If our divisions are too small,
                     <milestone n="25" unit="section"/>
                     they cease to be limbs
@@ -4064,14 +4082,14 @@ labours is, however, not so much to increase the
 number of their divisions as to diminish their importance, and after all is done and they have split
 up their argument into a thousand tiny compartments,
 they fall into that very obscurity which the
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     was designed to eliminate.
                 </p>
-                <pb id="p.151"/>
+                <pb xml:id="p.151"/>
                 <p>
                     <milestone n="26" unit="section"/>
                     The
-                    <hi rend="italics">proposition,</hi>
+                    <hi rend="italic">proposition,</hi>
                     whether single or multiple, must,
 on every occasion when it can be employed with
 profit, be clear and lucid; for what could be more
@@ -4080,33 +4098,33 @@ whose sole purpose is to prevent obscurity elsewhere, should itself be obscure? 
 be brief and must not be burdened with a single
 superfluous word; for we are not explaining what
 we
-                    <hi rend="italics">are</hi>
+                    <hi rend="italic">are</hi>
                     saying, but what we are going to say.
                     <milestone n="27" unit="section"/>
                     We
 must also ensure that it is free alike from omissions
 and from redundance. Redundance as a rule occurs
 through our dividing into
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     when it would be
 sufficient to divide into
-                    <hi rend="italics">genera,</hi>
+                    <hi rend="italic">genera,</hi>
                     or through the addition of
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     after stating the
-                    <hi rend="italics">genus.</hi>
+                    <hi rend="italic">genus.</hi>
                     The following
 will serve as an example:
                     <quote>I will speak of virtue, justice and abstinence.</quote>
                     But justice and abstinence
 are
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     of tile
-                    <hi rend="italics">genus</hi>
+                    <hi rend="italic">genus</hi>
                     virtue.
                     <milestone n="28" unit="section"/>
                     Our first
-                    <hi rend="italics">partition</hi>
+                    <hi rend="italic">partition</hi>
                     will be between admitted and disputed facts.
 Admitted facts will then be divided into those
 acknowledged by our opponent and those acknowledged by ourselves. Disputed facts will be divided
@@ -4114,7 +4132,7 @@ into those which we and those which our opponents
 allege. But the worst fault of all is to treat your
 points in an order different from that which was
 assigned them in your
-                    <hi rend="italics">proposition.</hi>
+                    <hi rend="italic">proposition.</hi>
                 </p>
             </div>
         </body>

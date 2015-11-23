@@ -1,4 +1,5 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
@@ -6,8 +7,8 @@
                 <title type="sub">Machine readable text</title>
                 <author n="Quint.">Quintilian</author>
                 <editor n="Butler" role="editor">Harold Edgeworth Butler</editor>
-                <sponsor>Perseus Project, Tufts University</sponsor>
                 <principal>Gregory Crane</principal>
+                <sponsor>Perseus Project, Tufts University</sponsor>
                 <respStmt>
                     <resp>Prepared under the supervision of</resp>
                     <name>Lisa Cerrato</name>
@@ -16,15 +17,14 @@
                     <name>David Smith</name>
                 </respStmt>
                 <funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
-            </titleStmt><publicationStmt><publisher>Trustees of Tufts University</publisher><pubPlace>Medford, MA</pubPlace><authority>Perseus Project</authority></publicationStmt>
-            
+            </titleStmt>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
                 <authority>Perseus Project</authority>
             </publicationStmt>
-            <sourceDesc default="NO">
-                <biblStruct default="NO">
+            <sourceDesc default="false">
+                <biblStruct default="false">
                     <monogr>
                         <author>Quintilian</author>
                         <title>With an English Translation</title>
@@ -39,23 +39,40 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+	    <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                         matchPattern="(\\w+).(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\']/tei:div[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                         matchPattern="(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                         matchPattern="(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
                 <refState unit="book"/>
-                <refState unit="chapter"/>
-                <refState unit="section"/>
+                <refState unit="chapter" delim="."/>
+                <refState unit="section" delim="."/>
             </refsDecl>
             <refsDecl>
                 <refState unit="page"/>
             </refsDecl>
         </encodingDesc>
         <profileDesc>
-            <langUsage default="NO">
+            <langUsage default="false">
                 <language ident="la">Latin</language>
                 <language ident="en">English</language>
-                <language ident="greek">Greek</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
-        <revisionDesc><!--
+        <revisionDesc><change who="GRC" when="2006">tagging</change><!--
             <change>
                 <date>2006</date>
                 <respStmt>
@@ -64,12 +81,13 @@
                 </respStmt>
                 <item/>
             </change>
-        --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+        --><change when="2014-08-01" who="Stella Dee">edited markup</change>
+	   <change who="Zach Himes" when="2015-11-22">Edited teiHeader, converted to TEI P5 and EpiDoc</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="la">
+    <text xml:lang="lat">
         <body>
-            <pb id="p.204"/>
-            <div part="N" sample="complete" org="uniform" n="2" type="book">
+            <pb xml:id="p.204"/>
+            <div part="N" sample="complete" org="uniform" n="2" subtype="book" type="edition">
                 <head>Liber II</head>
                 <p>
                     <milestone n="1" unit="chapter"/>
@@ -101,7 +119,7 @@ grammaticos exerceat.
                     <reg>ita</reg>
                     , quod est maxime ridiculum, non ante ad declamandi magistrum mittendus
 videtur puer quam declamare sciat.
-                    <pb id="p.206"/>
+                    <pb xml:id="p.206"/>
                 </p>
                 <p>
                     <reg>nos</reg>
@@ -145,7 +163,7 @@ sic optime finiri credo; cum poterit.
 ex superiore pendet quaestione.
                     <reg>nam</reg>
                     si grammatices munus usque ad suasorias prorogatur, tardius
-                    <pb id="p.208"/>
+                    <pb xml:id="p.208"/>
                     rhetore opus est.
                     <reg>at</reg>
                     si rhetor prima officia operis
@@ -179,7 +197,7 @@ est? qua in parte nescio an sit vel plurimum.
 derecti, quales legimus a Cicerone compositos, seu
 quibus quaestiones generaliter tractantur, quales
 sunt editi a Quinto quoque Hortensio: ut,
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>sitne</reg>
                         parvis argumentis credendum,
                     </hi>
@@ -191,7 +209,7 @@ testes, in mediis litium medullis versantur?
 cum res poscet, utare.
                     <reg>quae</reg>
                     qui pertinere ad
-                    <pb id="p.210"/>
+                    <pb xml:id="p.210"/>
                     orationem non putabit, is ne statuam quidem inchoari
 credet, cum eius membra fundentur.
                     <reg>neque</reg>
@@ -232,7 +250,7 @@ facit aetas ipsa discentium.
                     et adulti fere
 pueri ad hos praeceptores transferuntur et apud eos
 iuvenes etiam facti perseverant; ideoque maior
-                    <pb id="p.212"/>
+                    <pb xml:id="p.212"/>
                     adhibenda tum cura est, ut et teneriores annos ab
 iniuria sanctitas docentis custodiat et ferociores a
 licentia gravitas deterreat.
@@ -287,7 +305,7 @@ obiurgant quasi oderint.
 cotidie dicat, quae secum auditores referant.
                     <reg>licet</reg>
                     enim satis exemplorum ad imitandum ex lectione
-                    <pb id="p.214"/>
+                    <pb xml:id="p.214"/>
                     suppeditet, tamen viva illa, ut dicitur, vox alit
 plenius praecipueque eius praeceptoris, quem discipuli, si modo recte sunt instituti, et amant et
 verentur.
@@ -330,7 +348,7 @@ uerum etiam excurrunt et cum indecora exultatione
 conclamant.
                     <reg>id</reg>
                     mutuum est et ibi declamationis
-                    <pb id="p.216"/>
+                    <pb xml:id="p.216"/>
                     fortuna.
                     <reg>hinc</reg>
                     tumor et vana de se persuasio usque
@@ -375,7 +393,7 @@ supervacua.
                     <milestone n="1" unit="section"/>
                     <reg>ne</reg>
                     illorum quidem persuasio silentio
-                    <pb id="p.218"/>
+                    <pb xml:id="p.218"/>
                     transeunda est, qui, etiam cum idoneos rhetori pueros
 putaverunt, non tamen continuo tradendos eminentissimo credunt, sed apud minores aliquamdiu
 detinent, tanquam instituendis artibus magis sit
@@ -411,7 +429,7 @@ minora descendere, idque interim fieri, quia fastidiant praestare hanc inferiori
 quia omnino non possint.
                     <reg>ego</reg>
                     porro eum qui nolit
-                    <pb id="p.220"/>
+                    <pb xml:id="p.220"/>
                     in numero praecipientium non habeo, posse autem
 maxime, si velit, optimum quemque contendo;
 primum, quod eum, qui eloquentia ceteris praestet,
@@ -448,7 +466,7 @@ ad intelligendum et lucidiora multo, quae a doctissimo quoque dicuntur?
                     et prima est eloquentiae virtus perspicuitas, et quo quis ingenio
 minus valet, hoc se magis attollere et dilatare
 conatur, ut statura breves in digitos eriguntur
-                    <pb id="p.222"/>
+                    <pb xml:id="p.222"/>
                     et plura infirmi minantur.
                     <milestone n="9" unit="section"/>
                     <reg>nam</reg>
@@ -485,7 +503,7 @@ audientibus iudicio suo coget.
                     ergo tam eloquentia quam moribus praestantissimus, qui ad
 Phoenicis Homerici exemplum dicere ac facere
 doceat.
-                    <pb id="p.224"/>
+                    <pb xml:id="p.224"/>
                 </p>
                 <p>
                     <milestone n="4" unit="chapter"/>
@@ -524,7 +542,7 @@ imitatione poeticae licentiae ducuntur, lasciviat.
                     <milestone n="4" unit="section"/>
                     <reg>vitium</reg>
                     utrumque, peius tamen illud, quod ex inopia
-                    <pb id="p.226"/>
+                    <pb xml:id="p.226"/>
                     quam quod ex copia venit.
                     <reg>nam</reg>
                     in pueris oratio
@@ -573,9 +591,9 @@ rumpat.
                     <milestone n="8" unit="section"/>
                     <reg>quod</reg>
                     me de his aetatibus sentire minus
-                    <pb id="p.228"/>
+                    <pb xml:id="p.228"/>
                     mirabitur, qui apud Ciceronem legerit:
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>volo</reg>
                         enim
 se efferat in adolescente fecunditas.
@@ -617,7 +635,7 @@ notum est, qui frondibus teneris non putant adhibendam esse falcem, quia reformi
                     ergo tum maxime debet esse praeceptor, ut remedia,
 quae alioqui natura sunt aspera, molli manu leniantur; laudare aliqua, ferre quaedam, mutare etiam,
 reddita cur id fiat ratione, illuminare interponendo
-                    <pb id="p.230"/>
+                    <pb xml:id="p.230"/>
                     aliquid sui.
                     <reg>nonnunquam</reg>
                     hoc quoque erit utile,
@@ -654,11 +672,11 @@ sane merito cogantur, sed ad gremium praeceptoris,
 et dum aliud
                     <note anchored="true" place="unspecified">
                         aliud,
-                        <hi rend="italics">added by Ed. Gryphiana.</hi>
+                        <hi rend="italic">added by Ed. Gryphiana.</hi>
                     </note>
                     non possunt et dum res ac verba connectere incipiunt, ut protinus memoriam firment:
 ita cum iam formam rectae atque emendatae
-                    <pb id="p.232"/>
+                    <pb xml:id="p.232"/>
                     orationis accipient, extemporalis garrulitas nec exspectata cogitatio et vix surgendi mora circulatoriae
 vere iactationis est.
                     <milestone n="16" unit="section"/>
@@ -701,7 +719,7 @@ et lupa Romuli et Egeria Numae.
                     <reg>nam</reg>
                     Graecis
 historiis plerumque poeticae similis licentia est.
-                    <pb id="p.234"/>
+                    <pb xml:id="p.234"/>
                     Saepe etiam quaeri solet de tempore, de loco quo
 gesta res dicitur, nonnunquam de persona quoque;
 sicut Livius frequentissime dubitat, et alii ab aliis
@@ -738,7 +756,7 @@ hi quoque ab illo generali tractatu ad quasdam deduci species solent, ut si pona
 aleator pauper, petulans senex.
                     <reg>habent</reg>
                     autem
-                    <pb id="p.236"/>
+                    <pb xml:id="p.236"/>
                     nonnunquam etiam defensionem.
                     <milestone n="23" unit="section"/>
                     <reg>nam</reg>
@@ -770,12 +788,12 @@ adiectis suasoriae erunt.
 etiam iucundo genere exercitationis praeparare nos
 coniecturalibus causis, cum quaerere atque exsequi
 iuberent,
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>cur</reg>
                         armata apud Lacedaemonios Venus,
                     </hi>
                     et
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>quid</reg>
                         ita crederetur Cupido puer atque volucer et sagittis
 ac face armatus,
@@ -788,7 +806,7 @@ est, quod genus chriae videri potest.
                     <milestone n="27" unit="section"/>
                     <reg>nam</reg>
                     locos quidem, quales sunt de testibus,
-                    <pb id="p.238"/>
+                    <pb xml:id="p.238"/>
                     semperne his credendum, et de argumentis, an habenda
 etiam parvis fides, adeo manifestum est ad forenses
 actiones pertinere, ut quidam neque ignobiles in
@@ -819,7 +837,7 @@ officiis conteratur:
                     cum eo quidem quod vix ullus
 est tam communis locus, qui possit cohaerere cum
 causa nisi aliquo propriae quaestionis vinculo
-                    <pb id="p.240"/>
+                    <pb xml:id="p.240"/>
                     copulatus; appareat alioqui non tam insertum quam
 adplicitum,
                     <milestone n="31" unit="section"/>
@@ -859,7 +877,7 @@ magis spectat, si quis eam per gradus augeat, quod
 lex, quod publica, quod ad religionem deum comparata sit.
                     <reg>ea</reg>
                     quidem, de quibus quaeri solet,
-                    <pb id="p.242"/>
+                    <pb xml:id="p.242"/>
                     communia omnibus.
                     <milestone n="35" unit="section"/>
                     <reg>aut</reg>
@@ -898,7 +916,7 @@ religiosum, ceteraque his similia honesto complectimur.
 solent.
                     <reg>aut</reg>
                     enim de re ipsa quaeritur, ut dignane
-                    <pb id="p.244"/>
+                    <pb xml:id="p.244"/>
                     poena vel praemio sit, aut de modo praemii poenaeve, qui tam maior quam minor culpari potest.
                     <milestone n="39" unit="section"/>
                     <reg>utilitas</reg>
@@ -942,7 +960,7 @@ idoneo auctore nituntur.
                     <reg>latinos</reg>
                     vero dicendi
 praeceptores extremis L. Crassi temporibus coepisse
-                    <pb id="p.246"/>
+                    <pb xml:id="p.246"/>
                     Cicero auctor est; quorum insignis maxime Plotius
 fuit.
                 </p>
@@ -986,7 +1004,7 @@ rhetoris officium existimanda est.
                     <reg>at</reg>
                     demonstrare
 virtutes vel, si quando ita incidat, vitia, id
-                    <pb id="p.248"/>
+                    <pb xml:id="p.248"/>
                     professionis eius atque promissi, quo se magistrum
 eloquentiae pollicetur, maxime proprium est, eo
 quidem validius, quod non utique hunc laborem
@@ -1010,7 +1028,7 @@ calliditas (namque ea sola in hoc ars est,
 in dividendo prudentia, quam subtilis et crebra
 argumentatio, quibus viribus inspiret, qua iucunditate permulceat, quanta in maledictis asperitas, in
 iocis urbanitas, ut denique dominetur in adfectibus
-                    <pb id="p.250"/>
+                    <pb xml:id="p.250"/>
                     atque in pectora irrumpat animumque iudicum
 similem iis, quae dicit, efficiat.
                     <milestone n="9" unit="section"/>
@@ -1051,7 +1069,7 @@ videatur ex malis morum.
                     <milestone n="13" unit="section"/>
                     <reg>neque</reg>
                     solum haec ipse debebit docere praeceptor
-                    <pb id="p.252"/>
+                    <pb xml:id="p.252"/>
                     sed frequenter interrogare et iudicium discipulorum
 experiri.
                     <reg>sic</reg>
@@ -1093,7 +1111,7 @@ reprehendi quisque mavult quam sua.
                     <reg>nec</reg>
                     deerant
 plura, quae dicerem; sed neminem haec utilitas
-                    <pb id="p.254"/>
+                    <pb xml:id="p.254"/>
                     fugit, atque utinam tam non pigeat facere istud
 quam non displicebit.
                 </p>
@@ -1128,7 +1146,7 @@ durescere velit; fient enim horridi atque ieiuni;
 nam neque vim eorum adhuc intellectu consequentur
 et elocutione, quae tum sine dubio erat optima, sed
 nostris temporibus aliena est, contenti, quod est
-                    <pb id="p.256"/>
+                    <pb xml:id="p.256"/>
                     pessimum,
                     <milestone n="22" unit="section"/>
                     similes sibi magnis viris videbuntur
@@ -1166,7 +1184,7 @@ sint, non cuiuscunque est pronuntiare.
                     circa
 priores vel erratur, ideoque hanc novorum distuli
 lectionem, ne imitatio iudicium antecederet.
-                    <pb id="p.258"/>
+                    <pb xml:id="p.258"/>
                 </p>
                 <p>
                     <milestone n="6" unit="chapter"/>
@@ -1209,7 +1227,7 @@ ut ipsae res postulabunt.
                     <milestone n="5" unit="section"/>
                     <reg>namque</reg>
                     incipientibus
-                    <pb id="p.260"/>
+                    <pb xml:id="p.260"/>
                     danda erit velut praeformata materia secundum
 cuiusque vires; at cum satis composuisse sese ad
 exemplum videbuntur, brevia quaedam demonstranda
@@ -1240,7 +1258,7 @@ existimo in iis, de quibus nunc disserimus, aetatibus,
 ne omnia quae scripserint ediscant et certa, ut moris
 est, die dicant; quod quidem maxime patres exigunt
 atque ita demum studere liberos suos, si quam frequentissime declamaverint, credunt, cum profectus
-                    <pb id="p.262"/>
+                    <pb xml:id="p.262"/>
                     praecipue diligentia constet.
                     <milestone n="2" unit="section"/>
                     <reg>nam</reg>
@@ -1275,7 +1293,7 @@ laboris sui fructum etiam ex illa quae maxime petitur
 laude plurium capiant.
                     <reg>verum</reg>
                     id quoque tum fieri
-                    <pb id="p.264"/>
+                    <pb xml:id="p.264"/>
                     oportebit, cum aliquid commodius elimaverint, ut eo
 velut praemio studii sui donentur ac se meruisse ut
 dicerent gaudeant.
@@ -1322,7 +1340,7 @@ infirmiora.
                     <milestone n="6" unit="section"/>
                     <reg>quod</reg>
                     mihi (libera enim vel contra
-                    <pb id="p.266"/>
+                    <pb xml:id="p.266"/>
                     receptas persuasiones rationem sequenti sententia est)
 in parte verum videtur.
                     <reg>nam</reg>
@@ -1367,7 +1385,7 @@ bonum, si quod ingenitum est, existimo, sed augendum addendumque quod cessat.
                     <reg>an</reg>
                     vero clarissimus ille praeceptor Isocrates, quem non magis libri
 bene dixisse quam discipuli bene docuisse testantur,
-                    <pb id="p.268"/>
+                    <pb xml:id="p.268"/>
                     cum de Ephoro atque Theopompo sic iudicaret, ut
 alteri frenis alteri calcaribus opus esse diceret, aut
 in illo lentiore tarditatem aut in illo paene praecipiti
@@ -1401,7 +1419,7 @@ ab eo, quod quis optime facit, in aliud, ad quod
 minus est idoneus, transferas.
                     <reg>at</reg>
                     si fuerit qui
-                    <pb id="p.270"/>
+                    <pb xml:id="p.270"/>
                     docebitur ille, quem adolescentes senem vidimus,
 Nicostratus, omnibus in eo docendi partibus similiter
 utetur, efficietque illum, qualis hic fuit, luctando
@@ -1442,7 +1460,7 @@ illorum officium est docere, sic horum praebere se
 dociles; alioqui neutrum sine altero sufficit.
                     <reg>et</reg>
                     sicut hominis ortus ex utroque gignentium confertur, et frustra sparseris semina, nisi illa praemollitus foverit sulcus: ita eloquentia coalescere
-                    <pb id="p.272"/>
+                    <pb xml:id="p.272"/>
                     nequit nisi sociata tradentis accipientisque concordia.
                 </p>
                 <p>
@@ -1450,7 +1468,7 @@ dociles; alioqui neutrum sine altero sufficit.
                     <milestone n="1" unit="section"/>
                     <reg>in</reg>
                     his primis operibus,
-                    <hi rend="italics">quae non ipsa parva</hi>
+                    <hi rend="italic">quae non ipsa parva</hi>
                     sunt sed maiorum quasi membra atque partes, bene
 instituto atque exercitato iam fere tempus appetet
 aggrediendi suasorias iudicialesque materias; quarum
@@ -1486,7 +1504,7 @@ reperta est.
                     magos et pestilentiam et responsa
 et saeviores tragicis novercas aliaque magis adhuc
 fabulosa frustra inter sponsiones et interdicta
-                    <pb id="p.274"/>
+                    <pb xml:id="p.274"/>
                     quaeremus.
                     <reg>quid</reg>
                     ergo?
@@ -1525,7 +1543,7 @@ nemo sit pronuntiaturus?
                     haec quidem otiosa
 tantum; adfici vero et ira vel luctu permovere, cuius
 est ludibrii, nisi quibusdam pugnae simulacris ad
-                    <pb id="p.276"/>
+                    <pb xml:id="p.276"/>
                     verum discrimen aciemque iustam consuescimus?
                     <milestone n="9" unit="section"/>
                     <reg>nihil</reg>
@@ -1562,7 +1580,7 @@ debet veritati; quoniam autem aliquid in se habet
                     <reg>quod</reg>
                     faciunt actores comici, qui neque ita prorsus, ut nos
 vulgo loquimur, pronuntiant, quod esset sine arte,
-                    <pb id="p.278"/>
+                    <pb xml:id="p.278"/>
                     neque procul tamen a natura recedunt, quo vitio
 periret imitatio; sed morem communis huius sermonis decore quodam scenico exornant.
                     <milestone n="14" unit="section"/>
@@ -1600,7 +1618,7 @@ quid esset
                     et
                     <foreign xml:lang="grc">no/hma,</foreign>
                     nescire se quidem sed, si
-                    <pb id="p.280"/>
+                    <pb xml:id="p.280"/>
                     ad rem pertineret, esse in sua declamatione respondit.
                     <milestone n="2" unit="section"/>
                     <reg>alius</reg>
@@ -1634,7 +1652,7 @@ accommodant.
 sensum invenerint, destinant, quibus aliquid diserti
 subiungendum sit, eaque diu secum ipsi clareque
 meditati desperata conectendi facultate deserunt et
-                    <pb id="p.282"/>
+                    <pb xml:id="p.282"/>
                     ad alia deinceps atque inde alia non minus communia
 ac nota devertunt.
                     <milestone n="6" unit="section"/>
@@ -1672,7 +1690,7 @@ armorum inscius in rixam ruit, et luctator, qui totius
 corporis nisu in id, quod semel invasit, incumbit,
 fortior ab his vocatur; cum interim et hic frequenter
 suis viribus ipse prosternitur, et illum vehementis
-                    <pb id="p.284"/>
+                    <pb xml:id="p.284"/>
                     impetus excipit adversarii mollis articulus.
                     <milestone n="3" unit="section"/>
                     <reg>sed</reg>
@@ -1713,7 +1731,7 @@ docendi quod intenderunt recedunt.
                     <reg>itaque</reg>
                     illud
 quaestionum et argumentorum apud corrupta iudicia
-                    <pb id="p.286"/>
+                    <pb xml:id="p.286"/>
                     frigus evitant nihilque aliud, quam quod vel pravis
 voluptatibus aures assistentium permulceat, quaerunt.
                     <milestone n="7" unit="section"/>
@@ -1745,7 +1763,7 @@ furentes.
 pullatum circulum facit; cum ille eruditus, ut in
 oratione multa summittere, variare, disponere, ita
 etiam in pronuntiando suum cuique eorum, quae
-                    <pb id="p.288"/>
+                    <pb xml:id="p.288"/>
                     dicet, colori accommodare actum sciat, et, si quid sit
 perpetua observatione dignum, modestus et esse et
 videri malit.
@@ -1778,7 +1796,7 @@ genus, quod est a plerisque scriptoribus artium traditum, ut quasi quasdam leges
 constrictas studiosis dicendi feram: utique prooemium et id quale, proxima huic narratio, quae lex
 deinde narrandi, propositio post hanc vel, ut quibusdam placuit, excursio, tum certus ordo quaestionum
 ceteraque, quae, velut si aliter facere fas non sit,
-                    <pb id="p.290"/>
+                    <pb xml:id="p.290"/>
                     quidam tanquam iussi sequuntur.
                     <milestone n="2" unit="section"/>
                     <reg>erat</reg>
@@ -1811,7 +1829,7 @@ figuram dicendum sit, constricta an latius fusa narratio, continua an divisa, re
 causae docebunt.
                     <reg>itemque</reg>
                     de quaestionum ordine,
-                    <pb id="p.292"/>
+                    <pb xml:id="p.292"/>
                     cum in eadem controversia aliud alii parti prius
 quaeri frequenter expediat.
                     <milestone n="6" unit="section"/>
@@ -1829,7 +1847,7 @@ sequemur.
                     <milestone n="8" unit="section"/>
                     <reg>equidem</reg>
                     id maxime
-                    <hi rend="italics">praecipiam ac repetens iterumque iterumque monebo:</hi>
+                    <hi rend="italic">praecipiam ac repetens iterumque iterumque monebo:</hi>
                     res duas in omni actu spectet
 orator, quid deceat et quid expediat.
                     <reg>expedit</reg>
@@ -1860,7 +1878,7 @@ utroque.
 est ille discobolos Myronis?
                     <reg>si</reg>
                     quis tamen,
-                    <pb id="p.294"/>
+                    <pb xml:id="p.294"/>
                     ut parum rectum, improbet opus, nonne ab
 intellectu artis abfuerit, in qua vel praecipue
 laudabilis est ipsa illa novitas ac difficultas?
@@ -1894,7 +1912,7 @@ cuique animo dedit aestimandum.
                     <reg>nonne</reg>
                     huic
 simile est illud Sallustianum,
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>nam</reg>
                         de Carthagine
 tacere satius puto quam parum dicere?
@@ -1908,7 +1926,7 @@ praecepta, quae
 quomodo possumus) universalia vel perpetualia.
                     <reg>raro</reg>
                     enim reperitur hoc genus, ut non labefactari parte
-                    <pb id="p.296"/>
+                    <pb xml:id="p.296"/>
                     aliqua et subrui possit.
                     <milestone n="15" unit="section"/>
                     <reg>sed</reg>
@@ -1954,7 +1972,7 @@ oratoriam, tum oratricem nominaverunt.
 Romani sermonis augere temptarint.
                     <reg>sed</reg>
                     non omnia
-                    <pb id="p.298"/>
+                    <pb xml:id="p.298"/>
                     nos ducentes ex Graeco sequuntur sicut ne illos
 quidem, quotiens utique suis verbis signare nostra
 voluerunt.
@@ -1996,7 +2014,7 @@ utemur hac appellatione) sic, ut opinor, optime
 dividetur, ut de arte, de artifice, de opere dicamus.
                     <name>Ars</name>
                     erit, quae disciplina percipi debet; ea est bene
-                    <pb id="p.300"/>
+                    <pb xml:id="p.300"/>
                     dicendi scientia.
                     <reg>artifex</reg>
                     est, qui percepit hanc
@@ -2047,13 +2065,13 @@ rhetoricen esse vim persuadendi.
                     ego vim
 appello, plerique potestatem, nonnulli facultatem
 vocant; quae res ne quid adferat ambiguitatis,
-                    <hi rend="italics">vim</hi>
+                    <hi rend="italic">vim</hi>
                     dico
                     <foreign xml:lang="grc">du/namin.</foreign>
                     <milestone n="4" unit="section"/>
                     <reg>haec</reg>
                     opinio originem ab Isocrate (si
-                    <pb id="p.302"/>
+                    <pb xml:id="p.302"/>
                     tamen re vera Ars, quae circumfertur, eius est) duxit.
                     <reg>qui</reg>
                     , cum longe sit a voluntate infamantium oratoris
@@ -2062,7 +2080,7 @@ rhetoricen persuadendi opificem, id est
                     <foreign xml:lang="grc">peiqou=s dhmiourgo/n;</foreign>
                     neque enim mihi permiserim eadem uti
 declinatione, qua Ennius M. Cethegum
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>suadae</reg>
                         medullam
                     </hi>
@@ -2074,7 +2092,7 @@ libro, qui nomine eius inscriptus est, idem fere dicit;
 sed hanc Plato illius opinionem vult accipi non suam.
                     <name>Cicero</name>
                     pluribus locis scripsit, officium oratoris esse
-                    <hi rend="italics">dicere apposite ad persuadendum.</hi>
+                    <hi rend="italic">dicere apposite ad persuadendum.</hi>
                     <milestone n="6" unit="section"/>
                     <reg>in</reg>
                     rhetoricis etiam,
@@ -2097,7 +2115,7 @@ creditum est.
                     <reg>servium</reg>
                     quidem Galbam miseratione
 sola, qua non suos modo liberos parvulos in contione
-                    <pb id="p.304"/>
+                    <pb xml:id="p.304"/>
                     produxerat, sed Galli etiam Sulpicii filium suis ipse
 manibus circumtulerat, elapsum esse, cum aliorum
 monumentis tum Catonis oratione testatum est.
@@ -2135,14 +2153,14 @@ communis cum iis, qui ab oratore procul absunt.
                     non multum ab hoc fine abest Apollodorus,
 dicens iudicialis orationis primum et super omnia
 esse persuadere iudici et sententiam eius ducere in
-                    <pb id="p.306"/>
+                    <pb xml:id="p.306"/>
                     id, quod velit; nam et ipse oratorem fortunae subiicit, ut, si non persuaserit, nomen suum retinere
 non possit.
                     <milestone n="13" unit="section"/>
                     <reg>quidam</reg>
                     recesserunt ab eventu, sicut
 Aristoteles dicit:
-                    <hi rend="italics">rhetorice est vis inveniendi omnia in oratione persuasibilia.</hi>
+                    <hi rend="italic">rhetorice est vis inveniendi omnia in oratione persuasibilia.</hi>
                     <reg>qui</reg>
                     finis et illud vitium, de
 quo supra diximus, habet et insuper quod nihil nisi
@@ -2160,9 +2178,9 @@ tantum oratoris esse convicimus.
 alia varie.
                     <reg>quidam</reg>
                     enim
-                    <hi rend="italics">circa res omnes,</hi>
+                    <hi rend="italic">circa res omnes,</hi>
                     quidam
-                    <hi rend="italics">circa civiles</hi>
+                    <hi rend="italic">circa civiles</hi>
                     modo versari rhetoricen putaverunt;
 quorum verius utrum sit, in eo loco, qui huius quaestionis proprius est, dicam.
                     <milestone n="16" unit="section"/>
@@ -2174,15 +2192,15 @@ in quaque re possit esse persuasibile.
                     Patrocles,
                     <note anchored="true" place="unspecified">
                         latrocles,
-                        <hi rend="italics">B.</hi>
+                        <hi rend="italic">B.</hi>
                         Iatrocles,
-                        <hi rend="italics">
+                        <hi rend="italic">
                             <name>Radermacher</name>
                             .
                         </hi>
                     </note>
                     qui non quidem adiicit
-                    <hi rend="italics">in quaque re,</hi>
+                    <hi rend="italic">in quaque re,</hi>
                     sed nihil excipiendo idem ostendit; vim enim vocat inveniendi, quod
 sit in oratione persuasibile; qui fines et ipsi solam
 complectuntur inventionem.
@@ -2193,10 +2211,10 @@ ornatu credibilia in omni oratione.
                     <milestone n="17" unit="section"/>
                     <reg>sed</reg>
                     cum eodem
-                    <pb id="p.308"/>
+                    <pb xml:id="p.308"/>
                     modo credibilia quo persuasibilia etiam non orator
 inveniat, adiiciendo
-                    <hi rend="italics">in omni oratione</hi>
+                    <hi rend="italic">in omni oratione</hi>
                     magis quam
 superiores concedit scelera quoque suadentibus pulcherrimae rei nomen.
                     <milestone n="18" unit="section"/>
@@ -2210,7 +2228,7 @@ persuadendi, non docendi concedit facultatem.
 verbosius, ut necesse erat, adhibuerunt discrimina;
 quorum fuit Ariston, Critolai Peripatetici discipulus,
 cuius hic finis est,
-                    <hi rend="italics">
+                    <hi rend="italic">
                         scientia videndi et agendi in quaestionibus civilibus per orationem popularis persuasionis.
                     </hi>
                     <reg>hic</reg>
@@ -2231,7 +2249,7 @@ qui artem quidem esse eam sed non virtutem putaverunt.
                     <reg>ita</reg>
                     enim dicit (ut ipsis eorum verbis utar,
 qui haec ex Graeco transtulerunt),
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <name>Ars</name>
                         inventrix et
 iudicatrix et enuntiatrix decenti ornatu secundum mensionem eius, quod in quoque potest sumi persuasibile, in
@@ -2240,13 +2258,13 @@ materia civili.
                     <milestone n="22" unit="section"/>
                     <reg>itemque</reg>
                     Cornelius Celsus, qui finem
-                    <pb id="p.310"/>
+                    <pb xml:id="p.310"/>
                     rhetorices ait dicere persuasibiliter in dubia civili
 materia.
                     <reg>quibus</reg>
                     sunt non dissimiles, qui ab aliis
 traduntur; qualis est ille,
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>vis</reg>
                         videndi et eloquendi de
 rebus civilibus subiectis sibi cum quadam persuasione et
@@ -2283,7 +2301,7 @@ rhetoricen.
                     <reg>quae</reg>
                     omnia sunt quidem scripta in hoc
 libro dictaque a Socrate, cuius persona videtur Plato
-                    <pb id="p.312"/>
+                    <pb xml:id="p.312"/>
                     significare quid sentiat; sed alii sunt eius sermones
 ad coarguendos, qui contra disputant, compositi, quos
                     <foreign xml:lang="grc">e)legktikou/s</foreign>
@@ -2336,7 +2354,7 @@ illud hominum genus, quod facilitate dicendi male
 utebatur, invectus est.
                     <reg>nam</reg>
                     et Socrates inhonestam
-                    <pb id="p.314"/>
+                    <pb xml:id="p.314"/>
                     sibi credidit orationem, quam ei Lysias reo composuerat; et tum maxime scribere litigatoribus, quae
 illi pro se ipsi dicerent, erat moris, atque ita iuri, quo
 non licebat pro altero agere, fraus adhibebatur.
@@ -2350,13 +2368,13 @@ Phaedro.
                     <reg>consensisse</reg>
                     autem illis superioribus videri
 potest etiam Cornelius Celsus, cuius haec verba sunt:
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <name>Orator</name>
                         simile tantum veri petit.
                     </hi>
                     <reg>deinde</reg>
                     paulo post:
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>non</reg>
                         enim bona conscientia sed victoria litigantis est
 praemium.
@@ -2387,7 +2405,7 @@ mores oratoris, cum bene dicere non possit nisi bonus.
                     <milestone n="35" unit="section"/>
                     <reg>idem</reg>
                     valet Chrysippi finis ille ductus a Cleanthe
-                    <pb id="p.316"/>
+                    <pb xml:id="p.316"/>
                     scientia recte dicendi.
                     <reg>sunt</reg>
                     plures eiusdem, sed ad
@@ -2426,7 +2444,7 @@ finiendi, quae ambitio procul aberit a me.
                     <reg>dicam</reg>
                     enim non utique quae invenero sed quae placebunt,
 sicut hoc, rhetoricen esse bene dicendi scientiam;
-                    <pb id="p.318"/>
+                    <pb xml:id="p.318"/>
                     cum reperto quod est optimum, qui quaerit aliud,
 peius velit.
                 </p>
@@ -2471,7 +2489,7 @@ velut recisam orandi potestatem.
                     <reg>quo</reg>
                     quidem modo
 nec duces erunt utiles nec magistratus nec medicina
-                    <pb id="p.320"/>
+                    <pb xml:id="p.320"/>
                     nec denique ipsa sapientia.
                     <reg>nam</reg>
                     et dux Flaminius
@@ -2518,7 +2536,7 @@ dignitas fuit.
 aliter effecturos fuisse ut vaga ilia multitudo coiret
 in populos, nisi docta voce commota; nec legum
 repertores sine summa vi orandi consecutos, ut se
-                    <pb id="p.322"/>
+                    <pb xml:id="p.322"/>
                     ipsi homines ad servitutem iuris astringerent.
                     <milestone n="10" unit="section"/>
                     <reg>quin</reg>
@@ -2568,7 +2586,7 @@ socios esse cum dis immortalibus voluit.
 ratio neque tam nos iuvaret neque tam esset in nobis
 manifesta, nisi, quae concepissemus mente, promere
 etiam loquendo possemus, quod magis deesse ceteris
-                    <pb id="p.324"/>
+                    <pb xml:id="p.324"/>
                     animalibus quam intellectum et cogitationem quandam videmus.
                     <milestone n="16" unit="section"/>
                     <reg>nam</reg>
@@ -2609,7 +2627,7 @@ Pericli contigit, fulgurare ac tonare videaris?
                     <milestone n="1" unit="section"/>
                     <reg>finis</reg>
                     non erit, si exspatiari in parte hac et
-                    <pb id="p.326"/>
+                    <pb xml:id="p.326"/>
                     indulgere voluptati velim.
                     <reg>transeamus</reg>
                     igitur ad
@@ -2654,7 +2672,7 @@ quandam esse non artem.
                     <reg>quod</reg>
                     non ideo, ut pro
 vero accipiamus, est positum, sed ut Antoni persona
-                    <pb id="p.328"/>
+                    <pb xml:id="p.328"/>
                     servetur, qui dissimulator artis fuit.
                     <reg>hanc</reg>
                     autem
@@ -2691,7 +2709,7 @@ atque iis contrariorum reperta est, et, ut quibusdam
 placet, tota constat experimentis; nam et vulnus
 deligavit aliquis, antequam haec ars esset, et febrem
 quiete et abstinentia, non quia rationem videbat, sed
-                    <pb id="p.330"/>
+                    <pb xml:id="p.330"/>
                     quia id valetudo ipsa cogebat, mitigavit.
                     <milestone n="10" unit="section"/>
                     <reg>nec</reg>
@@ -2731,7 +2749,7 @@ multum valuisse in dicendo sciamus.
                     <name>Aristoteles</name>
                     ,
 ut solet, quaerendi gratia quaedam subtilitatis suae
-                    <pb id="p.332"/>
+                    <pb xml:id="p.332"/>
                     argumenta excogitavit in Gryllo; sed idem et de
 arte rhetorica tris libros scripsit, et in eorum primo
 non artem solum eam fatetur, sed ei particulam
@@ -2775,7 +2793,7 @@ est, ipsi quid videri et, ut alii videatur, efficere.
                     <reg>nam</reg>
                     et imperator falsis utitur saepe, ut Hannibal,
 cum inclusus a Fabio, sarmentis circum cornua boum
-                    <pb id="p.334"/>
+                    <pb xml:id="p.334"/>
                     deligatis incensisque, per noctem in adversos montes
 agens armenta speciem hosti abeuntis exercitus dedit,
 sed illum fefellit, ipse, quid verum esset, non ignoravit.
@@ -2823,11 +2841,11 @@ cum bene dixit, etiamsi non vincat, id quod arte continetur effecit.
                     <milestone n="24" unit="section"/>
                     <reg>nam</reg>
                     et gubernator vult salva nave
-                    <pb id="p.336"/>
+                    <pb xml:id="p.336"/>
                     in portum pervenire; si tamen tempestate fuerit
 abreptus, non ideo minus erit gubernator dicetque
 notum illud,
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>dum</reg>
                         clavum rectum teneam.
                     </hi>
@@ -2876,7 +2894,7 @@ delectatione ponatur.
                     <milestone n="29" unit="section"/>
                     <reg>sin</reg>
                     et audientium mobiles
-                    <pb id="p.338"/>
+                    <pb xml:id="p.338"/>
                     animi et tot malis obnoxia veritas, arte pugnandum
 est et adhibenda quae prosunt.
                     <reg>neque</reg>
@@ -2916,7 +2934,7 @@ oratoris indulgent.
                     <milestone n="33" unit="section"/>
                     <reg>nam</reg>
                     rhetorice non est contraria
-                    <pb id="p.340"/>
+                    <pb xml:id="p.340"/>
                     sibi.
                     <reg>causa</reg>
                     enim cum causa, non illa secum ipsa
@@ -2961,13 +2979,13 @@ communis utilitas, ut etiam falsa defendat.
 Oratore libro contradictiones: artem earum rerum
 esse, quae sciantur; oratoris omnem actionem opinione,
 non scientia contineri, quia et apud eos dicat, qui
-                    <pb id="p.342"/>
+                    <pb xml:id="p.342"/>
                     nesciant, et ipse dicat aliquando, quod nesciat.
                     <milestone n="37" unit="section"/>
                     <reg>ex</reg>
                     his alterum, id est, an sciat index, de quo dicatur,
 nihil ad oratoris artem; alteri respondendum,
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <name>Ars</name>
                         earum rerum est, quae sciuntur.
                     </hi>
@@ -3009,7 +3027,7 @@ actores causarum, eadem in aliis defendant.
                     <reg>haec</reg>
                     sunt praecipua, quae contra rhetoricen dicantur; alia et minora
 et tamen ex his fontibus derivata.
-                    <pb id="p.344"/>
+                    <pb xml:id="p.344"/>
                 </p>
                 <p>
                     <reg>confirmatur</reg>
@@ -3048,7 +3066,7 @@ dicendi a bono viro non separamus.
                     <reg>cum</reg>
                     sint autem artium aliae positae in
 inspectione, id est cognitione et aestimatione rerum,
-                    <pb id="p.346"/>
+                    <pb xml:id="p.346"/>
                     qualis est astrologia, nullum exigens actum sed ipso
 rei, cuius studium habet, intellectu contenta, quae
                     <foreign xml:lang="grc">qewrhtikh\</foreign>
@@ -3090,7 +3108,7 @@ opus in parte oratoria merito ponimus, consequetur.
                     <reg>si</reg>
                     tamen una ex tribus artibus habenda sit, quia
 maxime eius usus actu continetur atque est in eo
-                    <pb id="p.348"/>
+                    <pb xml:id="p.348"/>
                     frequentissima, dicatur activa vel administrativa, nam
 et hoc eiusdem rei nomen est.
                 </p>
@@ -3127,7 +3145,7 @@ plus in manibus fuisset quam in marmore.
                     <reg>nihil</reg>
                     ars sine materia, materiae etiam sine arte
 pretium est, ars summa materia optima melior.
-                    <pb id="p.350"/>
+                    <pb xml:id="p.350"/>
                 </p>
                 <p>
                     <milestone n="20" unit="chapter"/>
@@ -3170,7 +3188,7 @@ volunt, aetatem multo studio ac labore consumunt.
 imaginem animo concepimus, quae bono viro convenit quaeque est vere rhetorice, virtus erit.
                     <milestone n="5" unit="section"/>
                     <reg>quod</reg>
-                    <pb id="p.352"/>
+                    <pb xml:id="p.352"/>
                     philosophi quidem multis et acutis conclusionibus
 colligunt, mihi vero etiam planiore hac proprieque
 nostra probatione videtur esse perspicuum.
@@ -3211,7 +3229,7 @@ ipsis operibus volo.
                     <reg>nam</reg>
                     quid orator in laudando
 faciet nisi honestorum et turpium peritus? aut in
-                    <pb id="p.354"/>
+                    <pb xml:id="p.354"/>
                     suadendo nisi utilitate perspecta? aut in iudiciis, si
 iustitiae sit ignarus?
                     <reg>quid</reg>
@@ -3228,7 +3246,7 @@ hominem porro ratione atque oratione excellere
 ceteris certum est: cur non tam in eloquentia quam
 in ratione virtutem eius esse credamus, recteque hoc
 apud Ciceronem dixerit Crassus:
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>est</reg>
                         enim eloquentia
 una quaedam de summis virtutibus,
@@ -3248,7 +3266,7 @@ et tormenta sine gemitu feret malus servus, tolerantia tamen doloris laude sua n
                     <reg>sufficiant</reg>
                     igitur haec, quia
 de utilitate supra tractavimus.
-                    <pb id="p.356"/>
+                    <pb xml:id="p.356"/>
                 </p>
                 <p>
                     <milestone n="21" unit="chapter"/>
@@ -3295,7 +3313,7 @@ rhetorices iudico omnes res quaecunque ei ad dicendum subiectae erunt.
                     <reg>nam</reg>
                     Socrates apud Platonem
 dicere Gorgiae videtur, non in verbis esse materiam
-                    <pb id="p.358"/>
+                    <pb xml:id="p.358"/>
                     sed in rebus.
                     <reg>et</reg>
                     in Phaedro palam, non in iudiciis
@@ -3311,7 +3329,7 @@ subiectas.
                     <reg>alio</reg>
                     vero de omnibus rebus oratori
 dicendum arbitratur his quidem verbis:
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>quanquam</reg>
                         vis oratoris professioque ipsa bene dicendi hoc suscipere
 ac polliceri videtur, ut omni de re, quaecunque sit proposita, ornate ab eo copioseque dicatur.
@@ -3320,7 +3338,7 @@ ac polliceri videtur, ut omni de re, quaecunque sit proposita, ornate ab eo copi
                     <reg>atque</reg>
                     adhuc
 alibi:
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>vero</reg>
                         enim oratori, quae sunt in hominum vita,
 quandoquidem in ea versatur orator atque ea est ei subiecta materies, omnia quaesita, audita, lecta, disputata,
@@ -3341,7 +3359,7 @@ diceret, cum quibus mihi minima pugna est.
 habere materiam, quia multiplicem habeat, negant.
                     <reg>sed</reg>
                     neque infinita est, etiamsi est multiplex; et
-                    <pb id="p.360"/>
+                    <pb xml:id="p.360"/>
                     aliae quoque artes minores habent multiplicem
 materiam, velut architectonice, namque ea in omnibus, quae sunt aedificio utilia, versatur, et caelatura,
 quae auro, argento, aere, ferro opera efficit.
@@ -3386,13 +3404,13 @@ ut illi potius in nostra materia versentur.
                     <reg>denique</reg>
                     cum sit dialectices materia de rebus subiectis disputare, sit autem dialectice oratio concisa, cur non
 eadem perpetuae quoque materia videatur?
-                    <pb id="p.362"/>
+                    <pb xml:id="p.362"/>
                 </p>
                 <p>
                     <milestone n="14" unit="section"/>
                     <reg>solet</reg>
                     a quibusdam et illud opponi:
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>omnium</reg>
                         igitur
 artium peritus erit orator, si de omnibus ei dicendum est.
@@ -3400,7 +3418,7 @@ artium peritus erit orator, si de omnibus ei dicendum est.
                     <reg>possem</reg>
                     hic Ciceronis respondere verbis, apud quem
 hoc invenio:
-                    <hi rend="italics">
+                    <hi rend="italic">
                         <reg>mea</reg>
                         quidem sententia nemo esse poterit
 omni laude cumulatus orator, nisi erit omnium rerum
@@ -3442,7 +3460,7 @@ fabrica, et musicus, cum de musica, si quid confirmationem desideraverit, dicet.
                     <reg>non</reg>
                     quidem erit orator,
 sed faciet illud quasi orator, sicut cum vulnus
-                    <pb id="p.364"/>
+                    <pb xml:id="p.364"/>
                     imperitus deligabit, non erit medicus, sed faciet ut
 medicus.
                     <milestone n="18" unit="section"/>
@@ -3486,7 +3504,7 @@ pateretur, qua quisque de re vellet.
                     <reg>sed</reg>
                     quaestiones si negat ad rhetoricen pertinere, dissentit
 a nobis; si autem ad rhetoricen pertinent, ab hoc
-                    <pb id="p.366"/>
+                    <pb xml:id="p.366"/>
                     quoque adiuvamur.
                     <reg>nihil</reg>
                     est enim, quod non in
