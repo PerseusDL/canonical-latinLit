@@ -1,4 +1,5 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
@@ -16,15 +17,15 @@
                     <name>David Smith</name>
                 </respStmt>
                 <funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
-            </titleStmt><publicationStmt><publisher>Trustees of Tufts University</publisher><pubPlace>Medford, MA</pubPlace><authority>Perseus Project</authority></publicationStmt>
+            </titleStmt>
             
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
                 <authority>Perseus Project</authority>
             </publicationStmt>
-            <sourceDesc default="NO">
-                <biblStruct default="NO">
+            <sourceDesc default="false">
+                <biblStruct default="false">
                     <monogr>
                         <author>Quintilian</author>
                         <title>With an English Translation</title>
@@ -39,9 +40,26 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                         matchPattern="(\\w+).(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\']/tei:div[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                         matchPattern="(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                         matchPattern="(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
-                <refState unit="book"/>
-                <refState unit="chapter"/>
+                <refState unit="book" delim="."/>
+                <refState unit="chapter" delim="."/>
                 <refState unit="section"/>
             </refsDecl>
             <refsDecl>
@@ -49,13 +67,13 @@
             </refsDecl>
         </encodingDesc>
         <profileDesc>
-            <langUsage default="NO">
+            <langUsage default="false">
                 <language ident="en">English</language>
                 <language ident="la">Latin</language>
-                <language ident="greek">Greek</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
-        <revisionDesc><!--
+        <revisionDesc><change when="2006" who="GRC">tagging</change><!--
             <change>
                 <date>2006</date>
                 <respStmt>
@@ -64,17 +82,16 @@
                 </respStmt>
                 <item/>
             </change>
-        --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+        --><change when="2014-08-01" who="Stella Dee">edited markup</change>
+		<change when="2015-11-16" who="Zach Himes">Converted to TEI P5 and EpiDoc. Specifically, changed revisionDesc, @default values, and value for xml:lang</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
+    <text xml:lang="eng">
         <body>
-            <div part="N" sample="complete" org="uniform" n="epTryph" type="book">
+            <div part="N" sample="complete" org="uniform" n="epTryph" subtype="book" type="translation">
                 <head>Preface</head>
                 <milestone n="pr" unit="chapter"/>
                 <milestone n="1" unit="section"/>
-                <opener>
-                    <salute>Marcus Fabius Quintilianus to his friend Trypho, greeting</salute>
-                </opener>
+                    <p>Marcus Fabius Quintilianus to his friend Trypho, greeting</p>
                 <p>
                     You have daily importuned me with the request
 that I should at length take steps to publish the
