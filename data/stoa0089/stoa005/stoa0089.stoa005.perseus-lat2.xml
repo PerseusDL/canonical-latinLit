@@ -35,9 +35,19 @@
       <encodingDesc>
          <refsDecl n="CTS">
             <cRefPattern n="line"
+                         matchPattern="(\w+).(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:l[@n='$3'])">
+               <p>This pointer pattern extracts book and line</p>
+            </cRefPattern>
+            <cRefPattern n="poem"
+                         matchPattern="(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']">
+               <p>This pointer pattern extracts book and poem</p>
+            </cRefPattern>
+            <cRefPattern n="book"
                          matchPattern="(\w+)"
-                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div//tei:l[@n='$1'])">
-               <p>This pointer pattern extracts line</p>
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']">
+               <p>This pointer pattern extracts book</p>
             </cRefPattern>
          </refsDecl>
          <refsDecl n="TEI.2">
@@ -49,12 +59,18 @@
             <language ident="lat">Latin</language>
          </langUsage>
       </profileDesc>
+      <revisionDesc>
+         <change who="Thibault Clerice" when="2015-12-03">
+            Bumped URN after CTS and Epidoc conversion. Added a poem when necessary to align citation scheme
+            Poem in book three has been added to mirror book 1 and 2
+         </change>
+      </revisionDesc>
    </teiHeader>
    <text>
       <body>
          <div xml:lang="lat"
               type="edition"
-              n="urn:cts:latinLit:stoa0089.stoa005.perseus-lat1">
+              n="urn:cts:latinLit:stoa0089.stoa005.perseus-lat2">
             <pb n="v.2.p.292"/>       
             <div type="textpart" n="1" subtype="book">
                <div type="textpart" n="praef" subtype="poem">
@@ -833,7 +849,7 @@
                </div>
             </div>
             <div type="textpart" n="3" xml:id="poem.36" subtype="book">
-               
+               <div type="textpart" subtype="poem" n="1">
                <l n="1">Iuppiter interea cinctam Thaumantida nimbis</l>
                <l n="2">ire iubet totoque deos arcessere mundo.</l>
                <l n="3">ilia colorato Zephyros illapsa volatu</l>
@@ -1299,6 +1315,7 @@
                <l n="447">antra procul Scyllaea petit canibusque reductis</l>
                <l n="448">pars stupefacta silet, pars nondum exterrita latrat.</l>
             </div>
+         </div>
          </div>
       </body>
    </text>
