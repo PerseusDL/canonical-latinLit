@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Prose//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" >
-%PersProse;
-]>
-<TEI.2>
-    <teiHeader>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+    schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader type="text">
         <fileDesc>
             <titleStmt>
                 <title>Griphus Ternarii numeri</title>
                 <author>Ausonius, Decimus Magnus</author>
                 <editor>Hugh G. Evelyn-White</editor>
-                &fund.Mellon;
+                <funder n="org:Mellon">The Mellon Foundation</funder>
             </titleStmt>
-            &Perseus.publish;
+            <publicationStmt>
+                <publisher>Trustees of Tufts University</publisher>
+                <pubPlace>Medford, MA</pubPlace>
+                <authority>Perseus Project</authority>
+            </publicationStmt>
             <sourceDesc>
                 <biblStruct>
                     <monogr>
@@ -28,138 +31,186 @@
                         </imprint>
                     </monogr>
                 </biblStruct>
-                
-                <p>Keyboarding</p></sourceDesc>
+            </sourceDesc>
         </fileDesc>
-        
+
         <encodingDesc>
-            <refsDecl doctype="TEI.2">
-                <state unit="section" delim="."/>
-            </refsDecl>            
+            <refsDecl n="CTS">
+                <cRefPattern n="line" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/*[self::tei:l pr self::tei:p][@n='$2'])">
+                    <p>This pointer pattern extracts line</p>
+                </cRefPattern>
+                <cRefPattern n="poem" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts poem and line</p>
+                </cRefPattern>
+            </refsDecl>
+            <refsDecl n="TEI.2">
+                <refState unit="card"/>
+            </refsDecl>
         </encodingDesc>
-        
+
         <profileDesc>
             <langUsage>
-                <language id="la">Latin</language>
-                <language id="greek">Greek</language>
+                <language ident="lat">Latin</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
     </teiHeader>
-    
-    <text id="stoa0045.stoa015">
-        <body>            
-                <div type="secton" n="praef"><opener>Ausonius Symmacho</opener>
-                    <p>Latebat inter nugas meas libellus ignobilis; utinamque latuisset neque indicio suo tamquam sorex periret, hunc ego cum velut gallinaceus Euclionis situ chartei pulveris eruissem, excussum relegi atque ut avidus faenerator inprobum nummum malui occupare quam condere, dein cogitans mecum, non illud Catullianum,1 <quote rend="blockquote"><lb/>cui dono lepidum novum libellum,</quote> set <foreign lang="greek">A)MOUSO/TERON</foreign> et verius: <quote rend="blockquote"><lb/>cui dono inlepidum, rudem libellum,</quote> non diu quaesivi, tu enim occurristi, quem ego, si mihi potestas sit ex omnibus deligendi, unum semper elegerim. misi itaque ad te haec frivola gerris Siculis vaniora, ut, cum agis nihil, haec legas et, ne nihil 
-                        <pb id="v.1.p.354"/>
-                        agas, defendas. igitur iste nugator libellus iam diu secreta quidem, sed vulgi lectione laceratus perveniet tandem in manus tuas. quem tu aut ut Aesculapius redintegrabis ad vitam, aut ut Plato iuvante Vulcano liberabis infamia, si pervenire non debet ad famam. Fuit autem ineptiolae huius ista materia, in expeditione, quod tempus, ut scis, licentiae militaris est, super mensam meam facta est invitatio, non illa de Rubrii convivio, ut Graeco more biberetur,1 set illa de Flacci ecloga, 2 in qua propter <q>mediam noctem</q> et <q>novam lunam</q> et <q>Murenae auguratum</q> <q>ternos ter cyathos attonitus petit vates.</q> hunc locum de ternario numero illico nostra illa poetica scabies coepit exculpere: cuius morbi quoniam facile contagium est, utinam ad te quoque prurigo commigret et fuco tuae emendationis adiecto inpingas sphongiam, quae inperfectum opus equi male spumantis absolvat. ac ne me nescias gloriosum, coeptos inter 
-                        <pb id="v.1.p.356"/>
-                        prandendum versiculos ante cenae tempus absolvi, hoc est, dum bibo et paulo ante quam biberem. Sit ergo examen pro materia et tempore, set tu quoque hoc ipsum paulo hilarior et dilutior lege; namque iniurium est de poeta male sobrio lectorem abstemium iudicare.</p>
-                    
-                    <p>Neque me fallit fore aliquem, qui hunc iocum nostrum acutis naribus et caperrata fronte condemnet negetque me omnia, quae ad ternarium et novenarium numeros pertinent, attigisse. quem ego verum dicere fatebor, iuste, negabo, quippe si bonus est, quae omisi, non oblita mihi, sed praeterita existimet, dehinc qualiscumque est, cogitet secum, quam multa de his non repperisset, si ipse quaesisset, sciat etiam me neque omnibus erutis usum et quibusdam oblatis abusum. quam multa enim de ternario sciens nec-lego! tempora et personas, genera et gradus, novem naturalia metra cum trimetris, totam grammaticam et musicam librosque medicinae, ter maximum Hermen et amatorem primum philosophiae Varronisque numeros et quidquid profanum vulgus ignorat. Postremo, quod facile est, cum ipse multa invenerit, 
-                        <pb id="v.1.p.358"/>
-                        comparet se atque me, occupatum cum otioso, pransum cum abstemio, iocum et ludum meum, diligentiam et calumniam suam. alius enim alio plura invenire potest: nemo omnia.</p>
-                    <p>Quod si alicui et obscurus videbor, aput eum me sic tuebere: primum eiusmodi epyllia, nisi vel obscura sint, nihil futura; deinde numerorum naturam non esse scirpum, ut sine nodo sint: postremo si etiam tibi obscurus fuero, cui nihil neque non lectum est neque non intellectum, tum vero ego beatus, quod adfectavi, adsequar, me ut requiras, me ut desideres, de me cogites.1 vale.</p>
 
-</div>
-                
-                <div type="section" n="1"><head>Griphus Ternarii Numeri</head>
-<l n="1">Ter bibe vel totiens ternos: sic mystica lex est,</l>
-<l n="2">vel tria potanti vel ter tria multiplicanti,</l>
-<l n="3">inparibus novies ternis contexere coebum .2</l>
-<l n="4">Iuris idem tribus est, quod ter tribus: omnia in istis;</l>
-<l n="5">forma hominis coepti plenique exactio partus </l>
-<l n="6">quique novem novies fati tenet ultima finis,</l>
-<l n="7">tris Ope progeniti fratres, tris ordine partae,</l>
-                    <pb id="v.1.p.360"/>
-<l n="8">Vesta, Ceres et Iuno, secus muliebre, sorores.</l>
-<l n="9">inde trisulca Iovis sunt fulmina, Cerberus inde,</l>
-<l n="10">inde tridens triplexque Helenae cum fratribus ovum.</l>
-<l n="11">ter nova Nestoreos implevit purpura fusos </l>
-<l n="12">et totiens trino cornix vivacior. aevo.</l>
-<l n="13">quam novies terni glomerantem saecula tractus</l>
-<l n="14">vincunt aeripedes ter temo Nestore cervi,</l>
-<l n="15">tris quorum aetates superat Phoebeius oscen, </l>
-<l n="16">quem novies senior Gangeticus anteit ales,</l>
-<l n="17">ales cinnameo radiatus tempora nido.</l>
-<l n="18">Tergemina est Hecate, tria virginis ora Dianae;</l>
-<l n="19">tris Charites, tria Fata, triplex vox, trina elementa,</l>
-<l n="20">tris in Trinacria Siredones; omnia terna: </l>
-<l n="21">tris volucres, tris semideae, tris semipuellae,</l>
-<l n="22">ter tribus ad palmam iussae certare camenis,</l>
-<l n="23">ore manu flatu buxo fide voce canentes,</l>
-<l n="24">tris sophiae partes, tria Punica bella, trimenstres</l>
-<l n="25">annorum caelique vices noctisque per umbram </l>
-<l n="26">tergemini vigiles, ter clara instantis Eoi</l>
-<l n="27">signa canit serus deprenso Marte satelles.</l>
-                    <pb id="v.1.p.362"/>
-<l n="28">et qui conceptus triplicatae vespere noctis</l>
-<l n="29">iussa quater ternis adfixit opima tropaeis.</l>
-<l n="30">Et lyrici vates numero sunt Mnemosynarum, </l>
-<l n="31">tris solas quondam tenuit quas dextera Phoebi:</l>
-<l n="32">set Citheron totiens ternas ex aere sacravit</l>
-<l n="33">relligione patrum, qui sex sprevisse timebant,</l>
-<l n="34">trina Tarentino celebrata trinoctia ludo,</l>
-<l n="35">qualia bis genito Thebis trieterica Baccho. </l>
-<l n="36">tris primas Thraecum pugnas tribus ordine bellis</l>
-<l n="37">Iuniadae patrio inferias misere sepulcro,</l>
-<l n="38">illa etiam thalamos per trina aenigmata quaerens,</l>
-<l n="39">qui bipes et quadrupes foret et tripes, omnia solus,</l>
-<l n="40">terruit Aoniam volucris, leo, virgo triformis </l>
-<l n="41">sphinx, volucris pennis, pedibus fera, fronte puella.</l>
-<l n="42">Trina in Tarpeio fulgent consortia templo,</l>
-<l n="43">humana efficiunt habitacula tergenus artes:</l>
-<l n="44">parietibus qui saxa locat, qui culmine tigna,</l>
-<l n="45">et qui supremo comit tectoria cultu. </l>
-<l n="46">hinc Bromii quadrantal et hinc Sicana medimna:</l>
-<l n="47">hoc tribus, hoc geminis tribus explicat usus agendi.</l>
-                    <pb id="v.1.p.364"/>
-<l n="48">in physicis tria prima, deus, mundus, data forma:</l>
-<l n="49">tergenus omnigenum, genitor, genetrix, generatum.</l>
-<l n="50">Per trinas species trigonorum regula currit, </l>
-<l n="51">aequilatus vel crure pari vel in omnibus inpar.</l>
-<l n="52">tris coit in partes numerus perfectus,1 ut idem</l>
-<l n="53">congrege ter temo per ter tria dissoluatur.</l>
-<l n="54">tris primus par, impar habet mediumque: sed ipse,</l>
-<l n="55">ut tris, sic quinque et septem quoque, dividit unus; </l>
-<l n="56">et numero in toto positus sub acumine centri</l>
-<l n="57">distinguit solidos coebo pergente 2 trientes,</l>
-<l n="58">aequipares dirimens partes ex inpare temo:</l>
-<l n="59">et paribus triplex medium, cum quattuor et sex</l>
-<l n="60">bisque quaternorum secernitur omphalos idem. </l>
-<l n="61">Ius triplex, tabulae quod ter sanxere quaternae:</l>
-<l n="62">sacrum, privatum et populi commune quod usquam est.</l>
-                    <pb id="v.1.p.366"/>
-<l n="63">interdictorum trinum genus: unde repulsus</l>
-<l n="64">vi fuero aut utrubi fuerit quorumve bonorum,</l>
-<l n="65">triplex libertas capitisque minutio triplex. </l>
-<l n="66">trinum dicendi genus est: sublime, modestum</l>
-<l n="67">et tenui filo. triplex quoque forma medendi,</l>
-<l n="68">cui logos aut methodos cuique experientia nomen,</l>
-<l n="69">et medicina triplex: servare, cavere, mederi,</l>
-<l n="70">tris oratorum cultus; regnata Colosso </l>
-<l n="71">quem Rhodos, Actaeae quem dilexistis Athenae</l>
-<l n="72">et quem de scaenis tetrica ad subsellia traxit</l>
-<l n="73">prosa Asiae, in causis numeros imitata chororum.</l>
-<l n="74">Orpheos hinc tripodes, quia sunt tria, terra, aqua, flamma.</l>
-<l n="75">triplex sideribus positus, distantia, forma. </l>
-<l n="76">et modus et genetrix modulorum musica triplex,</l>
-<l n="77">mixta libris, secreta astris, vulgata theatris.</l>
-<l n="78">Martia Roma triplex: equitatu, plebe, senatu,</l>
-<l n="79">hoc numero tribus et sacro de monte tribuni.</l>
-                    <pb id="v.1.p.368"/>
-<l n="80">tres equitum turmae, tria nomina nobiliorum. </l>
-<l n="81">nomina sunt chordis tria, sunt tria nomina mensi.</l>
-<l n="82">Geryones triplices, triplex conpago Chimaerae:</l>
-<l n="83">Scylla triplex, commissa tribus: cane, virgine, pisce.</l>
-<l n="84">Gorgones Harpalycaeque et Erinyes agmine temo,</l>
-<l n="85">et tris fatidicae, nomen commune, Sibyllae, </l>
-<l n="86">quarum tergemini fatalia carmina libri,</l>
-<l n="87">quos ter quinorum servat cultura virorum.</l>
-<l n="88">Ter bibe. tris numerus super omnia, tris deus unus.</l>
-<l n="89">hic quoque ne ludus numero transcurrat inerti,</l>
-<l n="90">ter decies ternos habeat deciesque novenos. </l>
-                    <pb id="v.1.p.370"/>
+    <text>
+        <body>
+            <div xml:lang="lat" type="edition" n="urn:cts:latinLit:stoa0045.stoa015.perseus-lat1">
+                <div type="textpart" n="pr" subtype="secton">
+                    <head>Ausonius Symmacho</head>
+                    <p n="1">Latebat inter nugas meas libellus ignobilis; utinamque latuisset neque
+                        indicio suo tamquam sorex periret, hunc ego cum velut gallinaceus Euclionis
+                        situ chartei pulveris eruissem, excussum relegi atque ut avidus faenerator
+                        inprobum nummum malui occupare quam condere, dein cogitans mecum, non illud
+                        Catullianum, <quote rend="blockquote">
+                            <lb/>cui dono lepidum novum libellum,</quote> set <foreign xml:lang="grc">ἀμουσότερον</foreign> et verius: <quote rend="blockquote">
+                            <lb/>cui dono inlepidum, rudem libellum,</quote> non diu quaesivi, tu
+                        enim occurristi, quem ego, si mihi potestas sit ex omnibus deligendi, unum
+                        semper elegerim. misi itaque ad te haec frivola gerris Siculis vaniora, ut,
+                        cum agis nihil, haec legas et, ne nihil <pb n="v.1.p.354"/> agas, defendas.
+                        igitur iste nugator libellus iam diu secreta quidem, sed vulgi lectione
+                        laceratus perveniet tandem in manus tuas. quem tu aut ut Aesculapius
+                        redintegrabis ad vitam, aut ut Plato iuvante Vulcano liberabis infamia, si
+                        pervenire non debet ad famam. Fuit autem ineptiolae huius ista materia, in
+                        expeditione, quod tempus, ut scis, licentiae militaris est, super mensam
+                        meam facta est invitatio, non illa de Rubrii convivio, ut Graeco more
+                        biberetur,1 set illa de Flacci ecloga, in qua propter <q>mediam noctem</q>
+                        et <q>novam lunam</q> et <q>Murenae auguratum</q>
+                        <q>ternos ter cyathos attonitus petit vates.</q> hunc locum de ternario
+                        numero illico nostra illa poetica scabies coepit exculpere: cuius morbi
+                        quoniam facile contagium est, utinam ad te quoque prurigo commigret et fuco
+                        tuae emendationis adiecto inpingas sphongiam, quae inperfectum opus equi
+                        male spumantis absolvat. ac ne me nescias gloriosum, coeptos inter <pb n="v.1.p.356"/> prandendum versiculos ante cenae tempus absolvi, hoc
+                        est, dum bibo et paulo ante quam biberem. Sit ergo examen pro materia et
+                        tempore, set tu quoque hoc ipsum paulo hilarior et dilutior lege; namque
+                        iniurium est de poeta male sobrio lectorem abstemium iudicare.</p>
+
+                    <p n="2">Neque me fallit fore aliquem, qui hunc iocum nostrum acutis naribus et
+                        caperrata fronte condemnet negetque me omnia, quae ad ternarium et
+                        novenarium numeros pertinent, attigisse. quem ego verum dicere fatebor,
+                        iuste, negabo, quippe si bonus est, quae omisi, non oblita mihi, sed
+                        praeterita existimet, dehinc qualiscumque est, cogitet secum, quam multa de
+                        his non repperisset, si ipse quaesisset, sciat etiam me neque omnibus erutis
+                        usum et quibusdam oblatis abusum. quam multa enim de ternario sciens
+                        nec-lego! tempora et personas, genera et gradus, novem naturalia metra cum
+                        trimetris, totam grammaticam et musicam librosque medicinae, ter maximum
+                        Hermen et amatorem primum philosophiae Varronisque numeros et quidquid
+                        profanum vulgus ignorat. Postremo, quod facile est, cum ipse multa
+                        invenerit, <pb n="v.1.p.358"/> comparet se atque me, occupatum cum otioso,
+                        pransum cum abstemio, iocum et ludum meum, diligentiam et calumniam suam.
+                        alius enim alio plura invenire potest: nemo omnia.</p>
+                    <p n="3">Quod si alicui et obscurus videbor, aput eum me sic tuebere: primum
+                        eiusmodi epyllia, nisi vel obscura sint, nihil futura; deinde numerorum
+                        naturam non esse scirpum, ut sine nodo sint: postremo si etiam tibi obscurus
+                        fuero, cui nihil neque non lectum est neque non intellectum, tum vero ego
+                        beatus, quod adfectavi, adsequar, me ut requiras, me ut desideres, de me
+                        cogites. vale.</p>
+
                 </div>
+
+                <div type="textpart" n="1" subtype="section">
+                    <head>Griphus Ternarii Numeri</head>
+                    <l n="1">Ter bibe vel totiens ternos: sic mystica lex est,</l>
+                    <l n="2">vel tria potanti vel ter tria multiplicanti,</l>
+                    <l n="3">inparibus novies ternis contexere coebum .</l>
+                    <l n="4">Iuris idem tribus est, quod ter tribus: omnia in istis;</l>
+                    <l n="5">forma hominis coepti plenique exactio partus </l>
+                    <l n="6">quique novem novies fati tenet ultima finis,</l>
+                    <l n="7">tris Ope progeniti fratres, tris ordine partae,</l>
+                    <pb n="v.1.p.360"/>
+                    <l n="8">Vesta, Ceres et Iuno, secus muliebre, sorores.</l>
+                    <l n="9">inde trisulca Iovis sunt fulmina, Cerberus inde,</l>
+                    <l n="10">inde tridens triplexque Helenae cum fratribus ovum.</l>
+                    <l n="11">ter nova Nestoreos implevit purpura fusos </l>
+                    <l n="12">et totiens trino cornix vivacior. aevo.</l>
+                    <l n="13">quam novies terni glomerantem saecula tractus</l>
+                    <l n="14">vincunt aeripedes ter temo Nestore cervi,</l>
+                    <l n="15">tris quorum aetates superat Phoebeius oscen, </l>
+                    <l n="16">quem novies senior Gangeticus anteit ales,</l>
+                    <l n="17">ales cinnameo radiatus tempora nido.</l>
+                    <l n="18">Tergemina est Hecate, tria virginis ora Dianae;</l>
+                    <l n="19">tris Charites, tria Fata, triplex vox, trina elementa,</l>
+                    <l n="20">tris in Trinacria Siredones; omnia terna: </l>
+                    <l n="21">tris volucres, tris semideae, tris semipuellae,</l>
+                    <l n="22">ter tribus ad palmam iussae certare camenis,</l>
+                    <l n="23">ore manu flatu buxo fide voce canentes,</l>
+                    <l n="24">tris sophiae partes, tria Punica bella, trimenstres</l>
+                    <l n="25">annorum caelique vices noctisque per umbram </l>
+                    <l n="26">tergemini vigiles, ter clara instantis Eoi</l>
+                    <l n="27">signa canit serus deprenso Marte satelles.</l>
+                    <pb n="v.1.p.362"/>
+                    <l n="28">et qui conceptus triplicatae vespere noctis</l>
+                    <l n="29">iussa quater ternis adfixit opima tropaeis.</l>
+                    <l n="30">Et lyrici vates numero sunt Mnemosynarum, </l>
+                    <l n="31">tris solas quondam tenuit quas dextera Phoebi:</l>
+                    <l n="32">set Citheron totiens ternas ex aere sacravit</l>
+                    <l n="33">relligione patrum, qui sex sprevisse timebant,</l>
+                    <l n="34">trina Tarentino celebrata trinoctia ludo,</l>
+                    <l n="35">qualia bis genito Thebis trieterica Baccho. </l>
+                    <l n="36">tris primas Thraecum pugnas tribus ordine bellis</l>
+                    <l n="37">Iuniadae patrio inferias misere sepulcro,</l>
+                    <l n="38">illa etiam thalamos per trina aenigmata quaerens,</l>
+                    <l n="39">qui bipes et quadrupes foret et tripes, omnia solus,</l>
+                    <l n="40">terruit Aoniam volucris, leo, virgo triformis </l>
+                    <l n="41">sphinx, volucris pennis, pedibus fera, fronte puella.</l>
+                    <l n="42">Trina in Tarpeio fulgent consortia templo,</l>
+                    <l n="43">humana efficiunt habitacula tergenus artes:</l>
+                    <l n="44">parietibus qui saxa locat, qui culmine tigna,</l>
+                    <l n="45">et qui supremo comit tectoria cultu. </l>
+                    <l n="46">hinc Bromii quadrantal et hinc Sicana medimna:</l>
+                    <l n="47">hoc tribus, hoc geminis tribus explicat usus agendi.</l>
+                    <pb n="v.1.p.364"/>
+                    <l n="48">in physicis tria prima, deus, mundus, data forma:</l>
+                    <l n="49">tergenus omnigenum, genitor, genetrix, generatum.</l>
+                    <l n="50">Per trinas species trigonorum regula currit, </l>
+                    <l n="51">aequilatus vel crure pari vel in omnibus inpar.</l>
+                    <l n="52">tris coit in partes numerus perfectus,1 ut idem</l>
+                    <l n="53">congrege ter temo per ter tria dissoluatur.</l>
+                    <l n="54">tris primus par, impar habet mediumque: sed ipse,</l>
+                    <l n="55">ut tris, sic quinque et septem quoque, dividit unus; </l>
+                    <l n="56">et numero in toto positus sub acumine centri</l>
+                    <l n="57">distinguit solidos coebo pergente 2 trientes,</l>
+                    <l n="58">aequipares dirimens partes ex inpare temo:</l>
+                    <l n="59">et paribus triplex medium, cum quattuor et sex</l>
+                    <l n="60">bisque quaternorum secernitur omphalos idem. </l>
+                    <l n="61">Ius triplex, tabulae quod ter sanxere quaternae:</l>
+                    <l n="62">sacrum, privatum et populi commune quod usquam est.</l>
+                    <pb n="v.1.p.366"/>
+                    <l n="63">interdictorum trinum genus: unde repulsus</l>
+                    <l n="64">vi fuero aut utrubi fuerit quorumve bonorum,</l>
+                    <l n="65">triplex libertas capitisque minutio triplex. </l>
+                    <l n="66">trinum dicendi genus est: sublime, modestum</l>
+                    <l n="67">et tenui filo. triplex quoque forma medendi,</l>
+                    <l n="68">cui logos aut methodos cuique experientia nomen,</l>
+                    <l n="69">et medicina triplex: servare, cavere, mederi,</l>
+                    <l n="70">tris oratorum cultus; regnata Colosso </l>
+                    <l n="71">quem Rhodos, Actaeae quem dilexistis Athenae</l>
+                    <l n="72">et quem de scaenis tetrica ad subsellia traxit</l>
+                    <l n="73">prosa Asiae, in causis numeros imitata chororum.</l>
+                    <l n="74">Orpheos hinc tripodes, quia sunt tria, terra, aqua, flamma.</l>
+                    <l n="75">triplex sideribus positus, distantia, forma. </l>
+                    <l n="76">et modus et genetrix modulorum musica triplex,</l>
+                    <l n="77">mixta libris, secreta astris, vulgata theatris.</l>
+                    <l n="78">Martia Roma triplex: equitatu, plebe, senatu,</l>
+                    <l n="79">hoc numero tribus et sacro de monte tribuni.</l>
+                    <pb n="v.1.p.368"/>
+                    <l n="80">tres equitum turmae, tria nomina nobiliorum. </l>
+                    <l n="81">nomina sunt chordis tria, sunt tria nomina mensi.</l>
+                    <l n="82">Geryones triplices, triplex conpago Chimaerae:</l>
+                    <l n="83">Scylla triplex, commissa tribus: cane, virgine, pisce.</l>
+                    <l n="84">Gorgones Harpalycaeque et Erinyes agmine temo,</l>
+                    <l n="85">et tris fatidicae, nomen commune, Sibyllae, </l>
+                    <l n="86">quarum tergemini fatalia carmina libri,</l>
+                    <l n="87">quos ter quinorum servat cultura virorum.</l>
+                    <l n="88">Ter bibe. tris numerus super omnia, tris deus unus.</l>
+                    <l n="89">hic quoque ne ludus numero transcurrat inerti,</l>
+                    <l n="90">ter decies ternos habeat deciesque novenos. </l>
+                    <pb n="v.1.p.370"/>
+                </div>
+            </div>
         </body>
     </text>
-</TEI.2>
+</TEI>
