@@ -1,19 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Prose//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" >
-%PersProse;
-]>
-<TEI.2>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>Fragmenta</title>
-                <author>Seneca the Elder</author>
+                <title type="work">Fragmenta</title>
+                <title type="sub">Machine readable text</title><author n="Seneca the Elder">Seneca the Elder</author>
                 <editor>Adolf Gottlieb Kiessling</editor>
-                &fund.Mellon;
-            </titleStmt>
-            &Perseus.publish;
+                <funder n="org:Mellon">The Mellon Foundation</funder>
+            <sponsor>Perseus Project, Tufts University</sponsor><principal>Gregory Crane</principal><respStmt><resp>Prepared under the supervision of</resp><name>Bridget Almas</name><name>Lisa Cerrato</name><name>William Merrill</name><name>Elli Mylonas</name><name>David Smith</name></respStmt></titleStmt>
+            <publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+
             <sourceDesc>
                 <biblStruct>
                     <monogr>
@@ -28,50 +31,57 @@
                     </monogr>
                 </biblStruct>
                 
-                <p>Keyboarding</p></sourceDesc>
+                <list><item>Keyboarding</item></list></sourceDesc>
         </fileDesc>
         
-        <encodingDesc>
-            <refsDecl doctype="TEI.2">
-                <state unit="book"/>
-                <state unit="fragment" n="chunk"/>                
+	<encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="fragment"
+                         matchPattern="(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
             </refsDecl>
-            
+            <refsDecl>
+                <refState unit="book" delim="."/>
+                <refState unit="fragment"/>
+            </refsDecl>
         </encodingDesc>
         
         <profileDesc>
             <langUsage>
-                <language id="la">Latin</language>
-                <language id="greek">Greek</language>
+                <language ident="lat">Latin</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
+	<revisionDesc> <change who="Zach Himes" when="2015-11-16">Converted to TEI P5 and EpiDoc</change></revisionDesc>
     </teiHeader>
     
     
-    <text><body>        
-<pb id="p.526"/>
-<div1 type="book" n="1"><head>incertae sedis reliquiae</head>
-    <div2 type="fragment" n="1"><cit><quote>nam memini iuuenis admodum inter Pomponium ac
-        Senecam etiam praefationibus esse tractatum an &ldquo;gradus
-            eliminat&rdquo; in tragoedia dici oportuisset.</quote> <bibl>Quint. VIII 3,31.</bibl></cit></div2>
+    <text><body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi1014.phi004.perseus-lat1">        
+<pb n="p.526"/>
+<div type="textpart" n="1" subtype="book"><head>incertae sedis reliquiae</head>
+    <div type="textpart" n="1" subtype="fragment"><cit><quote>nam memini iuuenis admodum inter Pomponium ac
+        Senecam etiam praefationibus esse tractatum an “gradus
+            eliminat” in tragoedia dici oportuisset.</quote> <bibl>Quint. VIII 3,31.</bibl></cit></div>
     
-    <div2 type="fragment" n="2"><cit><quote>noui uero et praecipue declamatores audacius nec
+    <div type="textpart" n="2" subtype="fragment"><cit><quote>noui uero et praecipue declamatores audacius nec
         mehercule sine motu quodam imaginantur, ut Seneca in
         controuersia cuius summa est, quod pater filium et nouercam
-        inducente altero filio in adulterio deprensos occidit: &ldquo;duc,
+        inducente altero filio in adulterio deprensos occidit: “duc,
             sequor: accipe hanc senilem manum et quocumque uis
-            inprime&rdquo; et post paulo: &ldquo;aspice, inquit, quod diu non credidisti.
-                ego uero non uideo, nox oboritur et crassa caligo.&rdquo; </quote> <bibl>Quint. 9.2.42</bibl></cit></div2>
+            inprime” et post paulo: “aspice, inquit, quod diu non credidisti.
+                ego uero non uideo, nox oboritur et crassa caligo.” </quote> <bibl>Quint. 9.2.42</bibl></cit></div>
     
-    <div2 type="fragment" n="3"><cit><quote>nam et in totum iurare, nisi ubi necesse est, graui
+    <div type="textpart" n="3" subtype="fragment"><cit><quote>nam et in totum iurare, nisi ubi necesse est, graui
         uiro parum conuenit, et est a Seneca dictum eleganter, non
-        patronorum hoc esse sed testium.</quote> <bibl>Quint. 9.2.98.</bibl></cit></div2>
-    <div2 type="fragment" n="4"><cit><quote>et Seneca tradidit Iulium Montanum poetam
+        patronorum hoc esse sed testium.</quote> <bibl>Quint. 9.2.98.</bibl></cit></div>
+    <div type="textpart" n="4" subtype="fragment"><cit><quote>et Seneca tradidit Iulium Montanum poetam
         solitum dicere, inuolaturum se Vergilio quaedam si et uocem
         posset et os et hypocrisin: eosdem enim uersus ipso
         pronuntiante bene sonare, sine illo inanes esse mutosque.</quote> <bibl>Donat.
             uita Vergilii p. 61.5 Reiff.</bibl></cit>
-    </div2></div1>       
-    </body>
-    </text>
-</TEI.2>
+    </div></div>       
+    </div>
+    </body></text>
+</TEI>

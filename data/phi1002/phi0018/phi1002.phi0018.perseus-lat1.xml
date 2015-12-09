@@ -1,4 +1,5 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
@@ -16,15 +17,14 @@
                     <name>David Smith</name>
                 </respStmt>
                 <funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
-            </titleStmt><publicationStmt><publisher>Trustees of Tufts University</publisher><pubPlace>Medford, MA</pubPlace><authority>Perseus Project</authority></publicationStmt>
-            
+            </titleStmt>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
                 <authority>Perseus Project</authority>
             </publicationStmt>
-            <sourceDesc default="NO">
-                <biblStruct default="NO">
+            <sourceDesc default="false">
+                <biblStruct default="false">
                     <monogr>
                         <author>Quintilian</author>
                         <title>With An English Translation</title>
@@ -39,6 +39,23 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                    matchPattern="(\w+).(\w+).(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:div[@n='$3'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                    matchPattern="(\w+).(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                    matchPattern="(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
                 <refState unit="book"/>
                 <refState unit="chapter"/>
@@ -49,13 +66,13 @@
             </refsDecl>
         </encodingDesc>
         <profileDesc>
-            <langUsage default="NO">
-                <language ident="la">Latin</language>
+            <langUsage default="false">
+                <language ident="lat">Latin</language>
                 <language ident="en">English</language>
-                <language ident="greek">Greek</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
-        <revisionDesc><!--
+        <revisionDesc><change who="GRC" when="2006">tagging</change><!--
             <change>
                 <date>2006</date>
                 <respStmt>
@@ -64,12 +81,13 @@
                 </respStmt>
                 <item/>
             </change>
-        --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+        --><change when="2014-08-01" who="Stella Dee">edited markup</change>
+           <change who="Zach Himes" when="2015-11-16">Edited teiHeader, converted to TEI P5 and EpiDoc</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="la">
+    <text xml:lang="lat">
         <body>
-            <pb id="p.176"/>
-            <div part="N" sample="complete" org="uniform" n="8" type="book">
+            <pb xml:id="p.176"/>
+            <div part="N" sample="complete" org="uniform" n="8" subtype="book" type="edition">
                 <head>Liber VIII</head>
                 <p>
                     <milestone n="pr" unit="chapter"/>
@@ -102,7 +120,7 @@ incipientibus, sed ea plana et cum ad ingrediendum
 tum ad demonstrandum expedita.
                     <reg>eligat</reg>
                     itaque
-                    <pb id="p.178"/>
+                    <pb xml:id="p.178"/>
                     peritus ille praeceptor ex omnibus optima et tradat
 ea demum in praesentia quae placet, remota refutandi cetera mora.
                     <reg>sequentur</reg>
@@ -135,7 +153,7 @@ ut ostenderemus rhetoricen bene dicendi scientiam
 et utilem et artem et virtutem esse; materiam eius
 res omnes de quibus dicendum esset; eas in tribus
 fere generibus, demonstrativo, deliberative, iudicialique reperiri; orationem porro omnem constare
-                    <pb id="p.180"/>
+                    <pb xml:id="p.180"/>
                     rebus et verbis; in rebus intuendam inventionem,
 in verbis elocutionem, in utroque
                     <note anchored="true" place="unspecified">
@@ -184,12 +202,12 @@ quid diceret.
                     <reg>iudicialium</reg>
                     causarum alias in singulis,
 alias in pluribus controversiis consistere, et in
-                    <pb id="p.182"/>
+                    <pb xml:id="p.182"/>
                     quibusdam intentionem modo stature facere, modo
 depulsionem;
                     <note anchored="true" place="unspecified">
                         statum
-                        <gap/>
+                       <gap reason="ellipsis"/>
                         depulsionem,
                         <hi rend="italics">added by Happel, following Schütz</hi>
                     </note>
@@ -247,7 +265,7 @@ varia est
                     </note>
                     et in qua multa etiam sine
 doctrina praestare debeat per se ipsa natura, ut haec
-                    <pb id="p.184"/>
+                    <pb xml:id="p.184"/>
                     de quibus dixi non tarn inventa a praeceptoribus
 quam cum fierent observata esse vidcantur.
                 </p>
@@ -298,7 +316,7 @@ suam haerenti.
                     itaque maxime docetur, hoc
 nullus nisi arte adsequi potest, hic studium
 plurimum adhibendum, hoc exercitatio petit, hoc
-                    <pb id="p.186"/>
+                    <pb xml:id="p.186"/>
                     imitatio, hic omnis aetas consumitur, hoc maxime
 orator oratore praestantior, hoc genera ipsa dicendi
 alia alia potiora.
@@ -329,7 +347,7 @@ integri sanguinis et exercitatione firmata ex iisdem
 his speciem accipiunt ex quibus vires, namque et
 colorata et adstricta et lacertis expressa sunt; at
 eadem si quis volsa atque fucata muliebriter comat,
-                    <pb id="p.188"/>
+                    <pb xml:id="p.188"/>
                     foedissima sint ipso formae labore.
                     <milestone n="20" unit="section"/>
                     <name>Et</name>
@@ -373,7 +391,7 @@ sensus obumbrantur et velunt, aeto gramine sata
 strangulantur.
                     <note anchored="true" place="unspecified">
                         obumbrantur
-                        <gap/>
+                       <gap reason="ellipsis"/>
                         strangulantur,
                         <hi rend="italics">
                             <name>Spalding</name>
@@ -386,7 +404,7 @@ strangulantur.
                     <milestone n="24" unit="section"/>
                     <reg>nam</reg>
                     et quod recte dici potest circumimus amore verborum et quod satis dictum est
-                    <pb id="p.190"/>
+                    <pb xml:id="p.190"/>
                     repetimus et quod uno verbo patet pluribus oneramus et pleraque significare melius putamus quam
 dicere.
                     <reg>quid</reg>
@@ -422,7 +440,7 @@ erat, quae et cursum dicendi refrenat et calorem
 cogitationis extinguit mora et diffidentia.
                     <milestone n="28" unit="section"/>
                     <reg>miser</reg>
-                    <pb id="p.192"/>
+                    <pb xml:id="p.192"/>
                     enim et, ut sic dicam, pauper orator est qui nullum
 verbum aequo animo perdere potest.
                     <reg>sed</reg>
@@ -488,7 +506,7 @@ cum apte sunt collocata, quid amplius laboremus?
                     <reg>quibusdam</reg>
                     tamen nullus est finis calumniandi se et
 cum singulis paene syllabis commoriendi, qui etiam,
-                    <pb id="p.194"/>
+                    <pb xml:id="p.194"/>
                     cum optima sunt reperta, quaerunt aliquid quod sit
 magis antiquunm, remotum, inopinatum, nec intelligunt iacere sensus in oratione, in qua verba laudantur.
                     <milestone n="32" unit="section"/>
@@ -530,7 +548,7 @@ sumus.
 quam minime peregrina et externa.
                     <reg>multos</reg>
                     enim,
-                    <pb id="p.196"/>
+                    <pb xml:id="p.196"/>
                     quibus loquendi ratio non desit, invenias quos curiose
 potius loqui dixeris quam Latine, quomodo et illa
 Attica anus Theophrastum, hominem alioqui disertissimum, adnotata unius adfectatione verbi, hospitem
@@ -587,7 +605,7 @@ irridens hanc vanitatem Cassius Severus
 orator
                     <hi rend="italics">duratos muria pisces</hi>
                     nitidius esse crediderit
-                    <pb id="p.198"/>
+                    <pb xml:id="p.198"/>
                     quam ipsum id quod vitabat.
                     <note anchored="true" place="unspecified">
                         vitabat,
@@ -646,7 +664,7 @@ auditu, sed intellectu perpendenda est.
                     <milestone n="7" unit="section"/>
                     <reg>secundo</reg>
                     modo dicitur proprium inter plura, quae sunt
-                    <pb id="p.200"/>
+                    <pb xml:id="p.200"/>
                     eiusdem nominis, id unde cetera ducta sunt; ut
                     <hi rend="italics">vertex</hi>
                     est contorta in se aqua vel quidquid aliud similiter
@@ -696,7 +714,7 @@ nihil inveniri possit significantius: ut Cato dixit,
                     <milestone n="10" unit="section"/>
                     <name>In</name>
                     quo modo illud
-                    <pb id="p.202"/>
+                    <pb xml:id="p.202"/>
                     quoque est a quibusdam traditum proprii genus ex
 appositis (epitheta dicuntur): ut
                     <hi rend="italics">dulcis musti</hi>
@@ -760,7 +778,7 @@ has been made.
                     </note>
                     Quae vel vitanda apud iudicem ignarum
 significationum earum vel interpretanda sunt, sicut
-                    <pb id="p.204"/>
+                    <pb xml:id="p.204"/>
                     in his, quae homonyma vocantur: ut,
                     <hi rend="italics">
                         <reg>taurus</reg>
@@ -827,7 +845,7 @@ redit,
                     non haec solum, de
 cuius genere supra dictum est, quae incertum intellectum facit, ut
                     <hi rend="italics">Chremetem audivi percussisse Demean,</hi>
-                    <pb id="p.206"/>
+                    <pb xml:id="p.206"/>
                     sed illa quoque, quae, etiamsi turbare non potest
 sensum, in idem tamen verborum vitium incidit, ut
 si quis dicat,
@@ -892,7 +910,7 @@ otiosum sermonem dixerim, quem auditor suo ingenio
 intelligit.
                     <reg>quidam</reg>
                     , emutatis in perversum dicendi
-                    <pb id="p.208"/>
+                    <pb xml:id="p.208"/>
                     figuris, idem vitium consequuntur.
                     <milestone n="20" unit="section"/>
                     <reg>pessima</reg>
@@ -975,7 +993,7 @@ observatio.
 quam oportet neque plura neque inordinata aut
 indistincta dixerimus, erunt dilucida et negligenter
 quoque audientibus aperta; quod et ipsum in consilio
-                    <pb id="p.210"/>
+                    <pb xml:id="p.210"/>
                     est habendum, non semper tam esse acrem iudicis
 intentionem, ut obscuritatem apud se ipse discutiat
 et tenebris orationis inferat quoddam intelligentiae
@@ -1018,7 +1036,7 @@ modicae doctrinae credi potest; si quae sunt artes
 altiores, plerumque occultantur, ut artes sint; denique omnia haec ad utilitatem causarum solam referenda sunt.
                     <reg>cultu</reg>
                     vero atque ornatu se quoque
-                    <pb id="p.212"/>
+                    <pb xml:id="p.212"/>
                     commendat ipse qui dicit et in ceteris iudicium
 doctorum, in hoc vero etiam popularem laudem
 petit, nec fortibus modo, sed etiam fulgentibus armis
@@ -1071,7 +1089,7 @@ timeretur.
                     <reg>recteque</reg>
                     Cicero his ipsis ad Brutum
                     <note anchored="true" place="unspecified">Now lost.</note>
-                    <pb id="p.214"/>
+                    <pb xml:id="p.214"/>
                     verbis quadam in epistola scribit,
                     <hi rend="italics">
                         <reg>nam</reg>
@@ -1122,7 +1140,7 @@ quoque prodest, ut terrae sucum aequaliter trahat.
                     <reg>surgentia</reg>
                     in altum cacumina oleae ferro coercebo;
                     <milestone n="10" unit="section"/>
-                    <pb id="p.216"/>
+                    <pb xml:id="p.216"/>
                     in orbem se formosius fundet et protinus fructum
 ramis pluribus feret.
                     <reg>decentior</reg>
@@ -1183,7 +1201,7 @@ locus.
                     <reg>praeterea</reg>
                     ne decet quidem, ubi maxima
 rerum momenta versantur, de verbis esse sollicitum.
-                    <pb id="p.218"/>
+                    <pb xml:id="p.218"/>
                     Neque hoc eo pertinet, ut in his nullus sit ornatus,
 sed uti pressior et severior et minus confessus, praecipue materiae accommodatus.
                     <milestone n="14" unit="section"/>
@@ -1223,7 +1241,7 @@ vocaliora.
                     <reg>nam</reg>
                     ut syllabae e litteris melius sonantibus clariores sunt, ita verba e syllabis magis vocalia
 et, quo plus quodque spiritus habet, auditu pulchrius.
-                    <pb id="p.220"/>
+                    <pb xml:id="p.220"/>
                     Et quod facit syllabarum, idem verborum quoque
 inter se copulatio, ut aliud alii iunctum melius sonet.
                     <reg>diversus</reg>
@@ -1275,7 +1293,7 @@ et merito nuper poetam, qui dixerat
                             in cista mures rosere camilli.
                         </l>
                     </quote>
-                    <pb id="p.222"/>
+                    <pb xml:id="p.222"/>
                     At Vergilii miramur illud,
                     <milestone n="20" unit="section"/>
                     <quote rend="blockquote">
@@ -1370,7 +1388,7 @@ pascis.
                     <milestone n="23" unit="section"/>
                     <reg>res</reg>
                     quidem praecipue in scholis anceps et
-                    <pb id="p.224"/>
+                    <pb xml:id="p.224"/>
                     frequenter causa risus, nunc utique, cum haec exercitatio procul a veritate seiuncta laboret incredibili
 verborum fastidio ac sibi magnam partem sermonis
 absciderit.
@@ -1487,7 +1505,7 @@ est sermo.
                     <milestone n="27" unit="section"/>
                     <reg>quaedam</reg>
                     tamen adhuc vetera vetustate
-                    <pb id="p.226"/>
+                    <pb xml:id="p.226"/>
                     ipsa gratius nitent, quaedam et necessario interim
 sumuntur, ut
                     <hi rend="italics">nuncupare</hi>
@@ -1571,7 +1589,7 @@ qua illi primi homines rebus appellationes dederunt.
                     <milestone n="31" unit="section"/>
                     <reg>nostri</reg>
                     autem in iungendo aut in derivando paulum
-                    <pb id="p.228"/>
+                    <pb xml:id="p.228"/>
                     aliquid ausi vix in hoc satis recipiuntur.
                     <reg>nam</reg>
                     memini iuvenis admodum inter Pomponium ac Senecam
@@ -1677,7 +1695,7 @@ recentia, ut Messala primus
                     </hi>
                     inquit,
                     <hi rend="italics">amorem et eum, ut hoc verbo utar, fauorem in consilium advocabo.</hi>
-                    <pb id="p.230"/>
+                    <pb xml:id="p.230"/>
                     <milestone n="35" unit="section"/>
                     <name>Et</name>
                     ad Appium Pulchrum,
@@ -1732,7 +1750,7 @@ quo praecipitur
                     <milestone n="38" unit="section"/>
                     <reg>translata</reg>
                     probari nisi in contextu sermonis non
-                    <pb id="p.232"/>
+                    <pb xml:id="p.232"/>
                     possunt.
                     <reg>itaque</reg>
                     de singulis verbis satis dictum,
@@ -1790,7 +1808,7 @@ virtus est vitio carere.
                     <milestone n="42" unit="section"/>
                     <reg>igitur</reg>
                     ante omnia ne speremus ornatam orationem fore, quae probabilis non erit.
-                    <pb id="p.234"/>
+                    <pb xml:id="p.234"/>
                     Probabile autem Cicero id genus dicit, quod non
 nimis est comptum.
                     <note anchored="true" place="unspecified">
@@ -1864,7 +1882,7 @@ quidem iudico sed legentium,
 nisi hoc ipsum
                     <hi rend="italics">hominibus</hi>
                     medium sit, in praefanda
-                    <pb id="p.236"/>
+                    <pb xml:id="p.236"/>
                     videmur incidere, quia ultima prioris syllabae littera,
 quae exprimi nisi labris coeuntibus non potest, aut
 intersistere nos indecentissime cogit aut continuata
@@ -1918,7 +1936,7 @@ minuitur: ut
                     </hi>
                     <reg>cui</reg>
                     natura contrarium, sed errore par est, parvis dare
-                    <pb id="p.238"/>
+                    <pb xml:id="p.238"/>
                     excedentia modum nomina, nisi cum ex industria
 risus inde captatur.
                     <reg>itaque</reg>
@@ -1983,7 +2001,7 @@ quo virtutes erunt.
 levat taedium atque est tota coloris unius, qua
 maxime deprehenditur carens arte oratio; eaque
 et in sententiis et in figuris et in compositione longe
-                    <pb id="p.240"/>
+                    <pb xml:id="p.240"/>
                     non animis solum sed etiam auribus est ingratissima.
                     <reg>vitanda</reg>
                     etiam
@@ -2077,7 +2095,7 @@ genus peccat.
                     <reg>nam</reg>
                     et tumida et pusilla et praedulcia
 et abundantia et arcessita et exultantia sub idem
-                    <pb id="p.242"/>
+                    <pb xml:id="p.242"/>
                     nomen cadunt.
                     <reg>denique</reg>
                     <foreign xml:lang="grc">kako/zhlon</foreign>
@@ -2143,7 +2161,7 @@ dicemus.
                     quoque appellatur quaedam mixta
 ex varia ratione linguarum oratio, ut si Atticis
 Dorica, Ionica, Aeolica etiam dicta confundas.
-                    <pb id="p.244"/>
+                    <pb xml:id="p.244"/>
                     Cui simile vitium est apud nos,
                     <milestone n="60" unit="section"/>
                     si quis sublimia
@@ -2209,7 +2227,7 @@ equidem in omnes eam particulas secabo,
                         </hi>
                     </note>
                     quarum
-                    <pb id="p.246"/>
+                    <pb xml:id="p.246"/>
                     ambitiose a quibusdam numerus augetur, sed maxime
 necessarias attingam.
                     <reg>est</reg>
@@ -2259,7 +2277,7 @@ convivii luxuriosi:
                         videre alios intrantes, alios
 autem exeuntes, quosdam ex vino vacillantes, quosdam
                     </hi>
-                    <pb id="p.248"/>
+                    <pb xml:id="p.248"/>
                     hesterna ex potatione oscitantes.
                     <hi rend="italics">
                         <reg>humus</reg>
@@ -2299,7 +2317,7 @@ eversio, minus est tamen totum dicere quam omnia.
                     <reg>consequemur</reg>
                     autem, ut manifesta sint, si fuerint
 versimilia; et licebit etiam falso adfingere quidquid
-                    <pb id="p.250"/>
+                    <pb xml:id="p.250"/>
                     fieri solet.
                     <reg>continget</reg>
                     eadem claritas etiam ex
@@ -2368,7 +2386,7 @@ huius loci proprium:
 id, quod similitudinis gratia adscivimus, aut obscurum sit aut ignotum.
                     <reg>debet</reg>
                     enim, quod illustrandae alterius rei gratia assumitur, ipsum esse
-                    <pb id="p.252"/>
+                    <pb xml:id="p.252"/>
                     clarius eo quod illuminat.
                     <reg>quare</reg>
                     poetis quidem
@@ -2420,7 +2438,7 @@ consistunt
 videri volunt, applicant.
                     <reg>quorum</reg>
                     utrumque in his
-                    <pb id="p.254"/>
+                    <pb xml:id="p.254"/>
                     est, quae me iuvene ubique cantari solebant,
                     <hi rend="italics">
                         <reg>magnorum</reg>
@@ -2492,7 +2510,7 @@ est.
 artificibus eos auloedos esse, qui citharoedi fieri non
 potiuerint, sic apud nos videmus, qui oratores evadere non
                     </hi>
-                    <pb id="p.256"/>
+                    <pb xml:id="p.256"/>
                     <hi rend="italics">potuerint, eos ad iuris studium devenire.</hi>
                     <milestone n="80" unit="section"/>
                     <reg>illud</reg>
@@ -2549,7 +2567,7 @@ armatus.
                     <reg>vicina</reg>
                     praedictae sed amplior virtus est
                     <foreign xml:lang="grc">e)/mfasis,</foreign>
-                    <pb id="p.258"/>
+                    <pb xml:id="p.258"/>
                     altiorem praebens intellectum quam quem verba per
 se ipsa declarant.
                     <reg>eius</reg>
@@ -2618,7 +2636,7 @@ loco.
                 <p>
                     <reg>non</reg>
                     tamen satis eloquentiae est, ea, de quibus
-                    <pb id="p.260"/>
+                    <pb xml:id="p.260"/>
                     dicat, clare atque evidenter ostendere; sed sunt
 multi ac varii excolendae orationis modi.
                     <milestone n="87" unit="section"/>
@@ -2670,7 +2688,7 @@ consulem putem, cum tu me non putes senatorem?
                     </hi>
                     <reg>sed</reg>
                     vis oratoris omnis in augendo minuendoque consistit.
-                    <pb id="p.262"/>
+                    <pb xml:id="p.262"/>
                     Vtrique parti totidem modi, ex quibus praecipuos
 attingemus; reliqui similes erunt; sunt autem positi
 in rebus et verbis.
@@ -2721,7 +2739,7 @@ Cicero in Verrem,
 adulterum sed expugnatorem pudicitiae, non sacrilegum
 sed hostem sacrorum religionumque, non sicarium sed
                     </hi>
-                    <pb id="p.264"/>
+                    <pb xml:id="p.264"/>
                     <hi rend="italics">crudelissimum carnificem civium sociorumque in vestrum iudicium adduximus.</hi>
                     <milestone n="3" unit="section"/>
                     <reg>illo</reg>
@@ -2777,7 +2795,7 @@ apud Vergilium de Lauso:
                     Summum est enim,
                     <hi rend="italics">quo pulchrior alter non fuit;</hi>
                     huic
-                    <pb id="p.266"/>
+                    <pb xml:id="p.266"/>
                     deinde aliquid superpositum.
                     <milestone n="7" unit="section"/>
                     <reg>tertius</reg>
@@ -2841,7 +2859,7 @@ ita, quae fit per comparationem, incrementum ex
 minoribus petit.
                     <reg>augendo</reg>
                     enim, quod est infra
-                    <pb id="p.268"/>
+                    <pb xml:id="p.268"/>
                     necesse est extollat id quod supra positum est: ut
 idem atque in eodem loco,
                     <milestone n="10" unit="section"/>
@@ -2901,7 +2919,7 @@ hic quoque idem quo sum illic usus exemplum,
                     <milestone n="13" unit="section"/>
                     <reg>nam</reg>
                     hoc mihi ostendendum
-                    <pb id="p.270"/>
+                    <pb xml:id="p.270"/>
                     est, augendi gratia non tota modo totis, sed etiam
 partes partibus comparari: sicut hoc loco,
                     <hi rend="italics">
@@ -2947,7 +2965,7 @@ merum et vomitum,
                     <reg>minime</reg>
                     sunt otiosa;
 nam respicientes ad haec possumus aestimare,
-                    <pb id="p.272"/>
+                    <pb xml:id="p.272"/>
                     quantum ille vini in Hippiae nuptiis exhauserit, quod ferre
 et concoquere
                     <note anchored="true" place="unspecified">
@@ -2987,7 +3005,7 @@ solet, redderetur, sed usque in posterum diem redundaret.
                             in latus, ac venti velut agmine facto
                         </l>
                         <l part="N">
-                            <gap/>
+                           <gap reason="lost"/>
                             ruunt,
                         </l>
                     </quote>
@@ -3023,7 +3041,7 @@ est.
                         </hi>
                     </note>
                     qua colligerent
-                    <pb id="p.274"/>
+                    <pb xml:id="p.274"/>
                     audientes, quantum illud esset quod inferebatur, cui
 comparata haec viderentur humana atque usitata?
                     <reg>sic</reg>
@@ -3060,7 +3078,7 @@ malorum causam negat.
 a Socrate pati voluerit, narrat, ut illum culparet,
 haec tradidisse, sed ut Socratis invictam continentiam
 ostenderet, quae corrumpi speciosissimi hominis tam
-                    <pb id="p.276"/>
+                    <pb xml:id="p.276"/>
                     obvia voluntate non posset.
                     <milestone n="24" unit="section"/>
                     <reg>quin</reg>
@@ -3109,7 +3127,7 @@ cogitare.
                     dicitur;
 sed illa ex verbo, hoc ex re coniecturam facit tantoque plus valet, quanto res ipsa verbis est firmior.
                 </p>
-                <pb id="p.278"/>
+                <pb xml:id="p.278"/>
                 <p>
                     <reg>potest</reg>
                     adscribi amplificationi congeries quoque
@@ -3162,7 +3180,7 @@ referas, minutio est, si ad obscuritatem, incrementum.
                     <reg>scio</reg>
                     posse videri quibusdam speciem amplificationis
 hyperbolen quoque, nam et haec in utramque partem
-                    <pb id="p.280"/>
+                    <pb xml:id="p.280"/>
                     valet; sed quia excedit
                     <note anchored="true" place="unspecified">
                         excedit,
@@ -3183,7 +3201,7 @@ esset a ceteris separata ratio dicendi,
                             brackets
                         </hi>
                         quae
-                        <gap/>
+                       <gap reason="ellipsis"/>
                         translatis
                         <hi rend="italics">
                             as a gloss.
@@ -3239,7 +3257,7 @@ excedit,
                     <hi rend="italics">B:</hi>
                     excidit,
                     <hi rend="italics">A.</hi>
-                    <pb id="p.282"/>
+                    <pb xml:id="p.282"/>
                     <foreign xml:lang="grc">gnw/mas</foreign>
                     appellant; utrumque autem nomen ex eo
 acceperunt, quod similes sunt consiliis aut decretis.
@@ -3283,7 +3301,7 @@ quia plus potest, facere videtur; nonnumquam dupliceim:
                     qui decem genera fecerint, sed eo modo,
 quo fieri vel plura possunt, per interrogationem, per
 comparationem, infitiationem, similitudinem,
-                    <pb id="p.284"/>
+                    <pb xml:id="p.284"/>
                     admirationem, et cetera huiusmodi; per omnes enim figuras
 tractari potest.
                     <reg>illud</reg>
@@ -3342,7 +3360,7 @@ rerum, propria fecit hominis.
                     <name>In</name>
                     hoc genere custodiendum est et id, quod ubique, ne crebrae sint,
 ne palam falsae (quales frequenter ab iis dicuntur,
-                    <pb id="p.286"/>
+                    <pb xml:id="p.286"/>
                     qui haec
                     <foreign xml:lang="grc">kaqolika\</foreign>
                     vocant, et, quidquid pro causa
@@ -3395,7 +3413,7 @@ rei narratae vel probatae summa acclamatio:
                         <reg>facere</reg>
                         enim probus adolescens periculose quam perpeti
                     </hi>
-                    <pb id="p.288"/>
+                    <pb xml:id="p.288"/>
                     <hi rend="italics">turpiter maluit.</hi>
                     <milestone n="12" unit="section"/>
                     <reg>est</reg>
@@ -3441,7 +3459,7 @@ clausulae.
                     <reg>ex</reg>
                     inopinato: ut dixit Vibius Crispus in eum, qui, cum
 loricatus in foro ambularet, praetendebat id se metu
-                    <pb id="p.290"/>
+                    <pb xml:id="p.290"/>
                     facere,
                     <hi rend="italics">
                         <reg>quis</reg>
@@ -3513,7 +3531,7 @@ ergo, leges, diligentissimae pudoris custodes, decimas
 uxoribus dari, quartas meretricibus?
                     </hi>
                 </p>
-                <pb id="p.292"/>
+                <pb xml:id="p.292"/>
                 <p>
                     <milestone n="20" unit="section"/>
                     <reg>sed</reg>
@@ -3589,7 +3607,7 @@ hoc bibere.
                         <reg>necte</reg>
                         laqueum, habes, quod faucibus
                     </hi>
-                    <pb id="p.294"/>
+                    <pb xml:id="p.294"/>
                     <hi rend="italics">tuis irascaris; sume venenum, decet luxuriosum bibendo mori.</hi>
                     <milestone n="24" unit="section"/>
                     <reg>alia</reg>
@@ -3640,7 +3658,7 @@ orationem; subsistit enim omnis sententia, ideoque
 post eam utique aliud est initium.
                     <reg>unde</reg>
                     soluta fere
-                    <pb id="p.296"/>
+                    <pb xml:id="p.296"/>
                     oratio et e singulis non membris sed frustis collata
 structura caret, cum illa rotunda et undique circumcisa insistere invicem
                     <milestone n="28" unit="section"/>
@@ -3707,7 +3725,7 @@ calce,
                         homo, nisi illud bibisset,
                     </hi>
                     argumentum est.
-                    <pb id="p.298"/>
+                    <pb xml:id="p.298"/>
                     Nec multas plerique sententias dicunt, sed omnia
 tanquam sententias.
                     <milestone n="32" unit="section"/>
@@ -3756,7 +3774,7 @@ cultu victuque accessit aliquis citra reprehensionem
 nitor.
                     <reg>quare</reg>
                     , sicut possumus, adiiciamus virtutibus;
-                    <pb id="p.300"/>
+                    <pb xml:id="p.300"/>
                     prius tamen sit vitiis carere, ne, dum volumus esse
 meliores veteribus, simus tantum dissimiles.
                 </p>
@@ -3799,7 +3817,7 @@ errasse, qui non alios crediderunt tropos, quam id
 quibus verbum pro verbo poneretur.
                     <reg>neque</reg>
                     illud
-                    <pb id="p.302"/>
+                    <pb xml:id="p.302"/>
                     ignoro, id iisdem fere, qui significandi gratia adhibentur, esse et ornatum; sed non idem accidet contra,
 eruntque quidam tantum ad speciem accommodati.
                 </p>
@@ -3861,7 +3879,7 @@ adfectibus, nomen.
                     <hi rend="italics">incensum ira</hi>
                     et
                     <hi rend="italics">inflammatum</hi>
-                    <pb id="p.304"/>
+                    <pb xml:id="p.304"/>
                     <hi rend="italics">cupiditate</hi>
                     et
                     <hi rend="italics">lapsum errore</hi>
@@ -3929,7 +3947,7 @@ ut:
                             immittit habenas;
                         </l>
                     </quote>
-                    <pb id="p.306"/>
+                    <pb xml:id="p.306"/>
                     aut pro rebus animalibus inanima,
                     <quote rend="blockquote">
                         <l part="N">
@@ -4015,7 +4033,7 @@ species intelligere non possint.
                     <milestone n="14" unit="section"/>
                     <name>Vt</name>
                     modicus autem atque opportunus eius usus
-                    <pb id="p.308"/>
+                    <pb xml:id="p.308"/>
                     illustrat orationem, ita frequens et obscurat et
 taedio complet, continuus vero id allegorias et
 aenigmata exit.
@@ -4074,7 +4092,7 @@ similitudine ductae, ut
                             hibernas cana nive conspuit Alpes.
                         </l>
                     </quote>
-                    <pb id="p.310"/>
+                    <pb xml:id="p.310"/>
                     | illo vero plurimum erroris, quod ea, quae poetis,
 qui et omnia ad voluptatem referunt et plurima
 vertere etiam ipsa metri necessitate coguntur, permissa sunt, convenire quidam etiam prosae putant.
@@ -4148,7 +4166,7 @@ rursus, ut pro gladio
                     <hi rend="italics">quadrupedem.</hi>
                     <reg>maxime</reg>
                     autem id orando valebit
-                    <pb id="p.312"/>
+                    <pb xml:id="p.312"/>
                     numerorum illa libertas.
                     <reg>nam</reg>
                     et Livius saepe sic
@@ -4230,7 +4248,7 @@ intelligible, but intended to mean
 hypallagen rhetores dicunt.
                     <reg>haec</reg>
                     inventas ab
-                    <pb id="p.314"/>
+                    <pb xml:id="p.314"/>
                     inventore et subiectas res ab obtinentibus significat: ut
                     <quote rend="blockquote">
                         <l part="N">
@@ -4299,7 +4317,7 @@ sunt generis, cum ab Hannibale
                         <name>Vergilium</name>
                         ;
                     </hi>
-                    <pb id="p.316"/>
+                    <pb xml:id="p.316"/>
                     <hi rend="italics">venisse</hi>
                     commeatus, qui adferantur;
                     <hi rend="italics">sacrilegium</hi>
@@ -4377,7 +4395,7 @@ praecipua,
                             pater atque hominum rex;
                         </l>
                     </quote>
-                    <pb id="p.318"/>
+                    <pb xml:id="p.318"/>
                     et ex factis, quibus persona signatur,
                     <quote rend="blockquote">
                         <l part="M">
@@ -4460,7 +4478,7 @@ ex vocibus id usum receptis quocunque modo declinantur, nobis permittimus, quali
                     <hi rend="italics">laureati postes</hi>
                     pro illo
                     <hi rend="italics">lauru</hi>
-                    <pb id="p.320"/>
+                    <pb xml:id="p.320"/>
                     <hi rend="italics">coronati,</hi>
                     ex eadem fictione sunt.
                     <milestone n="33" unit="section"/>
@@ -4468,7 +4486,7 @@ ex vocibus id usum receptis quocunque modo declinantur, nobis permittimus, quali
                     hoc feliciter
 evaluit* adoinoia et uio eo ferimus id Graecis
 ocoeludituinobono eo dure etiam iungere, arquitenentem et videre septentriones videmur
-                    <gap/>
+                   <gap reason="lost"/>
                     .
                 </p>
                 <p>
@@ -4539,7 +4557,7 @@ cum pro temeritate
                     aut pro luxuria
                     <hi rend="italics">liberalitas</hi>
                     dicitur. A quibus ego quidem dissentio; namque id
-                    <pb id="p.322"/>
+                    <pb xml:id="p.322"/>
                     his non verbum pro verbo ponitur, sed res pro re.
                     <reg>neque</reg>
                     enim quisquam putat luxuriam et liberalitatem
@@ -4639,11 +4657,11 @@ ullo id loco desideramus.
 eo morandum; nihil enim usus admodum video nisi,
                     <note anchored="true" place="unspecified">
                         nihil enim
-                        <gap/>
+                       <gap reason="ellipsis"/>
                         nisi,
                         <hi rend="italics">Regiius:</hi>
                         innisi
-                        <gap/>
+                       <gap reason="ellipsis"/>
                         nihil,
                         <hi rend="italics">AG.</hi>
                     </note>
@@ -4657,7 +4675,7 @@ et aagendam orationem assumuntur.
                     <reg>ornat</reg>
                     enim
 epitheton, quod recte dicimus appositum, a nonnullis
-                    <pb id="p.324"/>
+                    <pb xml:id="p.324"/>
                     sequens dicitur.
                     <reg>eo</reg>
                     poetae et frequentius et liberius
@@ -4734,14 +4752,14 @@ apponi solent: ut
                     duo vero
                     <note anchored="true" place="unspecified">
                         quocunque
-                        <gap/>
+                       <gap reason="ellipsis"/>
                         vero,
                         <hi rend="italics">
                             <name>Spalding</name>
                             :
                         </hi>
                         queque
-                        <gap/>
+                       <gap reason="ellipsis"/>
                         verba,
                         <hi rend="italics">MSS.</hi>
                     </note>
@@ -4751,7 +4769,7 @@ uersum quidem decuerint.
                     autem, quibus non
 videatur hic omnino tropus, quia nihil vertat.
                     <reg>nec</reg>
-                    <pb id="p.326"/>
+                    <pb xml:id="p.326"/>
                     est semper,
                     <note anchored="true" place="unspecified">
                         nec,
@@ -4862,7 +4880,7 @@ pace atque concordia dicit.
                             carminibus vestrum servasse Menalcan.
                         </l>
                     </quote>
-                    <pb id="p.328"/>
+                    <pb xml:id="p.328"/>
                     <milestone n="47" unit="section"/>
                     <reg>hoc</reg>
                     enim loco praeter nomen cetera propriis decisa
@@ -4913,7 +4931,7 @@ opinionem parva nonnunquam commutat aura rumoris.
                     id quoque id primis est custodiendum ut,
                     <milestone n="60" unit="section"/>
                     quo
-                    <pb id="p.330"/>
+                    <pb xml:id="p.330"/>
                     ex genere coeperis translationis, hoc desinas.
                     <reg>multi</reg>
                     autem, cum initium a tempestate sumpserunt, incendio aut ruina finiunt; quae est inconsequentia rerum
@@ -4974,7 +4992,7 @@ utuntur:
                     <hi rend="italics">id triclinio coam, id cubiculo nolam.</hi>
                     <reg>namque</reg>
                     et nunc quidem solvuntur et tum erant
-                    <pb id="p.332"/>
+                    <pb xml:id="p.332"/>
                     notiora, cum dicerentur; aenigmata sunt tamen,
 nam et cetera
                     <note anchored="true" place="unspecified">
@@ -5061,7 +5079,7 @@ differ but little.
                     </note>
                     Haec
 si quis ignorat, quibus Graeci nominibus appellent,
-                    <pb id="p.334"/>
+                    <pb xml:id="p.334"/>
                     <foreign xml:lang="grc">sarkasmo/n, a)stei+smo/n, a)nti/frasin, paroimi/an</foreign>
                     dici sciat.
                     <reg>sunt</reg>
@@ -5115,7 +5133,7 @@ petit solum, qui est apud poetas frequentissimus:
                     </quote>
                     Et apud oratores non rarus, semper tamen adstrictior.
                     <milestone n="61" unit="section"/>
-                    <pb id="p.336"/>
+                    <pb xml:id="p.336"/>
                     Quidquid enim significari brevius potest et cum
 ornatu latius ostenditur,
                     <foreign xml:lang="grc">peri/frasis</foreign>
@@ -5190,7 +5208,7 @@ improvement available.
 verbis fit,
                     <foreign xml:lang="grc">a)nastrofh\</foreign>
                     dicitur, reversio quaedam:
-                    <pb id="p.338"/>
+                    <pb xml:id="p.338"/>
                     qualia sunt vulgo,
                     <hi rend="italics">mecum, secum,</hi>
                     apud oratores et
@@ -5275,7 +5293,7 @@ et
                             caelum scopuli;
                         </l>
                     </quote>
-                    <pb id="p.340"/>
+                    <pb xml:id="p.340"/>
                     aut res per similitudinem attollimus,
                     <quote rend="blockquote">
                         <l part="N">
@@ -5328,7 +5346,7 @@ ut illa minora, hoc par esset.
                     <milestone n="72" unit="section"/>
                     <reg>quod</reg>
                     imitatus Cicero
-                    <pb id="p.342"/>
+                    <pb xml:id="p.342"/>
                     illa composuit id Verrem
                     <hi rend="italics">
                         <reg>versabatur</reg>
@@ -5381,7 +5399,7 @@ mendacio fallere velit.
 quousque deceat extollere quod nobis non creditur.
                     <reg>pervenit</reg>
                     haec res frequentissime ad risum; qui si
-                    <pb id="p.344"/>
+                    <pb xml:id="p.344"/>
                     captatus est, urbanitatis, sin aliter, stultitiae nomen
 assequitur.
                     <milestone n="75" unit="section"/>

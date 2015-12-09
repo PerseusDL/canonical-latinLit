@@ -1,11 +1,12 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
                 <title n="Inst." type="work">Institutio Oratoria, books 10-12 - 10</title>
                 <title type="sub">Machine readable text</title>
                 <author n="Quint.">Quintilian</author>
-                <editor n="Butler" role="editor">Harold Edgeworth Butler</editor>
+                <editor n="Butler" role="edrend=itor">Harold Edgeworth Butler</editor>
                 <sponsor>Perseus Project, Tufts University</sponsor>
                 <principal>Gregory Crane</principal>
                 <respStmt>
@@ -16,15 +17,14 @@
                     <name>David Smith</name>
                 </respStmt>
                 <funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
-            </titleStmt><publicationStmt><publisher>Trustees of Tufts University</publisher><pubPlace>Medford, MA</pubPlace><authority>Perseus Project</authority></publicationStmt>
-            
+            </titleStmt>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
                 <authority>Perseus Project</authority>
             </publicationStmt>
-            <sourceDesc default="NO">
-                <biblStruct default="NO">
+            <sourceDesc default="false">
+                <biblStruct default="false">
                     <monogr>
                         <author>Quintilian</author>
                         <title>With An English Translation</title>
@@ -39,6 +39,23 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                    matchPattern="(\w+).(\w+).(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:div[@n='$3'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                    matchPattern="(\w+).(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                    matchPattern="(\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
                 <refState unit="book"/>
                 <refState unit="chapter"/>
@@ -49,13 +66,13 @@
             </refsDecl>
         </encodingDesc>
         <profileDesc>
-            <langUsage default="NO">
-                <language ident="en">English</language>
-                <language ident="greek">Greek</language>
-                <language ident="la">Latin</language>
+            <langUsage default="false">
+                <language ident="eng">English</language>
+                <language ident="grc">Greek</language>
+                <language ident="lat">Latin</language>
             </langUsage>
         </profileDesc>
-        <revisionDesc><!--
+        <revisionDesc><change who="GRC" when="2006">tagging</change><!--
             <change>
                 <date>2006</date>
                 <respStmt>
@@ -64,11 +81,12 @@
                 </respStmt>
                 <item/>
             </change>
-        --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+        --><change when="2014-08-01" who="Stella Dee">edited markup</change>
+           <change who="Zach Himes" when="2015-11-16">Edited header, Converted to TEI P5 and EpiDoc</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
+    <text xml:lang="eng" >
         <body>
-            <div part="N" sample="complete" org="uniform" n="10" type="book">
+            <div part="N" sample="complete" org="uniform" n="10" subtype="book" type="translation">
                 <head>Book X</head>
                 <p>
                     <milestone n="1" unit="chapter"/>
@@ -99,7 +117,7 @@ of his eloquence ready for battle and prepared to
 deal with every emergency.
                     <milestone n="3" unit="section"/>
                     But the degree in
-                    <pb id="p.5"/>
+                    <pb xml:id="p.5"/>
                     which a thing is essential does not necessarily make
 it of immediate and supreme importance for the
 formation of the ideal orator. For obviously the
@@ -139,7 +157,7 @@ and matter.
 either peculiar to the individual case, or at best
 common to only a few, words must be acquired to
 suit all and every case. Now, if there were special
-                    <pb id="p.7"/>
+                    <pb xml:id="p.7"/>
                     words adapted to each individual thing, they would
 require less care, since they would automatically be
 suggested by the matter in hand. But since some
@@ -183,7 +201,7 @@ Such words are indeed often praised when they
 occur in writers of iambics
                     <note anchored="true" place="unspecified">See §§ 59 and 96.</note>
                     or of the old comedy,
-                    <pb id="p.9"/>
+                    <pb xml:id="p.9"/>
                     but we need do no more than consider our own
 special task. All words, with these exceptions,
 may be admirably employed in some place or
@@ -214,36 +232,36 @@ cried
 a nature that they express the same sense by
 different sounds, so that it makes no difference to
 the meaning which we use, as, for instance,
-                    <hi rend="italics">gladius</hi>
+                    <hi rend="italic">gladius</hi>
                     and
-                    <hi rend="italics">ensis,</hi>
+                    <hi rend="italic">ensis,</hi>
                     which may be used indifferently when we
 have to speak of a sword. Others, again, although
 properly applied to specific objects, are used by
 means of a
-                    <hi rend="italics">trope</hi>
+                    <hi rend="italic">trope</hi>
                     to express the same sense, as, for
 example,
-                    <hi rend="italics">ferrum</hi>
+                    <hi rend="italic">ferrum</hi>
                     (steel) and muro (point), which are
 both used in the sense of sword.
                     <milestone n="12" unit="section"/>
                     Thus, by the
-                    <hi rend="italics">figure</hi>
+                    <hi rend="italic">figure</hi>
                     known as
-                    <hi rend="italics">abuse,</hi>
+                    <hi rend="italic">abuse,</hi>
                     <note anchored="true" place="unspecified">
                         or
-                        <hi rend="italics">catachresis.</hi>
+                        <hi rend="italic">catachresis.</hi>
                         See viii. ii. 5 and vi. 34.
                     </note>
                     we call all those who commit
 a murder with any weapon whatsoever
-                    <hi rend="italics">sicarii</hi>
+                    <hi rend="italic">sicarii</hi>
                     (poniarders). In other cases we express our meaning
 periphrastically, as, for instance, when Virgil
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Ecl. i.</hi>
+                        <hi rend="italic">Ecl. i.</hi>
                         81.
                     </note>
                     describes cheese as
@@ -252,10 +270,10 @@ periphrastically, as, for instance, when Virgil
                             <quote>Abundance of pressed milk.</quote>
                         </l>
                     </quote>
-                    <pb id="p.11"/>
+                    <pb xml:id="p.11"/>
                     On the other hand, in a number of instances we
 employ
-                    <hi rend="italics">figures</hi>
+                    <hi rend="italic">figures</hi>
                     <note anchored="true" place="unspecified">See i. viii. 16; ix. i. 11.</note>
                     and substitute one expression for
 another. Instead of
@@ -299,11 +317,11 @@ follow that I can say
                     for
                     <quote>my eyes have seen,</quote>
                     and though
-                    <hi rend="italics">mucro</hi>
+                    <hi rend="italic">mucro</hi>
                     may be employed to
 describe a sword, a sword does not necessarily mean
 the same as
-                    <hi rend="italics">mucro</hi>
+                    <hi rend="italic">mucro</hi>
                     (point).
                     <milestone n="15" unit="section"/>
                     But, although a store
@@ -325,7 +343,7 @@ demonstration.
 listening are not identical. The speaker stimulates
 us by the animation of his delivery, and kindles the
 imagination, not by presenting us with an elaborate
-                    <pb id="p.13"/>
+                    <pb xml:id="p.13"/>
                     picture, but by bringing us into actual touch with
 the things themselves. Then all is life and movement, and we receive the new-born offspring of his
 imagination with enthusiastic approval. We are
@@ -344,7 +362,7 @@ or by the applause of an enthusiastic audience.
 we are ashamed to disagree with them, and an unconscious modesty prevents us from ranking our own
 opinion above theirs, though all the time the taste
 of the majority is vicious, and the
-                    <hi rend="italics">claque</hi>
+                    <hi rend="italic">claque</hi>
                     may
 praise even what does not really deserve approval.
                     <milestone n="19" unit="section"/>
@@ -362,7 +380,7 @@ for subsequent imitation while it is still in a crude
 state, but must be softened and, if I may use the
 phrase, reduced to a pulp by frequent re-perusal.
                 </p>
-                <pb id="p.15"/>
+                <pb xml:id="p.15"/>
                 <p>
                     <milestone n="20" unit="section"/>
                     For a long time also we should read none save the
@@ -413,20 +431,20 @@ against Ligarius and by Hortensius in defence of
 Verres with those of Cicero for the opposite side,
 while it will also be useful to know how different
 orators pleaded the same case. For example,
-                    <pb id="p.17"/>
+                    <pb xml:id="p.17"/>
                     Calidius
                     <note anchored="true" place="unspecified">
                         Probably before some other tribunal. Cicero's
-                        <hi rend="italics">de Domo Sua</hi>
+                        <hi rend="italic">de Domo Sua</hi>
                         was delivered before the
-                        <hi rend="italics">pontifices.</hi>
+                        <hi rend="italic">pontifices.</hi>
                     </note>
                     spoke on the subject of Cicero's house,
 Brutus wrote a declamation in defence of Milo, which
 Cornelius Celsus wrongly believes to have been
 actually delivered in court,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. vi. 93. Cornelius Celsus was an encyclopedic
 writer of the early empire, whose treatise on medicine has
 survived.
@@ -442,7 +460,7 @@ remarkable speeches delivered by Domitius Afer,
                     and Decimis Laelius
                     <note anchored="true" place="unspecified">
                         Probably the Laelius Balbus of Tac.
-                        <hi rend="italics">Ann,.</hi>
+                        <hi rend="italic">Ann,.</hi>
                         VI. 47, 48.
                     </note>
                     in defence of Volusenus were in circulation.
@@ -456,14 +474,14 @@ or relax their efforts. Sometimes, again, they give
 the impression of weariness: for example, Cicero
                     <note anchored="true" place="unspecified">
                         In a lost letter:
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Plut.
-                        <hi rend="italics">Cic.</hi>
+                        <hi rend="italic">Cic.</hi>
                         24.
                     </note>
                     thinks that Demosthenes sometimes nods, and Horace
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">A. P.</hi>
+                        <hi rend="italic">A. P.</hi>
                         359.
                     </note>
                     says the same of Homer himself.
@@ -493,14 +511,14 @@ he should disapprove of much.
                     says that the reading of poets is
 of great service to the orator, and has rightly been
 followed in this view by many. For the poets will
-                    <pb id="p.19"/>
+                    <pb xml:id="p.19"/>
                     give us inspiration as regards the matter, sublimity
 of language, the power to excite every kind of
 emotion, and the appropriate treatment of character,
 while minds that have become jaded owing to the
 daily wear and tear of the courts will find refreshment in such agreeable study. Consequently Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Arch.</hi>
+                        <hi rend="italic">Pro Arch.</hi>
                         12.
                     </note>
                     recommends the relaxation provided by the reading
@@ -537,7 +555,7 @@ even a positive peril to its wearer.
                     <milestone n="31" unit="section"/>
                     History, also, may provide the orator with a nutriment which we may compare to some rich and
 pleasant juice. But when we read it, we must
-                    <pb id="p.21"/>
+                    <pb xml:id="p.21"/>
                     remember that many of the excellences of the historian
 require to be shunned by the orator. For history
 has a certain affinity to poetry and may be regarded
@@ -565,9 +583,9 @@ for beauty of exposition, but for truth and credibility.
                     <milestone n="33" unit="section"/>
                     We must also remember that Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Or.</hi>
+                        <hi rend="italic">Or.</hi>
                         30
-                        <hi rend="italics">sq.</hi>
+                        <hi rend="italic">sq.</hi>
                     </note>
                     thinks that not
 even 'Thucydidcs or Xenophon will be of much service to an orator, although he regards the style of
@@ -581,14 +599,14 @@ athlete, but the wiry sinews of the soldier, and that
 the cloak of many colours which Demetrius of
 Phalerum
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         § 80.
                     </note>
                     was said to wear is but little suited to
 the dust and heat of the forum.
                     <milestone n="34" unit="section"/>
                     There is, it is true,
-                    <pb id="p.23"/>
+                    <pb xml:id="p.23"/>
                     another advantage which we may derive from the
 historians, which, however, despite its great importance, has no bearing on our present topic; I refer to
 the advantage derived from the knowledge of historical facts and precedents, with which it is most desirable that our orator should be acquainted; for such
@@ -605,9 +623,9 @@ above suspicion of prejudice or partiality.
 have recourse to the study of the philosophers is
 the fault of orators who have abandoned
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         I
-                        <hi rend="italics">Pref.</hi>
+                        <hi rend="italic">Pref.</hi>
                         11.
                     </note>
                     to them
@@ -634,12 +652,12 @@ of the bar.
 since I attach so much importance to reading, I
 should include in this work some instructions as to
 what authors should be read and what their special
-                    <pb id="p.25"/>
+                    <pb xml:id="p.25"/>
                     excellences may be. To do this in detail would be
 an endless task.
                     <milestone n="38" unit="section"/>
                     Remember that Cicero in his
-                    <hi rend="italics">Brutus,</hi>
+                    <hi rend="italic">Brutus,</hi>
                     after writing pages and pages on the subject
 of Roman orators alone, says nothing of his own contemporaries with the exception of Caesar and Marcellus. What limit, then, would there be to my
 labours if I were to attempt to deal with them and
@@ -680,7 +698,7 @@ for the moment concerned.
                     Before, however, I begin to speak of individual
 authors, I must make a few general remarks about
 the variety of judgments which have been passed
-                    <pb id="p.27"/>
+                    <pb xml:id="p.27"/>
                     upon them.
                     <milestone n="43" unit="section"/>
                     For there are some who think that only
@@ -702,7 +720,7 @@ when I come to discuss the question of the particular
 styles best suited to oratory.
                     <note anchored="true" place="unspecified">
                         XI. x. 63
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     For the moment I
 shall restrict myself to touching briefly on what the
@@ -724,18 +742,18 @@ orators.
                 <p>
                     <milestone n="46" unit="section"/>
                     I shall, I think, be right in following the principle
-                    <pb id="p.29"/>
+                    <pb xml:id="p.29"/>
                     laid down by Aratus
                     <note anchored="true" place="unspecified">
                         Arat.
-                        <hi rend="italics">Phaen. 1.</hi>
+                        <hi rend="italic">Phaen. 1.</hi>
                     </note>
                     in the line,
                     <quote>With Jove let us begin,</quote>
                     and in beginning with Homer. He is like
 his own conception of Ocean,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Il.</hi>
+                        <hi rend="italic">Il.</hi>
                         xxi. 196.
                     </note>
                     which he describes as
@@ -769,7 +787,7 @@ them receptive by the briefness of his summary.
                     Who can narrate more briefly than the hero
                     <note anchored="true" place="unspecified">
                         Antilochus,
-                        <hi rend="italics">Il.</hi>
+                        <hi rend="italic">Il.</hi>
                         xviii. 18.
                     </note>
                     who
@@ -777,12 +795,12 @@ brings the news of Patroclus' death, or more vividly
 than he
                     <note anchored="true" place="unspecified">
                         Phoenix,
-                        <hi rend="italics">Il.</hi>
+                        <hi rend="italic">Il.</hi>
                         ix. 529.
                     </note>
                     who describes the battle between the
 Curetes and the Aetolians? Then consider his
-                    <pb id="p.31"/>
+                    <pb xml:id="p.31"/>
                     similes, his amplifications, his illustrations, digressions, indications of fact, inferences, and all the
 other methods of proof and refutation which he
 employs. They are so numerous that the majority
@@ -793,9 +811,9 @@ his works for examples of all these things.
 for perorations, what can ever be equal to the prayers
 which Priam addresses to Achilles
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Il.</hi>
+                        <hi rend="italic">Il.</hi>
                         xxiv. 486
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     when he comes
 to beg for the body of his son? Again, does he not
@@ -817,7 +835,7 @@ great part of his works is filled almost entirely with
 names
                     <note anchored="true" place="unspecified">
                         Especially the
-                        <hi rend="italics">Theogony.</hi>
+                        <hi rend="italic">Theogony.</hi>
                     </note>
                     : none the less, his maxims of moral wisdom
 provide a useful model, the smooth flow of his
@@ -828,7 +846,7 @@ intermediate style.
                     On the other hand, Antimachus
                     <note anchored="true" place="unspecified">
                         Antimachus of Colophon (
-                        <hi rend="italics">flor. circ.</hi>
+                        <hi rend="italic">flor. circ.</hi>
                         405 B.C.), author of
 a Thebaid.
                     </note>
@@ -843,7 +861,7 @@ writer and being second to him.
                     Panyasis
                     <note anchored="true" place="unspecified">Uncle of Herodotus, author of a Heracleia.</note>
                     is
-                    <pb id="p.33"/>
+                    <pb xml:id="p.33"/>
                     regarded as combining the qualities of the last two
 poets, being their inferior in point of style, but
 surpassing Hesiod in the choice of his subject and
@@ -884,16 +902,16 @@ taking Nicander
 didactic poems, Theriaca and Alexipharmaca and Metamorphoses (
                         <foreign xml:lang="grc">e(teroiou/mena</foreign>
                         ). Virgil imitated him in the
-                        <hi rend="italics">Georgics,</hi>
+                        <hi rend="italic">Georgics,</hi>
                         Aenilius Macer, the friend of Ovid, in his
-                        <hi rend="italics">Theriaca.</hi>
+                        <hi rend="italic">Theriaca.</hi>
                     </note>
                     as a model? Are we to ignore
 Euphorion?
                     <note anchored="true" place="unspecified">
                         Euphorion of Chalcis (220 B.C. ) wrote elaborate short
 epics. See
-                        <hi rend="italics">Ecl.</hi>
+                        <hi rend="italic">Ecl.</hi>
                         x. 50. The words are, however, put into
 the mouth of Gallus with reference to his own imitations of
 Euphorion.
@@ -906,12 +924,12 @@ would never have mentioned
                         </l>
                     </quote>
                     in the
-                    <hi rend="italics">Eclogues.</hi>
+                    <hi rend="italic">Eclogues.</hi>
                     Again, had Horace no justification
 for coupling the name of Tyrtacus
                     <note anchored="true" place="unspecified">
                         See Hor.
-                        <hi rend="italics">A. P.</hi>
+                        <hi rend="italic">A. P.</hi>
                         401. Tyrtaeus, writer of war songs
 (seventh century B.C.).
                     </note>
@@ -921,7 +939,7 @@ Homer?
                     To which I reply, that there is no one so
 ignorant of poetic literature that he could not, if he
 chose, copy a catalogue of such poets from some
-                    <pb id="p.35"/>
+                    <pb xml:id="p.35"/>
                     library for insertion in his own treatises. I can
 therefore assure my readers that I am well aware
 of the existence of the poets whom I pass over in
@@ -950,10 +968,10 @@ familiarise ourselves with the best writers only and
 must form our minds and develop an appropriate tone
 by reading that is deep rather than wide. Consequently, of the three writers of iambics
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         invective. The other two writers are Simonides of
 Amorgos and Hipponax of Ephesus. Archilochus (
-                        <hi rend="italics">fl.</hi>
+                        <hi rend="italic">fl.</hi>
                         686 B.C.).
                     </note>
                     approved by
@@ -978,17 +996,17 @@ the rich exuberance of his language and matter,
 and his rolling flood of eloquence, characteristics
 which, as Horace
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Od.</hi>
+                        <hi rend="italic">Od.</hi>
                         IV. ii. 1.
                     </note>
                     rightly held, make him
-                    <pb id="p.37"/>
+                    <pb xml:id="p.37"/>
                     inimitable.
                     <milestone n="62" unit="section"/>
                     The greatness of the genius of Stesichorus
                     <note anchored="true" place="unspecified">
                         Stesichorus of Himera in Sicily (
-                        <hi rend="italics">flor. circ.</hi>
+                        <hi rend="italic">flor. circ.</hi>
                         600 B.C.),
 wrote in lyric verse on many legends, more especially on
 themes connected with the Trojan war.
@@ -1007,14 +1025,14 @@ springing from the very fullness of his genius.
                     <milestone n="63" unit="section"/>
                     Alcaeus has deserved the compliment of being said
 to make music with
-                    <hi rend="italics">quill of gold</hi>
+                    <hi rend="italic">quill of gold</hi>
                     <note anchored="true" place="unspecified">
                         Hor
-                        <hi rend="italics">Od.</hi>
+                        <hi rend="italic">Od.</hi>
                         <milestone n="2" unit="chapter"/>
                         <milestone n="1" unit="section"/>
                         xiii. 26. Alcaeus of Mitylene (
-                        <hi rend="italics">circa</hi>
+                        <hi rend="italic">circa</hi>
                         600
 B.C.).
                     </note>
@@ -1048,7 +1066,7 @@ in the denunciation of vice; but it reveals great
 force in other departments as well. For its style
 is at once lofty, elegant and graceful, and if we
 except Homer, who, like Achilles among warriors,
-                    <pb id="p.39"/>
+                    <pb xml:id="p.39"/>
                     is beyond all comparison, I am not sure that there
 is any style which bears a closer resemblance to
 oratory or is better adapted for forming the orator.
@@ -1089,7 +1107,7 @@ easily supreme in the power to excite pity.
                     Menander, as he often testifies in his works, had
 a profound admiration for Euripides, and imitated
 him, although in a different type of work. Now,
-                    <pb id="p.41"/>
+                    <pb xml:id="p.41"/>
                     the careful study of Menander alone would, in my
 opinion, be sufficient to develop all those qualities
 with the production of which my present work
@@ -1146,7 +1164,7 @@ from the study of Philemon,
 290).
                     </note>
                     who, although it was
-                    <pb id="p.43"/>
+                    <pb xml:id="p.43"/>
                     a depraved taste which caused his contemporaries
 often to prefer him to Menander, has none the
 less deserved the second place which posterity has
@@ -1168,11 +1186,11 @@ and the delineation of the gentler emotions.
                     <note anchored="true" place="unspecified">
                         Theopompus of Chios, born about 378 B.C., wrote a
 history of Greece (
-                        <hi rend="italics">Hellenica</hi>
+                        <hi rend="italic">Hellenica</hi>
                         ) from close of Peloponnesian war
 to 394 B.C., and a history of Greece in relation to Philip of
 Macedon (
-                        <hi rend="italics">Philippica</hi>
+                        <hi rend="italic">Philippica</hi>
                         ). His master, Isocrates, urged him to
 write history.
                     </note>
@@ -1191,10 +1209,10 @@ though they may have been: he was an imitator of
 Thucydides, and though far his inferior, was somewhat more lucid. Ephorus,
                     <note anchored="true" place="unspecified">
                         Ephorus of Cumae,
-                        <hi rend="italics">flor. circ.</hi>
+                        <hi rend="italic">flor. circ.</hi>
                         340 B.C., wrote a universal
 history. He was a pupil of Isocrates.
-                        <hi rend="italics">Cp.</hi>
+                        <hi rend="italic">Cp.</hi>
                         II. viii. 11.
                     </note>
                     according to Isocrates,
@@ -1218,7 +1236,7 @@ the credit of history, the writing of which had fallen
 into neglect. I have not forgotten Xenophon, but
 he will find his place among the philosophers.
                 </p>
-                <pb id="p.45"/>
+                <pb xml:id="p.45"/>
                 <p>
                     <milestone n="76" unit="section"/>
                     There follows a vast army of orators, Athens alone
@@ -1268,7 +1286,7 @@ whom I have spoken, but have selected what seemed
 to me their chief excellences, while those whom I
 have passed over in silence were far from being
 indifferent. In fact, I will readily admit that the
-                    <pb id="p.47"/>
+                    <pb xml:id="p.47"/>
                     famous Demetrius of Phalerum,
                     <note anchored="true" place="unspecified">
                         Governed Athens as Cassander's vicegerent 317–307:
@@ -1280,9 +1298,9 @@ and deserves to be remembered, if only for the
 fact that he is almost the last of the Attic
 school who can be called an orator: indeed Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         ii. 95.
-                        <hi rend="italics">Orat. 92.</hi>
+                        <hi rend="italic">Orat. 92.</hi>
                         The
                         <quote>intermediate</quote>
                         style is
@@ -1333,7 +1351,7 @@ to works that are lost.
                     with regard to whom I
 hesitate whether to praise him more for his knowledge, for the multitude of his writings, the sweetness of his style, the penetration revealed by his
 discoveries or the variety of the tasks which he
-                    <pb id="p.49"/>
+                    <pb xml:id="p.49"/>
                     essayed? In Theophrastus
                     <note anchored="true" place="unspecified">
                         Theophrastus, Aristotle's successor as head of his school
@@ -1387,13 +1405,13 @@ Varro of Atax
                     <note anchored="true" place="unspecified">
                         Varro of Atax in Gaul (82–37 B.C. ) was specially famous
 for his translation of the
-                        <hi rend="italics">Argontautica</hi>
+                        <hi rend="italic">Argontautica</hi>
                         of Apollonius Rhodius.
 he also wrote didactic poetry and historical epic.
                     </note>
                     gained his reputation were translations, but he is by no means to be despised, although
 his diction is not sufficiently rich to be of much
-                    <pb id="p.51"/>
+                    <pb xml:id="p.51"/>
                     service in developing the resources of eloquence.
                     <milestone n="88" unit="section"/>
                     Ennius deserves our reverence, but only as those
@@ -1410,12 +1428,12 @@ portions of his work merit our praise.
 hand, although Cornelius Severus
                     <note anchored="true" place="unspecified">
                         Friend and contemporary of Ovid. A considerable fragment is preserved by Sen.
-                        <hi rend="italics">Suas.</hi>
+                        <hi rend="italic">Suas.</hi>
                         vi. 26. The Sicilian War
 was the war with Sextus Pompeius (38–36) and perhaps
 formed a portion of a larger work on the Civil War. The
 surviving fragment deals with the death of Cicero. The
-                        <hi rend="italics">priunus liber</hi>
+                        <hi rend="italic">priunus liber</hi>
                         may therefore perhaps be the first book of this
 larger work.
                     </note>
@@ -1436,7 +1454,7 @@ Bassus
                     <note anchored="true" place="unspecified">
                         Nothing is known of this poet save that he is highly
 praised by Tacitus in his
-                        <hi rend="italics">Diblogues,</hi>
+                        <hi rend="italic">Diblogues,</hi>
                         and was patronized by
 Vespasian. The unfinished Argonautica of Valerius Flaccus
 survives.
@@ -1452,7 +1470,7 @@ fragment on the battle of Actium, found at Hereulaneum.
                     <note anchored="true" place="unspecified">
                         C. Albinovanns Pedo wrote a poem on the voyage of
 Germanicus to the north of Germany. A fragment is preserved by Sen.
-                        <hi rend="italics">Suas.</hi>
+                        <hi rend="italic">Suas.</hi>
                         i. 14.
                     </note>
                     deserve
@@ -1464,7 +1482,7 @@ the orator than by the poet.
                     <milestone n="91" unit="section"/>
                     I have restricted my
 list of poets to these names, because Germanicus
-                    <pb id="p.53"/>
+                    <pb xml:id="p.53"/>
                     Augustus
                     <note anchored="true" place="unspecified">Domitian.</note>
                     has been distracted from the study of
@@ -1483,9 +1501,9 @@ whom would Minerva, his familiar deity,
                     <note anchored="true" place="unspecified">
                         He claimed to be the son of Minerva. It is doubtful if
 he ever wrote any poetry. Cp. Tac
-                        <hi rend="italics">Hist.</hi>
+                        <hi rend="italic">Hist.</hi>
                         iv. 86, Suet.
-                        <hi rend="italics">Dom.</hi>
+                        <hi rend="italic">Dom.</hi>
                         2 and 20.
                     </note>
                     more
@@ -1504,8 +1522,8 @@ least that, as Virgil sings,
                         <quote>
                             <l part="N">The ivy creeps amid your victor bays</l>
                         </quote>
-                        <bibl default="NO">
-                            <hi rend="italics">Ecl.</hi>
+                        <bibl default="false">
+                            <hi rend="italic">Ecl.</hi>
                             viii. 13.
                         </bibl>
                     </cit>
@@ -1527,14 +1545,14 @@ that they do not hesitate to prefer him not merely
 to all other satirists, but even to all other poets.
 I disagree with them as much as I do with Horace,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Sat.</hi>
+                        <hi rend="italic">Sat.</hi>
                         I. iv. 11.
                     </note>
                     <milestone n="94" unit="section"/>
                     who holds that Lucilius' verse has a
                     <quote>
                         muddy flow,
-                        <pb id="p.55"/>
+                        <pb xml:id="p.55"/>
                         and that there is always something in him that
 might well be dispensed with.
                     </quote>
@@ -1576,12 +1594,12 @@ with other forms of verse.
                     <note anchored="true" place="unspecified">
                         The meaning is not clear. The words may mean (i that
 these writers did not confine themselves to the
-                        <hi rend="italics">iambus,</hi>
+                        <hi rend="italic">iambus,</hi>
                         or
 (iii that the
-                        <hi rend="italics">iambus</hi>
+                        <hi rend="italic">iambus</hi>
                         alternates with other metres, cp.
-                        <hi rend="italics">epodos</hi>
+                        <hi rend="italic">epodos</hi>
                         below.
                     </note>
                     It may be found in all
@@ -1594,7 +1612,7 @@ writer of similar invective against the Caesareans.
 although in the last-named the iambic is interrupted
 by the epode.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.</hi>
+                        <hi rend="italic">i.</hi>
                         e. the short iambic line interposed between the trimeters.
                     </note>
                     Of our lyric writers Horace is almost
@@ -1604,7 +1622,7 @@ charm, while there is great variety in his figures, and
 his boldness in the choice of words is only equalled
 by his felicity. If any other lyric poet is to be
 mentioned, it will be Caesius Bassus, who has but
-                    <pb id="p.57"/>
+                    <pb xml:id="p.57"/>
                     lately passed from us. But he is far surpassed in
 talent by poets still living.
                 </p>
@@ -1626,7 +1644,7 @@ more learned of the two.
                     <note anchored="true" place="unspecified">
                         L. Varius Rufus, friend of Virgil and Horace, editor of
 the
-                        <hi rend="italics">Aeneid;</hi>
+                        <hi rend="italic">Aeneid;</hi>
                         wrote epic and a single tragedy.
                     </note>
                     is a match for any Greek tragedy, and the Medea
@@ -1638,7 +1656,7 @@ Secundus
                     <note anchored="true" place="unspecified">
                         Pomponius Secundus, died 60 A.D.; wrote a tragedy
 entitled
-                        <hi rend="italics">Aeneas.</hi>
+                        <hi rend="italic">Aeneas.</hi>
                     </note>
                     is by far the best: his older critics thought
 him insufficiently tragic, but admitted his eminence as
@@ -1665,7 +1683,7 @@ confined himself to the iambic trimeter),
 scarcely succeed in reproducing even a faint shadow
 of the charm of Greek comedy. Indeed, it seems
 to me as though the language of Rome were incapable of reproducing that graceful wit which was
-                    <pb id="p.59"/>
+                    <pb xml:id="p.59"/>
                     granted to Athens alone, and was beyond the reach
 of other Greek dialects to achieve. Afranius
                     <note anchored="true" place="unspecified">
@@ -1727,7 +1745,7 @@ young at this time to be mentioned in such terms.
                     </note>
                     worthy to be
 remembered through all time: he is appreciated today, but after generations shall declare his name
-                    <pb id="p.61"/>
+                    <pb xml:id="p.61"/>
                     aloud. The bold utterances of Crenutius
                     <note anchored="true" place="unspecified">
                         Crenutius Cordus wrote a history of the Civil wars
@@ -1756,9 +1774,9 @@ more especially since I do not propose for the
 moment
                     <note anchored="true" place="unspecified">
                         See XII. i. 14
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                         , also XII x. 12
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     to compare him with Demosthenes; for
 there would be no point in such a comparison, as I
@@ -1781,10 +1799,10 @@ studied, the Roman a more natural art.
                     As regards
 wit and the power of exciting pity, the two most
 powerful instruments where the feelings are concerned, we have the advantage. Again, it is possible
-                    <pb id="p.63"/>
+                    <pb xml:id="p.63"/>
                     that Demosthenes was deprived by national custom
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         xvi. 4; vi i 7 Quintilian refers to an alleged
 law at Athens forbidding appeals to the emotion.
                     </note>
@@ -1829,7 +1847,7 @@ latter seems not to be swept away, but merely to
 follow.
                     <milestone n="111" unit="section"/>
                     Further, there is such weight in all that he
-                    <pb id="p.65"/>
+                    <pb xml:id="p.65"/>
                     says that his audience feel ashamed to disagree with
 him, and the zeal of the advocate is so transfigured
 that it has the effect of the sworn evidence of a
@@ -1879,15 +1897,15 @@ his energy that we realise that he was as vigorous in
 speech as in his conduct of war. And yet all these
 qualities are enhanced by a marvellous elegance of
 language, of which he was an exceptionally zealous
-                    <pb id="p.67"/>
+                    <pb xml:id="p.67"/>
                     student.
                     <milestone n="115" unit="section"/>
                     Caelius
                     <note anchored="true" place="unspecified">
                         M. Rufus Caelius, defended by Cicero in the
-                        <hi rend="italics">pro Catlio.</hi>
+                        <hi rend="italic">pro Catlio.</hi>
                         Killed in 48 B.C.
-                        <hi rend="italics">Cp.</hi>
+                        <hi rend="italic">Cp.</hi>
                         IV. ii. 123.: VII. i. 53.
                     </note>
                     has much natural talent and much
@@ -1918,7 +1936,7 @@ a great and well-deserved reputation by his three
 speeches. Cassius Severus,
                     <note anchored="true" place="unspecified">
                         assius Severus (
-                        <hi rend="italics">d.</hi>
+                        <hi rend="italic">d.</hi>
                         A.D. 34) banished by Augustus on
 account of his scurrilous lampoons.
                     </note>
@@ -1939,7 +1957,7 @@ would be a long task to deal with them all. Domitius
 Afer
                     <note anchored="true" place="unspecified">
                         Domitius Afer (
-                        <hi rend="italics">d.</hi>
+                        <hi rend="italic">d.</hi>
                         59 A.D.), the leading orator of the
 reigns of Tiberius and his successors.
                     </note>
@@ -1951,7 +1969,7 @@ Nero.
                     are by far the most distinguished. The former is superior in art and in
 every department of oratory, indeed he may he
 ranked with the old orators without fear of
-                    <pb id="p.69"/>
+                    <pb xml:id="p.69"/>
                     contradiction. The latter shows greater energy, but is too
 great a precisian in the choice of words, prone to
 tediously long periods and somewhat extravagant in
@@ -1962,7 +1980,7 @@ talents even of more recent date.
 Trachalus
                     <note anchored="true" place="unspecified">
                         M. Galerius Trachalus (cos. (18 A.D.)
-                        <hi rend="italics">Cp</hi>
+                        <hi rend="italic">Cp</hi>
                         XII v. 5
                     </note>
                     was, as a rule, elevated and sufficiently
@@ -1974,10 +1992,10 @@ done credit to an actor, his action was full of grace
 and he possessed every external advantage in profusion. Vibius Crispus,
                     <note anchored="true" place="unspecified">
                         Vibius Crispus, a
-                        <hi rend="italics">delator</hi>
+                        <hi rend="italic">delator</hi>
                         under Nero, died about A.D.
 90, after acquiring great wealth.
-                        <hi rend="italics">Cp. Juv.</hi>
+                        <hi rend="italic">Cp. Juv.</hi>
                         iv. 81–93.
                     </note>
                     again, was well-balanced,
@@ -1988,7 +2006,7 @@ in private than in public cases.
                     <note anchored="true" place="unspecified">
                         Julius Secundus, a distinguished orator of the reign of
 Vespasian. One of the characters in the
-                        <hi rend="italics">Dialogus</hi>
+                        <hi rend="italic">Dialogus</hi>
                         of Tacitus.
                     </note>
                     had he lived longer, would undoubtedly have attained
@@ -2012,7 +2030,7 @@ who flourish to-day: for the law courts can boast
 a glorious wealth of talent. Indeed, the consummate advocates of the present day are serious
 rivals of the ancients, while enthusiastic effort
 and lofty ideals lead many a young student
-                    <pb id="p.71"/>
+                    <pb xml:id="p.71"/>
                     to tread in their footsteps and imitate their
 excellence.
                 </p>
@@ -2057,7 +2075,7 @@ subject.
                     <note anchored="true" place="unspecified">
                         A contemporary of Cicero, who speaks of him somewhat
 contemptuously. He wrote four books
-                        <hi rend="italics">de rerum matura et de summo bono.</hi>
+                        <hi rend="italic">de rerum matura et de summo bono.</hi>
                     </note>
                     is agreeable to read, though lacking in weight. I have
 deliberately postponed the discussion of Seneca in
@@ -2074,7 +2092,7 @@ of every young man, and my aim was not to ban his
 reading altogether, but to prevent his being preferred to authors superior to himself, but whom he
 was never tired of disparaging; for, being conscious
 of the fact that his own style was very different
-                    <pb id="p.73"/>
+                    <pb xml:id="p.73"/>
                     from theirs, he was afraid that he would fail to
 please those who admired them. But the young
 men loved him rather than imitated him, and fell
@@ -2116,7 +2134,7 @@ had not felt such affection for all that was his own,
 and had not impaired the solidity of his matter by
 striving after epigrammatic brevity, he would have
 won the approval of the learned instead of the
-                    <pb id="p.75"/>
+                    <pb xml:id="p.75"/>
                     enthusiasm of boys.
                     <milestone n="131" unit="section"/>
                     But even as it is, he deserves
@@ -2159,7 +2177,7 @@ must, in fact, either be like or unlike those who
 have proved their excellence. It is rare for nature
 to produce such resemblance, which is more often
 the result of imitation. But the very fact that in
-                    <pb id="p.77"/>
+                    <pb xml:id="p.77"/>
                     every subject the procedure to be followed is so
 much more easy for us than it was for those who
 had no model to guide them, is a positive drawback,
@@ -2207,23 +2225,23 @@ Livius Andronicus
                     <note anchored="true" place="unspecified">
                         Livius Andronicus, a slave from Tareotum, was the
 founder of Latin poetry. He translated the
-                        <hi rend="italics">Odyssey,</hi>
+                        <hi rend="italic">Odyssey,</hi>
                         and
 produced the first Latin comedy and tragedy composed in
 Greek metres (240 B.C.)
                     </note>
                     would mark our supreme
 achievement in poetry and the annals of the
-                    <hi rend="italics">Pontifices</hi>
+                    <hi rend="italic">Pontifices</hi>
                     <note anchored="true" place="unspecified">
                         The Annales Maximi kept by the Pontifex Maximus,
 containing the list of the consul and giving a curt summary
 of the events of each consulate.
                     </note>
                     would be our
-                    <hi rend="italics">ne plus ultra</hi>
+                    <hi rend="italic">ne plus ultra</hi>
                     in history. We
-                    <pb id="p.79"/>
+                    <pb xml:id="p.79"/>
                     should still be sailing on rafts, and the art of painting
 would be restricted to tracing a line round a shadow
 thrown in the sunlight.
@@ -2263,7 +2281,7 @@ like and most equal to one another.
                     <milestone n="11" unit="section"/>
                     Again, whatever is like another object, must necessarily be
 inferior to the object of its imitation, just as the
-                    <pb id="p.81"/>
+                    <pb xml:id="p.81"/>
                     shadow is inferior to the substance, the portrait to
 the features which it portrays, and the acting of the
 player to the feelings which he endeavours to reproduce. The same is true of oratory. For the models
@@ -2303,7 +2321,7 @@ department of study. First we must consider whom
 to imitate. For there are many who have shown a
 passionate desire to imitate the worst and most
 decadent authors. Secondly, we must consider what
-                    <pb id="p.83"/>
+                    <pb xml:id="p.83"/>
                     it is that we should set ourselves to imitate in the
 authors thus chosen.
                     <milestone n="15" unit="section"/>
@@ -2322,7 +2340,7 @@ Epicurus, are continually given off by material things.
                     <note anchored="true" place="unspecified">
                         Epicurus held that all sense-perception was caused by
 the impact of such atomic sloughs:
-                        <hi rend="italics">cp. Lucret.</hi>
+                        <hi rend="italic">cp. Lucret.</hi>
                         iv. 42 sqq.
                     </note>
                     <milestone n="16" unit="section"/>
@@ -2349,7 +2367,7 @@ lack ornament and epigram, pose as Attic; those
 who darken their meaning by the abruptness with
 which they close their periods, count themselves the
 superiors of Sallust and Thucydides; those who are
-                    <pb id="p.85"/>
+                    <pb xml:id="p.85"/>
                     dreary and jejune, think that they are serious rivals
 to Pollio, while those who are tame and listless, if
 only they can produce long enough periods, swear
@@ -2360,12 +2378,12 @@ have spoken.
 they had produced a brilliant imitation of the style
 of that divine orator, by ending their periods with
 the phrase
-                    <hi rend="italics">esse videatur.</hi>
+                    <hi rend="italic">esse videatur.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         ix. iv. 73.
-                        <hi rend="italics">Tac.</hi>
-                        <hi rend="italics">Dial.</hi>
+                        <hi rend="italic">Tac.</hi>
+                        <hi rend="italic">Dial.</hi>
                         23.
                     </note>
                     Consequently it is of the
@@ -2402,7 +2420,7 @@ director of the minds of others. It is a harder task
 to mould one's own nature.
                     <milestone n="21" unit="section"/>
                     But not even our
-                    <pb id="p.87"/>
+                    <pb xml:id="p.87"/>
                     ideal teacher, however much he may desire that
 everything that is correct should prevail in his
 school to the fullest extent, will waste his labour in
@@ -2444,7 +2462,7 @@ in some cases it is necessary to instruct and in others
 to move the audience, in all these instances dissimilar and different methods being necessary.
                     <milestone n="24" unit="section"/>
                     Consequently I should be reluctant even to advise a
-                    <pb id="p.89"/>
+                    <pb xml:id="p.89"/>
                     student to select one particular author to follow
 through thick and thin. Demosthenes is by far the
 most perfect of Greek orators, yet there are some
@@ -2485,7 +2503,7 @@ those orators handle the circumstances and persons
 involved in the various cases in which they were
 engaged, and observe the judgment and powers of
 arrangement which they reveal, and the manner
-                    <pb id="p.91"/>
+                    <pb xml:id="p.91"/>
                     in which everything they say, not excepting those
 portions of their speeches which seem designed
 merely to delight their audience, is concentrated on
@@ -2522,9 +2540,9 @@ once the most labour and the most profit. Cicero is
 fully justified in describing it as the best producer
 and teacher of eloquence, and it may be noted
 that in the
-                    <hi rend="italics">de Oratore</hi>
+                    <hi rend="italic">de Oratore</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">De Or.</hi>
+                        <hi rend="italic">De Or.</hi>
                         i. 150.
                     </note>
                     he supports his own
@@ -2532,7 +2550,7 @@ judgment by the authority of Lucius Crassus, in
 whose mouth he places this remark.
                     <milestone n="2" unit="section"/>
                     We must
-                    <pb id="p.93"/>
+                    <pb xml:id="p.93"/>
                     therefore write as much as possible and with the
 utmost care. For as deep ploughing makes the soil
 more fertile for the production and support of crops,
@@ -2573,7 +2591,7 @@ it presents itself; we must first criticise the fruits of
 our imagination, and then, once approved, arrange
 them with care. For we must select both thoughts
 and words and weigh them one by one. This done,
-                    <pb id="p.95"/>
+                    <pb xml:id="p.95"/>
                     we must consider the order in which they should be
 placed, and must examine all the possible varieties
 of rhythm, refusing necessarily to place each word in
@@ -2614,7 +2632,7 @@ day.
 enjoin such slowness of speed and such anxious care
 at the outset. For the first aim which we must fix
 in our minds and insist on carrying into execution
-                    <pb id="p.97"/>
+                    <pb xml:id="p.97"/>
                     is to write as well as possible; speed will come with
 practice. Gradually thoughts will suggest themselves with increasing readiness, the words will
 answer to our call and rhythmical arrangement will
@@ -2650,7 +2668,7 @@ talented they may be, to waste their gifts by superfluous elaboration, and to si
 an excessive desire to speak well. I remember in
 this connexion a story that Julius Secundus, my contemporary, and, as is well known, my very dear friend,
 a man with remarkable powers of eloquence, but
-                    <pb id="p.99"/>
+                    <pb xml:id="p.99"/>
                     with an infinite passion for precision, told me of the
 words once used to him by his uncle,
                     <milestone n="13" unit="section"/>
@@ -2690,7 +2708,7 @@ studies once well begun.
                     <milestone n="16" unit="section"/>
                     For most points are of a
 definite character and, if we keep our eyes open,
-                    <pb id="p.101"/>
+                    <pb xml:id="p.101"/>
                     will spontaneously present themselves. That is the
 reason why peasants and uneducated persons do not
 beat about the bush to discover with what they
@@ -2731,7 +2749,7 @@ my views are on the luxury of dictation which
 is now so fashionable. For, when we write, however
 great our speed, the fact that the hand cannot follow
 the rapidity of our thoughts gives us time to think,
-                    <pb id="p.103"/>
+                    <pb xml:id="p.103"/>
                     whereas the presence of our amanuensis hurries us
 on, and at times we feel ashamed to hesitate or
 pause, or make some alteration, as though we were
@@ -2774,7 +2792,7 @@ the sky and the charm of the surroundings produce
 sublimity of thought and wealth of inspiration.
                     <milestone n="23" unit="section"/>
                     Personally I regard such an environment as a
-                    <pb id="p.105"/>
+                    <pb xml:id="p.105"/>
                     pleasant luxury rather than a stimulus to study.
 For whatever causes us delight, must necessarily
 distract us from the concentration due to our work.
@@ -2795,7 +2813,7 @@ relax than to concentrate our attention.
 a place
                     <note anchored="true" place="unspecified">
                         An underground room. See Plut.
-                        <hi rend="italics">Dem.</hi>
+                        <hi rend="italic">Dem.</hi>
                         vii.
                     </note>
                     where no voice was to be heard, and no
@@ -2821,7 +2839,7 @@ Nevertheless, night work, so long as we come to it
 fiesh and untired, provides by far the best form of
 privacy.
                 </p>
-                <pb id="p.107"/>
+                <pb xml:id="p.107"/>
                 <p>
                     <milestone n="28" unit="section"/>
                     But although silence and seclusion and absolute
@@ -2861,7 +2879,7 @@ to be unnerved by the uproar of the public assembly.
                 <p>
                     <milestone n="31" unit="section"/>
                     There are also certain minor details which deserve
-                    <pb id="p.109"/>
+                    <pb xml:id="p.109"/>
                     our attention, for there is nothing too minute for the
 student. It is best to write on wax owing to the
 facility which it offers for erasure, though weak
@@ -2903,7 +2921,7 @@ store.
 the correction of our work, which is by far the most
 useful portion of our study: for there is good reason
 for the view that erasure is quite as important a
-                    <pb id="p.111"/>
+                    <pb xml:id="p.111"/>
                     function of the pen as actual writing. Correction
 takes the form of addition, excision and alteration.
 But it is a comparatively simple and easy task to
@@ -2942,7 +2960,7 @@ anxious care.
                     No! let there be something in all our writing which, if it does not actually please us,
 at least passes muster, so that the file may only
 polish our work, not wear it away. There must
-                    <pb id="p.113"/>
+                    <pb xml:id="p.113"/>
                     also be a limit to the time which we spend on its
 revision. For the fact that Cinna
                     <note anchored="true" place="unspecified">
@@ -2979,7 +2997,7 @@ may most easily be derived.
 from Greek into Latin.
                     <milestone n="2" unit="section"/>
                     In the
-                    <hi rend="italics">de Oratore</hi>
+                    <hi rend="italic">de Oratore</hi>
                     <note anchored="true" place="unspecified">i. 155.</note>
                     of
 Cicero, Lucius Crassus says that he practised this
@@ -2988,11 +3006,11 @@ and again, nay, he actually published translations
 of Xenophon and Plato,
                     <note anchored="true" place="unspecified">
                         The (
-                        <hi rend="italics">Economicus of</hi>
+                        <hi rend="italic">Economicus of</hi>
                         Xenophon, the
-                        <hi rend="italics">Proutayorus</hi>
+                        <hi rend="italic">Proutayorus</hi>
                         and
-                        <hi rend="italics">Timaeus</hi>
+                        <hi rend="italic">Timaeus</hi>
                         of Plato.
                     </note>
                     which were the result of
@@ -3008,10 +3026,10 @@ obvious. For Greek authors are conspicuous for the
 variety of their matter, and there is much art in
 all their eloquence, while, when we translate them,
 we are at liberty to use the best words available,
-                    <pb id="p.115"/>
+                    <pb xml:id="p.115"/>
                     since all that we use are our very own.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">I.e.</hi>
+                        <hi rend="italic">I.e.</hi>
                         we shall not borrow from our models, as we do in
 paraphrasing Latin.
                     </note>
@@ -3032,7 +3050,7 @@ For the lofty inspiration of verse serves to elevate
 the orator's style and the bold license of poetic
 language does not preclude
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Lit.</hi>
+                        <hi rend="italic">Lit.</hi>
                         <quote>forestall the power of using the language of ordinary prose.</quote>
                     </note>
                     our attempting to
@@ -3060,7 +3078,7 @@ expression for any one theme.
                     It can hardly be
 argued that, while the gestures of the actor are
 capable of imparting a wealth of varied meaning
-                    <pb id="p.117"/>
+                    <pb xml:id="p.117"/>
                     to the same words, the power of oratory is restricted
 to a narrower scope, so that when a thing has once
 been said, it is impossible to say anything else on
@@ -3098,7 +3116,7 @@ them.
                     <milestone n="9" unit="section"/>
                     Nor is it only the paraphrase of the works of
 others that we shall find of advantage: much may
-                    <pb id="p.119"/>
+                    <pb xml:id="p.119"/>
                     be gained from paraphrasing our own words in a
 number of different ways: for instance, we may
 specially select certain thoughts and recast them
@@ -3125,15 +3143,15 @@ number of subjects.
                     For this purpose indefinite questions,
                     <note anchored="true" place="unspecified">
                         See III. v. 5
-                        <hi rend="italics">.sq.</hi>
+                        <hi rend="italic">.sq.</hi>
                     </note>
                     of the kind
 we call
-                    <hi rend="italics">theses,</hi>
+                    <hi rend="italic">theses,</hi>
                     will be found of the utmost service:
 in fact, Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Ad Att.</hi>
+                        <hi rend="italic">Ad Att.</hi>
                         IX. iv. 1.
                     </note>
                     still exercised himself upon such
@@ -3152,7 +3170,7 @@ who has practised himself in giving full treatment
 to such simple and uncomplicated themes, will
 assuredly find his fluency increased in those subjects
 which admit of varied digression, and will be
-                    <pb id="p.121"/>
+                    <pb xml:id="p.121"/>
                     prepared to deal with any case that may confront him,
 since all cases ultimately turn upon general questions.
                     <milestone n="13" unit="section"/>
@@ -3161,7 +3179,7 @@ special case where Cornelius,
                     <note anchored="true" place="unspecified">See IV. iv. 8; v. xiii. 26; VI. v. 10; II. iii. 3, 35.</note>
                     the tribune of the
 people, is charged with reading the text of a proposed law, and the general question whether it is
-                    <hi rend="italics">lése-majestè</hi>
+                    <hi rend="italic">lése-majestè</hi>
                     for a magistrate himself to read the
 law which he proposes to the people; what does it
 matter whether we have to decide whether Milo was
@@ -3182,7 +3200,7 @@ life and resemble speeches, they are most profitable
 to the student, not merely while he
                     <note anchored="true" place="unspecified">
                         profectus,
-                        <hi rend="italics">lit.</hi>
+                        <hi rend="italic">lit.</hi>
                         <quote>progress,</quote>
                         abstract for concrete.
                     </note>
@@ -3199,7 +3217,7 @@ of forensic disputes.
                     For the same reason, the wealth
 of language that marks the historian should be from
 time to time imported into portions of our written
-                    <pb id="p.123"/>
+                    <pb xml:id="p.123"/>
                     exercises, and we should indulge in the easy freedom of dialogue. Nay, it may even be advantageous
 to amuse ourselves with the writing of verse, just as
 athletes occasionally drop the severe regime of diet
@@ -3239,7 +3257,7 @@ forward the most earnest request that the court
 should be transferred to some public hall. He was
 so unaccustomed to speak in the open air that all his
 eloquence seemed to reside within the compass of a
-                    <pb id="p.125"/>
+                    <pb xml:id="p.125"/>
                     roof and four walls.
                     <milestone n="19" unit="section"/>
                     For this reason a young man
@@ -3280,14 +3298,14 @@ merely selecting the easiest and most attractive cases,
 as is done at present, will thus qualify himself much
 more rapidly for actual forensic practice. Under existing circumstances the practice of the principle
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">I.e.</hi>
+                        <hi rend="italic">I.e.</hi>
                         <quote>per totas ire materias.</quote>
                     </note>
                     which
 I mentioned second is, as a rule, hampered by the
 large size of the classes and the practice of allotting
 certain days for recitation, to which must be added
-                    <pb id="p.127"/>
+                    <pb xml:id="p.127"/>
                     the contributory circumstance that the boys' parents
 are more interested in the number of their sons'
 recitations than their quality.
@@ -3328,7 +3346,7 @@ the pen and the more precarious fortunes of improvisation; indeed I am not sure 
 frequently of use than either. For there are places
 and occasions where writing is impossible, while both
 are available in abundance for premeditation. For
-                    <pb id="p.129"/>
+                    <pb xml:id="p.129"/>
                     but a few hours' thought will suffice to cover all the
 points even of cases of importance; if we wake at
 night, the very darkness will assist us, while even in
@@ -3367,26 +3385,26 @@ the most important part is played by the memory.
 to the portion of this work reserved for the treatment of that topic.
                     <note anchored="true" place="unspecified">
                         XI. ii. 1
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     At length, however, our powers
 will have developed so far that the man who is not
 hampered by lack of natural ability will by dint of
-                    <pb id="p.131"/>
+                    <pb xml:id="p.131"/>
                     persistent study be enabled, when it comes to speaking, to rely no less on what he has thought out than
 what he has written out and learnt by heart. At
 any rate, Cicero records that Metrodorus of Scepsis,
                     <note anchored="true" place="unspecified">
                         A philosopher of the Academic school, contemporary
 with Cicero,
-                        <hi rend="italics">cp. de Or.</hi>
+                        <hi rend="italic">cp. de Or.</hi>
                         ii. 360.
                     </note>
                     Empylus of Rhodes,
                     <note anchored="true" place="unspecified">Empylus is not mentioned elsewhere.</note>
                     and our own Hortensius
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Cp. Brut.</hi>
+                        <hi rend="italic">Cp. Brut.</hi>
                         301.
                     </note>
                     were
@@ -3422,7 +3440,7 @@ premeditation.
                     <milestone n="7" unit="section"/>
                     For such backward glances place us
 at a disadvantage, because our search for our premeditated ideas makes us miss others, and we draw
-                    <pb id="p.133"/>
+                    <pb xml:id="p.133"/>
                     our matter from our memory rather than from the
 subject on which we are speaking. And even if we
 are to rely on our memory and our subject alike,
@@ -3463,7 +3481,7 @@ of an orator is there which permits him to ignore
 such sudden issues? What will happen when he
 has to reply to his opponent? For often the expected arguments to which we have written a reply
 fail us and the whole aspect of the case undergoes
-                    <pb id="p.135"/>
+                    <pb xml:id="p.135"/>
                     a sudden change; consequently the variation to
 which cases are liable makes it as necessary for us
 to change our methods as it is for a pilot to change
@@ -3499,21 +3517,21 @@ methodically, will above all take the actual sequence
 of the various points as his guide, and it is for this
 reason that even but moderately trained speakers
 find it easiest to keep the natural order in the
-                    <hi rend="italics">statement of facts.</hi>
+                    <hi rend="italic">statement of facts.</hi>
                     Secondly, the orator must know
 what to look for in each portion of his case: he
 must not beat about the bush or allow himself to be
 thrown off the track by thoughts which suggest
 themselves from irrelevant quarters, or produce a
 speech which is a confused mass of incongruities,
-                    <pb id="p.137"/>
+                    <pb xml:id="p.137"/>
                     owing to his habit of leaping this way and that, and
 never sticking to any one point.
                     <milestone n="7" unit="section"/>
                     Finally, he must
 confine himself to certain definite bounds, and for
 this
-                    <hi rend="italics">division</hi>
+                    <hi rend="italic">division</hi>
                     is absolutely necessary. When to the
 best of his ability he has dealt fully with all the
 points which he has advanced, he will know that he
@@ -3551,7 +3569,7 @@ tasks of invention, arrangement, and style, together
 with what we are uttering at the moment, what we
 have got to say next and what we have to look to
 still further on, not to mention the fact that it
-                    <pb id="p.139"/>
+                    <pb xml:id="p.139"/>
                     is necessary all the time to give close attention to
 voice, delivery and gesture.
                     <milestone n="10" unit="section"/>
@@ -3596,7 +3614,7 @@ name of speech, but consider it the merest rant.
                     Nor again shall I ever be induced to admire a continuous flow of random talk, such as I note streams in
 torrents even from the lips of women when they
 quarrel, although, if a speaker is swept away by
-                    <pb id="p.141"/>
+                    <pb xml:id="p.141"/>
                     warmth of feeling and genuine inspiration, it frequently happens that he attains a success from improvisation which would have been beyond the reach of
 the most careful preparation.
                     <milestone n="14" unit="section"/>
@@ -3640,7 +3658,7 @@ along some straight road and see at once all that is on
 and near it, obtaining a view not merely of its end,
 but of the whole way there. Dread of the shame
 of failure is also a powerful stimulant to oratory,
-                    <pb id="p.143"/>
+                    <pb xml:id="p.143"/>
                     and it may be regarded as a matter for wonder that,
 whereas when writing we delight in privacy and
 shrink from the presence of witnesses, in extempore
@@ -3678,9 +3696,9 @@ Antipater of Sidon and Licinius Archias (for whose
 powers we have the unquestionable authority of
 Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">De Or.</hi>
+                        <hi rend="italic">De Or.</hi>
                         iii. 194;
-                        <hi rend="italics">Pro Arch.</hi>
+                        <hi rend="italic">Pro Arch.</hi>
                         viii. 18.
                     </note>
                     ), not to mention the fact that there are
@@ -3689,7 +3707,7 @@ are still doing it. I do not, however, regard this
 accomplishment as being particularly valuable in
 itself, for it is both unpractical and unnecessary, but
 mention it as a useful example to encourage students
-                    <pb id="p.145"/>
+                    <pb xml:id="p.145"/>
                     training for the bar, in the hope that they may be
 able to acquire this accomplishment.
                     <milestone n="20" unit="section"/>
@@ -3729,7 +3747,7 @@ drive us forward before all our tackle is ready.
 Afterwards, as we proceed upon our course, we shall
 trim our sails, arrange our ropes, and pray that
 the breeze may fill our sails. Such a procedure is
-                    <pb id="p.147"/>
+                    <pb xml:id="p.147"/>
                     preferable to yielding ourselves to an empty torrent
 of words, that the storm may sweep us where it will.
                 </p>
@@ -3775,11 +3793,11 @@ day in our lives that is so full of occupations that we
 may not, at some moment or other, snatch a few
 precious minutes, as Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Or.</hi>
+                        <hi rend="italic">Or.</hi>
                         34.
                     </note>
                     records that Brutus was
-                    <pb id="p.149"/>
+                    <pb xml:id="p.149"/>
                     wont to do, either for writing or reading or speaking;
 Gaius Carbo,
                     <note anchored="true" place="unspecified">
@@ -3787,9 +3805,9 @@ Gaius Carbo,
 senatorial party and was consul 120 B.C. Committed suicide
 in the following year. Cicero praises his eloquence and
 industry; p.
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         103–5,
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         I. § 154.
                     </note>
                     for example, was in the habit of indulging in such exercises even in his tent.
@@ -3829,7 +3847,7 @@ note-books. But the notes of other orators are also
 in circulation; some have been discovered by
 chance, just as they were jotted down previous to a
 speech, while others have been edited in book form,
-                    <pb id="p.151"/>
+                    <pb xml:id="p.151"/>
                     as in the case of the speeches delivered in the courts
 by Servius Sulpicius, of whose works only three
 speeches survive. These memoranda, however, of
