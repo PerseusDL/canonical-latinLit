@@ -1,11 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
-    <teiHeader>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" 
+         schematypens="http://relaxng.org/ns/structure/1.0"?> <TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader type="text">
         <fileDesc>
             <titleStmt>
-                <title>De vita Hadriani </title>
-                <editor>David Magie</editor>
-                <editor>Ainsworth O'Brien-Moore</editor>
-                <editor>Susan Helen Ballou</editor>
+                <title type="work" n="Hadr">De vita Hadriani </title>
+		<title type="sub">Machine readable text</title>
+                <editor role="editor" n="Magie">David Magie</editor>
+                <editor role="editor" n="O'Brien-Moore">Ainsworth O'Brien-Moore</editor>
+                <editor role="editor" n="Ballou">Susan Helen Ballou</editor>
                 <sponsor>Perseus Project, Tufts University</sponsor>
 <principal>Gregory Crane</principal>
 <respStmt>
@@ -23,32 +26,55 @@
                 <biblStruct>
                     <monogr>
                         <title>Scriptores Historiae Augustae, Vol 1</title>
-                        <editor>David Magie</editor>
-                        <editor>Ainsworth O'Brien-Moore</editor>
-                        <editor>Susan Helen Ballou</editor>
-                        <imprint>
-                            <publisher>London: William Heinemann; New York: G.P. Putnam's Sons</publisher>
+                        <editor role="editor" n="Magie">David Magie</editor>
+                <editor role="editor" n="O'Brien-Moore">Ainsworth O'Brien-Moore</editor>
+                <editor role="editor" n="Ballou">Susan Helen Ballou</editor><imprint>
+                            <publisher>William Heinemann</publisher>
+			    <pubPlace>London</pubPlace>
+			    <publisher>G.P. Putnam's Sons</publisher>
+			    <pubPlace>New York</pubPlace>
                             <date>1921</date>
                         </imprint>
                     </monogr>
                 </biblStruct>
-                <p>OCR cleanup</p></sourceDesc>      
+		<list><item>OCR cleanup</item></list>
+                </sourceDesc>      
         </fileDesc>      
         <encodingDesc>
+	    <refsDecl n="CTS">
+	        <cRefPattern n="chapter"
+			matchPattern="(\\w+)"
+                	replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+		<p>This pointer pattern extracts chapter</p>
+		</cRefPattern>
+		<cRefPattern n="section"
+			matchPattern="(\\w+).(\\w+)"
+                	replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+		<p>This pointer pattern extracts chapter and section</p>
+		</cRefPattern>
+	    </refsDecl>
             <refsDecl>
-                <refState unit="work"/>
-                <refState unit="chapter" n="chunk"/>
+                <refState unit="chapter" delim="."/>
                 <refState unit="section"/>
             </refsDecl>
         </encodingDesc>
         <profileDesc>
             <langUsage>
                 <language ident="la">Latin</language>
-                <language ident="greek">Greek</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
-    </teiHeader><text xml:lang="la"><body>
-<div type="chapter" n="1">
+	<revisionDesc>
+	<change when="2015-08-14" who="Zach Himes">
+        Converted from TEI edition at 
+        https://github.com/PerseusDL/canonical-latinLit/blob/master/data/phi2331/phi001/phi2331.phi001.perseus-lat1.xml to TEI/EpiDoc
+    </change>
+	</revisionDesc>
+    </teiHeader>
+<text xml:lang="lat">
+<body>
+<div type="edition" xml:lang="lat" n='urn:cts:latinLit:phi2331.phi001.perseus-lat1'>
+<div type="textpart" subtype="chapter" n="1">
 <p>
 <milestone unit="section" n="1"/>
 Origo imperatoris Hadriani vetustiora Picentibus, posterior ab Hispaniensibus manat; si quidem Hadria ortos maiores suos apud Italicam Scipionum temporibus resedisse in libris vitae suae Hadrianus ipse
@@ -58,7 +84,7 @@ commemorat.
 Hadriano pater Aelius Hadrianus cognomento Afer fuit, consobrinus Traiani imperatoris; mater Domitia Paulina Gadibus orta, soror Paulina nupta Serviano, uxor Sabina, atavus Marullinus, qui primus in sua familia senator populi Romani fuit.
 <milestone unit="section" n="3"/>
 Natus est Romae VIIII kal. Feb. Vespasiano septies
-<note id="n1.2.1">commemorat P corr.; commemoret P1, Petschenig. </note>
+<note xml:id="n1.2.1">commemorat P corr.; commemoret P1, Petschenig. </note>
 <pb n="p.4"/>
 <milestone unit="section" n="4"/>
 et Tito quinquies consulibus, ac decimo aetatis anno patre orbatus Ulpium Traianum praetorium tunc,
@@ -67,7 +93,7 @@ consobrinum suum, qui postea imperium tenuit, et Caelium Attianum equitem Romanu
 <milestone unit="section" n="5"/>
 imbutusque impensius Graecis studiis, ingenio eius sic ad ea declinante ut a nonnullis Graeculus </p>
 </div>
-<div type="chapter" n="2">
+<div type="textpart" subtype="chapter" n="2">
 <p>
 <milestone unit="section" n="1"/>
 diceretur, quintodecimo anno ad patriam rediit ac statim militiam iniit, venandi
@@ -85,31 +111,31 @@ ibi a mathematico quodam de futuro imperio id dicitur comperisse quod a patruo m
 compererat. Traiano a Nerva adoptato ad gratulationem exercitus missus in
 <note target="n1.4.4"/>
 Germaniam superiorem
-<note id="n1.4.1">tunc P1; uirum P corr.</note>
-<note id="n1.4.2">uenandi Novak; uenando P, Peter.</note>
-<note id="n1.4.3">domitianis P1, Petschenig.</note>
-<note id="n1.4.4">in omitted by P1, added by P corr. </note>
+<note xml:id="n1.4.1">tunc P1; uirum P corr.</note>
+<note xml:id="n1.4.2">uenandi Novak; uenando P, Peter.</note>
+<note xml:id="n1.4.3">domitianis P1, Petschenig.</note>
+<note xml:id="n1.4.4">in omitted by P1, added by P corr. </note>
 <pb n="p.6"/>
 <milestone unit="section" n="6"/>
 translatus est. ex qua festinans ad Traianum, ut primus nuntiaret excessum Nervae, a Serviano, sororis viro, (qui et sumptibus et aere alieno eius prodito Traiani odium in eum movit) diu detentus fractoque consulte vehiculo tardatus, pedibus iter faciens
 <milestone unit="section" n="7"/>
 eiusdem Serviani beneficiarium antevenit. fuitque in amore Traiani, nec tamen ei per paedagogos puerorum quos Traianus impensius diligebat,
-<gap/>
+<gap reason="ellipsis"/>
 <milestone unit="section" n="8"/>
 Gallo favente
 <note target="n1.6.1"/>
 defuit, quo quidem tempore cum sollicitus de imperatoris erga se iudicio, Vergilianas sortes consuleret, Quis procul ille autem ramis insignis olivae sacra ferens? nosco crines incanaque menta regis Romani, primam qui legibus urbem fundabit, Curibus parvis et paupere terra missus in imperium magnum, cui deinde subibit
-<gap/>
+<gap reason="ellipsis"/>
 sors excidit, quam alii ex Sibyllinis versibus ei provenisse
 <milestone unit="section" n="9"/>
 dixerunt, habuit autem praesumptionem imperii mox futuri ex fano quoque Nicephorii Iovis manante responso, quod Apollonius Syrus Platonicus
 <milestone unit="section" n="10"/>
 libris suis indidit. denique statim suffragante Sura ad amicitiam Traiani pleniorem rediit, nepte per
-<note id="n1.6.1">Lacuna suggested by Gemoll; diligebat Gallo fauente defuit P. </note>
+<note xml:id="n1.6.1">Lacuna suggested by Gemoll; diligebat Gallo fauente defuit P. </note>
 <pb n="p.8"/>
 sororem Traiani uxore accepta favente Plotina, Traiano leviter, ut Marius Maximus dicit, volente. </p>
 </div>
-<div type="chapter" n="3">
+<div type="textpart" subtype="chapter" n="3">
 <p>
 <milestone unit="section" n="1"/>
 Quaesturam gessit Traiano quater et Articuleio consulibus, in qua cum orationem imperatoris in senatu agrestius pronuntians risus esset, usque ad summam peritiam et facundiam Latinis operam dedit.
@@ -146,7 +172,7 @@ quidem Sura Traiani ei familiaritas crevit,
 <note target="n1.10.6"/>
 causa praecipue orationum quas </p>
 </div>
-<div type="chapter" n="4">
+<div type="textpart" subtype="chapter" n="4">
 <p>
 <milestone unit="section" n="1"/>
 pro imperatore dictaverat. usus Plotinae quoque favore, cuius studio etiam legatus expeditionis
@@ -154,12 +180,12 @@ pro imperatore dictaverat. usus Plotinae quoque favore, cuius studio etiam legat
 Parthicae tempore destinatus est. qua quidem tempestate utebatur Hadrianus amicitia Sosii Papi et Platorii
 <note target="n1.10.6"/>
 Nepotis ex senatorio ordine, ex equestri
-<note id="n1.10.1">Suburano Mommsen; sub surano P, Peter.</note>
-<note id="n1.10.2">iterum deleted by Mommsen.</note>
-<note id="n1.10.3">ut P corr.; et P1.</note>
-<note id="n1.10.4">defuncto P corr.; definito P1.</note>
-<note id="n1.10.5">creuit P corr.; creauit P1; crebuit Peter.</note>
-<note id="n1.10.6">Platori Borghesi; pletori P. </note>
+<note xml:id="n1.10.1">Suburano Mommsen; sub surano P, Peter.</note>
+<note xml:id="n1.10.2">iterum deleted by Mommsen.</note>
+<note xml:id="n1.10.3">ut P corr.; et P1.</note>
+<note xml:id="n1.10.4">defuncto P corr.; definito P1.</note>
+<note xml:id="n1.10.5">creuit P corr.; creauit P1; crebuit Peter.</note>
+<note xml:id="n1.10.6">Platori Borghesi; pletori P. </note>
 <pb n="p.12"/>
 autem Attiani, tutoris quondam sui, et Liviani et
 <note target="n1.12.1"/>
@@ -185,10 +211,10 @@ Frequens sane opinio fuit Traiano id animi fuisse ut Neratium Priscum, non Hadri
 <milestone unit="section" n="9"/>
 tibi provincias, si quid mihi fatale contigerit .</q>
 et multi quidem dicunt Traianum in animo id habuisse, ut exemplo Alexandri Macedonis sine certo succes-
-<note id="n1.12.1">et omitted by P, added by Hirschfeld.</note>
-<note id="n1.12.2">adfectatae Petschenig; adiectae P; adiectae Peter with Salm.</note>
-<note id="n1.12.3">saepe inisse Ellis, von Winterfeld; sepelisse P; ad se pellexisse Peter 2. </note>
-<note id="n1.12.4">familiarior P; familiariorum B, Peter. </note>
+<note xml:id="n1.12.1">et omitted by P, added by Hirschfeld.</note>
+<note xml:id="n1.12.2">adfectatae Petschenig; adiectae P; adiectae Peter with Salm.</note>
+<note xml:id="n1.12.3">saepe inisse Ellis, von Winterfeld; sepelisse P; ad se pellexisse Peter 2. </note>
+<note xml:id="n1.12.4">familiarior P; familiariorum B, Peter. </note>
 <pb n="p.14"/>
 sore moreretur, multi ad senatum eum orationem voluisse mittere petiturum, ut, si quid ei evenisset, principem Romanae rei publicae senatus daret, additis dum taxat nominibus ex quibus optimum idem
 <milestone unit="section" n="10"/>
@@ -196,7 +222,7 @@ senatus eligeret, nec desunt qui factione Plotinae mortuo iam Traiano Hadrianum 
 <note target="n1.14.1"/>
 </p>
 </div>
-<div type="chapter" n="5">
+<div type="textpart" subtype="chapter" n="5">
 <p>
 <milestone unit="section" n="1"/>
 Adeptus imperium ad priscum se statim morem instituit et tenendae per orbem terrarum paci operam
@@ -212,10 +238,10 @@ efferebant. quare omnia trans Euphraten ac Tigrim reliquit exemplo, ut dicebat, 
 Parthamasirin,
 <note target="n1.14.4"/>
 quem Traianus Parthis regem fecerat,
-<note id="n1.14.1">loqueretur P corr.</note>
-<note id="n1.14.2">impendit P corr., Petschenig, Novak, and Lessing; intendit P 1, Peter.</note>
-<note id="n1.14.3">Libya Cas.; licia P.</note>
-<note id="n1.14.4">Parthamasirin, see Prosop. III, p. 13; sarmatosirin P; Partomasirin Peter2. </note>
+<note xml:id="n1.14.1">loqueretur P corr.</note>
+<note xml:id="n1.14.2">impendit P corr., Petschenig, Novak, and Lessing; intendit P 1, Peter.</note>
+<note xml:id="n1.14.3">Libya Cas.; licia P.</note>
+<note xml:id="n1.14.4">Parthamasirin, see Prosop. III, p. 13; sarmatosirin P; Partomasirin Peter2. </note>
 <pb n="p.16"/>
 quod eum non magni ponderis apud Parthos videret, proximis gentibus dedit regem.
 <milestone unit="section" n="5"/>
@@ -230,13 +256,13 @@ militibus ob auspicia imperii duplicem largitionem
 dedit. Lusium Quietum sublatis gentibus Mauris, quos regebat, quia suspectus imperio fuerat, exarmavit, Marcio Turbone Iudaeis compressis ad deprimendum tumultum Mauretaniae destinato.
 <milestone unit="section" n="9"/>
 Post haec Antiochia digressus est ad inspiciendas
-<note id="n1.16.1">iniusso P, accepted by Petschenig; iniussu Peter 1. Parthian war; he was rewarded by being made king after Trajan's victory in 116-117. The Parthians deposed him, and Hadrian accordingly assigned to him, at least for a time, the district of Osrhoene in north-western Mesopotamia. Cf. c. xxi. 10, and Dio, lxviii. 30 and 33. </note>
+<note xml:id="n1.16.1">iniusso P, accepted by Petschenig; iniussu Peter 1. Parthian war; he was rewarded by being made king after Trajan's victory in 116-117. The Parthians deposed him, and Hadrian accordingly assigned to him, at least for a time, the district of Osrhoene in north-western Mesopotamia. Cf. c. xxi. 10, and Dio, lxviii. 30 and 33. </note>
 <pb n="p.18"/>
 reliquias Traiani, quas Attianus, Plotina et Matidia
 <milestone unit="section" n="10"/>
 deferebant, quibus exceptis et navi Romam dimissis ipse Antiochiam regressus praepositoque Syriae Catilio Severo per Illyricum Romam venit. </p>
 </div>
-<div type="chapter" n="6">
+<div type="textpart" subtype="chapter" n="6">
 <p>
 <milestone unit="section" n="1"/>
 Traiano divinos honores datis ad senatum et quidem accuratissimis litteris postulavit et cunctis volentibus meruit, ita ut senatus multa, quae Hadrianus non postulaverat, in honorem Traiani sponte decerneret.
@@ -248,11 +274,11 @@ res publica sine imperatore non posset, cum triumphum ei senatus, qui Traiano de
 quidem triumphi amitteret dignitatem, patris patriae nomen delatum sibi statim et iterum postea distulit,
 <milestone unit="section" n="5"/>
 quod hoc nomen Augustus sero meruisset, aurum
-<note id="n1.18.1">See note to c. ii. 10. </note>
-<note id="n1.18.2">L. Catilius Severus was a friend and correspondent of Pliny; see Pliny, Epist., i. 22; iii. 12. He became consul for the second time in 120, was proconsul of Asia, and in 138 prefect of the city; see c. xxiv. 6-8. He was the great-grandfather of Marcus Aurelius; see Marc, i. 4. </note>
-<note id="n1.18.3">Used here to denote the provinces along the southern bank of the Danube. His route lay across Asia Minor, and it was probably in this region that he received the news of the war threatened by the tribes north of the river; cf. c. vi. 6. He arrived in Moesia in the spring of 118, and finally reached Rome in July, 118; cf. c vii. 3, </note>
-<note id="n1.18.4">Acclamation by the army constituted a strong de facto claim to the imperial power, but it is now generally recognized (in spite of Mommsen's theory to the contrary) that only the senate could legally confer the imperium. </note>
-<note id="n1.18.5">This triumph was commemorated by coins bearing on the obverse the head of Trajan with the legend Divo Traiano Parth </note>
+<note xml:id="n1.18.1">See note to c. ii. 10. </note>
+<note xml:id="n1.18.2">L. Catilius Severus was a friend and correspondent of Pliny; see Pliny, Epist., i. 22; iii. 12. He became consul for the second time in 120, was proconsul of Asia, and in 138 prefect of the city; see c. xxiv. 6-8. He was the great-grandfather of Marcus Aurelius; see Marc, i. 4. </note>
+<note xml:id="n1.18.3">Used here to denote the provinces along the southern bank of the Danube. His route lay across Asia Minor, and it was probably in this region that he received the news of the war threatened by the tribes north of the river; cf. c. vi. 6. He arrived in Moesia in the spring of 118, and finally reached Rome in July, 118; cf. c vii. 3, </note>
+<note xml:id="n1.18.4">Acclamation by the army constituted a strong de facto claim to the imperial power, but it is now generally recognized (in spite of Mommsen's theory to the contrary) that only the senate could legally confer the imperium. </note>
+<note xml:id="n1.18.5">This triumph was commemorated by coins bearing on the obverse the head of Trajan with the legend Divo Traiano Parth </note>
 <pb n="p.20"/>
 coronarium Italiae remisit, in provinciis minuit, et quidem difficultatibus aerarii ambitiose ac diligenter expositis.
 <milestone unit="section" n="6"/>
@@ -264,7 +290,7 @@ praefecturae infulis ornatum Pannoniae Daciaeque ad tempus praefecit.
 <milestone unit="section" n="8"/>
 cum rege Roxolanorum, qui de inminutis stipendiis querebatur, cognito negotio pacem composuit. </p>
 </div>
-<div type="chapter" n="7">
+<div type="textpart" subtype="chapter" n="7">
 <p>
 <milestone unit="section" n="1"/>
 Nigrini insidias, quas ille sacrificanti Hadriano conscio sibi Lusio et multis aliis paraverat, cum etiam successorem Hadrianus sibimet destinasset, evasit.
@@ -272,7 +298,7 @@ Nigrini insidias, quas ille sacrificanti Hadriano conscio sibi Lusio et multis a
 quare Palma Tarracinis, Celsus Baiis, Nigrinus Faventiae, Lusius in itinere senatu iubente, invito
 <milestone unit="section" n="3"/>
 Hadriano, ut ipse in vita sua dicit, occisi sunt. unde statim Hadrianus ad refellendam tristissimam de se
-<note id="n1.20.1">Mauretaniam Peter; maurataneae P 1; mauritaniae P corr. </note>
+<note xml:id="n1.20.1">Mauretaniam Peter; maurataneae P 1; mauritaniae P corr. </note>
 <pb n="p.22"/>
 opinionem, quod occidi passus esset uno tempore quattuor consulares, Romam venit, Dacia Turboni credita, titulo Aegyptiacae praefecturae, quo plus auctoritatis haberet, ornato, et ad comprimendam de se famam congiarium duplex praesens populo dedit,
 <milestone unit="section" n="4"/>
@@ -287,8 +313,8 @@ magistratus hoc onere gravarentur. ad colligendam autem gratiam nihil praetermit
 quo magis securitas omnibus roboraretur,
 <milestone unit="section" n="7"/>
 incensis. damnatorum bona in fiscum privatum
-<note id="n1.22.1">statum Peter; statim P (defended by Herzog R. Stvf. II, 359, 1).</note>
-<note id="n1.22.2">hadriani P 1; al' traiani P corr. </note>
+<note xml:id="n1.22.1">statum Peter; statim P (defended by Herzog R. Stvf. II, 359, 1).</note>
+<note xml:id="n1.22.2">hadriani P 1; al' traiani P corr. </note>
 <pb n="p.24"/>
 redigi vetuit, omni summa in aerario publico recepta.
 <milestone unit="section" n="8"/>
@@ -304,7 +330,7 @@ largitus est. feminas nonnullas ad sustentandam
 <milestone unit="section" n="12"/>
 vitam sumptibus iuvit, gladiatorium munus per sex dies continuos exhibuit et mille feras natali suo edidit. </p>
 </div>
-<div type="chapter" n="8">
+<div type="textpart" subtype="chapter" n="8">
 <p>
 <milestone unit="section" n="1"/>
 Optimos quosque de senatu in contubernium
@@ -318,8 +344,8 @@ scirent
 populi rem esse, non propriam, tertio consules, cum ipse ter fuisset, plurimos fecit, infinitos
 <milestone unit="section" n="5"/>
 autem secundi consulatus honore cumulavit. ipsum autem tertium consulatum et quattuor mensibus
-<note id="n1.24.1">praestiterit Cas.; restiterit P1; restituerit P corr.</note>
-<note id="n1.24.2">scirent Ellis; sciret P, Peter. </note>
+<note xml:id="n1.24.1">praestiterit Cas.; restiterit P1; restituerit P corr.</note>
+<note xml:id="n1.24.2">scirent Ellis; sciret P, Peter. </note>
 <pb n="p.26"/>
 <milestone unit="section" n="6"/>
 tantum egit et in eo saepe ius dixit, senatui legitimo, cum in urbe vel iuxta urbem esset, semper interfuit.
@@ -334,13 +360,13 @@ ex omnium deliberatione proferret. exsecratus est denique principes qui minus se
 <milestone unit="section" n="11"/>
 Serviano sororis viro, cui tantum detulit ut ei venienti de cubiculo semper occurrerit, tertium consulatum, nec secum tamen, cum ille bis ante Hadrianum fuisset, ne esset secundae sententiae, non petenti ac sine precatione concessit. </p>
 </div>
-<div type="chapter" n="9">
+<div type="textpart" subtype="chapter" n="9">
 <p>
 <milestone unit="section" n="1"/>
 Inter haec tamen et multas provincias a Traiano adquisitas reliquit et theatrum, quod ille in Campo
-<note id="n1.26.1">This did not include a seat in the senate, but consisted of the privilege of sitting with the senators of consular rank at the public festivals and at sacred banquets and of wearing the toga praetexta on such occasions. Since the time of Nero this honorary rank had often been bestowed on prefects of the guard on their retirement from office; see also Pius, x. 6. </note>
-<note id="n1.26.2">See note to c. vii. 4. </note>
-<note id="n1.26.3">The consilium of the emperor was a development from the old principle that a magistrate, before rendering an important decision, should ask advice from trusted friends. So Augustus </note>
+<note xml:id="n1.26.1">This did not include a seat in the senate, but consisted of the privilege of sitting with the senators of consular rank at the public festivals and at sacred banquets and of wearing the toga praetexta on such occasions. Since the time of Nero this honorary rank had often been bestowed on prefects of the guard on their retirement from office; see also Pius, x. 6. </note>
+<note xml:id="n1.26.2">See note to c. vii. 4. </note>
+<note xml:id="n1.26.3">The consilium of the emperor was a development from the old principle that a magistrate, before rendering an important decision, should ask advice from trusted friends. So Augustus </note>
 <pb n="p.28"/>
 <milestone unit="section" n="2"/>
 Martio posuerat, contra omnium vota destruxit, et haec quidem eo tristiora videbantur, quod omnia, quae displicere vidisset
@@ -358,15 +384,15 @@ cum quidem etiam Simili alteri praefecto Septicium Clarum successorem dedit.
 Summotis his a praefectura, quibus debebat imperium, Campaniam petiit eiusque omnia oppida beneficiis et largitionibus sublevavit, optimum quemque
 <milestone unit="section" n="7"/>
 amicitiis suis iungens. Romae vero praetorum et consulum officia frequentavit, conviviis amicorum interfuit, aegros bis ac ter die et nonnullos equites Romanos ac libertinos visitavit, solaciis refovit, con-
-<note id="n1.28.1">displicere uidisset P corr.; displicerentur uidisse P 1. </note>
-<note id="n1.28.2">secreto Mommsen; decreto P 1; decreta P corr. </note>
+<note xml:id="n1.28.1">displicere uidisset P corr.; displicerentur uidisse P 1. </note>
+<note xml:id="n1.28.2">secreto Mommsen; decreto P 1; decreta P corr. </note>
 <pb n="p.30"/>
 <milestone unit="section" n="8"/>
 siliis sublevavit, conviviis suis semper adhibuit, omnia
 <milestone unit="section" n="9"/>
 denique ad privati hominis modum fecit, socrui suae honores praecipuos impendit ludis gladiatoriis ceterisque officiis. </p>
 </div>
-<div type="chapter" n="10">
+<div type="textpart" subtype="chapter" n="10">
 <p>
 <milestone unit="section" n="1"/>
 Post haec profectus in Gallias omnes civitates
@@ -374,7 +400,7 @@ Post haec profectus in Gallias omnes civitates
 variis
 <note target="n1.30.1"/>
 liberalitatibus sublevavit, inde in Germaniam transiit, pacisque magis quam belli cupidus militem, quasi bellum immineret, exercuit tolerantiae documentis eum imbuens, ipse quoque inter manipula vitam militarem magistrans, cibis etiam castrensibus in propatulo libenter utens, hoc est larido caseo et posca, exemplo Scipionis Aemiliani et Metelli et auctoris sui Traiani, multos praemiis nonnullos honoribus donans, ut ferre possent ea quae asperius iube-
-<note id="n1.30.1">ciuitates uariis (libertatibus) Rob. Bonon., supported by Rösinger and Damsté; casuariis P; causarios Peter. </note>
+<note xml:id="n1.30.1">ciuitates uariis (libertatibus) Rob. Bonon., supported by Rösinger and Damsté; casuariis P; causarios Peter. </note>
 <pb n="p.32"/>
 <milestone unit="section" n="3"/>
 bat; si quidem ipse post Caesarem Octavianum labantem disciplinam incuria superiorum principum retinuit, ordinatis et officiis et impendiis, numquam passus aliquem a castris iniuste abesse, cum tribunos
@@ -389,13 +415,13 @@ tribunatus robor impleret, nec pateretur quicquam tribunum a milite accipere, de
 <milestone unit="section" n="8"/>
 corrigeret. de militum etiam aetatibus iudicabat, ne quis aut minor quam virtus posceret, aut maior quam pateretur humanitas, in castris contra morem veterem versaretur, agebatque, ut sibi semper noti essent, et </p>
 </div>
-<div type="chapter" n="11">
+<div type="textpart" subtype="chapter" n="11">
 <p>
 <milestone unit="section" n="1"/>
 eorum numerus sciretur. laborabat praeterea, ut condita militaria diligenter agnosceret, reditus quoque provinciales sollerter explorans, ut, si
 <note target="n1.32.1"/>
 alicubi quippiam deesset, expleret, ante omnes tamen enitebatur, ne quid otiosum vel emeret aliquando vel pasceret.
-<note id="n1.32.1">si omitted by P1, added by P corr. </note>
+<note xml:id="n1.32.1">si omitted by P1, added by P corr. </note>
 <pb n="p.34"/>
 <milestone unit="section" n="2"/>
 Ergo conversis regio
@@ -411,8 +437,8 @@ et erat curiosus non solum domus suae sed etiam amicorum, ita ut per frumentario
 unde non iniucundum est rem inserere, ex qua constet
 <milestone unit="section" n="6"/>
 eum de amicis multa didicisse, nam cum ad quendam scripsisset uxor sua, quod voluptatibus
-<note id="n1.34.1">egregio Novak; rigido Frankfurter; recto Baehrens. </note>
-<note id="n1.34.2">iniussu eius P corr. (uniussu P 1), defended by Bitschofsky (meaning
+<note xml:id="n1.34.1">egregio Novak; rigido Frankfurter; recto Baehrens. </note>
+<note xml:id="n1.34.2">iniussu eius P corr. (uniussu P 1), defended by Bitschofsky (meaning
 <q>without his consent</q>
 ); in usu eius Peter2, following Petschenig. </note>
 <pb n="p.36"/>
@@ -422,7 +448,7 @@ detentus et lavacris ad se redire nollet, atque hoc Hadrianus per frumentarios c
 mihi, scripsit?</q>
 et hoc quidem vitiosissimum putant atque huic adiungunt quae de adultorum amore ac nuptarum adulteriis, quibus Hadrianus laborasse dicitur, adserunt, iungentes quod ne amicis quidem servaverit fidem. </p>
 </div>
-<div type="chapter" n="12">
+<div type="textpart" subtype="chapter" n="12">
 <p>
 <milestone unit="section" n="1"/>
 Compositis in Britannia rebus transgressus in Galliam Alexandrina seditione turbatus, quae nata est ob Apidem, qui, cum repertus esset post multos annos, turbas inter populos creavit, apud quem
@@ -445,11 +471,11 @@ Germanis regem constituit, motus Maurorum compressit
 <milestone unit="section" n="8"/>
 et a senatu supplicationes emeruit. bellum Parthorum per idem tempus in motu tantum fuit, idque Hadriani conloquio repressum est. </p>
 </div>
-<div type="chapter" n="13">
+<div type="textpart" subtype="chapter" n="13">
 <p>
 <milestone unit="section" n="1"/>
 Post haec per Asiam et insulas ad Achaiam
-<note id="n1.38.1">ei omitted by P, added by B 3. </note>
+<note xml:id="n1.38.1">ei omitted by P, added by B 3. </note>
 <pb n="p.40"/>
 navigavit et Eleusinia sacra exemplo Herculis Philippique suscepit, multa in Athenienses contulit et pro
 <milestone unit="section" n="2"/>
@@ -464,7 +490,7 @@ provinciis Africanis adtribuit. nec quisquam fere principum tantum terrarum tam
 celeriter peragravit.
 <milestone unit="section" n="6"/>
 Denique cum post Africam Romam redisset, statim
-<note id="n1.40.1">tam Peter; tantum P, Petsehenig. where his arrival is commemorated on coins inscribed Adventui Aug(usti) Bithyniae (Cohen, ii 2, p. 109, Nos. 26 and 27) and Restitutori Bithyniae (id., p. 210 f., Nos. 1238-1246). He then travelled through Mysia, founding the town of Hadrianotherae (see c. xx. 13), to Ilion and thence southward to Ephesus. From here he sailed to Rhodes (see an inscription from Ephesus, Dittenberger, Sylloge 2, No. 388), northwest through the Aegean to Samothrace and Thrace (see an inscription from Callipolis of 123-124, C.I.G., 2013). Thence he visited the provinces of Moesia and Dacia (see Weber, p. 150 f.), and travelled southward through Macedonia and Thessaly to Athens, where he arrived probably in September, 124. </note>
+<note xml:id="n1.40.1">tam Peter; tantum P, Petsehenig. where his arrival is commemorated on coins inscribed Adventui Aug(usti) Bithyniae (Cohen, ii 2, p. 109, Nos. 26 and 27) and Restitutori Bithyniae (id., p. 210 f., Nos. 1238-1246). He then travelled through Mysia, founding the town of Hadrianotherae (see c. xx. 13), to Ilion and thence southward to Ephesus. From here he sailed to Rhodes (see an inscription from Ephesus, Dittenberger, Sylloge 2, No. 388), northwest through the Aegean to Samothrace and Thrace (see an inscription from Callipolis of 123-124, C.I.G., 2013). Thence he visited the provinces of Moesia and Dacia (see Weber, p. 150 f.), and travelled southward through Macedonia and Thessaly to Athens, where he arrived probably in September, 124. </note>
 <pb n="p.42"/>
 ad orientem profectus per Athenas iter fecit atque opera, quae apud Athenienses coeperat, dedicavit, ut Iovis Olympii aedem et aram sibi, eodemque modo per Asiam iter faciens templa sui nominis consecravit.
 <milestone unit="section" n="7"/>
@@ -476,7 +502,7 @@ itidem capta fuerat, cumque ad eum quidam reges venissent, ita cum his egit ut e
 <milestone unit="section" n="10"/>
 eius invitationem superbe neglexerit. et circumiens quidem provincias procuratores et praesides pro factis supplicio adfecit, ita severe ut accusatores per se </p>
 </div>
-<div type="chapter" n="14">
+<div type="textpart" subtype="chapter" n="14">
 <p>
 <milestone unit="section" n="1"/>
 crederetur immittere. Antiochenses inter haec ita odio habuit ut Syriam a Phoenice separare voluerit, ne tot civitatum metropolis Antiochia diceretur.
@@ -509,7 +535,7 @@ tenax liberalis, simulator simplex,
 <note target="n1.46.3"/>
 saevus clemens, et semper in omnibus varius. </p>
 </div>
-<div type="chapter" n="15">
+<div type="textpart" subtype="chapter" n="15">
 <p>
 <milestone unit="section" n="1"/>
 Amicos ditavit et quidem non petentes, cum
@@ -525,9 +551,9 @@ coegit, Heliodorum famosissimis litteris lacessivit,
 Titianum ut conscium tyrannidis et argui passus
 <milestone unit="section" n="7"/>
 est et proscribi, Ummidium Quadratum et Catilium
-<note id="n1.46.1">Probably merely a gloss.</note>
-<note id="n1.46.2">So Novak, deleting as a gloss for comis laetus, which follows seuerus in P, and adding festinans to offset cunctator; Peter divides: seuerus laetus, comis grauis, lasciuus cunctator.</note>
-<note id="n1.46.3">simplex, omitted in P, is supplied by Peter 2, following Reimarus ad Dio LXIX, 5, p. 652; uerus Peter 1, Novak. </note>
+<note xml:id="n1.46.1">Probably merely a gloss.</note>
+<note xml:id="n1.46.2">So Novak, deleting as a gloss for comis laetus, which follows seuerus in P, and adding festinans to offset cunctator; Peter divides: seuerus laetus, comis grauis, lasciuus cunctator.</note>
+<note xml:id="n1.46.3">simplex, omitted in P, is supplied by Peter 2, following Reimarus ad Dio LXIX, 5, p. 652; uerus Peter 1, Novak. </note>
 <pb n="p.48"/>
 <milestone unit="section" n="8"/>
 Severum et Turbonem graviter insecutus est, Servianum sororis virum nonagesimum iam annum
@@ -544,7 +570,7 @@ iucundissimum movit. ait enim:
 <q>Non recte suadetis, familiares, qui non patimini me illum doctiorem omnibus credere, qui habet triginta legiones .</q>
 </p>
 </div>
-<div type="chapter" n="16">
+<div type="textpart" subtype="chapter" n="16">
 <p>
 <milestone unit="section" n="1"/>
 Famae celebris Hadrianus tam cupidus fuit ut libros vitae suae scriptos a se libertis suis litteratis dederit, iubens ut eos suis nominibus publicarent. nam et Phlegontis libri Hadriani esse dicuntur.
@@ -554,7 +580,7 @@ Catachannas libros obscurissimos Antimachum imitando
 scripsit. Floro poetae scribenti ad se:
 <pb n="p.50"/>
 Ego nolo Caesar esse, ambulare per Britannos, latitare per
-<gap/>
+<gap reason="ellipsis"/>
 <note target="n1.50.1"/>
 Scythicas pati pruinas,
 <milestone unit="section" n="4"/>
@@ -573,14 +599,14 @@ Sed quamvis esset in reprehendendis musicis tragicis comicis grammaticis rhetori
 eos quaestionibus semper agitaverit, et cum ipse auctor esset, ut multi ab eo tristes recederent, dicebat se graviter ferre, si quem tristem videret.
 <milestone unit="section" n="10"/>
 in summa familiaritate Epictetum et Heliodorum philosophos et, ne nominatim de omnibus dicam, grammaticos rhetores musicos geometras pictores astrologos habuit, prae ceteris, ut multi adserunt,
-<note id="n1.50.1">Omitted in P, but to be supplied from §</note>
-<note id="n1.50.4">(where Spengel would delete latitare per popinas, Abh. d. bayer. Akad. hist, phil. Kl. IX, p. 317).</note>
-<note id="n1.50.2">uero Meursius; sero P. </note>
+<note xml:id="n1.50.1">Omitted in P, but to be supplied from §</note>
+<note xml:id="n1.50.4">(where Spengel would delete latitare per popinas, Abh. d. bayer. Akad. hist, phil. Kl. IX, p. 317).</note>
+<note xml:id="n1.50.2">uero Meursius; sero P. </note>
 <pb n="p.52"/>
 <milestone unit="section" n="11"/>
 eminente Favorino. doctores, qui professioni suae inhabiles videbantur, ditatos honoratosque a professione dimisit. </p>
 </div>
-<div type="chapter" n="17">
+<div type="textpart" subtype="chapter" n="17">
 <p>
 <milestone unit="section" n="1"/>
 Quos in privata vita inimicos habuit, imperator tantum neglexit, ita ut uni, quem capitalem habuerat,
@@ -604,8 +630,8 @@ percontatus, cur se marmoribus destringendum daret, ubi audivit hoc idcirco fier
 eum donavit et sumptibus, verum alia die cum plures senes ad provocandam liberalitatem principis parieti se adtererent, evocari eos iussit et alium ab alio
 <milestone unit="section" n="8"/>
 invicem defricari. fuit et plebis iactantissimus amator, peregrinationis ita cupidus ut omnia quae legerat de locis orbis terrarum praesens vellet addis-
-<note id="n1.52.1">sibi iussit adponi Mommsen; quibusque (quiq P a) adponi P 1; quibusque iussit adponi P corr.; quibusque adponit Peter. </note>
-<note id="n1.52.2">parieti inserted here by Kellerbauer and accepted by Peter 2; omitted in P. </note>
+<note xml:id="n1.52.1">sibi iussit adponi Mommsen; quibusque (quiq P a) adponi P 1; quibusque iussit adponi P corr.; quibusque adponit Peter. </note>
+<note xml:id="n1.52.2">parieti inserted here by Kellerbauer and accepted by Peter 2; omitted in P. </note>
 <pb n="p.54"/>
 <milestone unit="section" n="9"/>
 cere, frigora et tempestates ita patienter tulit ut
@@ -620,7 +646,7 @@ magnifica dedit dona. cum a Pharasmane ipse quoque ingentia dona
 <note target="n1.54.2"/>
 accepisset atque inter haec auratas quoque chlamydes, trecentos noxios eum auratis chlamydibus in arenam misit ad eius munera deridenda. </p>
 </div>
-<div type="chapter" n="18">
+<div type="textpart" subtype="chapter" n="18">
 <p>
 <milestone unit="section" n="1"/>
 Cum iudicaret, in consilio habuit non amicos suos aut comites solum sed iuris consultos et praecipue Iuventium
@@ -633,15 +659,15 @@ transferendae ad aliam urbem ullius
 <note target="n1.54.5"/>
 <milestone unit="section" n="3"/>
 materiae causa dirueretur. liberis proscriptorum
-<note id="n1.54.1">tegeret Exc. Cus. and P corr.; texeret P 1; texerit Peter. </note>
-<note id="n1.54.2">ingentia munia dona P; munia deleted by Petrarch; munia dono Peter.</note>
-<note id="n1.54.3">Iuuentium Cas.; iulium P.</note>
-<note id="n1.54.4">aliqua
-<gap/>
+<note xml:id="n1.54.1">tegeret Exc. Cus. and P corr.; texeret P 1; texerit Peter. </note>
+<note xml:id="n1.54.2">ingentia munia dona P; munia deleted by Petrarch; munia dono Peter.</note>
+<note xml:id="n1.54.3">Iuuentium Cas.; iulium P.</note>
+<note xml:id="n1.54.4">aliqua
+<gap reason="ellipsis"/>
 dirueretur Petschenig; alique
-<gap/>
+<gap reason="ellipsis"/>
 dirueretur P 1; diriperentur P corr.</note>
-<note id="n1.54.5">ullius P corr. (so Peter, but conj. illius); ullis P 1; utilis Cornelissen; uilis Mommsen. </note>
+<note xml:id="n1.54.5">ullius P corr. (so Peter, but conj. illius); ullis P 1; utilis Cornelissen; uilis Mommsen. </note>
 <pb n="p.56"/>
 <milestone unit="section" n="4"/>
 duodecimas bonorum concessit, maiestatis crimina
@@ -662,11 +688,11 @@ servorum et liberorum tulit, lavacra pro sexibus
 <milestone unit="section" n="11"/>
 separavit, si dominus in domo interemptus esset, non de omnibus servis quaestionem haberi sed de iis qui per vicinitatem poterant sentire praecepit. </p>
 </div>
-<div type="chapter" n="19">
+<div type="textpart" subtype="chapter" n="19">
 <p>
 <milestone unit="section" n="1"/>
 In Etruria praeturam imperator egit. per
-<note id="n1.56.1">si lacking in P1, added by P corr. </note>
+<note xml:id="n1.56.1">si lacking in P1, added by P corr. </note>
 <pb n="p.58"/>
 Latina oppida dictator et aedilis et duumvir fuit, apud Neapolim demarchus, in patria sua quinquennalis et item Hadriae quinquennalis, quasi in alia patria, et Athenis archon fuit.
 <milestone unit="section" n="2"/>
@@ -697,7 +723,7 @@ transtulit et Colossum stantem atque suspensum per Decrianum architectum de eo l
 <milestone unit="section" n="13"/>
 elephantos viginti quattuor exhiberet, et cum hoc simulacrum post Neronis vultum, cui antea dicatum fuerat, Soli consecrasset, aliud tale Apollodoro architecto auctore facere Lunae molitus est. </p>
 </div>
-<div type="chapter" n="20">
+<div type="textpart" subtype="chapter" n="20">
 <p>
 <milestone unit="section" n="1"/>
 In conloquiis etiam humillimorum civilissimus fuit, detestans eos qui sibi hanc voluptatem humanitatis quasi servantes
@@ -707,8 +733,8 @@ fastigium principis inviderent.
 apud Alexandriam in Museo multas quaestiones professoribus proposuit et propositas ipse dissolvit.
 <milestone unit="section" n="3"/>
 Marius Maximus dicit eum natura crudelem fuisse
-<note id="n1.60.1">auctorum Peter, from Suet. Domit. 5; ueterum P.</note>
-<note id="n1.60.2">seruantes Roos, Mn. 41, p. 144; seruantis P. </note>
+<note xml:id="n1.60.1">auctorum Peter, from Suet. Domit. 5; ueterum P.</note>
+<note xml:id="n1.60.2">seruantes Roos, Mn. 41, p. 144; seruantis P. </note>
 <pb n="p.62"/>
 et idcirco multa pie fecisse quod timeret, ne sibi idem quod Domitiano accidit eveniret.
 <milestone unit="section" n="4"/>
@@ -736,14 +762,14 @@ omnes publicas rationes ita complexus est ut domum privatam quivis
 paterfamilias diligens non satis novit.
 <note target="n1.62.3"/>
 equos et canes
-<note id="n1.62.1">So P; strictim Peter2; raptim Novak.</note>
-<note id="n1.62.2">si potest (potes P 1) credi removed by the edd., so Haupt, Opusc. III. p. 421, but Vahlen (ind. lect. Ber. hib. 1880/1, p. 13) would retain, joining to the following. </note>
-<note id="n1.62.3"> non satis uouit P, which Haupt would remove (loc. cit.); non setius norit Mommsen, Peter 2. </note>
+<note xml:id="n1.62.1">So P; strictim Peter2; raptim Novak.</note>
+<note xml:id="n1.62.2">si potest (potes P 1) credi removed by the edd., so Haupt, Opusc. III. p. 421, but Vahlen (ind. lect. Ber. hib. 1880/1, p. 13) would retain, joining to the following. </note>
+<note xml:id="n1.62.3"> non satis uouit P, which Haupt would remove (loc. cit.); non setius norit Mommsen, Peter 2. </note>
 <pb n="p.64"/>
 <milestone unit="section" n="13"/>
 sic amavit ut iis sepulchra constitueret, oppidum Hadrianotheras in quodam loco, quod illic et feliciter esset venatus et ursam occidisset aliquando, constituit. </p>
 </div>
-<div type="chapter" n="21">
+<div type="textpart" subtype="chapter" n="21">
 <p>
 <milestone unit="section" n="1"/>
 De iudicibus omnibus semper cuncta scrutando tamdiu requisivit quamdiu verum inveniret.
@@ -763,8 +789,8 @@ Fuerunt eius temporibus fames pestilentia terrae motus, quae omnia, quantum potu
 civitatibus vastatis per ista subvenit, fuit etiam
 <milestone unit="section" n="7"/>
 Tiberis inundatio. Latium multis civitatibus dedit, tributa multis remisit.
-<note id="n1.64.1">seuerum Petschenig; seuero P; seuere P corr.; seue B 2, whence Peter saeue.</note>
-<note id="n1.64.2">so Mommsen; colafum daret et diceret P corr. (from P 1 colla fundar et qui); qui et collafum daret; cui
+<note xml:id="n1.64.1">seuerum Petschenig; seuero P; seuere P corr.; seue B 2, whence Peter saeue.</note>
+<note xml:id="n1.64.2">so Mommsen; colafum daret et diceret P corr. (from P 1 colla fundar et qui); qui et collafum daret; cui
 <q>Noli,</q>
 etc. Bitschofsky. </note>
 <pb n="p.66"/>
@@ -787,7 +813,7 @@ Albanos et Hiberos amicissimos habuit, quod reges eorum largitionibus prosecutus
 <milestone unit="section" n="14"/>
 illum venire contempsissent. reges Bactrianorum legatos ad eum amicitiae petendae causa supplices miserunt. </p>
 </div>
-<div type="chapter" n="22">
+<div type="textpart" subtype="chapter" n="22">
 <p>
 <milestone unit="section" n="1"/>
 Tutores saepissime dedit, disciplinam civilem
@@ -805,9 +831,9 @@ sumptus convivii constituit et ad antiquum modum redegit.
 vehicula cum ingentibus sarcinis urbem ingredi prohibuit.
 <milestone unit="section" n="7"/>
 sederi equos in civitatibus non sivit. ante octavam horam in publico neminem nisi aegrum lavari
-<note id="n1.66.1">nimiam P corr., Novak; nimiae P 1; nimie Peter 2.</note>
-<note id="n1.66.2">a Mesopotamiis Novak after P corr. omitting a; Mesopotamenos P 1, Peter.</note>
-<note id="n1.66.3">toga. summa diligentia in dies Mommsen; toga summissa diligentia iudices P; iudicis Peter. possession of this status meant chiefly local autonomy and the bestowal of Roman citizenship on local magistrates. </note>
+<note xml:id="n1.66.1">nimiam P corr., Novak; nimiae P 1; nimie Peter 2.</note>
+<note xml:id="n1.66.2">a Mesopotamiis Novak after P corr. omitting a; Mesopotamenos P 1, Peter.</note>
+<note xml:id="n1.66.3">toga. summa diligentia in dies Mommsen; toga summissa diligentia iudices P; iudicis Peter. possession of this status meant chiefly local autonomy and the bestowal of Roman citizenship on local magistrates. </note>
 <pb n="p.68"/>
 <milestone unit="section" n="8"/>
 passus est. ab epistulis et a libellis primus equites
@@ -824,7 +850,7 @@ lacum emisit, quattuor consulares per omnem Italiam
 <milestone unit="section" n="14"/>
 iudices constituit, quando in Africam venit, ad adventum eius post quinquennium pluit, atque ideo ab Africanis dilectus est. </p>
 </div>
-<div type="chapter" n="23">
+<div type="textpart" subtype="chapter" n="23">
 <p>
 <milestone unit="section" n="1"/>
 Peragratis sane omnibus orbis partibus capite nudo et in summis plerumque imbribus atque
@@ -851,7 +877,7 @@ aperte vel per insidias; quando quidem etiam Sabina uxor non sine fabula veneni 
 Tunc Ceionium Commodum, Nigrini generum insidiatoris quondam, sibi forma commendatum adoptare
 <milestone unit="section" n="11"/>
 constituit, adoptavit ergo Ceionium Commodum
-<note id="n1.70.1">item om. in P, inserted by Peter. </note>
+<note xml:id="n1.70.1">item om. in P, inserted by Peter. </note>
 <pb n="p.72"/>
 Verum invitis omnibus eumque Helium Verum Caesarem
 <milestone unit="section" n="12"/>
@@ -871,15 +897,15 @@ Commodus autem prae valetudine nec gratias quidem in senatu
 <milestone unit="section" n="16"/>
 agere potuit Hadriano de adoptione, denique accepto largius antidoto ingravescente valetudine per somnum periit ipsis kalendis Ianuariis, quare ab Hadriano votorum causa lugeri est vetitus. </p>
 </div>
-<div type="chapter" n="24">
+<div type="textpart" subtype="chapter" n="24">
 <p>
 <milestone unit="section" n="1"/>
 Et 3 mortuo Helio Vero Caesare Hadrianus ingruente tristissima valetudine adoptavit Arrium Antoninum, qui postea Pius dictus est, et ea quidem
 <note target="n1.72.4"/>
-<note id="n1.72.1">adoptationem P, Petschenig; adoptionem Peter. </note>
-<note id="n1.72.2"> consulatus consumptibus P. </note>
-<note id="n1.72.3"> et P; sed Cas., Peter. </note>
-<note id="n1.72.4"> et ea quidem Jordan; et eadem P. </note>
+<note xml:id="n1.72.1">adoptationem P, Petschenig; adoptionem Peter. </note>
+<note xml:id="n1.72.2"> consulatus consumptibus P. </note>
+<note xml:id="n1.72.3"> et P; sed Cas., Peter. </note>
+<note xml:id="n1.72.4"> et ea quidem Jordan; et eadem P. </note>
 <pb n="p.74"/>
 lege ut ille sibi duos adoptaret, Annium Verum et Marcum
 <milestone unit="section" n="2"/>
@@ -904,12 +930,12 @@ ipse pateretur occidi,
 iratus illis auctorem proditionis iussit occidi, qui tamen ab Antonino servatus est.
 <milestone unit="section" n="11"/>
 statimque testamentum scripsit nec tamen actus rei
-<note id="n1.74.1">dicente
-<gap/>
+<note xml:id="n1.74.1">dicente
+<gap reason="ellipsis"/>
 occidi follows in P statimque
-<gap/>
+<gap reason="ellipsis"/>
 praetermisit; transposed to follow ut
-<gap/>
+<gap reason="ellipsis"/>
 ferret by Gemoll, so Peter 2. </note>
 <pb n="p.76"/>
 <milestone unit="section" n="12"/>
@@ -919,7 +945,7 @@ occidere subtracto pugione saevior
 <milestone unit="section" n="13"/>
 factus est. petiit et venenum a medico, qui se ipse, ne daret, occidit. </p>
 </div>
-<div type="chapter" n="25">
+<div type="textpart" subtype="chapter" n="25">
 <p>
 <milestone unit="section" n="1"/>
 Ea tempestate supervenit quaedam mulier, quae diceret somnio se monitam ut insinuaret Hadriano, ne se occideret, quod esset bene valiturus; quod cum non fecisset, esse caecatam. iussam tamen iterum Hadriano eadem dicere atque genua eius osculare,
@@ -945,11 +971,11 @@ Sub ipso mortis tempore et Servianum nonaginta annos agentem, ut
 supra dictum est, ne sibi superviveret
 <note target="n1.76.5"/>
 atque, ut putabat, imperaret, mori coegit et ob leves offensas plurimos iussit occidi, quos Anton-
-<note id="n1.76.1">est con. P.</note>
-<note id="n1.76.2">oculos om. in P, supplied by Gleye; uisum (added after recepturam), P corr., so Peter, but see Novak I, p. 3. </note>
-<note id="n1.76.3"> insomnium Cas.; in somnio P; somnium Novak. </note>
-<note id="n1.76.4">ut B corr., om. in P; supra dictum est deleted by Peter. </note>
-<note id="n1.76.5">superuiueret Petrarch; suprauiueret P, Peter. </note>
+<note xml:id="n1.76.1">est con. P.</note>
+<note xml:id="n1.76.2">oculos om. in P, supplied by Gleye; uisum (added after recepturam), P corr., so Peter, but see Novak I, p. 3. </note>
+<note xml:id="n1.76.3"> insomnium Cas.; in somnio P; somnium Novak. </note>
+<note xml:id="n1.76.4">ut B corr., om. in P; supra dictum est deleted by Peter. </note>
+<note xml:id="n1.76.5">superuiueret Petrarch; suprauiueret P, Peter. </note>
 <pb n="p.78"/>
 <milestone unit="section" n="9"/>
 inus reservavit. et moriens quidem hos versus fecisse dicitur: Animula vagula blandula hospes comesque corporis, quae nunc ab ibis in loca pallidula rigida nudula? nec ut soles dabis iocos!
@@ -964,7 +990,7 @@ mensibus V, diebus XVII. imperavit annis XX,
 <note target="n1.78.3"/>
 mensibus XI. </p>
 </div>
-<div type="chapter" n="26">
+<div type="textpart" subtype="chapter" n="26">
 <p>
 <milestone unit="section" n="1"/>
 Statura fuit procerus, forma comptus, flexo ad pectinem capillo, promissa barba, ut vulnera, quae in facie naturalia erant, tegeret, habitudine robusta.
@@ -978,9 +1004,9 @@ in convivio tragoedias comoedias Atellanas sambucas
 lectores poetas pro re semper exhibuit. Tiburtinam Villam mire exaedificavit, ita ut in ea et provinciarum et locorum celeberrima nomina inscriberet, velut Lyceum, Academian, Prytaneum, Canopum, Poicilen, Tempe vocaret, et, ut nihil praetermitteret, etiam inferos finxit.
 <milestone unit="section" n="6"/>
 Signa mortis haec habuit: natali suo ultimo, cum
-<note id="n1.78.1">multos P; multo Peter.</note>
-<note id="n1.78.2">LXII Salm.; LXXII P. </note>
-<note id="n1.78.3">XX Cas.; XXI P. </note>
+<note xml:id="n1.78.1">multos P; multo Peter.</note>
+<note xml:id="n1.78.2">LXII Salm.; LXXII P. </note>
+<note xml:id="n1.78.3">XX Cas.; XXI P. </note>
 <pb n="p.80"/>
 Antoninum commendaret, praetexta sponte delapsa
 <milestone unit="section" n="7"/>
@@ -994,7 +1020,7 @@ loqueretur, cum eius verba nullus agnosceret. idem cum vellet in senatu dicere
 <q> post meam</q>
 dixit, somniavit praeterea se a patre potionem soporiferam impetrasse, item somniavit a leone se oppressum esse. </p>
 </div>
-<div type="chapter" n="27">
+<div type="textpart" subtype="chapter" n="27">
 <p>
 <milestone unit="section" n="1"/>
 In mortuum eum a multis multa sunt
@@ -1006,8 +1032,8 @@ divus, nisi Antoninus rogasset.
 templum denique ei pro sepulchro apud Puteolos constituit et quinquennale certamen et flamines et sodales et multa alia, quae ad honorem quasi numinis
 <milestone unit="section" n="4"/>
 pertinerent. qua re, ut supra dictum est, multi putant Antoninum Pium dictum.
-<note id="n1.80.1">est P. </note>
+<note xml:id="n1.80.1">est P. </note>
 </p>
 </div>
-
+</div>
 </body></text></TEI>

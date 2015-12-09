@@ -1,4 +1,5 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
@@ -6,8 +7,8 @@
                 <title type="sub">Machine readable text</title>
                 <author n="Quint.">Quintilian</author>
                 <editor n="Butler" role="editor">Harold Edgeworth Butler</editor>
+		<principal>Gregory Crane</principal>
                 <sponsor>Perseus Project, Tufts University</sponsor>
-                <principal>Gregory Crane</principal>
                 <respStmt>
                     <resp>Prepared under the supervision of</resp>
                     <name>Lisa Cerrato</name>
@@ -16,15 +17,14 @@
                     <name>David Smith</name>
                 </respStmt>
                 <funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
-            </titleStmt><publicationStmt><publisher>Trustees of Tufts University</publisher><pubPlace>Medford, MA</pubPlace><authority>Perseus Project</authority></publicationStmt>
-            
+            </titleStmt>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
                 <authority>Perseus Project</authority>
             </publicationStmt>
-            <sourceDesc default="NO">
-                <biblStruct default="NO">
+            <sourceDesc default="false">
+                <biblStruct default="false">
                     <monogr>
                         <author>Quintilian</author>
                         <title>With An English Translation</title>
@@ -39,6 +39,23 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+	    <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                         matchPattern="(\\w+).(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\']/tei:div[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                         matchPattern="(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                         matchPattern="(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
                 <refState unit="book"/>
                 <refState unit="chapter"/>
@@ -49,13 +66,13 @@
             </refsDecl>
         </encodingDesc>
         <profileDesc>
-            <langUsage default="NO">
-                <language ident="en">English</language>
+            <langUsage default="false">
                 <language ident="la">Latin</language>
-                <language ident="greek">Greek</language>
+                <language ident="en">English</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
-        <revisionDesc><!--
+        <revisionDesc><change who="GRC" when="2006">tagging</change><!--
             <change>
                 <date>2006</date>
                 <respStmt>
@@ -64,12 +81,13 @@
                 </respStmt>
                 <item/>
             </change>
-        --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+        --><change when="2014-08-01" who="Stella Dee">edited markup</change>
+           <change who="Zach Himes" when="2015-11-17">Converted to TEI P5 and EpiDoc</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
+    <text xml:lang="eng">
         <body>
-            <pb id="p.373"/>
-            <div part="N" sample="complete" org="uniform" n="6" type="book">
+            <pb xml:id="p.373"/>
+            <div part="N" sample="complete" org="uniform" n="6" subtype="book" type="translation">
                 <head>Book VI</head>
                 <p>
                     <milestone n="pr" unit="chapter"/>
@@ -77,7 +95,7 @@
                     I undertook my present task, Marcellus Victorius,
 mainly to gratify your request,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Proem, Bk. I.
                     </note>
                     but also with a view
@@ -87,7 +105,7 @@ which I have devoted myself to my labours has
 been inspired by the almost imperative necessity
 imposed by the office conferred on me,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Proem, Bk. IV.
                     </note>
                     though
@@ -113,7 +131,7 @@ in whom I reposed all the hopes that should solace
 my old age. What is there left for me to do?
                     <milestone n="3" unit="section"/>
                     Or
-                    <pb id="p.375"/>
+                    <pb xml:id="p.375"/>
                     what further use can I hope to be on earth, when
 heaven thus frowns upon me? For it so chances
 that just at the moment when I began my book on
@@ -152,7 +170,7 @@ Still her children survived her, and I, too,
                     lived on
 by some unnatural ordinance of fate, which for all
 its perversity was what she herself desired; and
-                    <pb id="p.377"/>
+                    <pb xml:id="p.377"/>
                     thus by her swift departure from this life she escaped
 tile worst of tortures. My youngest boy was barely
 five, when he was the first to leave me, robbing me
@@ -195,7 +213,7 @@ worship, I swear that I discerned in him such talent,
 not merely in receiving instruction, although in all
 my wide experience I have never seen his like, nor
 in his power of spontaneous application, to which his
-                    <pb id="p.379"/>
+                    <pb xml:id="p.379"/>
                     teachers can bear witness, but such upright, pious,
 humane and generous feelings, as alone might have
 sufficed to fill me with the dread of the fearful
@@ -241,7 +259,7 @@ hope that you would rise to all the high offices of
 state, when you were destined to be the son-in-law
 of your uncle the praetor, and gave promise of
 rivalling the eloquence of your grandsire? and do I
-                    <pb id="p.381"/>
+                    <pb xml:id="p.381"/>
                     your father survive only to weep? May my endurance (not my will to live, for that is gone from me)
 prove me worthy of you through all my remaining
 years. For it is in vain that we impute all our ills
@@ -279,7 +297,7 @@ though it be, is such that nothing can shake it.
                     And the very fact that I have no personal interest
 in persevering with my present work, but am moved
 solely by the desire to serve others, if indeed anything that I write can be of such service, is a reason
-                    <pb id="p.383"/>
+                    <pb xml:id="p.383"/>
                     for regarding my labours with an indulgent eye.
 Alas! I shall bequeath it, like my patrimony, for
 others than those to whom it was my design to
@@ -321,10 +339,10 @@ your judges, what would he say when these facts
 were proved against you?
                     </quote>
                     Then follows the
-                    <pb id="p.385"/>
+                    <pb xml:id="p.385"/>
                     enumeration. Another admirable example
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ib.</hi>
+                        <hi rend="italic">ib.</hi>
                         lxxii.
                     </note>
                     may be found
@@ -365,7 +383,7 @@ part of prompter to him.
 and almost all philosophers who have left anything
 in writing on the art of oratory have held that the
 recapitulation is the sole form of peroration. I
-                    <pb id="p.387"/>
+                    <pb xml:id="p.387"/>
                     imagine that the reason why the Athenians did so
 was that appeals to the emotions were forbidden to
 Athenian orators, a proclamation to this effect being
@@ -373,17 +391,17 @@ actually made by the court-usher.
                     <note anchored="true" place="unspecified">
                         Athenaens (xiii. 6, 590 E) states that a law against
 appeals to the emotions was passed at Athens after Hyperides' defence of 'hryne (
-                        <hi rend="italics">see</hi>
+                        <hi rend="italic">see</hi>
                         <milestone n="2" unit="chapter"/>
                         <milestone n="1" unit="section"/>
                         xv. 9.). But there is no real
 evidence for the existence of such a law save in cases tried
 before the Areopagps (see Arist.
-                        <hi rend="italics">Rhet.</hi>
+                        <hi rend="italic">Rhet.</hi>
                         I. i. 5). Appeals for
 pity were as freely employed in the ordinary courts of
 Athens during the fourth century as at Rome. When Xenophon (
-                        <hi rend="italics">Mem.</hi>
+                        <hi rend="italic">Mem.</hi>
                         iv. iv. 4) says that Socrates refused to beg
 mercy of his judges contrary to the law, he seems to refer
 to the spirit, not the letter.
@@ -421,7 +439,7 @@ by the pity excited for the man whose wrongs he
 seeks to avenge, while the defendant will at times
 develop no small vehemence when he complains of
 the injustice of the calumny or conspiracy of which
-                    <pb id="p.389"/>
+                    <pb xml:id="p.389"/>
                     he is the victim. It will therefore be best to treat
 these duties separately: as I have already said,
                     <note anchored="true" place="unspecified">IV. i. 27, 28.</note>
@@ -460,14 +478,14 @@ judge have already been stated in my remarks on
 the exordium.
                     <note anchored="true" place="unspecified">
                         IV. i 5
-                        <hi rend="italics">sq.</hi>
+                        <hi rend="italic">sq.</hi>
                     </note>
                     There are however certain things
 which require fuller treatment in the peroration
 than in the exordium, where it is sufficient merely to
 outline them. This fuller treatment is specially
 required if the accused be a man of violent, unpopular or dangerous character or if the
-                    <pb id="p.391"/>
+                    <pb xml:id="p.391"/>
                     condemnation of the accused is likely to cover the judges with
 glory or his acquittal with disgrace.
                     <milestone n="13" unit="section"/>
@@ -480,7 +498,7 @@ bribery has been committed and everybody knows
 that you know it.
                     </quote>
                     Cicero again in the
-                    <hi rend="italics">Verrines</hi>
+                    <hi rend="italic">Verrines</hi>
                     <note anchored="true" place="unspecified">I. xv. 43.</note>
                     says that the ill-name acquired by the courts may
 be effaced by the condemnation of Verres, a statement that comes under the head of the conciliatory
@@ -519,7 +537,7 @@ brings against the accused seem as atrocious or, if
 feasible, as deplorable as possible. Its atrocity may
 be enhanced by considerations of the nature of
 the act, the position of its author or the victim, the
-                    <pb id="p.393"/>
+                    <pb xml:id="p.393"/>
                     purpose, time, place and manner of the act: all of
 which may be treated with infinite variety.
                     <milestone n="16" unit="section"/>
@@ -552,7 +570,7 @@ succeeded in inflicting. But it is the manner of the
 act that contributes most to the impression of its
 atrocity, if, for example, the blow was violent or insulting: thus Demosthenes
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">in Mid.</hi>
+                        <hi rend="italic">in Mid.</hi>
                         72.
                     </note>
                     seeks to excite hatred
@@ -563,7 +581,7 @@ of his face.
                     It is in this connexion that we shall
 have to consider whether a man was killed by sword
 or fire or poison, by one wound or several, and
-                    <pb id="p.395"/>
+                    <pb xml:id="p.395"/>
                     whether he was slain on the spot or tortured by
 being kept in suspense. The accuser will also
 frequently attempt to excite pity by complaining of
@@ -590,7 +608,7 @@ with by the prosecution, since they lose their novelty.
 An instance of this will be found in the speech of
 Messala against Aufidia,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         IV. ii. 106. See note prefixed to Index. 207.
                     </note>
                     where he warns Servius
@@ -598,7 +616,7 @@ Sulpicius not to talk about the peril which
 threatens the signatories to the document and the
 defendant herself. Again Aesehines
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">in Ctes.</hi>
+                        <hi rend="italic">in Ctes.</hi>
                     </note>
                     foretells the
 line of defence which Demosthenes will pursue.
@@ -610,7 +628,7 @@ of recapitulation.
                 <p>
                     <milestone n="21" unit="section"/>
                     If we turn to the defendant, we must note that
-                    <pb id="p.397"/>
+                    <pb xml:id="p.397"/>
                     his worth, nis manly pursuits, the scars from wounds
 received in battle, his rank and the services rendered
 by his ancestors, will all commend him to the goodwill of the judges. Cicero,
@@ -651,11 +669,11 @@ fail.
 reference to the age and sex of the accused, or to
 his nearest and dearest, that is, his children, parents
 and kindred, all of which topics are treated in
-                    <pb id="p.399"/>
+                    <pb xml:id="p.399"/>
                     different ways. Sometimes the advocate himself may
 even assume the role of close intimacy with his
 client, as Cicero does in the
-                    <hi rend="italics">pro Milone,</hi>
+                    <hi rend="italic">pro Milone,</hi>
                     <note anchored="true" place="unspecified">xxxvii. 102.</note>
                     where he
 cries:
@@ -697,7 +715,7 @@ pity if they urged it with their own lips, so it is
 rendered to some extent all the more effective when
 it is, as it were, put into their mouth by their
 advocate: we may draw a parallel from the stage,
-                    <pb id="p.401"/>
+                    <pb xml:id="p.401"/>
                     where the actor's voice and delivery produce greater
 emotional effect when he is speaking in an assumed
 role than when he speaks in his own character.
@@ -707,13 +725,13 @@ Consequently Cicero, to quote him once again,
 mouth, and prefers to commend him by his staunchness of character, still lends him words in the form
 of such complaint as may become a brave man.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         xxxiv. 94.
                     </note>
                     <quote>Alas!</quote>
                     he says,
                     <quote>
-                        <hi rend="italics">my</hi>
+                        <hi rend="italic">my</hi>
                         labours have been in vain!
 Alas for my blighted hopes! Alas for my baffled
 purpose!
@@ -725,9 +743,9 @@ and there is good reason for the saying that nothing
 dries so quickly as tears.
                     <note anchored="true" place="unspecified">
                         A quotation from the rhetorician Apollonius,
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Cic.
-                        <hi rend="italics">de. Inv.</hi>
+                        <hi rend="italic">de. Inv.</hi>
                         i. 56.
                     </note>
                     <milestone n="28" unit="section"/>
@@ -750,7 +768,7 @@ our eloquence ought to be pitched higher in this
 portion of our speech than in any other, since,
 wherever it fails to add something to what has preceded, it seems even to diminish its previous effect,
 while a
-                    <hi rend="italics">diminuendo</hi>
+                    <hi rend="italic">diminuendo</hi>
                     is merely a step towards the
 rapid disappearance of the emotion.
                 </p>
@@ -758,7 +776,7 @@ rapid disappearance of the emotion.
                     <milestone n="30" unit="section"/>
                     Actions as well as words may be employed to
 move the court to tears. Hence the custom of
-                    <pb id="p.403"/>
+                    <pb xml:id="p.403"/>
                     bringing accused persons into court wearing squalid
 and unkempt attire, and of introducing their children
 and parents, and it is with this in view that we see
@@ -796,7 +814,7 @@ and the introduction of relatives similarly arrayed,
 has proved of value, and that entreaties have been
 of great service to save the accused from condemnation. The practice therefore of appealing to the
 judges by all that is near and dear to them will be
-                    <pb id="p.405"/>
+                    <pb xml:id="p.405"/>
                     of great service to the accused, especially if he, too,
 has children, a wife and parents.
                     <milestone n="34" unit="section"/>
@@ -813,14 +831,14 @@ we must take care not to carry matters with too
 high a hand, for fear of creating a bad impression
 by an appearance of over-confidence.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         although such entreaties are effective, they cannot
 always be employed. Thus they would have been out of
 place in the case of Milo, whose character was such that it
 was necessary to defend him with a boldness worthy of the
 boldness required to perform the deed of which he was
 accused. Still we must not carry such methods (
-                        <hi rend="italics">e.g.</hi>
+                        <hi rend="italic">e.g.</hi>
                         such
 as Cicero employs on behalf of Milo) too far.
                     </note>
@@ -829,7 +847,7 @@ as Cicero employs on behalf of Milo) too far.
 effective of all such methods was in times past that
 by which more than anything else Cicero is considered to have saved Lucius Murena
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mur.</hi>
+                        <hi rend="italic">pro Mur.</hi>
                         xxxvii. 79.
                     </note>
                     from the
@@ -850,7 +868,7 @@ admit of both kinds of peroration, namely, that which
 consists in the recapitulation of the proofs and that
 which takes the form of an appeal for pity, the
 latter being employed when the position or reputation of the litigant seems to be in danger. For to
-                    <pb id="p.407"/>
+                    <pb xml:id="p.407"/>
                     embark on such tragic methods in trivial cases would
 be like putting the mask and buskins of Hercules
 on a small child.
@@ -891,7 +909,7 @@ to secure a great effect by producing the portrait of
 her husband, but sent the court into repeated
 peals of laughter. For the persons entrusted with
 the duty of handing in the portrait had no idea
-                    <pb id="p.409"/>
+                    <pb xml:id="p.409"/>
                     of the nature of a peroration and displayed it whenever the advocate looked their way, and when at last
 it was produced at the proper moment it destroyed
 all the good effect of his previous eloquence by its
@@ -902,13 +920,13 @@ man's corpse.
 of what happened to Glycon, nicknamed Spiridion.
 He asked a boy whom he produced in court why he
 was crying; to which the boy replied, that his
-                    <hi rend="italics">paedagogus</hi>
+                    <hi rend="italic">paedagogus</hi>
                     was pinching him. But the most effective
 warning as to the perils which beset the peroration
 is the story told by Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Cluent. xx.</hi>
-                        <hi rend="italics">sqq. ep.</hi>
+                        <hi rend="italic">pro Cluent. xx.</hi>
+                        <hi rend="italic">sqq. ep.</hi>
                         Quint. VI. iii. 40.
                     </note>
                     about the Caepasii.
@@ -941,7 +959,7 @@ orator who said,
 the most ferocious scowl that he could muster.
                     <milestone n="44" unit="section"/>
                     There is one point which it is specially important to
-                    <pb id="p.411"/>
+                    <pb xml:id="p.411"/>
                     remember, that we should never attempt to move our
 audience to tears without drawing on all the resources
 of our eloquence. For while this form of emotional
@@ -981,7 +999,7 @@ brought in some children to enhance the effect of
 his peroration, threw some dice among them, with
 the result that they began to scramble for them.
 For their childish ignorance of the perils with which
-                    <pb id="p.413"/>
+                    <pb xml:id="p.413"/>
                     they were threatened might in itself have awakened
 compassion.
                     <milestone n="48" unit="section"/>
@@ -1000,15 +1018,15 @@ kind we are discussing can be dispelled by the
 power of eloquence. Cicero provides most admirable
 examples of the way in which this may be done both
 in the
-                    <hi rend="italics">pro Rabirio</hi>
+                    <hi rend="italic">pro Rabirio</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp. Pro Rab.</hi>
+                        <hi rend="italic">cp. Pro Rab.</hi>
                         ix 24.
                     </note>
                     where he attacks the production
 in court of the portrait of Saturninus in the most
 dignified language, and in the
-                    <hi rend="italics">pro Vareno</hi>
+                    <hi rend="italic">pro Vareno</hi>
                     where he
 launches a number of witticisms against a youth
 whose wound had been unbound at intervals in the
@@ -1032,7 +1050,7 @@ wealth, which was in both cases enormous, added,
                 <p>
                     <milestone n="51" unit="section"/>
                     All these appeals to emotion, although some hold
-                    <pb id="p.415"/>
+                    <pb xml:id="p.415"/>
                     that they should be confined to the exordium and
 the peroration, which are, I admit, the places where
 they are most often used, may be employed in other
@@ -1070,7 +1088,7 @@ complicated case which is really made up of several
 cases, it will be necessary to introduce a number of
 passages resembling perorations, as Cicero does in
 the
-                    <hi rend="italics">Vetrines,</hi>
+                    <hi rend="italic">Vetrines,</hi>
                     where he laments over Philodamus, the
 ships' captains, the crucifixion of the Roman citizen,
 and a number of other tragic incidents.
@@ -1079,11 +1097,11 @@ and a number of other tragic incidents.
 these
                     <foreign xml:lang="grc">merikoi\ e)pi/logoi,</foreign>
                     by which they mean a peroration distributed among different portions of a speech.
-                    <pb id="p.417"/>
+                    <pb xml:id="p.417"/>
                     I should regard them rather as
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     than as
-                    <hi rend="italics">parts</hi>
+                    <hi rend="italic">parts</hi>
                     of the peroration, since the terms epilogue and
 peroration both clearly indicate that they form the
 conclusion of a speech.
@@ -1123,7 +1141,7 @@ at its highest. Even a slight and limited talent may,
 succeed in giving life to other departments of oratory,
 and in developing them to a serviceable extent. At
 any rate there are, and have always been, a
-                    <pb id="p.419"/>
+                    <pb xml:id="p.419"/>
                     considerable number of pleaders capable of discovering
 arguments adequate to prove their points. I am far
 from despising such, but I consider that their utility
@@ -1163,7 +1181,7 @@ hate or pity, they begin to take a personal interest
 in the case, and just as lovers are incapable of
 forming a reasoned judgment on the beauty of the
 object of their affections, because passion forestalls
-                    <pb id="p.421"/>
+                    <pb xml:id="p.421"/>
                     the sense of sight, so the judge, when overcome by
 his emotions, abandons all attempt to enquire into
 the truth of the arguments, is swept along by the
@@ -1183,8 +1201,8 @@ the orator must devote all his powers,
                             <quote>
                                 <l part="N">There lie the task and toil!</l>
                             </quote>
-                            <bibl default="NO">
-                                <hi rend="italics">Aen.</hi>
+                            <bibl default="false">
+                                <hi rend="italic">Aen.</hi>
                                 vi. 128.
                             </bibl>
                         </cit>
@@ -1198,36 +1216,36 @@ found.
                     <milestone n="8" unit="section"/>
                     Emotions however, as we learn from ancient
 authorities, fall into two classes; the one is called
-                    <hi rend="italics">pathos</hi>
+                    <hi rend="italic">pathos</hi>
                     by the Greeks and is rightly and correctly expressed in Latin by
-                    <hi rend="italics">adfectus</hi>
+                    <hi rend="italic">adfectus</hi>
                     (emotion): the other is
 called
-                    <hi rend="italics">ethos,</hi>
+                    <hi rend="italic">ethos,</hi>
                     a word for which in my opinion Latin has
 no equivalent: it is however rendered
-                    <hi rend="italics">by mores</hi>
+                    <hi rend="italic">by mores</hi>
                     (morals)
 and consequently the branch of philosophy known as
-                    <hi rend="italics">ethics</hi>
+                    <hi rend="italic">ethics</hi>
                     is styled
-                    <hi rend="italics">moral</hi>
+                    <hi rend="italic">moral</hi>
                     philosophy by us.
                     <milestone n="9" unit="section"/>
                     But close
 consideration of the nature of the subject leads me
 to think that in this connexion it is not so much
-                    <hi rend="italics">morals</hi>
+                    <hi rend="italic">morals</hi>
                     in general that is meant as certain peculiar
 aspects; for the term
-                    <hi rend="italics">morals</hi>
+                    <hi rend="italic">morals</hi>
                     includes every attitude
 of the mind. The more cautious writers have preferred to give the sense of the term rather than to
 translate it into Latin. They therefore explain
-                    <hi rend="italics">pathos</hi>
-                    <pb id="p.423"/>
+                    <hi rend="italic">pathos</hi>
+                    <pb xml:id="p.423"/>
                     as describing the more violent emotions and
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     as
 designating those which are calm and gentle: in the
 one case the passions are violent, in the other subdued, the former command and disturb, the latter
@@ -1235,9 +1253,9 @@ persuade and induce a feeling of goodwill.
                     <milestone n="10" unit="section"/>
                     Some
 add that
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     is continuous, while
-                    <hi rend="italics">pathos</hi>
+                    <hi rend="italic">pathos</hi>
                     is momentary. While admitting that this is usually the ease,
 I still hold that there are some subjects which
 demand that the more violent emotion should be
@@ -1249,45 +1267,45 @@ certain sense they are required in all.
                     <milestone n="11" unit="section"/>
                     For as everything treated by the orator may be regarded from
 the ethical standpoint, we may apply the word
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     whenever he speaks of what is honourable and expedient or of what ought or ought not to be done.
 Some regard commendation and excuse as the peculiar spheres of
-                    <hi rend="italics">ethos,</hi>
+                    <hi rend="italic">ethos,</hi>
                     but while I admit that they do
 fall within its sphere, I do not regard them as being
 alone in so doing.
                     <milestone n="12" unit="section"/>
                     Indeed I would add that
-                    <hi rend="italics">pathos</hi>
+                    <hi rend="italic">pathos</hi>
                     and
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     are sometimes of the same nature, differing
 only in degree; love for instance comes under the
 head of
-                    <hi rend="italics">pathos,</hi>
+                    <hi rend="italic">pathos,</hi>
                     affection of
-                    <hi rend="italics">ethos;</hi>
+                    <hi rend="italic">ethos;</hi>
                     sometimes however
 they differ, a distinction which is important for the
 peroration, since
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     is generally employed to calm
 the storm aroused by
-                    <hi rend="italics">pathos.</hi>
+                    <hi rend="italic">pathos.</hi>
                     I ought however to
 explain what is meant by
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     in greater detail,
 since the term is not in itself sufficiently expressive
 of its meaning.
                     <milestone n="13" unit="section"/>
                     The
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     which I have in my mind
 and which I desiderate in an orator is commended
 to our approval by goodness more than aught else
 and is not merely calm and mild, but in most cases
-                    <pb id="p.425"/>
+                    <pb xml:id="p.425"/>
                     ingratiating and courteous and such as to excite
 pleasure and affection in our hearers, while the chief
 merit in its expression lies in making it seem that
@@ -1296,7 +1314,7 @@ the facts and persons concerned and in the revelation of the character of the or
 all may recognise it.
                     <milestone n="14" unit="section"/>
                     This kind of
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     should be
 especially displayed in cases where the persons concerned are intimately connected, whenever we
 tolerate or pardon any act or offer satisfaction or
@@ -1319,10 +1337,10 @@ emotion to be shown when we ask pardon for the
 errors of the young, or apologise for some youthful
 amour. Sometimes again gentle raillery of another's
 passion may derive its tone from
-                    <hi rend="italics">ethos,</hi>
+                    <hi rend="italic">ethos,</hi>
                     though only
 to a partial extent. More closely dependent on
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     are the skilful exercise of feigned emotion or the
 employment of irony in making apologies or asking
 questions, irony being the term which is applied to
@@ -1330,7 +1348,7 @@ words which mean something other than they seem
 to express.
                     <milestone n="16" unit="section"/>
                     From the same source springs also that
-                    <pb id="p.427"/>
+                    <pb xml:id="p.427"/>
                     more powerful method of exciting hatred, when by
 a feigned submission to our opponents we pass silent
 censure on their violence. For the very fact of our
@@ -1344,32 +1362,32 @@ latter ourselves.
                     <milestone n="17" unit="section"/>
                     The emotion of love and longing
 for our friends and connexions is perhaps of an intermediate character, being stronger than
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     and
 weaker than
-                    <hi rend="italics">pathos.</hi>
+                    <hi rend="italic">pathos.</hi>
                     There is also good reason for
 giving the name of
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     to those scholastic exercises
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         I. ix. 3.
                     </note>
                     in which we portray rustics, misers, cowards and
 superstitious persons according as our theme may
 require. For if
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     denotes moral character, our
 speech must necessarily be based on
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     when it is
 engaged in portraying such character.
                 </p>
                 <p>
                     <milestone n="18" unit="section"/>
                     Finally
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     in all its forms requires the speaker to
 be a man of good character and courtesy. For it is
 most important that he should himself possess or be
@@ -1381,14 +1399,14 @@ will be of the utmost service to the cases which he
 undertakes. For the orator who gives the impression of being a bad man while he is speaking, is
 actually speaking badly, since his words seem to be
 insincere owing to the absence of
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     which would
 otherwise have revealed itself.
                     <milestone n="19" unit="section"/>
                     Consequently the
 style of oratory employed in such cases should be
 calm and mild with no trace of pride, elevation or
-                    <pb id="p.429"/>
+                    <pb xml:id="p.429"/>
                     sublimity, all of which would be out of place. It is
 enough to speak appropriately, pleasantly and persuasively, and therefore the intermediate
                     <note anchored="true" place="unspecified">
@@ -1401,19 +1419,19 @@ oratory is most suitable.
                 <p>
                     <milestone n="20" unit="section"/>
                     The
-                    <hi rend="italics">pathos</hi>
+                    <hi rend="italic">pathos</hi>
                     of the Greeks, which we correctly
 translate by
-                    <hi rend="italics">emotion,</hi>
+                    <hi rend="italic">emotion,</hi>
                     is of a different character, and
 I cannot better indicate the nature of the difference
 than by saying that
-                    <hi rend="italics">ethos</hi>
+                    <hi rend="italic">ethos</hi>
                     rather resembles comedy
 and
-                    <hi rend="italics">pathos</hi>
+                    <hi rend="italic">pathos</hi>
                     tragedy. For
-                    <hi rend="italics">pathos</hi>
+                    <hi rend="italic">pathos</hi>
                     is almost entirely
 concerned with anger, dislike, fear, hatred and pity.
 It will be obvious to all what topics are appropriate
@@ -1424,11 +1442,11 @@ subject in discussing the exordium and the peroration.
                     I wish however to point out that fear is of
 two kinds, that which we feel and that which we
 cause in others. Similarly there are two kinds of
-                    <hi rend="italics">invidia</hi>
+                    <hi rend="italic">invidia</hi>
                     (hatred, envy), to which the two adjectives
-                    <hi rend="italics">invidus</hi>
+                    <hi rend="italic">invidus</hi>
                     (envious) and
-                    <hi rend="italics">invidious</hi>
+                    <hi rend="italic">invidious</hi>
                     (invidious, hateful)
 correspond. The first supplies an epithet for persons,
 the second for things, and it is in this latter connexion that the orator's task is even more onerous.
@@ -1441,7 +1459,7 @@ we have suffered is of a more horrible nature than
 what are usually regarded as great evils. Vergil will
 provide an example in the lines
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Aen.</hi>
+                        <hi rend="italic">Aen.</hi>
                         iii. 321.
                     </note>
                     :—
@@ -1456,19 +1474,19 @@ provide an example in the lines
                 <p>
                     For how wretched was the lot of Andromache, if
 Polyxena be accounted happy in comparison with
-                    <pb id="p.431"/>
+                    <pb xml:id="p.431"/>
                     her!
                     <milestone n="23" unit="section"/>
                     Again the same problem arises when we endeavour to magnify our wrongs by saying that other
 far lesser ills are intolerable;
-                    <hi rend="italics">e.g.</hi>
+                    <hi rend="italic">e.g.</hi>
                     <quote>
                         If you had merely
 struck him, your conduct would have been indefensible. But you did more, you wounded him.
                     </quote>
                     However I will deal with this subject more fully
 when I come to speak of
-                    <hi rend="italics">amplification.</hi>
+                    <hi rend="italic">amplification.</hi>
                     <note anchored="true" place="unspecified">viii. iv. 9.</note>
                     Meanwhile
 I will content myself with the observation that the
@@ -1486,7 +1504,7 @@ the facts lead him, but awakens emotions which
 either do not naturally arise from the case or are
 stronger than the case would suggest. This is known
 as
-                    <hi rend="italics">deriosis,</hi>
+                    <hi rend="italic">deriosis,</hi>
                     <note anchored="true" place="unspecified">
                         Lit.
                         <quote>making terrible.</quote>
@@ -1508,7 +1526,7 @@ the guidance of nature herself.
                     <milestone n="26" unit="section"/>
                     The prime essential
 for stirring the emotions of others is, in my opinion,
-                    <pb id="p.433"/>
+                    <pb xml:id="p.433"/>
                     first to feel those emotions oneself. It is sometimes
 positively ridiculous to counterfeit grief, anger and
 indignation, if we content ourselves with accommodating our words and looks and make no attempt
@@ -1548,10 +1566,10 @@ own power? I will try to explain as best I may. There
 are certain experiences which the Greeks call
                     <foreign xml:lang="grc">fantasi/ai,</foreign>
                     and the Romans
-                    <hi rend="italics">visions,</hi>
+                    <hi rend="italic">visions,</hi>
                     whereby things absent
 are presented to our imagination with such extreme
-                    <pb id="p.435"/>
+                    <pb xml:id="p.435"/>
                     vividness that they seem actually to be before
 our very eyes.
                     <milestone n="30" unit="section"/>
@@ -1589,20 +1607,20 @@ my mind?
 Cicero
                     <note anchored="true" place="unspecified">
                         Perhaps an allusion to
-                        <hi rend="italics">Part. Or.</hi>
+                        <hi rend="italic">Part. Or.</hi>
                         vi. 20.
                         <foreign xml:lang="grc">e)na/rgeia</foreign>
                         =clearness.
                     </note>
                     calls
-                    <hi rend="italics">illumination</hi>
+                    <hi rend="italic">illumination</hi>
                     and
-                    <hi rend="italics">actuality,</hi>
+                    <hi rend="italic">actuality,</hi>
                     which makes
 us seem not so much to narrate as to exhibit the
 actual scene, while our emotions will be no less
 actively stirred than if we were present at the actual
-                    <pb id="p.437"/>
+                    <pb xml:id="p.437"/>
                     occurrence. Is it not from visions such as these that
 Vergil was inspired to write—
                 </p>
@@ -1612,8 +1630,8 @@ Vergil was inspired to write—
                             <l part="N">Sudden her fingers let the shuttle fall</l>
                             <l part="I">And all the thread was spilled,</l>
                         </quote>
-                        <bibl default="NO">
-                            <hi rend="italics">Aen.</hi>
+                        <bibl default="false">
+                            <hi rend="italic">Aen.</hi>
                             ix. 474.
                         </bibl>
                     </cit>
@@ -1625,8 +1643,8 @@ Vergil was inspired to write—
                         <quote>
                             <l part="N">In his smooth breast the gaping wound</l>
                         </quote>
-                        <bibl default="NO">
-                            <hi rend="italics">ib.</hi>
+                        <bibl default="false">
+                            <hi rend="italic">ib.</hi>
                             xi. 40.
                         </bibl>
                     </cit>
@@ -1645,7 +1663,7 @@ he wrote-
                     <quote>And dying sees his own dear Argive home</quote>
                     ?
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ib.</hi>
+                        <hi rend="italic">ib.</hi>
                         x. 783.
                     </note>
                     Again, when we desire to awaken pity,
@@ -1676,7 +1694,7 @@ at stake?
 the student should be moved by his theme, and
 should imagine it to be true; indeed, it is all the
 more desirable then, since, as a rule in scholastic
-                    <pb id="p.439"/>
+                    <pb xml:id="p.439"/>
                     declamations, the speaker more often appears as the
 actual litigant than as his advocate. Suppose we are
 impersonating an orphan, a shipwrecked man, or one
@@ -1717,7 +1735,7 @@ merely outside the courts, but in his actual speeches
 as well. Personally (though whether I am right in
 this view, or have been led astray by an exaggerated
 admiration for the prince of orators, I cannot say),
-                    <pb id="p.441"/>
+                    <pb xml:id="p.441"/>
                     I regard him as being the possessor of a remarkable
 turn of wit. For his daily speech was full of humour,
                     <milestone n="4" unit="section"/>
@@ -1756,17 +1774,17 @@ by words or deeds, but sometimes even by touch.
 Moreover, there is great variety in the things which
 raise a laugh, since we laugh not merely at those
 words or actions which are smart or witty, but also
-                    <pb id="p.443"/>
+                    <pb xml:id="p.443"/>
                     at those which reveal folly, anger or fear. Consequently, the cause of laughter is uncertain, since
 laughter is never far removed from derision.
                     <milestone n="8" unit="section"/>
                     For,
 as Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">De Or.</hi>
+                        <hi rend="italic">De Or.</hi>
                         II. lviii. 236.
 Where?
-                        <hi rend="italics">De Or.</hi>
+                        <hi rend="italic">De Or.</hi>
                         II. Iviii. 236.
                     </note>
                     says,
@@ -1811,7 +1829,7 @@ the charge had aroused.
 although I would not venture to assert that it is altogether independent of art (for it involves a certain
 power of observation, and rules for its employment
 have been laid down by writers both of Greece and
-                    <pb id="p.445"/>
+                    <pb xml:id="p.445"/>
                     Rome), I will insist on this much, that it depends
 mainly on nature and opportunity.
                     <milestone n="12" unit="section"/>
@@ -1850,13 +1868,13 @@ young student practice in the play of wit.
 even those pleasantries in which we indulge on
 certain occasions of festive licence (and to which we
 give the name of
-                    <hi rend="italics">mots,</hi>
+                    <hi rend="italic">mots,</hi>
                     <note anchored="true" place="unspecified">
                         The meaning of this passage is not clear, and no satisfactory explanation or correction has been suggested.
                     </note>
                     as, indeed, they are), if only
 a little more good sense were employed in their
-                    <pb id="p.447"/>
+                    <pb xml:id="p.447"/>
                     invention, and they were seasoned by a slight admixture of seriousness, might afford a most useful
 training. As it is, they serve merely to divert the
 young and merrymakers.
@@ -1866,26 +1884,26 @@ young and merrymakers.
                     There are various names by which we describe
 wit, but we have only to consider them separately
 to perceive their specific meaning. First, there is
-                    <hi rend="italics">urbanitas,</hi>
+                    <hi rend="italic">urbanitas,</hi>
                     which I observe denotes language with a
 smack of the city in its words, accent and idiom,
 and further suggests a certain tincture of learning
 derived from associating with well-educated men;
 in a word, it represents the opposite of rusticity.
 The meaning of
-                    <hi rend="italics">venustus</hi>
+                    <hi rend="italic">venustus</hi>
                     is obvious;
                     <milestone n="18" unit="section"/>
                     it means that
 which is said with grace and charm.
-                    <hi rend="italics">Salsus</hi>
+                    <hi rend="italic">Salsus</hi>
                     is, as
 a rule, applied only to what is laughable: but this
 is not its natural application, although whatever is
 laughable should have the salt of wit in it. For
 Cicero,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Orat.</hi>
+                        <hi rend="italic">Orat.</hi>
                         xxvi. 90.
                     </note>
                     when he says that whatever has the salt of
@@ -1897,8 +1915,8 @@ and again when Catullus says—
                             <quote>
                                 <l part="N">In all her body not a grain of salt!</l>
                             </quote>
-                            <bibl default="NO">
-                                <hi rend="italics">Cat.</hi>
+                            <bibl default="false">
+                                <hi rend="italic">Cat.</hi>
                                 lxxxvi. 4.
                             </bibl>
                         </cit>
@@ -1916,24 +1934,24 @@ stimulates our taste and saves a speech from becoming tedious. But just as salt,
 over food, gives a special relish of its own, so long
 as it is not used to excess, so in the case of those
 who have the salt of wit there is something about
-                    <pb id="p.449"/>
+                    <pb xml:id="p.449"/>
                     their language which arouses in us a thirst to hear.
 Again, I do not regard the epithet
-                    <hi rend="italics">facelus</hi>
+                    <hi rend="italic">facelus</hi>
                     as applicable solely to that which raises a laugh.
                     <milestone n="20" unit="section"/>
                     If that
 were so Horace
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Sat.</hi>
+                        <hi rend="italic">Sat.</hi>
                         I.
-                        <hi rend="italics">x.</hi>
+                        <hi rend="italic">x.</hi>
                         44. molle atque facetum/Vergilio adnuerunt
 gaudentes rure Camenae.
                     </note>
                     would never have said that nature
 had granted Vergil the gift of being
-                    <hi rend="italics">facetus</hi>
+                    <hi rend="italic">facetus</hi>
                     in song.
 I think that the term is rather applied to a certain
 grace and polished elegance. This is the meaning
@@ -1944,9 +1962,9 @@ the words of Brutus,
                     This
 meaning suits the passage in Horace,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Sat.</hi>
+                        <hi rend="italic">Sat.</hi>
                         I.
-                        <hi rend="italics">x.</hi>
+                        <hi rend="italic">x.</hi>
                         44. molle atque facetum/Vergilio adnuerunt
 gaudentes rure Camenae.
                     </note>
@@ -1954,22 +1972,22 @@ gaudentes rure Camenae.
 have already made reference,
                     <quote>To Vergil gave a soft and graceful wit.</quote>
                     <milestone n="21" unit="section"/>
-                    <hi rend="italics">locus</hi>
+                    <hi rend="italic">locus</hi>
                     is usually taken to mean
 the opposite of seriousness. This view is, however,
 somewhat too narrow. For to feign, to terrify, or to
 promise, are all at times forms of jesting.
-                    <hi rend="italics">Dicacitas</hi>
+                    <hi rend="italic">Dicacitas</hi>
                     is no doubt derived from
-                    <hi rend="italics">dico,</hi>
+                    <hi rend="italic">dico,</hi>
                     and is therefore
 common to all forms of wit, but is specially applied
 to the language of banter, which is a humorous form
 of attack. Therefore, while the critics allow that
 Demosthenes was
-                    <hi rend="italics">urbanus,</hi>
+                    <hi rend="italic">urbanus,</hi>
                     they deny that he was
-                    <hi rend="italics">dicax.</hi>
+                    <hi rend="italic">dicax.</hi>
                 </p>
                 <p>
                     <milestone n="22" unit="section"/>
@@ -1988,11 +2006,11 @@ which we may seek to raise a laugh, to wit, others,
 ourselves, or things intermediate. In the first case
 we either reprove or refute or make light of or
 retort or deride the arguments of others. In the
-                    <pb id="p.451"/>
+                    <pb xml:id="p.451"/>
                     second we speak of things which concern ourselves in a humorous manner and, to quote the
 words of Cicero,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. lxxi. 289.
                     </note>
                     say things which have a suggestion of absurdity. For there are certain sayings
@@ -2018,7 +2036,7 @@ by his father: sometimes, again, it is aroused by
 an act which passes the grounds of decency, as in
 the case of Caelius' box,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp. Pro Cael</hi>
+                        <hi rend="italic">cp. Pro Cael</hi>
                         xxix. 69. There is no jest in this passage
 which lays itself open to such censure. The jest must have
 consisted in some action on the part of the orator.
@@ -2037,7 +2055,7 @@ gravity with which a jest is uttered increases its
 attraction, and the mere fact that the speaker does
 not laugh himself makes his words laughable, there
 is also such a thing as a humorous look, manner or
-                    <pb id="p.453"/>
+                    <pb xml:id="p.453"/>
                     gesture, provided always that they observe the happy
 mean. Further, a jest will either be free and lively,
 like the majority of those uttered by Aulus Galba,
@@ -2073,7 +2091,7 @@ No less unbecoming are ribald jests, and such as
 are employed upon the stage. As for obscenity, it
 should not merely be banished from his language,
 but should not even be suggested. For even if our
-                    <pb id="p.455"/>
+                    <pb xml:id="p.455"/>
                     opponent has rendered himself liable to such a
 charge, our denunciation should not take the form
 of a jest.
@@ -2115,7 +2133,7 @@ way in which we should deal with friends I have
 already given instructions.
                     <milestone n="34" unit="section"/>
                     It is the duty not merely
-                    <pb id="p.457"/>
+                    <pb xml:id="p.457"/>
                     of an orator, but of any reasonable human being,
 when attacking one whom it is dangerous to offend
 to take care that his remarks do not end in exciting
@@ -2139,7 +2157,7 @@ of labour.
                     <milestone n="36" unit="section"/>
                     For the topics suitable to jests are no
 less numerous than those from which we may derive
-                    <hi rend="italics">reflexions,</hi>
+                    <hi rend="italic">reflexions,</hi>
                     as they are called, and are, moreover,
 identical with the latter. The powers of invention
 and expression come into play no less where jests
@@ -2157,15 +2175,15 @@ severe; if, on the other hand, it is of a lighter
 character, we regard it as humorous. These themes
 for jest may be pointed out to the eye or described
 in words or indicated by some
-                    <hi rend="italics">mot.</hi>
+                    <hi rend="italic">mot.</hi>
                     <milestone n="38" unit="section"/>
                     It is only on
-                    <pb id="p.459"/>
+                    <pb xml:id="p.459"/>
                     rare occasions that it is possible to make them
 visible to the eye, as Gaius Julius
                     <note anchored="true" place="unspecified">
                         Cic.
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. lxvi. 266.
                     </note>
                     did when Helvius Mancia kept clamouring against him.
@@ -2183,7 +2201,7 @@ humorous story may often be used with clever effect
 and is a device eminently becoming to an orator.
 Good examples are the story told of Caepasius and
 Fabricius, which Cicero tells in the
-                    <hi rend="italics">pro Cluentio,</hi>
+                    <hi rend="italic">pro Cluentio,</hi>
                     or
 the story told by Caelius of the dispute between
 Decimus Laelius and his colleague when they were
@@ -2193,7 +2211,7 @@ elegance and charm, while the orator's own contribution to the story should be t
 element. Take for instance the way in which Cicero
 gives a special relish to the flight of Fabricius.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Cluent.</hi>
+                        <hi rend="italic">pro Cluent.</hi>
                         xxi. 58.
                     </note>
                     <milestone n="40" unit="section"/>
@@ -2210,7 +2228,7 @@ down.
                     </quote>
                     I will not quote the rest of the passage,
 for it is well known. But he develops the theme
-                    <pb id="p.461"/>
+                    <pb xml:id="p.461"/>
                     still further although the plain facts amount simply
 to this, that Fabricius had left the court.
                     <milestone n="41" unit="section"/>
@@ -2225,12 +2243,12 @@ lively turn of wit, said that he rode on a dolphin and
 effected his crossing like a second Arion.
                     </quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         D. Laelius or his colleague: see § 39.
                     </note>
                     Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Orat</hi>
+                        <hi rend="italic">Orat</hi>
                         xxvi. 87.
                     </note>
                     <milestone n="42" unit="section"/>
@@ -2245,7 +2263,7 @@ published of his witticisms as well.
 of wit lies not merely in sallies and brief displays of
 wit, but may be developed at greater length, witness
 the story told by Cicero in the second book of his
-                    <hi rend="italics">de Oratore,</hi>
+                    <hi rend="italic">de Oratore,</hi>
                     <note anchored="true" place="unspecified">
                         <milestone n="4" unit="chapter"/>
                         <milestone n="1" unit="section"/>
@@ -2273,7 +2291,7 @@ on his estate at Alba, and the third on his estate at
 Tibur. Crassus then asked where these estates were.
 Now Brutus had sold them all, and in those days it
 was considered somewhat discreditable to sell one's
-                    <pb id="p.463"/>
+                    <pb xml:id="p.463"/>
                     paternal acres. Similar attractive effects of narrative
 may be produced by the narration of fables or at
 times even of historical anecdotes.
@@ -2298,7 +2316,7 @@ draw for our jests, I must repeat that not all these
 topics are becoming to orators:
                     <milestone n="47" unit="section"/>
                     above all
-                    <hi rend="italics">doubles entendres</hi>
+                    <hi rend="italic">doubles entendres</hi>
                     and obscenity, such as is dear to the Atellan
 farce, are to be avoided, as also are those coarse
 jibes so common on the lips of the rabble, where
@@ -2309,16 +2327,16 @@ though not when he was pleading in the courts:
 for example, once when a candidate, alleged to be
 the son of a cook, solicited someone else's vote in
 his presence, he said,
-                    <hi rend="italics">Ego quoque tibi favebo.</hi>
+                    <hi rend="italic">Ego quoque tibi favebo.</hi>
                     <note anchored="true" place="unspecified">
                         The pun is untranslatable, turning as it does on the
 similarity of sound between
-                        <hi rend="italics">coque</hi>
+                        <hi rend="italic">coque</hi>
                         and
-                        <hi rend="italics">quoque,</hi>
+                        <hi rend="italic">quoque,</hi>
                         so that the
 sentence might mean either
-                        <hi rend="italics">I will support you, cook, or I too will support you.</hi>
+                        <hi rend="italic">I will support you, cook, or I too will support you.</hi>
                     </note>
                     <milestone n="48" unit="section"/>
                     I say
@@ -2326,7 +2344,7 @@ this not because I object absolutely to all play on
 words capable of two different meanings, but because
 such jests are rarely effective, unless they are helped
 out by actual facts as well as similarity of sound.
-                    <pb id="p.465"/>
+                    <pb xml:id="p.465"/>
                     For example, I regard the jest which Cicero levelled
 against that same Isauricus, whom I mentioned
 above, as being little less than sheer buffoonery.
@@ -2339,11 +2357,11 @@ as yourself.
                     </quote>
                     <note anchored="true" place="unspecified">
                         Here again the pun is virtually untranslatable.
-                        <hi rend="italics">Varium</hi>
+                        <hi rend="italic">Varium</hi>
                         is used in the double sense of
-                        <hi rend="italics">unstable</hi>
+                        <hi rend="italic">unstable</hi>
                         or
-                        <hi rend="italics">mottled,</hi>
+                        <hi rend="italic">mottled,</hi>
                         with
 reference to the story that he had been scourged by his
 father. See above §25.
@@ -2360,11 +2378,11 @@ question,
                     , Cicero replied,
                     <quote>Late!</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">sero</hi>
+                        <hi rend="italic">sero</hi>
                         may mean
-                        <hi rend="italics">at a late hour</hi>
+                        <hi rend="italic">at a late hour</hi>
                         or
-                        <hi rend="italics">too late.</hi>
+                        <hi rend="italic">too late.</hi>
                     </note>
                     a retort which in itself justifies us
 in refusing to exclude this type of wit altogether.
@@ -2375,7 +2393,7 @@ merely in several senses, but in absolutely opposite
 senses. For example, Nero
                     <note anchored="true" place="unspecified">
                         Cic.
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. lxi. 248. Probably C. Claudius Nero
 victor of the Metaurus.
                     </note>
@@ -2391,31 +2409,31 @@ Fonteius:
                     he said,
                     <quote>kept a school while she lived and masters after she was dead.</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">magister</hi>
+                        <hi rend="italic">magister</hi>
                         may mean a schoolmaster or a receiver (
-                        <hi rend="italics">magister bonorum</hi>
+                        <hi rend="italic">magister bonorum</hi>
                         )placed in charge of the goods to be sold. The
 phrase here has the same suggestion as
                         <quote>having the bailiffs in the house.</quote>
                         This passage does not occur in the portions
 of the
-                        <hi rend="italics">pro Fonteio</hi>
+                        <hi rend="italic">pro Fonteio</hi>
                         which survive.
                     </note>
                     The explanation is that in her lifetime women
 of infamous character used to frequent her
 house, while after her death her property was
 sold. (I may note however that
-                    <hi rend="italics">ludus,</hi>
+                    <hi rend="italic">ludus,</hi>
                     is used
 metaphorically in the sense of school, while
-                    <hi rend="italics">magisiri</hi>
+                    <hi rend="italic">magisiri</hi>
                     is used ambiguously.)
                     <milestone n="52" unit="section"/>
                     A similar form of
-                    <pb id="p.467"/>
+                    <pb xml:id="p.467"/>
                     jest may be made by use of the figure known as
-                    <hi rend="italics">metalepsis,</hi>
+                    <hi rend="italic">metalepsis,</hi>
                     <note anchored="true" place="unspecified">
                         See VII. vi. 37.
                         <quote>Substitution</quote>
@@ -2424,24 +2442,24 @@ metaphorically in the sense of school, while
                     as when Fabius Maximus complained of
 the meagreness of the gifts made by Augustus to
 his friends, and said that his
-                    <hi rend="italics">congiaria</hi>
+                    <hi rend="italic">congiaria</hi>
                     were
-                    <hi rend="italics">heminaria:</hi>
+                    <hi rend="italic">heminaria:</hi>
                     for
-                    <hi rend="italics">congiarium</hi>
+                    <hi rend="italic">congiarium</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">congiarium</hi>
+                        <hi rend="italic">congiarium</hi>
                         is derived from
-                        <hi rend="italics">congius</hi>
+                        <hi rend="italic">congius</hi>
                         a measure equal to
 about 6 pints. It was employed to denote the largesse of
 wine or oil distributed to the people. Fabius coined the
 word
-                        <hi rend="italics">henminaritm</hi>
+                        <hi rend="italic">henminaritm</hi>
                         from
-                        <hi rend="italics">hemina,</hi>
+                        <hi rend="italic">hemina,</hi>
                         the twelfth part of the
-                        <hi rend="italics">congius.</hi>
+                        <hi rend="italic">congius.</hi>
                         Fabius was consul in 10 B.C. and a friend of Ovid.
                     </note>
                     implies at once liberality and
@@ -2460,7 +2478,7 @@ was nicknamed Acidus because of his
 and one Tullius was dubbed Tollius
                     <note anchored="true" place="unspecified">
                         From
-                        <hi rend="italics">toellre</hi>
+                        <hi rend="italic">toellre</hi>
                         to take away.
                     </note>
                     because he was
@@ -2482,18 +2500,18 @@ express it by
                         But
                         <quote>overdoing it</quote>
                         has none of the neatness of
-                        <hi rend="italics">salagere,</hi>
+                        <hi rend="italic">salagere,</hi>
                         which is said to have
                         <quote>a spice of wit about it,</quote>
                         since it means
-                        <hi rend="italics">lit.</hi>
+                        <hi rend="italic">lit.</hi>
                         <quote>to do enough,</quote>
                         an ironic way of saying
                         <quote>to overdo it.</quote>
                     </note>
                     For there is a spice of wit about
 the word
-                    <hi rend="italics">satagere</hi>
+                    <hi rend="italic">satagere</hi>
                     in itself, even if there were no
 resemblance to any other word.
                     <milestone n="55" unit="section"/>
@@ -2504,13 +2522,13 @@ another: the effect is generally poor, but the practice
 is occasionally permissible. Jests drawn from names
 are of the same type. Cicero introduces a number
 of such jests against Verres, but always as quotations
-                    <pb id="p.469"/>
+                    <pb xml:id="p.469"/>
                     from others. On one occasion he says that he
 would sweep
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">verres</hi>
+                        <hi rend="italic">verres</hi>
                         is also the second pers. sing. of the future of
-                        <hi rend="italics">verro.</hi>
+                        <hi rend="italic">verro.</hi>
                     </note>
                     everything away, for his name was
 Verres; on another, that he had given more trouble
@@ -2523,10 +2541,10 @@ that he was a bad
                     who had left so worthless
 a pig behind him.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">verres</hi>
+                        <hi rend="italic">verres</hi>
                         means a boar and hero suggests a pig that should
 have been killed as a victim. For these jests see
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         II.
 xxi. 62, IV. xliii. 95, I. xlvi. 121 respectively. Compare also
 IV. xxiv. 53 and xxv. 57.
@@ -2538,7 +2556,7 @@ named Sacerdos.
 chance may give us an opportunity of employing
 such jests with effect, as for instance when Cicero
 in the
-                    <hi rend="italics">pro Caecina</hi>
+                    <hi rend="italic">pro Caecina</hi>
                     <note anchored="true" place="unspecified">
                         x. 27. The reference must be to the make-up of Phormio
 on the stage: there is nothing in the play to suggest the
@@ -2572,9 +2590,9 @@ ass.
                     And Sarmentus
                     <note anchored="true" place="unspecified">
                         Sarmentus, a favourite of Augustus,
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Hor.
-                        <hi rend="italics">Sat.</hi>
+                        <hi rend="italic">Sat.</hi>
                         I. v.
 56, where the story is given.
                     </note>
@@ -2586,7 +2604,7 @@ and bent, the iron buckle. This method of raising
 a laugh is much in vogue to-day.
                     <milestone n="59" unit="section"/>
                     Such resemblances
-                    <pb id="p.471"/>
+                    <pb xml:id="p.471"/>
                     may be put to the service of wit either openly or
 allusively. Of the latter type is the remark of
 Augustus, made to a soldier who showed signs of
@@ -2605,7 +2623,7 @@ act. Whereupon Vatinius replied,
                         The accused habitually wore mourning. Calvus suggested
 that Vatinius should not therefore have a white handkerchief.
 Vatinius retorts,
-                        <hi rend="italics">You might as well say that I ought to have dropped eating white bread.</hi>
+                        <hi rend="italic">You might as well say that I ought to have dropped eating white bread.</hi>
                     </note>
                     <milestone n="61" unit="section"/>
                     Still more ingenious is the application of
@@ -2647,17 +2665,17 @@ much at his ease when playing ball,
                     <note anchored="true" place="unspecified">
                         A candidate recommended by the emperor was automatically elected. I have borrowed Watson's translation of
 the pun.
-                        <hi rend="italics">Petere</hi>
+                        <hi rend="italic">Petere</hi>
                         is the regular word for
                         <quote>standing for office.</quote>
-                        <hi rend="italics">Petere pilam</hi>
+                        <hi rend="italic">Petere pilam</hi>
                         probably means
                         <quote>to attempt to catch the ball.</quote>
                     </note>
                     The
-                    <pb id="p.473"/>
+                    <pb xml:id="p.473"/>
                     ambiguity lies in the word
-                    <hi rend="italics">stand,</hi>
+                    <hi rend="italic">stand,</hi>
                     while the indifference
 shewn by the player supplies the resemblance.
                     <milestone n="63" unit="section"/>
@@ -2708,11 +2726,11 @@ reported to him that a certain man was dead.
 turn it into a common jest-book, if I continue to
 quote each jest that was made by our forefathers.
                 </p>
-                <pb id="p.475"/>
+                <pb xml:id="p.475"/>
                 <p>
                     All forms of argument afford equal opportunity for
 jests. Augustus for example employed
-                    <hi rend="italics">definition</hi>
+                    <hi rend="italic">definition</hi>
                     when he said of two ballet-dancers who were engaged
 in a contest, turn and turn about, as to who could make
 tile most exquisite gestures, that one was a dancer and
@@ -2720,7 +2738,7 @@ the other merely interrupted the dancing.
                     <milestone n="66" unit="section"/>
                     Galba on
 the other hand made use
-                    <hi rend="italics">of partition</hi>
+                    <hi rend="italic">of partition</hi>
                     when he replied
 to a friend who asked him for a cloak,
                     <quote>It is not raining and you don't need it; if it does rain, I shall wear it myself.</quote>
@@ -2731,16 +2749,16 @@ causes, effects, and comparisons of things greater,
 equal, or less,
                     <note anchored="true" place="unspecified">
                         See v. x. 55
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     as it is also by all forms of trope.
                     <milestone n="67" unit="section"/>
                     Are
 not a large number of jests made by means of
-                    <hi rend="italics">hyperbole?</hi>
+                    <hi rend="italic">hyperbole?</hi>
                     Take for instance Cicero's
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp. de Orat</hi>
+                        <hi rend="italic">cp. de Orat</hi>
                         II. lxvi. 267, where the jest is attributed to
 Crassus.
                     </note>
@@ -2753,7 +2771,7 @@ Lentuli to the effect, that since the children were
 always smaller than their parents, the race would
                     <quote>perish by propagation.</quote>
                     Again, what of
-                    <hi rend="italics">irony?</hi>
+                    <hi rend="italic">irony?</hi>
                     <milestone n="68" unit="section"/>
                     Is not
 even the most severe form of irony a kind of jest?
@@ -2763,19 +2781,19 @@ a provincial government, complained on receiving
 the appointment that he had been forced into accepting,
                     <quote>Well, then, do something for your country's sake.</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         sacrifice your own interests and serve your country
 or its own sake.
                     </note>
                     Cicero also employed
-                    <hi rend="italics">metaphor</hi>
+                    <hi rend="italic">metaphor</hi>
                     to serve
 his jest, when on receiving a report of uncertain
 authorship to the effect that Vatinius was dead,
 he remarked,
                     <quote>
                         Well, for the meantime I shall
-                        <pb id="p.477"/>
+                        <pb xml:id="p.477"/>
                         make use of the interest.
                     </quote>
                     <note anchored="true" place="unspecified">
@@ -2785,7 +2803,7 @@ may be non-existent, but I will enjoy the interest.
                     </note>
                     <milestone n="69" unit="section"/>
                     He also employed
-                    <hi rend="italics">allegory</hi>
+                    <hi rend="italic">allegory</hi>
                     in the witticism that he was fond of making
 about Marcus Caelius, who was better at bringing
 charges than at defending his client against them, to
@@ -2796,7 +2814,7 @@ left.
 shield.
                     </note>
                     As an example of the use of
-                    <hi rend="italics">emphasis</hi>
+                    <hi rend="italic">emphasis</hi>
                     I may
 quote the jest of Aulus Villius, that Tuccius was
 killed by his sword falling upon him.
@@ -2841,7 +2859,7 @@ off his gambling debts. His only comment was,
                     <quote>Did I never win, then?</quote>
                     <milestone n="73" unit="section"/>
                     Sometimes we rebut a
-                    <pb id="p.479"/>
+                    <pb xml:id="p.479"/>
                     charge openly, as Cicero did when he refuted the
 extravagant lies of Vibius Curius about his age:
                     <quote>Well, then,</quote>
@@ -2893,9 +2911,9 @@ reproached him for marrying Publilia, a young unwedded girl, when he was already
                     <milestone n="76" unit="section"/>
                     Some style this
 type of jest
-                    <hi rend="italics">consequent</hi>
+                    <hi rend="italic">consequent</hi>
                     and, on the ground that both
-                    <pb id="p.481"/>
+                    <pb xml:id="p.481"/>
                     jests seem to follow so naturally and inevitably, class
 it with the jest which Cicero levelled against Curio,
 who always began his speeches by asking indulgence
@@ -2945,7 +2963,7 @@ to enter his house by replying,
 example, Augustus of blessed memory, when the
 Gauls gave him a golden necklet weighing a hundred
 pounds, and Dolabella, speaking in jest but with an
-                    <pb id="p.483"/>
+                    <pb xml:id="p.483"/>
                     eye to the success of his jest, said,
                     <quote>General, give me your necklet,</quote>
                     replied,
@@ -2953,7 +2971,7 @@ pounds, and Dolabella, speaking in jest but with an
                     <note anchored="true" place="unspecified">
                         The civic crown of oak leaves was given as a reward for
 saving the life of a fellow-citizen in war. The
-                        <hi rend="italics">torquis</hi>
+                        <hi rend="italic">torquis</hi>
                         was
 often given as a reward for valour, and Augustus pretends
 to believe that Dolabella had asked for a military decoration.
@@ -2989,9 +3007,9 @@ to Catulus,
                     <quote>Why do you bark so?</quote>
                     the latter replied,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Cic.
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. liv. 220.
                     </note>
                     <quote>I see a thief.</quote>
@@ -3006,7 +3024,7 @@ although it is not infrequently employed.
                     On the
 other hand scurrilous or brutal jests, although they
 may raise a laugh, are quite unworthy of a gentleman. I remember a jest of this kind being made by
-                    <pb id="p.485"/>
+                    <pb xml:id="p.485"/>
                     a certain man against an inferior who had spoken
 with some freedom against him:
                     <quote>I will smack your head, and bring an action against you for having such a hard skull!</quote>
@@ -3023,7 +3041,7 @@ sense other than he intended. The unexpected
 element may be employed by the attacking party,
 as in the example cited by Cicero,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. lxx. 281.
                     </note>
                     <quote>What does this man lack save wealth and—virtue?</quote>
@@ -3034,7 +3052,7 @@ remark of Afer,
 meet a statement made by another, as it was by
 Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         § 68.
                     </note>
                     on hearing a false report of Vatinius' death:
@@ -3061,7 +3079,7 @@ pretending to believe that she was a man, said,
 to the client whom lie was defending, and the accuser
 kept pressing him with the question,
                     <quote>Tell me, Marcus Tullius, what have you to say about Sextus Annalis?</quote>
-                    <pb id="p.487"/>
+                    <pb xml:id="p.487"/>
                     To which he replied by beginning to recite the Sixth
 book of the Annals of Ennius, which commences with
 the line,
@@ -3070,18 +3088,18 @@ the line,
                             <quote>
                                 <l part="N">Who may the causes vast of war unfold?</l>
                             </quote>
-                            <bibl default="NO">
+                            <bibl default="false">
                                 Enn. 174
                                 <note anchored="true" place="unspecified">
                                     (with
-                                    <hi rend="italics">oras</hi>
+                                    <hi rend="italic">oras</hi>
                                     for
-                                    <hi rend="italics">causas</hi>
+                                    <hi rend="italic">causas</hi>
                                     ).The question (
-                                    <hi rend="italics">numquid,</hi>
+                                    <hi rend="italic">numquid,</hi>
                                     etc.) is treated by Cicero as meaning
                                     <quote>Can you quote anything from the sixth book of the Annals?</quote>
-                                    <hi rend="italics">ingentis</hi>
+                                    <hi rend="italic">ingentis</hi>
                                     is ace.
 plural.
                                 </note>
@@ -3094,15 +3112,15 @@ in ambiguity,
                     as for example, when Cascellius,
                     <note anchored="true" place="unspecified">
                         A famous lawyer mentioned by Horace,
-                        <hi rend="italics">A.P.</hi>
+                        <hi rend="italic">A.P.</hi>
                         371. Cascellius pretends to take
-                        <hi rend="italics">dividere</hi>
+                        <hi rend="italic">dividere</hi>
                         literally (
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         cut in two);
 his client had meant
                         <quote>to sell half his ship,</quote>
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         take a
 partner in the venture.
                     </note>
@@ -3117,7 +3135,7 @@ when asked what he thought of a man who had been
 caught in the act of adultery, replied that he had
 been too slow in his movements.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. lxviii. 275.
                     </note>
                     <milestone n="88" unit="section"/>
@@ -3125,7 +3143,7 @@ been too slow in his movements.
 are jests whose point lies in insinuation. Such was
 the reply which Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ib.</hi>
+                        <hi rend="italic">ib.</hi>
                         lxix. 278.
                     </note>
                     quotes as given to the man
@@ -3151,7 +3169,7 @@ historian and king of Mauretania, captured by Julius Caesar
 and restored by Augustus.
                     </note>
                     Gaius Cassius misrepresented his own, when he said to a soldier whom he
-                    <pb id="p.489"/>
+                    <pb xml:id="p.489"/>
                     saw hurrying into battle without his sword,
                     <quote>Shew yourself a handy man with your fists, comrade.</quote>
                     So
@@ -3198,7 +3216,7 @@ servant
                     to him to say,
                     <quote>I hope you are obliged to me for not having seen you.</quote>
                     Again when his
-                    <pb id="p.491"/>
+                    <pb xml:id="p.491"/>
                     steward, being unable to account for certain sums
 of money, kept saying,
                     <quote>I have not eaten it: I live on bread and water,</quote>
@@ -3259,9 +3277,9 @@ in a certain case,
                             <quote>
                                 <l part="N">Had not Ulysses Lartius intervened.</l>
                             </quote>
-                            <bibl default="NO">
+                            <bibl default="false">
                                 The author, presumably a tragic poet, is unknown.
-                                <hi rend="italics">Lartis= Luertius,</hi>
+                                <hi rend="italic">Lartis= Luertius,</hi>
                                 son of Laertes.
                             </bibl>
                         </cit>
@@ -3270,7 +3288,7 @@ in a certain case,
 quoted against the senator who,
                     <milestone n="97" unit="section"/>
                     although he had
-                    <pb id="p.493"/>
+                    <pb xml:id="p.493"/>
                     always in previous times been regarded as an utter
 fool, was, after inheriting an estate, asked to speak
 first on a motion—
@@ -3279,13 +3297,13 @@ first on a motion—
                             <quote>
                                 <l part="N">What men call wisdom is a legacy,</l>
                             </quote>
-                            <bibl default="NO">Probably from a lost comedy.</bibl>
+                            <bibl default="false">Probably from a lost comedy.</bibl>
                         </cit>
                     </quote>
                     where
-                    <hi rend="italics">legacy</hi>
+                    <hi rend="italic">legacy</hi>
                     is substituted for the original
-                    <hi rend="italics">faculty.</hi>
+                    <hi rend="italic">faculty.</hi>
                     Or again we may invent verses resembling well known lines, a trick styled parody by the Greeks.
 A neat application of proverbs may also be effective,
                     <milestone n="98" unit="section"/>
@@ -3295,12 +3313,12 @@ to his feet,
                     <quote>Let someone pick you up who does not know you.</quote>
                     <note anchored="true" place="unspecified">
                         Hor.
-                        <hi rend="italics">Ep.</hi>
+                        <hi rend="italic">Ep.</hi>
                         I. xvii. 62, where the passers by reply
-                        <hi rend="italics">Quaere peregrinum</hi>
+                        <hi rend="italic">Quaere peregrinum</hi>
                         to an imposter who, having fallen down and
 broken his leg, implores them to pick him up, crying
-                        <hi rend="italics">Credite, non ludo: crudeles, tollite claudum.</hi>
+                        <hi rend="italic">Credite, non ludo: crudeles, tollite claudum.</hi>
                     </note>
                     Or we may shew our culture by drawing on legend for a jest, as Cicero did in the trial of
 Verres, when Hortensius said to him as he was
@@ -3333,10 +3351,10 @@ whether his master had advertised a sale of his
 property, answered,
                     <quote>He has sold his house.</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         how can he? he has nothing left to sell.
                     </note>
-                    <pb id="p.495"/>
+                    <pb xml:id="p.495"/>
                     Sometimes you may get out of a tight comer by
 giving a humorous explanation of your embarrassment,
                     <milestone n="100" unit="section"/>
@@ -3347,7 +3365,7 @@ proceeded to show a huge scar on his thigh, on which
 lie remarked,
                     <quote>I wish he had wounded you in the side.</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ac.</hi>
+                        <hi rend="italic">ac.</hi>
                         because then he would have killed you.
                     </note>
                     A happy use may also be made of insult.
@@ -3361,7 +3379,7 @@ autographs, replied,
                     <quote>Yes, Sir, and the handwriting is genuine, too!</quote>
                     <note anchored="true" place="unspecified">
                         Presumably the
-                        <hi rend="italics">legatus</hi>
+                        <hi rend="italic">legatus</hi>
                         had been suspected of forgery.
                     </note>
                 </p>
@@ -3382,7 +3400,7 @@ they are absolutely indispensable.
                 <p>
                     To these Domitius Marsus, who wrote an elaborate
 treatise on
-                    <hi rend="italics">Urbanity,</hi>
+                    <hi rend="italic">Urbanity,</hi>
                     adds several types of saying,
 which are not laughable, but rather elegant sayings
 with a certain charm and attraction of their own,
@@ -3391,15 +3409,15 @@ serious kind: they are characterized by a certain
 urbane wit, but not of a kind to raise a laugh.
                     <milestone n="103" unit="section"/>
                     And
-                    <pb id="p.497"/>
+                    <pb xml:id="p.497"/>
                     as a matter of fact his work was not designed to deal
 with humour, but with
-                    <hi rend="italics">urbane wit,</hi>
+                    <hi rend="italic">urbane wit,</hi>
                     a quality which
 he regards as peculiar to this city, though it was not
 till a late period that it was understood in this sense,
 after the word
-                    <hi rend="italics">Urbs</hi>
+                    <hi rend="italic">Urbs</hi>
                     had come to be accepted as indicating Rome without the addition of any proper
 noun. He defines it as follows:
                     <milestone n="104" unit="section"/>
@@ -3420,7 +3438,7 @@ insisted on brevity being essential I do not know,
                     <milestone n="105" unit="section"/>
                     since in the same book he asserts that many speakers
 have revealed their
-                    <hi rend="italics">urbanity</hi>
+                    <hi rend="italic">urbanity</hi>
                     in narrative. And a little
 later he gives the following definition, which is, as
 he says, based on the views expressed by Cato:
@@ -3436,27 +3454,27 @@ succeed in making his audience laugh.
                     But if we
 accept these definitions, we shall have to allow the
 title of
-                    <hi rend="italics">urbane</hi>
+                    <hi rend="italic">urbane</hi>
                     to anything that is well said. It was
 natural therefore that the author of this definition
 should classify such sayings under three heads,
 serious, humorous and intermediate, since all good
-                    <pb id="p.499"/>
+                    <pb xml:id="p.499"/>
                     sayings may be thus classified. But, in my opinion,
 there are certain forms of humorous saying that may
 be regarded as not possessing sufficient
-                    <hi rend="italics">urbanity.</hi>
+                    <hi rend="italic">urbanity.</hi>
                     <milestone n="107" unit="section"/>
                     For
 to my thinking
-                    <hi rend="italics">urbanity</hi>
+                    <hi rend="italic">urbanity</hi>
                     involves the total absence of
 all that is incongruous, coarse, unpolished and exotic
 whether in thought, language, voice or gesture, and
 resides not so much in isolated sayings as in the
 whole complexion of our language, just as for the
 Greeks
-                    <hi rend="italics">Atticism</hi>
+                    <hi rend="italic">Atticism</hi>
                     means that elegance of taste which
 was peculiar to Athens.
                     <milestone n="108" unit="section"/>
@@ -3467,7 +3485,7 @@ utterances into three classes, the honorific, the
 derogatory and the intermediate. As an example
 of the honorific he quotes the words uttered by
 Cicero in the
-                    <hi rend="italics">pro Ligario</hi>
+                    <hi rend="italic">pro Ligario</hi>
                     <note anchored="true" place="unspecified">xii. 35.</note>
                     with reference to Caesar,
                     <quote>You who forget nothing save injuries.</quote>
@@ -3476,7 +3494,7 @@ Cicero in the
 derogatory he illustrates by the words used by
 Cicero of Pompey and Caesar in a letter to Atticus:
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Ad. Att.</hi>
+                        <hi rend="italic">Ad. Att.</hi>
                         VIII. vii. 2.
                     </note>
                     <quote>I know whom to avoid, but whom to follow I know not.</quote>
@@ -3492,7 +3510,7 @@ nor a calamity to one that is truly wise.
                     All these
 are admirable sayings, but what special title they
 have to be called
-                    <hi rend="italics">urbane</hi>
+                    <hi rend="italic">urbane</hi>
                     I do not see.
                     <milestone n="110" unit="section"/>
                     If it is
@@ -3502,7 +3520,7 @@ be claimed for individual sayings as well, I should
 give the name only to those sayings that are of
 the same general character as humorous sayings,
 without actually being humorous. I will give an
-                    <pb id="p.501"/>
+                    <pb xml:id="p.501"/>
                     illustration of what I mean. It was said of Asinius
 Pollio, who had equal gifts for being grave or gay,
 that he was
@@ -3531,7 +3549,7 @@ endured the supremacy of Caesar so patiently:
                         These ills must either be endured with the courage
 of Cato or the stomach
                         <note anchored="true" place="unspecified">
-                            <hi rend="italics">i.e.</hi>
+                            <hi rend="italic">i.e.</hi>
                             he must
                             <quote>stomach</quote>
                             it.
@@ -3552,12 +3570,12 @@ if they prefer it.
 in forensic debate,
                     <note anchored="true" place="unspecified">
                         The
-                        <hi rend="italics">altercatio,</hi>
+                        <hi rend="italic">altercatio,</hi>
                         which followed the set speeches, took the
 form of a number of brief arguments
-                        <hi rend="italics">pro</hi>
+                        <hi rend="italic">pro</hi>
                         and
-                        <hi rend="italics">con.</hi>
+                        <hi rend="italic">con.</hi>
                     </note>
                     it might seem that I should
 delay such instructions until I had finished dealing
@@ -3571,7 +3589,7 @@ not be out of place to deal with it here before I
 proceed to the second of the five parts,
                     <note anchored="true" place="unspecified">See v. Pr. 5.</note>
                     since it is
-                    <pb id="p.503"/>
+                    <pb xml:id="p.503"/>
                     entirely dependent on the first. Other writers have
 omitted to deal with it on the ground perhaps that
 they thought the subject had been sufficiently covered
@@ -3623,7 +3641,7 @@ come to closer grips with his adversary.
 strongest points of the argument have to be sharply
 impressed on the memory of the judge, while we
 have also to make good all the promises we may
-                    <pb id="p.505"/>
+                    <pb xml:id="p.505"/>
                     have made in the course of our speech and to refute
 the lies of our opponents. There is no point of a
 trial where the judge's attention is keener. And
@@ -3666,7 +3684,7 @@ to the debate it is absolutely necessary that he
 should possess a thorough acquaintance with all the
 persons, instruments and circumstances of time and
 place involved: otherwise he will often be reduced
-                    <pb id="p.507"/>
+                    <pb xml:id="p.507"/>
                     to silence and forced to give a hurried assent to
 those who prompt him as to what he should say,
 suggestions which are often perfectly fatuous owing
@@ -3705,7 +3723,7 @@ their impudence with courage.
                     For there are some
 advocates so brazen-faced that they bluster and
 bellow at us, interrupt us in the middle of a sentence
-                    <pb id="p.509"/>
+                    <pb xml:id="p.509"/>
                     and try to throw everything into confusion. While,
 then, it would be wrong to pay them the compliment of imitation, we must none the less repel their
 onslaughts with vigour by crushing their insolence
@@ -3742,7 +3760,7 @@ its employment arises when there is some point to
 which it is difficult to improvise an answer, though
 it would not be difficult to meet if time were
 allowed for consideration. For solid and irrefutable
-                    <pb id="p.511"/>
+                    <pb xml:id="p.511"/>
                     arguments are best produced at once in the actual
 pleading in order that they may be repeated and
 treated at greater length.
@@ -3785,7 +3803,7 @@ for in grasping at the fancied advantage he may
 be forced to surrender some greater advantage: at
 times, too, it may serve our purpose to give him a
 choice between two alternatives, neither of which
-                    <pb id="p.513"/>
+                    <pb xml:id="p.513"/>
                     he can select without damage to his cause. Such
 a course is more effective in debate than in a set
 speech, for the reason that in the latter we reply
@@ -3833,13 +3851,13 @@ and to take different sides, debating it as would
 be done in the courts. The same may also be
 done with the simpler class of questions.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         II. i. 9 and v. x. 53.
                     </note>
                     <milestone n="22" unit="section"/>
                     I
 would further have an advocate realise the order in
-                    <pb id="p.515"/>
+                    <pb xml:id="p.515"/>
                     which his proofs should be presented to the judge:
 the method to be followed is the same as in arguments: the strongest should be placed first and
 last. For those which are presented first dispose
@@ -3880,7 +3898,7 @@ former deals with evident facts, while the latter is
 concerned with hidden facts or such as have not
 yet been discovered or still remain in doubt. Again
 judgment is more often than not a matter of
-                    <pb id="p.517"/>
+                    <pb xml:id="p.517"/>
                     certainty, while sagacity is a form of reasoning from
 deep-lying premises, which generally weighs and
 compares a number of arguments and in itself
@@ -3920,20 +3938,20 @@ in my opinion, to do so by laying down general rules.
                     <milestone n="7" unit="section"/>
                     We praise Demosthenes
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Phil.</hi>
+                        <hi rend="italic">Phil.</hi>
                         i. 2.
                     </note>
                     for his sagacity because
 when he urged a policy of war upon the Athenians
 after they had met with a series of reverses, he
-                    <pb id="p.519"/>
+                    <pb xml:id="p.519"/>
                     pointed out that so far their action had been entirely
 irrational. For they might still make amends for their
 negligence, whereas, if they had made no mistakes,
 they would have had no ground for hopes of better
 success in the future. Again,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Phil.</hi>
+                        <hi rend="italic">Phil.</hi>
                         i. 1.
                     </note>
                     <milestone n="8" unit="section"/>
@@ -3948,7 +3966,7 @@ own degenerate behaviour.
                     <milestone n="9" unit="section"/>
                     If we turn to Cicero, we
 shall find that one speech alone, the
-                    <hi rend="italics">pro Cluenltio,</hi>
+                    <hi rend="italic">pro Cluenltio,</hi>
                     will suffice to provide a number of examples. The
 difficulty is to know what special exhibition of sagacity to admire most in this speech. His opening
 statement of the case, by which he discredited the
@@ -3968,7 +3986,7 @@ the fact that he had already softened their feelings
 towards him?
                     <note anchored="true" place="unspecified">
                         lii. 143
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     Or the skill which lie shows in stating that he has adopted this course in spite of the
 protests of his client?
@@ -3976,17 +3994,17 @@ protests of his client?
                     <milestone n="10" unit="section"/>
                     What again am I to select as
 an outstanding instance of his sagacity in the
-                    <hi rend="italics">pro Milone?</hi>
+                    <hi rend="italic">pro Milone?</hi>
                     The fact that he refrains from proceeding
 to his statement of facts until he has cleared the
 ground by disposing of the previous verdicts against
 the accused?
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Quint. III. vi. 93.
                     </note>
                     The manner in which he turns the
-                    <pb id="p.521"/>
+                    <pb xml:id="p.521"/>
                     odium of the attempted ambush against Clodius,
 although as a matter of fact the encounter was a
 pure chance? The way in which he at one and the
@@ -3997,9 +4015,9 @@ which he avoided making Milo plead for consideration and undertook the role of s
                     It would be an endless task to quote all the instances
 of his sagacity, how he discredited Cotta,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         above v. xiii. 30. The reference is to the
-                        <hi rend="italics">pro Oppio.</hi>
+                        <hi rend="italic">pro Oppio.</hi>
                     </note>
                     how he
 put forward his own case in defence of Ligarius
@@ -4024,7 +4042,7 @@ till I come to give instructions on the subject of
 appropriateness in speaking.
                     <note anchored="true" place="unspecified">
                         In XI. i.
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         I. v. 1.
                     </note>
                 </p>

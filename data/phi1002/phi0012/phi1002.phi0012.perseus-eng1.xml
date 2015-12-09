@@ -1,13 +1,14 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
-                <title n="Inst." type="work">Institutio Oratoria, books 1-3 - 2</title>
+                <title n="Inst." type="work">Institutio Oratoria, books 1-3: index - 2</title>
                 <title type="sub">Machine readable text</title>
                 <author n="Quint.">Quintilian</author>
                 <editor n="Butler" role="editor">Harold Edgeworth Butler</editor>
-                <sponsor>Perseus Project, Tufts University</sponsor>
                 <principal>Gregory Crane</principal>
+                <sponsor>Perseus Project, Tufts University</sponsor>
                 <respStmt>
                     <resp>Prepared under the supervision of</resp>
                     <name>Lisa Cerrato</name>
@@ -16,15 +17,14 @@
                     <name>David Smith</name>
                 </respStmt>
                 <funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
-            </titleStmt><publicationStmt><publisher>Trustees of Tufts University</publisher><pubPlace>Medford, MA</pubPlace><authority>Perseus Project</authority></publicationStmt>
-            
+            </titleStmt>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
                 <authority>Perseus Project</authority>
             </publicationStmt>
-            <sourceDesc default="NO">
-                <biblStruct default="NO">
+            <sourceDesc default="false">
+                <biblStruct default="false">
                     <monogr>
                         <author>Quintilian</author>
                         <title>With an English Translation</title>
@@ -39,6 +39,23 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+	    <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                         matchPattern="(\\w+).(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\']/tei:div[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                         matchPattern="(\\w+).(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                         matchPattern="(\\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
                 <refState unit="book"/>
                 <refState unit="chapter"/>
@@ -49,13 +66,13 @@
             </refsDecl>
         </encodingDesc>
         <profileDesc>
-            <langUsage default="NO">
-                <language ident="en">English</language>
+            <langUsage default="false">
                 <language ident="la">Latin</language>
-                <language ident="greek">Greek</language>
+                <language ident="en">English</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
-        <revisionDesc><!--
+        <revisionDesc><change who="GRC" when="2006">tagging</change><!--
             <change>
                 <date>2006</date>
                 <respStmt>
@@ -64,12 +81,13 @@
                 </respStmt>
                 <item/>
             </change>
-        --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+        --><change when="2014-08-01" who="Stella Dee">edited markup</change>
+	   <change who="Zach Himes" when="2015-11-17">Edited teiHeader, converted to TEI P5 and EpiDoc</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
+    <text xml:lang="eng">
         <body>
-            <pb id="p.205"/>
-            <div part="N" sample="complete" org="uniform" n="2" type="book">
+            <pb xml:id="p.205"/>
+            <div part="N" sample="complete" org="uniform" n="2" subtype="book" type="translation">
                 <head>Book II</head>
                 <p>
                     <milestone n="1" unit="chapter"/>
@@ -94,7 +112,7 @@ him a debt of gratitude for this), but even presumes
 to handle declamations in character and deliberative
 themes,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">suasoriae</hi>
+                        <hi rend="italic">suasoriae</hi>
                         are declamations on deliberative themes (e.g.
 Hannibal deliberates whether he should cross the Alps).
                     </note>
@@ -110,13 +128,13 @@ under the direction of teachers of literature. Thus
 we get the absurd result that a boy is not regarded
 as fit to go on to the schools of declamation till he
 knows how to declaim.
-                    <pb id="p.207"/>
+                    <pb xml:id="p.207"/>
                 </p>
                 <p>
                     The two professions must each be assigned their
 proper sphere.
                     <milestone n="4" unit="section"/>
-                    <hi rend="italics">Grammatice,</hi>
+                    <hi rend="italic">Grammatice,</hi>
                     which we translate as
 the science of letters, must learn to know its own
 limits, especially as it has encroached so far beyond
@@ -154,7 +172,7 @@ the best answer to the question
                     But this question is really dependent on that previously raised. For if the duties of
 the teacher of literature are prolonged to include
 instruction in deliberative declamation, this will
-                    <pb id="p.209"/>
+                    <pb xml:id="p.209"/>
                     postpone the need for the rhetorician. On the other
 hand if the rhetorician does not refuse to undertake
 the first duties of his task, his instruction will be required from the moment the boy begins to compose
@@ -165,10 +183,10 @@ or denunciation.
 earlier days improved their eloquence by declaiming
 themes and common-places
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">communes loci</hi>
+                        <hi rend="italic">communes loci</hi>
                         = passages dealing with some general
 principle or theme. For
-                        <hi rend="italics">theses</hi>
+                        <hi rend="italic">theses</hi>
                         see
                         <milestone n="2" unit="chapter"/>
                         <milestone n="1" unit="section"/>
@@ -178,12 +196,12 @@ principle or theme. For
 rhetorical exercises not involving particular circumstances or persons such as provide the material for
 real or imaginary causes.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">controversiae</hi>
+                        <hi rend="italic">controversiae</hi>
                         are declamations on controversial or judicial
 themes. A general rule or law is stated: then a special case,
 which has to be solved in accordance with the law. An
 abbreviated
-                        <hi rend="italics">controversia</hi>
+                        <hi rend="italic">controversia</hi>
                         is to be found in I. x. 33, and they
 occur frequently hereafter (cp. esp.
                         <milestone n="3" unit="chapter"/>
@@ -219,7 +237,7 @@ defend or impugn the credibility of witnesses?
                     These are weapons which we should always have
 stored in our armoury ready for immediate use as
 occasion may demand. The critic who denies that
-                    <pb id="p.211"/>
+                    <pb xml:id="p.211"/>
                     such matters concern an orator is one who will
 refuse to believe that a statue is being begun
 when its limbs are actually being cast. Some will
@@ -262,7 +280,7 @@ necessary.
 manhood when transferred to the teacher of rhetoric
 and continue with him even when they are young
 men: consequently we must spare no effort to secure
-                    <pb id="p.213"/>
+                    <pb xml:id="p.213"/>
                     that the purity of the teacher's character should
 preserve those of tenderer years from corruption,
 while its authority should keep the bolder spirits
@@ -308,7 +326,7 @@ dislike discourage industry.
 daily himself and, what is more, without stint, that
 his class may take his utterances home with them.
 For however many models for imitation he may
-                    <pb id="p.215"/>
+                    <pb xml:id="p.215"/>
                     give them from the authors they are reading, it will
 still be found that fuller nourishment is provided by
 the living voice, as we call it, more especially when
@@ -350,7 +368,7 @@ the close of each period they not merely rise, but
 rush forward with shouts of unseemly enthusiasm.
 Such compliments are mutual and the success of a
 declamation consists in this kind of applause. The
-                    <pb id="p.217"/>
+                    <pb xml:id="p.217"/>
                     result is vanity and empty self-sufficiency, carried to
 such an extent that, intoxicated by the wild enthusiasm of their fellow-pupils, they conceive a spite
 against their master, if his praise does not come up
@@ -391,7 +409,7 @@ absolutely useless to him, if he neglects this.
                 </p>
                 <p>
                     III. I do not think that I should pass by in silence
-                    <pb id="p.219"/>
+                    <pb xml:id="p.219"/>
                     even the opinion of those who, even when they
 regard boys as ripe for the rhetorician, still do not
 think that they should at once be placed under the
@@ -431,7 +449,7 @@ consequently they sometimes disdain to give attention to such inferior subjects 
 are incapable of so doing.
                     <milestone n="5" unit="section"/>
                     For my part I regard the
-                    <pb id="p.221"/>
+                    <pb xml:id="p.221"/>
                     teacher who is unwilling to attend to such details
 as being unworthy of the name of teacher: and as
 for the question of capacity, I maintain that it is the
@@ -478,7 +496,7 @@ intelligible is his instruction. For clearness is the
 first virtue of eloquence, and the less talented a man
 is, the more he will strive to exalt and dilate himself,
 just as short men tend to walk on tip-toe and weak
-                    <pb id="p.223"/>
+                    <pb xml:id="p.223"/>
                     men to use threats.
                     <milestone n="9" unit="section"/>
                     As for those whose style is
@@ -517,11 +535,11 @@ on the audience.
                     The teacher should therefore be
 as distinguished for his eloquence as for his good
 character, and like Phoenix in the
-                    <hi rend="italics">Iliad</hi>
+                    <hi rend="italic">Iliad</hi>
                     be able to
 teach his pupil both how to behave and how to
 speak.
-                    <pb id="p.225"/>
+                    <pb xml:id="p.225"/>
                 </p>
                 <p>
                     <milestone n="4" unit="chapter"/>
@@ -546,7 +564,7 @@ but has little resemblance to truth.
                     <note anchored="true" place="unspecified">
                         With special reference to the element of the miraculous.
 Ovid's
-                        <hi rend="italics">Metamorphoses</hi>
+                        <hi rend="italic">Metamorphoses</hi>
                         would give a good example.
                     </note>
                     Secondly, there
@@ -574,7 +592,7 @@ by a misguided imitation of poetic licence.
                     Both
 these extremes are faults; but that which springs
 from poverty of wit is worse than that which is due
-                    <pb id="p.227"/>
+                    <pb xml:id="p.227"/>
                     to imaginative excess. For we cannot demand or
 expect a perfect style from boys. But there is
 greater promise in a certain luxuriance of mind, in
@@ -615,12 +633,12 @@ broken if the graver cut too deep.
                     <milestone n="8" unit="section"/>
                     Those of my
 readers who know their Cicero will not be surprised
-                    <pb id="p.229"/>
+                    <pb xml:id="p.229"/>
                     that I take this view: for does he not say
                     <quote>I would have the youthful mind run riot in the luxuriance of its growth</quote>
                     ?
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         i. xxi. 88.
                     </note>
                 </p>
@@ -655,11 +673,11 @@ be applied while the leaves are yet young, for they
 seem to
                     <quote>shrink from the steel</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Verg.
-                        <hi rend="italics">G.</hi>
+                        <hi rend="italic">G.</hi>
                         ii. 369,
-                        <hi rend="italics">ante reformidat ferrum.</hi>
+                        <hi rend="italic">ante reformidat ferrum.</hi>
                     </note>
                     and to be unable
 as yet to endure a scar.
@@ -671,7 +689,7 @@ praised, others tolerated and others altered: the
 reason for the alterations should however be given,
 and in some cases the master will illumine an
 obscure passage by inserting something of his own.
-                    <pb id="p.231"/>
+                    <pb xml:id="p.231"/>
                     Occasionally again the teacher will find it useful to
 dictate whole themes himself that the boy may
 imitate them and for the time being love them as if
@@ -710,7 +728,7 @@ incapable of greater effort and is beginning to connect words and things, thereb
 memory. Even so when he is beginning to understand the nature of correct and accurate speech,
 extempore effusions, improvised without waiting
 for thought to supply the matter or a moment's
-                    <pb id="p.233"/>
+                    <pb xml:id="p.233"/>
                     hesitation before rising to the feet, must not be permitted: they proceed from a passion for display that
 would do credit to a common mountebank.
                     <milestone n="16" unit="section"/>
@@ -735,9 +753,9 @@ are our goal or the levels immediately below them.
                     <milestone n="18" unit="section"/>
                     To narratives is annexed the task of refuting and
 confirming them, styled
-                    <hi rend="italics">anaskeue</hi>
+                    <hi rend="italic">anaskeue</hi>
                     and
-                    <hi rend="italics">kataskeue,</hi>
+                    <hi rend="italic">kataskeue,</hi>
                     from
 which no little advantage may be derived. This may
 be done not merely in connexion with fiction and
@@ -754,7 +772,7 @@ the tradition that Scipio
                     was begotten by a serpent,
 or that Romulus was suckled by the she-wolf, or the
 story of Numa and Egeria. As regards Greek history, it allows itself something very like poetic
-                    <pb id="p.235"/>
+                    <pb xml:id="p.235"/>
                     licence. Again the time and place of some particular occurrence and sometimes even the persons concerned often provide matter for discussion: Livy for
 instance is frequently in doubt as to what actually
 occurred and historians often disagree.
@@ -784,7 +802,7 @@ forms the third department of rhetoric.
                 <p>
                     <milestone n="22" unit="section"/>
                     As to
-                    <hi rend="italics">commonplaces</hi>
+                    <hi rend="italic">commonplaces</hi>
                     (I refer to those in which
 we denounce vices themselves such as adultery,
 gambling or profligacy without attacking particular persons), they come straight from the courts
@@ -794,7 +812,7 @@ general character of a commonplace is usually
 given a special turn: for instance we make our
 adulterer blind, our gambler poor and our profligate
 far advanced in years. Sometimes too they entail
-                    <pb id="p.237"/>
+                    <pb xml:id="p.237"/>
                     defence:
                     <milestone n="23" unit="section"/>
                     for we may speak on behalf of luxury or
@@ -805,7 +823,7 @@ that is brought against him.
                 </p>
                 <p>
                     <milestone n="24" unit="section"/>
-                    <hi rend="italics">Theses</hi>
+                    <hi rend="italic">Theses</hi>
                     on the other hand are concerned with
 the comparison of things and involve questions such
 as
@@ -817,18 +835,18 @@ and copious practice in the art of speaking, and are
 most useful whether we have an eye to the duties
 of deliberative oratory or the arguments of the
 courts. For instance Cicero in his
-                    <hi rend="italics">pro Murena</hi>
+                    <hi rend="italic">pro Murena</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Mur.</hi>
+                        <hi rend="italic">Pro Mur.</hi>
                         ix. 21
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     deals
 very fully with the second of the two problems
 mentioned above.
                     <milestone n="25" unit="section"/>
                     Other
-                    <hi rend="italics">theses</hi>
+                    <hi rend="italic">theses</hi>
                     too belong entirely
 to the deliberative class of oratory, as for instance
 the questions as to
@@ -847,7 +865,7 @@ develop questions such as
                     <quote>Why in Sparta is Venus represented as wearing armour?</quote>
                     <note anchored="true" place="unspecified">
                         The reason according to Lactantius (
-                        <hi rend="italics">Inst. Div.</hi>
+                        <hi rend="italic">Inst. Div.</hi>
                         i. 20) was
 the bravery of the Spartan women in one of the Messenian wars.
                     </note>
@@ -857,13 +875,13 @@ the bravery of the Spartan women in one of the Messenian wars.
 was to discover the intention implied, a question
 which frequently occurs in controversial declamations.
 Such themes may perhaps be regarded as a kind of
-                    <hi rend="italics">chria</hi>
+                    <hi rend="italic">chria</hi>
                     or moral essay.
                 </p>
                 <p>
                     <milestone n="27" unit="section"/>
                     That certain topics such as the question as to
-                    <pb id="p.239"/>
+                    <pb xml:id="p.239"/>
                     whether we should always believe a witness or
 whether we should rely on circumstantial evidence,
 are part and parcel of actual forensic pleading is so
@@ -899,7 +917,7 @@ purposes.
 is hardly a single commonplace of such universal
 application that it will fit any actual case, unless
 some special link is provided to connect it with
-                    <pb id="p.241"/>
+                    <pb xml:id="p.241"/>
                     the subject: otherwise it will seem to have been
 tacked on to the speech, not interwoven in its
 texture,
@@ -932,9 +950,9 @@ in different states. Among the Greeks the proposer
 of a law was called upon to set forth his case before
 a judge,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         a court of
-                        <hi rend="italics">nomothetae</hi>
+                        <hi rend="italic">nomothetae</hi>
                         appointed by the Athenian
 assembly, who examined the provisions of the proposed law.
                     </note>
@@ -943,22 +961,22 @@ the acceptance or rejection of a law before the public
 assembly. But in any case the arguments advanced
 in such cases are few in number and of a definite
 type. For there are only three kinds of law,
-                    <hi rend="italics">sacred, public</hi>
+                    <hi rend="italic">sacred, public</hi>
                     and
-                    <hi rend="italics">private.</hi>
+                    <hi rend="italic">private.</hi>
                     <milestone n="34" unit="section"/>
                     This division is of rhetorical value
 chiefly when a law is to be praised. For example the
 orator may advance from praise to praise by a series of
 gradations, praising an enactment first because it is
-                    <hi rend="italics">law,</hi>
+                    <hi rend="italic">law,</hi>
                     secondly because it is
-                    <hi rend="italics">public,</hi>
+                    <hi rend="italic">public,</hi>
                     and, finally, designed
 for the support of
-                    <hi rend="italics">religion.</hi>
+                    <hi rend="italic">religion.</hi>
                     As regards the questions
-                    <pb id="p.243"/>
+                    <pb xml:id="p.243"/>
                     which generally arise, they are common to all cases.
                     <milestone n="35" unit="section"/>
                     Doubts may be raised as to whether the mover is
@@ -970,7 +988,7 @@ tribune of the plebs was alleged to be unconstitutional.
 by adoption to enable him to hold the tribunate. The
 question of the legality of this procedure is discussed by
 Cicero in the
-                        <hi rend="italics">de Domo,</hi>
+                        <hi rend="italic">de Domo,</hi>
                         13–17.
                     </note>
                     Or the legality of the proposal itself may
@@ -979,13 +997,13 @@ urged that the law was not promulgated within
 seventeen
                     <note anchored="true" place="unspecified">
                         Lit. within the space of three market-days.
-                        <hi rend="italics">nundinum</hi>
+                        <hi rend="italic">nundinum</hi>
                         =9 days, the second market-day being the ninth, and
 forming the last day of the first
-                        <hi rend="italics">nundinum</hi>
+                        <hi rend="italic">nundinum</hi>
                         and the first of the second. Similarly the third market-day is the last day
 of the second
-                        <hi rend="italics">nundinum</hi>
+                        <hi rend="italic">nundinum</hi>
                         and the first of the third.
                     </note>
                     days, or was proposed, or is being proposed on an improper day, or in defiance of the
@@ -1008,12 +1026,12 @@ question whether the law is right or expedient.
 am well aware that many rhetoricians introduce a
 number of sub-divisions in connexion with this latter
 enquiry. I however include under the term
-                    <hi rend="italics">right</hi>
+                    <hi rend="italic">right</hi>
                     all such qualities as justice, piety and religion.
 Justice is however usually discussed under various
 aspects. A question may be raised about the acts
 with which the law is concerned, as to whether they
-                    <pb id="p.245"/>
+                    <pb xml:id="p.245"/>
                     deserve punishment or reward or as to the degree of
 punishment or reward that should be assigned, since
 excess in either direction is open to criticism.
@@ -1031,10 +1049,10 @@ found in famous speeches.
                     I am well aware, too,
 that there are laws which are not proposed with
 a view to perpetuity, but are concerned with temporary honours or commands, such as the
-                    <hi rend="italics">lex Manilia</hi>
+                    <hi rend="italic">lex Manilia</hi>
                     <note anchored="true" place="unspecified">
                         The
-                        <hi rend="italics">lex Manilia</hi>
+                        <hi rend="italic">lex Manilia</hi>
                         proposed to give Pompey the command
 against Mithridates.
                     </note>
@@ -1060,17 +1078,17 @@ discover, as I have acknowledged in another work.
                         Probably the lost treatise on
                         <quote>The causes of the decline of oratory</quote>
                         (
-                        <hi rend="italics">De causis corruptae eloquentiae).</hi>
+                        <hi rend="italic">De causis corruptae eloquentiae).</hi>
                     </note>
                     But not even those who most strongly assert his
 claim to be the inventor, can produce any adequate
 authority in support of their opinion. As regards
 Latin teachers of rhetoric, of whom Plotius was the
-                    <pb id="p.247"/>
+                    <pb xml:id="p.247"/>
                     most famous, Cicero
                     <note anchored="true" place="unspecified">
                         See Cic.
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         iii. 24, 93.
                     </note>
                     informs us that they came into
@@ -1117,7 +1135,7 @@ below the dignity of the teacher of rhetoric.
                     <milestone n="5" unit="section"/>
                     On
 the other hand it is emphatically part of his
-                    <pb id="p.249"/>
+                    <pb xml:id="p.249"/>
                     prosession and the undertaking which he makes in
 offering himself as a teacher of eloquence, to point
 out the merits of authors or, for that matter, any
@@ -1143,7 +1161,7 @@ as regards the resourcefulness or the style shown
 in the treatment of the subject: the teacher must
 point out how the orator seeks to win the favour
 of the judge in his
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     what clearness, brevity
 and sincerity, and at times what shrewd design and
 well-concealed artifice is shown in the statement of
@@ -1158,7 +1176,7 @@ what charm the soothing passage, how fierce is the
 invective and how full of wit the jests, and in
 conclusion how the orator establishes his sway
 over the emotions of his audience, forces his way
-                    <pb id="p.251"/>
+                    <pb xml:id="p.251"/>
                     into their very hearts and brings the feelings of the
 jury into perfect sympathy with all his words.
                     <milestone n="9" unit="section"/>
@@ -1202,7 +1220,7 @@ depended entirely on moral hideousness.
                 <p>
                     <milestone n="13" unit="section"/>
                     It will, however, be the duty of the rhetorician
-                    <pb id="p.253"/>
+                    <pb xml:id="p.253"/>
                     not merely to teach these things, but to ask frequent
 questions as well, and test the critical powers of his
 class. This will prevent his audience from becoming
@@ -1243,7 +1261,7 @@ his own. I might say more on the subject.
                     But
 every one can see the advantages of this method.
 Would that the reluctance to put it into practice
-                    <pb id="p.255"/>
+                    <pb xml:id="p.255"/>
                     were not as great as the pleasure that would undoubtedly be derived from so doing!
                 </p>
                 <p>
@@ -1284,7 +1302,7 @@ yet be unable to understand the force and vigour of
 these authors, and contenting themselves with a
 style which doubtless was admirable in its day, but
 is quite unsuitable to ours, will come to think (and
-                    <pb id="p.257"/>
+                    <pb xml:id="p.257"/>
                     nothing could be more fatal) that they really resemble great men.
                     <milestone n="22" unit="section"/>
                     Secondly the opposite extreme must
@@ -1326,7 +1344,7 @@ with less danger, and I have therefore postponed
 the study of the moderns, for fear that we should
 imitate them before we are qualified to judge of
 their merits.
-                    <pb id="p.259"/>
+                    <pb xml:id="p.259"/>
                 </p>
                 <p>
                     <milestone n="6" unit="chapter"/>
@@ -1370,7 +1388,7 @@ conjointly and in such a way as circumstances may
 demand.
                     <milestone n="5" unit="section"/>
                     Beginners must be given a subject
-                    <pb id="p.261"/>
+                    <pb xml:id="p.261"/>
                     sketched out ready for treatment and suitable to
 their respective powers. But when they show that
 they have formed themselves sufficiently closely on
@@ -1410,7 +1428,7 @@ practice is especially popular with the boys' fathers,
 who think that their sons are not really studying
 unless they declaim on every possible occasion,
 although as a matter of fact progress depends
-                    <pb id="p.263"/>
+                    <pb xml:id="p.263"/>
                     mainly on industry.
                     <milestone n="2" unit="section"/>
                     For though I strongly approve of boys writing compositions and would have
@@ -1450,7 +1468,7 @@ would however allow boys occasionally to declaim
 their own compositions that they may reap the reward of their labours in the applause of a large
 audience, that most coveted of all prizes. But this
 should not be permitted until they have produced
-                    <pb id="p.265"/>
+                    <pb xml:id="p.265"/>
                     something more finished than usual: they will thus
 be rewarded for their industry and rejoice in the
 thought that the privilege accorded them is the
@@ -1498,7 +1516,7 @@ born to employ.
                     <milestone n="6" unit="section"/>
                     Now, since the critic who is
 guided by his reason is free to dissent even from
-                    <pb id="p.267"/>
+                    <pb xml:id="p.267"/>
                     received opinions, I must insist that to my thinking this view is only partially true. It is undoubtedly necessary to note the individual gifts of
 each boy,
                     <milestone n="7" unit="section"/>
@@ -1539,7 +1557,7 @@ neglected, but defects must be made good and weaknesses made strong.
                     When Isocrates, the prince of
 instructors, whose works proclaim his eloquence no
 less than his pupils testify to his excellence as a
-                    <pb id="p.269"/>
+                    <pb xml:id="p.269"/>
                     teacher, gave his opinion of Ephorus and Theopompus
 to the effect that the former needed the spur and the
 latter the curb, what was his meaning? Surely not
@@ -1568,7 +1586,7 @@ provide us with a parallel: if he undertakes to train
 a pancratiast,
                     <note anchored="true" place="unspecified">
                         The
-                        <hi rend="italics">pancration</hi>
+                        <hi rend="italic">pancration</hi>
                         was a mixture of wrestling and boxing.
                     </note>
                     he will not merely teach him how
@@ -1583,7 +1601,7 @@ specialise on those which lie within their powers.
 careful to avoid: first, he must not attempt the impossible, secondly he must not switch off his pupil
 from what he can do well to exercises for which he is
 less well suited. But if his pupil is like the famous
-                    <pb id="p.271"/>
+                    <pb xml:id="p.271"/>
                     Nicostratus, whom we saw when he was old and we
 were boys, he will train him equally in every department of the science and will make him a champion
 both in boxing and wrestling, like Nicostratus himself
@@ -1626,7 +1644,7 @@ as it takes two parents to produce a human being,
 and as the seed is scattered in vain, if the ground is
 hard and there is no furrow to receive it and bring it
 to growth, even so eloquence can never come to
-                    <pb id="p.273"/>
+                    <pb xml:id="p.273"/>
                     maturity, unless teacher and taught are in perfect
 sympathy.
                 </p>
@@ -1666,25 +1684,25 @@ should, as far as may be, be modelled on the pleadings for which it was devised 
                     <milestone n="5" unit="section"/>
                     For we
 shall hunt in vain among
-                    <hi rend="italics">sponsions</hi>
+                    <hi rend="italic">sponsions</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">sponsio (=</hi>
+                        <hi rend="italic">sponsio (=</hi>
                         a wager) was a form of lawsuit in which the
 litigant promised to pay a certain sum of money if he lost
 his case. The
-                        <hi rend="italics">interdict</hi>
+                        <hi rend="italic">interdict</hi>
                         was an order issued by the praetor
 commanding or prohibiting certain action. It occurred
 chiefly in disputes about property.
                     </note>
                     and
-                    <hi rend="italics">interdicts</hi>
+                    <hi rend="italic">interdicts</hi>
                     for magicians and plagues and oracles and stepmothers more cruel than any in tragedy, and other
-                    <pb id="p.275"/>
+                    <pb xml:id="p.275"/>
                     subjects still more unreal than these.
                     <note anchored="true" place="unspecified">
                         The themes of the
-                        <hi rend="italics">controversiae</hi>
+                        <hi rend="italic">controversiae</hi>
                         often turned on the
 supernatural and on crimes and incidents such as rarely or
 never occur in actual life.
@@ -1726,7 +1744,7 @@ is, however, a comparative trifle. But what can be
 more ludicrous than to work oneself into a passion
 and to attempt to excite the anger or grief of
 our hearers, unless we are preparing ourselves by
-                    <pb id="p.277"/>
+                    <pb xml:id="p.277"/>
                     such mimic combats for the actual strife and the
 pitched battles of the law-courts?
                     <milestone n="9" unit="section"/>
@@ -1768,7 +1786,7 @@ assume a certain air of elegance.
                     In this connexion
 I may cite the practice of comic actors, whose delivery is not exactly that of common speech, since
 that would be inartistic, but is on the other hand not
-                    <pb id="p.279"/>
+                    <pb xml:id="p.279"/>
                     far removed from the accents of nature, for, if it were,
 their mimicry would be a failure: what they do therefore is to exalt the simplicity of ordinary speech
 by a touch of stage decoration.
@@ -1804,12 +1822,12 @@ my pains; in which they will be only following the
 example of certain professors of no small reputation.
 One of these gentlemen, I believe, when asked to
 define a
-                    <hi rend="italics">figure</hi>
+                    <hi rend="italic">figure</hi>
                     and a
-                    <hi rend="italics">thought,</hi>
+                    <hi rend="italic">thought,</hi>
                     replied that he did not
 know what they were, but that, if they had anything
-                    <pb id="p.281"/>
+                    <pb xml:id="p.281"/>
                     to do with the subject, they would be found in
 his declamation.
                     <milestone n="2" unit="section"/>
@@ -1817,11 +1835,11 @@ his declamation.
 was a follower of Theodorus or Apollodorus, replied,
                     <quote>Oh! as for me, I am all for the Thracians.</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         I care naught for your rival schools of rhetoric. I
 give all my favour to the men armed with the buckler (the
 gladiators known as
-                        <hi rend="italics">Thraces).</hi>
+                        <hi rend="italic">Thraces).</hi>
                         Such contests of the amphitheatre interest me far more than the contests between rival
 schools of rhetoric.
                     </note>
@@ -1858,7 +1876,7 @@ snatches of eloquence, and then after practising
 their delivery first in silent thought and then
 aloud for hours together, in utter desperation of
 providing any connecting links, abandon them and
-                    <pb id="p.283"/>
+                    <pb xml:id="p.283"/>
                     take refuge in one formula after another, each no
 less hackneyed and familiar than the last.
                     <milestone n="6" unit="section"/>
@@ -1901,7 +1919,7 @@ a hold, is acclaimed by them for his outstanding
 vigour, although it is of frequent occurrence in such
 cases for the latter to be overthrown by his own
 strength and for the former to find the fury of his
-                    <pb id="p.285"/>
+                    <pb xml:id="p.285"/>
                     onslaught parried by his adversary with a supple
 turn of the wrist.
                     <milestone n="3" unit="section"/>
@@ -1942,7 +1960,7 @@ To this must be added the fact that such persons
 take no trouble to prove their contentions, and
 consequently steer clear of the chilly reception
 given in our decadent law-courts to arguments and
-                    <pb id="p.287"/>
+                    <pb xml:id="p.287"/>
                     questions and seek only for such themes as may
 beguile the ears of the public even at the cost of
 appealing to the most perverted tastes.
@@ -1955,7 +1973,7 @@ clearly seen against a background, not of mere
                     <quote>shade,</quote>
                     as Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         III. xxvi. 101.
                     </note>
                     says, but of pitchy darkness.
@@ -1986,17 +2004,17 @@ of a lunatic.
 the ground, slap your thigh, your breast, your forehead, and you will go straight to the heart of the
 dingier members of your audience.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pullatus</hi>
+                        <hi rend="italic">pullatus</hi>
                         = wearing dark clothes,
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         the common people,
 as opposed to the upper classes wearing the white or purple bordered
-                        <hi rend="italics">toga.</hi>
+                        <hi rend="italic">toga.</hi>
                     </note>
                     But the educated speaker, just as he knows how to moderate
 his style, and to impart variety and artistic form to
 his speech, is an equal adept in the matter of delivery and will suit his action to the tone of each
-                    <pb id="p.289"/>
+                    <pb xml:id="p.289"/>
                     portion of his utterances, while, if he has any one
 canon for universal observance, it is that he should
 both possess the reality and present the appearance
@@ -2029,20 +2047,20 @@ ability, and are, at any rate, a pleasure to myself.
 code of rules such as most authors of textbooks have
 laid down, or ask me to impose on students of rhetoric a system of laws immutable as fate, a system in
 which injunctions as to the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     and its nature
 lead the way; then come the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     and
 the laws to be observed in this connexion: next the
-                    <hi rend="italics">proposition</hi>
+                    <hi rend="italic">proposition</hi>
                     or, as some prefer, the
-                    <hi rend="italics">digression,</hi>
+                    <hi rend="italic">digression,</hi>
                     followed
 by prescriptions as to the order in which the various
 questions should be discussed, with all the other rules,
 which some speakers follow as though they had no
-                    <pb id="p.291"/>
+                    <pb xml:id="p.291"/>
                     choice but to regard them as orders and as if it were
 a crime to take any other line.
                     <milestone n="2" unit="section"/>
@@ -2074,15 +2092,15 @@ win the day. So, too, with the rules of oratory.
                     <milestone n="5" unit="section"/>
                     Is
 the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     necessary or superfluous? should it be
 long or short? addressed entirely to the judge or
 sometimes directed to some other quarter by the
 employment of some figure of speech?
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         by the figure known as
-                        <hi rend="italics">apostrophe,</hi>
+                        <hi rend="italic">apostrophe,</hi>
                         in which the
 orator diverts his speech from the judge to some other
 person: see IX. ii. 38.
@@ -2094,7 +2112,7 @@ should it follow the actual or an artificial order of
 events? The orator will find the answers to all these
 questions in the circumstances of the case. So, too,
 with the order in which questions should be discussed,
-                    <pb id="p.293"/>
+                    <pb xml:id="p.293"/>
                     since in any given debate it may often suit one party
 best that such and such a question come up first,
                     <milestone n="6" unit="section"/>
@@ -2117,7 +2135,7 @@ and follow her.
                             <quote>
                                 <l part="N">This I enjoin and urge and urge anew</l>
                             </quote>
-                            <bibl default="NO">Verg. Aen. iii. 436.</bibl>
+                            <bibl default="false">Verg. Aen. iii. 436.</bibl>
                         </cit>
                     </quote>
                     that in all his pleadings the orator should keep two
@@ -2143,7 +2161,7 @@ sit or recline, some are nude, others clothed, while
 some again are half-dressed, half-naked. Where can
 we find a more violent and elaborate attitude than
 that of the Discobolus of Myron? Yet the critic who
-                    <pb id="p.295"/>
+                    <pb xml:id="p.295"/>
                     disapproved of the figure because it was not upright,
 would merely show his utter failure to understand the
 sculptor's art, in which the very novelty and difficulty
@@ -2152,9 +2170,9 @@ of execution is what most deserves our praise.
                     A
 similar impression of grace and charm is produced by
 rhetorical figures, whether they be
-                    <hi rend="italics">figures of thought</hi>
+                    <hi rend="italic">figures of thought</hi>
                     or
-                    <hi rend="italics">figures of speech.</hi>
+                    <hi rend="italic">figures of speech.</hi>
                     For they involve a certain departure from the straight line and have the merit of
 variation from the ordinary usage.
                     <milestone n="12" unit="section"/>
@@ -2181,22 +2199,22 @@ imagination of the spectator.
                     <milestone n="14" unit="section"/>
                     Sallust
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Jug.</hi>
+                        <hi rend="italic">Jug.</hi>
                         xix.
                     </note>
                     did something similar when he wrote
                     <quote>I think it better to say nothing of Carthage rather than say too little.</quote>
                     It
 has always, therefore, been my custom not to tie myself down to
-                    <hi rend="italics">universal</hi>
+                    <hi rend="italic">universal</hi>
                     or
-                    <hi rend="italics">general</hi>
+                    <hi rend="italic">general</hi>
                     rules (this being the
 nearest equivalent I can find for the Greek
-                    <hi rend="italics">catholic rules</hi>
+                    <hi rend="italic">catholic rules</hi>
                     ). For rules are rarely of such a kind that their
 validity cannot be shaken and overthrown in some
-                    <pb id="p.297"/>
+                    <pb xml:id="p.297"/>
                     particular or other.
                     <milestone n="15" unit="section"/>
                     But I must reserve each of these
@@ -2237,67 +2255,67 @@ which seem desirable.
                     <milestone n="1" unit="section"/>
                     Rhetoric is a Greek term which has been
 translated into Latin by
-                    <hi rend="italics">oratoria</hi>
+                    <hi rend="italic">oratoria</hi>
                     or
-                    <hi rend="italics">oratrix. I</hi>
+                    <hi rend="italic">oratrix. I</hi>
                     would
 not for the world deprive the translators of the
 praise which is their due for attempting to increase
 the vocabulary of our native tongue; but translations
-                    <pb id="p.299"/>
+                    <pb xml:id="p.299"/>
                     from Greek into Latin are not always satisfactory,
 just as the attempt to represent Latin words
 in a Greek dress is sometimes equally unsuccessful.
                     <milestone n="2" unit="section"/>
                     And the translations in question are fully as
 harsh as the
-                    <hi rend="italics">essentia</hi>
+                    <hi rend="italic">essentia</hi>
                     and
-                    <hi rend="italics">queentia</hi>
+                    <hi rend="italic">queentia</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">sc.</hi>
+                        <hi rend="italic">sc.</hi>
                         essence and possibility.
                     </note>
                     of Plautus,
                     <note anchored="true" place="unspecified">
                         A Stoic.
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         x. i. 124.
                     </note>
                     and have not even the merit of being exact.
 For
-                    <hi rend="italics">oratoria</hi>
+                    <hi rend="italic">oratoria</hi>
                     is formed like
-                    <hi rend="italics">elocutoria</hi>
+                    <hi rend="italic">elocutoria</hi>
                     and
-                    <hi rend="italics">oratrix</hi>
+                    <hi rend="italic">oratrix</hi>
                     like
-                    <hi rend="italics">elocutrix,</hi>
+                    <hi rend="italic">elocutrix,</hi>
                     whereas the rhetoric with which
 we are concerned is rather to be identified with
-                    <hi rend="italics">eloquentia,</hi>
+                    <hi rend="italic">eloquentia,</hi>
                     and the word is undoubtedly used in two
 senses by the Greeks.
                     <milestone n="3" unit="section"/>
                     In the one case it is an
 adjective i.e.
-                    <hi rend="italics">ars rhetorica,</hi>
+                    <hi rend="italic">ars rhetorica,</hi>
                     the rhetorical art, like
 piratic in the phrase
-                    <hi rend="italics">nauis piratica,</hi>
+                    <hi rend="italic">nauis piratica,</hi>
                     in the other it is
 a noun like philosophy or friendship. It is as a substantive that we require it here; now the correct
 translation of the Greek
-                    <hi rend="italics">grammatice</hi>
+                    <hi rend="italic">grammatice</hi>
                     is
-                    <hi rend="italics">litteratura</hi>
+                    <hi rend="italic">litteratura</hi>
                     not
-                    <hi rend="italics">litteratrix or litteratoria,</hi>
+                    <hi rend="italic">litteratrix or litteratoria,</hi>
                     which would be the forms
 analogous to
-                    <hi rend="italics">oratrix</hi>
+                    <hi rend="italic">oratrix</hi>
                     and
-                    <hi rend="italics">oratoria.</hi>
+                    <hi rend="italic">oratoria.</hi>
                     But in the case of
                     <quote>rhetoric</quote>
                     there is no similar Latin equivalent.
@@ -2306,9 +2324,9 @@ analogous to
 best therefore not to quarrel about it, more especially
 as we have to use Greek terms in many other cases.
 For I may at least use the words
-                    <hi rend="italics">philosophus, musicus</hi>
+                    <hi rend="italic">philosophus, musicus</hi>
                     and
-                    <hi rend="italics">geometres</hi>
+                    <hi rend="italic">geometres</hi>
                     without outraging them by changing
 them into clumsy Latin equivalents. Finally,
 since Cicero gave a Greek title
@@ -2325,15 +2343,15 @@ name without fear of captious criticism) is in my
 opinion best treated under the three following heads,
 the art, the artist and the work. The art is that
 which we should acquire by study, and is the art of
-                    <pb id="p.301"/>
+                    <pb xml:id="p.301"/>
                     speaking well. The artist is he who has acquired the
 art, that is to say, he is the orator whose task it is
 to speak well. The work is the achievement of
 the artist, namely good speaking. Each of these
 three
-                    <hi rend="italics">general</hi>
+                    <hi rend="italic">general</hi>
                     divisions is in its turn divided into
-                    <hi rend="italics">species.</hi>
+                    <hi rend="italic">species.</hi>
                     Of the two latter divisions I shall speak
 in their proper place. For the present I shall proceed to a discussion of the first.
                 </p>
@@ -2373,7 +2391,7 @@ will say that by power I mean
                     <milestone n="4" unit="section"/>
                     This view
 is derived from Isocrates, if indeed the treatise on
-                    <pb id="p.303"/>
+                    <pb xml:id="p.303"/>
                     rhetoric
                     <note anchored="true" place="unspecified">
                         This treatise is lost. It may have been the work of the
@@ -2390,20 +2408,20 @@ an orator, somewhat rashly defined rhetoric as
 I cannot bring myself to use the peculiar derivative
 which Ennius
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Ann.</hi>
+                        <hi rend="italic">Ann.</hi>
                         ix. 309 (Vahlen). The derivative to which he
 objects is the rare word
-                        <hi rend="italics">suada.</hi>
+                        <hi rend="italic">suada.</hi>
                     </note>
                     applies to Marcus Cethegus in the
 phrase
-                    <hi rend="italics">suadae medulla,</hi>
+                    <hi rend="italic">suadae medulla,</hi>
                     the
                     <quote>marrow of persuasion.</quote>
                     <milestone n="5" unit="section"/>
                     Again Gorgias,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Gorg.</hi>
+                        <hi rend="italic">Gorg.</hi>
                         453 A.
                     </note>
                     in the dialogue of Plato that takes
@@ -2411,9 +2429,9 @@ its title from his name, says practically the same
 thing, but Plato intends it to be taken as the opinion
 of Gorgias, not as his own. Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Inv.</hi>
+                        <hi rend="italic">de Inv.</hi>
                         I. v. 6,
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         I. xxxi. 138
                     </note>
                     in more than
@@ -2421,14 +2439,14 @@ one passage defined the duty of an orator as
                     <quote>speaking in a persuasive manner.</quote>
                     <milestone n="6" unit="section"/>
                     In his
-                    <hi rend="italics">Rhelorica</hi>
+                    <hi rend="italic">Rhelorica</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         III. i. 20 and Cic.
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         I. ii. 5. The work in question
 is better known as the
-                        <hi rend="italics">de Inventione.</hi>
+                        <hi rend="italic">de Inventione.</hi>
                     </note>
                     too,
 a work which it is clear gave him no satisfaction, he
@@ -2451,7 +2469,7 @@ to acquit the accused.
                     Again there is a speech of
 Cato, to mention no other records, which informs us
 that Servius Galba escaped condemnation solely by
-                    <pb id="p.305"/>
+                    <pb xml:id="p.305"/>
                     the pity which he aroused not only by producing his
 own young children before the assembly, but by
 carrying round in his arms the son of Sulpicius
@@ -2465,12 +2483,12 @@ cannot adequately be defined as persuasion.
                     <milestone n="10" unit="section"/>
                     Consequently those who, although holding the same
 general view of rhetoric, have regarded it as the
-                    <hi rend="italics">power of persuasion by speaking,</hi>
+                    <hi rend="italic">power of persuasion by speaking,</hi>
                     pride themselves on
 their greater exactness of language. This definition
 is given by Gorgias, in the dialogue
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Gorg.</hi>
+                        <hi rend="italic">Gorg.</hi>
                         p. 452 E.
                     </note>
                     mentioned
@@ -2480,7 +2498,7 @@ treatise on rhetoric which has come down to us
 under his name is really by him or, as is generally
 believed, by Aristotle. In that work the end of
 rhetoric is defined as the
-                    <hi rend="italics">leading of men by the power of speech to the conclusion desired by the orator.</hi>
+                    <hi rend="italic">leading of men by the power of speech to the conclusion desired by the orator.</hi>
                     <milestone n="11" unit="section"/>
                     But even this definition is not sufficiently comprehensive, since others besides orators persuade by
 speaking or lead others to the conclusion desired, as
@@ -2494,22 +2512,22 @@ others who are far removed from being orators.
 yet Apollodorus is not very far off this definition
 when he asserts that the first and all-important task
 of forensic oratory is
-                    <hi rend="italics">to persuade the judge and lead his mind to the conclusions desired by the speaker.</hi>
+                    <hi rend="italic">to persuade the judge and lead his mind to the conclusions desired by the speaker.</hi>
                     For
-                    <pb id="p.307"/>
+                    <pb xml:id="p.307"/>
                     even Apollodorus makes the orator the sport of fortune by refusing him leave to retain his title if he
 fails to persuade.
                     <milestone n="13" unit="section"/>
                     Some on the other hand pay no
 attention to results, as for example Aristotle,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Rhet.</hi>
+                        <hi rend="italic">Rhet.</hi>
                         i. 2.
                     </note>
                     who
 says
                     <quote>
-                        <hi rend="italics">rhetoric is the power of discovering all means of persuading by speech.</hi>
+                        <hi rend="italic">rhetoric is the power of discovering all means of persuading by speech.</hi>
                     </quote>
                     This definition has not merely
 the fault already mentioned, but the additional defect of including merely the power of invention,
@@ -2517,11 +2535,11 @@ which without style cannot possibly constitute
 oratory.
                     <milestone n="14" unit="section"/>
                     Hermagoras, who asserts that its end is to
-                    <hi rend="italics">speak persuasively,</hi>
+                    <hi rend="italic">speak persuasively,</hi>
                     and others who express the same
 opinion, though in different words, and inform us
 that the end is to
-                    <hi rend="italics">say everything which ought to be said with a view to persuasion,</hi>
+                    <hi rend="italic">say everything which ought to be said with a view to persuasion,</hi>
                     have been sufficiently
 answered above, when I proved that persuasion was
 not the privilege of the orator alone.
@@ -2536,31 +2554,31 @@ shall be discussed later in its appropriate place.
                     Aristotle seems to have implied that the sphere of the
 orator was all-inclusive when he defined rhetoric as
 the
-                    <hi rend="italics">
+                    <hi rend="italic">
                         power to detect every element in any given subject
 which might conduce to persuasion;
                     </hi>
                     so too does Patrocles who omits the words
-                    <hi rend="italics">in any given subject,</hi>
+                    <hi rend="italic">in any given subject,</hi>
                     but
 since he excludes nothing, shows that his view is
 identical. For he defines rhetoric as the
-                    <hi rend="italics">power to discover whatever is persuasive in speech.</hi>
+                    <hi rend="italic">power to discover whatever is persuasive in speech.</hi>
                     These definitions like that quoted above include no more than
 the power of
-                    <hi rend="italics">invention</hi>
+                    <hi rend="italic">invention</hi>
                     alone. Theodorus avoids this
 fault and holds that it is the
-                    <hi rend="italics">
+                    <hi rend="italic">
                         power to discover and to
 utter forth in elegant language whatever is credible in
 every subject of oratory.
                     </hi>
                     <milestone n="17" unit="section"/>
                     But, while others besides
-                    <pb id="p.309"/>
+                    <pb xml:id="p.309"/>
                     orators may discover what is credible as well as persuasive, by adding the words
-                    <hi rend="italics">in every subject</hi>
+                    <hi rend="italic">in every subject</hi>
                     he, to a
 greater extent than the others, concedes the fairest
 name in all the world to those who use their gifts as
@@ -2568,7 +2586,7 @@ an incitement to crime
                     <milestone n="18" unit="section"/>
                     . Plato makes Gorgias
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Gorg.</hi>
+                        <hi rend="italic">Gorg.</hi>
                         454 B.
                     </note>
                     say
@@ -2582,7 +2600,7 @@ who refused to make the sphere of oratory allinclusive, have been obliged to mak
 and long-winded distinctions: among these I may
 mention Ariston, the pupil of the Peripatetic Critolaus, who produced the following definition,
                     <quote>
-                        <hi rend="italics">
+                        <hi rend="italic">
                             Rhetoric
 is the science of seeing and uttering what ought to be
 said on political questions in language that is likely to
@@ -2594,7 +2612,7 @@ prove persuasive to the people.
 regards it as a science, not, like the Stoics, as a
 virtue, while in adding the words
                     <quote>
-                        <hi rend="italics">likely to prove persuasie to the people</hi>
+                        <hi rend="italic">likely to prove persuasie to the people</hi>
                     </quote>
                     he inflicts a positive insult on
 oratory, in implying that it is not likely to persuade the
@@ -2608,7 +2626,7 @@ virtue, we find that Theodorus of Gadara is more
 cautious. For he says (I quote the words of his
 translators),
                     <quote>
-                        <hi rend="italics">
+                        <hi rend="italic">
                             rhetoric is the art which discovers and
 judges and expresses, mith an elegance duly proportioned
 to the importance of all such elements of persuasion as
@@ -2617,12 +2635,12 @@ may exist in any subject in the field of politics.
                     </quote>
                     <milestone n="22" unit="section"/>
                     Similarly Cornelius Celsus defines the end of rhetoric as
-                    <pb id="p.311"/>
-                    <hi rend="italics">to speak persuasively on any doubtful subject within the field of politics.</hi>
+                    <pb xml:id="p.311"/>
+                    <hi rend="italic">to speak persuasively on any doubtful subject within the field of politics.</hi>
                     Similar definitions are given by
 others, such for instance as the following:—
                     <quote>
-                        <hi rend="italics">
+                        <hi rend="italic">
                             rhetoric
 is the power of judging and holding forth on such political subjects as come before it with a certain persuasiveness, a certain action of the body and delivery of the
 words.
@@ -2635,12 +2653,12 @@ elements, which I shall deal with when I come to
 the questions concerned with the subject matter of
 rhetoric. Some regard it as neither a power, a
 science or an art; Critolaus calls it the
-                    <hi rend="italics">practice of speaking</hi>
+                    <hi rend="italic">practice of speaking</hi>
                     (for this is the meaning of
                     <foreign xml:lang="grc">tribh/</foreign>
                     ),
 Athenaeus styles it the
-                    <hi rend="italics">art of deceiving,</hi>
+                    <hi rend="italic">art of deceiving,</hi>
                     <milestone n="24" unit="section"/>
                     while the
 majority, content with reading a few passages from
@@ -2649,31 +2667,31 @@ earlier writers, refrain from studying that dialogue
 and the remainder of Plato's writings, and thereby
 fall into serious error. For they believe that in
 Plato's view rhetoric was not an art, but a certain
-                    <hi rend="italics">adroitness in the production of delight and gratification,</hi>
+                    <hi rend="italic">adroitness in the production of delight and gratification,</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Gorg.</hi>
+                        <hi rend="italic">Gorg.</hi>
                         462 c.
                     </note>
                     <milestone n="25" unit="section"/>
                     or with reference to another passage the
-                    <hi rend="italics">shadow of a small part of politics</hi>
+                    <hi rend="italic">shadow of a small part of politics</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ib.</hi>
+                        <hi rend="italic">ib.</hi>
                         463
-                        <hi rend="italics">p.</hi>
+                        <hi rend="italic">p.</hi>
                     </note>
                     and the
-                    <hi rend="italics">fourth department of flattery.</hi>
+                    <hi rend="italic">fourth department of flattery.</hi>
                     For Plato assigns
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ib.</hi>
+                        <hi rend="italic">ib.</hi>
                         464 B.
                     </note>
                     two departments of politics to the body, namely medicine and
 gymnastic, and two to the soul, namely law and
 justice, while he styles the art of cookery
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ib.</hi>
+                        <hi rend="italic">ib.</hi>
                         464 B-465 E.
                     </note>
                     a form of
@@ -2684,17 +2702,17 @@ dishonest counterfeit of legal science, and rhetoric of
 justice.
                     <milestone n="26" unit="section"/>
                     All these statements occur in the
-                    <hi rend="italics">Gorgias</hi>
+                    <hi rend="italic">Gorgias</hi>
                     and
 are uttered by Socrates who appears to be the
-                    <pb id="p.313"/>
+                    <pb xml:id="p.313"/>
                     mouthpiece of the views held by Plato. But some of his
 dialogues were composed merely to refute his
 opponents and are styled
-                    <hi rend="italics">refutative,</hi>
+                    <hi rend="italic">refutative,</hi>
                     while others are
 for the purpose of teaching and are called
-                    <hi rend="italics">doctrinal.</hi>
+                    <hi rend="italic">doctrinal.</hi>
                     <milestone n="27" unit="section"/>
                     Now it is only rhetoric as practised in their own day
 that is condemned by Plato or Socrates, for he
@@ -2725,7 +2743,7 @@ but is reduced to the conclusion that
 Plato does not regard rhetoric as an evil, but holds
 that true rhetoric is impossible for any save a just
 and good man. In the
-                    <hi rend="italics">Phaedrus</hi>
+                    <hi rend="italic">Phaedrus</hi>
                     <note anchored="true" place="unspecified">261 A-273 E.</note>
                     <milestone n="29" unit="section"/>
                     he makes it even
@@ -2735,7 +2753,7 @@ opinion in which I heartily concur. Had this not
 been his view, would he have ever written the
 Apology of Socrates or the Funeral Oration
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Menexenus.</hi>
+                        <hi rend="italic">Menexenus.</hi>
                     </note>
                     in
 praise of those who had died in battle for their
@@ -2745,7 +2763,7 @@ sphere of oratory.
                     It was against the class of men
 who employed their glibness of speech for evil purposes that he directed his denunciations. Similarly
 Socrates thought it incompatible with his honour to
-                    <pb id="p.315"/>
+                    <pb xml:id="p.315"/>
                     make use of the speech which Lysias composed for
 his defence, although it was the usual practice in
 those days to write speeches for the parties concerned to speak in the courts on their own behalf,
@@ -2756,7 +2774,7 @@ teachers of rhetoric were regarded by Plato as quite
 unsuited to their professed task. For they divorced
 rhetoric from justice and preferred plausibility to
 truth, as he states in the
-                    <hi rend="italics">Phaedrus.</hi>
+                    <hi rend="italic">Phaedrus.</hi>
                     <note anchored="true" place="unspecified">267 A, with special reference to Tisias and Gorgias.</note>
                     <milestone n="32" unit="section"/>
                     Cornelius Celsus
@@ -2778,42 +2796,42 @@ ground they have for so doing.
 should be a good man, I will return to those who
 have sounder opinions on the subject. Some however identify rhetoric with politics, Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Inv.</hi>
+                        <hi rend="italic">de Inv.</hi>
                         I. v. 6.
                     </note>
                     calls it a
-                    <hi rend="italics">department of the science of politics</hi>
+                    <hi rend="italic">department of the science of politics</hi>
                     (and science of
 politics and philosophy are identical terms), while
 others again call it a
-                    <hi rend="italics">branch of philosophy,</hi>
+                    <hi rend="italic">branch of philosophy,</hi>
                     among
 them Isocrates.
                     <milestone n="34" unit="section"/>
                     The definition which best suits its
 real character is that which makes rhetoric the
-                    <hi rend="italics">science of speaking well.</hi>
+                    <hi rend="italic">science of speaking well.</hi>
                     For this definition includes all the
 virtues of oratory and the character of the orator as
 well, since no man can speak well who is not good
 himself.
                     <milestone n="35" unit="section"/>
                     The definition given by Chrysippus, who
-                    <pb id="p.317"/>
+                    <pb xml:id="p.317"/>
                     derived it from Cleanthes, to the effect that it is the
-                    <hi rend="italics">science of speaking rightly,</hi>
+                    <hi rend="italic">science of speaking rightly,</hi>
                     amounts to the same thing.
 The same philosopher also gives other definitions,
 but they concern problems of a different character
 from that on which we are now engaged. Another
 definition defines oratory as the power of
-                    <hi rend="italics">persuading men to do what ought to be done,</hi>
+                    <hi rend="italic">persuading men to do what ought to be done,</hi>
                     and yields practically
 the same sense save that it limits the art to the result
 which it produces.
                     <milestone n="36" unit="section"/>
                     Areus again defines it well as
-                    <hi rend="italics">speaking according to the excellence of speech.</hi>
+                    <hi rend="italic">speaking according to the excellence of speech.</hi>
                     Those who
 regard it as the science of political obligations, also
 exclude men of bad character from the title of orator,
@@ -2822,15 +2840,15 @@ a distinguished author and professor of rhetoric,
 agrees that rhetoric is the science of speaking well,
 but makes a mistake in imposing restrictions by the
 addition of the words
-                    <hi rend="italics">on political questions</hi>
+                    <hi rend="italic">on political questions</hi>
                     and
-                    <hi rend="italics">with credibility;</hi>
+                    <hi rend="italic">with credibility;</hi>
                     with both of these restrictions I have
 already dealt.
                     <milestone n="37" unit="section"/>
                     Finally those critics who hold that
 the aim of rhetoric is
-                    <hi rend="italics">to think and speak rightly,</hi>
+                    <hi rend="italic">to think and speak rightly,</hi>
                     were
 on the correct track.
                 </p>
@@ -2849,7 +2867,7 @@ will not necessarily be my own invention, but it will
 be what I believe to be the right view, as for instance
 that oratory is the science of speaking well. For
 when the most satisfactory definition has been
-                    <pb id="p.319"/>
+                    <pb xml:id="p.319"/>
                     found, he who seeks another, is merely looking for a
 worse one.
                 </p>
@@ -2901,7 +2919,7 @@ his audience.
                     <milestone n="5" unit="section"/>
                     On the showing of these critics not only
 orators but generals, magistrates, medicine and
-                    <pb id="p.321"/>
+                    <pb xml:id="p.321"/>
                     philosophy itself will all be useless. For Flaminius was a
 general, while men such as the Gracchi, Saturninus
 and Glaucia were magistrates. Doctors have been
@@ -2928,7 +2946,7 @@ of being concluded with Pyrrhus? Did not the
 divine eloquence of Cicero win popular applause
 even when he denounced the Agrarian laws,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         though denouncing laws which would naturally be
 popular.
                     </note>
@@ -2949,7 +2967,7 @@ always held the orator in highest honour.
                     Never in
 my opinion would the founders of cities have induced their unsettled multitudes to form communities had they not moved them by the magic of their
 eloquence: never without the highest gifts of oratory
-                    <pb id="p.323"/>
+                    <pb xml:id="p.323"/>
                     would the great legislators have constrained mankind to submit themselves to the yoke of law.
                     <milestone n="10" unit="section"/>
                     Nay,
@@ -2993,7 +3011,7 @@ immortal gods.
 but little and would be far less evident in us, had
 we not the power to express our thoughts in speech;
 for it is the lack of this power rather than thought
-                    <pb id="p.325"/>
+                    <pb xml:id="p.325"/>
                     and understanding, which they do to a certain extent possess, that is the great defect in other living
 things.
                     <milestone n="16" unit="section"/>
@@ -3034,9 +3052,9 @@ by all, to win such honour and glory that you seem
 not to speak or plead, but rather, as was said of
 Pericles, to thunder and lighten?
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Aristoph.
-                        <hi rend="italics">Ach. 530:</hi>
+                        <hi rend="italic">Ach. 530:</hi>
                         <quote>
                             Then in his wrath Pericles
 the Olympian lightened and thundered and threw all Greece
@@ -3048,7 +3066,7 @@ into confusion.
                     <milestone n="17" unit="chapter"/>
                     <milestone n="1" unit="section"/>
                     However, if I were to indulge my own inclinations in expatiating on this subject, I should go
-                    <pb id="p.327"/>
+                    <pb xml:id="p.327"/>
                     on for ever. Let us therefore pass to the next
 question and consider whether rhetoric is an art.
                     <milestone n="2" unit="section"/>
@@ -3057,14 +3075,14 @@ oratory has ever doubted that it is an art. It is clear
 even from the titles of their books that their theme
 is the art of rhetoric, while Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Inv.</hi>
+                        <hi rend="italic">de Inv.</hi>
                         I. v. 6. The titles in question are such as
-                        <hi rend="italics">Ars rhetorica, Ars Hermagorae,</hi>
+                        <hi rend="italic">Ars rhetorica, Ars Hermagorae,</hi>
                         etc.
                     </note>
                     defines rhetoric
 as
-                    <hi rend="italics">artistic eloquence.</hi>
+                    <hi rend="italic">artistic eloquence.</hi>
                     And it is not merely the orators
 who have claimed this distinction for their studies
 with a view to giving them an additional title to
@@ -3095,22 +3113,22 @@ was delivered against Socrates.
                     Some would have it that rhetoric is a natural gift
 though they admit that it can be developed by practice.
 So Antonius in the
-                    <hi rend="italics">de Oralore</hi>
+                    <hi rend="italic">de Oralore</hi>
                     <note anchored="true" place="unspecified">II. lvii. 232.</note>
                     of Cicero styles it a
-                    <hi rend="italics">knack derived from experience,</hi>
+                    <hi rend="italic">knack derived from experience,</hi>
                     but denies that it is an art:
                     <milestone n="6" unit="section"/>
                     this statement is however not intended to be accepted
 by us as the actual truth, but is inserted to make
-                    <pb id="p.329"/>
+                    <pb xml:id="p.329"/>
                     Antonius speak in character, since he was in the
 habit of concealing his art. Still Lysias is said to
 have maintained this same view, which is defended
 on the ground that uneducated persons, barbarians
 and slaves, when speaking on their own behalf, say
 something that resembles an
-                    <hi rend="italics">exordiam,</hi>
+                    <hi rend="italic">exordiam,</hi>
                     state the facts
 of the case, prove, refute and plead for mercy just as
 an orator does in his peroration.
@@ -3129,7 +3147,7 @@ consequently cannot be an art.
 concerned with the date when oratory began to be
 taught. Even in Homer we find Phoenix
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Il.</hi>
+                        <hi rend="italic">Il.</hi>
                         ix. 432.
                     </note>
                     as an
@@ -3138,22 +3156,22 @@ a number of orators are mentioned, the various styles
 are represented by the speeches of three of the
 chiefs
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         the copious style by Nestor, the plain by Menelaus,
 the intermediate by Ulysses.
                     </note>
                     and the young men are set to contend among
 themselves in contests of eloquence:
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Il.</hi>
+                        <hi rend="italic">Il.</hi>
                         xv. 284.
                     </note>
                     moreover lawsuits and pleaders are represented in the engravings
 on the shield of Achilles.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Il.</hi>
+                        <hi rend="italic">Il.</hi>
                         xviii. 497
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     <milestone n="9" unit="section"/>
                     It is sufficient to call
@@ -3165,7 +3183,7 @@ entirely based upon experiment: wounds were bound
 up long before medicine developed into an art, and
 fevers were reduced by rest and abstention from food,
 long before the reason for such treatment was
-                    <pb id="p.331"/>
+                    <pb xml:id="p.331"/>
                     known, simply because the state of the patient's
 health left no choice.
                     <milestone n="10" unit="section"/>
@@ -3208,13 +3226,13 @@ his speeches with great effect, he never ventured to
 write them for others.
                     <milestone n="14" unit="section"/>
                     Aristotle, it is true, in his
-                    <hi rend="italics">Gryllus</hi>
+                    <hi rend="italic">Gryllus</hi>
                     <note anchored="true" place="unspecified">
                         A lost treatise, named after Gryllus, the son of
 Xenophon.
                     </note>
                     produces some tentative arguments to
-                    <pb id="p.333"/>
+                    <pb xml:id="p.333"/>
                     the contrary, which are marked by characteristic
 ingenuity. On the other hand he also wrote three
 books on the art of rhetoric, in the first of which
@@ -3257,7 +3275,7 @@ between holding a certain opinion oneself and
 persuading someone else to adopt an opinion. For
 instance a general frequently makes use of falsehood: Hannibal when hemmed in by Fabius
 persuaded his enemy that he was in retreat by
-                    <pb id="p.335"/>
+                    <pb xml:id="p.335"/>
                     tying brushwood to the horns of oxen, setting fire
 to them by night and driving the herds across
 the mountains opposite.
@@ -3304,13 +3322,13 @@ he speaks well, he has lived up to the ideals of his art,
 even if he is defeated.
                     <milestone n="24" unit="section"/>
                     Similarly a pilot will desire
-                    <pb id="p.337"/>
+                    <pb xml:id="p.337"/>
                     to bring his ship safe to harbour; but if he is swept
 out of his course by a storm, he will not for that
 reason cease to be a pilot, but will say in the wellknown words of the old poet
                     <note anchored="true" place="unspecified">
                         Ennius,
-                        <hi rend="italics">Ann.</hi>
+                        <hi rend="italic">Ann.</hi>
                         483 (Vahlen).
                     </note>
                     <quote>Still let me steer straight on!</quote>
@@ -3353,7 +3371,7 @@ be very little scope for eloquence whose value will
 lie almost entirely in its power to charm.
                     <milestone n="29" unit="section"/>
                     But if, as is
-                    <pb id="p.339"/>
+                    <pb xml:id="p.339"/>
                     the case, our hearers are fickle of mind, and truth is
 exposed to a host of perils, we must call in art to aid
 us in the fight and employ such means as will help
@@ -3392,7 +3410,7 @@ arguments have no force even against those who concede the name of orator to per
 For rhetoric is not self-contradictory.
                     <milestone n="33" unit="section"/>
                     The conflict is
-                    <pb id="p.341"/>
+                    <pb xml:id="p.341"/>
                     between case and case, not between rhetoric and
 itself. And even if persons who have learned the
 same thing fight one another, that does not prove
@@ -3430,7 +3448,7 @@ is untrue.
                 <p>
                     The following objections are also put forward in
 the second book of Cicero's
-                    <hi rend="italics">de Oratore:</hi>
+                    <hi rend="italic">de Oratore:</hi>
                     <note anchored="true" place="unspecified">II. vii. 30.</note>
                     —
                     <quote>
@@ -3438,7 +3456,7 @@ the second book of Cicero's
 with things that are known. But the pleading of an
 orator is based entirely on opinion, not on knowledge,
 because he speaks to an audience who do not know,
-                        <pb id="p.343"/>
+                        <pb xml:id="p.343"/>
                         and sometimes himself states things of which he has
 no actual knowledge.
                     </quote>
@@ -3484,7 +3502,7 @@ art, but of the man. Such are the main points that
 are urged against rhetoric; there are others as well,
 but they are of minor importance and drawn from the
 same sources.
-                    <pb id="p.345"/>
+                    <pb xml:id="p.345"/>
                 </p>
                 <p>
                     That rhetoric is an art may, however,
@@ -3509,9 +3527,9 @@ for me to point out that like other arts it is based on
 examination and practice. And if logic is an art, as
 is generally agreed, rhetoric must also be an art, since
 it differs from logic in
-                    <hi rend="italics">species</hi>
+                    <hi rend="italic">species</hi>
                     rather than in
-                    <hi rend="italics">genus.</hi>
+                    <hi rend="italic">genus.</hi>
                     Nor must I omit to point out that where it is possible
 in any given subject for one man to act without art
 and another with art, there must necessarily be an
@@ -3531,7 +3549,7 @@ must be acknowledged by everyone, but more
 especially by us, since we concede the possession of
 oratory to none save the good man.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">i.e.</hi>
+                        <hi rend="italic">i.e.</hi>
                         since our ideals are so high.
                     </note>
                 </p>
@@ -3540,15 +3558,15 @@ oratory to none save the good man.
                     <milestone n="1" unit="section"/>
                     Some arts, however, are based on examination, that is to say on the knowledge and proper
 appreciation of things, as for instance astronomy,
-                    <pb id="p.347"/>
+                    <pb xml:id="p.347"/>
                     which demands no action, but is content to understand
 the subject of its study: such arts are called
-                    <hi rend="italics">theoretical.</hi>
+                    <hi rend="italic">theoretical.</hi>
                     Others again are concerned with action: this is their
 end, which is realised in action, so that, the action
 once performed, nothing more remains to do: these
 arts we style
-                    <hi rend="italics">practical,</hi>
+                    <hi rend="italic">practical,</hi>
                     and dancing will provide us
 with an example.
                     <milestone n="2" unit="section"/>
@@ -3556,9 +3574,9 @@ with an example.
 consist in producing a certain result and achieve their
 purpose in the completion of a visible task: such we
 style
-                    <hi rend="italics">productive,</hi>
+                    <hi rend="italic">productive,</hi>
                     and
-                    <hi rend="italics">painting</hi>
+                    <hi rend="italic">painting</hi>
                     may be quoted as an
 illustration. In view of these facts we must come to
 the conclusion that, in the main, rhetoric is concerned
@@ -3588,7 +3606,7 @@ speeches or historical narratives, which we may reasonably count as part of the 
 recognise features resembling those of a productive
 art. Still, if rhetoric is to be regarded as one of these
 three classes of art, since it is with action that its
-                    <pb id="p.349"/>
+                    <pb xml:id="p.349"/>
                     practice is chiefly and most frequently concerned, let
 us call it an active or administrative art, the two
 terms being identical.
@@ -3630,7 +3648,7 @@ formed. Without material art can do nothing,
 material without art does possess a certain value,
 while the perfection of art is better than the best
 material.
-                    <pb id="p.351"/>
+                    <pb xml:id="p.351"/>
                 </p>
                 <p>
                     <milestone n="20" unit="chapter"/>
@@ -3674,7 +3692,7 @@ which befits a good man and is in a word the only
 true rhetoric, will be a virtue.
                     <milestone n="5" unit="section"/>
                     Philosophers arrive
-                    <pb id="p.353"/>
+                    <pb xml:id="p.353"/>
                     at this conclusion by a long chain of ingenious
 arguments; but it appears to me to be perfectly
 clear from the simpler proof of my own invention
@@ -3715,7 +3733,7 @@ fairer and franker.
 more fully and explicitly by appealing to the
 actual work of oratory. For how will the orator
 succeed in panegyric unless he can distinguish between what is honourable and the reverse? How
-                    <pb id="p.355"/>
+                    <pb xml:id="p.355"/>
                     can he urge a policy, unless he has a clear perception of what is expedient? How can he plead in
 the law-courts, if he is ignorant of the nature of
 justice? Again, does not oratory call for courage,
@@ -3738,7 +3756,7 @@ Why, therefore, should we not consider that the
 special virtue of man lies just as much in eloquence as in reason? It will be with justice then
 that Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         III. xiv. 55.
                     </note>
                     makes Crassus say that
@@ -3754,9 +3772,9 @@ other passages.
                     <quote>
                         a bad
 man will at times produce an
-                        <hi rend="italics">exordium</hi>
+                        <hi rend="italic">exordium</hi>
                         or a
-                        <hi rend="italics">statement of facts,</hi>
+                        <hi rend="italic">statement of facts,</hi>
                         and will argue a case in a manner that
 leaves nothing to be desired.
                     </quote>
@@ -3769,7 +3787,7 @@ point to many acts which are identical with those of
 virtue, but spring from other sources. However,
 what I have said here must suffice, as I have already
 dealt with the question of the usefulness of oratory.
-                    <pb id="p.357"/>
+                    <pb xml:id="p.357"/>
                 </p>
                 <p>
                     <milestone n="21" unit="chapter"/>
@@ -3777,9 +3795,9 @@ dealt with the question of the usefulness of oratory.
                     As to the material of oratory, some have
 asserted that it is speech, as for instance Gorgias
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Gorg.</hi>
+                        <hi rend="italic">Gorg.</hi>
                         449
-                        <hi rend="italics">E.</hi>
+                        <hi rend="italic">E.</hi>
                     </note>
                     in
 the dialogue of Plato. If this view be accepted in
@@ -3823,15 +3841,15 @@ everything that may be placed before it as a subject
 for speech. Plato, if I read him aright, makes
 Socrates
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Gorg.</hi>
+                        <hi rend="italic">Gorg.</hi>
                         449 E.
                     </note>
                     say to Gorgias that its material is to be
-                    <pb id="p.359"/>
+                    <pb xml:id="p.359"/>
                     found in things not words; while in the
-                    <hi rend="italics">Phaedrus</hi>
+                    <hi rend="italic">Phaedrus</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Phaedr.</hi>
+                        <hi rend="italic">Phaedr.</hi>
                         261 A.
                     </note>
                     he clearly proves that rhetoric is concerned not
@@ -3842,7 +3860,7 @@ obvious that this was the view of Plato himself.
                     Cicero
 also in a passage
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Inv.</hi>
+                        <hi rend="italic">de Inv.</hi>
                         i. 5.
                     </note>
                     of one of his works, states that
@@ -3850,7 +3868,7 @@ the material of rhetoric is composed of the things
 which are brought before it, but makes certain restrictions as to the nature of these things. In
 another passage,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         I. vi. 21.
                         <quote>I will not demand omniscience from an orator, although</quote>
                         etc.
@@ -3869,7 +3887,7 @@ put before him.
                     <milestone n="6" unit="section"/>
                     And in another passage
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">ib.</hi>
+                        <hi rend="italic">ib.</hi>
                         iii. xiv. 54.
                     </note>
                     he says,
@@ -3887,7 +3905,7 @@ the things brought before it, has been criticised by
 some, at times on the ground that it is limitless, and
 sometimes on the ground that it is not peculiar to
 oratory, which they have therefore dubbed a
-                    <hi rend="italics">discursive</hi>
+                    <hi rend="italic">discursive</hi>
                     art, because all is grist that comes to its mill.
                     <milestone n="8" unit="section"/>
                     I have no serious quarrel with these critics, for they
@@ -3895,7 +3913,7 @@ acknowledge that rhetoric is concerned with every
 kind of material, though they deny that it has any
 peculiar material just because of that material's multiplicity. But in spite of this multiplicity, rhetoric
 is not unlimited in scope, and there are other minor
-                    <pb id="p.361"/>
+                    <pb xml:id="p.361"/>
                     arts whose material is characterised by the same
 multiplicity: such for instance is architecture, which
 deals with everything that is useful for the purpose
@@ -3935,7 +3953,7 @@ is all the less reason, since I have already shown in
 the first book
                     <note anchored="true" place="unspecified">
                         Pref. § 10
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     that philosophers only usurped this
 department of knowledge after it had been abandoned by the orators: it was always the peculiar
@@ -3944,7 +3962,7 @@ trespassers. Finally, since the discussion of whatever is brought before it is t
 which is really a concise form of oratory, why should
 not this task be regarded as also being the appropriate material for continuous oratory?
                 </p>
-                <pb id="p.363"/>
+                <pb xml:id="p.363"/>
                 <p>
                     There is a further objection made by certain
 critics, who say
@@ -3956,7 +3974,7 @@ every subject, he must be the master of all the arts.
                     </quote>
                     I might answer this criticism in the words of Cicero,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         I. vi. 20.
                     </note>
                     in whom I find the following passage:—
@@ -3996,7 +4014,7 @@ their respective arts, if there should be any technical
 point which requires to be established. Neither will
 be an orator, but he will perform his task like an
 orator, just as when an untrained person binds up a
-                    <pb id="p.365"/>
+                    <pb xml:id="p.365"/>
                     wound, he will not be a physician, but he will be
 acting as one.
                     <milestone n="18" unit="section"/>
@@ -4041,14 +4059,14 @@ questions
                     <note anchored="true" place="unspecified">See III V. 12–16.</note>
                     are the concern of oratory, he disagrees
 with me: but if they do concern rhetoric, that
-                    <pb id="p.367"/>
+                    <pb xml:id="p.367"/>
                     supports my contention. For there is nothing which
 may not crop up in a cause or appear as a question
 for discussion.
                     <milestone n="23" unit="section"/>
                     Aristotle
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Rhet.</hi>
+                        <hi rend="italic">Rhet.</hi>
                         I. iii. 3.
                     </note>
                     himself also by his tripartite
@@ -4062,9 +4080,9 @@ rhetoric.
                     <milestone n="24" unit="section"/>
                     A very few critics have raised the question as to
 what may be the
-                    <hi rend="italics">instrument</hi>
+                    <hi rend="italic">instrument</hi>
                     of oratory. My definition of an instrument is
-                    <hi rend="italics">
+                    <hi rend="italic">
                         that without which the material
 cannot be brought into the shape necessary for the effecting of our object.
                     </hi>

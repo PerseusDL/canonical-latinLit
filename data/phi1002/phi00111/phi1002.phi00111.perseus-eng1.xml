@@ -1,4 +1,5 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
@@ -6,8 +7,9 @@
                 <title type="sub">Machine readable text</title>
                 <author n="Quint.">Quintilian</author>
                 <editor n="Butler" role="editor">Harold Edgeworth Butler</editor>
-                <sponsor>Perseus Project, Tufts University</sponsor>
+                <!--<sponsor>Perseus Project, Tufts University</sponsor>-->
                 <principal>Gregory Crane</principal>
+                <sponsor>Perseus Project, Tufts University</sponsor>
                 <respStmt>
                     <resp>Prepared under the supervision of</resp>
                     <name>Lisa Cerrato</name>
@@ -16,15 +18,14 @@
                     <name>David Smith</name>
                 </respStmt>
                 <funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
-            </titleStmt><publicationStmt><publisher>Trustees of Tufts University</publisher><pubPlace>Medford, MA</pubPlace><authority>Perseus Project</authority></publicationStmt>
-            
+            </titleStmt>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
                 <authority>Perseus Project</authority>
             </publicationStmt>
-            <sourceDesc default="NO">
-                <biblStruct default="NO">
+            <sourceDesc default="false">
+                <biblStruct default="false">
                     <monogr>
                         <author>Quintilian</author>
                         <title>With An English Translation</title>
@@ -39,6 +40,23 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                    matchPattern="(\\w+).(\\w+).(\\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\']/tei:div[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                    matchPattern="(\\w+).(\\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                    matchPattern="(\\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
                 <refState unit="book"/>
                 <refState unit="chapter"/>
@@ -49,13 +67,13 @@
             </refsDecl>
         </encodingDesc>
         <profileDesc>
-            <langUsage default="NO">
+            <langUsage default="false">
                 <language ident="en">English</language>
-                <language ident="greek">Greek</language>
+                <language ident="grc">Greek</language>
                 <language ident="la">Latin</language>
             </langUsage>
         </profileDesc>
-        <revisionDesc><!--
+        <revisionDesc><change who="GRC" when="2006">tagging</change><!--
             <change>
                 <date>2006</date>
                 <respStmt>
@@ -64,12 +82,13 @@
                 </respStmt>
                 <item/>
             </change>
-        --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+        --><change when="2014-08-01" who="Stella Dee">edited markup</change>
+           <change who="Zach Himes" when="2015-11-16">Edited teiHeader, converted to TEI P5 and EpiDoc</change></revisionDesc>
     </teiHeader>
     <text xml:lang="en">
         <body>
-            <pb id="p.155"/>
-            <div part="N" sample="complete" org="uniform" n="11" type="book">
+            <pb xml:id="p.155"/>
+            <div part="N" sample="complete" org="uniform" n="11" subtype="book" type="translation">
                 <head>Book XI</head>
                 <p>
                     <milestone n="1" unit="chapter"/>
@@ -79,7 +98,7 @@ pleading extempore, if occasion demand, our next
 task will be to ensure that appropriateness of speech,
 which Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">De Or.</hi>
+                        <hi rend="italic">De Or.</hi>
                         III. x. 37.
                     </note>
                     shows to be the fourth department of
@@ -107,26 +126,26 @@ one that asks for charm? Such incongruities are as
 unbecoming as it is for men to wear necklaces and
 pearls and flowing raiment which are the natural
 adornments of women, or for women to robe
-                    <pb id="p.157"/>
+                    <pb xml:id="p.157"/>
                     themselves in the garb of triumph, than which there can
 be conceived no more majestic raiment.
                     <milestone n="4" unit="section"/>
                     This topic
 is discussed by Cicero in the third book of the
-                    <hi rend="italics">de Oratore,</hi>
+                    <hi rend="italic">de Oratore,</hi>
                     <note anchored="true" place="unspecified">III. lv. 210.</note>
                     and, although he touches on it but lightly,
 he really covers the whole subject when he says,
-                    <hi rend="italics">
+                    <hi rend="italic">
                         One single style of oratory is not suited to every case, nor
 to every audience, nor every speaker, nor every occasion.
                     </hi>
                     And he says the same at scarcely greater length in
 the
-                    <hi rend="italics">Orator.</hi>
+                    <hi rend="italic">Orator.</hi>
                     <note anchored="true" place="unspecified">
                         Ch. xxi.
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     But in the first of these works Lucius
 Crassus, since he is speaking in the presence of men
@@ -151,17 +170,17 @@ in greater detail.
 we should know what style is most suitable for conciliating, instructing or moving the judge, and what
 effects we should aim at in different parts of our
 speech. Thus we shall eschew antique, metaphorical and newly-coined words in our
-                    <hi rend="italics">exordium, statement of facts</hi>
+                    <hi rend="italic">exordium, statement of facts</hi>
                     and
-                    <hi rend="italics">arguments,</hi>
+                    <hi rend="italic">arguments,</hi>
                     as we shall avoid flowing
 periods woven with elaborate grace, when the case
 has to be divided and distinguished under its various
 heads, while, on the other hand, we shall not employ
 mean or colloquial language, devoid of all artistic
-                    <pb id="p.159"/>
+                    <pb xml:id="p.159"/>
                     structure, in the
-                    <hi rend="italics">peroration,</hi>
+                    <hi rend="italic">peroration,</hi>
                     nor, when the theme calls
 for compassion, attempt to dry the tears of our audience with jests.
                     <milestone n="7" unit="section"/>
@@ -203,7 +222,7 @@ refuting the actual charge against him?
                     <milestone n="10" unit="section"/>
                     But such
 a course would have been unworthy of his character,
-                    <pb id="p.161"/>
+                    <pb xml:id="p.161"/>
                     and, therefore, he pleaded as one who would account
 the penalty to which he might be sentenced as the
 highest of honours. The wisest of men preferred to
@@ -231,7 +250,7 @@ indeed, the elder Africanus
                     <note anchored="true" place="unspecified">
                         Falsely accused of having taken a bribe from King
 Antiochus. See
-                        <hi rend="italics">Livy,</hi>
+                        <hi rend="italic">Livy,</hi>
                         XXXVIII. li. 16.
                     </note>
                     is to be regarded as
@@ -241,9 +260,9 @@ innocence with a contemptible tribune of the people,
 or unless it be alleged that Publius Rutilius
                     <note anchored="true" place="unspecified">
                         See
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         I. liii. 227
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     was
 ignorant of his true advantage both on the occasion
@@ -253,7 +272,7 @@ bidding.
                     <milestone n="13" unit="section"/>
                     No, these great men regarded all those
 trifles that the most abject natures regard as
-                    <pb id="p.163"/>
+                    <pb xml:id="p.163"/>
                     advantageous, as being contemptible if weighed in the
 balance with virtue, and for this reason they have
 their reward in the deathless praise of all generations. Let not us, then, be so poor spirited as to
@@ -290,7 +309,7 @@ but in the majority of cases disgusts the audience.
 element of lofty and unbending pride that will not
 brook superiority: and for this reason we take delight in raising the humble and submissive to their
 feet, since such an act gives us a consciousness of our
-                    <pb id="p.165"/>
+                    <pb xml:id="p.165"/>
                     superiority, and as soon as all sense of rivalry disappears, its place is taken by a feeling of humanity.
 But the man who exalts himself beyond reason is
 looked upon as depreciating and showing a contempt
@@ -332,17 +351,17 @@ there are passages such as the following:
                     <quote>
                         If there
 be aught of talent in me, and I am only too conscious
-                        <pb id="p.167"/>
+                        <pb xml:id="p.167"/>
                         how little it is,
                     </quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Arch.</hi>
+                        <hi rend="italic">Pro Arch.</hi>
                         i. I.
                     </note>
                     and,
                     <quote>In default of talent, I turned to industry for aid.</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Quint.</hi>
+                        <hi rend="italic">Pro Quint.</hi>
                         i. 4.
                     </note>
                     <milestone n="20" unit="section"/>
@@ -355,7 +374,7 @@ eloquence than exalted his own, and asserted that
 he had done all in his power to make himself an
 orator,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Div. in Caec.</hi>
+                        <hi rend="italic">Div. in Caec.</hi>
                         xii. 40.
                     </note>
                     though he knew he had not succeeded.
@@ -381,7 +400,7 @@ there are occasions when an orator may speak of
 his own achievements, as Demosthenes himself does
 in his defence of Ctesiphon.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">De Cor.</hi>
+                        <hi rend="italic">De Cor.</hi>
                         128.
                     </note>
                     But on that occasion
@@ -393,7 +412,7 @@ the man who had forced him to it.
                     Again, Cicero
 often speaks of his suppression of the Catilinarian
 conspiracy, but either attributes his success to the
-                    <pb id="p.169"/>
+                    <pb xml:id="p.169"/>
                     courage shown by the senate or to the providence of
 the immortal gods. If he puts forward stronger claims
 to merit, it is generally when speaking against his
@@ -431,7 +450,7 @@ eloquence, it is, however, at times permissible to
 express confidence in it. Who, for instance, can
 blame the following?
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Phil.</hi>
+                        <hi rend="italic">Phil.</hi>
                         <milestone n="2" unit="chapter"/>
                         <milestone n="1" unit="section"/>
                         i. 2.
@@ -456,13 +475,13 @@ Antony?
                     <milestone n="27" unit="section"/>
                     Another form of arrogance is displayed by those who
 declare that they have come to a clear conviction of
-                    <pb id="p.171"/>
+                    <pb xml:id="p.171"/>
                     the justice of their cause, which they would not
 otherwise have undertaken. For the judges give
 but a reluctant hearing to such as presume to
 anticipate their verdict, and the orator cannot hope
 that his opponents will regard his
-                    <hi rend="italics">ipse dixit</hi>
+                    <hi rend="italic">ipse dixit</hi>
                     with the
 veneration accorded by the Pythagoreans to that of
 their master. But this fault will vary in seriousness
@@ -481,13 +500,13 @@ could have been more presumptuous than if Cicero
 had asserted that the fact that a man was the son
 of a Roman knight should never be regarded as a
 serious charge, in a case in which
-                    <hi rend="italics">he</hi>
+                    <hi rend="italic">he</hi>
                     was appearing
 for the defence? But he succeeded in giving this
 very argument a favourable turn by associating his
 own rank with that of the judges, and saying,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Cael. ii.</hi>
+                        <hi rend="italic">Pro Cael. ii.</hi>
                         4.
                     </note>
                     <quote>
@@ -505,7 +524,7 @@ it becomes all the more reprehensible in proportion
 to the age, rank, and experience of the speaker.
 But we are familiar with the sight of certain brawling advocates who are restrained neither by respect
 for the court nor by the recognised methods and
-                    <pb id="p.173"/>
+                    <pb xml:id="p.173"/>
                     manners of pleading. The obvious inference from
 this attitude of mind is that they are utterly reckless
 both in undertaking cases and in pleading them.
@@ -529,7 +548,7 @@ than that restrained, mild and precise style to which
 Cicero refers, when he says that his style is beginning
 to grow grey-haired.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         ii. 8.
                     </note>
                     It is the same with their style
@@ -552,13 +571,13 @@ too, the employment of rare words and of rhythmical
 structure are incongruous with their profession.
                     <milestone n="34" unit="section"/>
                     For
-                    <pb id="p.175"/>
+                    <pb xml:id="p.175"/>
                     their beards and gloomy brows are ill-suited not
 merely to luxuriance of style, such as we find in
 Cicero's
                     <quote>Rocks and solitudes answer to the voice,</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Arch.</hi>
+                        <hi rend="italic">Pro Arch.</hi>
                         viii. 19.
                     </note>
                     but even to full-blooded passages as,
@@ -570,7 +589,7 @@ that were once the peers and equals of the holy
 places of Rome.
                     </quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Mil.</hi>
+                        <hi rend="italic">Pro Mil.</hi>
                         xxxi. 85.
                     </note>
                     <milestone n="35" unit="section"/>
@@ -600,7 +619,7 @@ will seem freedom of speech in one's mouth, madness
 in another's, and arrogance in a third. We laugh at
 the words used by Thersites
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Il.</hi>
+                        <hi rend="italic">Il.</hi>
                         ii. 225.
                     </note>
                     to Agamemnon; but
@@ -611,13 +630,13 @@ great spirit.
                     said
 Lucius Crassus
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">De Or.</hi>
+                        <hi rend="italic">De Or.</hi>
                         iii. 1.
                     </note>
                     to Phililppus,
                     <quote>
                         when you refuse to
-                        <pb id="p.177"/>
+                        <pb xml:id="p.177"/>
                         regard me as a senator?
                     </quote>
                     That was honourable
@@ -633,7 +652,7 @@ would be arrogance. The tragic and comic poets
 pay special attention to character, since they introduce a great number and variety of persons. Those
 who wrote speeches
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Cp. II.</hi>
+                        <hi rend="italic">Cp. II.</hi>
                         xv. 30;
                         <milestone n="3" unit="chapter"/>
                         <milestone n="1" unit="section"/>
@@ -661,8 +680,8 @@ rejection of the terms of Pyrrhus.
                     in
 another, while Caecilius
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">See</hi>
-                        <hi rend="italics">Pro Cael.</hi>
+                        <hi rend="italic">See</hi>
+                        <hi rend="italic">Pro Cael.</hi>
                         xvi.
                     </note>
                     makes the father in his
@@ -674,11 +693,11 @@ more brutal than the words of Verres' lictor,
                     <quote>To see him you will pay so much</quote>
                     ?
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">I.e.</hi>
+                        <hi rend="italic">I.e.</hi>
                         to visit a relative in prison,
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         v. xlv. 118;
-                        <hi rend="italics">cp. Quint.</hi>
+                        <hi rend="italic">cp. Quint.</hi>
                         IX. iv. 71.
                     </note>
                     or braver than
@@ -686,7 +705,7 @@ those of the man from whom the scourge could
 wring but one cry,
                     <quote>I am a Roman citizen!</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         V. lxii. 162.
                     </note>
                     Again, read the words which Cicero places in the
@@ -696,7 +715,7 @@ oft repressed a seditious citizen, and had triumphed
 by his valour over the ambush that was laid for
 him?
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Cp.</hi>
+                        <hi rend="italic">Cp.</hi>
                         <milestone n="4" unit="chapter"/>
                         <milestone n="1" unit="section"/>
                         ii. 25; VI. v. 10.
@@ -704,7 +723,7 @@ him?
                     <milestone n="41" unit="section"/>
                     Further, it is not merely true that the
 variety required in impersonation will be in
-                    <pb id="p.179"/>
+                    <pb xml:id="p.179"/>
                     proportion to the variety presented by the case, for
 impersonation demands even greater variety, since
 it involves the portrayal of the emotions of children,
@@ -744,7 +763,7 @@ courts, and in cases submitted to arbitration.
                     <milestone n="44" unit="section"/>
                     For
 while a display of care and anxiety, and the employment of every device available for the amplification of our style are becoming when we are
-                    <pb id="p.181"/>
+                    <pb xml:id="p.181"/>
                     pleading for a client accused on a capital charge,
 it would be useless to employ the same methods in
 cases and trials of minor importance, and the speaker
@@ -754,7 +773,7 @@ like that made by Cicero, to the effect that it was
 not merely his soul that was in a state of commotion, but that his whole body was convulsed with
 shuddering,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Div. in Caec.</hi>
+                        <hi rend="italic">Div. in Caec.</hi>
                         xiii. 41
                     </note>
                     would meet with well-deserved ridicule.
@@ -788,7 +807,7 @@ of these places will require its own style and peculiar
 form of oratory, since even in other spheres of life
 the same actions are not equally suited to the forum,
 the senate-house, the Campus Martius, the theatre
-                    <pb id="p.183"/>
+                    <pb xml:id="p.183"/>
                     or one's own house, and there is much that is not
 in itself reprehensible, and may at times be absolutely necessary, which will be regarded as unseemly
 if done in some place where it is not sanctioned by
@@ -797,7 +816,7 @@ custom.
                     I have already pointed out
                     <note anchored="true" place="unspecified">
                         VIII. iii. 11
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     how much
 more elegance and ornament is allowed by the
@@ -835,7 +854,7 @@ as a clever speaker, and found time at such a
 moment to display his eloquence?
                     <milestone n="51" unit="section"/>
                     I consider that
-                    <pb id="p.185"/>
+                    <pb xml:id="p.185"/>
                     Marcus Caelius, in the speech in which he defended
 himself against a charge of breach of the peace, showed
 a wonderful grasp of these facts, when he said:
@@ -852,10 +871,10 @@ my gesture.
 success of the pleader depends on apology, entreaties
 for mercy, or confession of error. Can sorrow be
 expressed in epigram? Or will
-                    <hi rend="italics">enthymemes</hi>
+                    <hi rend="italic">enthymemes</hi>
                     <note anchored="true" place="unspecified">A form of syllogism. See V xiv. 1.</note>
                     or
-                    <hi rend="italics">epiphonemata</hi>
+                    <hi rend="italic">epiphonemata</hi>
                     <note anchored="true" place="unspecified">
                         See VIII. v. 11.
                         <quote>An exclamation attached to the close of a statement or a proof by way of climax.</quote>
@@ -882,7 +901,7 @@ rather, from his opening words to the very last he
 utters, maintain a continuous voice of lamentation
 and a mien of unvaried woe, if he desires to transplant his grief to the hearts of his audience? For
 if he once remits aught of his passion of grief, he
-                    <pb id="p.187"/>
+                    <pb xml:id="p.187"/>
                     will never be able to recall it to the hearts of them
 that hear him.
                     <milestone n="55" unit="section"/>
@@ -910,7 +929,7 @@ proposed suicide was justifiable.
 cases it is obviously unbecoming not merely to adopt
 a chanting intonation,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Cp.</hi>
+                        <hi rend="italic">Cp.</hi>
                         I. viii. 2.
                     </note>
                     a fault which has also become
@@ -934,7 +953,7 @@ greatest reluctance that we have consented to undertake the role of accuser. Con
 disapprove of such remarks as the following which
 was made by Cassius Severus:
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Cp.</hi>
+                        <hi rend="italic">Cp.</hi>
                         x. i. 22. In 9 B.C. he accused Nonius Asprenas, a
 friend of Augustus, of the crime of poisoning. Asprenas
 was defended by Pollio, and supported by Augustus during
@@ -943,7 +962,7 @@ his trial.
                     <quote>
                         Thank Heaven, I
 am still alive; and that I may find some savour in
-                        <pb id="p.189"/>
+                        <pb xml:id="p.189"/>
                         life, I see Asprenas arraigned for his crimes.
                     </quote>
                     For,
@@ -991,7 +1010,7 @@ they should employ an advocate to speak for them.
 words may be becoming or offensive in themselves.
 There is therefore a further point, which presents
 the most serious difficulty, that requires notice in
-                    <pb id="p.191"/>
+                    <pb xml:id="p.191"/>
                     this connexion: we must consider by what means
 things which are naturally unseemly and which, had
 we been given the choice, we should have preferred
@@ -1003,9 +1022,9 @@ which a son or his advocate has to speak against his
 mother? And yet sometimes it is absolutely necessary, as, for example, in the case of Cluentius Habitus.
                     <note anchored="true" place="unspecified">
                         See
-                        <hi rend="italics">pro Clu.</hi>
+                        <hi rend="italic">pro Clu.</hi>
                         lxi. 169
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                         Sasia was Cluentius' mother
                     </note>
                     But it is not always desirable to employ the method
@@ -1030,7 +1049,7 @@ say against the mother.
                     <milestone n="63" unit="section"/>
                     And he placed this explantation in the forefront of his case,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Clu.</hi>
+                        <hi rend="italic">pro Clu.</hi>
                         vi. 17.
                     </note>
                     although it
@@ -1042,7 +1061,7 @@ on the son, but on her who was the object of his
 denunciations.
                     <milestone n="64" unit="section"/>
                     It is, however, always possible that a
-                    <pb id="p.193"/>
+                    <pb xml:id="p.193"/>
                     mother may be her son's opponent in a case of less
 serious import, or at any rate in a way which involves
 less deadly hostility. Under such circumstances the
@@ -1072,11 +1091,11 @@ win legitimate praise.
 mothers will apply to either parent; for I have
 known of litigation taking place between fathers
 and sons as well, after the
-                    <hi rend="italics">emancipation</hi>
+                    <hi rend="italic">emancipation</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">I.e.</hi>
+                        <hi rend="italic">I.e.</hi>
                         from the
-                        <hi rend="italics">patria potestas</hi>
+                        <hi rend="italic">patria potestas</hi>
                         by a fictitious form of sale.
                     </note>
                     of the son.
@@ -1087,7 +1106,7 @@ necessity and that we have been forbearing in our
 language; but the importance of so doing will vary
 according to the respect due to the persons concerned. The same courtesy should be observed in
 speaking on behalf of freedmen against their patrons.
-                    <pb id="p.195"/>
+                    <pb xml:id="p.195"/>
                     In fact, to sum up, it will never become us to plead
 against such persons in a tone which we ourselves
 should have resented in the mouth of men of like
@@ -1101,7 +1120,7 @@ insolent or ostentatious in our attack upon such
 persons. Consequently Cicero, although he intended
 to speak against Cotta
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Cp.</hi>
+                        <hi rend="italic">Cp.</hi>
                         v. xiii. 20. P. Oppius, quaestor to M. Aurelius
 Cotta in Bithynia, was charged by Cotta in a letter to the
 Senate with misappropriation of supplies for his troops and
@@ -1119,7 +1138,7 @@ will beseem us to spare or seem to spare our inferiors,
 more especially if they be young. Cicero
                     <note anchored="true" place="unspecified">
                         See opening sections of
-                        <hi rend="italics">pro Caclio.</hi>
+                        <hi rend="italic">pro Caclio.</hi>
                     </note>
                     gives an
 example of such moderation in the way in which he
@@ -1144,10 +1163,10 @@ Marcus Cato and Servius Sulpicius. And yet in
 what courteous language, after allowing Sulpicius all
 the virtues, he refuses to admit that he has any idea
 of the way to conduct a candidature for the
-                    <pb id="p.197"/>
+                    <pb xml:id="p.197"/>
                     consulship.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Muren.</hi>
+                        <hi rend="italic">Pro Muren.</hi>
                         vii. 15.
                     </note>
                     What else was there in which a man of high
@@ -1162,7 +1181,7 @@ rival!
                     And with what a light touch he deals with
 Cato!
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Pro Muren.</hi>
+                        <hi rend="italic">Pro Muren.</hi>
                         xxix. 60.
                     </note>
                     He has the highest admiration for his
@@ -1194,7 +1213,7 @@ give the impression that our action is due to the
 necessities of the case.
                     <milestone n="73" unit="section"/>
                     A different situation arises,
-                    <pb id="p.199"/>
+                    <pb xml:id="p.199"/>
                     but an easier one, when we have to praise the actions
 of men who are otherwise disreputable or hateful to
 ourselves: for it is only right that we should award
@@ -1211,7 +1230,7 @@ concerned for his honour.
 task in his defence of Cluentius,
                     <note anchored="true" place="unspecified">
                         Ch. 17
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     as it was necessary
 for him to denounce Scamander's guilt, although he
@@ -1238,7 +1257,7 @@ the justice of our cause is such that we have no
 fears. We must play upon his vanity by pointing out
 that the less he indulges his own personal enmity
 or interest, the greater will be the reputation for
-                    <pb id="p.201"/>
+                    <pb xml:id="p.201"/>
                     conscientious rectitude that will accrue to him from
 his verdict.
                     <milestone n="76" unit="section"/>
@@ -1249,7 +1268,7 @@ further, if the case should permit, plead that we
 were forced to take the action which we did or were
 led to it by error or suspicion.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">I.e.</hi>
+                        <hi rend="italic">I.e.</hi>
                         apologise for refusing to accept his original judgement.
                     </note>
                     The safest course
@@ -1282,13 +1301,13 @@ panel, to say nothing against the judges who tried
 the case on that occasion. But this is a subject
 with which I dealt at some length in the passage
 where I discussed
-                    <hi rend="italics">proofs.</hi>
+                    <hi rend="italic">proofs.</hi>
                     <note anchored="true" place="unspecified">
                         <milestone n="5" unit="chapter"/>
                         <milestone n="1" unit="section"/>
                         ii. 1, where, as here, it is indicated that different
 portions of a case might be tried by two panels of
-                        <hi rend="italics">centumviri</hi>
+                        <hi rend="italic">centumviri</hi>
                         sitting separately. The centumviral court dealt mainly with
 cases of inheritance.
                     </note>
@@ -1296,7 +1315,7 @@ cases of inheritance.
                 <p>
                     It may happen that we have to censure actions in
 others, of which we have been guilty ourselves,
-                    <pb id="p.203"/>
+                    <pb xml:id="p.203"/>
                     as, for example, when Tubero charges Ligarius
 with having been in Africa.
                     <milestone n="79" unit="section"/>
@@ -1306,7 +1325,7 @@ have indicted others for the same offence with a
 view to recovering their lost position:
                     <note anchored="true" place="unspecified">
                         See v. x. 108 note and with reference to
-                        <hi rend="italics">pro Clu.</hi>
+                        <hi rend="italic">pro Clu.</hi>
                         xxxvi.
 98.
                     </note>
@@ -1342,7 +1361,7 @@ the very nature of the case may make such an
 attitude not unbecoming, as, for example, in the
 case where the father disinherits a son born of a
 harlot because that son has married a harlot, a case
-                    <pb id="p.205"/>
+                    <pb xml:id="p.205"/>
                     which, although it forms a scholastic theme, might
 actually arise in a court of law. There are a number
 of pleas which the father may put forward with
@@ -1357,7 +1376,7 @@ himself was in a humbler position (for a man in
 such a position is permitted to marry a harlot),
                     <note anchored="true" place="unspecified">
                         The
-                        <hi rend="italics">lex lulex de maritandis ordiaibus</hi>
+                        <hi rend="italic">lex lulex de maritandis ordiaibus</hi>
                         (18 B.C. ) forbade
 the marriage of a senator with a prostitute.
                     </note>
@@ -1388,7 +1407,7 @@ but groan and weep and curse his existence, so that
 the judge will understand his grief rather than hear
 it articulately expressed? But the victim's advocate
 will have to exhibit similar emotions, since the
-                    <pb id="p.207"/>
+                    <pb xml:id="p.207"/>
                     admission of such wrongs cause more shame to the
 sufferer than the criminal.
                     <milestone n="85" unit="section"/>
@@ -1444,7 +1463,7 @@ our victims in some other connexion.
                     <milestone n="88" unit="section"/>
                     For example,
 if we charge soldiers with rapacity, we shall
-                    <pb id="p.209"/>
+                    <pb xml:id="p.209"/>
                     qualify our statement by saying that the fact is not
 surprising, as they think that they are entitled to
 some special reward for the perils they have faced
@@ -1463,18 +1482,18 @@ witnesses he admits their distinction in learning
 and literature and professes his admiration for their
 nation.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">E.g. pro Flacco</hi>
+                        <hi rend="italic">E.g. pro Flacco</hi>
                         xxvi.
                     </note>
                     On the other hand, he has nothing but
 contempt for the Sardinians
                     <note anchored="true" place="unspecified">
                         In a fragment of
-                        <hi rend="italics">pro Scauro.</hi>
+                        <hi rend="italic">pro Scauro.</hi>
                     </note>
                     and attacks the Allobroges as the enemies of Rome.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Font.</hi>
+                        <hi rend="italic">pro Font.</hi>
                         viii.
                     </note>
                     In all these cases
@@ -1496,7 +1515,7 @@ gentlest of all methods of attack.
 statements which are in sufficient harmony with the
 facts will none the less lose all their grace unless
 they are modified by a certain restraint. It is hard
-                    <pb id="p.211"/>
+                    <pb xml:id="p.211"/>
                     to give rules as to the exact method in which this
 precept should be observed, but the problem will
 easily be solved by following the dictates of our own
@@ -1515,7 +1534,7 @@ praised by the same persons. For instance, there is
 one passage
                     <note anchored="true" place="unspecified">
                         See
-                        <hi rend="italics">Or.</hi>
+                        <hi rend="italic">Or.</hi>
                         rxiii. 76. In this and the next passage Quintilian does not quote, but paraphrases.
                     </note>
                     in Cicero where he writes that the
@@ -1524,7 +1543,7 @@ acquire by imitation, but which we find is really
 beyond our powers. But in another passage
                     <note anchored="true" place="unspecified">
                         See
-                        <hi rend="italics">Or.</hi>
+                        <hi rend="italic">Or.</hi>
                         xxviii. 97.
                     </note>
                     he
@@ -1548,7 +1567,7 @@ capable of eminence in neither.
                     II. Some regard memory as being no more than
 one of nature's gifts; and this view is no doubt true
 to a great extent; but, like everything else, memory
-                    <pb id="p.213"/>
+                    <pb xml:id="p.213"/>
                     may be improved by cultivation. And all the labour
 of which I have so far spoken will be in vain unless
 all the other departments be co-ordinated by the
@@ -1586,7 +1605,7 @@ looking ahead, it is continually in search of something which is more remote: on
 whatever it discovers, it deposits by some mysterious
 process in the safe-keeping of memory, which acts
 as a transmitting agent and hands on to the delivery
-                    <pb id="p.215"/>
+                    <pb xml:id="p.215"/>
                     what it has received from the imagination.
                     <milestone n="4" unit="section"/>
                     I do
@@ -1631,7 +1650,7 @@ position of glory.
                     <milestone n="8" unit="section"/>
                     For it provides the orator not
 merely with the order of his thoughts, but even of
-                    <pb id="p.217"/>
+                    <pb xml:id="p.217"/>
                     his words, nor is its power limited to stringing
 merely a few words together; its capacity for endurance is inexhaustible, and even in the longest
 pleadings the patience of the audience flags long
@@ -1645,7 +1664,7 @@ do things which we cannot do before we have had
 any training or practice. On the other hand, I find
 that Plato
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Phaedr.</hi>
+                        <hi rend="italic">Phaedr.</hi>
                         275 A.
                     </note>
                     asserts that the use of written characters
@@ -1679,7 +1698,7 @@ poets, he had introduced a digression in praise of
 Castor and Pollux, and he was told that, in view
 of what he had done, he had best ask for the rest
 of the sum due from those whose deeds he had
-                    <pb id="p.219"/>
+                    <pb xml:id="p.219"/>
                     extolled. And according to the story they paid
 their debt.
                     <milestone n="12" unit="section"/>
@@ -1713,7 +1732,7 @@ Larissa, or at Crannon, as is stated by Apollas
 Callimachus, who is followed by Cicero,
                     <note anchored="true" place="unspecified">
                         Cic.
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. lxxxvi. 352.
                     </note>
                     to whom
@@ -1729,7 +1748,7 @@ at the same time.
                     For my own part, however, I
 regard the portion of the story which concerns
 Castor and Pollux as being purely fictitious, since
-                    <pb id="p.221"/>
+                    <pb xml:id="p.221"/>
                     the poet himself has nowhere mentioned the occurrence; and he would scarcely have kept silence on
 an affair which was so much to his credit.
                 </p>
@@ -1768,7 +1787,7 @@ symbol may have reference to the subject as a
 whole, it may, for example, be drawn from navigation, warfare, etc., or it may, on the other hand,
 be found in some particular word. (For even in
 cases of forgetfulness one single word will serve to
-                    <pb id="p.223"/>
+                    <pb xml:id="p.223"/>
                     restore the memory.) However, let us suppose that
 the symbol is drawn from navigation, as, for instance,
 an anchor; or from warfare, as, for example, some
@@ -1776,12 +1795,12 @@ weapon. These symbols are then arranged as follows.
                     <milestone n="20" unit="section"/>
                     The first though is placed, as it were, in the forecourt;
 the second, let us say, in the living-room; the remainder are placed in due order all round the
-                    <hi rend="italics">impluvium</hi>
+                    <hi rend="italic">impluvium</hi>
                     <note anchored="true" place="unspecified">
                         The
-                        <hi rend="italics">impluvium</hi>
+                        <hi rend="italic">impluvium</hi>
                         was the light-well in the centre of the
-                        <hi rend="italics">atrium</hi>
+                        <hi rend="italic">atrium</hi>
                         with a cistern beneath it to catch the rainwater from
 the roof, which sloped inwards.
                     </note>
@@ -1812,21 +1831,21 @@ the things which we have to learn by heart: in
 fact, as Cicero says, we use
                     <quote>places like wax tablets and symbols in lieu of letters.</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">De Or.</hi>
+                        <hi rend="italic">De Or.</hi>
                         II. lxxxvi. 354.
                     </note>
                     <milestone n="22" unit="section"/>
                     It will be best to
 give his words
-                    <hi rend="italics">verbatim:</hi>
+                    <hi rend="italic">verbatim:</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">De Or.</hi>
+                        <hi rend="italic">De Or.</hi>
                         II. lxxxvii. 358.
                     </note>
                     <quote>
                         We must for this purpose employ a number of remarkable places, clearly
 envisaged and separated by short intervals: the
-                        <pb id="p.225"/>
+                        <pb xml:id="p.225"/>
                         images which we use must be active, sharply-cut and
 distinctive, such as may occur to the mind and strike
 it with rapidity.
@@ -1835,7 +1854,7 @@ it with rapidity.
 more, how Metrodorus
                     <note anchored="true" place="unspecified">
                         Of Scepsis, the favourite of Mithradates Eupator. See
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. lxxxviii. 360. He used the signs of the Zodiac as
 aids to the memory, subdividing each into thirty compartments. Quintilian wonders on what principle he can have
 made such a division, necessarily purely artificial in nature.
@@ -1873,7 +1892,7 @@ can such a method grasp a whole series of connected words?
                     <milestone n="25" unit="section"/>
                     I pass by the fact that there are
 certain things which it is impossible to represent by
-                    <pb id="p.227"/>
+                    <pb xml:id="p.227"/>
                     symbols, as, for example, conjunctions. We may, it
 is true, like shorthand writers, have definite symbols
 for everything, and may select an infinite number
@@ -1890,7 +1909,7 @@ speech, if we have to look back at separate symbols
 for each individual word? Therefore the experts
 mentioned by Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. lxxxvii. 360. Charmadas or Charmides, an
 elder contemporary of Cicero.
                     </note>
@@ -1917,7 +1936,7 @@ the words in their proper order, which is a task of no
 small difficulty, and subsequently to unite the various
 sections into a whole when we go over them in
 order. If certain portions prove especially difficult to
-                    <pb id="p.229"/>
+                    <pb xml:id="p.229"/>
                     remember, it will be found advantageous to indicate
 them by certain marks, the remembrance of which
 will refresh and stimulate the memory.
@@ -1956,10 +1975,10 @@ Origin again may assist us to a better remembrance of derivative names, such as 
 or Aurelius.
                     <note anchored="true" place="unspecified">
                         Cicero, a sower of chickpea (
-                        <hi rend="italics">cicer</hi>
+                        <hi rend="italic">cicer</hi>
                         ), according to Pliny
 (xviii. 10). Aurelius = Auselius, child of the sun (
-                        <hi rend="italics">a sole</hi>
+                        <hi rend="italic">a sole</hi>
                         )
 according to Festus. Verrius unknown.
                     </note>
@@ -1972,7 +1991,7 @@ point.
 everyone, namely, to learn a passage by heart from
 the same tablets on which he has committed it to
 writing. For he will have certain tracks to guide
-                    <pb id="p.231"/>
+                    <pb xml:id="p.231"/>
                     him in his pursuit of memory, and the mind's eye
 will be fixed not merely on the pages on which the
 words were written, but on individual lines, and at
@@ -2011,7 +2030,7 @@ passes over the passages which we find hard to remember at the same speed as tho
 difficulty in retaining.
                     <milestone n="35" unit="section"/>
                     By testing ourselves to see
-                    <pb id="p.233"/>
+                    <pb xml:id="p.233"/>
                     whether we remember a passage, we develop greater
 concentration without waste of time over the repetition of passages which we already know by heart.
 Thus, only those passages which tend to slip from
@@ -2048,7 +2067,7 @@ again in his mind on his way into the country, and
 on recalling the move which had cost him the game,
 returned to tell the man with whom he had been
 playing, and the latter acknowledged that he was
-                    <pb id="p.235"/>
+                    <pb xml:id="p.235"/>
                     right. Is order, then, I ask you, to be accounted of
 less importance in a speech, in which it depends
 entirely on ourselves, whereas in a game our opponent
@@ -2060,7 +2079,7 @@ as it is easier to learn verse than prose, so it is
 easier to learn prose when it is artistically constructed than when it has no such organisation. If
 these points receive attention, it will be possible to
 repeat
-                    <hi rend="italics">verbatim</hi>
+                    <hi rend="italic">verbatim</hi>
                     even such psssages as gave the impression of being delivered extempore. My own
 memory is of a very ordinary kind, but I found that
 I could do this with success on occasions when the
@@ -2083,7 +2102,7 @@ memory.
 urged,
                     <note anchored="true" place="unspecified">
                         See. i. 36; II. vii. I
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     learn as much as possible by heart at the
 earliest stage, while all who, whatever their age,
@@ -2094,7 +2113,7 @@ process which we may compare to chewing the cud.
 This task will be rendered less tiresome if we begin
 by confining ourselves to learning only a little at a
 time, in amounts not sufficient to create disgust: we
-                    <pb id="p.237"/>
+                    <pb xml:id="p.237"/>
                     may then proceed to increase the amount by a line a
 day, an addition which will not sensibly increase the
 labour of learning, until at last the amount we can
@@ -2134,7 +2153,7 @@ memory.
 memory fails as a rule to last and takes its leave as
 though, its immediate task accomplished, it had no
 further duties to perform. And indeed there is
-                    <pb id="p.239"/>
+                    <pb xml:id="p.239"/>
                     nothing surprising in the fact that things which
 have been implanted in the memory for some time
 should have a greater tendency to stay there.
@@ -2144,7 +2163,7 @@ should have a greater tendency to stay there.
 and another, to which I have just referred, gives rise
 to the question whether those who are intending to
 speak should learn their speeches
-                    <hi rend="italics">verbatim</hi>
+                    <hi rend="italic">verbatim</hi>
                     or whether
 it is sufficient to get a good grasp of the essence and
 the order of what they have got to say. To this
@@ -2176,7 +2195,7 @@ of the moment, an impression which is of the utmost
 assistance both to the orator and to his cause.
                     <milestone n="47" unit="section"/>
                     For
-                    <pb id="p.241"/>
+                    <pb xml:id="p.241"/>
                     the judge admires those words more and fears them
 less which he does not suspect of having been
 specially prepared beforehand to outwit him.
@@ -2217,7 +2236,7 @@ But such a misfortune will be of but rare occurrence.
 of the power to which memory may be developed by
 natural aptitude and application. Themistocles is
 said to have spoken excellently in Persian after a
-                    <pb id="p.243"/>
+                    <pb xml:id="p.243"/>
                     year's study; Mithridates is recorded to have known
 twenty-two languages, that being the number of
 the different nations included in his empire;
@@ -2247,28 +2266,28 @@ hope to achieve the like.
                 </p>
                 <p>
                     III.
-                    <hi rend="italics">Delivery</hi>
+                    <hi rend="italic">Delivery</hi>
                     is often styled
-                    <hi rend="italics">action.</hi>
+                    <hi rend="italic">action.</hi>
                     But the first
 name is derived from the voice, the second from the
 gesture. For Cicero in one passage
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         III. lix. 222.
                     </note>
                     speaks of
-                    <hi rend="italics">action</hi>
+                    <hi rend="italic">action</hi>
                     as being
-                    <hi rend="italics">a form of speech,</hi>
+                    <hi rend="italic">a form of speech,</hi>
                     and in another
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Or.</hi>
+                        <hi rend="italic">Or.</hi>
                         xvii. 55.
                     </note>
                     as being
 a
-                    <hi rend="italics">kind of physical eloquence.</hi>
+                    <hi rend="italic">kind of physical eloquence.</hi>
                     None the less, he
 divides action into two elements, which are the
 same as the elements of delivery, namely, voice and
@@ -2282,7 +2301,7 @@ which we produce it, since the emotion of each
 member of our audience will depend on the impression made upon his hearing. Consequently, no
 proof, at least if it be one devised by the orator
 himself, will ever be so secure as not to lose its force
-                    <pb id="p.245"/>
+                    <pb xml:id="p.245"/>
                     if the speaker fails to produce it in tones that drive
 it home. All emotional appeals will inevitably fall
 flat, unless they are given the fire that voice, look,
@@ -2323,7 +2342,7 @@ regarded it not merely as the first, but as the only
 virtue of oratory.
                     <milestone n="7" unit="section"/>
                     This explains why he studied
-                    <pb id="p.247"/>
+                    <pb xml:id="p.247"/>
                     under the instruction of the actor Andronicus with
 such diligence and success as thoroughly to justify
 the remark made by Aeschines to the Rhodians when
@@ -2331,14 +2350,14 @@ they expressed their admiration of the speech of
 Demosthenes on behalf of Ctesiphon,
                     <quote>What would you have said if you had heard him yourselves?</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         III. lvi. 213. Aeschincs in exile at Rhodes first
 recited his own speech against Ctesiphon, and then by special
 request read Demosthenes' reply, the famous
-                        <hi rend="italics">De Corona.</hi>
+                        <hi rend="italic">De Corona.</hi>
                     </note>
                     Cicero likewise regards
-                    <hi rend="italics">action</hi>
+                    <hi rend="italic">action</hi>
                     as the supreme element
 of oratory.
                     <milestone n="8" unit="section"/>
@@ -2350,7 +2369,7 @@ while Antonius and Crassus produced a great impression by their command of this 
 the greatest of all was that produced by Quintus
 Hortensius.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         lxvi., lxxxix., xxxviii., xliii., lxxxviii.
                     </note>
                     This statement is strongly supported
@@ -2375,7 +2394,7 @@ are combined.
                     There are some, however, who consider that delivery which owes nothing to art and everything to
 natural impulse is more forcible, and in fact the only
 form of delivery which is worthy of a manly speaker.
-                    <pb id="p.249"/>
+                    <pb xml:id="p.249"/>
                     But these persons are as a rule identical, either with
 those who are in the habit of disapproving of care,
 art, polish and every form of premeditation in actual
@@ -2383,9 +2402,9 @@ speaking, as being affected and unnatural, or else
 with those who (like Lucius Cotta, according to
 Cicero)
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         III. xi. 42.
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         lxxiv. 259.
                     </note>
                     affect the imitation of ancient writers both
@@ -2414,9 +2433,9 @@ delivery. For we may employ a good, strong voice
 as we will; whereas one that is ugly or feeble not
 only prevents us from producing a number of effects,
 such as a
-                    <hi rend="italics">crescendo</hi>
+                    <hi rend="italic">crescendo</hi>
                     or a sudden
-                    <hi rend="italics">fortissimo,</hi>
+                    <hi rend="italic">fortissimo,</hi>
                     but at
 times forces faults upon us, making us drop the
 voice, alter its pitch and refresh the hoarseness of
@@ -2429,7 +2448,7 @@ be wasted.
                     <milestone n="14" unit="section"/>
                     All delivery, as I have already said, is concerned
 with two different things, namely, voice and gesture,
-                    <pb id="p.251"/>
+                    <pb xml:id="p.251"/>
                     of which the one appeals to the eye and the other
 to the ear, the two senses by which all emotion
 reaches the soul. But the voice has the first claim
@@ -2472,7 +2491,7 @@ voice. The important fact is that the tone must be
 agreeable and not harsh.
                     <milestone n="17" unit="section"/>
                     The methods of using the
-                    <pb id="p.253"/>
+                    <pb xml:id="p.253"/>
                     voice present great variety. For in addition to the
 triple division of accents into sharp, grave and circumflex, there are many other forms of intonation
 which are required: it may be intense or relaxed,
@@ -2510,7 +2529,7 @@ in the pipe by the same volume of breath varies
 according as the stops are closed or open, or the
 instrument is clogged or cracked, so the voice is
 strangled if the throat be swollen, and muffled if it
-                    <pb id="p.255"/>
+                    <pb xml:id="p.255"/>
                     is obstructed, while it becomes rasping if the throat
 is inflamed, and may be compared to an organ with
 broken pipes in cases where the throat is subject to
@@ -2552,7 +2571,7 @@ mellow our voice by coddling it nor accustom it to
 the conditions which it would like to enjoy, but
 rather give it exercise suited to the tasks on which
 it will be employed, never allowing it to be impaired
-                    <pb id="p.257"/>
+                    <pb xml:id="p.257"/>
                     by silence, but strengthening it by practice, which
 removes all difficulties.
                     <milestone n="25" unit="section"/>
@@ -2591,7 +2610,7 @@ however, good reason for the rule prescribed by all
 authorities, that the voice should not be overstrained
 in the years of transition between boyhood and manhood, since at that period it is naturally weak, not, I
 think, on account of heat, as some allege (for there
-                    <pb id="p.259"/>
+                    <pb xml:id="p.259"/>
                     is more heat in the body at other periods), but rather
 on account of moisture, of which at that age there is
 a superabundance.
@@ -2627,7 +2646,7 @@ since we may discern a man's nationality from the
 sound of his voice as easily as we test a coin by its ring.
 If these qualities be present, we shall have those harmonious accents of which Ennius
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Ann.</hi>
+                        <hi rend="italic">Ann.</hi>
                         ix. 305 (Vahlen).
                     </note>
                     expresses his
@@ -2636,7 +2655,7 @@ approval when he describes Cethegus as one whose
                     and avoid the opposite effect,
 of which Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         xv. 58.
                     </note>
                     expresses his disapproval by saying,
@@ -2645,7 +2664,7 @@ of which Cicero
 of which I spoke in the first book
                     <note anchored="true" place="unspecified">
                         I. i. 37; v. 32; viii. 1 and xi. 1
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                     </note>
                     when I discussed
 the method in which the speech of children should
@@ -2654,7 +2673,7 @@ mention them in connexion with a period of life
 when it is still possible to correct them.
                     <milestone n="32" unit="section"/>
                     Again, the
-                    <pb id="p.261"/>
+                    <pb xml:id="p.261"/>
                     delivery may be described as correct if the voice be
 sound, that is to say, exempt from any of the defects
 of which I have just spoken, and if it is not dull,
@@ -2678,25 +2697,25 @@ as if we were entering them in an inventory.
 vowels frequently coalesce and some consonants disappear when followed by a vowel. I have already
                     <note anchored="true" place="unspecified">ix. iv. 40.</note>
                     given an example of both these occurrences:—
-                    <hi rend="italics">mullum ille et terris.</hi>
+                    <hi rend="italic">mullum ille et terris.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Aen.</hi>
+                        <hi rend="italic">Aen.</hi>
                         i.
                     </note>
                     <milestone n="35" unit="section"/>
                     Further, we avoid placing two
 consonants near each other when their juxtaposition
 would cause a harsh sound; thus, we say
-                    <hi rend="italics">pellexit</hi>
+                    <hi rend="italic">pellexit</hi>
                     and
-                    <hi rend="italics">collegiate</hi>
+                    <hi rend="italic">collegiate</hi>
                     and employ other like forms of which I have
 spoken elsewhere.
                     <note anchored="true" place="unspecified">IX. iv. 37.</note>
                     It is with this in mind that
 Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         lxxiv. 259.
                         <quote>suavitas vocis et lenis appellatio literarum</quote>
                         (
@@ -2725,46 +2744,46 @@ suspended (which the Greeks term
                     and when it should come to a full stop.
                     <milestone n="36" unit="section"/>
                     After the words
-                    <hi rend="italics">arma virumque cano</hi>
+                    <hi rend="italic">arma virumque cano</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Aen.</hi>
+                        <hi rend="italic">Aen.</hi>
                         i. 1.
                     </note>
                     there is a momentary suspension, because
-                    <hi rend="italics">virum</hi>
+                    <hi rend="italic">virum</hi>
                     is connected with
-                    <pb id="p.263"/>
+                    <pb xml:id="p.263"/>
                     what follows, the full sense being given by
-                    <hi rend="italics">virum Troiae qui primus ab oris,</hi>
+                    <hi rend="italic">virum Troiae qui primus ab oris,</hi>
                     after which there is a similar suspension. For although the mention of the
 hero's destination introduces an idea different from
 that of the place whence he came, the difference does
 not call for the insertion of a stop, since both ideas
 are expressed by the same verb
-                    <hi rend="italics">venit.</hi>
+                    <hi rend="italic">venit.</hi>
                     <milestone n="37" unit="section"/>
                     After
-                    <hi rend="italics">Italiam</hi>
+                    <hi rend="italic">Italiam</hi>
                     comes a third pause, since
-                    <hi rend="italics">fato profugus</hi>
+                    <hi rend="italic">fato profugus</hi>
                     is parenthetic and breaks up the continuity of the phrase
-                    <hi rend="italics">Italian, Lavinaque.</hi>
+                    <hi rend="italic">Italian, Lavinaque.</hi>
                     For the same reason there is a
 fourth pause after
-                    <hi rend="italics">profulgus.</hi>
+                    <hi rend="italic">profulgus.</hi>
                     Then follows
-                    <hi rend="italics">Lavinaque venit litora,</hi>
+                    <hi rend="italic">Lavinaque venit litora,</hi>
                     where a stop must be placed, as at this
 point a new sentence begins. But stops themselves
 vary in length, according as they mark the conclusion
 of a phrase or a sentence.
                     <milestone n="38" unit="section"/>
                     Thus after
-                    <hi rend="italics">litora</hi>
+                    <hi rend="italic">litora</hi>
                     I shall
 pause and continue after taking breath. But when
 I come to
-                    <hi rend="italics">atque altae moenia Romae</hi>
+                    <hi rend="italic">atque altae moenia Romae</hi>
                     I shall make a full
 stop, halt and start again with the opening of a fresh
 sentence.
@@ -2772,26 +2791,26 @@ sentence.
                     There are also occasionally, even in
 periods, pauses which do not require a fresh breath.
 For although the sentence
-                    <hi rend="italics">in coetu vero populi Romani, negotium publicumn gerens, magister equilum,</hi>
+                    <hi rend="italic">in coetu vero populi Romani, negotium publicumn gerens, magister equilum,</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Phil.</hi>
+                        <hi rend="italic">Phil.</hi>
                         II. xxv. 63. See
-                        <hi rend="italics">Quint.</hi>
+                        <hi rend="italic">Quint.</hi>
                         VIII. iv. 8.
                     </note>
                     etc., contains a number of different
-                    <hi rend="italics">cola,</hi>
+                    <hi rend="italic">cola,</hi>
                     <note anchored="true" place="unspecified">
                         See IX. iv. 22, 67, 123. The name
-                        <hi rend="italics">colon</hi>
+                        <hi rend="italic">colon</hi>
                         is applied to the
 longer clauses contained in a period, as opposed to the shorter,
 which are styled
-                        <hi rend="italics">commata.</hi>
+                        <hi rend="italic">commata.</hi>
                     </note>
                     expressing a number
 of different thoughts, all these
-                    <hi rend="italics">cola</hi>
+                    <hi rend="italic">cola</hi>
                     are embraced by
 a single period: consequently, although short pauses
 are required at the appropriate intervals, the flow of
@@ -2803,7 +2822,7 @@ from faulty punctuation. Correctness of punctuation
 may seem to be but a trivial merit, but without it
 all the other merits of oratory are nothing worth.
                 </p>
-                <pb id="p.265"/>
+                <pb xml:id="p.265"/>
                 <p>
                     <milestone n="40" unit="section"/>
                     Delivery will be ornate when it is supported by
@@ -2843,7 +2862,7 @@ irregularity of rhythm and sound, mixing long and
 short syllables, grave accents and acute, tones loud
 and low, without discrimination, the result being that
 this universal unevenness produces the impression of
-                    <pb id="p.267"/>
+                    <pb xml:id="p.267"/>
                     a limping gait. The second essential is variety of
 tone, and it is in this alone that delivery really consists.
                     <milestone n="44" unit="section"/>
@@ -2868,7 +2887,7 @@ on which we are speaking and the moods that they
 demand: otherwise our voice will be at variance with
 our language. We must, therefore, avoid that which
 the Greeks call
-                    <hi rend="italics">monotony,</hi>
+                    <hi rend="italic">monotony,</hi>
                     that is to say, the unvarying exertion both of lungs and voice. By this I do
 not simply mean that we must avoid saying everything in a loud tone, a fault which amounts to
 madness, or in a colloquial tone, which creates an
@@ -2882,7 +2901,7 @@ certain, though not a very great extent, according
 as the dignity of the language, the nature of the
 thought, the conclusion and opening of our sentences or transitions from one point to another, may
 demand. Thus, those who paint in monochrome
-                    <pb id="p.269"/>
+                    <pb xml:id="p.269"/>
                     still represent their objects in different planes, since
 otherwise it would have been impossible to depict
 even the limbs of their figures.
@@ -2892,20 +2911,20 @@ example the opening of Cicero's magnificent speech
 in defence of Milo. Is it not clear that the orator
 has to change his tone almost at every stop? it is the
 same face, but the expression is changed.
-                    <hi rend="italics">Etsi vereor, iudices, ne turpe sit,</hi>
+                    <hi rend="italic">Etsi vereor, iudices, ne turpe sit,</hi>
                     <milestone n="48" unit="section"/>
-                    <hi rend="italics">pre fortissimo viro dicere incipientem timere.</hi>
+                    <hi rend="italic">pre fortissimo viro dicere incipientem timere.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         i. 1
-                        <hi rend="italics">sqq.</hi>
+                        <hi rend="italic">sqq.</hi>
                         <quote>
                             Although I fear, gentlemen, that it
 may be discreditable that I should feel afraid on rising to
 defend the harvest of men, and though it is far from becoming
 that, whereas Titus Annius is more concerned for the safety
 of the State than for his own, I
-                            <hi rend="italics">should</hi>
+                            <hi rend="italic">should</hi>
                             he unable to bring a
 like degree of courage to aid me in pleading his cause; still,
 the strange appearance of this novel tribunal dismays my
@@ -2918,47 +2937,47 @@ to be, by a ring of spectators,
                     </note>
                     Although the general tone of the passage is
 restrained and subdued, since it is not merely an
-                    <hi rend="italics">exordium,</hi>
+                    <hi rend="italic">exordium,</hi>
                     but the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     of a man suffering from
 serious anxiety, still something fuller and bolder is
 required in the tone, when he says
-                    <hi rend="italics">pro fortissiomo viro,</hi>
+                    <hi rend="italic">pro fortissiomo viro,</hi>
                     than when he says
-                    <hi rend="italics">etsi cereor and turpe sit</hi>
+                    <hi rend="italic">etsi cereor and turpe sit</hi>
                     and
-                    <hi rend="italics">timere.</hi>
+                    <hi rend="italic">timere.</hi>
                     <milestone n="49" unit="section"/>
                     But his second breath must be more vigorous, partly
 owing to the natural increase of effort, since we
 always speak our second sentence with less timidity,
 and partly because he indicates the high courage of
 Milo:
-                    <hi rend="italics">minimeque deceat, cum</hi>
+                    <hi rend="italic">minimeque deceat, cum</hi>
                     T. Annius ipse magis de
-                    <hi rend="italics">rei publicae salute quam de sua perturbetur.</hi>
+                    <hi rend="italic">rei publicae salute quam de sua perturbetur.</hi>
                     Then he
 proceeds to something like a reproof of himself:
-                    <hi rend="italics">me ad eius causam parem animi maguitudinem adferre non posse.</hi>
+                    <hi rend="italic">me ad eius causam parem animi maguitudinem adferre non posse.</hi>
                     <milestone n="50" unit="section"/>
                     The next clause suggests a reflexion on the
 conduct of others:
-                    <hi rend="italics">tamen haec novi iudicii nova forma terret oculos.</hi>
+                    <hi rend="italic">tamen haec novi iudicii nova forma terret oculos.</hi>
                     And then in what follows he opens
 every stop, as the saying is:
-                    <hi rend="italics">
+                    <hi rend="italic">
                         qui, quocunque inciderunt,
 consuetudinem fori et pristinum morem iudiciorum requirunt:
                     </hi>
                     while the next clause is even fuller and freer:
-                    <hi rend="italics">non enim corona cousessus vester cinctus est, ut solebat.</hi>
+                    <hi rend="italic">non enim corona cousessus vester cinctus est, ut solebat.</hi>
                     <milestone n="51" unit="section"/>
                     I have called attention to these points to make it
 clear that there is a certain variety, not merely in
-                    <pb id="p.271"/>
+                    <pb xml:id="p.271"/>
                     the delivery of
-                    <hi rend="italics">cola,</hi>
+                    <hi rend="italic">cola,</hi>
                     but even in that of phrases consisting of one word, a variety the lack of which
 would make every word seem of equal importance.
                 </p>
@@ -2982,7 +3001,7 @@ is a sign of lack of readiness in invention, tends by
 its sluggishness to render our hearers inattentive,
 and, further, wastes the time allotted to us for speaking,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">aquam perdit.</hi>
+                        <hi rend="italic">aquam perdit.</hi>
                         Lit. wastes water. The reference is to
 the clepsydra or water-clock employed for the measurement
 of time.
@@ -3005,7 +3024,7 @@ at the natural breaks in the substance of our speech.
                     <milestone n="54" unit="section"/>
                     But we must exercise our breathing capacity to make
 it as great as possible. To produce this result Demosthenes used to recite as many successive lines as
-                    <pb id="p.273"/>
+                    <pb xml:id="p.273"/>
                     possible, while he was climbing a hill. He also, with
 a view to securing fluency free from impediment,
 used to roll pebbles under his tongue when speaking
@@ -3032,7 +3051,7 @@ I would read
                         <quote>shaking,</quote>
                         <quote>shivering.</quote>
                         Here =
-                        <hi rend="italics">tremolo.</hi>
+                        <hi rend="italic">tremolo.</hi>
                     </note>
                     There are some too who, owing to
 the loss of teeth, do not draw in the breath naturally,
@@ -3056,7 +3075,7 @@ frequency while speaking, of hawking up phlegm
 from the depths of the lungs, like water from a
 well,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">trochea</hi>
+                        <hi rend="italic">trochea</hi>
                         is a windlass used for raising water from a
 well.
                     </note>
@@ -3068,7 +3087,7 @@ breath through the nostrils.
 are tolerable compared with the practice of chanting
 instead of speaking, which is the worst feature of
 our modern oratory, whether in the courts or in the
-                    <pb id="p.275"/>
+                    <pb xml:id="p.275"/>
                     schools, and of which I can only say that I do not
 know whether it is more useless or more repugnant
 to good taste. For what can be less becoming to
@@ -3085,7 +3104,7 @@ kindled in the judge, but outrage the dignity of
 the courts with noises such as are dear to the
 Lycians and Carians? For Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Or.</hi>
+                        <hi rend="italic">Or.</hi>
                         xviii. 57.
                     </note>
                     has told us that
@@ -3113,10 +3132,10 @@ involves less trouble than genuine pleading. There
 are, moreover, some persons who, in thorough conformity with their other vices, are possessed with a
 perpetual passion for hearing something that will
 soothe their ears. But, it may be urged, does not
-                    <pb id="p.277"/>
+                    <pb xml:id="p.277"/>
                     Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Or.</hi>
+                        <hi rend="italic">Or.</hi>
                         xviii. 57.
                     </note>
                     himself say that there is a suggestion of
@@ -3157,7 +3176,7 @@ it is the index of the mind, and is capable of expressing all its varieties of f
 deal with a lively theme, the flow of the voice is
 characterised by fullness, simplicity and cheerfulness; but when it is roused to battle, it puts forth
 all its strength and strains every nerve. In anger
-                    <pb id="p.279"/>
+                    <pb xml:id="p.279"/>
                     it is fierce, harsh and intense, and calls for frequent
 filling of the lungs, since the breath cannot be sustained for long when it is poured forth without
 restraint. When it is desired to throw odium upon
@@ -3196,7 +3215,7 @@ the head: signs take the place of language in the
 dumb, and the movements of the dance are frequently full of meaning, and appeal to the emotions
 without any aid from words. The temper of the
 mind can be inferred from the glance and gait,
-                    <pb id="p.281"/>
+                    <pb xml:id="p.281"/>
                     and even speechless animals show anger, joy, or the
 desire to please by means of the eye and other
 physical indications.
@@ -3237,7 +3256,7 @@ side.
                     <milestone n="70" unit="section"/>
                     For the eyes are always turned in the same
 direction as the gesture, except when we are called
-                    <pb id="p.283"/>
+                    <pb xml:id="p.283"/>
                     upon to condemn or concede something or to express
 abhorrence, when we shall show our aversion by
 turning away the face and by thrusting out our
@@ -3248,8 +3267,8 @@ lines:
                             <quote>
                                 <l part="N">Ye gods, such dread calamity avert!</l>
                             </quote>
-                            <bibl default="NO">
-                                <hi rend="italics">Aen.</hi>
+                            <bibl default="false">
+                                <hi rend="italic">Aen.</hi>
                                 iii. 620.
                             </bibl>
                         </cit>
@@ -3261,8 +3280,8 @@ lines:
                                 <l part="N">Not for me</l>
                                 <l part="N">To claim such honour!</l>
                             </quote>
-                            <bibl default="NO">
-                                <hi rend="italics">Aen.</hi>
+                            <bibl default="false">
+                                <hi rend="italic">Aen.</hi>
                                 i. 335.
                             </bibl>
                         </cit>
@@ -3296,7 +3315,7 @@ eloquent than all our words.
 destined for the stage, the masters of the art of
 delivery design even their masks to enhance the
 emotional effect. Thus, in tragedy, Aerope will be
-                    <pb id="p.285"/>
+                    <pb xml:id="p.285"/>
                     sad, Medea fierce, Ajax bewildered, Hercules truculent.
                     <milestone n="74" unit="section"/>
                     In comedy, on the other hand, over and
@@ -3339,7 +3358,7 @@ service in support of the eyes.
                     The eyebrows also
 may be used with great effect. For to some extent
 they mould the expression of the eyes and
-                    <pb id="p.287"/>
+                    <pb xml:id="p.287"/>
                     determine that of the forehead. It is by means of the
 eyebrows that we contract, raise or smooth the
 latter: in fact, the only thing which has greater
@@ -3364,7 +3383,7 @@ contempt or loathing. For to
                     <quote>wrinkle the nostrils</quote>
                     (as Horace says),
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Ep.</hi>
+                        <hi rend="italic">Ep.</hi>
                         I. v. 23.
                     </note>
                     or blow them out, or twitch them,
@@ -3379,9 +3398,9 @@ frequently.
 lips, open them with a sudden smack,
                     <note anchored="true" place="unspecified">
                         It is hard to distinguish between
-                        <hi rend="italics">scindere</hi>
+                        <hi rend="italic">scindere</hi>
                         and
-                        <hi rend="italics">didurere.</hi>
+                        <hi rend="italic">didurere.</hi>
                         I have adopted a suggestion of Spalding's.
                     </note>
                     compress
@@ -3389,7 +3408,7 @@ them, draw them apart and bare the teeth, or twist
 them awry to one side till they almost reach the
 ear, or to curl them in scorn, or let them droop, or
 allow the voice to escape only on one side. It is
-                    <pb id="p.289"/>
+                    <pb xml:id="p.289"/>
                     also unbecoming to lick or bite them, since their
 motion should be but slight even when they are
 employed in forming words. For we must speak
@@ -3415,9 +3434,9 @@ admiration or fear.
 the arm with shoulders well thrown back and the
 fingers opening as the hand moves forward. But
 when we have to speak in specially rich or impressive style, as, for example, in the passage
-                    <hi rend="italics">saxa atiqu solitudines voci respondent,</hi>
+                    <hi rend="italic">saxa atiqu solitudines voci respondent,</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Arh.</hi>
+                        <hi rend="italic">pro Arh.</hi>
                         viii. 19. See VIII. iii. 75 and IX. iv. 44.
                         <quote>Rocks and solitude make answer to the voice.</quote>
                     </note>
@@ -3437,7 +3456,7 @@ hands may almost be said to speak.
 use them to demand, promise, summon, dismiss,
 threaten, supplicate, express aversion or fear, question
 or deny? Do we not employ them to indicate joy,
-                    <pb id="p.291"/>
+                    <pb xml:id="p.291"/>
                     sorrow, hesitation, confession, penitence, measure,
 quantity, number and time?
                     <milestone n="87" unit="section"/>
@@ -3478,23 +3497,23 @@ illustrate anything he may chance to say.
 rule applies not merely to the hands, but to all
 gesture and to the voice as well. For in delivering
 the period
-                    <hi rend="italics">stetit soleatus praetor populi Romani,</hi>
+                    <hi rend="italic">stetit soleatus praetor populi Romani,</hi>
                     <note anchored="true" place="unspecified">
                         There in his slippers stood the praetor of the Roman
 people."
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         v. xxxiii. 86: see
-                        <hi rend="italics">VIII.</hi>
+                        <hi rend="italic">VIII.</hi>
                         iii. 64.
                     </note>
                     it
 would be wrong to imitate Verres leaning on his
 mistress, or in uttering the phrase
-                    <hi rend="italics">caedebatur in medio</hi>
-                    <pb id="p.293"/>
-                    <hi rend="italics">foro Messanae</hi>
+                    <hi rend="italic">caedebatur in medio</hi>
+                    <pb xml:id="p.293"/>
+                    <hi rend="italic">foro Messanae</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         v. lxii 162.
                         <quote>He was scourged in the midst of the market-place of Messina.</quote>
                     </note>
@@ -3507,11 +3526,11 @@ seem to me to commit a gross offence against the
 canons of their art when, if they have in the course
 of some narrative to quote either the words of an old
 man (as, for example, in the prologue to the
-                    <hi rend="italics">Hydria</hi>
+                    <hi rend="italic">Hydria</hi>
                     ),
                     <note anchored="true" place="unspecified">Plays of Menander.</note>
                     or of a woman (as in the (
-                    <hi rend="italics">Georgus</hi>
+                    <hi rend="italic">Georgus</hi>
                     <note anchored="true" place="unspecified">Plays of Menander.</note>
                     ), they litter them
 in a tremulous or a treble voice, notwithstanding the
@@ -3525,12 +3544,12 @@ imitation.
                     One of the commonest of all the gestures consists
 in placing the middle finger against the thumb and
 extending the remaining three: it is suitable to the
-                    <hi rend="italics">exordum,</hi>
+                    <hi rend="italic">exordum,</hi>
                     the hand being moved forward with an
 easy motion a little distance both to right and left,
 while the head and shoulders gradually follow the
 direction of the gesture. It is also useful in the
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     but in that case the hand must be
 moved with firmness and a little further forward,
 while, if we are reproaching or refuting our adversary, the same movement may be employed with
@@ -3545,16 +3564,16 @@ The middle and third fingers are also sometimes
 turned under the thumb, producing a still more
 forcible effect than the gesture previously described,
 but not well adapted for use in the
-                    <hi rend="italics">exordium</hi>
+                    <hi rend="italic">exordium</hi>
                     or
-                    <hi rend="italics">state-</hi>
-                    <pb id="p.295"/>
-                    <hi rend="italics">meant of facts.</hi>
+                    <hi rend="italic">state-</hi>
+                    <pb xml:id="p.295"/>
+                    <hi rend="italic">meant of facts.</hi>
                     <milestone n="94" unit="section"/>
                     But when three fingers are doubled
 under the thumb, the finger, which Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         II. xlv. 188.
                     </note>
                     says
@@ -3588,7 +3607,7 @@ have commenced the timid and subdued exordium
 of his speech in defence of Ctesiphon, and it was,
 I think, in such a position that Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Arch.</hi>
+                        <hi rend="italic">pro Arch.</hi>
                         i. 1.
                     </note>
                     held his
@@ -3601,7 +3620,7 @@ the body and then opening it somewhat more rapidly
 in the opposite direction, so that it seems as though
 it were delivering our words to the audience.
                     <milestone n="98" unit="section"/>
-                    <pb id="p.297"/>
+                    <pb xml:id="p.297"/>
                     Sometimes we may hold the first two fingers apart without,
 however, inserting the thumb between them, the
 remaining two pointing inwards, while even the two
@@ -3639,16 +3658,16 @@ touch the middle of the right-hand edge of the
 thumb-nail with its extremity, the other fingers
 being relaxed, we shall have a graceful gesture well
 suited to express approval or to accompany
-                    <hi rend="italics">statements of facts,</hi>
+                    <hi rend="italic">statements of facts,</hi>
                     and to mark the distinction between our
 different points.
                     <milestone n="102" unit="section"/>
                     There is another gesture not unlike
-                    <pb id="p.299"/>
+                    <pb xml:id="p.299"/>
                     the preceding, in which the remaining three fingers
 are folded: it is much employed by the Greeks both
 for the left hand and the right, in rounding off their
-                    <hi rend="italics">enthymemes,</hi>
+                    <hi rend="italic">enthymemes,</hi>
                     <note anchored="true" place="unspecified">
                         Rhetorical or incomplete syllogisms. But see V. x. 2.
 xiv. 1
@@ -3690,7 +3709,7 @@ when applied to gesture. The remaining motions—
 that is, forward, to right or left and up or down—all
 have their significance, but the gesture is never
 directed to what lies behind us, though we do at
-                    <pb id="p.301"/>
+                    <pb xml:id="p.301"/>
                     times throw the hand back.
                     <milestone n="106" unit="section"/>
                     The best effect is produced by letting the motion of the hand start from
@@ -3726,24 +3745,24 @@ another still more common error, which is less easy
 of detection. Language possesses certain imperceptible stresses, indeed we might almost call them
 feet, to which the gesture of most speakers conforms.
 Thus there will he one movement at
-                    <hi rend="italics">novum crimen,</hi>
+                    <hi rend="italic">novum crimen,</hi>
                     another at
-                    <hi rend="italics">Giai Caesar,</hi>
+                    <hi rend="italic">Giai Caesar,</hi>
                     a third at
-                    <hi rend="italics">et ante diem,</hi>
+                    <hi rend="italic">et ante diem,</hi>
                     a fourth at
-                    <hi rend="italics">non auditum,</hi>
+                    <hi rend="italic">non auditum,</hi>
                     a fifth at
-                    <hi rend="italics">propinquus meus,</hi>
+                    <hi rend="italic">propinquus meus,</hi>
                     a
 sixth at
-                    <hi rend="italics">ad te</hi>
+                    <hi rend="italic">ad te</hi>
                     and others at
-                    <hi rend="italics">Quintus Tubero</hi>
+                    <hi rend="italic">Quintus Tubero</hi>
                     and
-                    <hi rend="italics">detulit.</hi>
+                    <hi rend="italic">detulit.</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Lig.</hi>
+                        <hi rend="italic">pro Lig.</hi>
                         i. 1.
                         <quote>
                             It is a new charge, Gaius Caesar, a
@@ -3754,7 +3773,7 @@ has brought to your notice.
                     <milestone n="109" unit="section"/>
                     From this springs a further error, namely,
 that young men, when writing out their speeches,
-                    <pb id="p.303"/>
+                    <pb xml:id="p.303"/>
                     devise all their gestures in advance and consider as
 they compose how the hand is to fall at each
 particular point. A further unfortunate result is
@@ -3767,11 +3786,11 @@ falls into a number of brief clauses, at the end of
 which we can take breath, if necessary, to arrange
 our gesture to suit these sections. For example, the
 words
-                    <hi rend="italics">novum crimes, Gai Caesar,</hi>
+                    <hi rend="italic">novum crimes, Gai Caesar,</hi>
                     in a sense form a
 phrase complete in itself, since they are followed by
 a conjunction, while the next words,
-                    <hi rend="italics">et ante hanc diem non auditum,</hi>
+                    <hi rend="italic">et ante hanc diem non auditum,</hi>
                     are also sufficiently self-contained. To
 these phrases the motions of the hand must be conformed, before the speech has passed beyond the
 calmness of tone on which it opens.
@@ -3795,7 +3814,7 @@ while slaves, maidservants, parasites and fishermen
 are more lively in their movements. But instructors
 in the art of gesture will not permit the hand to be
 raised above the level of the eyes or lowered beneath
-                    <pb id="p.305"/>
+                    <pb xml:id="p.305"/>
                     that of the breast; since it is thought a grave blemish
 to lift it to the top of the head
                     <note anchored="true" place="unspecified">
@@ -3826,15 +3845,15 @@ the same in these two cases), or raise them in adoration, or stretch them out in
                     <quote>
                         Ye hills and groves of Alba,
                         <note anchored="true" place="unspecified">
-                            <hi rend="italics">pro Mil.</hi>
+                            <hi rend="italic">pro Mil.</hi>
                             xxxi. 85.
                         </note>
                     </quote>
                     or in the passage from Gracchus
                     <note anchored="true" place="unspecified">
                         See
-                        <hi rend="italics">Cic.</hi>
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">Cic.</hi>
+                        <hi rend="italic">de Or.</hi>
                         III. lvi. 214.
                     </note>
                     :
@@ -3860,13 +3879,13 @@ pleaders are liable to fall. As for the gesture of
 demanding a cup, threatening a flogging, or indicating
 the number 500 by crooking the thumb,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Le.</hi>
+                        <hi rend="italic">Le.</hi>
                         crooking the thumb against the forefinger to
 represent the symbol D.
                     </note>
                     all of which
 are recorded by writers on the subject, I have never
-                    <pb id="p.307"/>
+                    <pb xml:id="p.307"/>
                     seen them employed even by uneducated rustics.
                     <milestone n="118" unit="section"/>
                     But I know that it is of frequent occurrence for a
@@ -3894,7 +3913,7 @@ speak
                     <quote>with uplifted hand.</quote>
                     <milestone n="120" unit="section"/>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">I.e.</hi>
+                        <hi rend="italic">I.e.</hi>
                         with exaggerated violence. See II. xii. 9.
                     </note>
                     To these latter we may
@@ -3909,7 +3928,7 @@ heaving up both hands as if they were carrying something.
 which spring not from nature, but from nervousness,
 such as struggling desperately with our lips when
 they refuse to open, making inarticulate sounds, as
-                    <pb id="p.309"/>
+                    <pb xml:id="p.309"/>
                     though something were sticking in our throat, when
 our memory fails us, or our thoughts will not come
 at our call; rubbing the end of our nose, walking up
@@ -3926,7 +3945,7 @@ must conform to the gesture; for the motion of the
 entire body contributes to the effect: indeed, Cicero
 holds that the body is more expressive than even the
 hands. For in the
-                    <hi rend="italics">de Orator</hi>
+                    <hi rend="italic">de Orator</hi>
                     <note anchored="true" place="unspecified">xviii. 59.</note>
                     he says,
                     <quote>
@@ -3943,7 +3962,7 @@ introduce at Athens, is in general use and is becoming
 as a mark of indignation, while it also excites the
 audience. Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         lax. 278.
                     </note>
                     regrets its absence in Calidius,
@@ -3963,7 +3982,7 @@ reproach or commiseration. But if ever we do employ
 this gesture, it will not be unbecoming to pull back
 the toga at the same time. As regards the feet, we
 need to be careful about our gait and the attitudes
-                    <pb id="p.311"/>
+                    <pb xml:id="p.311"/>
                     in which we stand. To stand with the right foot
 advanced or to thrust forward the same foot and
 hand are alike unsightly.
@@ -3983,7 +4002,7 @@ violence.
 to walk to and fro, owing to the extravagant pauses
 imposed by the plaudits of the audience; Cicero,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Orat.</hi>
+                        <hi rend="italic">Orat.</hi>
                         xviii. 59.
                     </note>
                     however, says that this should be done only on rare
@@ -4007,7 +4026,7 @@ the briefest.
                     <note anchored="true" place="unspecified">
                         The normal arrangement was for the president of the
 court and judges to sit on a
-                        <hi rend="italics">tribunal</hi>
+                        <hi rend="italic">tribunal</hi>
                         or dais. The advocates
 and parties to the suit were on the ground in front. When
 pleading before a large jury the orator could walk diagonally,
@@ -4024,13 +4043,13 @@ jump backwards, which is merely ludicrous.
                     <milestone n="128" unit="section"/>
                     Stamping the foot is, as Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         iii. lix. 220.
                     </note>
                     says, effective when done
 on suitable occasions, that is to say, at the commence
 meant or close of a lively argument, but if it be
-                    <pb id="p.313"/>
+                    <pb xml:id="p.313"/>
                     frequently indulged in, it brands the speaker as a
 fool and ceases to attract the attention of the judge.
 There is also the unsightly habit of swaying to right
@@ -4038,7 +4057,7 @@ and left, and shifting the weight from one foot to
 the other. Above all, we must avoid effeminate
 movements, such as Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         lxii.
                     </note>
                     ascribes to Titus, a circumstance which led to a certain kind of dance being
@@ -4048,9 +4067,9 @@ nicknamed Titus.
 is that of nodding frequently and rapidly to either
 side, a mannerism for which the elder Curio
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         Cic.
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         lx.
                     </note>
                     was derided by Julius, who asked who it was who was speaking in a boat, while on another occasion, when Curio
@@ -4083,7 +4102,7 @@ adopted by some of throwing the toga back over the
 shoulder, while they draw up the fold to their waist
 with the right hand, and use the left for gesticulation
 as they walk up and down and discourse, is not to
-                    <pb id="p.315"/>
+                    <pb xml:id="p.315"/>
                     be tolerated; for even to draw back the left hand
 while extending the right is an objectionable habit.
 This reminds me of an extremely foolish trick, which
@@ -4124,16 +4143,16 @@ require modification by those who have to plead
 before judges seated on a dais.
                     <note anchored="true" place="unspecified">
                         Astonish (in a note on the
-                        <hi rend="italics">Divination</hi>
+                        <hi rend="italic">Divination</hi>
                         of Cicero) explains
 that in minor cases tried by
-                        <hi rend="italics">tribuni, triumviri, quaestores</hi>
+                        <hi rend="italic">tribuni, triumviri, quaestores</hi>
                         and other minor officils, the judges sat on ordinary benches,
 not on a raised
-                        <hi rend="italics">tribuat.</hi>
+                        <hi rend="italic">tribuat.</hi>
                     </note>
                     For in such
-                    <pb id="p.317"/>
+                    <pb xml:id="p.317"/>
                     cases the face must be raised somewhat higher, so
 that the speaker's eyes may be fixed on the president
 of the court: for the same reason his gestures must
@@ -4142,7 +4161,7 @@ details which will readily occur to my reader without
 any mention from me. Similar modifications will
 be likewise necessary for those who plead sitting.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Cp.</hi>
+                        <hi rend="italic">Cp.</hi>
                         XI. i. 44, which shows that the cases in question are
 those submitted to arbitration.
                     </note>
@@ -4179,33 +4198,33 @@ peculiar to the orator, but his dress comes more
 under the public eye than that of other men. It
 should, therefore, be distinguished and manly, as,
 indeed, it ought to be with all men of position. For
-                    <pb id="p.319"/>
+                    <pb xml:id="p.319"/>
                     excessive care with regard to the cut of the toga,
                     <note anchored="true" place="unspecified">
                         In putting on the toga, it was thrown first over the left
 shoulder, so that about 6 feet hung in front and about 12
 behind. This longer portion was then carried round under
 the right arm and then diagonally across the chest (like a
-                        <hi rend="italics">balleus,</hi>
+                        <hi rend="italic">balleus,</hi>
                         or belt) and over the left shoulder again. A fold of
 this portion hanging in front formed the
-                        <hi rend="italics">sinus.</hi>
+                        <hi rend="italic">sinus.</hi>
                         The original
                         <milestone n="6" unit="section"/>
                         feet hanging in front from the left shoulder now hung
 below the rest. A portion was pulled up from above and
 Allowed to hang over the edge of that portion of the toga
 which Quintilian compares to a
-                        <hi rend="italics">balleus.</hi>
+                        <hi rend="italic">balleus.</hi>
                         This was known
 as the
-                        <hi rend="italics">umbo,</hi>
+                        <hi rend="italic">umbo,</hi>
                         and is described by Quintilian as
-                        <hi rend="italics">pars quae ultima imponitur.</hi>
+                        <hi rend="italic">pars quae ultima imponitur.</hi>
                         He recommends that a considerable
 portion should be thus pulled up and allowed to hang fairly
 low in front over the edge of the
-                        <hi rend="italics">balteus,</hi>
+                        <hi rend="italic">balteus,</hi>
                         that the weight
 of the hanging portion might balance the remainder of the
 original 6 feet of toga hanging from the left shoulder, keep
@@ -4213,7 +4232,7 @@ it in place and prevent it from slipping lack into its original
 position. The toga was very nearly semicircular in shape,
 which explains Quintilian's statement that it should be
 round. For further details see
-                        <hi rend="italics">Companion to Latin Studies,</hi>
+                        <hi rend="italic">Companion to Latin Studies,</hi>
                         Camb. Univ. Press, p. 191.
                     </note>
                     the style of the shoes, or the arrangement of the
@@ -4245,7 +4264,7 @@ itself should, in my opinion, be round, and cut to
 fit, otherwise there are a number of ways in which it
 may be unshapely. Its front edge should by preference reach to the middle of the shin, while tie back
 should be higher in proposition as the girdle is higher
-                    <pb id="p.321"/>
+                    <pb xml:id="p.321"/>
                     behind than in front.
                     <milestone n="140" unit="section"/>
                     The fold is most becoming,
@@ -4291,14 +4310,14 @@ encyclopaedic writer, both contemporaries of Cicero.
                     both recommend this in the books
 which they wrote about gesture as practised in
 their own day. I am consequently all the more
-                    <pb id="p.323"/>
+                    <pb xml:id="p.323"/>
                     surprised at the view expressed by so learned a
 man as Plinius Secundus, especially since it occurs
 in a book which carries minute research almost to
 excess:
                     <note anchored="true" place="unspecified">
                         This work of the elder Pliny was called
-                        <hi rend="italics">Studiusus.</hi>
+                        <hi rend="italic">Studiusus.</hi>
                     </note>
                     for he asserts that Cicero was in the
 habit of wearing his toga in such a fashion to conceal his varicose veins, despite the fact that this
@@ -4314,7 +4333,7 @@ can excuse their use.
                     But such attention to our dress is only possible at
 the beginning of a speech, since, as the pleading
 develops, in fact, almost from the beginning of the
-                    <hi rend="italics">statement of facts,</hi>
+                    <hi rend="italic">statement of facts,</hi>
                     the fold will slip down from the
 shoulder quite naturally and as it were of its own
 accord, while when we come to arguments and
@@ -4338,7 +4357,7 @@ would be a foppish and effeminate gesture, and
 there are yet worse effects than these, there is, at
 any rate, no reason why we should not place the
 looser portions of the fold under the left arm, since
-                    <pb id="p.325"/>
+                    <pb xml:id="p.325"/>
                     it gives an air of vigour and freedom not ill-suited
 to the warmth and energy of our action.
                     <milestone n="147" unit="section"/>
@@ -4379,7 +4398,7 @@ same characteristics of voice, gesture and gait are
 not equally becoming in the presence of the
 emperor, the senate, the people, and magistrates,
 or in private and public trials, or in making a
-                    <pb id="p.327"/>
+                    <pb xml:id="p.327"/>
                     request to the praetor for the appointment of a judge
 to hear our case, and in actual pleading. Anyone
 who will reflect upon the matter will realise the
@@ -4401,9 +4420,9 @@ the case as a whole.
                     The second point is concerned
 with the different aspects of the various portions of
 the speech, that is, the
-                    <hi rend="italics">exordium, statement of facts, arguments</hi>
+                    <hi rend="italic">exordium, statement of facts, arguments</hi>
                     and
-                    <hi rend="italics">peroration.</hi>
+                    <hi rend="italic">peroration.</hi>
                     The third concerns the
 thoughts, which will vary according to the subject
 matter and the emotions which we require to
@@ -4421,7 +4440,7 @@ with most of those in defence of accused persons,
 the delivery will be melancholy and subdued.
 When we speak in the senate, it will be authoritative, when we address the people, dignified, and
 when we are pleading in private cases, restrained.
-                    <pb id="p.329"/>
+                    <pb xml:id="p.329"/>
                     As regards the respective portions of speeches,
 thoughts and words, I must speak at somewhat
 greater length, as the problems involved are manifold.
@@ -4443,7 +4462,7 @@ proof.
                     <quote>Would those statements,</quote>
                     says Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         lxxx. 278.
                     </note>
                     to
@@ -4471,14 +4490,14 @@ space to the arrangement of our toga or even, if
 necessary, to throwing it on afresh; but it must
 be borne in mind that this injunction applies only
 to cases in the courts; for
-                    <hi rend="italics">we</hi>
+                    <hi rend="italic">we</hi>
                     must not do this if
 we are speaking before the emperor or a magistrate,
 or in cases where the judge sits in a position of
 superior authority.
                     <milestone n="157" unit="section"/>
                     Even when we turn to the judge,
-                    <pb id="p.331"/>
+                    <pb xml:id="p.331"/>
                     and have requested and received the praetor's permission to address the court, we must not break forth
 at once into speech, but should allow ourselves a few
 moments for reflexion. For the display of such care
@@ -4487,7 +4506,7 @@ audience and gives the judge time to settle down.
                     <milestone n="158" unit="section"/>
                     Homer
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Il.</hi>
+                        <hi rend="italic">Il.</hi>
                         iii. 217.
                     </note>
                     inculcates this practice by placing before
@@ -4521,7 +4540,7 @@ though waiting for the commencement.
 a mistake to look at the ceiling, to rub the face and
 give it a flush of impudence, to crane it boldly forward, to frown in order to secure a fierce expression,
 or brush back the hair from the forehead against its
-                    <pb id="p.333"/>
+                    <pb xml:id="p.333"/>
                     natural direction in order to produce a terrifying
 effect by making it stand on end. Again, there are
 other unseemly tricks, such as that so dear to the
@@ -4537,14 +4556,14 @@ do when about to engage.
                 <p>
                     <milestone n="161" unit="section"/>
                     A gentle delivery is most often best suited to the
-                    <hi rend="italics">exordium.</hi>
+                    <hi rend="italic">exordium.</hi>
                     For there is nothing better calculated
 than modesty to win the good-will of the judge,
 although there are exceptions to the rule, since, as I
 have already pointed out,
                     <note anchored="true" place="unspecified">IV. i. 40.</note>
                     all
-                    <hi rend="italics">exordia</hi>
+                    <hi rend="italic">exordia</hi>
                     are not delivered
 in the same manner. But, generally speaking, a
 quiet voice, a modest gesture, a toga sitting well
@@ -4554,7 +4573,7 @@ movement of the eyes, will all be found to produce
 a becoming effect.
                     <milestone n="162" unit="section"/>
                     In the
-                    <hi rend="italics">statement of facts</hi>
+                    <hi rend="italic">statement of facts</hi>
                     the hand
 should on most occasions be further extended, the
 toga allowed to slip back, the gestures sharply distinguished and the voice colloquial, but slightly more
@@ -4563,13 +4582,13 @@ tone. Such, at any rate, should be the delivery of
 a passage such as the following:
                     <note anchored="true" place="unspecified">
                         pro Lig.
-                        <hi rend="italics">i.</hi>
+                        <hi rend="italic">i.</hi>
                         2.
                     </note>
                     <quote>For Quintus Ligarius, since there was no hint of the likelihood of the war in Africa,</quote>
                     or
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Cluenet.</hi>
+                        <hi rend="italic">pro Cluenet.</hi>
                         v. 11.
                     </note>
                     <quote>Aulus Cluentius Habitus, this man's father.</quote>
@@ -4578,11 +4597,11 @@ called for in this same portion of the speech, in
 passionate utterances such as,
                     <quote>The mother-in-law weds her son-in-law,</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Cluent. v.</hi>
+                        <hi rend="italic">pro Cluent. v.</hi>
                         14.
                     </note>
                     or in pathetic passages such
-                    <pb id="p.335"/>
+                    <pb xml:id="p.335"/>
                     as,
                     <quote>
                         There in the market-place of Laodicea was displayed a grievous and afflicting spectacle for all the
@@ -4590,11 +4609,11 @@ province of Asia to behold.
                     </quote>
                     <milestone n="163" unit="section"/>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Verr.</hi>
+                        <hi rend="italic">Verr.</hi>
                         xxx. 76
                     </note>
                     The
-                    <hi rend="italics">proofs,</hi>
+                    <hi rend="italic">proofs,</hi>
                     however,
 require the utmost variety of delivery. For to state
 them and distinguish between their various points,
@@ -4603,30 +4622,30 @@ far removed from a colloquial tone, as is also the case
 in anticipating objections, which is really another
 form of statement. But in all these cases we sometimes deride, and sometimes mimic our opponents.
                     <milestone n="164" unit="section"/>
-                    <hi rend="italics">Argument,</hi>
+                    <hi rend="italic">Argument,</hi>
                     being as a rule of a livelier, more energetic
 and aggressive character, demands a type of gesture
 adapted to its style, that is to say, it should be bold
 and rapid. There are certain portions of our arguments that require to be pressed home with energy,
 and in these our style must be compact and concentrated.
-                    <hi rend="italics">Digressions,</hi>
+                    <hi rend="italic">Digressions,</hi>
                     as a rule, are characterised by
 gentleness, calm and placidity, as, for example, in
 Cicero's description of the Rape of Proserpine,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         IV. iii. 13.
                     </note>
                     his
 picture of Sicily,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">cp.</hi>
+                        <hi rend="italic">cp.</hi>
                         IV. iii. 13.
                     </note>
                     or his panegyric of Pompey.
                     <note anchored="true" place="unspecified">
                         In the lost
-                        <hi rend="italics">pro Cornelio: cp.</hi>
+                        <hi rend="italic">pro Cornelio: cp.</hi>
                         IV. iii. 13.
                     </note>
                     For
@@ -4640,7 +4659,7 @@ opponents by giving a picture of their character, as
 in the following passage:
                     <note anchored="true" place="unspecified">
                         From the lost
-                        <hi rend="italics">pro Galio.</hi>
+                        <hi rend="italic">pro Galio.</hi>
                     </note>
                     <quote>
                         I seemed to see some
@@ -4656,13 +4675,13 @@ there should be no movement of the flanks.
                     <milestone n="166" unit="section"/>
                     There
 are a number of gradations of tone which may be
-                    <pb id="p.337"/>
+                    <pb xml:id="p.337"/>
                     employed to kindle the feeling of the judges. The
 most vehement tones that an orator is ever called
 upon to use will be employed in passages such as
 the following:
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Liq.</hi>
+                        <hi rend="italic">pro Liq.</hi>
                         iii. 7 and 6.
                     </note>
                     <quote>When the war was begun, Caesar, and was, in fact, well on its way to a conclusion.</quote>
@@ -4672,7 +4691,7 @@ the following:
 of a certain charm, should be employed in passages
 such as:
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Liq.</hi>
+                        <hi rend="italic">pro Liq.</hi>
                         iii. 9.
                     </note>
                     <quote>
@@ -4685,7 +4704,7 @@ Pharsalus?
 slower, and consequently sweeter, when the orator
 says,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Phil.</hi>
+                        <hi rend="italic">Phil.</hi>
                         ii. xxv. 63.
                     </note>
                     <quote>
@@ -4697,7 +4716,7 @@ we should dwell upon the vowel-sounds and speak
 fill-throated. Still fuller should be the stream of our
 voice in the invocation,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         xxxi. 85.
                     </note>
                     <quote>You, hills and groves of Alba</quote>
@@ -4705,7 +4724,7 @@ voice in the invocation,
 and dying away to a cadence, should be employed in
 delivering the phrase,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Arch.</hi>
+                        <hi rend="italic">pro Arch.</hi>
                         viii. 19.
                     </note>
                     <quote>Rocks and solitudes answer to the voice.</quote>
@@ -4713,11 +4732,11 @@ delivering the phrase,
                     These are the modulations denounced
 by Demosthenes
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Cor. 90.</hi>
+                        <hi rend="italic">de Cor. 90.</hi>
                     </note>
                     and Aeschines,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">In Ctes.</hi>
+                        <hi rend="italic">In Ctes.</hi>
                         72.
                     </note>
                     but they do not
@@ -4729,26 +4748,26 @@ restrict himself to his ordinary simplicity of tone when
 he swore by those that fought for their country at
 Marathon, Plataea and Salamis,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">De Cor.</hi>
+                        <hi rend="italic">De Cor.</hi>
                         60.
                     </note>
                     nor did Aeschines
 employ a colloquial utterance when he lamented for
 the fate of Thebes.
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">In Ctes.</hi>
+                        <hi rend="italic">In Ctes.</hi>
                         49.
                     </note>
                     <milestone n="169" unit="section"/>
                     There is also an entirely different
 tone, which might be described as lying almost
-                    <pb id="p.339"/>
+                    <pb xml:id="p.339"/>
                     outside the range of the instrument. The Greeks
 call it bitterness, and it consists in an extravagant
 acerbity almost beyond the compass of the human
 voice. It is employed in passages such as,
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Rab. perd.</hi>
+                        <hi rend="italic">pro Rab. perd.</hi>
                         vi. 18.
                     </note>
                     <quote>
@@ -4763,7 +4782,7 @@ in at the opening, where the orator cries,
                 <p>
                     <milestone n="170" unit="section"/>
                     The
-                    <hi rend="italics">peroration,</hi>
+                    <hi rend="italic">peroration,</hi>
                     if it involves a recapitulation,
 requires an even utterance of short, clear-cut
 clauses. If, on the other hand, it is designed to
@@ -4780,7 +4799,7 @@ lamentations which they utter at funerals.
                     A
 muffled voice, such as Cicero
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brutt.</hi>
+                        <hi rend="italic">Brutt.</hi>
                         xxxviii. 141.
                     </note>
                     says was possessed
@@ -4800,13 +4819,13 @@ as
                     <quote>In an assembly of the Roman people</quote>
                     (for he did
 not utter these words in a contentious tone), or in
-                    <pb id="p.341"/>
+                    <pb xml:id="p.341"/>
                     <quote>Ye hills and groves of Alba</quote>
                     (for he did not say this
 as though he were appealing to them or calling them
 to witness), the ensuing phrases
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         xxxvii. 102.
                     </note>
                     require infinitely
@@ -4826,13 +4845,13 @@ and mine?
 Gaius Rabirius at one sesterce,
                     <quote>Ah, what a sad and bitter task my voice is called on to perform!</quote>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Rab. Post,</hi>
+                        <hi rend="italic">pro Rab. Post,</hi>
                         xvii. 46.
-                        <hi rend="italics">addicit,</hi>
+                        <hi rend="italic">addicit,</hi>
                         lit.
                         <quote>knocks down</quote>
                         :
-                        <hi rend="italics">praeconium,</hi>
+                        <hi rend="italic">praeconium,</hi>
                         lit.
                         <quote>the task of the public crier.</quote>
                     </note>
@@ -4843,7 +4862,7 @@ that the strain of grief and fatigue is overpowering,
 and that our strength is sinking beneath them, as
 Cicero does in his defence of Milo:
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">pro Mil.</hi>
+                        <hi rend="italic">pro Mil.</hi>
                         xxxviii. 105.
                     </note>
                     <quote>But here I must make an end: I can no longer speak for tears.</quote>
@@ -4875,7 +4894,7 @@ just remarked.
 uttered in a low, subdued tone, whereas,
                     <quote>A hold and violent fellow and a robber,</quote>
                     is a phrase
-                    <pb id="p.343"/>
+                    <pb xml:id="p.343"/>
                     requiring a strong and energetic utterance? For
 such conformity gives a force and appropriateness
 to our matter, and without it the expression of
@@ -4893,8 +4912,8 @@ in each of the following passages:
                             <quote>
                                 <l part="N">Thou this poor kingdom dost on me bestow.</l>
                             </quote>
-                            <bibl default="NO">
-                                <hi rend="italics">Aen.</hi>
+                            <bibl default="false">
+                                <hi rend="italic">Aen.</hi>
                                 i. 78.
                             </bibl>
                         </cit>
@@ -4905,8 +4924,8 @@ in each of the following passages:
                             <quote>
                                 <l part="N">Thou vanquish him in song?</l>
                             </quote>
-                            <bibl default="NO">
-                                <hi rend="italics">Ecl.</hi>
+                            <bibl default="false">
+                                <hi rend="italic">Ecl.</hi>
                                 iii. 25.
                             </bibl>
                         </cit>
@@ -4917,8 +4936,8 @@ in each of the following passages:
                             <quote>
                                 <l part="N">Art thou, then, that Aeneas?</l>
                             </quote>
-                            <bibl default="NO">
-                                <hi rend="italics">Aen</hi>
+                            <bibl default="false">
+                                <hi rend="italic">Aen</hi>
                                 i. 617.
                             </bibl>
                         </cit>
@@ -4930,8 +4949,8 @@ in each of the following passages:
                                 <l part="F">And of fear,</l>
                                 <l part="N">Do thou accuse me, Drances!</l>
                             </quote>
-                            <bibl default="NO">
-                                <hi rend="italics">Aen.</hi>
+                            <bibl default="false">
+                                <hi rend="italic">Aen.</hi>
                                 xi. 383.
                             </bibl>
                         </cit>
@@ -4951,14 +4970,14 @@ a principle which, though it is obscure and can
 hardly be expressed in words, none the less
 exists: and, though it is a true saying
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">de Or.</hi>
+                        <hi rend="italic">de Or.</hi>
                         I. xxix. 132
                     </note>
                     that
                     <quote>the main secret of artistic success is that whatever we do should become us well,</quote>
                     none the
 less, despite the fact that such success cannot be
-                    <pb id="p.345"/>
+                    <pb xml:id="p.345"/>
                     attained without art, it is impossible entirely to communicate the secret by the rules of art.
                     <milestone n="178" unit="section"/>
                     There are
@@ -4987,7 +5006,7 @@ helped by his stature and personal beauty.
                     <milestone n="180" unit="section"/>
                     On the
 other hand, Stratocles'
-                    <hi rend="italics">forte</hi>
+                    <hi rend="italic">forte</hi>
                     lay in his nimbleness
 and rapidity of movement, in his laugh (which,
 though not always in keeping with the character
@@ -4996,7 +5015,7 @@ answering laughter in his audience), and finally, even
 in the way in which he sank his neck into his
 shoulders. If either of these actors had attempted
 any of his rival's tricks, he would have produced a
-                    <pb id="p.347"/>
+                    <pb xml:id="p.347"/>
                     most unbecoming effect. Consequently, every man
 must get to know his own peculiarities and must
 consult not merely the general rules of technique,
@@ -5019,7 +5038,7 @@ and appeals to the emotions.
 actor has to speak the following lines on the stage:
                     <note anchored="true" place="unspecified">
                         Ter.
-                        <hi rend="italics">Eun.</hi>
+                        <hi rend="italic">Eun.</hi>
                         I. i. 1.
                     </note>
                     <quote rend="blockquote">
@@ -5048,15 +5067,15 @@ there is too much
                     The
 instructions given by Cicero on this subject, as on all
 others, are quite admirable; I allude to the passages
-                    <pb id="p.349"/>
+                    <pb xml:id="p.349"/>
                     which I have already quoted from his
-                    <hi rend="italics">Orator,</hi>
+                    <hi rend="italic">Orator,</hi>
                     <note anchored="true" place="unspecified">§ 122.</note>
                     while
 there are similar observations in the
-                    <hi rend="italics">Brutus</hi>
+                    <hi rend="italic">Brutus</hi>
                     <note anchored="true" place="unspecified">
-                        <hi rend="italics">Brut.</hi>
+                        <hi rend="italic">Brut.</hi>
                         xxxviii. 141.
                     </note>
                     with
