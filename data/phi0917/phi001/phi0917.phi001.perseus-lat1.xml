@@ -1,19 +1,29 @@
-<?xml version="1.0"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Prose//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" >
-%PersProse;
-]>
-<TEI.2>
-<teiHeader type="text" status="new">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"\?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader type="text">
 <fileDesc>
 <titleStmt>
-<title>Pharsalia</title>
-<author>M. Annaeus Lucanus</author>
+<title type="work">Pharsalia</title>
+<title type="sub">Machine readable text</title><author n="M. Annaeus Lucanus">M. Annaeus Lucanus</author>
 <editor role="editor">Carolus Hermannus Weise</editor>
-&responsibility;
+<sponsor>Perseus Project, Tufts University</sponsor>
+<principal>Gregory Crane</principal>
+<respStmt>
+<resp>Prepared under the supervision of</resp>
+<name>Bridget Almas</name>
+<name>Lisa Cerrato</name>
+<name>William Merrill</name>
+<name>Elli Mylonas</name>
+<name>David Smith</name>
+</respStmt>
 </titleStmt>
-&Perseus.publish;
+<publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+
 
 <sourceDesc>
 <biblStruct>
@@ -31,36 +41,44 @@
 </sourceDesc>
 </fileDesc>
 
-<encodingDesc>
-<editorialDecl>
-<correction method="silent" status="medium">&Perseus.OCR;</correction>
-</editorialDecl>
-<refsDecl doctype="TEI.2">
-<state unit="book"/>
-<state unit="line"/>
-</refsDecl>
-</encodingDesc>
+    <encodingDesc>
+        <editorialDecl>
+            <correction method="silent" status="medium"><p>This text was converted to electronic form by optical character recognition and has been proofread to a medium level of accuracy.</p></correction>
+        </editorialDecl>
+        <refsDecl n="CTS">
+            <cRefPattern n="Chapter"
+                matchPattern="(\\w+).(\\w+)"
+                replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+                <p>This pointer pattern extracts Book and Liner</p>
+            </cRefPattern>
+            <cRefPattern n="Book"
+                matchPattern="(\\w+)"
+                replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                <p>This pointer pattern extracts Book</p>
+            </cRefPattern>
+        </refsDecl>
+        <refsDecl>
+            <refState unit="book" delim="."/>
+            <refState unit="line"/>
+        </refsDecl>
+    </encodingDesc>
 
 <profileDesc>
 <langUsage>
-<language id="la">Latin</language>
+<language ident="la">Latin</language>
 </langUsage>
 </profileDesc>
 
 <revisionDesc>
-<change><date>17-Mar-04</date>
-<respStmt><name>AEM</name><resp>markup</resp></respStmt>
-<item>initial markup
-</item>
-</change>
+<change who="AEM" when="2004-03-17">initial markup</change>
+<change who="Zach Himes" when="2015-12-02">Converted to TEI P5 and EpiDoc</change>
 </revisionDesc>
 
 </teiHeader>
-<text xml:lang="lat">
-<body>
+<text>
+<body><div type="edition" xml:lang="lat" n="urn:cts:canonical-latinLit:phi0917.phi001.perseus-lat1" subtype="textpart">
 
-<div1 type="book" n="1">
-<argument>
+<div type="textpart" n="1" subtype="book">
 <list type="simple">
 <item>Praefatur poeta argumentum.  <bibl n="Luc. 1.1">1</bibl></item>
 <item>Conqueritur de bello ipso.  <bibl n="Luc. 1.7">7</bibl></item>
@@ -81,7 +99,6 @@
 <item>Item Figulus.  <bibl n="Luc. 1.638">638</bibl></item>
 <item>Item matrona quaedam. <bibl n="Luc. 1.672">672</bibl></item>
 </list>
-</argument>
 <milestone n="1" unit="card"/>
 <l n="1">Bella per Emathios plus quam civilia campos</l>
 <l n="2">Iusque datum  sceleri canimus, populumque potentem</l>
@@ -784,9 +801,8 @@
 <l n="693">Rursus eo. Nova da mihi cernere litora Ponti,</l>
 <l n="694">Telluremque novam: vidi iam, Phoebe, Philippos.</l>
 <l n="695">Haec ait, et lasso iacuit defecta furore.
-</l></div1>
-<div1 type="book" n="2">
-<argument>
+</l></div>
+<div type="textpart" n="2" subtype="book">
 <list type="simple">
 <item>Prooemium  de prodigiis.  Melius esse, nulla fieri.  <bibl n="Luc. 2.1">1</bibl></item>
 <item>Describitur turbatus Romae status.    Queruntur matronae.  <bibl n="Luc. 2.15">15</bibl></item>
@@ -807,7 +823,7 @@
 <item>Pompeius Italiam relinquit.  <bibl n="Luc. 2.679">679</bibl></item>
 <item>Caesar Brundusium intrat. <bibl n="Luc. 2.703">703</bibl></item>
 </list>
-</argument>
+
 <milestone n="1" unit="card"/>
 <l n="1">Iamque irae patuere deum, manifestaque belli</l>
 <l n="2">Signa dedit mundus:  legesque et foedera rerum</l>
@@ -1551,9 +1567,8 @@
 <l n="734">Parcitur Hesperiae; procul hoc ut in orbe remoto</l>
 <l n="735">Abscondat Fortuna nefas, Romanaque tellus</l>
 <l n="736">Immaculata sui servetur sanguine Magni.
-</l></div1>
-<div1 type="book" n="3">
-<argument>
+</l></div>
+<div type="textpart" n="3" subtype="book">
 <list type="simple">
 <item>Pompeio naviganti in somnio apparet Iulia, uxor quondam eius, cruentumque fore bellum praedicit.  <bibl n="Luc. 3.1">1</bibl></item>
 <item>Appellit ad  Epirum Pompeius.  <bibl n="Luc. 3.35">35</bibl></item>
@@ -1575,7 +1590,7 @@
 <item>Navalis fit pugna.  Ea uberius  per singuli facinora describitur.  <bibl n="Luc. 3.537">537</bibl></item>
 <item>Vincuntur Massilienses, Brutusque victor evadit. <bibl n="Luc. 3.751">751</bibl></item>
 </list>
-</argument>
+
 <milestone n="1" unit="card"/>
 <l n="1">Propulit ut classem velis cedentibus Auster</l>
 <l n="2">Incumbens, mediumque rates movere profundum,</l>
@@ -2345,9 +2360,8 @@
 <l n="760">Accensisque rogis miseri de corpore trunco</l>
 <l n="761">Certavere patres. -  At Brutus, in aequore victor,</l>
 <l n="762">Primus Caesareis pelagi decus addidit armis.
-</l></div1>
-<div1 type="book" n="4">
-<argument>
+</l></div>
+<div type="textpart" n="4" subtype="book">
 <list type="simple">
 <item>Interea Caesar in Hispaniam venit, ubi Afranius et Petreius legati praeerant copiis Pompeianis vel potius Romanis Iberisque cum illis coniunctis.  <bibl n="Luc. 4.1">1</bibl></item>
 <item>Ad Ilerdam res geritur.  <bibl n="Luc. 4.10">10</bibl></item>
@@ -2371,7 +2385,7 @@
 <item>Contra Iubam pugnat; sed circumventus eius insidiis, ipse cum copiis perit.  <bibl n="Luc. 4.714">714</bibl></item>
 <item>Apostrophe ad Curionem. <bibl n="Luc. 4.798">798</bibl></item>
 </list>
-</argument>
+
 <milestone n="1" unit="card"/>
 <l n="1">At procul extremis terrarum    Caesar in oris</l>
 <l n="2">Martem  saevus agit, non multa caede nocentem,</l>
@@ -3203,9 +3217,8 @@
 <l n="822">Sulla potens, Mariusque ferox, et Cinna cruentus,</l>
 <l n="823">Caesareaeque domus series: cui tanta potestas</l>
 <l n="824">Concessa est? Emere omnes, hic vendidit urbem.
-</l></div1>
-<div1 type="book" n="5">
-<argument>
+</l></div>
+<div type="textpart" n="5" subtype="book">
 <list type="simple">
 <item>Sub initio anni consules in Epiro in exercitu Pompeii comitia habent.  <bibl n="Luc. 5.1">1</bibl></item>
 <item>Lentulus patres alloquitur hortaturque ut Pompeium iubeant esse ducem.    Id quod fit.  <bibl n="Luc. 5.14">14</bibl></item>
@@ -3238,7 +3251,7 @@
 <item>Cornelia conscendit navem.  <bibl n="Luc. 5.759">759</bibl></item>
 <item>Lesbum navigat.  <bibl n="Luc. 5.801">801</bibl></item>
 </list>
-</argument>
+
 <milestone n="1" unit="card"/>
 <l n="1">Sic alterna duces bellorum vulnera passos</l>
 <l n="2">In Macetum terras, miscens adversa secundis,</l>
@@ -4062,9 +4075,8 @@
 <l n="813">Servatur pars illa tori. Caruisse timebat</l>
 <l n="814">Pompeio: sed non superi tam laeta parabant.</l>
 <l n="815">Instabat, miserae Magnum quae redderet hora.
-</l></div1>
-<div1 type="book" n="6">
-<argument>
+</l></div>
+<div type="textpart" n="6" subtype="book">
 <list type="simple">
 <item>Caesar, frustra provocato ad pugnam Pompeio, ad Dyrrhachium tendit.  <bibl n="Luc. 6.1">1</bibl></item>
 <item>Pompeius iter ei praecludit.  <bibl n="Luc. 6.14">14</bibl></item>
@@ -4093,7 +4105,7 @@
 <item>Ergo eloquitur, et infausta quidem et omnino Romanis et imprimis Pompeiis.  <bibl n="Luc. 6.774">774</bibl></item>
 <item>Quo facto demum Erichtho, rogo incenso, cadaver mori patitur, Sextumque, ad castra redeuntem, comitatur.  <bibl n="Luc. 6.820">820</bibl></item>
 </list>
-</argument>
+
 <milestone n="1" unit="card"/>
 <l n="1">Postquam castra duces, pugnae iam mente propinqui,</l>
 <l n="2">Imposuere iugis, admotaque cominus arma,</l>
@@ -4931,9 +4943,8 @@
 <l n="828">It comes: et coelo lucis ducente colorem,</l>
 <l n="829">Dum ferrent tutos intra tentoria gressus,</l>
 <l n="830">Iussa tenere diem densas nox praestitit umbras.
-</l></div1>
-<div1 type="book" n="7">
-<argument>
+</l></div>
+<div type="textpart" n="7" subtype="book">
 <list type="simple">
 <item>Nocte ante pugnam Pompeius inani somnii specie luditur.  <bibl n="Luc. 7.1">1</bibl></item>
 <item>Orto sole, cupidis pugnae militibus, <bibl n="Luc. 7.44">44</bibl></item>
@@ -4966,7 +4977,7 @@
 <item>Ferae ad dapes veniunt.  <bibl n="Luc. 7.824">824</bibl></item>
 <item>Apostrophe.  <bibl n="Luc. 7.846">846</bibl></item>
 </list>
-</argument>
+
 <milestone n="1" unit="card"/>
 <l n="1">Segnior Oceano, quam lex aeterna vocabat,</l>
 <l n="2">Luctificus Titan numquam magis aethera contra</l>
@@ -5847,9 +5858,8 @@
 <l n="870">Quid totum premitis, quid totum solvitis orbem?</l>
 <l n="871">Hesperiae clades, et flebilis unda Pachyni,</l>
 <l n="872">Et Mutina, et Leucas puros fecere Philippos.
-</l></div1>
-<div1 type="book" n="8">
-<argument>
+</l></div>
+<div type="textpart" n="8" subtype="book">
 <list type="simple">
 <item>Pompeius in fuga ad litus maris devenit.  <bibl n="Luc. 8.1">1</bibl></item>
 <item>Conscendit cymbam, eamque Lesbum dirigi iubet, ubi Cornelia uxor; cuius animi status describitur.  <bibl n="Luc. 8.34">34</bibl></item>
@@ -5880,7 +5890,7 @@
 <item>Reliquum cadaver in mare proiectum servat Cordus, qui ex insula Cypra Pompeium secutus erat, in litusque affert, ibique comburit, deinde sepelit ossa, lapidemque imponit cum inscriptione.  <bibl n="Luc. 8.711">711</bibl></item>
 <item>Apostrophe de Pompeii fato, deque Aegypto, illiusque tumulo.  <bibl n="Luc. 8.793">793</bibl></item>
 </list>
-</argument>
+
 <milestone n="1" unit="card"/>
 <l n="1">Iam super Herculeas fauces nemorosaque Tempe,</l>
 <l n="2">Haemoniae deserta petens dispendia silvae,</l>
@@ -6762,9 +6772,8 @@
 <l n="870">Qua sit nulla fides saxum monstrantibus istud:</l>
 <l n="871">Atque erit Aegyptus populis fortasse nepotum</l>
 <l n="872">Tam mendax Magni tumulo, quam Creta Tonantis.
-</l></div1>
-<div1 type="book" n="9">
-<argument>
+</l></div>
+<div type="textpart" n="9" subtype="book">
 <list type="simple">
 <item>At anima Pompeii, busto relicto, evolat ad piorum  sedes, indeque terram despicit, et implet pectora suorum, Bruti et Catonis.  <bibl n="Luc. 9.1">1</bibl></item>
 <item>Cato, iam totus Pompeianus, cum copiarum reliquiis Corcyram petit.  <bibl n="Luc. 9.23">23</bibl></item>
@@ -6801,7 +6810,7 @@
 <item>deinde Aegyptum.   Ibi satelles regius ei obviam venit, Pompeii caput offerens. <bibl n="Luc. 9.999">999</bibl></item>
 <item>Lacrimatur Caesar, quamvis laetus, increpatque satellitem regemque. Pompeii manes placare eos iubet. <bibl n="Luc. 9.1033">1033</bibl></item>
 </list>
-</argument>
+
 <milestone n="1" unit="card"/>
 <l n="1">At non in Pharia manes iacuere favilla,</l>
 <l n="2">Nec cinis exiguus tantam compescuit umbram:</l>
@@ -7920,9 +7929,8 @@
 <l n="1106">Credidit: abscondunt gemitus, et pectora laeta</l>
 <l n="1107">Fronte tegunt, hilaresque nefas spectare cruentum</l>
 <l n="1108">(O bona libertas!) cum Caesar lugeat, audeat.
-</l></div1>
-<div1 type="book" n="10">
-<argument>
+</l></div>
+<div type="textpart" n="10" subtype="book">
 <list type="simple">
 <item>Caesar, inter dubiae fidei Aegyptios intrepide versans, Alexandriam venit, locumque adit, quo Alexandri magni ossa dicebantur esse condita. <bibl n="Luc. 10.1">1</bibl></item>
 <item>De Alexandro Eoisque populis declamatio poetae.  <bibl n="Luc. 10.20">20</bibl></item>
@@ -7943,7 +7951,7 @@
 <item>Caesar in summis periculus meminit Scaevae illius fortissimi (<bibl n="Luc. 6.141">VI.141 sqq.</bibl>), pariter quondam in castello, atque ipse, obsessi. <bibl n="Luc. 10.533">533</bibl></item>
 <item>Atque ibi carmen imperfectum desinit.  <bibl n="Luc. 10.546">546</bibl></item>
 </list>
-</argument>
+
 <milestone n="1" unit="card"/>
 <l n="1">Ut primum terras, Pompeii colla secutus,</l>
 <l n="2">Adtigit, et  diras calcavit Caesar arenas:</l>
@@ -8494,7 +8502,7 @@
 <l n="543">Optaretne mori. Respexit in agmine denso</l>
 <l n="544">Scaevam, perpetuae meritum iam nomina famae</l>
 <l n="545">Ad campos, Epidamne, tuos, ubi solus apertis</l>
-<l n="546">Obsedit muris calcantem moenia Magnum.</l></div1>
-</body>
-</text>
-</TEI.2>
+<l n="546">Obsedit muris calcantem moenia Magnum.</l></div>
+</div>
+</body></text>
+</TEI>

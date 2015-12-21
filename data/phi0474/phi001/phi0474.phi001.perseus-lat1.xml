@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
     <fileDesc>
       <titleStmt>
-	<title>For P. Quinctio </title>
+	<title type="work">For P. Quinctio </title>
 	<title>Pro P. Quinctio, Pro Q. Roscio comoedo, Pro A. Caecina, De lege agraria contra Rullum, Pro C. Rabiro perduellionis reo, Pro L. Flacco, In L. Pisonem, Pro C. Rabiro Postumo</title>
 	<title type="sub">Machine readable text</title>
-	<author n="Cic.">M. Tullius Cicero</author>
+	<author n="M. Tullius Cicero">M. Tullius Cicero</author>
 	<editor role="editor" n="OCT">Albert Clark</editor>
 <sponsor>Perseus Project, Tufts University</sponsor>
 <principal>Gregory Crane</principal>
@@ -40,33 +42,25 @@ Albertus Curtis Clark</title>
       </sourceDesc>
     </fileDesc>
 
-    <encodingDesc>
-      <refsDecl>
-	<refState delim=" " unit="text"/>
-	<refState unit="section"/>
-      </refsDecl>
-      <refsDecl>
-	<refState delim=" " unit="text"/>
-	<refState delim="." n="chunk" unit="chapter"/>
-	<refState unit="section"/>
-      </refsDecl>
-      <refsDecl n="text=Agr.">
-	<refState delim=" " unit="text"/>
-	<refState delim="." unit="speech"/>
-	<refState unit="section"/>
-      </refsDecl>
-      <refsDecl n="text=Agr.">
-	<refState delim=" " unit="text"/>
-	<refState delim="." unit="speech"/>
-	<refState delim="." n="chunk" unit="chapter"/>
-	<refState unit="section"/>
-      </refsDecl>
-    </encodingDesc>
+  	<encodingDesc>
+  		<refsDecl n="CTS">
+  			<cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+  				<p>This pointer pattern extracts chapter and section</p>
+  			</cRefPattern>
+  			<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+  				<p>This pointer pattern extracts chapter</p>
+  			</cRefPattern>
+  		</refsDecl>
+  		<refsDecl>
+  			<refState unit="chapter" delim="."/>
+  			<refState unit="section"/>
+  		</refsDecl>
+  	</encodingDesc>
 
 <profileDesc>
 <langUsage>
-<language ident="la">Latin</language>
-<language ident="greek">Greek</language>
+<language ident="lat">Latin</language>
+<language ident="grc">Greek</language>
 </langUsage>
 </profileDesc>
 
@@ -147,9 +141,11 @@ Added to repository. Passes TEI parse.
 <change><date>July 2014</date>
     <respStmt><name>Stella Dee</name><resp>ed.</resp></respStmt>
     <item>split composite text and converted to unicode</item>
-      </change>--><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
-</teiHeader><text xml:lang="la">
-<body>
+      </change>--><change when="2014-08-01" who="Stella Dee">edited markup</change><change when="2015-12-18" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change><change when="1997-03-26" who="DAS">ed.</change><change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change><change who="balmas01" when="2013-09-13T11:21:41">Revision 1.5  reverting texts back to pre_cts_reorg tagged version</change><change who="gcrane" when="2011-07-19T22:30:38">Revision 1.3  removed the earlier persName/placeName tags</change><change who="gcrane" when="2011-07-09T20:25:36">Revision 1.2  fixed problems with capitalization</change><change who="gcrane" when="2011-01-15T23:14:25">Revision 1.1  base SDL file</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1  more reorganizing of texts module by collection</change><change who="packel" when="2005-08-01T15:59:20">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25T14:31:17">Revision 1.1  Converted to XML</change><change who="mimno" when="2005-04-08T17:56:08">Revision 1.15  added default chunks</change><change who="yorkc" when="2003-07-01T22:14:58">Revision 1.14  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2002-12-02T18:41:45">Revision 1.13  correct spelling of Quirites, improperly 'regularized'</change><change who="amahoney" when="2000-03-13T17:37:07">Revision 1.12  don't put header for fragments next to header for speech:  gets into
+short toc</change><change who="amahoney" when="2000-03-06T22:21:49">Revision 1.11  add headers for groups of speeches, so they show up in the toc:  Catilines,
+Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-03-04T20:34:11">Revision 1.10  Added separate funder entity to TEI header.</change><change who="dasmith" when="1999-10-14T21:36:02">Revision 1.9  Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-08-12T17:17:19">Revision 1.8  Fixed refsDecl</change><change who="textgod" when="1999-08-04T18:12:10">Revision 1.7  Random changes over a period of months.</change><change who="textgod" when="1997-10-17T14:07:07">Revision 1.6  Tagged Greek.</change><change who="textgod" when="1997-08-18T14:54:35">Revision 1.5  ???</change><change who="cjsu" when="1997-05-12T22:19:56">Revision 1.4  making sure that the file passed the parcer</change><change who="cjsu" when="1997-05-12T22:04:50">Revision 1.3  Added seven works... SGML varified</change><change who="textgod" when="1997-04-03T20:58:14">Revision 1.2  Changed ADD tags to CORR.</change><change who="textgod" when="1997-03-26T17:34:24">Revision 1.1  Added to repository. Passes TEI parse.</change></revisionDesc>
+</teiHeader><text>
+<body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi001.perseus-lat1" subtype="edition">
 <head>M. Tulli Ciceroni pro P. Quinctio Oratio</head>
 <p><milestone n="1" unit="chapter"/><milestone n="1" unit="section"/>
 <reg>quae</reg> res in civitate duae plurimum possunt, eae contra 
@@ -1307,20 +1303,20 @@ Mitto illud dicere, eum qui non latitaret, cui Romae domus,
 uxor, liberi, procurator esset, eum qui tibi vadimonium non 
 deseruisset; haec omnia mitto; illud dico, dominum 
 expulsum esse de praedio, domino a familia sua manus 
-adlatas esse ante suos Lares familiaris; hoc dico  <gap/> 
+adlatas esse ante suos Lares familiaris; hoc dico  <gap reason="lost"/> 
 
 
 
 <reg>si</reg> qui unum aliquem fundum quavis  
 ratione possideat, ipsum autem dominum patiatur cetera 
 praedia tenere, is, ut opinor, praedium non bona 
-videatur alterius possidere <gap/> <reg>quid</reg> est possidere? <reg>nimirum</reg> in possessione esse 
-earum rerum quae possunt eo tempore possideri <gap/> Cum domus 
+videatur alterius possidere <gap reason="lost"/> <reg>quid</reg> est possidere? <reg>nimirum</reg> in possessione esse 
+earum rerum quae possunt eo tempore possideri <gap reason="lost"/> Cum domus 
 erat Romae, servi, in ipsa Gallia privata P. Quincti 
-praedia, quae numquam ausus es possidere;  <gap/> <reg>quod</reg> si bona P. Quincti possideres, possidere omnia eo 
+praedia, quae numquam ausus es possidere;  <gap reason="lost"/> <reg>quod</reg> si bona P. Quincti possideres, possidere omnia eo 
 iure deberes. (<bibl>Iul. Severian. 16</bibl>)
 </p>
-<p><milestone n="28" unit="chapter"/> <gap/> Naevium ne appellasse quidem Quinctium, cum 
+<p><milestone n="28" unit="chapter"/> <gap reason="lost"/> Naevium ne appellasse quidem Quinctium, cum 
 simul esset et experiri posset cotidie; deinde quod omnia 
 iudicia difficillima cum summa sua invidia maximoque 
 periculo P. Quincti fieri mallet quam illud pecuniarium 
@@ -1499,5 +1495,5 @@ notetur, ne ornamentis eius omnibus Sex. Naevius pro
 spoliis abutatur, ne per te fiat quo minus, quae existimatio 
 P. Quinctium usque ad senectutem produxit, eadem usque 
 ad rogum prosequatur.  </p>
-</body></text>
+</div></body></text>
 </TEI>

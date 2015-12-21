@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
  <teiHeader type="text">
   <fileDesc>
    <titleStmt>
-    <title>Address to the People </title>
+    <title type="work">Address to the People </title>
     <title>Three orations on the Agrarian law, the four against Catiline, the orations for Rabirius,
      Murena, Sylla, Archias, Flaccus, Scaurus, etc.</title>
     <title type="sub">Machine readable text</title>
-    <author n="Cic.">M. Tullius Cicero</author>
+    <author n="M. Tullius Cicero">M. Tullius Cicero</author>
     <editor role="editor" n="Yonge">C. D. Yonge</editor>
     <sponsor>Perseus Project, Tufts University</sponsor>
     <principal>Gregory Crane</principal>
@@ -42,16 +43,19 @@
   </fileDesc>
 
   <encodingDesc>
-   <refsDecl>
-    <refState delim=" " unit="text"/>
-    <refState unit="section"/>
+   <refsDecl n="CTS">
+    <cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+     <p>This pointer pattern extracts chapter and section</p>
+    </cRefPattern>
+    <cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+     <p>This pointer pattern extracts chapter</p>
+    </cRefPattern>
    </refsDecl>
    <refsDecl>
-    <refState delim=" " unit="text"/>
-    <refState delim="." unit="chapter"/>
+    <refState unit="chapter" delim="."/>
     <refState unit="section"/>
    </refsDecl>
-   <refsDecl n="text=Catil.;text=Agr.">
+   <!--<refsDecl n="text=Catil.;text=Agr.">
     <refState delim=" " unit="text"/>
     <refState delim="." unit="speech"/>
     <refState unit="section"/>
@@ -65,14 +69,14 @@
    <refsDecl n="text=Corn.">
     <refState delim=" " unit="text"/>
     <refState unit="speech"/>
-   </refsDecl>
+   </refsDecl>-->
   </encodingDesc>
 
   <profileDesc>
    <langUsage>
-    <language ident="en">English</language>
-    <language ident="la">Latin</language>
-    <language ident="greek">Greek</language>
+    <language ident="eng">English</language>
+    <language ident="lat">Latin</language>
+    <language ident="grc">Greek</language>
    </langUsage>
   </profileDesc>
 
@@ -197,20 +201,24 @@ Added to repository.
     <item>split composite text and converted to unicode</item>
       </change>-->
    <change when="2014-08-01" who="Stella Dee">edited markup</change>
-  </revisionDesc>
+  <change when="2015-12-13" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change>
+   <change when="1997-07-14" who="DAS">ed.</change><change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change><change who="balmas01" when="2013-09-13T11:20:04">Revision 1.9  reverting texts back to pre_cts_reorg tagged version</change><change who="lcerrato" when="2011-03-21T16:06:41">Revision 1.7  fixed typo in while to in which</change><change who="lcerrato" when="2011-03-17T14:59:55">Revision 1.6  fixing gap tags against source</change><change who="rsingh04" when="2010-08-31T18:43:06">Revision 1.5  cleaned up log keyword</change><change who="rsingh04" when="2010-08-31T18:30:20">Revision 1.4  cleaned up log keyword</change><change who="student" when="2010-07-08T22:49:11">Revision 1.2  fixing place tags - AD</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1 more reorganizing of texts module by collection</change><change who="rsingh04" when="2009-09-22T16:21:37">Revision 1.8 fixed references to Cic. Ver.</change><change who="packel" when="2007-01-04T20:06:59">Revision 1.7 fixed the refsDecls for Cornelius</change><change who="packel" when="2006-05-05T17:38:06">Revision 1.6 fixed date tags</change><change who="packel" when="2006-02-10T20:50:18">Revision 1.5 places/dates now actually tagged</change><change who="lcerrato" when="2005-11-21T16:51:16">Revision 1.4 changed thought you shall not perceive them to though...</change><change who="lcerrato" when="2005-11-21T16:49:41">Revision 1.3 changed: does not the precaution taken of assembling the senate in thus most defensible place thus to this</change><change who="packel" when="2005-08-01T15:59:24">Revision 1.2 removed stray item tags</change><change who="packel" when="2005-07-25T14:31:53">Revision 1.1 Converted to XML</change><change who="lcerrato" when="2005-03-24T19:34:54">Revision 1.19 Marcus Aquillius changed to Manius Aquilius Agrarian 2.83</change><change who="lcerrato" when="2005-03-23T18:13:06">Revision 1.18 changed Pro Font. 38 Marcus Aquillius to Manius Aquilius based on Latin and user report</change><change who="mimno" when="2005-01-19T18:03:37">Revision 1.17 div1s missing type attributes</change><change who="lcerrato" when="2004-06-14T17:34:00">Revision 1.16 changed Rob. Perd. 31 "heave" to "leave"</change><change who="yorkc" when="2003-07-01T22:15:02">Revision 1.15 Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and
+     typos.)</change><change who="lcerrato" when="2001-03-14T19:13:33">Revision 1.14 changed ought to he to ought to be in first
+     oration against Cataline</change><change who="amahoney" when="2000-05-04T16:23:18">Revision 1.13 really fix language ids</change><change who="amahoney" when="2000-05-04T16:21:33">Revision 1.12 fix language codes</change><change who="dasmith" when="2000-03-04T20:34:16">Revision 1.11 Added separate funder entity to TEI header.</change><change who="amahoney" when="2000-02-22T18:11:54">Revision 1.10 fix a couple of broken bibl refs</change><change who="amahoney" when="1996-12-02T21:58:39">Revision 1.9 replace the
+     refsdecl, which disappeared somehow, and fix a couple of funny syntax errors</change><change who="lcerrato" when="1996-11-30T20:38:39">Revision 1.8 revised and proofread again</change><change who="dasmith" when="1999-10-14T21:36:04">Revision 1.7 Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-09-01T20:30:38">Revision 1.6 Removed tag from attribute value.</change><change who="dasmith" when="1999-08-12T17:17:35">Revision 1.5 Fixed refsDecl</change><change who="textgod" when="1997-11-07T18:45:17">Revision 1.4 Fixed typo.</change><change who="textgod" when="1997-10-31T18:58:38">Revision 1.3 Fixed typo.</change><change who="textgod" when="1997-09-01T19:53:11">Revision 1.2 Added sections.</change><change who="textgod" when="1997-08-18T14:51:46">Revision 1.1 Added to repository.</change></revisionDesc>
  </teiHeader>
- <text xml:lang="en">
+ <text>
   <front>
    <head>THE SPEECH OF M. T. CICERO AFTER HIS RETURN. ADDRESSED TO THE PEOPLE.</head>
-   <argument>
+   
     <head>THE ARGUMENT.</head>
     <p>The day after Cicero had addressed the preceding speech to the assembly, he returned thanks
      to the people also from the <foreign xml:lang="la">rostra</foreign> for the zeal which they had
      displayed in his behalf, in the following speech; in which he dwells on very nearly the same
      topics as those which had been the groundwork of his oration to the senate.</p>
-   </argument>
+   
   </front>
-  <body>
+  <body><div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0474.phi018.perseus-eng1" subtype="translation">
    <milestone n="1" unit="chapter"/>
    <milestone n="1" unit="section"/>
    <p>That which I requested in my prayers of the all-good and all-powerful Jupiter, and the rest of
@@ -227,8 +235,7 @@ Added to repository.
     conscript fathers, and all Italy, I now rejoice above all things that that request is heard that
     I am bound to perform all that I then vowed, by the judgment of the immortal gods,—by the
     testimony of the senate by the unanimous consent of all Italy,—by the confession of my
-    enemies,—by your godlike and never-to-be-forgotten kindness, O citizens of Rome. <milestone
-     n="2" unit="section"/> For although there is nothing more to be wished for by <pb n="492"/> man
+    enemies,—by your godlike and never-to-be-forgotten kindness, O citizens of Rome. <milestone n="2" unit="section"/> For although there is nothing more to be wished for by <pb n="492"/> man
     than prosperous, equal, continual good-fortune in life, flowing on in a prosperous course,
     without any misadventure; still, if all my life had been tranquil and peaceful, I should have
     been deprived of the incredible and almost heavenly delight and happiness which I now enjoy
@@ -254,8 +261,7 @@ Added to repository.
     people of Rome! Even of old, no one took greater delight in all those things than I did. But as
     good health is more welcome to those who are just recovered from a severe illness than to those
     who have never been sick, so all those things, now that they have been once missed, delight me
-    more than they did when enjoyed without interruption. <milestone n="2" unit="chapter"
-     /><milestone n="5" unit="section"/></p>
+    more than they did when enjoyed without interruption. <milestone n="2" unit="chapter"/><milestone n="5" unit="section"/></p>
    <p>Why, then, am I making all those statements? To what purpose are they? I wish to make you
     understand that no man ever existed of such eloquence, or of such a god-like and incredible
     genius in oratory, as to be able (I will not say to exaggerate or embellish by his language, but
@@ -276,8 +282,7 @@ Added to repository.
     <milestone n="6" unit="section"/> For as, in the case of your very kindness itself, its
     magnitude is so great that I cannot do adequate justice to it in my speech; so also in your zeal
     such great good-will and inclination towards me was displayed, that you seem not only to have
-    taken my misfortune off from me, but even to have increased my dignity. <milestone n="3"
-     unit="chapter"/></p>
+    taken my misfortune off from me, but even to have increased my dignity. <milestone n="3" unit="chapter"/></p>
    <p>For it was not my youthful sons and many other relations and kinsmen who offered up their
     prayers for my return, as they did for that of Publius Popillius, a most noble man. It was not,
     as it was in the case of Quintus Metellus, that most illustrious man, a son of an age fully
@@ -288,8 +293,7 @@ Added to repository.
     addressed supplications to you and to your fathers for the return of Quintus Metellus. And if my
     own preeminent <pb n="494"/> dignity and most glorious achievements were not of sufficient
     influence, still the piety of my son, the prayers of my relations, the mourning garb of all the
-    young men, the tears of all the old, had power to move the Roman people to pity. <milestone
-     n="7" unit="section"/>
+    young men, the tears of all the old, had power to move the Roman people to pity. <milestone n="7" unit="section"/>
    </p>
    <p>For the case of Caius Marius, who, after those two most illustrious men of consular rank, is
     in the recollection of you and of your ancestors the third man of the same rank who, though a
@@ -311,8 +315,7 @@ Added to repository.
     parent; who in love was, as he always has been, a real brother. For the mourning and grief of my
     unhappy wife, and the unceasing sorrow of my admirable daughter, and the regret and childish
     tears of my little son, were at times hidden from view by their necessary journeys, and to a
-    great extent were confined in the obscurity of their dwelling. <milestone n="4" unit="chapter"
-    /></p>
+    great extent were confined in the obscurity of their dwelling. <milestone n="4" unit="chapter"/></p>
    <p>Wherefore your kindness towards us is so much the greater, in that you restored us not to a
     multitude of relations, but to ourselves. </p>
    <p>
@@ -337,8 +340,7 @@ Added to repository.
     provinces, having as one of my enemies a most excellent and humane man, who, as one of the
     consuls, himself seconded the motion for my recall; and after my chief enemy, who had lent his
     voice to the common enemies of the country in order to injure me, was alive only as far as
-    breathing went, but in reality was thrust down below even the dead. <milestone n="5"
-     unit="chapter"/><milestone n="11" unit="section"/></p>
+    breathing went, but in reality was thrust down below even the dead. <milestone n="5" unit="chapter"/><milestone n="11" unit="section"/></p>
    <p>Lucius Opimius, that most gallant consul never addressed either the senate or the people
     concerning Publius Popillius. Not only did Caius Marius, who was his enemy, never say a word to
     them about Quintus Metellus, but even the man who succeeded Marius, Marcus Antonius, a most
@@ -351,8 +353,7 @@ Added to repository.
     of January, after the orphaned republic had implored the good faith of the consul as her
     legitimate guardian, Publius Lentulus, the consul, the parent and god of our safety, and life,
     and fortune, and memory, and name, as soon as he had discharged the solemn duties of religion,
-    thought that there was no human business which ought to occupy him before mine. <milestone
-     n="12" unit="section"/> And the affair would have been brought to its completion that very day,
+    thought that there was no human business which ought to occupy him before mine. <milestone n="12" unit="section"/> And the affair would have been brought to its completion that very day,
     if that tribune <note anchored="true">His name was Serranus.</note> of the people on whom, when
     I was consul and he quaestor, I had heaped the greatest possible kindnesses, though the whole
     senatorial body, and Caius Oppius, his father-in-law, a most virtuous man, threw themselves in
@@ -387,8 +388,7 @@ Added to repository.
     were no courts of justice, but violence and arms bore sway in the forum,—where private men were
     forced to rely on the protection of the walls of their houses, and not on that of the laws,
     where tribunes of the people were wounded while you were looking on,—where men attacked the
-    houses of magistrates with arms and firebrands, while the <foreign xml:lang="la"
-     >fasces</foreign> of the consuls are broken and the temples of the immortal gods attacked by
+    houses of magistrates with arms and firebrands, while the <foreign xml:lang="la">fasces</foreign> of the consuls are broken and the temples of the immortal gods attacked by
     the incendiary. Therefore, after the republic was banished, I thought that there was no room for
     me in this city, and if the republic were restored, I had no doubt that it would bring me back
     in its company. <milestone n="15" unit="section"/> Could I doubt when I was perfectly certain
@@ -435,8 +435,7 @@ Added to repository.
     only the authoritative declaration, but the sworn evidence of a most illustrious man, Lucius
     Gellius, who, because he was aware that his fleet had been tampered with, and that he himself
     had been in great danger, said in your assembly that if I had not been consul when I was, the
-    republic would have been utterly destroyed. <milestone n="8" unit="chapter"/><milestone n="18"
-     unit="section"/></p>
+    republic would have been utterly destroyed. <milestone n="8" unit="chapter"/><milestone n="18" unit="section"/></p>
    <p>I now, O Romans, having been restored to myself, to my friends, and to the republic, owing to
     the evidence of so many men, by this authority of the senate—by such great unanimity of all
     Italy—by such great zeal on the part of all good men—by the particular agency of Publius
@@ -468,8 +467,7 @@ Added to repository.
     never had lost. But there is this difference between myself and him, that he used those means in
     which he was most powerful, namely his arms, in order to revenge himself on his enemies. I, too,
     will use the instrument to which I am accustomed; since it is in war and sedition that there is
-    room for his qualities, but in peace and tranquillity that there is scope for mine. <milestone
-     n="21" unit="section"/> And although he, in his angry mind, laboured for nothing but avenging
+    room for his qualities, but in peace and tranquillity that there is scope for mine. <milestone n="21" unit="section"/> And although he, in his angry mind, laboured for nothing but avenging
     himself on his enemies, I will only think of my enemies as much as the republic herself allows
     me. <milestone n="9" unit="chapter"/></p>
    <p>Lastly, O Romans, since they are altogether four classes of men who injured me,—one of them,
@@ -482,8 +480,7 @@ Added to repository.
     have been challenged by each—on wicked citizens, by conducting the republic successfully; on my
     perfidious friends, by trusting them in nothing, and taking every sort of precaution against
     them; on the envious, by obeying virtue and glory; on the buyers of provinces, by recalling them
-    home, and by exacting from them an account of their conduct in those provinces. <milestone
-     n="22" unit="section"/>
+    home, and by exacting from them an account of their conduct in those provinces. <milestone n="22" unit="section"/>
    </p>
    <p>Although I feel greater anxiety as to how I am to show my gratitude to you who have deserved
     excellently well of me than how I am to chastise the injustice and cruelty of my enemies. In
@@ -496,15 +493,14 @@ Added to repository.
     of the injury which gave rise to it; but a man ought not to require to be entreated to show
     attention to virtuous men, <note anchored="true">The remainder of this sentence is given up by
      Manutius and Hottoman as hopelessly corrupt and unintelligible.</note>
-    <gap reason="*****"/> Nor is the excuse of difficulty to be admitted; nor is it just to limit
+    <gap reason="lost"/> Nor is the excuse of difficulty to be admitted; nor is it just to limit
     the recollection of a kindness to a certain time or to a fixed day. Lastly, he who is somewhat
     indifferent about seeking revenge is soon openly praised; but he is most exceedingly blamed who
     is in the least slow in requiting such benefits as you have showered on me; and he must
     inevitably be called, not only ungrateful, which itself is serious enough, but impious also. And
     the principle of requiting a kindness is different from that of repaying money; because he who
     keeps the money does not pay it, he who has repaid it has not get it; but in the case of
-    gratitude, he who repays it still keeps it and he who keeps it pays it. <milestone n="10"
-     unit="chapter"/><milestone n="24" unit="section"/></p>
+    gratitude, he who repays it still keeps it and he who keeps it pays it. <milestone n="10" unit="chapter"/><milestone n="24" unit="section"/></p>
    <p>Wherefore, I will cherish the memory of your kindness with undying affection, not only as long
     as I live and breathe, but even after I am dead, the memorials of your kindness to me shall
     still endure. And in showing my gratitude, this I do promise you, (and this I will always
@@ -518,7 +514,7 @@ Added to repository.
     posterity and to all nations, to be entirely worthy of that state which, by the unanimous
     suffrages of its citizens, decided that it could not maintain its own dignity, unless it
     recovered me. </p>
-  </body>
- </text>
+  </div>
+ </body></text>
 
 </TEI>

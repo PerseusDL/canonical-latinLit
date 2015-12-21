@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
     <fileDesc>
       <titleStmt>
-        <title>For P. Quinctius </title>
+        <title type="work">For P. Quinctius </title>
         <title>For Quintius, Sextus Roscius, Quintus Roscius, against Quintus Caecilius, and against
           Verres</title>
         <title type="sub">Machine readable text</title>
-        <author n="Cic.">M. Tullius Cicero</author>
+        <author n="M. Tullius Cicero">M. Tullius Cicero</author>
         <editor role="translator" n="Yonge">C. D. Yonge</editor> <sponsor>Perseus Project, Tufts University</sponsor>
 <principal>Gregory Crane</principal>
 <respStmt>
@@ -35,29 +37,33 @@
     </fileDesc>
 
     <encodingDesc>
-      <refsDecl>
-        <refState delim=" " unit="text"/>
-        <refState unit="section"/>
+      <refsDecl n="CTS">
+        <cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+          <p>This pointer pattern extracts chapter and section</p>
+        </cRefPattern>
+        <cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+          <p>This pointer pattern extracts chapter</p>
+        </cRefPattern>
       </refsDecl>
       <refsDecl>
-        <refState delim=" " unit="text"/>
-        <refState delim="." unit="chapter"/>
+        <refState unit="chapter" delim="."/>
         <refState unit="section"/>
       </refsDecl>
+    <!--
       <refsDecl n="text=Ver.">
         <refState delim=" " unit="text"/>
         <refState delim=" " unit="actio"/>
         <refState delim="." unit="book"/>
         <refState unit="section"/>
-      </refsDecl>
+      </refsDecl>-->
     </encodingDesc>
 
     <profileDesc>
       <langUsage>
-        <language ident="en">English </language>
-        <language ident="fr">French </language>
-        <language ident="la">Latin </language>
-        <language ident="greek">Greek </language>
+        <language ident="eng">English </language>
+        <language ident="fre">French </language>
+        <language ident="lat">Latin </language>
+        <language ident="grc">Greek </language>
       </langUsage>
     </profileDesc>
 
@@ -143,11 +149,14 @@ Added to repository. Passes TEI parsing.
     <change><date>July 2014</date>
     <respStmt><name>Stella Dee</name><resp>ed.</resp></respStmt>
     <item>split composite text and converted to unicode</item>
-      </change>--><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
-  </teiHeader><text xml:lang="en">
+      </change>--><change when="2014-08-01" who="Stella Dee">edited markup</change><change when="2015-12-13" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change><change when="1997-03-19" who="DAS">ed.</change>
+        <change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change><change who="rsingh04" when="2010-09-03T15:34:28">Revision 1.3  cleaned up log keyword</change><change who="student" when="2010-07-08T22:49:11">Revision 1.2  fixing place tags - AD</change><change who="rsingh04" when="2009-10-09T19:49:13">Revision 1.1 more reorganizing of texts module by collection</change><change who="rsingh04" when="2009-09-22T16:21:37">Revision 1.7 fixed references to Cic. Ver.</change><change who="rsingh04" when="2009-09-22T14:46:00">Revision 1.6 fixed 
+chunking for cic. ver. to text:actio:book:section in order for bibls to work</change><change who="lcerrato" when="2009-06-03T20:04:29">Revision 1.5 fixed bad bibls</change><change who="packel" when="2006-05-05T17:38:04">Revision 1.4 fixed date tags</change><change who="packel" when="2006-02-10T20:50:17">Revision 1.3 places/dates now actually tagged</change><change who="packel" when="2005-08-01T15:59:22">Revision 1.2 removed stray item tags</change><change who="packel" when="2005-07-25T14:31:43">Revision 1.1 Converted to XML</change><change who="lcerrato" when="2003-10-10T16:19:15">Revision 1.15 fixed four random typos</change><change who="yorkc" when="2003-07-01T22:15:00">Revision 1.14 Updated texts to TEI P4 and Perseus P4 extensions;
+minor cleanup (esp. character encodings and typos.)</change><change who="lcerrato" when="2002-10-02T20:48:26">Revision 1.13 fixed typo you have not this to you have not heard this</change><change who="dasmith" when="2000-03-04T20:34:15">Revision 1.12 Added separate funder entity to TEI header.</change><change who="lcerrato" when="1996-11-30T20:38:37">Revision 1.11 revised and proofread again</change><change who="dasmith" when="1999-10-14T21:36:03">Revision 1.10 Added explanatory subtitles to titleStmt</change><change who="lcerrato" when="1999-10-01T19:07:29">Revision 1.9 fixed valour for velour</change><change who="dasmith" when="1999-08-12T17:17:29">Revision 1.8 Fixed refsDecl</change><change who="textgod" when="1999-08-04T16:49:45">Revision 1.7 Minor tagging changes.</change><change who="textgod" when="1999-08-04T16:07:29">Revision 1.6 Lisa's edits.</change><change who="textgod" when="1997-09-01T19:53:03">Revision 1.4 Added sections.</change><change who="textgod" when="1997-03-26T17:44:36">Revision 1.2 Changed Quint. abbreviation to Quinct.</change><change who="textgod" when="1997-03-26T00:44:47">Revision 1.1 Added to repository. Passes TEI parsing.</change></revisionDesc>
+  </teiHeader><text>
         <front>
           <head>The speech of M. T. Cicero as the advocate of P. Quinctius.</head>
-          <argument>
+          
             <head>The Argument</head>
             <p>Caius Quinctius and Sextus Naevius, one of the public criers, had been partners,
               having their chief business in Gallia Narbonensis—Caius died, and left his
@@ -158,26 +167,23 @@ Added to repository. Passes TEI parsing.
               them. Naevius interposed difficulties in the way of his doing so, and by various
               artifices tried to make it appear that Quinctius had forfeited his recognizances;
               which would have given a different complexion to the whole case, as to forfeit one's
-              recognizances was a crime liable to the punishment of <foreign xml:lang="la"
-                >infamia</foreign> at <placeName key="perseus,Rome">Rome</placeName>. Cicero
+              recognizances was a crime liable to the punishment of <foreign xml:lang="la">infamia</foreign> at <placeName key="perseus,Rome">Rome</placeName>. Cicero
               undertook the defence of Quinctius at the request of Roscius the
               actor—Naevius's cause was conducted by Hortensius, the greatest advocate at
                 <placeName key="perseus,Rome">Rome</placeName>. It is doubtful whether this really
               was the first cause in which Cicero was engaged, as many think that he himself speaks
               in this oration of having been concerned in other trials previously, and that the
               speech for Sextus Roscius was his first. Quinctius gained the verdict. </p>
-          </argument>
+          
         </front>
-        <body>
+        <body><div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0474.phi001.perseus-eng1" subtype="translation">
 
           <milestone n="1" unit="chapter"/>
           <milestone n="1" unit="section"/>
           <p>The two things which have the greatest influence in a state,—namely, the
             greatest interest, and eloquence, are both making against us at the present moment; and
             while I am awed <note anchored="true">The Latin is <foreign xml:lang="la">quorum alteram
-                  <emph>vereor</emph>, alteram <emph>metuo</emph></foreign>, <foreign xml:lang="la"
-                >vereor</foreign> expressing a slighter degree of alarm than <foreign xml:lang="la"
-                >metuo</foreign> or <foreign xml:lang="la">timeo</foreign>, and also one arising rather
+                  <emph>vereor</emph>, alteram <emph>metuo</emph></foreign>, <foreign xml:lang="la">vereor</foreign> expressing a slighter degree of alarm than <foreign xml:lang="la">metuo</foreign> or <foreign xml:lang="la">timeo</foreign>, and also one arising rather
               from the character and dignity of the adversary, than from any apprehension of
               consequences to oneself.</note> by the one, O Caius Aquillius, I am in fear of the
             other:—I am somewhat awed, apprehending that the eloquence of Quinctius
@@ -203,8 +209,7 @@ Added to repository. Passes TEI parsing.
             industry is. But the greater our disadvantages, O Caius Aquillius, are, with so much the
             more favourable a disposition ought you, and those who are your colleagues in this
             trial, to listen to our words, that the truth, though weakened by many disadvantages,
-            may be at last reestablished by the equity of such men as you. <milestone n="5"
-              unit="section"/> But if you, being the judge, shall appear to be no protection to a
+            may be at last reestablished by the equity of such men as you. <milestone n="5" unit="section"/> But if you, being the judge, shall appear to be no protection to a
             desolate and helpless condition against power and influence; if before this tribunal the
             cause is found to depend on interest, not on truth; then indeed there is nothing any
             longer holy and uncontaminated in the state—no hope that the firmness and
@@ -218,10 +223,8 @@ Added to repository. Passes TEI parsing.
             eminent <note anchored="true">Their names were Lucius Lucilius, Publius Quintilius, and
               Marcus Marcellus; “The <foreign xml:lang="la">judex</foreign> was generally
               aided by advisers learned in the law, (<foreign xml:lang="la">jurisconsulti</foreign>,)
-              who were said <foreign xml:lang="la">in concilio adesse</foreign>, but the <foreign
-                xml:lang="la">judex</foreign> alone was empowered to give judgment.” Smith,
-              Dict. Ant. v. <foreign xml:lang="la">Judex</foreign>.</note> men in the state. <milestone
-              n="6" unit="section"/> What then? In the first place, the magnitude of the danger
+              who were said <foreign xml:lang="la">in concilio adesse</foreign>, but the <foreign xml:lang="la">judex</foreign> alone was empowered to give judgment.” Smith,
+              Dict. Ant. v. <foreign xml:lang="la">Judex</foreign>.</note> men in the state. <milestone n="6" unit="section"/> What then? In the first place, the magnitude of the danger
             causes a man the greatest fear, because he is staking all his fortunes on one trial; and
             while he is thinking of this, the recollection of your power does not occur to his mind
             less frequently than that of your justice; because all men whose lives are in another's
@@ -231,15 +234,12 @@ Added to repository. Passes TEI parsing.
             in reality, the most eloquent, the most gallant, the most accomplished men of our state,
             who are defending Sextus Naevius with one common zeal, and with all their power: if,
             indeed, defending means so to comply with the desire of another, that he may the more
-            easily be able to overwhelm whomsoever he chooses by an unjust trial; <milestone n="8"
-              unit="section"/> for what, O Caius Aquillius, can be mentioned or spoken of more
-            unjust or more unworthy than this, that I who am defending the liberties, <note
-              anchored="true">The Latin has <foreign xml:lang="la">caput</foreign>, which in a legal
+            easily be able to overwhelm whomsoever he chooses by an unjust trial; <milestone n="8" unit="section"/> for what, O Caius Aquillius, can be mentioned or spoken of more
+            unjust or more unworthy than this, that I who am defending the liberties, <note anchored="true">The Latin has <foreign xml:lang="la">caput</foreign>, which in a legal
               sense expresses not only a man's life, but also his status or civil condition; to be
               registered in the census was <foreign xml:lang="la">caput habere</foreign>; to change
               one's rank, <foreign xml:lang="la">capite, &amp;c. diminuere</foreign>. And so a trial
-              which affected not only a citizen's life, but his rank or liberty, was called <foreign
-                xml:lang="la">judicium capitale</foreign>.</note> the fame, and fortunes of another
+              which affected not only a citizen's life, but his rank or liberty, was called <foreign xml:lang="la">judicium capitale</foreign>.</note> the fame, and fortunes of another
             should be compelled to open the cause, especially when Quintus Hortensius, who in this
             trial fills the part of the accuser, is to speak against me; a man to whom nature has
             given the greatest possible fluency and energy in speaking? Matters are so managed, that
@@ -251,35 +251,30 @@ Added to repository. Passes TEI parsing.
             applying a remedy. <milestone n="9" unit="section"/> That has happened through the
             injustice and wrong-doing of the praetor; first, because, contrary to universal custom,
             he has chosen that the trial as to honour or infamy <note anchored="true">Because if it
-              were decided that Quinctius had forfeited his recognizances, <foreign xml:lang="la"
-                >infamia</foreign> was the consequence.</note> should take place before the one
+              were decided that Quinctius had forfeited his recognizances, <foreign xml:lang="la">infamia</foreign> was the consequence.</note> should take place before the one
             concerning the fact; secondly, because he has so arranged this very trial, that the
             defendant is compelled to plead his cause before he has heard a word of the accuser's;
             and this has been done because of the influence and power of those men who indulge the
             violence and covetousness of Sextus Naevius as eagerly as if their own property or
             honour were at stake, and who make experiment of their influence in such matters as
             this, in which the more weight they have through their virtue and nobility, the less
-            they ought to make a parade of what influence they have. <milestone n="10"
-              unit="section"/> Since Publius Quinctius, involved in and overwhelmed by such numerous
+            they ought to make a parade of what influence they have. <milestone n="10" unit="section"/> Since Publius Quinctius, involved in and overwhelmed by such numerous
             and great difficulties, has taken refuge, O Caius Aquillius, in your good faith, in your
             truth, in your compassion; when, up to this time , owing to the might of his
             adversaries, no equal law could be found for him, no equal liberty of pleading, no just
             magistrate, when, through the greatest injustice, everything was unfavourable and
             hostile to him; he now prays and entreats you, O Caius Aquillius, and all of you who are
             present as assessors, to allow justice, which has been tossed about and agitated by many
-            injuries, at length to find rest and a firm footing in this place. <milestone n="3"
-              unit="chapter"/><milestone n="11" unit="section"/></p>
+            injuries, at length to find rest and a firm footing in this place. <milestone n="3" unit="chapter"/><milestone n="11" unit="section"/></p>
           <p>And that you may the more easily do this, I will endeavour to make you understand how
             this matter has been managed and carried out. Caius Quinctius was the brother of this
             Publius Quinctius; in other respects a sufficiently prudent and attentive head of a
             family, but in one matter a little less wise, inasmuch as he formed a partnership with
             Sextus Naevius, a respectable man, but one who had not been brought up so as to be
             acquainted with the rights of partnership, or with the duties of a head of an
-            established family. <note anchored="true">The office of <foreign xml:lang="la"
-                >praeco</foreign> was so little reputable that before Cicero's death a law was
+            established family. <note anchored="true">The office of <foreign xml:lang="la">praeco</foreign> was so little reputable that before Cicero's death a law was
               passed to prevent all persons who had been <foreign xml:lang="la">praecones</foreign> from
-              becoming <foreign xml:lang="la">decuriones</foreign> in the <foreign xml:lang="la"
-                >municipia</foreign>. Under the emperors, however it became very profitable.</note>
+              becoming <foreign xml:lang="la">decuriones</foreign> in the <foreign xml:lang="la">municipia</foreign>. Under the emperors, however it became very profitable.</note>
             Not that he was wanting in abilities; for Sextus Naevius as a buffoon was never
             considered without wit, nor as a crier was he reckoned unmannerly. What followed? As
             nature had given him nothing better than a voice, and his father had left him nothing
@@ -294,14 +289,11 @@ Added to repository. Passes TEI parsing.
               Licinius, i.e. Licinius Crassus, was the celebrated one where he erected four columns
               of Hymettian marble, for the theatrical shows in his aedileship, and was one of the
               common resorts of auctioneers and criers.</note> and from the gang of criers, into
-              <placeName key="tgn,1000070">Gaul</placeName> and across the <placeName
-              key="tgn,2066659">Alps</placeName>; there is a great change in his situation, <note
-              anchored="true"><foreign xml:lang="la">Coelum non animum mutant qui trans mare
+              <placeName key="tgn,1000070">Gaul</placeName> and across the <placeName key="tgn,2066659">Alps</placeName>; there is a great change in his situation, <note anchored="true"><foreign xml:lang="la">Coelum non animum mutant qui trans mare
                 currunt.</foreign> —<bibl n="Hor. Ep. 1.2.27">;Hor. Epist. 1, ii.
                 27</bibl>.</note> none in his disposition; for he who from his boyhood had been
             proposing to himself gain without any outlay, as soon as he spent anything himself and
-            brought it to the common stock, could not be content with a moderate profit. <milestone
-              n="13" unit="section"/> Nor is it any wonder if he, who had his voice for sale,
+            brought it to the common stock, could not be content with a moderate profit. <milestone n="13" unit="section"/> Nor is it any wonder if he, who had his voice for sale,
             thought that those things which he had acquired by his voice would be a great profit to
             him; so that without much moderation, he carried off whatever he could from the common
             stock to his private house for himself. And in this he was as industrious as if all who
@@ -317,8 +309,7 @@ Added to repository. Passes TEI parsing.
             absolutely require it, <note anchored="true">The Latin has <foreign xml:lang="la">quia
                   <emph>postulat</emph> non <emph>flagitat</emph></foreign>, both words being nearly
               synonymous, but <foreign xml:lang="la">flagito</foreign> being evidently a stronger word
-              than <foreign xml:lang="la">postulo</foreign>.</note> I will pass it over. <milestone
-              n="4" unit="chapter"/><milestone n="14" unit="section"/></p>
+              than <foreign xml:lang="la">postulo</foreign>.</note> I will pass it over. <milestone n="4" unit="chapter"/><milestone n="14" unit="section"/></p>
           <p>When this partnership had now subsisted many years, and when Naevius had often been
             suspected by Quinctius, and was not able conveniently to give an account of the
             transactions which he had carried on according to his caprice, and not on any system,
@@ -329,32 +320,24 @@ Added to repository. Passes TEI parsing.
             goes into <placeName key="tgn,1000070">Gaul</placeName>. There he lives on terms of
             intimacy with that fellow Naevius. There they are together nearly a year, during which
             they had many communications with one another about their partnership, and about the
-            whole of their accounts and their estate in <placeName key="tgn,1000070"
-              >Gaul</placeName>; nor during that time did Naevius utter one single word about either
+            whole of their accounts and their estate in <placeName key="tgn,1000070">Gaul</placeName>; nor during that time did Naevius utter one single word about either
             the partnership owing him anything, or about Quinctius having owed him anything on his
             private account. As there was some little debt left behind, the payment of which was to
             be provided for at <placeName key="perseus,Rome">Rome</placeName>, this Publius
-            Quinctius issues notices that he shall put up to auction in <placeName key="tgn,1000070"
-              >Gaul</placeName>, at <placeName key="tgn,7008368">Narbonne</placeName>, those things
+            Quinctius issues notices that he shall put up to auction in <placeName key="tgn,1000070">Gaul</placeName>, at <placeName key="tgn,7008368">Narbonne</placeName>, those things
             which were his own private property. <milestone n="16" unit="section"/> On this, this
             excellent man, Sextus Naevius, dissuades the man by many speeches from putting the
             things up to auction, saying that he would not be able at that time to sell so
-            conveniently what he had advertised. That he had a sum of money at <placeName
-              key="perseus,Rome">Rome</placeName>, which if Quinctius were wise he would consider
+            conveniently what he had advertised. That he had a sum of money at <placeName key="perseus,Rome">Rome</placeName>, which if Quinctius were wise he would consider
             their common property, from their brotherly intimacy, and also from his relationship
             with himself; for Naevius has married the cousin of Publius Quinctius, and has children
             by her. Because Naevius was saying just what a good man ought, Quinctius believed that
             he who imitated the language of good men, would imitate also their actions. He gives up
-            the idea of having an auction; he goes to <placeName key="perseus,Rome"
-            >Rome</placeName>; at the same time Naevius also leaves <placeName key="tgn,1000070"
-              >Gaul</placeName> for <placeName key="perseus,Rome">Rome</placeName>. <milestone
-              n="17" unit="section"/> As Caius Quinctius had owed money to Publius Scapula, Publius
+            the idea of having an auction; he goes to <placeName key="perseus,Rome">Rome</placeName>; at the same time Naevius also leaves <placeName key="tgn,1000070">Gaul</placeName> for <placeName key="perseus,Rome">Rome</placeName>. <milestone n="17" unit="section"/> As Caius Quinctius had owed money to Publius Scapula, Publius
             Quinctius referred it to you, O Caius Aquillius, to decide what he should pay his
             children. He preferred submitting to your decision in this matter, because, on account
             of the difference in the exchange, it was not sufficient to look in his books and see
-            how much was owed, unless he had inquired at the temple of Castor <note anchored="true"
-              >Some have wished to alter <foreign xml:lang="la">ad Castoris</foreign> here to <foreign
-                xml:lang="la">a quaestoribus</foreign>; but the temple of Castor was a place where much
+            how much was owed, unless he had inquired at the temple of Castor <note anchored="true">Some have wished to alter <foreign xml:lang="la">ad Castoris</foreign> here to <foreign xml:lang="la">a quaestoribus</foreign>; but the temple of Castor was a place where much
               money was kept:—<foreign xml:lang="la">Æratâ</foreign>
               <quote xml:lang="la">
                 <l>Æratâ multus in arca </l>
@@ -363,13 +346,10 @@ Added to repository. Passes TEI parsing.
               accordingly much frequented by men skillful in computing accounts, and the exchange of
               money.</note> how much was to be paid in Roman money. You decide and determine, on
             account of the friendship existing between you and the family of the Scapulae, what was
-            to be paid to them to a penny. <milestone n="5" unit="chapter"/><milestone n="18"
-              unit="section"/></p>
+            to be paid to them to a penny. <milestone n="5" unit="chapter"/><milestone n="18" unit="section"/></p>
           <p>All these things Quinctius did by the advice and at the instigation of Naevius: nor is
             there anything strange in his adopting the advice of the man whose assistance he thought
-            at his service. For not only had he promised it in <placeName key="tgn,1000070"
-              >Gaul</placeName>, but every day he kept on saying at <placeName key="perseus,Rome"
-              >Rome</placeName> that he would pay the money as soon as he gave him a hint to do so.
+            at his service. For not only had he promised it in <placeName key="tgn,1000070">Gaul</placeName>, but every day he kept on saying at <placeName key="perseus,Rome">Rome</placeName> that he would pay the money as soon as he gave him a hint to do so.
             Quinctius moreover saw that he was able to do so. He knew that he ought; he did not
             think that he was telling lies, because there was no reason why he should tell lies. He
             arranged, therefore, that he would pay the Scapulae as if he had the money at home. He
@@ -383,8 +363,7 @@ Added to repository. Passes TEI parsing.
             a future time, says Quinctius, but at present I wish you to provide, if you please, what
             you said you would. He says that he will not do so on any other condition; and that what
             he had promised no more concerned him, than it would if when he was holding a sale by
-            auction, he had made any bidding at the command of the owner. <milestone n="20"
-              unit="section"/> Quinctius being perplexed at this desertion, obtains a few days'
+            auction, he had made any bidding at the command of the owner. <milestone n="20" unit="section"/> Quinctius being perplexed at this desertion, obtains a few days'
             delay from the Scapulae; he sends into <placeName key="tgn,1000070">Gaul</placeName> to
             have those things sold which he had advertised; being absent, he sells them at a less
             favourable time than before; he pays the Scapulae with more disadvantage to himself than
@@ -399,8 +378,7 @@ Added to repository. Passes TEI parsing.
             that time the matter was referred to legal decision. <note anchored="true">Lit.
               “recognizances were entered into.” When the praetor had granted an
               action, the plaintiff required the defendant to give security for his appearance
-              before the praetor on a stated day, commonly the day but one after the <foreign
-                xml:lang="la">in jus vocatio</foreign>.</note> After many delays, and when much time had
+              before the praetor on a stated day, commonly the day but one after the <foreign xml:lang="la">in jus vocatio</foreign>.</note> After many delays, and when much time had
             been wasted in that business, and nothing had been done, Naevius appeared before the
             judge. <milestone n="6" unit="chapter"/></p>
           <p>I beseech you, O Caius Aquillius, and you the assessors in this suit, to observe
@@ -414,15 +392,13 @@ Added to repository. Passes TEI parsing.
             does not summon the man at present; so he departs without giving security. After that,
             Quinctius remains at <placeName key="perseus,Rome">Rome</placeName> about thirty days.
             He gets any securities which he had given other people respited, so as to be able to go
-            without hindrance into <placeName key="tgn,1000070">Gaul</placeName>. <milestone n="24"
-              unit="section"/> He goes; he leaves <placeName key="perseus,Rome">Rome</placeName> on
+            without hindrance into <placeName key="tgn,1000070">Gaul</placeName>. <milestone n="24" unit="section"/> He goes; he leaves <placeName key="perseus,Rome">Rome</placeName> on
             the twenty-ninth of January, in the Consulship of Scipio and Norbanus;—I beg
             of you to remember the day. Lucius Albius the son of Sextus of the Quirine tribe, a good
             man and of the highest reputation for honour, set out with him. When they had come to
             the place called the fords of Volaterra, they see a great friend of Naevius, who was
             bringing him some slaves from <placeName key="tgn,1000070">Gaul</placeName> to be sold,
-            Lucius Publicius by name, who when he arrived in <placeName key="perseus,Rome"
-              >Rome</placeName> told Naevius in what place he had seen Quinctius; and unless this
+            Lucius Publicius by name, who when he arrived in <placeName key="perseus,Rome">Rome</placeName> told Naevius in what place he had seen Quinctius; and unless this
             had been told Naevius by Publicius, the matter would not so soon have come to trial.
               <milestone n="25" unit="section"/> Then Naevius sends his slaves round to his friends;
             he summons himself all his associates from the halls of Licinius and from the jaws of
@@ -432,9 +408,7 @@ Added to repository. Passes TEI parsing.
             the seals of noble men. They depart: Naevius demands of Burrienus the praetor, that by
             his edict he may take possession of Quinctius's goods. <note anchored="true">If either
               party did not appear on the appointed day, he was said <foreign xml:lang="la">vadimonium
-                deserere</foreign>, and the praetor gave to the other party the <foreign xml:lang="la"
-                >bonorum possessio</foreign>. Vide Smith's Dict. Ant. p. 9. v. <foreign xml:lang="la"
-                >Actio</foreign>.</note> He urged the confiscation of the property of that man with
+                deserere</foreign>, and the praetor gave to the other party the <foreign xml:lang="la">bonorum possessio</foreign>. Vide Smith's Dict. Ant. p. 9. v. <foreign xml:lang="la">Actio</foreign>.</note> He urged the confiscation of the property of that man with
             whom he had had intimacy, with whom he actually was in partnership, between whom and
             himself there was a relationship, which while his children lived could not possibly be
             annulled. <milestone n="26" unit="section"/> From which act it could easily be perceived
@@ -454,29 +428,23 @@ Added to repository. Passes TEI parsing.
             Quinctius, contrary to law and to custom, and to the edicts of the praetors, is driven
             by force by the slaves which belonged to both him and Naevius, as partners, from their
             common lands and estates. <milestone n="7" unit="chapter"/></p>
-          <p>Think, O Caius Aquillius, that Naevius did everything at <placeName key="perseus,Rome"
-              >Rome</placeName> with moderation and good sense, if this which was done in <placeName
-              key="tgn,1000070">Gaul</placeName> in obedience to his letters was done rightly and
+          <p>Think, O Caius Aquillius, that Naevius did everything at <placeName key="perseus,Rome">Rome</placeName> with moderation and good sense, if this which was done in <placeName key="tgn,1000070">Gaul</placeName> in obedience to his letters was done rightly and
             legally. Quinctius being expelled and turned out of his farm, having received a most
             notorious injury, flies to Caius Flaccus the general, who was at that time in the
             province; whom I name to do him honour as his dignity demands. How strongly he was of
             opinion that that action called for punishment you will be able to learn from his
             decrees. <milestone n="29" unit="section"/> Meantime Alphenus was fighting every day at
               <placeName key="perseus,Rome">Rome</placeName> with that old gladiator. He had the
-            people indeed on his side, because that fellow never ceased to aim at the head. <note
-              anchored="true">There is an allusion here to the fights of gladiators, in which the
+            people indeed on his side, because that fellow never ceased to aim at the head. <note anchored="true">There is an allusion here to the fights of gladiators, in which the
               people disapproved of that gladiator who aimed too constantly at the vital parts of
-              his adversary, so as to make the combat short. There is a pun here, <foreign xml:lang="la"
-                >caput</foreign> meaning the head or life of the gladiator, and also the condition
+              his adversary, so as to make the combat short. There is a pun here, <foreign xml:lang="la">caput</foreign> meaning the head or life of the gladiator, and also the condition
               of a citizen.</note> Naevius demanded that the agent should give security for payment
             on judgment being given. Alphenus says that it is not reasonable for an agent to give
             security, because the defendant would not be bound to give security if he were present
             himself. The tribunes are appealed to, and as a positive decision was demanded from
             them, the matter is terminated on the footing of Sextus Alphenus undertaking that
-            Publius Quinctius should answer to his bail by the thirteenth of September. <milestone
-              n="8" unit="chapter"/></p>
-          <p><milestone n="30" unit="section"/>Quinctius comes to <placeName key="perseus,Rome"
-              >Rome</placeName>; he answers to his bail. That fellow, that most energetic man, the
+            Publius Quinctius should answer to his bail by the thirteenth of September. <milestone n="8" unit="chapter"/></p>
+          <p><milestone n="30" unit="section"/>Quinctius comes to <placeName key="perseus,Rome">Rome</placeName>; he answers to his bail. That fellow, that most energetic man, the
             seizer of other men's goods, that invader, that robber, for a year and a half asks for
             nothing, keeps quiet, amuses Quinctius by proposals as long as he can, and at last
             demands of Cnaeus Dolabella, the praetor, that Quinctius should give security for
@@ -500,8 +468,7 @@ Added to repository. Passes TEI parsing.
             they have begun to act rightly or wrongly, carry either conduct to such a height that no
             one born in our rank of life can overtake them) perseveres most bravely in committing
             injustice: he bids him either give security or give a bond; and meantime he orders our
-            advocates, who objected to this, to be removed with great roughness. <milestone n="9"
-              unit="chapter"/><milestone n="32" unit="section"/></p>
+            advocates, who objected to this, to be removed with great roughness. <milestone n="9" unit="chapter"/><milestone n="32" unit="section"/></p>
           <p>Quinctius departs much embarrassed; and no wonder, when so miserable a choice was
             offered him, and one so unjust, that he must either himself convict himself of a capital
             offence if he gave security, <note anchored="true">Because the giving security now would
@@ -519,19 +486,16 @@ Added to repository. Passes TEI parsing.
             touching not the property of Publius Quinctius, but his fame and fortunes. Though our
             ancestors have determined that he who is pleading for his life should speak last, you
             see that we, owing to this unprecedented accusation of the prosecutor's, are pleading
-            our cause first. Moreover, you see that those who are more accustomed <note
-              anchored="true">He means Hortensius.</note> to defend people are today acting as
+            our cause first. Moreover, you see that those who are more accustomed <note anchored="true">He means Hortensius.</note> to defend people are today acting as
             accusers; and that those talents are turned to do people injury, which have hitherto
             been employed in ministering to men's safety, and in assisting them. There remained but
             one thing more, which they put in execution yesterday,—namely, to proceed
             against you for the purpose of compelling you to limit the time allowed us for making
             our defence; and this they would easily have obtained from the praetor if you had not
-            taught him what your rights and duties and business were. <milestone n="34"
-              unit="section"/> Nor was there any longer any assistant left to us but yourself by
+            taught him what your rights and duties and business were. <milestone n="34" unit="section"/> Nor was there any longer any assistant left to us but yourself by
             whose means we could obtain our rights against them. Nor was it even enough for them to
             obtain that which might be justified to everybody; so trifling and insignificant a thing
-            do they think power to be which is not exercised with injustice. <milestone n="10"
-              unit="chapter"/></p>
+            do they think power to be which is not exercised with injustice. <milestone n="10" unit="chapter"/></p>
           <p>But since Hortensius urges you to come to a decision, and requires of use that I should
             not waste time in speaking, and complains that when the former advocate was defending
             this action it never could be brought to a conclusion, I will not allow that suspicion
@@ -541,8 +505,7 @@ Added to repository. Passes TEI parsing.
             who has spoken before, and brevity, which is exceedingly agreeable to me, is required of
             me, who am neither able to devise <note anchored="true">He mentions in the Brutus that he
               was at this time in a very delicate state of health. <foreign xml:lang="la">Erat eo
-                tempore in nobis summa gracilitas et infirmitas corporis</foreign>. <bibl
-                n="Cic. ad Brut. 313">Brutus, 313.</bibl></note> nor to utter many arguments.
+                tempore in nobis summa gracilitas et infirmitas corporis</foreign>. <bibl n="Cic. ad Brut. 313">Brutus, 313.</bibl></note> nor to utter many arguments.
               <milestone n="35" unit="section"/> I will do what I have often observed you do, O
             Hortensius; I will distribute my argument on the entire cause into certain divisions.
             You always do so, because you are always able. I will do so in this cause, because in
@@ -569,8 +532,7 @@ Added to repository. Passes TEI parsing.
             Quinctius owed nothing whatever to Sextus Naevius, neither on account of the
             partnership, nor from any private debt. Who is a witness of this? Why, the same man who
             is our most bitter enemy. In this matter I will cite you—you, I say, O
-            Naevius, as our witness Quinctius was with you in <placeName key="tgn,1000070"
-              >Gaul</placeName> a year, and more than that, after the death of Caius Quinctius.
+            Naevius, as our witness Quinctius was with you in <placeName key="tgn,1000070">Gaul</placeName> a year, and more than that, after the death of Caius Quinctius.
             Prove that you ever demanded of him this vast sum of money, I know not how much; prove
             that you ever mentioned it, ever said it was owing, and I will admit that he owed it.
               <milestone n="38" unit="section"/>Caius Quinctius dies; who, as you say, owed you a
@@ -598,8 +560,7 @@ Added to repository. Passes TEI parsing.
             money, when you had come ready prepared and having considered the matter, you being a
             nervous man, of virgin modesty, on a sudden checked yourself, your voice failed you, you
             did not dare to ask him for money whom you wished to ask, lest he should be unwilling to
-            hear you. No doubt that was it. <milestone n="12" unit="chapter"/><milestone n="40"
-              unit="section"/></p>
+            hear you. No doubt that was it. <milestone n="12" unit="chapter"/><milestone n="40" unit="section"/></p>
           <p>Let us believe this, that Sextus Naevius spared the ears of the man whose life he is
             attacking! If he had owed you money, O Sextus, you would have asked for it at once; if
             not at once, at all events soon after; if not soon after, at least after a time; in six
@@ -608,20 +569,17 @@ Added to repository. Passes TEI parsing.
             not one word about it; but now, when nearly two years have passed, you ask for the
             money. What profligate and extravagant spendthrift, even before his property is
             diminished, but while it is still abundant, would have been so reckless as Sextus
-            Naevius was? When I name the man, I seem to myself to have said enough. <milestone
-              n="41" unit="section"/> Caius Quinctius owed you money; you never asked for it: he
+            Naevius was? When I name the man, I seem to myself to have said enough. <milestone n="41" unit="section"/> Caius Quinctius owed you money; you never asked for it: he
             died; his property came to his heir; though you saw him every day, you did not ask for
             it for two years; will any one doubt which is the more probable, that Sextus Naevius
             would instantly have asked for what was owed to him, or that be would not have asked for
             two years? Had he no opportunity of asking? Why, he lived with you more than a year:
             could no measures be taken in <placeName key="tgn,1000070">Gaul</placeName>? But there
-            was law administered in the province, and trials were taking place at <placeName
-              key="perseus,Rome">Rome</placeName>. The only alternative remaining is, either extreme
+            was law administered in the province, and trials were taking place at <placeName key="perseus,Rome">Rome</placeName>. The only alternative remaining is, either extreme
             carelessness prevented you, or extraordinary liberality. If you call it carelessness, we
             shall wonder; if you call it kindness, we shall laugh; and what else you can call it I
             know not; it is proof enough that nothing was owing to Naevius, that for such a length
-            of time he asked for nothing. <milestone n="13" unit="chapter"/><milestone n="42"
-              unit="section"/></p>
+            of time he asked for nothing. <milestone n="13" unit="chapter"/><milestone n="42" unit="section"/></p>
           <p>What if I show that this very thing which he is now doing is a proof that nothing is
             due? For what is Sextus Naevius doing now? About what is there a dispute? What is this
             trial on which we have now been occupied two years? What is the important business with
@@ -638,8 +596,7 @@ Added to repository. Passes TEI parsing.
             he may have to plead his cause before the plaintiff speaks, and that when he has ended
             his speech he may then hear the voice of his accuser? What? What is the object of this?
             That you may the quicker arrive at your rights? But if you wished that might be already
-            done. That you may contend according to a more respectable form of procedure? <milestone
-              n="44" unit="section"/> But you cannot murder Publius Quinctius your own relation,
+            done. That you may contend according to a more respectable form of procedure? <milestone n="44" unit="section"/> But you cannot murder Publius Quinctius your own relation,
             without the greatest wickedness. That the trial may be facilitated I But neither does
             Caius Aquillius willingly decide on the life of another, nor has Quintus Hortensius been
             in the habit of pleading against a man's life. But what reply is made by us, O Caius
@@ -649,8 +606,7 @@ Added to repository. Passes TEI parsing.
             be; and let him give security <note anchored="true">In many cases both plaintiff and
               defendant might be required to give security, (<foreign xml:lang="la">satis
               dare</foreign>.) Smith, Dict. Ant. p.10, V. <foreign xml:lang="la">Actio</foreign>.</note>
-            for what I demand in the very same terms in which we give security. <milestone n="45"
-              unit="section"/> The matter can be terminated at once, O Caius Aquillius You can at
+            for what I demand in the very same terms in which we give security. <milestone n="45" unit="section"/> The matter can be terminated at once, O Caius Aquillius You can at
             once depart, being delivered from an annoyance, I had almost said, no less than that
             Quinctius is exposed to. What are we doing, Hortensius? what are we to say of this
             condition? Can we, some time or other, laying aside our weapons, discuss the money
@@ -672,9 +628,7 @@ Added to repository. Passes TEI parsing.
             from the time when he first began to behave ill, has wasted all the time in adjournments
             and respiting the recognizances; he who, after he had withdrawn his recognizance drove
             Quinctius by treachery and violence from their joint estate; who, when he had ample
-            opportunity, without any one's making objection, to try a civil action, <note
-              anchored="true">With respect to its subject matter the <foreign xml:lang="la"
-                >actio</foreign> was divided into two great divisions, the <foreign xml:lang="la">in
+            opportunity, without any one's making objection, to try a civil action, <note anchored="true">With respect to its subject matter the <foreign xml:lang="la">actio</foreign> was divided into two great divisions, the <foreign xml:lang="la">in
                 personam actio</foreign> and the <foreign xml:lang="la">in rem actio</foreign>. The
               former was against a person who was bound to the plaintiff by contract or delict the
               latter applied to those cases where a man claimed a property or a right. Smith, Dict.
@@ -682,8 +636,7 @@ Added to repository. Passes TEI parsing.
             back to this tribunal, whence all these proceedings arise, repudiates the most
             reasonable proposals; confesses that he is aiming, not at the money, but at the life and
             heart's blood of his adversary;—does he not openly say, “if anything
-            were owing to me, I should demand it, and I should long ago have obtained it; <milestone
-              n="47" unit="section"/> I would not employ so much trouble, so unpopular a course of
+            were owing to me, I should demand it, and I should long ago have obtained it; <milestone n="47" unit="section"/> I would not employ so much trouble, so unpopular a course of
             legal proceeding, and such a band of favourers of my cause, if I had to make a just
             demand; I have got to extort money from one unwilling, and in spite of him; I have got
             to tear and squeeze out of a man what he does not owe; Publius Quinctius is to be cast
@@ -720,8 +673,7 @@ Added to repository. Passes TEI parsing.
             relieved by this support and comfort; but he whose goods have been sold, who has seen
             not merely his ample estates, but even his necessary food and clothing put up under the
             hammer, with great disgrace to himself; he is not only erased from the list of men, but
-            he is removed out of sight, if possible, even beneath the dead. An honourable <note
-              anchored="true">Most of the commentators consider this passage corrupt, and propose
+            he is removed out of sight, if possible, even beneath the dead. An honourable <note anchored="true">Most of the commentators consider this passage corrupt, and propose
               various emendations of it. I have however thought it safer to adhere to the text of
               the MSS. as it stands in Orellius.</note> death forsooth often sets off even a base
             life, but a dishonoured life leaves no room to hope for even an honourable death.
@@ -734,8 +686,7 @@ Added to repository. Passes TEI parsing.
             his price,—he has a most bitter funeral procession while he is alive, if that
             may be considered a funeral in which men meet not as friends to do honour to his
             obsequies, but purchasers of his goods as executioners, to tear to pieces and divide the
-            relics of his existence. <milestone n="16" unit="chapter"/><milestone n="51"
-              unit="section"/></p>
+            relics of his existence. <milestone n="16" unit="chapter"/><milestone n="51" unit="section"/></p>
           <p>Therefore our ancestors determined that such a thing should seldom happen; the praetors
             have taken care that it should only happen after deliberation; good men, even when fraud
             is openly committed, when there is no opportunity of trying the case at law, still have
@@ -752,12 +703,10 @@ Added to repository. Passes TEI parsing.
             appeared of the greatest importance in itself, yet its magnitude would be lessened by
             the consideration of your relationship. He did not appear to his recognizances. Who?
             Your partner. You might forgive even a greater thing than this, to a man with whom
-            either your inclination had connected you, or fortune had associated you. <milestone
-              n="52" unit="section"/> He did not appear to his recognizances. Who? He who was always
+            either your inclination had connected you, or fortune had associated you. <milestone n="52" unit="section"/> He did not appear to his recognizances. Who? He who was always
             in your company. You therefore have hurled upon him, who allowed it to happen once that
             he was not in your company, all those weapons which have been forged against those who
-            have done many things for the sake of malversation and fraud. <milestone n="53"
-              unit="section"/> If your poundage was called in question, if in any trifling matter
+            have done many things for the sake of malversation and fraud. <milestone n="53" unit="section"/> If your poundage was called in question, if in any trifling matter
             you were afraid of some trick, would you not have at once run off to Caius Aquillius, or
             to some other counsel? When the rights of friendship, of partnership, of relationship
             are at stake, when regard should have been had to your duty and your character, at that
@@ -777,8 +726,7 @@ Added to repository. Passes TEI parsing.
             Marcus Marcellus;—A certain partner and relation of mine has not appeared to
             his recognizances; a man with whom I have a long standing intimacy, but a recent dispute
             about money matters. Can I demand of the praetor to be allowed to take possession of his
-            goods? Or must I, as he has a house, a wife, and children at <placeName
-              key="perseus,Rome">Rome</placeName>, not rather give notice at his house? What is your
+            goods? Or must I, as he has a house, a wife, and children at <placeName key="perseus,Rome">Rome</placeName>, not rather give notice at his house? What is your
             opinion in this matter? If, in truth, I have rightly understood your kindness and
             prudence, I am not much mistaken what you will answer if you are consulted. You will say
             at first that I must wait; then, if he seems to be shirking the business and to be
@@ -810,15 +758,11 @@ Added to repository. Passes TEI parsing.
             novel and unheard-of. <milestone n="57" unit="section"/> What then are we to say? I fear
             forsooth lest I should either use language severer than men's nature is inclined to
             bear, or else more gentle than the cause requires. You say that the recognizances were
-            forfeited. Quinctius the moment he returned to <placeName key="perseus,Rome"
-              >Rome</placeName> asked you on what day the recognizances were drawn. You answered at
+            forfeited. Quinctius the moment he returned to <placeName key="perseus,Rome">Rome</placeName> asked you on what day the recognizances were drawn. You answered at
             once, on the fifth of February. Quinctius, when departing, began to recollect on what
-            day he left <placeName key="perseus,Rome">Rome</placeName> for <placeName
-              key="tgn,1000070">Gaul</placeName>: he goes to his journal, he finds the day of his
-            departure set down, the thirty-first of January. If he was at <placeName
-              key="perseus,Rome">Rome</placeName> on the fifth of February we have nothing to say
-            against his having entered into recognizances with you. <milestone n="58" unit="section"
-            /> What then? how can this be found out? Lucius Albius went with him, a man of the
+            day he left <placeName key="perseus,Rome">Rome</placeName> for <placeName key="tgn,1000070">Gaul</placeName>: he goes to his journal, he finds the day of his
+            departure set down, the thirty-first of January. If he was at <placeName key="perseus,Rome">Rome</placeName> on the fifth of February we have nothing to say
+            against his having entered into recognizances with you. <milestone n="58" unit="section"/> What then? how can this be found out? Lucius Albius went with him, a man of the
             highest honour; he shall give his evidence. Some friends accompanied both Albius and
             Quinctius; they also shall give their evidence. Shall the letters of Publius Quinctius,
             shall so many witnesses, all having the most undeniable reason for being able to know
@@ -835,8 +779,7 @@ Added to repository. Passes TEI parsing.
             complained of; but now, when he is in the right, he does not even demand to come off
             best; he submits to be worsted, only with these limitations, that he is not to be given
             up with his goods, his character, and all his fortunes, to the covetousness and cruelty
-            of Sextus Naevius. <milestone n="19" unit="chapter"/><milestone n="60" unit="section"
-            /></p>
+            of Sextus Naevius. <milestone n="19" unit="chapter"/><milestone n="60" unit="section"/></p>
           <p>I have proved what I first promised to prove, O Caius Aquillius, that there was
             absolutely no cause why he should make this demand; that neither was any money owed, and
             that if it were owed ever so much, nothing had been done to excuse recourse being had to
@@ -860,13 +803,11 @@ Added to repository. Passes TEI parsing.
             in a high degree the attention of an illustrious agent. You say that Quinctius is in
             your debt; his agent denies it. You wish security to he given; he promises it. You call
             him into court; he follows you. You demand a trial; he does not object. What other could
-            be the conduct of one defending a man in his absence I do not understand. <milestone
-              n="62" unit="section"/> But who was the agent? I suppose it was some insignificant
+            be the conduct of one defending a man in his absence I do not understand. <milestone n="62" unit="section"/> But who was the agent? I suppose it was some insignificant
             man, poor, litigious, worthless, who might be able to endure the daily abuse of a
             wealthy buffoon. Nothing of the sort: he was a wealthy Roman knight; a man managing his
             own affairs well: he was, in short, the man whom Naevius himself as often as he went
-            into <placeName key="tgn,1000070">Gaul</placeName>, left as his agent at <placeName
-              key="perseus,Rome">Rome</placeName>. <milestone n="20" unit="chapter"/></p>
+            into <placeName key="tgn,1000070">Gaul</placeName>, left as his agent at <placeName key="perseus,Rome">Rome</placeName>. <milestone n="20" unit="chapter"/></p>
           <p>And do you dare, O Sextus Naevius, to deny that Quinctius was defended in his absence,
             when the same man defended him who used to defend you? and when he accepted the trial on
             behalf of Quinctius, to whom when departing you used to recommend and entrust your own
@@ -895,12 +836,10 @@ Added to repository. Passes TEI parsing.
             was defended at the trial. And as that is the ease, his goods were not taken possession
             of in accordance with the edict. But then, the tribunes of the people did not even hear
             his cause. I admit, if that be the case, that the agent ought to have obeyed the decree
-            of the praetor. What; if Marcus Brutus openly said that he would intercede <note
-              anchored="true"><foreign xml:lang="la">Intercedo</foreign> was the technical word for the
+            of the praetor. What; if Marcus Brutus openly said that he would intercede <note anchored="true"><foreign xml:lang="la">Intercedo</foreign> was the technical word for the
               interposition of the tribunes.</note> unless some agreement was come to between
             Alphenus himself and Naevius; does not the appeal to the tribunes seem to have been
-            interposed not for the sake of delay but of assistance? <milestone n="21" unit="chapter"
-              /><milestone n="66" unit="section"/></p>
+            interposed not for the sake of delay but of assistance? <milestone n="21" unit="chapter"/><milestone n="66" unit="section"/></p>
           <p>What is done next? Alphenus, in order that all men might see that Quinctius was
             defended at the trial, that no suspicion might exist unfavourable either to his own
             duty, or to his principal's character, summons many excellent men, And, in the hearing
@@ -916,8 +855,7 @@ Added to repository. Passes TEI parsing.
             recognizances. Quinctius does appear to his recognizances. The matter lies in dispute
             while that fellow is spreading his calumnies for two years, until he could find out by
             what means the affair might be diverted out of the common course of proceeding, and the
-            whole cause he confined to this single point to which it is now limited. <milestone
-              n="68" unit="section"/>What duty of an agent can possibly be mentioned, O Caius
+            whole cause he confined to this single point to which it is now limited. <milestone n="68" unit="section"/>What duty of an agent can possibly be mentioned, O Caius
             Aquillius, which seems to have been overlooked by Alphenus? What reason is alleged why
             it should be denied that Publius Quinctius was defended in his absence? Is it that which
             I suppose Hortensius will allege, because he has lately mentioned it, and because
@@ -932,8 +870,7 @@ Added to repository. Passes TEI parsing.
             “a man of the opposite party.” No doubt; a man who had been brought
             up in your house, whom you from a youth had so trained up as not to favour any one of
             eminence, not even a gladiator. <note anchored="true">The text is undoubtedly corrupt
-              here. Some read <foreign xml:lang="la">haereret</foreign>, some <foreign xml:lang="la"
-                >cederet</foreign>. I have adopted the text of Orellius; but the meaning is not very
+              here. Some read <foreign xml:lang="la">haereret</foreign>, some <foreign xml:lang="la">cederet</foreign>. I have adopted the text of Orellius; but the meaning is not very
               plain.</note> If Alphenus had the same wish as you always especially entertained, was
             not the contest between you on equal terms in that matter? “Oh,”
             says he, “he was an intimate friend of Brutus, and therefore he
@@ -952,13 +889,11 @@ Added to repository. Passes TEI parsing.
             cunning, you easily surpassed him. To say nothing of other things, this is sufficient:
             Alphenus was ruined with those men, and for the sake of those men to whom he was
             attached; you, after those men who were your friends could not get the better, took care
-            that those who did get the better should be your friends. <milestone n="71"
-              unit="section"/> But if you think you had not then the same justice as Alphenus,
+            that those who did get the better should be your friends. <milestone n="71" unit="section"/> But if you think you had not then the same justice as Alphenus,
             because it was in his power to appeal to some one against you; because a magistrate was
             found before whom the cause of Alphenus could be fairly heard; what is Quinctius to
             determine on at this time I—a man who has not as yet found any just
-            magistrate, nor been able to procure the customary trial; <note anchored="true"
-              >“Because the matter in dispute was really a money matter, but the praetor
+            magistrate, nor been able to procure the customary trial; <note anchored="true">“Because the matter in dispute was really a money matter, but the praetor
               ordered the trial to proceed <foreign xml:lang="la">de
               probro</foreign>.”—Hottoman.</note> in whose case no condition, no
             security, no petition has been interposed,—I do not say a just one, but none
@@ -966,15 +901,13 @@ Added to repository. Passes TEI parsing.
             money. You cannot. But that is the point in dispute. It does not concern me; you must
             plead to a capital charges. Accuse me then, if it must be so. No says be, not unless
             you, in an unprecedented manner, first make your defence. You must plead; the time must
-            be fixed at our pleasure; the judge himself shall be removed. <milestone n="72"
-              unit="section"/>What then? Shall you be able to find any advocate, a man of such
+            be fixed at our pleasure; the judge himself shall be removed. <milestone n="72" unit="section"/>What then? Shall you be able to find any advocate, a man of such
             ancient principles of duty as to despise our splendour and influence? Lucius Philippus
             will be my advocate; in eloquence, in dignity, and in honour, the most flourishing man
             in the states. Hortensius will speak for me; a man eminent for his genius, and nobility,
             and reputation; and other most noble and powerful men will accompany me into court, the
             number and appearance of whom may alarm not only Publius Quinctius, who is defending
-            himself on a capital charge, but even any one who is out of danger. <milestone n="73"
-              unit="section"/> This really is what an unequal contest is; not that one in which you
+            himself on a capital charge, but even any one who is out of danger. <milestone n="73" unit="section"/> This really is what an unequal contest is; not that one in which you
             were skirmishing against Alphenus. You did not leave him any place where he could make a
             stand against you. You must therefore either prove that Alphenus denied he was his
             agent, did not tear down the bills, and refused to go to trial; or, if all this was
@@ -1006,8 +939,7 @@ Added to repository. Passes TEI parsing.
             but let them consider this one thing, that they are of weight only so far, that they can
             preserve that weight, if they also preserve the truth; if they neglect that, they are so
             insignificant that all men may see that influence is of avail not to support a lie, but
-            only to prove the truth. <milestone n="24" unit="chapter"/><milestone n="76"
-              unit="section"/></p>
+            only to prove the truth. <milestone n="24" unit="chapter"/><milestone n="76" unit="section"/></p>
           <p>I ask these two questions. First of all, on what account Naevius did not complete the
             business he had undertaken; that is, why he did not sell the goods which he had taken
             possession of in accordance with the edict: Secondly, why out of so many other creditors
@@ -1038,8 +970,7 @@ Added to repository. Passes TEI parsing.
             he was present, could attempt to use action in speaking, but those who contended with
             him himself, even though before that they seemed to have any skill or elegance, lost it,
             and that I was afraid lest something of the same sort would happen to me when I was
-            going to speak against so great an artist. <milestone n="25" unit="chapter"/><milestone
-              n="78" unit="section"/></p>
+            going to speak against so great an artist. <milestone n="25" unit="chapter"/><milestone n="78" unit="section"/></p>
           <p>Then Roscius said many other things with a view to encourage me, and in truth, if he
             were to say nothing he would still move any one by the very silent affection and zeal
             which he felt for his relation. In truth, as he is an artist of that sort that he alone
@@ -1066,12 +997,10 @@ Added to repository. Passes TEI parsing.
             ashamed to speak it. I understand; but he is ashamed too late, and to no purpose. He is
             driven off the estate on the twenty-third of February, O Caius Aquillius. Two days
             afterwards, or, even if any one had set off and run the moment he left the court, in
-            under three days, he accomplishes seven hundred miles. <milestone n="80" unit="section"
-            /> O incredible thing! O inconsiderate covetousness! O winged messenger! The agents and
+            under three days, he accomplishes seven hundred miles. <milestone n="80" unit="section"/> O incredible thing! O inconsiderate covetousness! O winged messenger! The agents and
             satellites of Sextus Naevius come from <placeName key="perseus,Rome">Rome</placeName>,
             across the <placeName key="tgn,2066659">Alps</placeName>, among the Segusiani in two
-            days. O happy man who has such messengers, or rather Pegasi. <milestone n="26"
-              unit="chapter"/></p>
+            days. O happy man who has such messengers, or rather Pegasi. <milestone n="26" unit="chapter"/></p>
           <p>Here I, even if all the Crassi were to stand forth with all the Antonies, if you, O
             Lucius Philippus, who flourished among those men, choose to plead this cause, with
             Hortensius for your colleague, yet I must get the best of it. For everything does not
@@ -1097,8 +1026,7 @@ Added to repository. Passes TEI parsing.
             decree, and by being willing to stand a trial. <milestone n="83" unit="section"/> For,
             by the immortal gods, if Alphenus, the agent of Publius Quinctius, were then willing to
             give security and to stand a trial, and in short to do everything which you chose, what
-            would you do? Would you recall him whom you had sent into <placeName key="tgn,1000070"
-              >Gaul</placeName>? But this man would have been already expelled from his farm,
+            would you do? Would you recall him whom you had sent into <placeName key="tgn,1000070">Gaul</placeName>? But this man would have been already expelled from his farm,
             already driven headlong from his home, already (the most unworthy thing of all)
             assaulted by the hands of his own slaves, in obedience to your messenger and command.
             You would, forsooth, make amends for these things afterwards. Do you dare to speak of
@@ -1136,8 +1064,7 @@ Added to repository. Passes TEI parsing.
             having been a man who was keeping out of the way, of his being a man who had a house, a
             wife, children, and an agent at <placeName key="perseus,Rome">Rome</placeName>; I say
             nothing of all this: I say this, that the owner was expelled from his farm; that hands
-            were laid on their master by his own slaves, before his own household gods; I say <gap
-              reason="*****"/>
+            were laid on their master by his own slaves, before his own household gods; I say <gap reason="lost"/>
             <milestone n="28" unit="chapter"/></p>
           <p>I say too that Naevius never even asked Quinctius for the money, when he was with him,
             and might have sued him every day; because he preferred that all the most perplexing
@@ -1166,16 +1093,14 @@ Added to repository. Passes TEI parsing.
             tribunes, he was not on that account the less prepared to submit to a trial; and that
             Naevius had not had his rights wrested from him by the powerful interest of the agent;
             that on the other hand he was so much superior to us in interest that he now scarcely
-            gives us the liberty of breathing. <milestone n="29" unit="chapter"/><milestone n="88"
-              unit="section"/></p>
+            gives us the liberty of breathing. <milestone n="29" unit="chapter"/><milestone n="88" unit="section"/></p>
           <p>I asked what the reason was why the goods had not been sold, since they had been taken
             possession of according to the edict. Secondly, I asked this also, on what account not
             one of so many creditors either did the same thing then, why not one speaks against him
             now, but why they are all striving for Publius Quinctius? Especially when in such a
             trial the testimonies of creditors are thought exceedingly material. After that, I
             employed the testimony of the adversary, who lately entered as his partner the man who,
-            according to the language of his present claim, <note anchored="true"><foreign xml:lang="la"
-                >Intentio</foreign> was the technical legal term for the claim made by the
+            according to the language of his present claim, <note anchored="true"><foreign xml:lang="la">Intentio</foreign> was the technical legal term for the claim made by the
               plaintiff.</note> he demonstrates was at that time not even in the number of living
             men. Then I mentioned that incredible rapidity, or rather audacity of his. I showed that
             it was inevitable, either that seven hundred miles had been run over in two days, or
@@ -1189,16 +1114,14 @@ Added to repository. Passes TEI parsing.
             said that he had a house at <placeName key="perseus,Rome">Rome</placeName> which that
             fellow never even made an attempt on; that he had many slaves, of which he neither took
             possession of any, and did not even touch any; that there was one whom he attempted to
-            touch; that he was forbidden to, and that he remained quiet. <milestone n="90"
-              unit="section"/> You know also that Sextus Naevius never came on to the private farms
+            touch; that he was forbidden to, and that he remained quiet. <milestone n="90" unit="section"/> You know also that Sextus Naevius never came on to the private farms
             of Quinctius even in <placeName key="tgn,1000070">Gaul</placeName>. Lastly I proved that
             the private servants of Quinctius were not all driven away from that very estate which
             he took possession of, having expelled his partner by force. From which, and from all
             the other sayings, and actions, and thoughts of Sextus Naevius, any one can understand
             that that fellow did nothing else, and is now doing nothing, but endeavouring by
             violence, by injustice, and by unfair means at this trial, to make the whole farm his
-            own which belongs to both partners in common. <milestone n="30" unit="chapter"
-              /><milestone n="91" unit="section"/></p>
+            own which belongs to both partners in common. <milestone n="30" unit="chapter"/><milestone n="91" unit="section"/></p>
           <p>Now that I have summed up the whole cause the affair itself and the magnitude of the
             danger, O Caius Aquillius, seem to make it necessary for Publius Quinctius to solicit
             and entreat you and your colleagues, by his old age and his desolate condition, merely
@@ -1222,8 +1145,7 @@ Added to repository. Passes TEI parsing.
             and as it were exposed to cupidity and debauchery; on the other hand he says that duty,
             good faith, industry and a life which has been always austere and void of pleasure has
             been his choice; he knows that the opposite course is more fashionable, and that by such
-            habits people have more influence. What then shall be done? <milestone n="94"
-              unit="section"/> They have not so much more influence, that those who, having
+            habits people have more influence. What then shall be done? <milestone n="94" unit="section"/> They have not so much more influence, that those who, having
             abandoned the strict discipline of virtuous men, have chosen rather to follow the gains
             and extravagance of Gallonius,<note anchored="true">Gallonius was a crier also, branded
               by Horace as notorious for extravagance and luxury. <quote xml:lang="la">
@@ -1240,8 +1162,7 @@ Added to repository. Passes TEI parsing.
             may at last be able to rest in peace. But if Naevius is to have power to do everything
             he chooses, and if he chooses what is unlawful, what is to be done? What God is to be
             appealed to? The faith of what man can we invoke? What complaints, what lamentations can
-            be devised adequate to so great a calamity. <milestone n="31" unit="chapter"/><milestone
-              n="95" unit="section"/></p>
+            be devised adequate to so great a calamity. <milestone n="31" unit="chapter"/><milestone n="95" unit="section"/></p>
           <p>It is a miserable thing to be despoiled of all one's fortunes; it is more miserable
             still to be so unjustly. It is a bitter thing to be circumvented by any one, more bitter
             still to be so by a relation. It is a calamitous thing to be stripped of one's goods,
@@ -1265,8 +1186,7 @@ Added to repository. Passes TEI parsing.
             children to whom no one is a nearer relation than Publius Quinctius, at length to take
             pity on him, to have some regard, if not for their relationship, at least for his age,
             if not for a man, at least for humanity, to terminate the matter on any conditions as
-            long as they were only endurable, leaving his character unimpeached. <milestone n="98"
-              unit="section"/> Being rejected by him, getting no assistance from his friends being
+            long as they were only endurable, leaving his character unimpeached. <milestone n="98" unit="section"/> Being rejected by him, getting no assistance from his friends being
             passed and frightened by every magistrate he has no one but you whom he can appeal to
             you he commends himself to you he commends all his property and fortunes to you he
             commends his character and his hopes for the remainder of his life. Harassed by much
@@ -1283,6 +1203,6 @@ Added to repository. Passes TEI parsing.
             ornaments as spoils of victory; that it may not be owing to you that the character,
             which has accompanied Publius Quinctius to his old age, does not attend him to the
             tomb.</p>
-        </body>
-      </text>
+        </div>
+      </body></text>
       </TEI>

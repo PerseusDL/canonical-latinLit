@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
-                <title>The History of Rome by Titus Livius, books nine to twenty-six - 10</title>
+                <title type="work">The History of Rome by Titus Livius, books nine to twenty-six - 10</title>
                 <title>literally translated, with notes and illustrations</title>
                 <title type="sub">Machine readable text</title>
-                <author>Titus Livius (Livy)</author>
+                <author n="Titus Livius (Livy)">Titus Livius (Livy)</author>
                 <editor role="translator">D. Spillan, A.M., M.D.</editor>
                 <editor role="translator">Cyrus Evans</editor>
                 <sponsor>Perseus Project, Tufts University</sponsor>
@@ -20,7 +20,6 @@
                 </respStmt>
                 <funder n="org:NEH">The National Endowment for the Humanities</funder>
             </titleStmt>
-            <extent>about 1.4 Mb</extent>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
@@ -44,22 +43,34 @@
                                 <publisher>John Child and son, printers</publisher>
                                 <date>1849</date>
                             </imprint>
-                            <biblScope type="volume">2</biblScope>
+                            <biblScope unit="volume">2</biblScope>
                         </monogr>
                     </biblStruct>
                 </listBibl>
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="Section" matchPattern="(\\w+).(\\w+).(\\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:milestone[@n=\'$2\']/tei:milestone[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter" matchPattern="(\\w+).(\\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n=\'$1\']/tei:milestone[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book" matchPattern="(\\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
-                <refState unit="book"/>
-                <refState unit="chapter" n="chunk"/>
+                <refState unit="Book" delim="."/>
+                <refState unit="Chapter" delim="."/>
+                <refState unit="Section"/>
             </refsDecl>
         </encodingDesc>
         <profileDesc>
             <langUsage default="false">
                 <language ident="en">English </language>
-                <language ident="greek">Greek </language>
+                <language ident="grc">Greek </language>
                 <language ident="la">Latin </language>
                 <language ident="fr">French </language>
             </langUsage>
@@ -76,14 +87,14 @@
             </change>
         -->
             <change when="2014-10-09" who="Stella Dee">edited markup</change>
-        </revisionDesc>
+        <change when="2015-12-03" who="Zach Himes"/></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
-        <body>
+    <text>
+        <body><div type="translation" xml:lang="eng" n="urn:cts:canonical-latinLit:phi0914.phi00110.perseus-eng2">
             <pb n="628" xml:id="p.628"/>
-            <div part="N" sample="complete" org="uniform" n="10" type="book">
+            <div part="N" sample="complete" org="uniform" n="10" type="textpart" subtype="book">
                 <head>BOOK X.</head>
-                <argument>
+                
                     <p> Submission of the Marcians accepted. The college of Augurs augmented from
                         four to nine. The law of appeal to the people carried by Valerius the
                         consul. Two more tribes added. War declared against the Sam- nites. Several
@@ -93,7 +104,7 @@
                         procures the victory to the Romans. Defeat of the Samnites by Papirius
                         Cursor. The census held. The lustrum closed. The number of the citizens two
                         hundred and sixty-two thousand three hundred and twenty-two. </p>
-                </argument>
+                
                 <milestone n="1" unit="chapter"/>
                 <p>
                     <milestone n="1" unit="section"/> DURING the consulate of Lucius Genucius and
@@ -110,8 +121,7 @@
                     and beheaded. <milestone n="4" unit="section"/> However, that the Romans might
                     not pass the year entirely exempt from war, a little expedition was made into
                     Umbria; intelligence being received from thence, that excursions of men, in
-                    arms, had been made, from a certain cave, into the adjacent country. <milestone
-                        n="5" unit="section"/> Into this cave the troops penetrated with their
+                    arms, had been made, from a certain cave, into the adjacent country. <milestone n="5" unit="section"/> Into this cave the troops penetrated with their
                     standards, and, the place being dark, they received many wounds, chiefly from
                     stones thrown. At length the other mouth of the cave being found, for it was
                     pervious, both the openings were filled up with wood, which being set on fire,
@@ -126,8 +136,7 @@
                     They caused, however, such an alarm at Rome, that, to quell this insurrection,
                     Caius Junius Bubulcus was nominated dictator: for it was scarcely credible that
                     the Aequans, after being reduced to such a degree of weakness, should by
-                    themselves alone have ventured to engage in a war. <milestone n="9"
-                        unit="section"/> The dictator, taking the field, with Marcus Titinius,
+                    themselves alone have ventured to engage in a war. <milestone n="9" unit="section"/> The dictator, taking the field, with Marcus Titinius,
                     master of the horse, in the first engagement reduced the Aequans to submission;
                     and returning into the city in triumph, on the eighth day, dedicated, in the
                     character of dictator, the temple of Health, which he had vowed when consul, and
@@ -136,8 +145,7 @@
                 <p>
                     <milestone n="1" unit="section"/> During this year a fleet of Grecians, under
                     the command of Cleonymus, a Lacedaemonian, arrived on the coast of Italy, and
-                    took Thuriae, a city in the territory of the Sallentines. <milestone n="2"
-                        unit="section"/> Against this enemy the consul Aemilius was sent, who, in
+                    took Thuriae, a city in the territory of the Sallentines. <milestone n="2" unit="section"/> Against this enemy the consul Aemilius was sent, who, in
                     one battle, completely defeated them, and drove them on board their ships.
                         <milestone n="3" unit="section"/> Thuriae was then restored to its old
                     inhabitants, and peace re-established in the country of the Sallentines. In some
@@ -150,20 +158,15 @@
                     noted in general for piracy, he passed on to the coasts of the Venetians.
                         <milestone n="5" unit="section"/> Here, having landed a small party to
                     explore the country, and being informed that a narrow beach stretched along the
-                    shore, beyond which were marshes, overflowed by the tides; <milestone n="6"
-                        unit="section"/> that dry land was seen at no great distance, level in the
+                    shore, beyond which were marshes, overflowed by the tides; <milestone n="6" unit="section"/> that dry land was seen at no great distance, level in the
                     nearest part, and rising behind into hills, beyond which was the mouth of a very
                     deep river, into which they had seen ships brought round and moored in safety,
-                    (this was the river Meduacus,) he ordered his fleet to sail into it and <pb
-                        n="630" xml:id="p.630"/> go up against the stream. <milestone n="7"
-                        unit="section"/> As the channel would not admit the heavy ships, the troops,
+                    (this was the river Meduacus,) he ordered his fleet to sail into it and <pb n="630" xml:id="p.630"/> go up against the stream. <milestone n="7" unit="section"/> As the channel would not admit the heavy ships, the troops,
                     removing into the lighter vessels, arrived at a part of the country occupied by
-                    three maritime cantons of the Patavians, settled on that coast. <milestone n="8"
-                        unit="section"/> Here they made a descent, leaving a small guard with the
+                    three maritime cantons of the Patavians, settled on that coast. <milestone n="8" unit="section"/> Here they made a descent, leaving a small guard with the
                     ships, made themselves masters of these cantons, set fire to the houses, drove
                     off a considerable booty of men and cattle, and, allured by the sweets of
-                    plunder, proceeded still further from the shore. <milestone n="9" unit="section"
-                    /> When news of this was brought to Patavium, where the contiguity of the Gauls
+                    plunder, proceeded still further from the shore. <milestone n="9" unit="section"/> When news of this was brought to Patavium, where the contiguity of the Gauls
                     kept the inhabitants constantly in arms, they divided their young men into two
                     bands, one of which was led towards the quarter where the marauders were said to
                     be busy; the other by a different route, to avoid meeting any of the pirates,
@@ -172,11 +175,9 @@
                     and the guards being killed, the affrighted mariners were obliged to remove
                     their ships to the other bank of the river. By land, also, the attack on the
                     dispersed plunderers was equally successful; and the Grecians, flying back
-                    towards their ships, were opposed in their way by the Venetians. <milestone
-                        n="11" unit="section"/> Thus they were enclosed on both sides, and cut to
+                    towards their ships, were opposed in their way by the Venetians. <milestone n="11" unit="section"/> Thus they were enclosed on both sides, and cut to
                     pieces; and some, who were made prisoners, gave information that the fleet, with
-                    their king, Cleonymus, was but three miles distant. <milestone n="12"
-                        unit="section"/> Sending the captives into the nearest canton, to be kept
+                    their king, Cleonymus, was but three miles distant. <milestone n="12" unit="section"/> Sending the captives into the nearest canton, to be kept
                     under a guard, some soldiers got on board the flat-bottomed vessels, so
                     constructed for the purpose of passing the shoals with ease; others embarked in
                     those which had been lately taken from the enemy, and proceeding down the river,
@@ -188,8 +189,7 @@
                     returned victorious. <milestone n="14" unit="section"/> Cleonymus, having met
                     success in no part of the Adriatic sea, departed with scarce a fifth part of his
                     navy remaining. Many, now alive, have seen the beaks of his ships, and the
-                    spoils of the Lacedaemonians, hanging in the old temple of Juno. <milestone
-                        n="15" unit="section"/> In commemoration of this event, there is exhibited
+                    spoils of the Lacedaemonians, hanging in the old temple of Juno. <milestone n="15" unit="section"/> In commemoration of this event, there is exhibited
                     at Patavium, every year, on its anniversary day, a naval combat on the river in
                     the middle of the town. <pb n="631" xml:id="p.631"/>
                 </p>
@@ -213,13 +213,10 @@
                     out at the head of an army, in one battle utterly defeated the Marsians, drove
                     them into their fortified towns, and afterwards, in the course of a few days,
                     took Milionia, Plestina, and Fresilia; and then finding Marsians in a part of
-                    their lands, granted them a renewal of the treaty. <milestone n="6"
-                        unit="section"/> The war was then directed against the Etrurians; <milestone
-                        n="7" unit="section"/> and when the dictator had gone to Rome, for the
+                    their lands, granted them a renewal of the treaty. <milestone n="6" unit="section"/> The war was then directed against the Etrurians; <milestone n="7" unit="section"/> and when the dictator had gone to Rome, for the
                     purpose of renewing the auspices, the master of the horse, going out to forage,
                     was surrounded by an ambuscade, and obliged to fly shamefully into his camp,
-                    after losing several standards and many of his men. <milestone n="8"
-                        unit="section"/> The occurrence of which discomfiture to Fabius is
+                    after losing several standards and many of his men. <milestone n="8" unit="section"/> The occurrence of which discomfiture to Fabius is
                     exceedingly improbable; not only because, if in any particular, certainly, above
                     all, in the qualifications of a commander, he fully merited his surname; but
                     besides, mindful of Papirius's severity, he never could have been tempted to
@@ -227,8 +224,7 @@
                 <milestone n="4" unit="chapter"/>
                 <p>
                     <milestone n="1" unit="section"/> The news of this disaster excited at Rome an
-                    alarm greater than suited the importance of the affair; <milestone n="2"
-                        unit="section"/> for, as if the army had been destroyed, a justitium was
+                    alarm greater than suited the importance of the affair; <milestone n="2" unit="section"/> for, as if the army had been destroyed, a justitium was
                     proclaimed, guards mounted at the gates, and watches set in every street: and
                     armour and weapons were heaped on the walls. <milestone n="3" unit="section"/>
                     All the younger citizens being compelled to enlist, the dictator was ordered to
@@ -236,8 +232,7 @@
                     expected, and regularity established, <pb n="632" xml:id="p.632"/> through the
                     care of the master of the horse; <milestone n="4" unit="section"/> the camp
                     removed to a place of greater safety; the cohorts, which had lost their
-                    standards, left without tents on the outside of the ramparts; <milestone n="5"
-                        unit="section"/> and the troops ardently impatient for battle, that their
+                    standards, left without tents on the outside of the ramparts; <milestone n="5" unit="section"/> and the troops ardently impatient for battle, that their
                     disgrace might be the sooner obliterated. <milestone n="6" unit="section"/> He
                     therefore immediately advanced his camp into the territory of Rusella. Thither
                     the enemy also followed; and although, since their late success, they
@@ -251,13 +246,11 @@
                     induced by this temptation to stir from his post, one of the herdsmen, advancing
                     close to the works, called out, that others were driving out those cattle at
                     their leisure from the ruins of the town, why did they remain idle, when they
-                    might safely drive them through the middle of the Roman camp? <milestone n="9"
-                        unit="section"/> When this was interpreted to the lieutenant-general, by
+                    might safely drive them through the middle of the Roman camp? <milestone n="9" unit="section"/> When this was interpreted to the lieutenant-general, by
                     some natives of Caere, and great impatience prevailed through every company of
                     the soldiers, who, nevertheless, dared not to move without orders, he commanded
                     some who were skilled in the language to observe attentively, whether the
-                    dialect of the herdsmen resembled that of rustics or of citizens. <milestone
-                        n="10" unit="section"/> When these reported, that their accent in speaking,
+                    dialect of the herdsmen resembled that of rustics or of citizens. <milestone n="10" unit="section"/> When these reported, that their accent in speaking,
                     their manner and appearance, were all of a more polished cast than suited
                     shepherds; <quote>Go then,</quote> said he, <quote> tell them that they may
                         uncover the ambush which they vainly conceal; that the Romans understand all
@@ -273,8 +266,7 @@
                 <milestone n="5" unit="chapter"/>
                 <p>
                     <milestone n="1" unit="section"/> On receiving his message, the dictator ordered
-                    the standards to move, and the troops to follow in arms. <milestone n="2"
-                        unit="section"/> But <pb n="633" xml:id="p.633"/> every thing was executed
+                    the standards to move, and the troops to follow in arms. <milestone n="2" unit="section"/> But <pb n="633" xml:id="p.633"/> every thing was executed
                     more quickly, almost, than ordered. The standards and arms were instantly
                     snatched up, and they were with difficulty restrained from running impetuously
                     on; both indignation at their late defeat stimulated them, as well as the shouts
@@ -292,15 +284,13 @@
                     that the lieutenant-general was able, even yet, to support the contest, and
                     considering that he himself was at hand to rescue him from defeat, he wished to
                     let the enemy be fatigued, as much as might be, in order that, when in that
-                    state, he might fall on them with his fresh troops. <milestone n="6"
-                        unit="section"/> Slowly as these marched, the distance was now just
+                    state, he might fall on them with his fresh troops. <milestone n="6" unit="section"/> Slowly as these marched, the distance was now just
                     sufficient for the cavalry to begin their career for a charge. The battalions of
                     the legions marched in front, lest the enemy might suspect any secret or sudden
                     movement, but intervals had been left in the ranks of the infantry, affording
                     room for the horses to gallop through. <milestone n="7" unit="section"/> At the
                     same instant the line raised the shout, and the cavalry, charging at full speed,
-                    poured on the enemy, and spread at once a general panic. <milestone n="8"
-                        unit="section"/> After this, as succour had arrived, almost too late, to the
+                    poured on the enemy, and spread at once a general panic. <milestone n="8" unit="section"/> After this, as succour had arrived, almost too late, to the
                     party surrounded, so now they were allowed entire rest, the fresh troops taking
                     on themselves the whole business of the fight. Nor was that either long or
                     dubious. <milestone n="9" unit="section"/> The enemy, now routed, fled to their
@@ -313,8 +303,7 @@
                     happening to be badly compacted, <pb n="634" xml:id="p.634"/> sunk under the
                     weight of the multitude who stood on it, and fell into the trench. On which,
                     crying out that the gods had opened that pass to give them safety, they made
-                    their way out, most of them leaving their arms behind. <milestone n="12"
-                        unit="section"/> By this battle the power of the Etrurians was, a second
+                    their way out, most of them leaving their arms behind. <milestone n="12" unit="section"/> By this battle the power of the Etrurians was, a second
                     time, effectually crushed, so that, engaging to furnish a year's pay, and corn
                     for two months, with the dictator's permission, they sent ambassadors to Rome to
                     treat of peace. <milestone n="13" unit="section"/> This was refused, but a truce
@@ -330,16 +319,14 @@
                 <milestone n="6" unit="chapter"/>
                 <p>
                     <milestone n="1" unit="section"/> During this consulate of Marcus Valerius and
-                    Quintus Appuleius, affairs abroad wore a very peaceable aspect. <milestone n="2"
-                        unit="section"/> Their losses sustained in war, together with the truce,
+                    Quintus Appuleius, affairs abroad wore a very peaceable aspect. <milestone n="2" unit="section"/> Their losses sustained in war, together with the truce,
                     kept the Etrurians quiet. The Samnites, depressed by the misfortunes of many
                     years, had not yet become dissatisfied with their new alliance. At Rome, also,
                     the carrying away of such multitudes to colonies, rendered the commons tranquil,
                     and lightened their burthens. <milestone n="3" unit="section"/> But, that things
                     might not be tranquil on all sides, a contention was excited between the
                     principal persons in the commonwealth, patricians on one hand, and plebeians on
-                    the other, by the two Ogulnii, Quintus and Cneius, <milestone n="4??"
-                        unit="section"/> plebeian tribunes, who, seeking every where occasions of
+                    the other, by the two Ogulnii, Quintus and Cneius, <milestone n="4??" unit="section"/> plebeian tribunes, who, seeking every where occasions of
                     criminating the patricians in the hearing of the people, and having found other
                     attempts fruitless, set on foot a proceeding by which they might inflame, not
                     the lowest class of the commons, but their chief men, the plebeians of consular
@@ -349,12 +336,10 @@
                     published a proposal for a law, that, whereas there were then four augurs and
                     four pontiffs, and it had been determined that the number of priests should be
                     augmented, the four additional pontiffs and <pb n="635" xml:id="p.635"/> five
-                    augurs should all be chosen out of the commons. <milestone n="7" unit="section"
-                    /> How the college of augurs could be reduced to the number of four, except by
+                    augurs should all be chosen out of the commons. <milestone n="7" unit="section"/> How the college of augurs could be reduced to the number of four, except by
                     the death of two, I do not understand: for it is a rule among the augurs, that
                     their number should be composed of threes, so that the three ancient tribes, the
-                    Ramnes, Titienses, and Luceres, should have each its own augur; <milestone n="8"
-                        unit="section"/> or, in case there should be occasion for more, that each
+                    Ramnes, Titienses, and Luceres, should have each its own augur; <milestone n="8" unit="section"/> or, in case there should be occasion for more, that each
                     should increase its number of augurs, in equal proportion with the rest, in like
                     manner as when, by the addition of five to four, they made up the number nine,
                     so that there were three to each tribe. <milestone n="9" unit="section"/>
@@ -406,8 +391,7 @@
                     honoured with curule chairs, with the purple bordered gown, with the palm-vest
                     and embroidered robe, with the triumphal crown and laurel, whose houses ye have
                     rendered conspicuous above others, by affixing to them the spoils of conquered
-                    enemies, should add to these the badges of augurs or pontiffs? <milestone n="10"
-                        unit="section"/> If a person, who has rode through the city in a gilt
+                    enemies, should add to these the badges of augurs or pontiffs? <milestone n="10" unit="section"/> If a person, who has rode through the city in a gilt
                     chariot; and, decorated with the ensigns of Jupiter, supremely good and great,
                     has mounted the Capitol, should be seen with a chalice and wand; what
                     impropriety, I say, that he should, with his head veiled, slay a victim, or take
@@ -417,8 +401,7 @@
                     of the office of augur or pontiff? In truth (with deference to the gods I say
                     it) I trust that we are, through the kindness of the Roman people, qualified in
                     such a manner that we should, by the dignity of our characters, reflect back, on
-                    the priesthood, not less lustre than we should receive; <milestone n="12"
-                        unit="section"/> and may demand, rather on behalf of the gods, than for our
+                    the priesthood, not less lustre than we should receive; <milestone n="12" unit="section"/> and may demand, rather on behalf of the gods, than for our
                     own sakes, that those whom we worship in our private we may also worship in a
                     public capacity. </p>
                 <milestone n="8" unit="chapter"/>
@@ -426,17 +409,13 @@
                     <milestone n="1" unit="section"/>
                     <quote> But why do I argue thus, as if the cause of the patricians, respecting
                         the priesthood, were untouched? and as if we were not already in possession
-                        of one sacerdotal office, of the highest class? <milestone n="2"
-                            unit="section"/> We see plebeian decemvirs, for performing sacrifices,
-                        interpreters of the Sibylline prophecies, and of the fates <pb n="637"
-                            xml:id="p.637"/> of the nation; we also see them presidents of Apollo's
-                        festival, and of other religious performances. <milestone n="3"
-                            unit="section"/> Neither was any injustice done to the patricians, when,
+                        of one sacerdotal office, of the highest class? <milestone n="2" unit="section"/> We see plebeian decemvirs, for performing sacrifices,
+                        interpreters of the Sibylline prophecies, and of the fates <pb n="637" xml:id="p.637"/> of the nation; we also see them presidents of Apollo's
+                        festival, and of other religious performances. <milestone n="3" unit="section"/> Neither was any injustice done to the patricians, when,
                         to the two commissioners for performing sacrifices, an additional number was
                         joined, in favour of the plebeians; nor is there now, when a tribune, a man
                         of courage and activity, wishes to add five places of augurs, and four of
-                        pontiffs, to which plebeians may be nominated; <milestone n="4"
-                            unit="section"/> not, Appius, with intent to expel you from your places;
+                        pontiffs, to which plebeians may be nominated; <milestone n="4" unit="section"/> not, Appius, with intent to expel you from your places;
                         but, that men of plebeian rank may assist you, in the management of divine
                         affairs, with the same zeal with which they assist you in matters of human
                         concernment. <milestone n="5" unit="section"/> Blush not, Appius, at having
@@ -448,8 +427,7 @@
                         the ancient patricians of those days admitted into their number: do not
                         then, on your part, disdain to admit us into the number of priests.
                             <milestone n="7" unit="section"/> We bring with us numerous honours; all
-                        those honours, indeed, which have rendered your party so proud. <milestone
-                            n="8" unit="section"/> Lucius Sextius was the first consul chosen out of
+                        those honours, indeed, which have rendered your party so proud. <milestone n="8" unit="section"/> Lucius Sextius was the first consul chosen out of
                         the plebeians; Caius Licinius Stolo, the first master of the horse; Caius
                         Marcius Rutilus, the first dictator, and likewise censor; Quintus Publilius
                         Philo, the first praetor. <milestone n="9" unit="section"/> On all occasions
@@ -464,8 +442,7 @@
                         can now cite my fa- ther, a consul; and my son will be able to cite a
                         grandfather. Citizens, there is nothing else in it, than that we should
                         never obtain any thing without a refusal. The patricians wish only for a
-                        dispute; nor do they care what issue their disputes may have. <milestone
-                            n="12" unit="section"/> For my part, be it advantageous, happy, and
+                        dispute; nor do they care what issue their disputes may have. <milestone n="12" unit="section"/> For my part, be it advantageous, happy, and
                         prosperous to you and to the commonwealth, I am of opinion that this law
                         should receive your sanction. </quote>
                     <pb n="638" xml:id="p.638"/>
@@ -507,13 +484,10 @@
                     Fulvius Paetinus and Titus Manlius Torquatus. <milestone n="10" unit="section"/>
                     When all the centuries named Quintus Fabius consul for that year though not a
                     candidate, Macer Licinius and Tubero state that he himself recommended them to
-                    postpone the conferring the consulship on him until a <pb n="639" xml:id="p.639"
-                    /> year wherein there might be more employment for their arms; <milestone n="11"
-                        unit="section"/> adding, that, during the present year, he might be more
+                    postpone the conferring the consulship on him until a <pb n="639" xml:id="p.639"/> year wherein there might be more employment for their arms; <milestone n="11" unit="section"/> adding, that, during the present year, he might be more
                     useful to the state in the management of a city magistracy; and thus, neither
                     dissembling what he preferred, nor yet making direct application for it, he was
-                    appointed curule aedile with Lucius Papirius Cursor. <milestone n="12"
-                        unit="section"/> Piso, a more ancient writer of annals, prevents me from
+                    appointed curule aedile with Lucius Papirius Cursor. <milestone n="12" unit="section"/> Piso, a more ancient writer of annals, prevents me from
                     averring this as certain; he asserts that the curule aediles of that year were
                     Caius Domitius Calvinus, son of Cneius, and Spurius Carvilius Maximus, son of
                     Caius. <milestone n="13" unit="section"/> I am of opinion, that this latter
@@ -533,30 +507,25 @@
                     the works and walls. <milestone n="3" unit="section"/> The proposal was thought
                     to be such as ought neither to be rejected, nor yet assented to without caution.
                     With one of these men, the other being detained as an hostage, two spies were
-                    sent through the mine, and certain information being <milestone n="4??"
-                        unit="section"/> received from them, three hundred men in arms, guided by
+                    sent through the mine, and certain information being <milestone n="4??" unit="section"/> received from them, three hundred men in arms, guided by
                     the deserter, entered the city, and seized by night the nearest gate, which
                     being broken open, the Roman consul and his army took possession of the city
                     without any opposition. In this manner came Nequinum under the dominion of the
                     Roman people. <milestone n="5" unit="section"/> A colony was sent thither as a
                     barrier against the Umbrians, and called Narnia, from the river Nar. The troops
                     returned to Rome with abundance of spoil. This year the Etrurians made
-                    preparations for war in violation of the truce. <milestone n="6" unit="section"
-                    /> But a vast army of the Gauls, making an irruption into their territories,
+                    preparations for war in violation of the truce. <milestone n="6" unit="section"/> But a vast army of the Gauls, making an irruption into their territories,
                     while their attention was directed to another quarter, suspended for a time the
                     execution of their design. <milestone n="7" unit="section"/> They then, relying
                     on the abundance of money which they possessed, endeavour to make allies of the
                     Gauls, instead of enemies; in <pb n="640" xml:id="p.640"/> order that, with
-                    their armies combined, they might attack the Romans. <milestone n="8"
-                        unit="section"/> The barbarians made no objection to the alliance, and a
+                    their armies combined, they might attack the Romans. <milestone n="8" unit="section"/> The barbarians made no objection to the alliance, and a
                     negotiation was opened for settling the price; which being adjusted and paid,
                     and every thing else being in readiness for commencing their operations, the
-                    Etrurians desired them to accompany them in their march. <milestone n="9"
-                        unit="section"/> This they refused, alleging that <quote> they had
+                    Etrurians desired them to accompany them in their march. <milestone n="9" unit="section"/> This they refused, alleging that <quote> they had
                         stipulated a price for making war against the Romans: that the payment
                         already made, they had received in consideration of their not wasting the
-                        Etrurian territory, or using their arms against the inhabitants. <milestone
-                            n="10" unit="section"/> That notwithstanding, if it was the wish of the
+                        Etrurian territory, or using their arms against the inhabitants. <milestone n="10" unit="section"/> That notwithstanding, if it was the wish of the
                         Etrurians, they were still willing to engage in the war, but on no other
                         condition than that of being allowed a share of their lands, and obtaining
                         at length some permanent settlement. </quote>
@@ -577,8 +546,7 @@
                     his horse, and almost killed on the spot; three days after the fall, he died.
                         <milestone n="2" unit="section"/> The Etrurians, embracing this omen, as it
                     were, of the future progress of the war, and observing that the gods had
-                    commenced hostilities on their behalf, assumed new courage. <milestone n="3"
-                        unit="section"/> At Rome the news caused great affliction, on account both
+                    commenced hostilities on their behalf, assumed new courage. <milestone n="3" unit="section"/> At Rome the news caused great affliction, on account both
                     of the loss of such a man and of the unseasonableness of the juncture;
                         <milestone n="4" unit="section"/> insomuch that an assembly, held for the
                     purpose of substituting a new consul, having been conducted agreeably to the
@@ -608,14 +576,12 @@
                     been exerted then with equal zeal at home, in the management of the market, and
                     in procuring and forming magazines of corn. <milestone n="10" unit="section"/>
                     An interregnum took place this year, the reason of which is not mentioned.
-                    Appius Claudius, and. after him, Publius Sulpicius, were interreges. <milestone
-                        n="11" unit="section"/> The latter held an election of consuls, and chose
+                    Appius Claudius, and. after him, Publius Sulpicius, were interreges. <milestone n="11" unit="section"/> The latter held an election of consuls, and chose
                     Lucius Cornelius Scipio and Cneius Fulvius. In the beginning of this year,
                     ambassadors came from the Lucanians to the new consuls to complain, that "the
                     Samnites, finding that they could not, by any offers, tempt them to take part in
                     the war, had marched an army in a hostile manner into their country, and were
-                    now laying it waste, and forcing them into a war; <milestone n="12"
-                        unit="section"/> that the Lucanian people had on former occasions erred
+                    now laying it waste, and forcing them into a war; <milestone n="12" unit="section"/> that the Lucanian people had on former occasions erred
                     enough and more than enough; that their minds were so firmly fixed that they
                     thought it more endurable to bear and suffer every hardship, rather than ever
                     again to outrage the Roman name: <milestone n="13" unit="section"/> they
@@ -642,12 +608,10 @@
                     the Samnites to Fulvius; and they set out by different routes, each against the
                     enemy allotted to him. <milestone n="4" unit="section"/> Scipio, while he
                     expected a tedious campaign, like that of the preceding year, was met near
-                    Volaterra by the Etrurians, in order of battle. <milestone n="5" unit="section"
-                    /> The fight lasted through the greater part of the day, while very many fell on
+                    Volaterra by the Etrurians, in order of battle. <milestone n="5" unit="section"/> The fight lasted through the greater part of the day, while very many fell on
                     both sides, and night came on while it was uncertain to which side victory
                     inclined. But the following dawn showed the conqueror and the vanquished; for
-                    the Etrurians had decamped in the dead of the night. <milestone n="6"
-                        unit="section"/> The Romans, marching out with intent to renew the
+                    the Etrurians had decamped in the dead of the night. <milestone n="6" unit="section"/> The Romans, marching out with intent to renew the
                     engagement, and seeing their superiority acknowledged by the departure of the
                     enemy, advanced to their camp; and, finding even this fortified post deserted,
                     took possession of it, evacuated as it was, together with a vast quantity of
@@ -675,12 +639,10 @@
                     against the Lucanians. <milestone n="4" unit="section"/> That, in consequence,
                     the people were rising up in arms, with all their own strength and that of their
                     allies combined; and that this affair seemed not likely to be terminated without
-                    a contest of much greater difficulty than the former. <milestone n="5"
-                        unit="section"/> Although the candidates for the consulship were men of
+                    a contest of much greater difficulty than the former. <milestone n="5" unit="section"/> Although the candidates for the consulship were men of
                     illustrious characters, yet this alarming intelligence turned the thoughts of
                     all on Quintus Fabius Maximus, who sought not the employment at first, and
-                    afterwards, when he discovered their wishes, even declined it. <milestone n="6"
-                        unit="section"/>
+                    afterwards, when he discovered their wishes, even declined it. <milestone n="6" unit="section"/>
                     <quote>Why,</quote> said he, <quote> should they impose such a difficult task on
                         him, who was now in the decline of life, and had passed through a full
                         course of labours, and of the rewards of labour? Neither the vigour of his
@@ -693,17 +655,14 @@
                         of the highest merit, or of men of eminent merit suited to the highest
                         honours. </quote>
                     <milestone n="8" unit="section"/> This disinterested conduct, instead of
-                    repressing, increased, while in fact it justified their zeal. <milestone n="9"
-                        unit="section"/> But thinking that this ought to be checked by respect for
+                    repressing, increased, while in fact it justified their zeal. <milestone n="9" unit="section"/> But thinking that this ought to be checked by respect for
                     the laws, he ordered that clause to be read aloud by which it was not lawful
-                    that the same person shall be re-elected consul within ten years. <milestone
-                        n="10" unit="section"/> The law was scarcely heard in consequence of the
+                    that the same person shall be re-elected consul within ten years. <milestone n="10" unit="section"/> The law was scarcely heard in consequence of the
                     clamour; and the tribunes of the commons declared, that this <quote> decree
                         should be no impediment; for they would propose an order to the people, that
                         he should be exempted from the obligation of the laws. </quote> Still he
                     persisted in his opposition, asking, <quote> To what purpose were laws enacted,
-                        if they were eluded by the very persons who procured them? <milestone n="11"
-                            unit="section"/> The <pb n="644" xml:id="p.644"/> laws now, </quote> he
+                        if they were eluded by the very persons who procured them? <milestone n="11" unit="section"/> The <pb n="644" xml:id="p.644"/> laws now, </quote> he
                     said, <quote>instead of being rulers, were overruled.</quote>
                     <milestone n="12" unit="section"/> The people, nevertheless, proceeded to vote;
                     and, according as each century was called in, it immediately named Fabius
@@ -738,15 +697,12 @@
                     through that of Sidicinum. <milestone n="5" unit="section"/> As soon as they
                     arrived at the frontiers of the enemy, both advanced briskly, spreading
                     devastation wherever they came; but still they explore the country, to a
-                    distance beyond where the troops were employed in plundering. <milestone n="6"
-                        unit="section"/> Accordingly the fact did not escape the notice of the
+                    distance beyond where the troops were employed in plundering. <milestone n="6" unit="section"/> Accordingly the fact did not escape the notice of the
                     Romans, that the enemy were drawn up in a retired valley, near Tifernum, which,
                     when the Romans entered, they were preparing to attack them from the higher
                     ground. <milestone n="7" unit="section"/> Fabius, sending away his baggage to a
-                    place of safety, and setting a small guard over it, and having given <pb n="645"
-                        xml:id="p.645"/> notice to his soldiers that a battle was at hand, advanced
-                    in a square body to the hiding-place of the enemy already mentioned. <milestone
-                        n="8" unit="section"/> The Samnites, disappointed in making an unexpected
+                    place of safety, and setting a small guard over it, and having given <pb n="645" xml:id="p.645"/> notice to his soldiers that a battle was at hand, advanced
+                    in a square body to the hiding-place of the enemy already mentioned. <milestone n="8" unit="section"/> The Samnites, disappointed in making an unexpected
                     attack, determined on a regular engagement, as the matter was now likely to come
                     to an open contest. <milestone n="9" unit="section"/> They therefore marched out
                     into the plain; and, with a greater share of spirit than of hopes, committed
@@ -756,8 +712,7 @@
                     their courage, they occasioned, even in open fight, a considerable alarm.
                         <milestone n="10" unit="section"/> Fabius, when he saw that the enemy in no
                     place gave way, ordered Marcus Fulvius and Marcus Valerius, military tribunes,
-                    with whom he hastened to the front, to go to the cavalry, <milestone n="11??"
-                        unit="section"/> and to exhort them, that, <quote> if they remembered any
+                    with whom he hastened to the front, to go to the cavalry, <milestone n="11??" unit="section"/> and to exhort them, that, <quote> if they remembered any
                         instance wherein the public had received advantage from the service of the
                         horsemen, they would, on that day, exert themselves to insure the invincible
                         renown of that body; <milestone n="12" unit="section"/> telling them that
@@ -770,8 +725,7 @@
                     he ordered Scipio, one of his lieutenants-general, to draw off the spearmen of
                     the first legion out of the line; to lead them round as secretly as possible to
                     the nearest mountains; and, by an ascent concealed from view, to gain the
-                    heights, and show himself suddenly on the rear of the enemy. <milestone n="15"
-                        unit="section"/> The cavalry, led on by the tribunes, rushing forward
+                    heights, and show himself suddenly on the rear of the enemy. <milestone n="15" unit="section"/> The cavalry, led on by the tribunes, rushing forward
                     unexpectedly before the van, caused scarcely more confusion among the enemy than
                     among their friends. <milestone n="16" unit="section"/> The line of the Samnites
                     stood firm against the furious onset of the squadrons; it neither could be
@@ -781,8 +735,7 @@
                     increased, so that the Roman troops in the van would not have been able to
                     support the contest, nor the force thus increasing by confidence in itself, had
                     not the second line, by the consul's order, come up into the place of the first.
-                        <milestone n="18" unit="section"/> These fresh troops <pb n="646"
-                        xml:id="p.646"/> checked the progress of the Samnites, who had now began to
+                        <milestone n="18" unit="section"/> These fresh troops <pb n="646" xml:id="p.646"/> checked the progress of the Samnites, who had now began to
                     gain ground; and, at this seasonable juncture, their comrades appearing suddenly
                     on the mountains, and raising a shout, occasioned in the Samnites a fear of
                     greater danger than really threatened them; <milestone n="19" unit="section"/>
@@ -816,8 +769,7 @@
                     Going thence to Rome to preside at the elections, he used all expedition in
                     despatching that business. <milestone n="7" unit="section"/> All the
                     first-called centuries voted Quintus Fabius consul. Appius Claudius was a
-                    candidate, a man of consular rank, daring and ambitious; <milestone n="8"
-                        unit="section"/> and as he wished not more ardently for the attainment of
+                    candidate, a man of consular rank, daring and ambitious; <milestone n="8" unit="section"/> and as he wished not more ardently for the attainment of
                     that honour for himself, than he did that the patricians might recover the
                     possession of both places in the consulship, he laboured, with all his own
                     power, supported by that of the whole body of the nobility, to prevail on them
@@ -847,22 +799,18 @@
                     Publius Decius, who had been left consul in Samnium by his colleague, in the
                     character of proconsul, ceased not to spread devastation through all parts of
                     that country; until, at last, he drove the army of the Samnites, which never
-                    dared to face him in the field, entirely out of the country. <milestone n="3"
-                        unit="section"/> Thus expelled from home, they bent their route to Etruria;
+                    dared to face him in the field, entirely out of the country. <milestone n="3" unit="section"/> Thus expelled from home, they bent their route to Etruria;
                     and, supposing that the business, which they had often in vain endeavoured to
                     accomplish by embassies, might now be negotiated with more effect, when they
                     were backed by such a powerful armed force, and could intermix terror with their
-                    entreaties, they demanded a meeting of the chiefs of Etruria: <milestone n="4"
-                        unit="section"/> which being assembled, they set forth the great number of
+                    entreaties, they demanded a meeting of the chiefs of Etruria: <milestone n="4" unit="section"/> which being assembled, they set forth the great number of
                     years during which they had waged war with the Romans, in the cause of liberty;
                         <quote>they had,</quote> they said, <quote> tried to sustain, with their own
                         strength, the weight of so great a war: they had also made trial of the
-                        support of the adjoining nations, which proved of little avail. <milestone
-                            n="5" unit="section"/> When they were unable longer to maintain the
+                        support of the adjoining nations, which proved of little avail. <milestone n="5" unit="section"/> When they were unable longer to maintain the
                         conflict, they had sued the Roman people for peace; and had again taken up
                         arms, because <pb n="648" xml:id="p.648"/> they felt peace was more grievous
-                        to those with servitude, than war to free men. <milestone n="6"
-                            unit="section"/> That their one only hope remaining rested in the
+                        to those with servitude, than war to free men. <milestone n="6" unit="section"/> That their one only hope remaining rested in the
                         Etrurians. They knew that nation to be the most powerful in Italy, in
                         respect of arms, men, and money; to have the Gauls their closest neighbours,
                         born in the midst of war and arms, of furious courage, both from their
@@ -882,8 +830,7 @@
                 <p>
                     <milestone n="1" unit="section"/> While they were engaged in these
                     representations, and intriguing at Etruria, the operations of the Romans in
-                    their own territories distressed them severely. <milestone n="2" unit="section"
-                    /> For Publius Decius, when he ascertained through his scouts the departure of
+                    their own territories distressed them severely. <milestone n="2" unit="section"/> For Publius Decius, when he ascertained through his scouts the departure of
                     the Samnite army, called a council, and there said, <quote> Why do we ramble
                         through the country, carrying the war from village to village? Why not
                         attack the cities and fortified places? No army now guards Samnium. They
@@ -892,8 +839,7 @@
                     marched to attack Murgantia, a city of considerable strength; and so great was
                     the ardour of the soldiers, resulting from their affection to their commander,
                     and from their hopes of richer treasure than could be found in pillaging the
-                    country places, that in one day they took it by assault. <milestone n="4"
-                        unit="section"/> Here, two thousand one hundred of the Samnites, making
+                    country places, that in one day they took it by assault. <milestone n="4" unit="section"/> Here, two thousand one hundred of the Samnites, making
                     resistance, were surrounded and taken prisoners; and abundance of other spoil
                     was captured. <milestone n="5" unit="section"/> Decius, not choosing that the
                     troops should be encumbered in their march with heavy baggage, ordered them to
@@ -904,8 +850,7 @@
                         after so <pb n="649" xml:id="p.649"/> often defeating their legions, ye have
                         finally driven them out of the country. Sell those effects in your hands;
                         and allure traders, by a prospect of profit, to follow you on your march. I
-                        will, from time to time, supply you with goods for sale. <milestone n="7"
-                            unit="section"/> Let us go hence to the city of Romulea, where no
+                        will, from time to time, supply you with goods for sale. <milestone n="7" unit="section"/> Let us go hence to the city of Romulea, where no
                         greater labour, but greater gain awaits you. </quote> Having sold off the
                     spoil, and warmly adopting the general's plan, they proceeded to Romulea.
                         <milestone n="8" unit="section"/> There, also, without works or engines, as
@@ -915,8 +860,7 @@
                     hundred men were slain, six thousand taken prisoners, and the soldiers obtained
                     abundance of spoil. <milestone n="9" unit="section"/> This they were obliged to
                     sell in like manner as the former; and, though no rest was allowed them, they
-                    proceeded, nevertheless, with the utmost alacrity to Ferentinum. <milestone
-                        n="10" unit="section"/> But here they met a greater share both of difficulty
+                    proceeded, nevertheless, with the utmost alacrity to Ferentinum. <milestone n="10" unit="section"/> But here they met a greater share both of difficulty
                     and danger: the fortifications were defended with the utmost vigour, and the
                     place was strongly fortified both by nature and art. However, the soldiers, now
                     inured to plunder, overcame every obstacle. <milestone n="11" unit="section"/>
@@ -939,8 +883,7 @@
                     was received at Rome, after the consul, Lucius Volumnius, had already set out
                     for Samnium, with the second and third legions, and fifteen thousand of the
                     allies; it was, therefore, resolved, that Appius Claudius should, at the very
-                    earliest <pb n="650" xml:id="p.650"/> opportunity, go into Etruria. <milestone
-                        n="4" unit="section"/> Two Roman legions followed him, the first and fourth,
+                    earliest <pb n="650" xml:id="p.650"/> opportunity, go into Etruria. <milestone n="4" unit="section"/> Two Roman legions followed him, the first and fourth,
                     and twelve thousand allies; their camp was pitched at a small distance from the
                     enemy. <milestone n="5" unit="section"/> However, advantage was gained by his
                     early arrival in this particular, that the awe of the Roman name kept in check
@@ -955,8 +898,7 @@
                     affirm what requires stronger proof, as that point was a matter of dispute
                     between these two consuls of the Roman people, a second time associated in the
                     same office; Appius denying that the letter was sent, and Volumnius affirming
-                    that he was called thither by a letter from Appius. <milestone n="8"
-                        unit="section"/> Volumnius had, by this time, taken three forts in Samnium,
+                    that he was called thither by a letter from Appius. <milestone n="8" unit="section"/> Volumnius had, by this time, taken three forts in Samnium,
                     in which three thousand of the enemy had been slain, and about half that number
                     made prisoners; and, a sedition having been raised among the Lucanians by the
                     plebeians and the more indigent of the people, he had, to the great satisfaction
@@ -1000,8 +942,7 @@
                         the other, not on the one forsaken; that the state of affairs was such, that
                         the credit and discredit of every success and failure in Etruria would be
                         attributed to Lucius Volumnius: for no one would inquire, what were the
-                        words of Appius, but what the situation of the army. <milestone n="4"
-                            unit="section"/> Appius indeed had dismissed him, but the commonwealth,
+                        words of Appius, but what the situation of the army. <milestone n="4" unit="section"/> Appius indeed had dismissed him, but the commonwealth,
                         and the army, required his stay. Let him only make trial of the inclinations
                         of the soldiers. </quote>
                     <milestone n="5" unit="section"/> By such admonitions and entreaties they, in a
@@ -1009,8 +950,7 @@
                     discourses were made to the same purport, as had passed before in the presence
                     of a few. <milestone n="6" unit="section"/> And when Volumnius, who had the
                     advantage of the argument, showed himself not' deficient in oratory, in despite
-                    of the extraordinary eloquence of his colleague; <milestone n="7" unit="section"
-                    /> Appius observed with a sneer, that <quote> they ought to acknowledge
+                    of the extraordinary eloquence of his colleague; <milestone n="7" unit="section"/> Appius observed with a sneer, that <quote> they ought to acknowledge
                         themselves indebted to him, in having a consul who possessed eloquence also,
                         instead of being dumb and speechless, when in their former consulate,
                         particularly during the first months, he was not able so much as to open his
@@ -1019,8 +959,7 @@
                         earnestly do I wish, that you had learned from me to act with spirit, than I
                         from you to speak with elegance: that now he made a final proposal, which
                         would determine, not which is the better orator, for that is not what the
-                        public wants, but which is the better commander. <milestone n="9"
-                            unit="section"/> The <pb n="652" xml:id="p.652"/> provinces are Etruria
+                        public wants, but which is the better commander. <milestone n="9" unit="section"/> The <pb n="652" xml:id="p.652"/> provinces are Etruria
                         and Samnium: that he might select which he preferred; that he, with his own
                         army, will undertake to manage the business either in Etruria or in Samnium. </quote>
                     <milestone n="10" unit="section"/> The soldiers then, with loud clamours,
@@ -1028,8 +967,7 @@
                         <milestone n="11" unit="section"/> when Volumnius perceiving that it was the
                     general wish, said, <quote> Since I have been mistaken in apprehending my
                         colleague's meaning, I will take care that there shall be no room for
-                        mistake with respect to the purport of your wishes. <milestone n="12"
-                            unit="section"/> Signify by a shout whether you choose that I should
+                        mistake with respect to the purport of your wishes. <milestone n="12" unit="section"/> Signify by a shout whether you choose that I should
                         stay or depart. </quote> On this, a shout was raised, so loud, that it
                     brought the enemy out of their camp: they snatched up their arms, and marched
                     down in order of battle. <milestone n="13" unit="section"/> Volumnius likewise
@@ -1041,8 +979,7 @@
                     side were the forces drawn up to advantage: for, on the one, Gellius Egnatius,
                     the Samnite general, had gone out to forage with a few cohorts, and his men
                     entered <milestone n="15??" unit="section"/> on the fight as the violence of
-                    their passions prompted, rather than under any directions or orders. <milestone
-                        n="16" unit="section"/> On the other, the Roman armies neither marched out
+                    their passions prompted, rather than under any directions or orders. <milestone n="16" unit="section"/> On the other, the Roman armies neither marched out
                     together, nor had time sufficient to form: Volumnius began to engage before
                     Appius came up to the enemy, consequently the engagement commenced, their front
                     in the battle being uneven; and by some accidental interchange of their usual
@@ -1061,8 +998,7 @@
                         <pb n="653" xml:id="p.653"/> to contend: <milestone n="20" unit="section"/>
                     then pressing them as they gave ground, and pursuing them closely as they fled,
                     they drove them into their camp. There, by the interposition of Gellius and his
-                    Samnite cohorts, the fight was renewed for a little time. <milestone n="21"
-                        unit="section"/> But these being likewise soon dispersed, the camp was now
+                    Samnite cohorts, the fight was renewed for a little time. <milestone n="21" unit="section"/> But these being likewise soon dispersed, the camp was now
                     stormed by the conquerors; and whilst Volumnius, in person, led his troops
                     against one of the gates, Appius, frequently invoking Bellona the victorious,
                     inflamed the courage of his men, they broke in through the rampart and trenches.
@@ -1091,13 +1027,10 @@
                     business of the expedition, as they must not commit to the hazard of an
                     engagement an army so heavily laden. <milestone n="5" unit="section"/>
                     Notwithstanding that this account carried every appearance of truth, he yet
-                    thought it necessary to obtain more certain information; <milestone n="6"
-                        unit="section"/> accordingly he despatched some horsemen, to seize on some
+                    thought it necessary to obtain more certain information; <milestone n="6" unit="section"/> accordingly he despatched some horsemen, to seize on some
                     of the straggling marauders; from these he learned, on inquiry, that the enemy
                     lay at the river Vulturnus; that they intended to remove thence at the third
-                    watch; and that their route was towards Samnium. <milestone n="7" unit="section"
-                    /> On receiving this intelligence, which could be de- <pb n="654" xml:id="p.654"
-                    /> pended upon, he set out, and sat down at such a distance from the enemy, that
+                    watch; and that their route was towards Samnium. <milestone n="7" unit="section"/> On receiving this intelligence, which could be de- <pb n="654" xml:id="p.654"/> pended upon, he set out, and sat down at such a distance from the enemy, that
                     his approach could not be discovered by his being too near them, and, at the
                     same time, that he might surprise them, as they should be coming out of their
                     camp. <milestone n="8" unit="section"/> A long time before day, he drew nigh to
@@ -1116,8 +1049,7 @@
                     overtaken and cut off. <milestone n="11" unit="section"/> The Romans had by this
                     time passed over the rampart, and filled the camp with slaughter and confusion:
                     the Samnite army, in addition to the disorder caused by the enemy, had their
-                    disorder increased by a sudden insurrection of their prisoners; <milestone
-                        n="12" unit="section"/> some of whom, getting loose, set the rest at
+                    disorder increased by a sudden insurrection of their prisoners; <milestone n="12" unit="section"/> some of whom, getting loose, set the rest at
                     liberty, while others snatched the arms which were tied up among the baggage,
                     and being intermixed with the troops, raised a tumult more terrible than the
                     battle itself. <milestone n="13" unit="section"/> They then performed a
@@ -1140,8 +1072,7 @@
                 <milestone n="21" unit="chapter"/>
                 <p>
                     <milestone n="1" unit="section"/> The depredations, committed on the lands of
-                    Campania, had occasioned a violent alarm at Rome; <milestone n="2"
-                        unit="section"/> and it happened, that about the same time intelligence was
+                    Campania, had occasioned a violent alarm at Rome; <milestone n="2" unit="section"/> and it happened, that about the same time intelligence was
                     brought from Etruria, that, after the departure of Volumnius's army, all that
                     country had risen up in arms; and that Gellius Egnatius, the leader of the
                     Samnites, was causing the Umbrians to join in the insurrection, and tempting the
@@ -1151,14 +1082,12 @@
                     only free-born men and the younger sort were obliged to enlist, but cohorts were
                     formed of the elder citizens, and the sons of freed-men were incorporated in the
                     centuries. Plans were formed for the defence of the city, and the praetor,
-                    Publius Sempronius, was invested with the chief command. <milestone n="5"
-                        unit="section"/> However, the senate was exonerated of one half of their
+                    Publius Sempronius, was invested with the chief command. <milestone n="5" unit="section"/> However, the senate was exonerated of one half of their
                     anxiety, by a letter from the consul, Lucius Volumnius, informing them that the
                     army, which had ravaged Campania, had been defeated and dispersed: whereupon,
                     they decreed a public thanksgiving for this success, in the name of the consul.
                         <milestone n="6" unit="section"/> The courts were opened, after having been
-                    shut eighteen days, and the thanksgiving was performed with much joy. <milestone
-                        n="7" unit="section"/> They then turned their thoughts to devising measures
+                    shut eighteen days, and the thanksgiving was performed with much joy. <milestone n="7" unit="section"/> They then turned their thoughts to devising measures
                     for the future security of the country depopulated by the Samnites; and, with
                     this view, it was resolved, that two colonies should be settled on the frontiers
                     of the Vescian and Falernian territories; <milestone n="8" unit="section"/> one
@@ -1174,8 +1103,7 @@
                         <pb n="656" xml:id="p.656"/> of land. <milestone n="11" unit="section"/>
                     From these employments, the attention of the senate was drawn away by the
                     Etrurian war, growing now more formidable; and by frequent letters from Appius,
-                    warning them not to neglect the disturbances in that quarter. <milestone n="12"
-                        unit="section"/> That four nations were uniting their arms, the Etrurians,
+                    warning them not to neglect the disturbances in that quarter. <milestone n="12" unit="section"/> That four nations were uniting their arms, the Etrurians,
                     the Samnites, the Umbrians, and the Gauls; and they had already formed two
                     separate camps, because one spot was insufficient to contain so great a
                     multitude. <milestone n="13" unit="section"/> In consequence, the time of the
@@ -1228,8 +1156,7 @@
                         forum; and to be appointed praetors for the administration of justice. </quote>
                     <milestone n="8" unit="section"/> In these proceedings that day was spent, and,
                     on the following, the elections both of consuls and praetor were held, and were
-                    guided by the recommendations suggested by the consul. <milestone n="9"
-                        unit="section"/> Quintus Fabius and Publius Decius were chosen consuls;
+                    guided by the recommendations suggested by the consul. <milestone n="9" unit="section"/> Quintus Fabius and Publius Decius were chosen consuls;
                     Appius Claudius, praetor; all of them absent; and, by a decree of the senate,
                     followed by an order of the commons, Lucius Volumnius was continued in the
                     command for another year. </p>
@@ -1260,15 +1187,13 @@
                     behaviour of the patrician ladies, she said, <quote> This altar I dedicate to
                         plebeian chastity, and exhort you, that the same degree of emulation which
                         prevails among the men of this state, on the point of valour, may be
-                        maintained by the women on the point of chastity; <milestone n="8"
-                            unit="section"/> and that you contribute your best care, that this altar
+                        maintained by the women on the point of chastity; <milestone n="8" unit="section"/> and that you contribute your best care, that this altar
                         may have the credit of being attended with a greater degree of sanctity, and
                         by chaster women, than the other, if possible. </quote>
                     <milestone n="9" unit="section"/> Solemn rites were performed at this altar
                     under the same regulations, nearly, with those at the more ancient one; no
                     person being allowed the privilege of taking part in the sacrifices, except a
-                    woman of approved chastity, and who was the wife of one husband. <milestone
-                        n="10" unit="section"/> This institution, being afterwards debased by [the
+                    woman of approved chastity, and who was the wife of one husband. <milestone n="10" unit="section"/> This institution, being afterwards debased by [the
                     admission of] vicious characters, and not only by matrons, but women of every
                     description, sunk at last into oblivion. <milestone n="11" unit="section"/>
                     During this year the Ogulnii, Cneius and Quintus, being curule aediles, carried
@@ -1287,10 +1212,8 @@
                 <p>
                     <milestone n="1" unit="section"/> Then came into the consulship Quintus Fabius a
                     fifth time, and Publius Decius a fourth. They had been colleagues in the
-                    censorship, and twice in the consulship, and were celebrated <milestone n="2??"
-                        unit="section"/> not more for their glorious achievements, splendid as these
-                    were, than for the unanimity which had ever subsisted between them. <milestone
-                        n="3" unit="section"/> The continuance of this feeling I am inclined to
+                    censorship, and twice in the consulship, and were celebrated <milestone n="2??" unit="section"/> not more for their glorious achievements, splendid as these
+                    were, than for the unanimity which had ever subsisted between them. <milestone n="3" unit="section"/> The continuance of this feeling I am inclined to
                     think was interrupted by a jarring between the [opposite] orders rather than
                     between themselves; the patricians endeavouring <pb n="659" xml:id="p.659"/>
                     that Fabius should have Etruria for his province, without casting lots, and the
@@ -1310,8 +1233,7 @@
                         last through three consulates. </quote>
                     <milestone n="7" unit="section"/> Declaring, in fine, that <quote> he desired
                         nothing further, than that, if they thought him qualified for the command in
-                        the province, they should send him thither. <milestone n="8" unit="section"
-                        /> He had submitted to the judgment of the senate, and would now be governed
+                        the province, they should send him thither. <milestone n="8" unit="section"/> He had submitted to the judgment of the senate, and would now be governed
                         by the authority of the people. </quote> Publius Decius complained of
                     injustice in the senate; and asserted, that <quote> the patricians had laboured,
                         as long as possible, to exclude the plebeians from all access to the higher
@@ -1333,19 +1255,16 @@
                         Fabius gloried in his exploits performed in Etruria: Publius Decius wished
                         for a like subject of glory, and perhaps <pb n="660" xml:id="p.660"/> would
                         utterly extinguish that fire, which the other left smother- ed, in such a
-                        manner that it often broke out anew, in sudden conflagrations. <milestone
-                            n="14" unit="section"/> In fine, honours and rewards he would concede to
+                        manner that it often broke out anew, in sudden conflagrations. <milestone n="14" unit="section"/> In fine, honours and rewards he would concede to
                         his colleague, out of respect to his age and dignified character: but when
                         danger, when a vigorous struggle with an enemy was before them, he never
-                        did, nor ever would, willingly, give place. <milestone n="15" unit="section"
-                        /> With respect to the present dispute, this much he would gain at all
+                        did, nor ever would, willingly, give place. <milestone n="15" unit="section"/> With respect to the present dispute, this much he would gain at all
                         events, that a business, appertaining to the jurisdiction of the people,
                         should be determined by an order of that people, and not complimented away
                         by the senate. <milestone n="16" unit="section"/> He prayed Jupiter,
                         supremely good and great, and all the immortal gods, not to grant him an
                         equal chance with his colleague, unless they intended to grant him equal
-                        ability and success, in the management of the war. <milestone n="17"
-                            unit="section"/> It was certainly in its nature reasonable, in the
+                        ability and success, in the management of the war. <milestone n="17" unit="section"/> It was certainly in its nature reasonable, in the
                         example salutary, and concerned the reputation of the Roman people, that the
                         consuls should be men of such abilities, that under either of them a war
                         with Etruria could be well managed. </quote>
@@ -1359,8 +1278,7 @@
                 <p>
                     <milestone n="1" unit="section"/> Immediately almost all the younger citizens
                     flocked together to the consul, and readily gave in their names; so strong was
-                    their desire of serving under such a commander. <milestone n="2" unit="section"
-                    /> Seeing so great a multitude collected round him, he said, <quote> My
+                    their desire of serving under such a commander. <milestone n="2" unit="section"/> Seeing so great a multitude collected round him, he said, <quote> My
                         intention is to enlist only four thousand foot and six hundred horse: such
                         of you as give in your names to-day and tomor- row, I will carry with me.
                             <milestone n="3" unit="section"/> I am more solicitous to bring home all
@@ -1373,8 +1291,7 @@
                         <milestone n="5" unit="section"/> Observing the lictors preceding him, and
                     learning that he was Fabius the consul, they were filled with joy and alacrity;
                     they expressed their thanks to the gods, and to <pb n="661" xml:id="p.661"/> the
-                    Roman people, for having sent them such a commander. <milestone n="6"
-                        unit="section"/> Then, as they gathered round to pay their respects, Fabius
+                    Roman people, for having sent them such a commander. <milestone n="6" unit="section"/> Then, as they gathered round to pay their respects, Fabius
                     inquired whither they were going; and on their answering they were going to
                     provide wood, <quote>What do you tell me,</quote> said he; <quote>have you not a
                         rampart, raised about your camp?</quote>
@@ -1408,13 +1325,11 @@
                         be sufficient to oppose four nations. <milestone n="14" unit="section"/>
                         That whether these directed the whole of their combined force against him
                         alone, or acted separately in different parts, there was reason to fear,
-                        that he would be unable to provide against every emergency. <milestone
-                            n="15" unit="section"/> That he had left there but two Roman legions;
+                        that he would be unable to provide against every emergency. <milestone n="15" unit="section"/> That he had left there but two Roman legions;
                         and that the foot and horse, who came with Fabius, did not amount to five
                         thousand. It was, therefore, his opinion, that the consul Publius Decius
                         should, without delay, set out to his colleague in Etruria; and that the
-                        province of Samnium should be given to Lucius Vo- <pb n="662" xml:id="p.662"
-                        /> lumnius. <milestone n="16" unit="section"/> But if the consul preferred
+                        province of Samnium should be given to Lucius Vo- <pb n="662" xml:id="p.662"/> lumnius. <milestone n="16" unit="section"/> But if the consul preferred
                         going to his own province, that then Volumnius should march a full consular
                         army into Etruria, to join the other consul. </quote>
                     <milestone n="17" unit="section"/> When the advice of the prae- tor influenced a
@@ -1434,18 +1349,15 @@
                     against any danger to himself, or the public. <milestone n="2" unit="section"/>
                     <quote>But if they chose,</quote> he said, <quote> to give him an assistant in
                         the war, and associate in command, how could he overlook Publius Decius the
-                        consul, whom he had tried during so many associations in office? <milestone
-                            n="3" unit="section"/> There was no man living whom he would rather wish
+                        consul, whom he had tried during so many associations in office? <milestone n="3" unit="section"/> There was no man living whom he would rather wish
                         to be joined in commission with him: with Publius Decius he should have
-                        forces sufficient, and never too many enemies. <milestone n="4"
-                            unit="section"/> If, however, his colleague preferred any other
+                        forces sufficient, and never too many enemies. <milestone n="4" unit="section"/> If, however, his colleague preferred any other
                         employment, let them then give him Lucius Volumnius as an assistant.
                     </quote> The disposal of every particular was left entirely to Fabius by the
                     people and the senate, and even by his colleague. And when Decius declared that
                     he was ready to go either to Etruria or Samnium, such general congratulation and
                     satisfaction took place, that victory was anticipated, and it seemed as if a
-                    triumph, not a war, had been decreed to the consuls. <milestone n="5"
-                        unit="section"/> I find in some writers, that Fabius and Decius, immediately
+                    triumph, not a war, had been decreed to the consuls. <milestone n="5" unit="section"/> I find in some writers, that Fabius and Decius, immediately
                     on their entering into office, set out together for Etruria, without any mention
                     of the casting of lots for the provinces, or of the disputes which I have
                     related. <milestone n="6" unit="section"/> Others, not satisfied with relating
@@ -1453,20 +1365,17 @@
                     people against Fabius, when absent; and a stubborn opposition, maintained by the
                     praetor against the consul, when present; and also another contention between
                     the colleagues, Decius insisting that each consul should attend to the care of
-                    his own separate province. <milestone n="7" unit="section"/> Certainty, <pb
-                        n="663" xml:id="p.663"/> however, begins to appear from the time when both
+                    his own separate province. <milestone n="7" unit="section"/> Certainty, <pb n="663" xml:id="p.663"/> however, begins to appear from the time when both
                     consuls set out for the campaign. Now, before the consuls arrived in Etruria,
                     the Senonian Gauls came in a vast body to Clusium, to attack the Roman legion
                     and the camp. <milestone n="8" unit="section"/> Scipio, who commanded the camp,
                     wishing to remedy the deficiency of his numbers by an advantage in the ground,
-                    led his men up a hill, which stood between the camp and the city: <milestone
-                        n="9" unit="section"/> but having, in his haste, neglected to examine the
+                    led his men up a hill, which stood between the camp and the city: <milestone n="9" unit="section"/> but having, in his haste, neglected to examine the
                     place, he reached near the summit, which he found already possessed by the
                     enemy, who had ascended on the other side. The legion was consequently attacked
                     on the rear, and surrounded in the middle, when the enemy pressed it on all
                     sides. <milestone n="10" unit="section"/> Some writers say, that the whole were
-                    cut off, so that not one survived to give an account of it; <milestone n="11"
-                        unit="section"/> and that no information of the misfortune reached the
+                    cut off, so that not one survived to give an account of it; <milestone n="11" unit="section"/> and that no information of the misfortune reached the
                     consuls, who were, at the time, not far from Clusium, until the Gallic horsemen
                     came within sight, carrying the heads of the slain, some hanging before their
                     horses' breasts, others on the points of their spears, and expressing their
@@ -1475,8 +1384,7 @@
                     sustained was not so great. That a party of foragers, under Lucius Manlius
                     Torquatus, lieutenant-general, being surrounded, Scipio, the proprietor, brought
                     up relief from the camp, and the battle being renewed, that the Umbrians, lately
-                    victorious, were defeated, and the prisoners and spoil retaken. <milestone
-                        n="13" unit="section"/> But it is more probable that this blow was suffered
+                    victorious, were defeated, and the prisoners and spoil retaken. <milestone n="13" unit="section"/> But it is more probable that this blow was suffered
                     from a Gallic than an Umbrian enemy; <milestone n="14" unit="section"/> because
                     during that year, as was often the case at other times, the danger principally
                     apprehended by the public, was that of a Gallic tumult; for which reason,
@@ -1537,15 +1445,12 @@
                 <p>
                     <milestone n="1" unit="section"/> However, although the victory was still
                     undecided, fortune not having declared in favour of either party, yet the course
-                    of the fight was by no means similar on both right and left wings. <milestone
-                        n="2" unit="section"/> The Romans, under Fabius, rather repelled than
+                    of the fight was by no means similar on both right and left wings. <milestone n="2" unit="section"/> The Romans, under Fabius, rather repelled than
                     offered assault; and the contest was protracted until very late in the day: for
                     their general knew very well, that both Samnites and Gauls were furious in the
-                    first onset; so that, to withstand them would be sufficient. <milestone n="3"
-                        unit="section"/> It was known, too, that in a protracted contest the spirits
+                    first onset; so that, to withstand them would be sufficient. <milestone n="3" unit="section"/> It was known, too, that in a protracted contest the spirits
                     of the Samnites gradually flagged, and even the bodies of the Gauls, remarkably
-                    ill able to bear labour and heat, became quite relaxed; <milestone n="4"
-                        unit="section"/> and although, in their first efforts, they were more than
+                    ill able to bear labour and heat, became quite relaxed; <milestone n="4" unit="section"/> and although, in their first efforts, they were more than
                     men, yet in their last they were less than women. He, therefore, reserved the
                     strength of his men as unimpaired as possible, until the time when the enemy
                     were the more likely to be worsted. <milestone n="5" unit="section"/> Decius,
@@ -1561,15 +1466,13 @@
                     At the second charge, when they advanced farther and were briskly engaged in the
                     midst of the enemy's squadrons, by a method of fighting new to them, they were
                     thrown into dismay. A number of the enemy, mounted on chariots and cars, made
-                    towards them with such a prodigious clatter from <milestone n="9??"
-                        unit="section"/> the trampling of the cattle and rolling of wheels, as
+                    towards them with such a prodigious clatter from <milestone n="9??" unit="section"/> the trampling of the cattle and rolling of wheels, as
                     affrighted the horses of the Romans, unaccustomed to such tumultuous operations.
                     By this means the victorious cavalry were dispersed, through a panic, and men
                     and horses, in their headlong flight, were tumbled promiscuously on the ground.
                         <milestone n="10" unit="section"/> Hence also the battalions of the legions
                     were thrown into disorder: <milestone n="11" unit="section"/> through the
-                    impetuosity of the horses, and of the carriages which they dragged through <pb
-                        n="666" xml:id="p.666"/> the ranks, many of 'the soldiers in the van were
+                    impetuosity of the horses, and of the carriages which they dragged through <pb n="666" xml:id="p.666"/> the ranks, many of 'the soldiers in the van were
                     trodden or bruised to death; while the Gallic line, as soon as they saw their
                     enemy in confusion, pursued the advantage, nor allowed them time to take breath
                     or recover themselves. Decius, calling aloud, <quote>Whither were they flying,
@@ -1585,11 +1488,9 @@
                     <milestone n="14" unit="section"/> Having thus said, he commanded Marcus Livius,
                     a pontiff, whom, at his coming out to the field, he had charged not to stir from
                     him, to dictate the form of words in which he was to devote himself, and the
-                    legions of the enemy, for the army of the Roman people, the Quirites. <milestone
-                        n="15" unit="section"/> He was accordingly devoted with the same
+                    legions of the enemy, for the army of the Roman people, the Quirites. <milestone n="15" unit="section"/> He was accordingly devoted with the same
                     imprecations, and in the same habit, in which his fa- ther, Publius Decius, had
-                    ordered himself to be devoted at the Veseris in the Latin war. <milestone n="16"
-                        unit="section"/> When, immediately after the solemn imprecation, he added,
+                    ordered himself to be devoted at the Veseris in the Latin war. <milestone n="16" unit="section"/> When, immediately after the solemn imprecation, he added,
                     that <quote> he drove before him dismay and flight, slaughter and blood, and the
                         wrath of the gods celestial and infernal; <milestone n="17" unit="section"/>
                         that, with the contagious influence of the furies, the ministers of death,
@@ -1604,15 +1505,13 @@
                     <milestone n="1" unit="section"/> Thenceforward the battle seemed to be fought
                     with a degree of force scarcely human. The Romans, on the loss of their general,
                     a circumstance which, on other occasions, is wont to inspire terror, stopped
-                    their flight, and were anxious to begin the combat afresh. <milestone n="2"
-                        unit="section"/> The Gauls, and especially the multitude which encircled the
+                    their flight, and were anxious to begin the combat afresh. <milestone n="2" unit="section"/> The Gauls, and especially the multitude which encircled the
                     consul's body, as if deprived of reason, cast their javelins at random without
                     execution; some became so stupid as not to think of either fighting or flying:
                         <milestone n="3" unit="section"/> while on the other side, Livius, the
                     pontiff, to whom Decius <pb n="667" xml:id="p.667"/> had transferred his
                     lictors, with orders to act as propraetor, cried out aloud, that <quote> the
-                        Romans were victorious, being saved by the death of their consul. <milestone
-                            n="4" unit="section"/> That the Gauls and Samnites were now the victims
+                        Romans were victorious, being saved by the death of their consul. <milestone n="4" unit="section"/> That the Gauls and Samnites were now the victims
                         of mother Earth and the infernal gods. That Decius was summoning and
                         dragging to himself the army devoted along with him: and that, among the
                         enemy, all was full of dismay, and the vengeance of all the furies. </quote>
@@ -1620,25 +1519,21 @@
                     fight, Lucius Cornelius Scipio and Caius Marcius, with some reserved troops from
                     the rear, who had been sent by Quintus Fabius, the consul, to the support of his
                     colleague, came up. There the fate of Decius is ascertained, a powerful stimulus
-                    to brave every danger in the cause of the public. <milestone n="6"
-                        unit="section"/> Wherefore, when the Gauls stood in close order, with their
+                    to brave every danger in the cause of the public. <milestone n="6" unit="section"/> Wherefore, when the Gauls stood in close order, with their
                     shields formed into a fence before them, and but little prospect of success
                     appeared from a close fight, the javelins, which lay scattered between the two
                     lines, were, therefore, by order of the lieutenants-general, gathered up from
                     the ground, and thrown against the enemy's shields, and as most of them pierced
                     the fence, the <milestone n="7??" unit="section"/> long-pointed ones even into
                     their bodies, their compact band was overthrown in such a manner, that a great
-                    many, who were unhurt, yet fell as if thunderstruck. <milestone n="8"
-                        unit="section"/> Such were the changes of fortune on the left wing of the
+                    many, who were unhurt, yet fell as if thunderstruck. <milestone n="8" unit="section"/> Such were the changes of fortune on the left wing of the
                     Romans: on the right, Fabius had at first protracted the time, as we mentioned
                     above, in slow operations; then, as soon as he perceived that neither the shout,
                     nor the efforts of the enemy, nor the weapons which they threw, retained their
-                    former force, having ordered the commanders of the cavalry <milestone n="9??"
-                        unit="section"/> to lead round their squadrons to the flank of the Samnites,
+                    former force, having ordered the commanders of the cavalry <milestone n="9??" unit="section"/> to lead round their squadrons to the flank of the Samnites,
                     so that, on receiving the signal, they should charge them in flank, with all
                     possible violence, he commanded, at the same time, his infantry to advance
-                    leisurely, and drive the enemy from their ground. <milestone n="10"
-                        unit="section"/> When he saw that they were unable to make resistance, and
+                    leisurely, and drive the enemy from their ground. <milestone n="10" unit="section"/> When he saw that they were unable to make resistance, and
                     that their exhaustion was certain, drawing together all his reserves, whom he
                     had kept fresh for that occasion, he made a brisk push with the legions, and
                     gave the cavalry the signal to charge. <milestone n="11" unit="section"/> The
@@ -1649,23 +1544,19 @@
                     colleague, ordered <pb n="668" xml:id="p.668"/> the squadron of' Campanian
                     cavalry, in number about five hundred, to fall back from the ranks, and riding
                     round, to attack the rear of the Gallic line, then the chief strength of the
-                    third legion to follow, with directions that wherever <milestone n="13??"
-                        unit="section"/> they should see the enemy's troops disordered by the
+                    third legion to follow, with directions that wherever <milestone n="13??" unit="section"/> they should see the enemy's troops disordered by the
                     charge, to follow the blow, and cut them to pieces, when in a state of
                     consternation. <milestone n="14" unit="section"/> After vowing a temple and the
                     spoils of the enemy to Jupiter the Victorious, he proceeded to the camp of the
-                    Samnites, whither all their forces were hurrying in confusion. <milestone n="15"
-                        unit="section"/> The gates not affording entrance to such very great
+                    Samnites, whither all their forces were hurrying in confusion. <milestone n="15" unit="section"/> The gates not affording entrance to such very great
                     numbers, those who were necessarily excluded, attempted resistance just at the
                     foot of the rampart, and here fell Gellius Egnatius, the Samnite general.
                         <milestone n="16" unit="section"/> These, however, were soon driven within
                     the rampart; the camp was taken after a slight resistance; and at the same time
-                    the Gauls were attacked on the rear, and overpowered. <milestone n="17"
-                        unit="section"/> There were slain of the enemy on that day twenty-five
+                    the Gauls were attacked on the rear, and overpowered. <milestone n="17" unit="section"/> There were slain of the enemy on that day twenty-five
                     thousand: eight thousand were taken prisoners. Nor was the victory an unbloody
                     one; for, of the army of Publius Decius, the killed amounted to seven thousand;
-                    of the army of Fabius, to one thousand two hundred. <milestone n="18"
-                        unit="section"/> Fabius, after sending persons to search for the body of his
+                    of the army of Fabius, to one thousand two hundred. <milestone n="18" unit="section"/> Fabius, after sending persons to search for the body of his
                     colleague, had the spoils of the enemy collected into a heap, and burned them as
                     an offering to Jupiter the Victorious. <milestone n="19" unit="section"/> The
                     consul's body could not be found that day, being hid under a heap of slaughtered
@@ -1699,16 +1590,14 @@
                     not deterred by the difficulty of the ground, routed and dispersed them.
                         <milestone n="8" unit="section"/> Quintus Fabius, leaving Decius's army in
                     Etruria, and leading off his own legions to the city, triumphed over the Gauls,
-                    Etrurians, and Samnites: the soldiers attended him in his triumph. <milestone
-                        n="9" unit="section"/> The victory of Quintus Fabius was not more highly
+                    Etrurians, and Samnites: the soldiers attended him in his triumph. <milestone n="9" unit="section"/> The victory of Quintus Fabius was not more highly
                     celebrated, in their coarse military verses, than the illustrious death of
                     Publius Decius; and the memory of the father was recalled, whose fame had been
                     equalled by the praiseworthy conduct of the son, in respect of the issue which
                     resulted both to himself and to the public. <milestone n="10" unit="section"/>
-                    Out of the spoil, donations were made to the soldiers of eighty-two <hi
-                        rend="italics">asses</hi>
-                    <note anchored="true" place="unspecified"> 5 <hi rend="italics">s.</hi> 3 1/4
-                            <hi rend="italics">d.</hi>
+                    Out of the spoil, donations were made to the soldiers of eighty-two <hi rend="italic">asses</hi>
+                    <note anchored="true" place="unspecified"> 5 <hi rend="italic">s.</hi> 3 1/4
+                            <hi rend="italic">d.</hi>
                     </note> to each, with cloaks and vests; rewards for service, in that age, by no
                     means contemptible. </p>
                 <milestone n="31" unit="chapter"/>
@@ -1723,15 +1612,12 @@
                     commanded by Decius. <milestone n="3" unit="section"/> In Etruria, Fabius, on
                     the revival of hostilities, slew four thousand five hundred of the Perusians,
                     and took prisoners one thousand seven hundred and forty, who were ransomed at
-                    the rate of three hundred and ten <hi rend="italics">asses</hi>
+                    the rate of three hundred and ten <hi rend="italic">asses</hi>
                     <note anchored="true" place="unspecified">£1.</note> each. All the rest of the
                     spoil was bestowed on the soldiers. <milestone n="4" unit="section"/> The
                     legions of the Samnites, though pursued, some by the praetor Appius Claudius,
-                    the others by Lucius Volumnius, proconsul, formed a junction in the coun- <pb
-                        n="670" xml:id="p.670"/> try of the Stellatians. <milestone n="5"
-                        unit="section"/> Here sat down the whole body of the Samnites; and Appius
-                    and Volumnius, with their forces united in one camp. <milestone n="6"
-                        unit="section"/> A battle was fought with the most rancorous animosity, one
+                    the others by Lucius Volumnius, proconsul, formed a junction in the coun- <pb n="670" xml:id="p.670"/> try of the Stellatians. <milestone n="5" unit="section"/> Here sat down the whole body of the Samnites; and Appius
+                    and Volumnius, with their forces united in one camp. <milestone n="6" unit="section"/> A battle was fought with the most rancorous animosity, one
                     party being spurred on by rage against men who had so often renewed their
                     attacks on them, and the other now fighting in support of their last remaining
                     hope. <milestone n="7" unit="section"/> Accordingly, there were slain, of the
@@ -1750,11 +1636,9 @@
                     Samnites on our hands, notwithstanding that the relation of them has already
                     extended, in one continued course, through four volumes of our history, and
                     through a period of forty-six years, from the consulate of Marcus Valerius and
-                    Aulus Cornelius, who first carried the Roman arms into Samnium. <milestone
-                        n="11" unit="section"/> And, not to recite the long train of disasters
+                    Aulus Cornelius, who first carried the Roman arms into Samnium. <milestone n="11" unit="section"/> And, not to recite the long train of disasters
                     sustained by both nations, and the toils which they underwent, by which,
-                    however, their stubborn breasts could not be subdued; <milestone n="12"
-                        unit="section"/> even in the course of the last year, the Samnites, with
+                    however, their stubborn breasts could not be subdued; <milestone n="12" unit="section"/> even in the course of the last year, the Samnites, with
                     their own forces separately, and also in conjunction with those of other
                     nations, had been defeated by four several armies, and four generals of the
                     Romans, in the territory of Sentinum, in that of the Pelignians, at Tifernum,
@@ -1780,13 +1664,11 @@
                     intended for the defence of their frontiers. <milestone n="3" unit="section"/>
                     Sickness detained Postumius at Rome, but Atilius set out immediately, with
                     design to surprise the enemy in Samnium, before they should have advanced beyond
-                    their own borders; for such had been the directions of the senate. <milestone
-                        n="4" unit="section"/> The Romans met the enemy, as if by mutual
+                    their own borders; for such had been the directions of the senate. <milestone n="4" unit="section"/> The Romans met the enemy, as if by mutual
                     appointment, at a spot where, while they could be hindered, not only from
                     ravaging, but even from entering the Samnite territory, they could likewise
                     hinder the Samnites from continuing their progress into the countries which were
-                    quiet, and the lands of the allies of the Roman people. <milestone n="5"
-                        unit="section"/> While their camps lay opposite to each other, the Samnites
+                    quiet, and the lands of the allies of the Roman people. <milestone n="5" unit="section"/> While their camps lay opposite to each other, the Samnites
                     attempted an enterprise, which the Romans, so often their conquerors, would
                     scarcely have ventured to undertake; such is the rashness inspired by extreme
                     despair: this was to make an assault on the Roman camp. And although this
@@ -1794,8 +1676,7 @@
                     effect. <milestone n="6" unit="section"/> There was a fog, which continued
                     through a great part of the day, so thick as to exclude the light of the sun,
                     and to prevent not only the view of any thing beyond the rampart, but scarcely
-                    the sight of each other, when they should meet. <milestone n="7" unit="section"
-                    /> Depending on this, as a covering to the design, when the sun was scarcely yet
+                    the sight of each other, when they should meet. <milestone n="7" unit="section"/> Depending on this, as a covering to the design, when the sun was scarcely yet
                     risen, and the light which he did afford was obscured by the fog, the Samnites
                     came up to an advanced guard of the Romans at one of the gates, who were
                     standing carelessly on their post. <milestone n="8" unit="section"/> In the
@@ -1818,8 +1699,7 @@
                     of the camp. <milestone n="3" unit="section"/> Then when the consul cried out,
                     asking them, whether they intended to let themselves be beaten out beyond the
                     rampart, and then to return again to storm their own camp, they raised the
-                    shout, and uniting their efforts, stood their ground; <milestone n="4"
-                        unit="section"/> then made advances, pushed closely on the enemy, and having
+                    shout, and uniting their efforts, stood their ground; <milestone n="4" unit="section"/> then made advances, pushed closely on the enemy, and having
                     forced them to give way, drove them back, without suffering their first terror
                     to abate. <milestone n="5" unit="section"/> They soon beat them out beyond the
                     gate and the rampart, but not daring to pursue them, because the darkness of the
@@ -1831,16 +1711,14 @@
                     This not unsuccessful piece of boldness raised the spirits of the Samnites so
                     high, that they not only did not suffer the Romans to march forward into their
                     country, but even to procure forage from their lands; and the foragers were
-                    obliged to go back into the quiet country of Sora. <milestone n="8"
-                        unit="section"/> News of these events being conveyed to Rome, with
+                    obliged to go back into the quiet country of Sora. <milestone n="8" unit="section"/> News of these events being conveyed to Rome, with
                     circumstances of alarm magnified beyond the truth, obliged Lucius Postumius, the
                     consul, though scarcely recovered from his illness, to set out for the army.
                         <milestone n="9" unit="section"/> However, before his departure, having
                     issued a proclamation that his troops should assemble at Sora, he dedicated the
                     temple of Victory, for the building of which he had provided, when curule
                     aedile, out of the money arising from fines; and, joining the army, he advanced
-                    from Sora towards Samnium, to the camp of his colleague. <milestone n="10"
-                        unit="section"/> The Samnites, despairing of being able to make head against
+                    from Sora towards Samnium, to the camp of his colleague. <milestone n="10" unit="section"/> The Samnites, despairing of being able to make head against
                     the two armies, retreated from thence, on which the consuls, separating,
                     proceeded by different routes to lay waste the enemy's lands and besiege their
                     towns. <pb n="673" xml:id="p.673"/>
@@ -1852,16 +1730,13 @@
                     carried his approaches to the walls, and thus gained an entrance into the place.
                         <milestone n="2" unit="section"/> The fight was continued in all parts of
                     the city from the fourth hour until near the eighth, the result being a long
-                    time uncertain: the Romans at last gained possession of the town. <milestone
-                        n="3" unit="section"/> Three thousand two hundred of the Samnites were
+                    time uncertain: the Romans at last gained possession of the town. <milestone n="3" unit="section"/> Three thousand two hundred of the Samnites were
                     killed, four thousand seven hundred taken, besides the other booty. From thence
-                    the legions were conducted to Ferentinum, out of which <milestone n="4??"
-                        unit="section"/> the inhabitants had, during the night, retired in silence
+                    the legions were conducted to Ferentinum, out of which <milestone n="4??" unit="section"/> the inhabitants had, during the night, retired in silence
                     through the opposite gate, with all their effects which could be either carried
                     or driven. <milestone n="5" unit="section"/> The consul, on his arrival,
                     approached the walls with the same order and circumspection, as if he were to
-                    meet an opposition here equal to what he had experienced at Milionia. <milestone
-                        n="6" unit="section"/> Then, perceiving a dead silence in the city, and
+                    meet an opposition here equal to what he had experienced at Milionia. <milestone n="6" unit="section"/> Then, perceiving a dead silence in the city, and
                     neither arms nor men on the towers and ramparts, he restrains the soldiers, who
                     were eager to mount the deserted fortifications, lest they might fall into a
                     snare. He ordered two divisions of the confederate Latin horse to ride round the
@@ -1883,16 +1758,13 @@
                     proceeded to a part of the town from which they had a view on every side, and
                     that nothing but silence and solitude reigned through the whole extent of it.
                     The consul immediately led some light-armed cohorts into the city; ordering the
-                    rest to fortify a camp in the mean <pb n="674" xml:id="p.674"/> time. <milestone
-                        n="11" unit="section"/> The soldiers who entered the town, breaking open the
-                    doors, found only a few persons, disabled by age or sickness; <milestone n="12"
-                        unit="section"/> and such effects left behind as could not, without
+                    rest to fortify a camp in the mean <pb n="674" xml:id="p.674"/> time. <milestone n="11" unit="section"/> The soldiers who entered the town, breaking open the
+                    doors, found only a few persons, disabled by age or sickness; <milestone n="12" unit="section"/> and such effects left behind as could not, without
                     difficulty, be removed. <milestone n="13" unit="section"/> These were seized as
                     plunder: and it was discovered from the prisoners, that several cities in that
                     quarter had, in pursuance of a concerted plan, resolved on flight; that their
                     towns-people had gone off at the first watch, and they believed that the same
-                    solitude they should find in the other places. <milestone n="14" unit="section"
-                    /> The accounts of the prisoners proved well-founded, and the consul took
+                    solitude they should find in the other places. <milestone n="14" unit="section"/> The accounts of the prisoners proved well-founded, and the consul took
                     possession of the forsaken towns. </p>
                 <milestone n="35" unit="chapter"/>
                 <p>
@@ -1944,13 +1816,11 @@
                     <milestone n="13" unit="section"/> The hostile army, in the mean time, drew
                     near; so that, seeing every thing more distinctly as the distance grew less,
                     they asserted that the Samnites carried with them pallisades for a rampart, and
-                    evidently intended to draw lines of circumvallation round the camp. <milestone
-                        n="14" unit="section"/> On this the consul exclaimed, with great
+                    evidently intended to draw lines of circumvallation round the camp. <milestone n="14" unit="section"/> On this the consul exclaimed, with great
                     earnestness, against submitting to such an ignominious insult, and from so
                     dastardly a foe. <quote>Shall we even be blockaded,</quote> said he, <quote> in
                         our camp, and die, with ignominy, by famine, rather than bravely by the
-                        sword, if it must be so? May the gods be propitious! <milestone n="15"
-                            unit="section"/> and let every one act in the manner which he thinks
+                        sword, if it must be so? May the gods be propitious! <milestone n="15" unit="section"/> and let every one act in the manner which he thinks
                         becomes him. The consul Marcus Atilius, should no other accompany him, will
                         go out, even alone, to face the enemy; and will fall in the middle of the
                         Samnite battalions, rather than see the Roman camp enclosed by their
@@ -1991,8 +1861,7 @@
                     more brisk, but the Samnites had come forward with more briskness, and also in
                     greater numbers, and the disordered cavalry, with their affrighted horses, trod
                     down their own party who came to their relief. Flight commencing in this
-                    quarter, caused the whole Roman line to turn their backs. <milestone n="6"
-                        unit="section"/> And now the Samnites had no employment for their arms but
+                    quarter, caused the whole Roman line to turn their backs. <milestone n="6" unit="section"/> And now the Samnites had no employment for their arms but
                     against the rear of a flying enemy, when the <milestone n="7??" unit="section"/>
                     consul, galloping on before his men to the gate of the camp, posted there a body
                     of cavalry, with orders to treat as an enemy any person who should make towards
@@ -2003,21 +1872,17 @@
                         men and arms; nor, while your consul lives, shall you pass the rampart,
                         unless victorious. Choose therefore which you will prefer, fighting against
                         your own countrymen, or the enemy. </quote>
-                    <milestone n="9" unit="section"/> While the consul was thus <pb n="677"
-                        xml:id="p.677"/> speaking the cavalry gathered round, with the points of
+                    <milestone n="9" unit="section"/> While the consul was thus <pb n="677" xml:id="p.677"/> speaking the cavalry gathered round, with the points of
                     their spears presented, and ordered the infantry to return to the fight. Not
                     only his own brave spirit, but fortune likewise aided the consul, for the
                     Samnites did not push their advantage; so that he had time to wheel round his
-                    battalions, and to change his front from the camp towards the enemy. <milestone
-                        n="10" unit="section"/> The men then began to encourage each other to return
+                    battalions, and to change his front from the camp towards the enemy. <milestone n="10" unit="section"/> The men then began to encourage each other to return
                     to the battle, while the centurions snatched the ensigns from the
                     standard-bearers and bore them forward, pointing out to the soldiers the enemy,
-                    coming on in a hurry, few in number, and with their ranks disordered. <milestone
-                        n="11" unit="section"/> At the same time the consul, with his hands lifted
+                    coming on in a hurry, few in number, and with their ranks disordered. <milestone n="11" unit="section"/> At the same time the consul, with his hands lifted
                     up towards heaven, and raising his voice so as to be heard at a distance, vowed
                     a temple to Jupiter Stator, if the Roman army should rally from flight, and,
-                    renewing the battle, cut down and defeat the Samnites. <milestone n="12"
-                        unit="section"/> All divisions of the army, now, united their efforts to
+                    renewing the battle, cut down and defeat the Samnites. <milestone n="12" unit="section"/> All divisions of the army, now, united their efforts to
                     restore the fight; officers, soldiers, the whole force, both of cavalry and
                     infantry; even the powers of heaven seemed to have looked, with favour, on the
                     Roman cause; so speedily was a thorough change effected in the fortune of the
@@ -2025,8 +1890,7 @@
                     to the spot where the battle had commenced. <milestone n="13" unit="section"/>
                     Here they stopped, being obstructed by the heap of baggage, lying in their way,
                     where they had thrown it together; and then, to prevent the plundering of their
-                    effects, formed round them a circle of troops. <milestone n="14" unit="section"
-                    /> On this, the infantry assailed them vigorously in front, while the cavalry,
+                    effects, formed round them a circle of troops. <milestone n="14" unit="section"/> On this, the infantry assailed them vigorously in front, while the cavalry,
                     wheeling, fell on their rear: and, being thus enclosed between the two, they
                     were all either slain, or taken prisoners. The number of the prisoners was seven
                     thousand two hundred, who were all sent under the yoke; the killed amounted to
@@ -2039,10 +1903,8 @@
                     not however obtain the town; <milestone n="17" unit="section"/> whence, after
                     ravaging the country, as they were driving off spoil, consisting of men and
                     cattle, together with the colonists whom they had taken, they met the consul
-                    returning victorious from Luceria, and not only lost their <pb n="678"
-                        xml:id="p.678"/> booty, but marching in disorder, in a long train, and hea-
-                    vily encumbered, were themselves cut to pieces. <milestone n="18" unit="section"
-                    /> The consul, by proclamation, summoned the owners to Interamna, to claim and
+                    returning victorious from Luceria, and not only lost their <pb n="678" xml:id="p.678"/> booty, but marching in disorder, in a long train, and hea-
+                    vily encumbered, were themselves cut to pieces. <milestone n="18" unit="section"/> The consul, by proclamation, summoned the owners to Interamna, to claim and
                     receive again their property, and leaving his army there, went to Rome to hold
                     the elections. <milestone n="19" unit="section"/> On his applying for a triumph,
                     that honour was refused him, because he had lost so many thousands of his
@@ -2062,13 +1924,12 @@
                     less than that number killed on the walls. <milestone n="4" unit="section"/> But
                     a peace, effected that year in Etruria, was still more important and honourable
                     than the war had been. Three very powerful cities, the chief ones of Etruria,
-                    (Volsinii, Perusia, and Arretium,) sued for peace; <milestone n="5"
-                        unit="section"/> and having stipulated with the consul to furnish clothing
+                    (Volsinii, Perusia, and Arretium,) sued for peace; <milestone n="5" unit="section"/> and having stipulated with the consul to furnish clothing
                     and corn for his army, on condition of being permitted to send deputies to Rome,
                     they obtained a truce for forty years, and a fine was imposed on each state of
-                    five hundred thousand <hi rend="italics">asses,</hi>
-                    <note anchored="true" place="unspecified"> £1614. 11 <hi rend="italics">s.</hi>
-                        8 <hi rend="italics">d.</hi>
+                    five hundred thousand <hi rend="italic">asses,</hi>
+                    <note anchored="true" place="unspecified"> £1614. 11 <hi rend="italic">s.</hi>
+                        8 <hi rend="italic">d.</hi>
                     </note> to be immediately paid. <milestone n="6" unit="section"/> When the
                     consul demanded a triumph from the senate, in consideration of these services,
                     rather to comply with the general practice, than in hope of succeeding;
@@ -2079,14 +1940,12 @@
                     passed from Samnium into Etruria without orders from the senate; he said,
                     "Conscript fathers, I shall not be so far mindful of your dignity, as to forget
                     that I am consul. <milestone n="8" unit="section"/> By the same right of office
-                    by which I conducted the war, I shall now have a triumph, when <pb n="679"
-                        xml:id="p.679"/> this war has been brought to a happy conclusion, Samnium
+                    by which I conducted the war, I shall now have a triumph, when <pb n="679" xml:id="p.679"/> this war has been brought to a happy conclusion, Samnium
                     and Etruria being subdued, and victory and peace procured. With these words he
                     left the senate. <milestone n="9" unit="section"/> On this arose a contention
                     between the plebeian tribunes; some of them declaring that they would protest
                     against his triumphing in a manner unprecedented; others, that they would
-                    support his pretensions, in opposition to their colleagues. <milestone n="10"
-                        unit="section"/> The affair came at length to be discussed before the
+                    support his pretensions, in opposition to their colleagues. <milestone n="10" unit="section"/> The affair came at length to be discussed before the
                     people, and the consul being summoned to attend, when he represented, that
                     Marcus Horatius and Lucius Valerius, when consuls, and lately Caius Marcus
                     Rutilus, father of the present censor, had triumphed, not by direction of the
@@ -2118,8 +1977,7 @@
                 <p>
                     <milestone n="1" unit="section"/> In the next year, we find a consul,
                     distinguished by the united splendour of his own and his father's glory, Lucius
-                    Papirius Cursor, as also a war of vast importance, and a vic- <pb n="680"
-                        xml:id="p.680"/> tory of such consequence, as no man, excepting Lucius
+                    Papirius Cursor, as also a war of vast importance, and a vic- <pb n="680" xml:id="p.680"/> tory of such consequence, as no man, excepting Lucius
                     Papirius, the consul's father, had ever before obtained over the Samnites.
                         <milestone n="2" unit="section"/> It happened too that these had, with the
                     same care and pains as on the former occasion, decorated their soldiers with the
@@ -2135,12 +1993,10 @@
                     at Aquilonia, the whole strength of Samnium came together, amounting to forty
                     thousand men. There a piece of ground, in the middle of the camp, was enclosed
                     with hurdles and boards, and covered over-head with linen cloth, the sides being
-                    all of an equal length, about two hundred feet. <milestone n="6" unit="section"
-                    /> In this place sacrifices were performed, according to directions read out of
+                    all of an equal length, about two hundred feet. <milestone n="6" unit="section"/> In this place sacrifices were performed, according to directions read out of
                     an old linen book, the priest being a very old man, called Ovius Paccius, who
                     affirmed, that he took these ceremonials from the ancient ritual of the
-                    Samnites, being the same which their ancestors used, when they <milestone
-                        n="7??" unit="section"/> had formed the secret design of wresting Capua from
+                    Samnites, being the same which their ancestors used, when they <milestone n="7??" unit="section"/> had formed the secret design of wresting Capua from
                     the Etrurians. <milestone n="8" unit="section"/> When the sacrifices were
                     finished, the general ordered a beadle to summon every one of those who were
                     most highly distinguished by their birth or conduct: these were introduced
@@ -2154,8 +2010,7 @@
                     in a dreadful kind of form, containing execrations on his own person, on his
                     family and race, if he did riot go to battle, whithersoever the commanders
                     should lead; and, if either he himself fled from the field, or, in case he
-                    should see any other flying, did not immediately kill him. <milestone n="11"
-                        unit="section"/> At first some, refusing to take the oath, were put to death
+                    should see any other flying, did not immediately kill him. <milestone n="11" unit="section"/> At first some, refusing to take the oath, were put to death
                     round the altars, and ly- <pb n="681" xml:id="p.681"/> ing among the carcasses
                     of the victims, served afterwards as a warning to others not to refuse it.
                         <milestone n="12" unit="section"/> When those of the first rank in the
@@ -2174,16 +2029,14 @@
                     <milestone n="1" unit="section"/> On the other side, the consuls set out from
                     the city. First, Spurius Carvilius, to whom had been decreed the veteran
                     legions, which Marcus Atilius, the consul of the preceding year, had left in the
-                    territory of Interamna, marched at their head into Samnium; <milestone n="2"
-                        unit="section"/> and, while the enemy were busied in their superstitious
+                    territory of Interamna, marched at their head into Samnium; <milestone n="2" unit="section"/> and, while the enemy were busied in their superstitious
                     rites, and holding their secret meeting, he took by storm the town of Amiternum.
                         <milestone n="3" unit="section"/> Here were slain about two thousand eight
                     hundred men; and four thousand two hundred and seventy were made prisoners.
                         <milestone n="4" unit="section"/> Papirius, with a new army, which he raised
                     in pursuance of a decree of the senate, made himself master of the city of
                     Duronia. He took fewer prisoners than his colleague; but slew much greater
-                    numbers. Rich booty was acquired in both places. <milestone n="5" unit="section"
-                    /> The consuls then, overrunning Samnium, and wasting the province of Atinum
+                    numbers. Rich booty was acquired in both places. <milestone n="5" unit="section"/> The consuls then, overrunning Samnium, and wasting the province of Atinum
                     with particular severity, arrived, Carvilius at Cominium, and Papirius at
                     Aquilonia, where the main force of the Samnites were posted. Here, for some
                     time, there was neither a cessation of action, nor any vigorous effort.
@@ -2194,8 +2047,7 @@
                     decision. <milestone n="7" unit="section"/> The other Roman camp was twenty
                     miles distant, and the advice of his absent colleague was appealed to on every
                     thing which he undertook, while Carvilius, on his part, directed a greater share
-                    of his attention to Aquilonia, where the state of affairs was more <pb n="682"
-                        xml:id="p.682"/> critical and important, than to Cominium, which he himself
+                    of his attention to Aquilonia, where the state of affairs was more <pb n="682" xml:id="p.682"/> critical and important, than to Cominium, which he himself
                     was besieging. <milestone n="8" unit="section"/> When Papirius had fully
                     adjusted every measure, preparatory to an engagement, he despatched a message to
                     his colleague, that <quote> he intended, if the auspices permitted, to fight the
@@ -2207,15 +2059,13 @@
                     of his journey, and he returned in the night, with an answer to the consul, that
                     his colleague approved of the plan. <milestone n="10" unit="section"/> Papirius,
                     on sending off the messenger, had instantly called an assembly, where he
-                    descanted, at large, on the nature of the war in general, and <milestone
-                        n="11??" unit="section"/> on the present mode of equipment adopted by the
+                    descanted, at large, on the nature of the war in general, and <milestone n="11??" unit="section"/> on the present mode of equipment adopted by the
                     enemy, which served for empty parade, rather than for any thing effectual
                     towards insuring success; for <quote>plumes,</quote> he said, <quote> made no
                         wounds; that a Roman javelin would make its way through shields, however
                         painted and gilt; <milestone n="12" unit="section"/> and that the army,
                         refulgent from the whiteness of their tunics, would soon be besmeared with
-                        blood, when matters came to be managed with the sword. <milestone n="13"
-                            unit="section"/> His father had formerly cut off, to a man, a gold and
+                        blood, when matters came to be managed with the sword. <milestone n="13" unit="section"/> His father had formerly cut off, to a man, a gold and
                         silver army of the Samnites; and such accoutrements had made a more
                         respectable figure, as spoils, in the hands of the conquering foe, than as
                         arms in those of the wearers. <milestone n="14" unit="section"/> Perhaps it
@@ -2223,9 +2073,7 @@
                         opposed in command against the most powerful efforts of the Samnites; and
                         should bring home spoils, of such beauty, as to serve for ornaments to the
                         public places. The immortal gods were certainly on his side, on account of
-                        the leagues so often solicited and so often broken. <milestone n="15"
-                            unit="section"/> Besides, if a judgment <milestone n="16??"
-                            unit="section"/> might be formed of the sentiments of the deities, they
+                        the leagues so often solicited and so often broken. <milestone n="15" unit="section"/> Besides, if a judgment <milestone n="16??" unit="section"/> might be formed of the sentiments of the deities, they
                         never were more hostile to any army, than to that which, smeared with the
                         blood of human beings mixed with that of cattle in their abominable
                         sacrifice, doomed to the twofold resentment of the gods, dreading on the one
@@ -2242,27 +2090,23 @@
                     the deserters, to the soldiers already enraged of themselves, they then, filled
                     with confidence in both divine and human aid, with one universal shout, demanded
                     the battle; were dissatisfied at the action being deferred to the following day;
-                    they are impatient under the intended delay of a day and a night. <milestone
-                        n="2" unit="section"/> Papirius, at the third watch, having received his
+                    they are impatient under the intended delay of a day and a night. <milestone n="2" unit="section"/> Papirius, at the third watch, having received his
                     colleague's letter, arose in silence, and sent the keeper of the chickens to
                     take the auspices. <milestone n="3" unit="section"/> There was no one
                     description of men in the camp who felt not earnest wishes for the fight: the
                     highest and the lowest were equally eager; the general watching the ardour of
-                    the soldiers, and the soldiers that of the general. <milestone n="4"
-                        unit="section"/> This universal zeal spread even to those employed in taking
+                    the soldiers, and the soldiers that of the general. <milestone n="4" unit="section"/> This universal zeal spread even to those employed in taking
                     the auspices; for the chickens having refused to feed, the auspex ventured to
                     misrepresent the omen, and reported to the consul that they had fed voraciously.
                         <note anchored="true" place="unspecified"> When the auspices were to be
                         taken from the chickens, the keeper threw some of their food upon the
-                        ground, in their sight, and opened the door of their coop. <milestone n="5"
-                            unit="section"/> If they did not come out; if they came out slowly; if
+                        ground, in their sight, and opened the door of their coop. <milestone n="5" unit="section"/> If they did not come out; if they came out slowly; if
                         they refused to feed, or ate in a careless manner, the omen was considered
                         as bad. On the contrary, if <milestone n="6" unit="section"/> they rushed
                         out hastily and ate greedily, so that some of the food fell from their
                         mouths on the ground, this was considered as an omen of the best import; it
-                        was called <hi rend="italics">tripudium solisti- mum,</hi> originally, <hi
-                            rend="italics">terripavium,</hi> from <hi rend="italics">terra,</hi> and
-                            <hi rend="italics">pavire,</hi> to <milestone n="7" unit="section"/>
+                        was called <hi rend="italic">tripudium solisti- mum,</hi> originally, <hi rend="italic">terripavium,</hi> from <hi rend="italic">terra,</hi> and
+                            <hi rend="italic">pavire,</hi> to <milestone n="7" unit="section"/>
                         strike. </note> The consul, highly pleased, and giving notice that the
                     auspices were excellent, and that they were to act under the direction of the
                     gods, displayed the signal for battle. Just as he was going out to the field, he
@@ -2273,13 +2117,11 @@
                     to advance with speed, having already assigned to each division of the army its
                     proper post, and appointed general officers to command them. The command of the
                     right wing he gave to Lucius Volumnius, that of the left to Lucius Scipio, that
-                    of the cavalry to the other lieutenants-general, Caius Caedicius <milestone
-                        n="9" unit="section"/> and Caius Trebonius. He ordered Spurius Nautius to
+                    of the cavalry to the other lieutenants-general, Caius Caedicius <milestone n="9" unit="section"/> and Caius Trebonius. He ordered Spurius Nautius to
                     take off the panniers from the mules, and to lead them round quickly, together
                     with his auxiliary cohorts, to a rising ground in view; and there to show
                     himself during the heat of the engagement, and to raise as much dust as
-                    possible. While <milestone n="10" unit="section"/> the <pb n="684"
-                        xml:id="p.684"/> general was employed in making these dispositions, a
+                    possible. While <milestone n="10" unit="section"/> the <pb n="684" xml:id="p.684"/> general was employed in making these dispositions, a
                     dispute arose among the keepers of the chickens, about the auspices of the day,
                     which was overheard by some Roman horsemen, who, deeming it a matter not to be
                     slighted, informed Spurius <milestone n="11" unit="section"/> Papirius, the
@@ -2309,8 +2151,7 @@
                     unequal spirit [in the combatants]. Anger, hope, and ardour for conquest,
                     hurried on the Romans to battle, thirsting for their enemy's blood; while the
                     Samnites, for the most part reluctantly, as if compelled by necessity and
-                    religious dread, rather stood on their defence, than made an attack. <milestone
-                        n="2" unit="section"/> Nor would they, familiarized as they were to defeats,
+                    religious dread, rather stood on their defence, than made an attack. <milestone n="2" unit="section"/> Nor would they, familiarized as they were to defeats,
                     through a course of so many years, have withstood the first shout and shock of
                     the Romans, had not another fear, operating still more powerfully in their
                     breasts, restrained them from flying. <milestone n="3" unit="section"/> For they
@@ -2323,14 +2164,12 @@
                     enemy. <milestone n="4" unit="section"/> The Romans pushed on both the wings,
                     and in the centre, and made great havoc among them, stupified as they were,
                     through their fears of the gods and of men. A faint resistance is now made, as
-                    by men whom fear alone prevented from running away. <milestone n="5"
-                        unit="section"/> The slaughter had now almost reached to their standards,
+                    by men whom fear alone prevented from running away. <milestone n="5" unit="section"/> The slaughter had now almost reached to their standards,
                     when, on one side, appeared a cloud of dust, as if raised by the marching of a
                     numerous army: it was Spurius Nautius, (some say Octavius Metius,) commander of
                     the auxiliary cohorts: for these raised a greater quantity of dust than was
                     proportioned to the number of men, the servants of the camp, mounted on the
-                    mules, trailing boughs of trees, full of leaves, along the ground. <milestone
-                        n="6" unit="section"/> Through the light thus obscured, arms and standards
+                    mules, trailing boughs of trees, full of leaves, along the ground. <milestone n="6" unit="section"/> Through the light thus obscured, arms and standards
                     were seen in front; behind, a higher and denser cloud of dust presented the
                     appearance of horsemen bringing up the rear. <milestone n="7" unit="section"/>
                     This effectually deceived, not only the Samnites, but the Romans themselves: and
@@ -2350,15 +2189,12 @@
                     battalions, breaking down the ranks wherever they charged. Volumnius and Scipio
                     seconded the blow, and taking advantage of the enemy's disorder, made a terrible
                     slaughter. <milestone n="10" unit="section"/> Thus attacked, the cohorts, called
-                        <hi rend="italics">linteatœ,</hi> regardless of all restraints from either
+                        <hi rend="italic">linteatœ,</hi> regardless of all restraints from either
                     gods or men, quitted their posts in confusion; the sworn and the unsworn all
-                    fled alike, no longer dreading aught but the enemies. <milestone n="11"
-                        unit="section"/> The body of their infantry which <pb n="686" xml:id="p.686"
-                    /> survived the battle, were driven into the camp at Aquilonia. The nobility and
+                    fled alike, no longer dreading aught but the enemies. <milestone n="11" unit="section"/> The body of their infantry which <pb n="686" xml:id="p.686"/> survived the battle, were driven into the camp at Aquilonia. The nobility and
                     cavalry directed their flight to Bovianum. The horse were pursued by the Roman
                     horse, the infantry by their infantry, while the wings proceeded by different
-                    roads; the right, to the camp of the Samnites; the left, to the city. <milestone
-                        n="12" unit="section"/> Volumnius succeeded first in gaining possession of
+                    roads; the right, to the camp of the Samnites; the left, to the city. <milestone n="12" unit="section"/> Volumnius succeeded first in gaining possession of
                     the camp. At the city, Scipio met a stouter resistance; not because the
                     conquered troops there had gained courage, but because walls were a better
                     defence against armed men than a rampart. From these they repelled the enemy
@@ -2380,8 +2216,7 @@
                     <milestone n="1" unit="section"/> Of these transactions the consul was for some
                     time ignorant; and was busily employed in calling home his troops, for the sun
                     was now hastening to set, and the approach of night rendered every place
-                    suspicious and dangerous, even to victorious troops. <milestone n="2"
-                        unit="section"/> Having rode forward a considerable way, he saw on the right
+                    suspicious and dangerous, even to victorious troops. <milestone n="2" unit="section"/> Having rode forward a considerable way, he saw on the right
                     the camp taken, and heard on the left a shouting in the city, with a confused
                     noise of fighting, and cries of terror. This happened while the fight was going
                     on at the gate. <milestone n="3" unit="section"/> When, on riding up nearer, he
@@ -2391,15 +2226,13 @@
                     sent back to the camp, to be called out, and to march to the attack of the city:
                         <milestone n="4" unit="section"/> these, having made good their entrance on
                     the nearest side, proceeded no farther, because night approached. Before
-                    morning, however, the town was abandoned by the enemy. <milestone n="5"
-                        unit="section"/> There <pb n="687" xml:id="p.687"/> were slain of the
+                    morning, however, the town was abandoned by the enemy. <milestone n="5" unit="section"/> There <pb n="687" xml:id="p.687"/> were slain of the
                     Samnites on that day, at Aquilonia, thirty thousand three hundred and forty;
                     taken, three thousand eight hundred and seventy, with ninety-seven military
                     standards. <milestone n="6" unit="section"/> One circumstance, respecting
                     Papirius, is particularly mentioned by historians: that, hardly ever was any
                     general seen in the field with a more cheerful countenance; whether this was
-                    owing to his natural temper or to his confidence of success. <milestone n="7"
-                        unit="section"/> From the same firmness of mind it proceeded, that he did
+                    owing to his natural temper or to his confidence of success. <milestone n="7" unit="section"/> From the same firmness of mind it proceeded, that he did
                     not suffer himself to be diverted from the war by the dispute about the
                     auspices; and that, in the heat of the battle, when it was customary to vow
                     temples to the immortal gods, he vowed to Jupiter the victorious, that if he
@@ -2412,12 +2245,10 @@
                     <milestone n="1" unit="section"/> Matters were conducted with the same success
                     by the other consul at Cominium: leading up his forces to the walls, at the
                     first dawn, he invested the city on every side, and posted strong guards
-                    opposite to the gates to prevent any sally being made. <milestone n="2"
-                        unit="section"/> Just as he was giving the signal, the alarming message from
+                    opposite to the gates to prevent any sally being made. <milestone n="2" unit="section"/> Just as he was giving the signal, the alarming message from
                     his colleague, touching the march of the twenty Samnite cohorts, not only caused
                     him to delay the assault, but obliged him to call off a part of his troops, when
-                    they were formed and ready to begin the attack. <milestone n="3" unit="section"
-                    /> He ordered Decius Brutus Scaeva, a lieutenant-general, with the first legion,
+                    they were formed and ready to begin the attack. <milestone n="3" unit="section"/> He ordered Decius Brutus Scaeva, a lieutenant-general, with the first legion,
                     ten auxiliary cohorts, and the cavalry, to go and oppose the said detachment;
                         <milestone n="4" unit="section"/> and in whatever place he should meet the
                     foe, there to stop and detain them, and even to engage in battle, should
@@ -2441,14 +2272,12 @@
                     Such was the course of events at Cominium, such at Aquilonia. In the middle
                     space between the two cities, where a third battle had been expected, the enemy
                     were not found; for, when they were within seven miles of Cominium, they were
-                    recalled by their countrymen, and had no part in either battle. <milestone
-                        n="10" unit="section"/> At night-fall, when they were now within sight of
+                    recalled by their countrymen, and had no part in either battle. <milestone n="10" unit="section"/> At night-fall, when they were now within sight of
                     their camp, and also of Aquilonia, shouts from both places reaching them with
                     equal force induced them to halt; <milestone n="11" unit="section"/> then, on
                     the side of the camp, which had been set on fire by the Romans, the
                     wide-spreading flames indicating with more certainty the disaster [which had
-                    happened], prevented their proceeding any farther. <milestone n="12"
-                        unit="section"/> In that same spot, stretched on the ground at random under
+                    happened], prevented their proceeding any farther. <milestone n="12" unit="section"/> In that same spot, stretched on the ground at random under
                     their arms, they passed the whole night in great inquietude, at one time wishing
                     for, at another dreading the light. <milestone n="13" unit="section"/> At the
                     first dawn, while they were still undetermined to what quarter they should
@@ -2458,8 +2287,7 @@
                     advanced guard. <milestone n="14" unit="section"/> This party had likewise been
                     perceived from the walls of Aquilonia, and the legionary cohorts now joined in
                     the pursuit. The foot were unable to overtake them, but about two hundred and
-                    eighty of their rear guard were cut off by the cavalry. <milestone n="15"
-                        unit="section"/> In their consternation they left behind them a great
+                    eighty of their rear guard were cut off by the cavalry. <milestone n="15" unit="section"/> In their consternation they left behind them a great
                     quantity of arms and eighteen military standards: they reached Bovianum with the
                     rest of their party in safety, as far as could be expected after so disorderly a
                     rout. </p>
@@ -2468,17 +2296,14 @@
                     <milestone n="1" unit="section"/> The joy of both Roman armies was enhanced by
                     the success achieved on the other side. Each consul, with the approbation of his
                     colleague, gave to his soldiers the plunder of the town which he had taken; and,
-                    when the houses were cleared, set them on fire. <milestone n="2" unit="section"
-                    /> Thus, on the same day, Aquilonia and Cominium were both reduced to ashes. The
+                    when the houses were cleared, set them on fire. <milestone n="2" unit="section"/> Thus, on the same day, Aquilonia and Cominium were both reduced to ashes. The
                     consuls then <pb n="689" xml:id="p.689"/> united their camps, where mutual
-                    congratulations took place between them and between their soldiers. <milestone
-                        n="3" unit="section"/> Here, in the view of the two armies, Carvilius
+                    congratulations took place between them and between their soldiers. <milestone n="3" unit="section"/> Here, in the view of the two armies, Carvilius
                     bestowed on his men commendations and presents according to the desert of each;
                     and Papirius likewise, whose troops had been engaged in a variety of actions, in
                     the field, in the assault of the camp, and in that of the city, presented
                     Spurius Nautius, Spurius Papirius, his nephew, four centurions, and a company of
-                    the spearmen, with bracelets and crowns of gold: —to <milestone n="4"
-                        unit="section"/> Nautius, on account of his behaviour at the head of his
+                    the spearmen, with bracelets and crowns of gold: —to <milestone n="4" unit="section"/> Nautius, on account of his behaviour at the head of his
                     detachment, when he had terrified the enemy with the appearance as of a numerous
                     army; to young Papirius, on account of his zealous exertions with the cavalry,
                     both in the battle and in harassing the Samnites in their flight by night, when
@@ -2488,8 +2313,7 @@
                     gorgets and bracelets of silver, on account of their distinguished conduct on
                     many occasions. <milestone n="6" unit="section"/> As the time was now come for
                     withdrawing the army out of Samnium, the expediency was considered, as to
-                    whether they should withdraw both, or at least one. <milestone n="7"
-                        unit="section"/> It was concluded, that the lower the strength of the
+                    whether they should withdraw both, or at least one. <milestone n="7" unit="section"/> It was concluded, that the lower the strength of the
                     Samnites was reduced, the greater perseverance and vigour ought to be used in
                     prosecuting the war, so that Samnium might be given up to the succeeding consuls
                     perfectly subjected. <milestone n="8" unit="section"/> As there was now no army
@@ -2538,17 +2362,14 @@
                     determine, by lots, which of them should lead an army from Samnium into Etruria.
                         <milestone n="9" unit="section"/> Carvilius had, in the mean time, taken
                     from the Samnites Volana, Palumbinum, and Herculaneum; Volana after a siege of a
-                    few days, Palumbinum the same day on which he approached the walls. <milestone
-                        n="10" unit="section"/> At Herculaneum, it is true, the consul had two
+                    few days, Palumbinum the same day on which he approached the walls. <milestone n="10" unit="section"/> At Herculaneum, it is true, the consul had two
                     regular engagements without any decisive advantage on either side, and with
                     greater loss on his side than on that of the enemy; but afterwards, encamping on
                     the spot, he shut them up within their works. The town was besieged and taken.
                         <milestone n="11" unit="section"/> In these three towns were taken or slain
-                    ten thousand men, of whom the prisoners composed somewhat the <pb n="691"
-                        xml:id="p.691"/> greater part. On the consuls casting lots for the
+                    ten thousand men, of whom the prisoners composed somewhat the <pb n="691" xml:id="p.691"/> greater part. On the consuls casting lots for the
                     provinces, Etruria fell to Carvilius, to the great satisfaction of the soldiers,
-                    who could no longer bear the intensity of the cold in Samnium. <milestone n="12"
-                        unit="section"/> Papirius was opposed at Saepinum with a more powerful
+                    who could no longer bear the intensity of the cold in Samnium. <milestone n="12" unit="section"/> Papirius was opposed at Saepinum with a more powerful
                     force: he had to fight often in pitched battles, often on a march, and often
                     under the walls of the city, against the eruptions of the enemy; and could
                     neither besiege, nor engage them on equal terms; for the Samnites not only
@@ -2566,14 +2387,12 @@
                 <p>
                     <milestone n="1" unit="section"/> The snow had now entirely covered the face of
                     the country, and they could no longer dispense with the shelter of houses: the
-                    consul therefore led home his troops from Samnium. <milestone n="2"
-                        unit="section"/> While he was on his way to Rome, a triumph was decreed him
+                    consul therefore led home his troops from Samnium. <milestone n="2" unit="section"/> While he was on his way to Rome, a triumph was decreed him
                     with universal consent; and accordingly he triumphed while in office, and with
                     extraordinary splendour, considering the circumstances of those times.
                         <milestone n="3" unit="section"/> The cavalry and infantry marched in the
                     procession, adorned with presents. Great numbers of civic, vallar, and mural
-                    crowns were seen. <note anchored="true" place="unspecified"> These <milestone
-                            n="4" unit="section"/> marks of honour were bestowed for having saved
+                    crowns were seen. <note anchored="true" place="unspecified"> These <milestone n="4" unit="section"/> marks of honour were bestowed for having saved
                         the lives of citizens, or for having been the first to mount walls or
                         ramparts. </note> The spoils of the Samnites were inspected with much
                     curiosity, and compared, in respect of <milestone n="5" unit="section"/>
@@ -2581,12 +2400,10 @@
                     from being frequently exhibited as ornaments of the public places. Several
                     prisoners of distinction, renowned for their own exploits and those of their
                     ancestors, were led in the cavalcade. There were carried in the train two
-                    millions and thirty-three thousand <hi rend="italics">asses</hi> in weight.
-                        <note anchored="true" place="unspecified"> £4940 13 <hi rend="italics"
-                            >s.</hi> 6 <hi rend="italics">d.</hi>
+                    millions and thirty-three thousand <hi rend="italic">asses</hi> in weight.
+                        <note anchored="true" place="unspecified"> £4940 13 <hi rend="italic">s.</hi> 6 <hi rend="italic">d.</hi>
                     </note> This money was said to be produced by the sale of the prisoners. Of
-                    silver, taken in the cities, one thousand three hundred and thirty <pb n="692"
-                        xml:id="p.692"/> pounds. <milestone n="6" unit="section"/> All the silver
+                    silver, taken in the cities, one thousand three hundred and thirty <pb n="692" xml:id="p.692"/> pounds. <milestone n="6" unit="section"/> All the silver
                     and brass were lodged in the treasury, no share of this part of the spoil being
                     given to the soldiers. The ill humour in the commons was further exasperated,
                     because the tax for the payment of the army was collected by contribution;
@@ -2597,10 +2414,8 @@
                     dictator, (for that he himself had vowed it in the heat of battle, I do not find
                     in any ancient writer, nor indeed could he in <milestone n="8" unit="section"/>
                     so short a time have finished the building of it,) the son, in the office of
-                    consul, dedicated and adorned with military spoils. And of <milestone n="9??"
-                        unit="section"/> these, so great was the abundance, that not only that
-                    temple and the forum were decorated with them, <milestone n="10" unit="section"
-                    /> but some were also distributed among the allies and colonies in the
+                    consul, dedicated and adorned with military spoils. And of <milestone n="9??" unit="section"/> these, so great was the abundance, that not only that
+                    temple and the forum were decorated with them, <milestone n="10" unit="section"/> but some were also distributed among the allies and colonies in the
                     neighbourhood, to serve as ornaments to their temples and public places.
                     Immediately after his triumph, he led his army into winter quarters in the
                     territory of Vescia; because that country was harassed by the Samnites.
@@ -2612,25 +2427,18 @@
                     forts strongly situated, wherein were slain two thousand four hundred of the
                     enemy, and not quite two thousand made prisoners. To the Faliscians, who sued
                     for peace, he granted <milestone n="13" unit="section"/> a truce for a year, on
-                    condition of their furnishing a hundred thousand <hi rend="italics">asses</hi>
-                    in weight, <note anchored="true" place="unspecified"> £322 18 <hi rend="italics"
-                            >s.</hi> 4 <hi rend="italics">d.</hi>
+                    condition of their furnishing a hundred thousand <hi rend="italic">asses</hi>
+                    in weight, <note anchored="true" place="unspecified"> £322 18 <hi rend="italic">s.</hi> 4 <hi rend="italic">d.</hi>
                     </note> and that year's <milestone n="14??" unit="section"/> pay for his army.
                     This business completed, he returned home to a triumph, which, though it was
                     less illustrious than that of his colleague, in respect of his share in the
-                    defeat of the Samnites, was yet raised to an equality with it, by <milestone
-                        n="15" unit="section"/> his having put a termination to the war in Etruria.
-                    He carried into the treasury three hundred and ninety thousand <hi
-                        rend="italics">asses</hi> in weight. <note anchored="true"
-                        place="unspecified"> £1259 7 <hi rend="italics">s.</hi> 6 <hi rend="italics"
-                            >d.</hi>
+                    defeat of the Samnites, was yet raised to an equality with it, by <milestone n="15" unit="section"/> his having put a termination to the war in Etruria.
+                    He carried into the treasury three hundred and ninety thousand <hi rend="italic">asses</hi> in weight. <note anchored="true" place="unspecified"> £1259 7 <hi rend="italic">s.</hi> 6 <hi rend="italic">d.</hi>
                     </note> Out of the remainder of the money accruing to the public from the
                     spoils, <milestone n="16" unit="section"/> he contracted for the building of a
                     temple to Fors Fortuna, near to that dedicated to the same goddess by king
-                    Servius Tullius; and gave to the soldiers, out of the spoil, one hun- <pb
-                        n="693" xml:id="p.693"/> dred and two <hi rend="italics">asses</hi>
-                    <note anchored="true" place="unspecified"> 6 <hi rend="italics">s.</hi> 7 <hi
-                            rend="italics">d.</hi>
+                    Servius Tullius; and gave to the soldiers, out of the spoil, one hun- <pb n="693" xml:id="p.693"/> dred and two <hi rend="italic">asses</hi>
+                    <note anchored="true" place="unspecified"> 6 <hi rend="italic">s.</hi> 7 <hi rend="italic">d.</hi>
                     </note> each, and double that sum to the centu- rions and horsemen, who received
                     this donative the more gratefully, on account of the parsimony of his colleague. </p>
                 <milestone n="47" unit="chapter"/>
@@ -2639,14 +2447,12 @@
                     before the people, Postumius; who, on a prosecution being commenced against him
                     by Marcus Scantius, plebeian tribune, evaded, as was said, the jurisdiction of
                     the people, by procuring the commission of lieutenant-general, so the indictment
-                    against him could only be held out as a threat, and not put in force. <milestone
-                        n="2" unit="section"/> The year having now elapsed, new plebeian tribunes
+                    against him could only be held out as a threat, and not put in force. <milestone n="2" unit="section"/> The year having now elapsed, new plebeian tribunes
                     had come into office; and for these, in consequence of some irregularity in
                     their appointments, others had been, within five days after, substituted in
                     their room. The lustrum was closed this year by the censors Publius Cornelius
                     Arvina and Caius Marcius Rutilus. The number of citizens rated was two hundred
-                    and sixty-two thousand three hundred and twenty-two. <milestone n="3"
-                        unit="section"/> These were the twenty-sixth pair of censors since the first
+                    and sixty-two thousand three hundred and twenty-two. <milestone n="3" unit="section"/> These were the twenty-sixth pair of censors since the first
                     institution of that office; and this the nineteenth lustrum. In this year,
                     persons who had been presented with crowns, in consideration of meritorious
                     behaviour in war, first began to wear them at the exhibition of the Roman games.
@@ -2659,13 +2465,12 @@
                     Gurges, son of Maximus, and Decius Junius Brutus Scaeva. Papirius himself was
                     made praetor. This year, prosperous in many particulars, was scarcely sufficient
                     to afford consolation for one calamity, a pestilence, which afflicted both the
-                    city and country: the mortality was prodigious. <milestone n="6" unit="section"
-                    /> To discover what end, or what remedy, was appointed by the gods for that
+                    city and country: the mortality was prodigious. <milestone n="6" unit="section"/> To discover what end, or what remedy, was appointed by the gods for that
                     calamity, the books were consulted: in the books it was found that Aesculapius
                     must be brought to Rome from Epidaurus. Nor were any steps taken that year in
                     that matter, because the consuls were fully occupied in the war, except that a
                     supplication was performed to Aesculapius for one day. </p>
             </div>
-        </body>
-    </text>
+        </div>
+    </body></text>
 </TEI>

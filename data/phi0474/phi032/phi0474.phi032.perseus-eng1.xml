@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
-                <title>On Behalf of Marcus Claudius Marcellus </title>
+                <title type="work">On Behalf of Marcus Claudius Marcellus </title>
                 <title>for his house, Plancius, Sextius, Coelius, Milo, Ligarius, etc.</title>
                 <title type="sub">Machine readable text</title>
-                <author n="Cic.">M. Tullius Cicero</author>
+                <author n="M. Tullius Cicero">M. Tullius Cicero</author>
                 <editor role="editor" n="Yonge">C. D. Yonge</editor>
                 <sponsor>Perseus Project, Tufts University</sponsor>
                 <principal>Gregory Crane</principal>
@@ -41,21 +42,28 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
-            <refsDecl>
+            <!--<refsDecl>
                 <refState delim=" " unit="text"/>
                 <refState unit="section"/>
+            </refsDecl>-->
+            <refsDecl n="CTS">
+                <cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+                    <p>This pointer pattern extracts chapter and section</p>
+                </cRefPattern>
+                <cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+                    <p>This pointer pattern extracts chapter</p>
+                </cRefPattern>
             </refsDecl>
             <refsDecl>
-                <refState delim=" " unit="text"/>
-                <refState delim="." unit="chapter"/>
+                <refState unit="chapter" delim="."/>
                 <refState unit="section"/>
             </refsDecl>
         </encodingDesc>
         <profileDesc>
             <langUsage>
-                <language ident="en">English</language>
-                <language ident="la">Latin</language>
-                <language ident="greek">Greek</language>
+                <language ident="eng">English</language>
+                <language ident="lat">Latin</language>
+                <language ident="grc">Greek</language>
             </langUsage>
         </profileDesc>
         <revisionDesc>
@@ -142,13 +150,19 @@ Added to repository.
     <item>split composite text and converted to unicode</item>
       </change>-->
             <change when="2014-08-01" who="Stella Dee">edited markup</change>
-        </revisionDesc>
+        <change when="2015-12-13" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change>
+            <change when="1997-07-14" who="DAS">ed.</change>
+            <change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change><change who="balmas01" when="2013-09-13T11:20:04">Revision 1.7  reverting texts back to pre_cts_reorg tagged version</change><change who="lcerrato" when="2011-03-17T16:00:49">Revision 1.5  fixing gap tags against source</change><change who="rsingh04" when="2010-08-31T18:43:05">Revision 1.4  cleaned up log keyword</change><change who="rsingh04" when="2010-08-31T18:30:20">Revision 1.3  cleaned up log keyword</change><change who="rsingh04" when="2009-10-09T19:49:14">Revision 1.1 more reorganizing of texts module by collection</change><change who="student" when="2009-06-25T15:53:30">Revision 1.6 fixed bibl error - zr</change><change who="lcerrato" when="2008-12-11T19:08:11">Revision 1.5 fixed typo ought not to he to ought not to be</change><change who="packel" when="2006-05-05T17:38:08">Revision 1.4 fixed date tags</change><change who="packel" when="2006-02-10T20:50:19">Revision 1.3 places/dates now actually tagged</change><change who="packel" when="2005-08-01T15:59:25">Revision 1.2 removed stray item tags</change><change who="packel" when="2005-07-25T14:31:48">Revision 1.1 Converted to XML</change><change who="lcerrato" when="2005-03-08T17:57:33">Revision 1.11 changed Marcus Carius in Pro Plancio 60 to Manius Curius based on Latin, report and other sources</change><change who="lcerrato" when="2005-03-08T17:51:43">Revision 1.10 Changed Sulla in Resp. Answers of Soothsayers 59 to Scylla
+                    based on Latin and user report</change><change who="lcerrato" when="2003-10-10T20:51:02">Revision 1.9 added semicolon in run on sentence</change><change who="yorkc" when="2003-07-01T22:15:02">Revision 1.8 Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character
+                    encodings and typos.)</change><change who="lcerrato" when="2000-10-17T18:37:22">Revision 1.7 changed typo in the bearing of the senate to in the hearing of the senate at Pro Caelio 60</change><change who="lcerrato" when="2000-09-05T18:16:21">Revision 1.6 made many</change><change who="dasmith" when="2000-03-04T20:34:17">Revisions to tags, spacing, general proofreading, spellchecking 
+
+Revision 1.5 Added separate funder entity to TEI header.</change><change who="dasmith" when="1999-10-14T21:36:04">Revision 1.4 Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-08-12T17:17:40">Revision 1.3 Fixed refsDecl</change><change who="textgod" when="1999-08-04T18:12:22">Revision 1.2 Random changes over a period of months.</change><change who="textgod" when="1997-08-18T14:51:50">Revision 1.1 Added to repository.</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
+    <text>
         <front>
             <pb n="457"/>
             <head>THE SPEECH OF M. T. CICERO IN BEHALF OF MARCUS CLAUDIUS MARCELLUS.</head>
-            <argument>
+            
                 <head>THE ARGUMENT.</head>
                 <p>Marcus Claudius Marcellus was descended from the most illustrious families at
                     Rome, and had been consul with Servius Sulpicius Rufus; in which office he had
@@ -164,11 +178,10 @@ Added to repository.
                     the senate unanimous in their petition for Marcellus, yet had the motion for his
                     pardon put to the vote, and called for the opinion of every individual senator
                     on it. Cicero appears at this time to have believed that Caesar intended to
-                    restore the republic, as he mentions in his letters, (<bibl
-                        n="Cic. Fam. 13.68.1">Ep. Fam. 13.68</bibl>.)</p>
-            </argument>
+                    restore the republic, as he mentions in his letters, (<bibl n="Cic. Fam. 13.68.1">Ep. Fam. 13.68</bibl>.)</p>
+            
         </front>
-        <body>
+        <body><div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0474.phi032.perseus-eng1" subtype="translation">
             <milestone n="1" unit="chapter"/>
             <milestone n="1" unit="section"/>
             <p>This day, O conscript fathers, has brought with it an end to the long silence in
@@ -183,14 +196,12 @@ Added to repository.
                 also. </p>
             <p>For I was concerned, O conscript fathers, and most exceedingly grieved, when I saw
                 such a man as he is, who had espoused the same cause which I myself had, not
-                enjoying the same good fortune as myself; nor was I able to persuade myself <pb
-                    n="458"/> self to think it right or fair that I should be going on in my usual
+                enjoying the same good fortune as myself; nor was I able to persuade myself <pb n="458"/> self to think it right or fair that I should be going on in my usual
                 routine, while that rival and imitator of my zeal and labours, who had been a
                 companion and comrade of mine throughout, was separated from me. Therefore, you, O
                 Caius Caesar, have reopened to me my former habits of life, which were closed up,
                 and you have raised, as it were, a standard to all these men, as a sort of token to
-                lead them to entertain hopes of the general welfare of the republic. <milestone
-                    n="3" unit="section"/> For it was seen by me before in many instances, and
+                lead them to entertain hopes of the general welfare of the republic. <milestone n="3" unit="section"/> For it was seen by me before in many instances, and
                 especially in my own, and now it is clearly understood by everybody, since you have
                 granted Marcus Marcellus to the senate and people of Rome, in spite of your
                 recollection of all the injuries you have received at his hands, that you prefer the
@@ -205,19 +216,16 @@ Added to repository.
                 men than it will be to himself when he is informed of it. And this honour has
                 deservedly and most rightfully fallen to his lot. For who is superior to him either
                 in nobleness of birth, or in honesty, or in zeal for virtuous studies, or in purity
-                of life, or in any description whatever of excellence. <milestone n="2"
-                    unit="chapter"/></p>
+                of life, or in any description whatever of excellence. <milestone n="2" unit="chapter"/></p>
             <p>No one is blessed with such a stream of genius, no one is endowed with such vigour
                 and richness of eloquence, either as a speaker or as a writer, as to be able, I will
                 not say to extol, but even, O Caius Caesar, plainly to relate all your achievements.
                 Nevertheless, I assert, and with your leave I maintain, that in all of them you
-                never gained greater and truer glory than you have acquired this day. <milestone
-                    n="5" unit="section"/> I am accustomed often to keep this idea before my eyes,
+                never gained greater and truer glory than you have acquired this day. <milestone n="5" unit="section"/> I am accustomed often to keep this idea before my eyes,
                 and often to affirm in frequent conversations, that all the exploits of our own
                 generals, all those of foreign nations and of most powerful states, all the mighty
                 deeds of the most illustrious monarchs, can be compared with yours neither in the
-                magnitude of your wars, nor in the number of your battles, nor in the variety of <pb
-                    n="459"/> countries which you have conquered, nor in the rapidity of your
+                magnitude of your wars, nor in the number of your battles, nor in the variety of <pb n="459"/> countries which you have conquered, nor in the rapidity of your
                 conquests, nor in the great difference of character with which your wars have been
                 marked; and that those countries the most remote from each other could not be
                 traveled over more rapidly by any one in a journey, than they have been visited by
@@ -241,8 +249,7 @@ Added to repository.
                 thrust herself into any participation in that glory; she yields to you; she
                 confesses that it is all your own, your peculiar private desert. For rashness is
                 never united with wisdom, nor is chance ever admitted to regulate affairs conducted
-                with prudence. <milestone n="3" unit="chapter"/><milestone n="8" unit="section"
-                /></p>
+                with prudence. <milestone n="3" unit="chapter"/><milestone n="8" unit="section"/></p>
             <p>You have subdued nations, savage in their barbarism, countless in their numbers,
                 boundless, if we regard the extent of country peopled by them, and rich in every
                 kind of resource; but still you were only conquering things, the nature and
@@ -298,8 +305,7 @@ Added to repository.
                 conditions of the victory itself, we who were conquered were all ruined, we still
                 have been preserved by the deliberate decision of your clemency. You, therefore,
                 deserve to be the only man who is never conquered, since you conquer the conditions
-                and the violent privileges of victory itself. <milestone n="5" unit="chapter"
-                    /><milestone n="13" unit="section"/></p>
+                and the violent privileges of victory itself. <milestone n="5" unit="chapter"/><milestone n="13" unit="section"/></p>
             <p>And, O conscript fathers, remark how widely this decision of Caius Caesar extends.
                 For by it, all of us who, under the compulsion of some miserable and fatal destiny
                 of the republic, were driven to take up arms as we did, though we are still not free
@@ -311,8 +317,7 @@ Added to repository.
                 now behold in numbers and dignity present in this very assembly. He has not brought
                 his enemies into the senate-house; but he has decided that the war was undertaken by
                 most of them rather out of ignorance, and because of some ungrounded and empty fear,
-                than out of either any depraved desires or cruelty. <milestone n="14" unit="section"
-                />
+                than out of either any depraved desires or cruelty. <milestone n="14" unit="section"/>
             </p>
             <p>And in that war, I always thought it right to listen to all proposals that gave any
                 hope of peace, and I always grieved that not only peace, but that even the language
@@ -326,8 +331,7 @@ Added to repository.
                 death. <milestone n="15" unit="section"/> And, indeed, my sentiments in the matter
                 were not at all concealed; for in this assembly, before any decisive steps were
                 taken either way, I said many things in favour of peace, and even while the war was
-                going on I retained the same opinions, even at the risk of my life.<note
-                    anchored="true">Cicero was not present at the battle of Pharsalia, but remained
+                going on I retained the same opinions, even at the risk of my life.<note anchored="true">Cicero was not present at the battle of Pharsalia, but remained
                     at Dyrrachium, vexed at his advice being totally disregarded. Cato also remained
                     at Dyrrachium. When Labienus brought them the news of Pompey's defeat, Cato
                     offered Cicero the command, as the superior in dignity, and Plutarch relates,
@@ -355,8 +359,7 @@ Added to repository.
                 so that no man can doubt that Caius Caesar would even raise many from the dead if
                 that were possible, since he does preserve all those of that army that he can. </p>
             <p>But of the other party I will say no more than what we were all afraid of at the
-                time, namely, that theirs would have been too angry a victory. <milestone n="18"
-                    unit="section"/> For some of them were in the habit of indulging in threats not
+                time, namely, that theirs would have been too angry a victory. <milestone n="18" unit="section"/> For some of them were in the habit of indulging in threats not
                 only against those of their enemies who were in arms, but even against those who
                 remained quiet; and they used to say that the matter to he considered was not what
                 each man had thought, but where he had been. So that it appears to me that the
@@ -385,8 +388,7 @@ Added to repository.
                 erroneous one perhaps, but certainly not a wicked one,—and because they were misled
                 by imaginary claims which they fancied the republic had on them. For it is no fault
                 of yours if some people were afraid of you; and, on the other hand, it is your
-                greatest praise that they have now felt that they had no reason to fear you. <pb
-                    n="464"/>
+                greatest praise that they have now felt that they had no reason to fear you. <pb n="464"/>
                 <milestone n="7" unit="chapter"/><milestone n="21" unit="section"/></p>
             <p>But now I come to those severe complaints, and to those most terrible suspicions that
                 you have given utterance to; of dangers which should be guarded against not more by
@@ -457,8 +459,7 @@ Added to repository.
                 beware, I beg of you, lest your virtue should earn admiration rather than solid
                 glory; since the glory which is illustrious and which is celebrated abroad, is the
                 fame of many and great services done either to one's own friends, or to one's
-                country, or to the whole race of mankind. <milestone n="9" unit="chapter"
-                    /><milestone n="27" unit="section"/></p>
+                country, or to the whole race of mankind. <milestone n="9" unit="chapter"/><milestone n="27" unit="section"/></p>
             <p>This, then, is the part which remains to you—this is the cause which you have before
                 you; this is what you must now labour at,—to settle the republic, and to enjoy it
                 yourself as the first of its citizens, in the greatest tranquillity and
@@ -494,15 +495,13 @@ Added to repository.
                 will be untainted by hatred or by envy. <milestone n="30" unit="section"/> And even
                 if it will be incapable of affecting you at that time, (which is the false opinion
                 held by some men,) at all events, it concerns you now to conduct yourself in such a
-                manner that no oblivion shall ever be able to obscure your praises. <milestone
-                    n="10" unit="chapter"/></p>
+                manner that no oblivion shall ever be able to obscure your praises. <milestone n="10" unit="chapter"/></p>
             <p>The inclinations of the citizens have been very diverse, and their opinions much
                 distracted; for we showed our variance, not only by our counsels and desires, but by
                 arms and warlike operations. And there was obscurity in the designs of, and
                 contention between, the most illustrious generals: many doubted which was the best
                 side; many, what was expedient for themselves; many, what was becoming; some even
-                felt uncertain as to what it was in their power to do. <milestone n="31"
-                    unit="section"/> The republic has at last come to the end of this miserable and
+                felt uncertain as to what it was in their power to do. <milestone n="31" unit="section"/> The republic has at last come to the end of this miserable and
                 fatal war; that man has been victorious who has not allowed his animosities to be
                 inflamed by good fortune, but who has mitigated them by the goodness of his
                 disposition; and who did not consider all those with whom he was displeased
@@ -523,8 +522,7 @@ Added to repository.
                 you think that there is still something concealed, against which it is necessary to
                 guard,—we promise you, I say, not only our vigilance and our wariness also to assist
                 in those precautions, but we promise to oppose our sides and our bodies as a shield
-                against every danger which can threaten you. <milestone n="11" unit="chapter"
-                    /><milestone n="33" unit="section"/></p>
+                against every danger which can threaten you. <milestone n="11" unit="chapter"/><milestone n="33" unit="section"/></p>
             <p>But let my speech end with the same sentiment as it began. We all, O Caius Caesar,
                 render you the greatest thanks, and we feel even deeper gratitude than we express;
                 for all feel the same thing, as you might have perceived from the entreaties and
@@ -546,6 +544,6 @@ Added to repository.
                 action of yours, a crowning kindness of the greatest importance was added to the
                 already innumerable benefits which you have reaped upon me, which I did not before
                 believe were capable of any augmentation. </p>
-        </body>
-    </text>
+        </div>
+    </body></text>
 </TEI>
