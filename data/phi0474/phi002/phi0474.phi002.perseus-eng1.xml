@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
     <fileDesc>
       <titleStmt>
-        <title>Sextus Roscius </title>
+        <title type="work">Sextus Roscius </title>
         <title>for Quintius, Sextus Roscius, Quintus Roscius, against Quintus Caecilius, and against
           Verres</title>
         <title type="sub">Machine readable text</title>
-        <author n="Cic.">M. Tullius Cicero</author>
+        <author n="M. Tullius Cicero">M. Tullius Cicero</author>
         <editor role="translator" n="Yonge">C. D. Yonge</editor>
         <sponsor>Perseus Project, Tufts University</sponsor>
         <principal>Gregory Crane</principal>
@@ -43,29 +43,33 @@
     </fileDesc>
 
     <encodingDesc>
-      <refsDecl>
-        <refState delim=" " unit="text"/>
-        <refState unit="section"/>
+      <refsDecl n="CTS">
+        <cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+          <p>This pointer pattern extracts chapter and section</p>
+        </cRefPattern>
+        <cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+          <p>This pointer pattern extracts chapter</p>
+        </cRefPattern>
       </refsDecl>
       <refsDecl>
-        <refState delim=" " unit="text"/>
-        <refState delim="." unit="chapter"/>
+        <refState unit="chapter" delim="."/>
         <refState unit="section"/>
       </refsDecl>
+      <!--
       <refsDecl n="text=Ver.">
         <refState delim=" " unit="text"/>
         <refState delim=" " unit="actio"/>
         <refState delim="." unit="book"/>
         <refState unit="section"/>
-      </refsDecl>
+      </refsDecl>-->
     </encodingDesc>
 
     <profileDesc>
       <langUsage>
-        <language ident="en">English </language>
-        <language ident="fr">French </language>
-        <language ident="la">Latin </language>
-        <language ident="greek">Greek </language>
+        <language ident="eng">English </language>
+        <language ident="fre">French </language>
+        <language ident="lat">Latin </language>
+        <language ident="grc">Greek </language>
       </langUsage>
     </profileDesc>
 
@@ -154,12 +158,14 @@ Added to repository. Passes TEI parsing.
     <item>split composite text and converted to unicode</item>
       </change>-->
       <change when="2014-08-01" who="Stella Dee">edited markup</change>
-    </revisionDesc>
+    <change when="2015-12-13" who="Zach Himes">Cleaned up teiHeader.</change><change when="1997-03-19" who="DAS">ed.</change><change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change><change who="rsingh04" when="2010-09-03T15:34:28">Revision 1.3  cleaned up log keyword</change><change who="student" when="2010-07-08T22:49:11">Revision 1.2  fixing place tags - AD</change><change who="rsingh04" when="2009-10-09T19:49:13">Revision 1.1 more reorganizing of texts module by collection</change><change who="rsingh04" when="2009-09-22T16:21:37">Revision 1.7 fixed references to Cic. Ver.</change><change who="rsingh04" when="2009-09-22T14:46:00">Revision 1.6 fixed 
+chunking for cic. ver. to text:actio:book:section in order for bibls to work</change><change who="lcerrato" when="2009-06-03T20:04:29">Revision 1.5 fixed bad bibls</change><change who="packel" when="2006-05-05T17:38:04">Revision 1.4 fixed date tags</change><change who="packel" when="2006-02-10T20:50:17">Revision 1.3 places/dates now actually tagged</change><change who="packel" when="2005-08-01T15:59:22">Revision 1.2 removed stray item tags</change><change who="packel" when="2005-07-25T14:31:43">Revision 1.1 Converted to XML</change><change who="lcerrato" when="2003-10-10T16:19:15">Revision 1.15 fixed four random typos</change><change who="yorkc" when="2003-07-01T22:15:00">Revision 1.14 Updated texts to TEI P4 and Perseus P4 extensions;
+minor cleanup (esp. character encodings and typos.)</change><change who="lcerrato" when="2002-10-02T20:48:26">Revision 1.13 fixed typo you have not this to you have not heard this</change><change who="dasmith" when="2000-03-04T20:34:15">Revision 1.12 Added separate funder entity to TEI header.</change><change who="lcerrato" when="1996-11-30T20:38:37">Revision 1.11 revised and proofread again</change><change who="dasmith" when="1999-10-14T21:36:03">Revision 1.10 Added explanatory subtitles to titleStmt</change><change who="lcerrato" when="1999-10-01T19:07:29">Revision 1.9 fixed valour for velour</change><change who="dasmith" when="1999-08-12T17:17:29">Revision 1.8 Fixed refsDecl</change><change who="textgod" when="1999-08-04T16:49:45">Revision 1.7 Minor tagging changes.</change><change who="textgod" when="1999-08-04T16:07:29">Revision 1.6 Lisa's edits.</change><change who="textgod" when="1997-09-01T19:53:03">Revision 1.4 Added sections.</change><change who="textgod" when="1997-03-26T17:44:36">Revision 1.2 Changed Quint. abbreviation to Quinct.</change><change who="textgod" when="1997-03-26T00:44:47">Revision 1.1 Added to repository. Passes TEI parsing.</change></revisionDesc>
   </teiHeader>
   <text xml:lang="en">
     <front>
       <head>THE ORATION FOR SEXTUS ROSCIUS OF AMERIA.</head>
-      <argument>
+      
         <head>THE ARGUMENT</head>
         <p>Cicero himself in this speech calls this trial the first public, that is criminal cause
           in which he was engaged; and many critics consider it an earlier speech than the preceding
@@ -171,11 +177,10 @@ Added to repository. Passes TEI parsing.
           defend him, being afraid of Sulla, whose influence was openly used for his freedman.
           Roscius was acquitted. Cicero often refers with great complacency to his conduct in this
           suit, as a proof of his intrepidity, and of his resolute honesty in discharging the duties
-          of an advocate without being dismayed at the opposition of the greatest men in <placeName
-            key="perseus,Rome">Rome</placeName>. </p>
-      </argument>
+          of an advocate without being dismayed at the opposition of the greatest men in <placeName key="perseus,Rome">Rome</placeName>. </p>
+      
     </front>
-    <body>
+    <body><div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0474.phi002.perseus-eng1" subtype="translation">
       <milestone n="1" unit="chapter"/>
       <milestone n="1" unit="section"/>
       <p>I imagine that you, O judges, are marvelling why it is that when so many most eminent
@@ -191,8 +196,7 @@ Added to repository. Passes TEI parsing.
         it then which has impelled me beyond all the rest to undertake the cause of Sextus Roscius?
         Because, if any one of those men, men of the greatest weight and dignity, whom you see
         present, had spoken, had said one word about public affairs, as must be done in this case,
-        he would be thought to have said much more than he really had said. <milestone n="3"
-          unit="section"/> But if I should say all the things which must be said with ever so much
+        he would be thought to have said much more than he really had said. <milestone n="3" unit="section"/> But if I should say all the things which must be said with ever so much
         freedom, yet my speech will never go forth or be diffused among the people in the same
         manner. Secondly, because anything said by the others cannot be obscure, because of their
         nobility and dignity, and cannot be excused as being spoken carelessly, on account of their
@@ -227,15 +231,13 @@ Added to repository. Passes TEI parsing.
         innocent man; but if he be convicted and got rid of, he hopes he may be able to waste and
         squander in luxury what he has acquired by wickedness. He begs that you will take from his
         mind this uneasiness which day and night is pricking and harassing him, so as to profess
-        yourselves his assistants in enjoying this his nefariously acquired booty. <milestone n="7"
-          unit="section"/> If his demand seems to you just and honourable, O judges, I, on the other
+        yourselves his assistants in enjoying this his nefariously acquired booty. <milestone n="7" unit="section"/> If his demand seems to you just and honourable, O judges, I, on the other
         hand, proffer this brief request, and one, as I persuade myself, somewhat more reasonable
         still. <milestone n="3" unit="chapter"/></p>
       <p>First of all, I ask of Chrysogonus to be content with our money and our fortunes, and not
         to seek our blood and our lives. In the second place, I beg you, O judges, to resist the
         wickedness of audacious men; to relieve the calamities of the innocent, and in the cause of
-        Sextus Roscius to repel the danger which is being aimed at every one. <milestone n="8"
-          unit="section"/> But if any pretence for the accusation—if any suspicion of this act—if,
+        Sextus Roscius to repel the danger which is being aimed at every one. <milestone n="8" unit="section"/> But if any pretence for the accusation—if any suspicion of this act—if,
         in short, any, the least thing be found,—so that in bringing forward this accusation they
         shall seem to have had some real object,—if you find any cause whatever for it, except that
         plunder which I have mentioned, I will not object to the life of Sextus Roscius being
@@ -250,8 +252,7 @@ Added to repository. Passes TEI parsing.
         into this body because of your inflexible love of justice—still assassins and gladiators
         should ask of you, not only to allow them to escape the punishment which they ought to fear
         and dread at your hands for their crimes, but also that they may depart from this court
-        adorned and enriched with the spoils of Sextus Roscius? <milestone n="4" unit="chapter"
-          /><milestone n="9" unit="section"/></p>
+        adorned and enriched with the spoils of Sextus Roscius? <milestone n="4" unit="chapter"/><milestone n="9" unit="section"/></p>
       <p>Of such important and such atrocious actions, I am aware that I can neither speak with
         sufficient propriety, nor complain with sufficient dignity, nor cry out against with
         sufficient freedom. For my want of capacity is a hindrance to my speaking with propriety; my
@@ -301,13 +302,9 @@ Added to repository. Passes TEI parsing.
         And that you may be the more easily able to understand, O judges, that what has been done is
         still more infamous than what we mention, we will explain to you from the beginning how the
         matter was managed, so that you may the more easily be able to perceive both the misery of
-        this most innocent man, and their audacity, and the calamity of the republic. <milestone
-          n="6" unit="chapter"/><milestone n="15" unit="section"/></p>
-      <p>Sextus Roscius, the father of this man, was a citizen <note anchored="true">A <foreign
-            xml:lang="la">municeps</foreign> was a citizen of a <foreign xml:lang="la"
-            >municipium</foreign>. For a full explanation of these terms see Smith, Dict. Ant.
-          p.259, v. <foreign xml:lang="la">Colonia</foreign>. </note> of <placeName
-          key="perseus,Ameria">Ameria</placeName>, by far the first man not only of his
+        this most innocent man, and their audacity, and the calamity of the republic. <milestone n="6" unit="chapter"/><milestone n="15" unit="section"/></p>
+      <p>Sextus Roscius, the father of this man, was a citizen <note anchored="true">A <foreign xml:lang="la">municeps</foreign> was a citizen of a <foreign xml:lang="la">municipium</foreign>. For a full explanation of these terms see Smith, Dict. Ant.
+          p.259, v. <foreign xml:lang="la">Colonia</foreign>. </note> of <placeName key="perseus,Ameria">Ameria</placeName>, by far the first man not only of his
         municipality, but also of his neighbourhood, in birth, and nobility and wealth, and also of
         great influence, from the affection and the ties of hospitality by which he was connected
         with the most noble men of <placeName key="perseus,Rome">Rome</placeName>. For he had not
@@ -325,8 +322,7 @@ Added to repository. Passes TEI parsing.
         he should fight in defence of their honour, on account of whom he himself was reckoned most
         honourable among his fellow-citizens. After the victory was declared, and we had given up
         arms, when men were being proscribed, and when they who were supposed to be enemies were
-        being taken in every district, he was constantly at <placeName key="perseus,Rome"
-          >Rome</placeName>, and in the Forum, and was daily in the sight of every one; so that he
+        being taken in every district, he was constantly at <placeName key="perseus,Rome">Rome</placeName>, and in the Forum, and was daily in the sight of every one; so that he
         seemed rather to exult in the victory of the nobility, than to be afraid lest any disaster
         should result to him from it. <milestone n="17" unit="section"/> He had an ancient quarrel
         with two Roscii of <placeName key="perseus,Ameria">Ameria</placeName>, one of whom I see
@@ -337,8 +333,7 @@ Added to repository. Passes TEI parsing.
         Magnus,) are men of this sort. One of them is an old and experienced gladiator, who has
         gained many victories, but this one here has lately betaken himself to him as his tutor: and
         though, before this contest, he was a mere tyro in knowledge, he easily surpassed his tutor
-        himself in wickedness and audacity. <milestone n="7" unit="chapter"/><milestone n="18"
-          unit="section"/></p>
+        himself in wickedness and audacity. <milestone n="7" unit="chapter"/><milestone n="18" unit="section"/></p>
       <p>For when this Sextus Roscius was at <placeName key="perseus,Ameria">Ameria</placeName>, but
         that Titus Roscius at <placeName key="perseus,Rome">Rome</placeName>; while the former, the
         son, was diligently attending to the farm, and in obedience to his father's desire had given
@@ -347,13 +342,11 @@ Added to repository. Passes TEI parsing.
         after supper, is slain near the <placeName key="tgn,3000935">Palatine</placeName> baths. I
         hope from this very fact, that it is not obscure on whom the suspicion of the crime falls;
         but if the whole affair does not itself make plain that which as yet is only to be
-        suspected, I give you leave to say my client is implicated in the guilt. <milestone n="19"
-          unit="section"/> When Sextus Roscius was slain, the first person who brings the news to
+        suspected, I give you leave to say my client is implicated in the guilt. <milestone n="19" unit="section"/> When Sextus Roscius was slain, the first person who brings the news to
           <placeName key="perseus,Ameria">Ameria</placeName>, is a certain Mallius Glaucia, a man of
         no consideration, a freedman, the client and intimate friend of that Titus Roscius; and he
         brings the news to the house, not of the son, but of Titus Capito, his enemy, and though he
-        had been slain about the first hour of the night, this messenger arrives at <placeName
-          key="perseus,Ameria">Ameria</placeName> by the first dawn of day. In ten hours of the
+        had been slain about the first hour of the night, this messenger arrives at <placeName key="perseus,Ameria">Ameria</placeName> by the first dawn of day. In ten hours of the
         night he travelled fifty-six miles in a gig; not only to be the first to bring his enemy the
         wished-for news, but to show him the blood of his enemy still quite fresh, and the weapon
         only lately extracted from his body. <milestone n="20" unit="section"/> Four days after this
@@ -362,10 +355,8 @@ Added to repository. Passes TEI parsing.
         farms,—for he left behind him thirteen farms, which nearly all border on the Tiber—the
         poverty and desolate condition of his son is mentioned they point out that, as the father of
         this, man, Sextus Roscius a man so magnificent and so popular, was slain without any trouble
-        this man, imprudent and unpolished as he was and unknown at <placeName key="perseus,Rome"
-          >Rome</placeName>, might easily be removed. They promise their assistance for this
-        business; not to detain you longer, O judges, a conspiracy is formed. <milestone n="8"
-          unit="chapter"/><milestone n="21" unit="section"/></p>
+        this man, imprudent and unpolished as he was and unknown at <placeName key="perseus,Rome">Rome</placeName>, might easily be removed. They promise their assistance for this
+        business; not to detain you longer, O judges, a conspiracy is formed. <milestone n="8" unit="chapter"/><milestone n="21" unit="section"/></p>
       <p>As at this time there was no mention of a proscription, and as even those who had been
         afraid of it before, were returning and thinking themselves now delivered from their
         dangers, the name of Sextus Roscius, a man most zealous for the nobility, is proscribed and
@@ -384,8 +375,7 @@ Added to repository. Passes TEI parsing.
         he looks away. To this is added, that although he is fortunate, as indeed he is, yet no man
         can have such good fortune, as in a vast household to have no one, whether slave or
         freedman, of worthless character. <milestone n="23" unit="section"/> In the meantime Titus
-        Roscius, excellent man, the agent of Chrysogonus, comes to <placeName key="perseus,Ameria"
-          >Ameria</placeName>; he enters on this man's farm; turns this miserable man, overwhelmed
+        Roscius, excellent man, the agent of Chrysogonus, comes to <placeName key="perseus,Ameria">Ameria</placeName>; he enters on this man's farm; turns this miserable man, overwhelmed
         with grief, who had not yet performed all the ceremonies of his father's funeral, naked out
         of his house, and drives him headlong from his paternal hearth and household gods; he
         himself becomes the owner of abundant wealth. He who had been in great poverty when he had
@@ -402,11 +392,9 @@ Added to repository. Passes TEI parsing.
         it; thefts, plunders, largesses. There was no one who would not rather have had it all
         burnt, than see Titus Roscius acting as owner of and glorying in the property of Sextus
         Roscius, a most virtuous and honourable man. <milestone n="25" unit="section"/> Therefore a
-        decree of their senate is, immediately passed, that the ten chief men <note anchored="true"
-          >The <foreign xml:lang="la">decuriones</foreign> were the senators in a colony. Only a
+        decree of their senate is, immediately passed, that the ten chief men <note anchored="true">The <foreign xml:lang="la">decuriones</foreign> were the senators in a colony. Only a
             <foreign xml:lang="la">decuric</foreign> could be a magistrate, and their body possessed
-          whatever power had once belonged to the community. Smith, Dict. Ant. v. <foreign
-            xml:lang="la">Colonia</foreign>.</note> should go to Lucius Sulla, and explain to him
+          whatever power had once belonged to the community. Smith, Dict. Ant. v. <foreign xml:lang="la">Colonia</foreign>.</note> should go to Lucius Sulla, and explain to him
         what a man Sextus Roscius had been; should complain of the wickedness and outrages of those
         fellows, should entreat him to see to the preservation both of the character of the dead
         man, and of the fortunes of his innocent son, And observe, I entreat you, this decree— [here
@@ -419,8 +407,7 @@ Added to repository. Passes TEI parsing.
         These old-fashioned men, who judged of others by their own nature, when he pledged himself
         to have the name of Sextus Roscius removed from the lists of proscription, and to give up
         the farms unoccupied to his son, and when Titus Roscius Capito, who was one of the ten
-        deputies, added his promise that it should be so, believed him; they returned to <placeName
-          key="perseus,Ameria">Ameria</placeName> without presenting their petition. And at first
+        deputies, added his promise that it should be so, believed him; they returned to <placeName key="perseus,Ameria">Ameria</placeName> without presenting their petition. And at first
         those fellows began every day to put the matter off and to procrastinate; then they began to
         be more indifferent; to do nothing and to trifle with them; at last, as was easily
         perceived, they began to contrive plots against the life of this Sextus Roscius, and to
@@ -475,8 +462,7 @@ Added to repository. Passes TEI parsing.
         my father when he had not been proscribed; you have classed him when murdered in the number
         of proscribed persons; you have driven me by force from my house; you are in possession of
         my patrimony. What would you more? have you not come even before the bench with sword and
-        arms, that you may either convict Sextus Roscius or murder him in this presence? <milestone
-          n="12" unit="chapter"/><milestone n="33" unit="section"/></p>
+        arms, that you may either convict Sextus Roscius or murder him in this presence? <milestone n="12" unit="chapter"/><milestone n="33" unit="section"/></p>
       <p>We lately had a most audacious man in this city, Caius Fimbria, a man, as is well known
         among all except among those who are mad themselves, utterly insane. He, when at the funeral
         of Caius Marius, had contrived that Quintus Scaevola, the most venerable and accomplished
@@ -523,8 +509,7 @@ Added to repository. Passes TEI parsing.
         prove the singular audacity of him who is accused of it? and his savage manners, and brutal
         nature, and his life devoted to every sort of vice and crime, his whole character, in short,
         given up to profligacy and abandoned? None of which things have you alleged against Sextus
-        Roscius, not even for the sake of making the imputation. <milestone n="14" unit="chapter"
-          /><milestone n="39" unit="section"/></p>
+        Roscius, not even for the sake of making the imputation. <milestone n="14" unit="chapter"/><milestone n="39" unit="section"/></p>
       <p>Sextus Roscius has murdered his father. What sort of man is he? is he a young man,
         corrupted, and led on by worthless men? He is more than forty years old. Is he forsooth an
         old assassin, a bold man, and one well practised in murder? You have not heard this so much
@@ -539,14 +524,12 @@ Added to repository. Passes TEI parsing.
         father? For what reason? for it must have been both a just and an important and a notorious
         reason. For as this is incredible, that death should be inflicted on a father by a son,
         without many and most weighty reasons; so this, too, is not probable, that a son should be
-        hated by his father, without many and important and necessary causes. <milestone n="41"
-          unit="section"/> Let us return again to the same point, and ask what vices existed in this
+        hated by his father, without many and important and necessary causes. <milestone n="41" unit="section"/> Let us return again to the same point, and ask what vices existed in this
         his only son of such importance as to make him incur the displeasure of his father. But it
         is notorious he had no vices. His father then was mad to bate him whom he had begotten,
         without any cause. But he was the most reasonable and sensible of men. This, then, is
         evident, that, if the father was not crazy, nor his son profligate, the father had no cause
-        for displeasure, nor the son for crime. <milestone n="15" unit="chapter"/><milestone n="42"
-          unit="section"/></p>
+        for displeasure, nor the son for crime. <milestone n="15" unit="chapter"/><milestone n="42" unit="section"/></p>
       <p>I know not, says he, what cause for displeasure there was; but I know that displeasure
         existed; because formerly, when he had two sons, he chose that other one, who is dead; to be
         at all times with himself, but sent this other one to his farms in the country. The same
@@ -568,15 +551,13 @@ Added to repository. Passes TEI parsing.
         far removed your line of argument is from the fact itself, and from truth. That which
         fathers usually do, you find fault with as an unprecedented thing; that which is done out of
         kindness, that you accuse as having been done from dislike; that which a father granted his
-        son as an honour, that you say he did with the object of punishing him. <milestone n="45"
-          unit="section"/> Not that you are not aware of all this, but you are so wholly without any
+        son as an honour, that you say he did with the object of punishing him. <milestone n="45" unit="section"/> Not that you are not aware of all this, but you are so wholly without any
         arguments to bring forward, that you think it necessary to plead not only against us, but
         even against the very nature of things, and against the customs of men, and the opinion of
         every one. <milestone n="16" unit="chapter"/></p>
       <p>Oh but, when he had two sons, he never let one be away from him, and he allowed the other
         to remain in the country. I beg you, O Erucius, to take what I am going to say in good part;
-        for I am going to say it, not for the sake of finding fault, but to warn you. <milestone
-          n="46" unit="section"/> If fortune did not give to you to know the father whose son you
+        for I am going to say it, not for the sake of finding fault, but to warn you. <milestone n="46" unit="section"/> If fortune did not give to you to know the father whose son you
         are, so that you could understand what was the affection of fathers towards their children;
         still, at all events, nature has given you no small share of human feeling. To this is added
         a zeal for learning, so that you are not unversed in literature. Does that old man in
@@ -614,8 +595,7 @@ Added to repository. Passes TEI parsing.
         account of the goodness and number of his farms, and if that is especially to be imputed to
         him as a crime that he cultivated them with great care; so that it is not to be misery
         enough to have cultivated them for others not for himself, unless it is also to be accounted
-        a crime that he cultivated them at all. <milestone n="18" unit="chapter"/><milestone n="50"
-          unit="section"/></p>
+        a crime that he cultivated them at all. <milestone n="18" unit="chapter"/><milestone n="50" unit="section"/></p>
       <p>In truth, O Erucius, you would have been a ridiculous accuser, if you had been born in
         those times when men were sent for from the plough to be made consuls. Certainly you, who
         think it a crime to have superintended the cultivation of a farm, would consider that
@@ -639,8 +619,7 @@ Added to repository. Passes TEI parsing.
         bearing on the business, for you will grant, I think, that those other arguments are
         trifling and childish. He never went to any feasts with his father. Of course not, as he
         very seldom came to town at all. People very seldom asked him to their houses. No wonder,
-        for a man who did not live in the city, and was not likely to ask them in return. <milestone
-          n="19" unit="chapter"/><milestone n="53" unit="section"/></p>
+        for a man who did not live in the city, and was not likely to ask them in return. <milestone n="19" unit="chapter"/><milestone n="53" unit="section"/></p>
       <p>But you are aware that these things too are trifling. Let us consider that which we began
         with, than which no more certain argument of dislike can possibly be found. The father was
         thinking of disinheriting his son. I do not ask on what account. I ask how you know it?
@@ -659,16 +638,13 @@ Added to repository. Passes TEI parsing.
         hindered him? He was thinking of it. He was thinking of it? Who did he tell? No one. What is
         abusing the court of justice, and the laws, and your majesty, O judges, for the purposes of
         gain and lust, but accusing men in this manner, and bringing imputations against them which
-        you not only are not able to prove, but which you do not even attempt to? <milestone n="55"
-          unit="section"/> There is not one of us, O Erucius, who does not know that you have no
+        you not only are not able to prove, but which you do not even attempt to? <milestone n="55" unit="section"/> There is not one of us, O Erucius, who does not know that you have no
         enmity against Sextus Roscius. All men see on what account you come here as his adversary.
         They know that you are induced to do so by this man's money. What then? Still you ought to
         have been desirous of gain with such limitations as to think that the opinion of all these
         men, and the Remmian <note anchored="true">The <foreign xml:lang="la">Remmia Lex</foreign>
           fixed the punishment for <foreign xml:lang="la">calumnia</foreign>; but it is not known
-          when this law was passed, nor what were its penalties, Smith, Dict Ant. v. <foreign
-            xml:lang="la">Calumnia</foreign>.</note> law ought to nave some weight. <milestone
-          n="20" unit="chapter"/><milestone n="56" unit="section"/></p>
+          when this law was passed, nor what were its penalties, Smith, Dict Ant. v. <foreign xml:lang="la">Calumnia</foreign>.</note> law ought to nave some weight. <milestone n="20" unit="chapter"/><milestone n="56" unit="section"/></p>
       <p>It is a useful thing for there to be many accusers in the city, in order that audacity may
         be kept in check by fear; but it is only useful with this limitation, that we are not to be
         manifestly mocked by accusers. A man is innocent. But although he is free from guilt he is
@@ -699,8 +675,7 @@ Added to repository. Passes TEI parsing.
           first letter of the word <foreign xml:lang="la">kalendae</foreign> and on the calends of
           each month debts were accustomed to be got in and bonds were liable to be paid.</note> to
         which you are so hostile that you hate all the Calends too, that you shall hereafter be able
-        to accuse no one but your own fortunes. <milestone n="21" unit="chapter"/><milestone n="58"
-          unit="section"/></p>
+        to accuse no one but your own fortunes. <milestone n="21" unit="chapter"/><milestone n="58" unit="section"/></p>
       <p>What have you given me to defend my client against, my good accuser? And what ground have
         you given these judges for any suspicion? He was afraid of being disinherited. I hear you.
         But no one says what ground he had for fear. His father had it in contemplation. Prove it.
@@ -737,8 +712,7 @@ Added to repository. Passes TEI parsing.
         you expected would deliver him up to you are judging impartially, give us again, at last,
         some of your old skill and prudence; confess that you came hither with the hope that there
         would he a robbery here, not a trial. A trial is held on a charge of parricide, and no
-        reason is alleged by the accuser why the son has slain his father. <milestone n="62"
-          unit="section"/> That which, in even the least offences and in the more trifling crimes,
+        reason is alleged by the accuser why the son has slain his father. <milestone n="62" unit="section"/> That which, in even the least offences and in the more trifling crimes,
         which are more frequent and of almost daily occurrence, is asked most earnestly and as the
         very first question, namely what motive there was for the offence; that Erucius does not
         think necessary to be asked in a case of parricide. A charge which, O judges, even when many
@@ -755,10 +729,8 @@ Added to repository. Passes TEI parsing.
         sort; it is a most undeniable portent and prodigy, for any one to exist in human shape, who
         so far outruns the beasts in savageness, as in a most scandalous manner to deprive those of
         life by whose means he has himself beheld this most delicious light of life; when birth, and
-        bringing up, and nature herself make even beasts friendly to each other. <milestone n="23"
-          unit="chapter"/><milestone n="64" unit="section"/></p>
-      <p>Not many years ago they say that Titius Cloelius, a citizen of <placeName key="tgn,7006704"
-          >Terracina</placeName>, a well-known man, when, having supped, he had retired to rest in
+        bringing up, and nature herself make even beasts friendly to each other. <milestone n="23" unit="chapter"/><milestone n="64" unit="section"/></p>
+      <p>Not many years ago they say that Titius Cloelius, a citizen of <placeName key="tgn,7006704">Terracina</placeName>, a well-known man, when, having supped, he had retired to rest in
         the same room with his two youthful sons, was found in the morning with his throat cut: when
         no servant could be found nor any free man, on whom suspicion of the deed could be fixed,
         and his two sons of that age lying near him said that they did not even know what had been
@@ -771,8 +743,7 @@ Added to repository. Passes TEI parsing.
         acquitted and released from all suspicion. For no one thought that there was any one who,
         when he had violated all divine and human laws by a nefarious crime, could immediately go to
         sleep; because they who have committed such a crime not only cannot rest free from care, but
-        cannot even breathe without fear. <milestone n="24" unit="chapter"/><milestone n="66"
-          unit="section"/></p>
+        cannot even breathe without fear. <milestone n="24" unit="chapter"/><milestone n="66" unit="section"/></p>
       <p>Do you not see in the case of those whom the poets have handed down to us, as having, for
         the sake of avenging their father, inflicted punishment on their mother, especially when
         they were said to have done so at the command and in obedience to the oracles of the
@@ -780,15 +751,13 @@ Added to repository. Passes TEI parsing.
         because they could not be pious without wickedness. And this is the truth, O judges. The
         blood of one's father and mother has great power, great obligation, is a most holy thing,
         and if any stain of that falls on one, it not only cannot be washed out, but it drips down
-        into the very soul, so that extreme frenzy and madness follow it. <milestone n="67"
-          unit="section"/> For do not believe, as you often see it written in fables, that they who
+        into the very soul, so that extreme frenzy and madness follow it. <milestone n="67" unit="section"/> For do not believe, as you often see it written in fables, that they who
         have done anything impiously and wickedly are really driven about and frightened by the
         furies with burning torches. It is his own dishonesty and the terrors of his own conscience
         that especially harassed each individual; his own wickedness drives each criminal about and
         affects him with madness; his own evil thoughts, his own evil conscience terrifies him.
         These are to the wicked their incessant and domestic furies which night and day exact from
-        wicked sons punishment for the crimes committed against their parents. <milestone n="68"
-          unit="section"/> This enormity of the crime is the cause why, unless a parricide is proved
+        wicked sons punishment for the crimes committed against their parents. <milestone n="68" unit="section"/> This enormity of the crime is the cause why, unless a parricide is proved
         in a manner almost visible, it is not credible, unless a man's youth has been base, unless
         his life has been stained with every sort of wickedness, unless his extravagance has been
         prodigal and accompanied with shame and disgrace, unless his audacity has been violent,
@@ -814,8 +783,7 @@ Added to repository. Passes TEI parsing.
         violate it, they devised a singular punishment for parricides in order that they whom nature
         herself had not been able to retain in their duty, might be kept from crime by the enormity
         of the punishment. They ordered them to be sown alive in a sack, and in that condition to be
-        thrown into the river. <milestone n="26" unit="chapter"/><milestone n="71" unit="section"
-        /></p>
+        thrown into the river. <milestone n="26" unit="chapter"/><milestone n="71" unit="section"/></p>
       <p>O singular wisdom, O judges! Do they not seem to have cut this man off and separated him
         from nature; from whom they took away at once the heaven, the sun, water and earth, so that
         he who had slain him, from whom he himself was horn, might be deprived of all those things
@@ -837,8 +805,7 @@ Added to repository. Passes TEI parsing.
           <milestone n="73" unit="section"/> Is it that you do not see what the cause really is, or
         before whom it is being pleaded? The cause in question is parricide; which cannot be
         undertaken without many motives; and it is being tried before very wise men, who are aware
-        that no one commits the very slightest crime without any motive whatever. <milestone n="27"
-          unit="chapter"/></p>
+        that no one commits the very slightest crime without any motive whatever. <milestone n="27" unit="chapter"/></p>
       <p>Be it so; you are unable to allege any motive. Although I ought at once to gain my cause,
         yet I will not insist on this, and I will concede to you in this cause what I would not
         concede in another, relying on this man's innocence. I do not ask you why Sextus Roscius
@@ -846,12 +813,9 @@ Added to repository. Passes TEI parsing.
         will so deal with you, that I will on this topic give you leave to answer me or to interrupt
         me, or even, if you wish to at all, to ask me questions. <milestone n="74" unit="section"/>
         How did he kill him? Did he strike him himself, or did he commit him to others to be
-        murdered? If you say he did it himself, he was not at <placeName key="perseus,Rome"
-          >Rome</placeName>; if you say he did it by the instrumentality of others, I ask you were
-        they slaves or free men? who were they? Did they come from the same place, from <placeName
-          key="perseus,Ameria">Ameria</placeName>, or were they assassins of this city? If they came
-        from Ameria, who are they, why are they not named? If they are of <placeName
-          key="perseus,Rome">Rome</placeName>, how did Roscius make acquaintance with them? who for
+        murdered? If you say he did it himself, he was not at <placeName key="perseus,Rome">Rome</placeName>; if you say he did it by the instrumentality of others, I ask you were
+        they slaves or free men? who were they? Did they come from the same place, from <placeName key="perseus,Ameria">Ameria</placeName>, or were they assassins of this city? If they came
+        from Ameria, who are they, why are they not named? If they are of <placeName key="perseus,Rome">Rome</placeName>, how did Roscius make acquaintance with them? who for
         many years had not come to <placeName key="perseus,Rome">Rome</placeName>, and who never was
         there more than three days. Where did he meet them? with whom did he speak? how did he
         persuade them? Did he give them a bribe? to whom did he give it? by whose agency did he give
@@ -866,15 +830,13 @@ Added to repository. Passes TEI parsing.
         field, so every sort of crime is not engendered in every sort of life. In a city, luxury is
         engendered; avarice is inevitably produced by luxury; audacity must spring from avarice, and
         out of audacity arises every wickedness and every crime. But a country life, which you call
-        a clownish one, is the teacher of economy, of industry, and of justice. <milestone n="28"
-          unit="chapter"/><milestone n="76" unit="section"/></p>
+        a clownish one, is the teacher of economy, of industry, and of justice. <milestone n="28" unit="chapter"/><milestone n="76" unit="section"/></p>
       <p>But I will say no more of this. I ask then by whose instrumentality did this man, who, as
         you yourself say, never mixed with men, contrive to accomplish this terrible crime with such
         secrecy, especially while absent? There are many things, O judges, which are false, and
         which can still be argued so as to cause suspicion. But in this matter, if any grounds for
         suspicion can be discovered, I will admit that there is guilt. Sextus Roscius is murdered at
-          <placeName key="perseus,Rome">Rome</placeName>, while his son is at his farm at <placeName
-          key="perseus,Ameria">Ameria</placeName>. He sent letters, I suppose, to some assassin, he
+          <placeName key="perseus,Rome">Rome</placeName>, while his son is at his farm at <placeName key="perseus,Ameria">Ameria</placeName>. He sent letters, I suppose, to some assassin, he
         who knew no one at <placeName key="perseus,Rome">Rome</placeName>. He sent for some one—but
         when? He sent a messenger—whom? or to whom? Did he persuade any one by bribes, by influence,
         by hope, by promises? None of these things can even be invented against him, and yet a trial
@@ -888,8 +850,7 @@ Added to repository. Passes TEI parsing.
         Sextus Roscius often demand of his adversaries that two of his father's slaves should be put
         to the question? Do you remember that you, O Titus Roscius, refused it? What? Where are
         those slaves? They are waiting on Chrysogonus, O judges; they are honoured and valued by
-        him. Even now I demand that they be put to the question; he begs and entreats it. <milestone
-          n="78" unit="section"/> What are you doing? Why do you refuse? Doubt now, O judges, if you
+        him. Even now I demand that they be put to the question; he begs and entreats it. <milestone n="78" unit="section"/> What are you doing? Why do you refuse? Doubt now, O judges, if you
         can, by whom Sextus Roscius was murdered; whether by him, who, on account of his death, is
         exposed to poverty and treachery, who has not even opportunity allowed him of making inquiry
         into his father's death; or by those who shun investigation, who are in possession of his
@@ -899,8 +860,7 @@ Added to repository. Passes TEI parsing.
         concerning his father's death. He is not to be master of his own slaves so long as to put
         them to the question concerning his father's death. I will come again, and that speedily, to
         this topic. For all this relates to the Roscii; and I have promised that I will speak of
-        their audacity when I have effaced the accusations of Erucius. <milestone n="29"
-          unit="chapter"/><milestone n="79" unit="section"/></p>
+        their audacity when I have effaced the accusations of Erucius. <milestone n="29" unit="chapter"/><milestone n="79" unit="section"/></p>
       <p>Now, Erucius, I come to you. You must inevitably agree with me, if he is really implicated
         in this crime, that he either committed it with his own hand, which you deny, or by means of
         some other men, either freemen or slaves. Were they freemen? You can neither show that he
@@ -920,8 +880,7 @@ Added to repository. Passes TEI parsing.
         and to accuse those very men from whom you have received payment. What do you say? Men were
         constantly being killed? By whose agency? and by whom? Do you not perceive that you have
         been brought here by brokers? What next? Are we ignorant that in these times the same men
-        were brokers of men's lives as well as of their possessions? <milestone n="81"
-          unit="section"/> Shall those men then, who at that time used to run about armed night and
+        were brokers of men's lives as well as of their possessions? <milestone n="81" unit="section"/> Shall those men then, who at that time used to run about armed night and
         day, who spent all their time in rapine and murder, object to Sextus Roscius the bitterness
         and iniquity of that time? and will they think that troops of assassins, among whom they
         themselves were leaders and chiefs, can be made a ground of accusation against him? who not
@@ -937,8 +896,7 @@ Added to repository. Passes TEI parsing.
         they unconnected with either the crime of parricide, or the man who is now on his trial. But
         as he accuses us of these things with his bare word, it is sufficient to deny them with our
         bare word. If there is any point which he is keeping back to prove by witnesses, there also,
-        as in this cause, he shall find us more ready than he expected. <milestone n="30"
-          unit="chapter"/><milestone n="83" unit="section"/></p>
+        as in this cause, he shall find us more ready than he expected. <milestone n="30" unit="chapter"/><milestone n="83" unit="section"/></p>
       <p>I come now to that point to which my desire does not lead me, but good faith towards my
         client. For if I wished to accuse men, I should accuse those men rather by accusing whom I
         might become more important, which I have determined not to do, as long as the alternatives
@@ -964,8 +922,7 @@ Added to repository. Passes TEI parsing.
         a man is presiding at this trial who is both brave against audacity, and very merciful to
         innocence, would yet willingly suffer myself to speak in behalf of Sextus Roscius either
         before that very acute judge himself, or before other judges like him, whose very name those
-        who have to stand a trial shudder at even now. <milestone n="31" unit="chapter"/><milestone
-          n="86" unit="section"/></p>
+        who have to stand a trial shudder at even now. <milestone n="31" unit="chapter"/><milestone n="86" unit="section"/></p>
       <p>For when those judges saw in this cause that those men are in possession of abundant
         wealth, and that he is in the greatest beggary, they would not ask who had got advantage
         from the deed, but they would connect the manifest crime and suspicion of guilt rather with
@@ -1001,21 +958,15 @@ Added to repository. Passes TEI parsing.
         perhaps, owing to the number of advocates, may be classed in the common body; the battle of
           <placeName key="perseus,Cannae">Cannae</placeName>
         <note anchored="true">There is a little dispute as to Cicero's exact meaning here. Some
-          think there is a sort of pun on the similarity of sound between <foreign xml:lang="la"
-            >Cannensis</foreign> and <foreign xml:lang="la">Cinnanensis</foreign> and that allusion
+          think there is a sort of pun on the similarity of sound between <foreign xml:lang="la">Cannensis</foreign> and <foreign xml:lang="la">Cinnanensis</foreign> and that allusion
           is intended to the destruction of Cinna's army, in which a great number of Roman knights
-          were slain. Facciolati thinks that the battle of <placeName key="perseus,Cannae"
-            >Cannae</placeName> is mentioned, not on account of the battle itself but of what
-          followed it; so that as, after the battle of <placeName key="perseus,Cannae"
-            >Cannae</placeName>, the dictator was forced to intrust arms even to slaves, now, after
+          were slain. Facciolati thinks that the battle of <placeName key="perseus,Cannae">Cannae</placeName> is mentioned, not on account of the battle itself but of what
+          followed it; so that as, after the battle of <placeName key="perseus,Cannae">Cannae</placeName>, the dictator was forced to intrust arms even to slaves, now, after
           the proscriptions of Sulla, the most worthless men were allowed to put themselves forth as
           accusers.</note> has made you a sufficiently respectable accuser. We have seen many men
-        slain, not at Thrasymenus, but at Servilius. <note anchored="true">The <foreign
-            xml:lang="la">Lacus Servilius</foreign> was at <placeName key="perseus,Rome"
-            >Rome</placeName>, and was the place where Sulla murdered a great many Romans, and set
+        slain, not at Thrasymenus, but at Servilius. <note anchored="true">The <foreign xml:lang="la">Lacus Servilius</foreign> was at <placeName key="perseus,Rome">Rome</placeName>, and was the place where Sulla murdered a great many Romans, and set
           up their heads, even the heads of senators, to public view; so that
-              <persName><surname>Seneca</surname></persName> says of the lake, <foreign
-            xml:lang="la">“id enim proscriptionis Sullanae spoliorum est.”</foreign>
+              <persName><surname>Seneca</surname></persName> says of the lake, <foreign xml:lang="la">“id enim proscriptionis Sullanae spoliorum est.”</foreign>
         </note><milestone n="90" unit="section"/>
         <quote>
           <l>“Who was not wounded there with Phrygian<note anchored="true">This is a fragment of a
@@ -1032,8 +983,7 @@ Added to repository. Passes TEI parsing.
         hundred men, whom nobody even mentions by name because of their meanness, who are accusers
         of men on charges of murdering and poisoning; all of whom, as far as I am concerned, I hope
         may find a livelihood. For there is no harm in there being as many dogs as possible, where
-        there are many men to be watched, and many things to be guarded. <milestone n="91"
-          unit="section"/> But, as is often the case, the violence and tumultuous nature of war
+        there are many men to be watched, and many things to be guarded. <milestone n="91" unit="section"/> But, as is often the case, the violence and tumultuous nature of war
         brings many things to pass without the knowledge of the generals. While he who was
         administering the main government was occupied in other matters, there were men who in the
         meantime were curing their own wounds; who rushed about in the darkness and threw everything
@@ -1047,8 +997,7 @@ Added to repository. Passes TEI parsing.
         his, would be able to speak on them as long as he pleased, and I can do the same. But I
         choose, as I said before, to pass by them lightly, and only just to touch on each
         particular, so that all men may perceive that I am not accusing men of my own inclination,
-        but only defending my own client from a sense of duty. <milestone n="33" unit="chapter"
-          /><milestone n="92" unit="section"/></p>
+        but only defending my own client from a sense of duty. <milestone n="33" unit="chapter"/><milestone n="92" unit="section"/></p>
       <p>I see therefore that there were many causes which urged that man to this crime. Let us now
         see whether he had any opportunity of committing it. Where was Sextus Roscius slain?—at
           <placeName key="perseus,Rome">Rome</placeName>. What of you, O Roscius? Where were you at
@@ -1100,8 +1049,7 @@ Added to repository. Passes TEI parsing.
         Oh, Mallius brought the news of his own accord! What did it concern him, I beg? or, as he
         did not come to <placeName key="perseus,Ameria">Ameria</placeName> on account of this
         business, did it happen by chance that he was the first to tell the news which he had heard
-        at <placeName key="perseus,Rome">Rome</placeName>? On what account did he come to <placeName
-          key="perseus,Ameria">Ameria</placeName>? I cannot conjecture, says he. I will bring the
+        at <placeName key="perseus,Rome">Rome</placeName>? On what account did he come to <placeName key="perseus,Ameria">Ameria</placeName>? I cannot conjecture, says he. I will bring the
         matter to such a point that there shall be no need of conjecture. On what account did he
         announce it first to Roscius Capito? When the house, and wife, and children of Sextus
         Roscius were at <placeName key="perseus,Ameria">Ameria</placeName>; when he had so many
@@ -1119,8 +1067,7 @@ Added to repository. Passes TEI parsing.
         to take so long a journey in one night? What was the great necessity which pressed upon him,
         so as to make him, if he was going to <placeName key="perseus,Ameria">Ameria</placeName> of
         his own accord, set out from <placeName key="tgn,7013962">Rome</placeName> at that time of
-        night, and devote no part of the night to sleep? <milestone n="35" unit="chapter"
-          /><milestone n="98" unit="section"/></p>
+        night, and devote no part of the night to sleep? <milestone n="35" unit="chapter"/><milestone n="98" unit="section"/></p>
       <p>In a case so evident as this must we seek for arguments, or hunt for conjectures? Do you
         not seem, O judges, actually to behold with your own eyes what you have been hearing? Do you
         not see that unhappy man, ignorant of his fate, returning from supper? Do you not see the
@@ -1135,31 +1082,23 @@ Added to repository. Passes TEI parsing.
         this property. I see that, of thirteen farms, he is in possession of three of the finest.
           <milestone n="100" unit="section"/> I hear besides, that this suspicion is not fixed upon
             <persName><surname>Capito</surname></persName> for the first time now; that he has
-        gained many infamous victories; but that this is the first very splendid <note
-          anchored="true">The Latin word is <foreign xml:lang="la">lemniscatus</foreign>, literally,
-          adorned with ribbons hanging down all from a garland or crown. <foreign xml:lang="la"
-            >Palma lemniscata</foreign> is a palm branch (i.e. a token of victory,) given to a
+        gained many infamous victories; but that this is the first very splendid <note anchored="true">The Latin word is <foreign xml:lang="la">lemniscatus</foreign>, literally,
+          adorned with ribbons hanging down all from a garland or crown. <foreign xml:lang="la">Palma lemniscata</foreign> is a palm branch (i.e. a token of victory,) given to a
           gladiator or general when the victory was very remarkable. Cicero understands it of a
-          murder which was connected with very great gains. Riddle, Lat. Dict. v. <foreign
-            xml:lang="la">Lemniscatus</foreign>.</note> one which he has gained at <placeName
-          key="tgn,7013962">Rome</placeName>; that there is no manner of committing murder in which
+          murder which was connected with very great gains. Riddle, Lat. Dict. v. <foreign xml:lang="la">Lemniscatus</foreign>.</note> one which he has gained at <placeName key="tgn,7013962">Rome</placeName>; that there is no manner of committing murder in which
         he has not murdered many men; many by the sword, many by poison. I can even tell you of one
         man whom, contrary to the custom of our ancestors, he threw from the bridge into the
-          <placeName key="tgn,1130786">Tiber</placeName>, when he was not sixty years of age; <note
-          anchored="true">There is a pun here on the word <foreign xml:lang="la">pons</foreign>.
+          <placeName key="tgn,1130786">Tiber</placeName>, when he was not sixty years of age; <note anchored="true">There is a pun here on the word <foreign xml:lang="la">pons</foreign>.
             <foreign xml:lang="la">Pons</foreign> means not only a bridge, but also the platform
           over which men passed to give their votes at elections; and men above sixty had no votes,
-          and all having none were called <foreign xml:lang="la">depontati</foreign> or <foreign
-            xml:lang="la">dejecti de ponte</foreign>.</note> and if he comes forward, or when he
-        comes forward, for I know that he will come forward, he shall hear of him. <milestone
-          n="101" unit="section"/> Only let him come; let him unfold that volume of his which I can
+          and all having none were called <foreign xml:lang="la">depontati</foreign> or <foreign xml:lang="la">dejecti de ponte</foreign>.</note> and if he comes forward, or when he
+        comes forward, for I know that he will come forward, he shall hear of him. <milestone n="101" unit="section"/> Only let him come; let him unfold that volume of his which I can
         prove that Erucius wrote for him, which they say that he displayed to Sextus Roscius, and
         threatened that he would mention everything contained in it in his evidence. O the excellent
         witness, O judges; O gravity worthy of being attended to; O honourable course of life! such
         that you may with willing minds make your oaths depend upon his testimony! In truth we
         should not see the crimes of these men so clearly if cupidity, and avarice, and audacity,
-        did not render them blind. <milestone n="36" unit="chapter"/><milestone n="102"
-          unit="section"/></p>
+        did not render them blind. <milestone n="36" unit="chapter"/><milestone n="102" unit="section"/></p>
       <p>One of them sent a swift messenger from the very scene of murder to Ameria, to his partner
         and his tutor; so that if every one wished to conceal his knowledge of whom the guilt
         belonged to, yet he himself placed his wickedness visibly before the eyes of all men. The
@@ -1183,8 +1122,7 @@ Added to repository. Passes TEI parsing.
         accuser, or calls him as a witness, who rises from the accuser's bench. There must be added
         to this, that that cupidity of yours should have been a little more kept back and concealed.
         Now what is there that any one of you desire to hear, when what you do is such that you seem
-        to have done them expressly for our advantage against your own interest? <milestone n="105"
-          unit="section"/> Come now, let us see, O judges, what followed immediately after.
+        to have done them expressly for our advantage against your own interest? <milestone n="105" unit="section"/> Come now, let us see, O judges, what followed immediately after.
           <milestone n="37" unit="chapter"/></p>
       <p>The news of the death of Sextus Roscius is carried to Volaterra, to the camp of Lucius
         Sulla, to Chrysogonus, four days after he is murdered. I now again ask who sent that
@@ -1213,8 +1151,7 @@ Added to repository. Passes TEI parsing.
         fact, was it not enough for him to thank them? Why are these farms of such value immediately
         given to <persName><surname>Capito</surname></persName>? Why does that fellow Roscius
         possess all the rest in common property with Chrysogonus? Is it not evident, O judges, that
-        Chrysogonus, understanding the whole business, gave them as spoils to the Roscii? <milestone
-          n="38" unit="chapter"/><milestone n="109" unit="section"/></p>
+        Chrysogonus, understanding the whole business, gave them as spoils to the Roscii? <milestone n="38" unit="chapter"/><milestone n="109" unit="section"/></p>
       <p><persName><surname>Capito</surname></persName> came as a deputy to the camp, as one of the
         ten chief men of Ameria. Learn from his behaviour on this deputation the whole life and
         nature and manners of the man. Unless you are of opinion, O judges, that there is no duty
@@ -1265,20 +1202,17 @@ Added to repository. Passes TEI parsing.
         so important an affair as this, which was done by public order and so entrusted to him, what
         punishment ought to be inflicted on that man who has not hindered some private advantage by
         his carelessness, but has polluted and stained by his treachery the solemnity of the very
-        commission itself? or by what sentence shall he be condemned? <milestone n="114"
-          unit="section"/> If Sextus Roscius had entrusted this matter to him privately to transact
+        commission itself? or by what sentence shall he be condemned? <milestone n="114" unit="section"/> If Sextus Roscius had entrusted this matter to him privately to transact
         and determine upon with Chrysogonus, and to involve his credit in the matter if it seemed to
         him to be necessary—if he who had undertaken the affair had turned ever so minute a point of
         the business to his own advantage, would he not, if convicted by the judge, have been
-        compelled to make restitution, and would he not have lost all credit? <milestone n="115"
-          unit="section"/> Now it is not Sextus Roscius who gave him this commission, but what is a
+        compelled to make restitution, and would he not have lost all credit? <milestone n="115" unit="section"/> Now it is not Sextus Roscius who gave him this commission, but what is a
         much more serious thing, Sextus Roscius himself, with his character, his life, and all his
         property, is publicly entrusted by the senators to Roscius; and, of this trust, Titus
         Roscius has converted not some small portion to his own advantage, but has turned him
         entirely out of his property; he has bargained for three farms for himself; he has
         considered the intention of the senators and of all his fellow-citizens of just as much
-        value as his own integrity. <milestone n="40" unit="chapter"/><milestone n="116"
-          unit="section"/></p>
+        value as his own integrity. <milestone n="40" unit="chapter"/><milestone n="116" unit="section"/></p>
       <p>Moreover, consider now, O judges, the other matters, that you may see that no crime can be
         imagined with which that fellow has not disgraced himself. In less important matters, to
         deceive one's partner is a most shameful thing, and equally base with that which I have
@@ -1289,8 +1223,7 @@ Added to repository. Passes TEI parsing.
         greatest difficulty. We can be reserved towards strangers; intimate friends must see many
         things more openly; but how can we guard against a companion? for even to be afraid of him
         is to do violence to the rights of duty. Our ancestors therefore rightly thought that he who
-        had deceived his companion ought not to be considered in the number of good men. <milestone
-          n="117" unit="section"/> But Titus Roscius did not deceive one friend alone in a money
+        had deceived his companion ought not to be considered in the number of good men. <milestone n="117" unit="section"/> But Titus Roscius did not deceive one friend alone in a money
         matter, (which, although it be a grave offence, still appears possible in some degree to be
         borne) but he led on, cajoled, and deserted nine most honourable men, betrayed them to their
         adversaries, and deceived them with every circumstance of fraud and perfidy. They who could
@@ -1340,8 +1273,7 @@ Added to repository. Passes TEI parsing.
         it is not probable that Chrysogonus has taken a fancy to their learning or their politeness,
         or that he should be acquainted with their industry and fidelity in the business of a
         household. There is something which is hidden; and the more studiously it is bidden and kept
-        back by them, so much the more is it visible and conspicuous. <milestone n="42"
-          unit="chapter"/><milestone n="122" unit="section"/></p>
+        back by them, so much the more is it visible and conspicuous. <milestone n="42" unit="chapter"/><milestone n="122" unit="section"/></p>
       <p>What, then, are we to think? Is Chrysogonus unwilling that these men shall be put to the
         question for the sake of concealing his own crime? Not so, O judges; I do not think that the
         same arguments apply to every one. As far as I am concerned, I have no suspicion of the sort
@@ -1365,8 +1297,7 @@ Added to repository. Passes TEI parsing.
         them, will require a copious discussion, I commit to your capacities and to your
         conjectures. <milestone n="43" unit="chapter"/><milestone n="124" unit="section"/></p>
       <p>I come now to that golden name of Chrysogonus, <note anchored="true">This is a pun on the
-          name of Chrysogonus, all derived from the Greek word <foreign xml:lang="grc"
-            >xruso/s</foreign>, gold; and <foreign xml:lang="grc">go/nos</foreign>, birth.</note>
+          name of Chrysogonus, all derived from the Greek word <foreign xml:lang="grc">xruso/s</foreign>, gold; and <foreign xml:lang="grc">go/nos</foreign>, birth.</note>
         under which name the whole confederacy is set up, concerning whom, O judges, I am at a loss
         both how to speak and how to hold my tongue; for if I say nothing, I leave out a great part
         of my argument, and if I speak, I fear that not he alone (about whom I am not concerned),
@@ -1379,23 +1310,19 @@ Added to repository. Passes TEI parsing.
         innocent man to be sold at all. For if these things are to be freely listened to and freely
         spoken, Sextus Roscius was not a man of such importance in the state as to make us complain
         of his fortune more than of that of others. But I ask this, how could they be sold even by
-        that very law which is enacted about prescriptions, whether it be the Valerian <note
-          anchored="true">Valerius Flaccus had been created Interrex on the death of the two
+        that very law which is enacted about prescriptions, whether it be the Valerian <note anchored="true">Valerius Flaccus had been created Interrex on the death of the two
           consuls, Marius and <persName><surname>Carbo</surname></persName>. He appointed Sulla
           dictator, and passed a law that whatever Sulla had done should be ratified; so that
           Cicero's meaning here is, that he does not know which was the nominal author of the law he
-          is quoting, Valerius or Sulla.</note> or <placeName key="tgn,2257061"
-          >Cornelian</placeName> law,—for neither know nor understand which it is—but by that very
-        law itself how could the property of Sextus Roscius be sold? <milestone n="126"
-          unit="section"/> For they say it is written in it, “that the property of those men who
+          is quoting, Valerius or Sulla.</note> or <placeName key="tgn,2257061">Cornelian</placeName> law,—for neither know nor understand which it is—but by that very
+        law itself how could the property of Sextus Roscius be sold? <milestone n="126" unit="section"/> For they say it is written in it, “that the property of those men who
         have been proscribed is to be sold”; in which number Sextus Roscius is not one: “or of those
         who have been slain in the garrisons of the opposite party.” While there, were any
         garrisons, he was in the garrisons of Sulla; after they laid down their arms, returning from
         supper, he was slain at <placeName key="tgn,7013962">Rome</placeName> in a time of perfect
         peace. If he was slain by law, I admit that his property was sold by law too; but if it is
         evident that he was slain contrary to all laws, not merely to old laws, but to the new ones
-        also, then I ask by what right, or in what manner, or by what law they were sold? <milestone
-          n="44" unit="chapter"/><milestone n="127" unit="section"/></p>
+        also, then I ask by what right, or in what manner, or by what law they were sold? <milestone n="44" unit="chapter"/><milestone n="127" unit="section"/></p>
       <p>You ask, against whom do I say this, O Erucius. Not against him whom you are meaning and
         thinking of; for both my speech from the very beginning, and also I is own eminent virtue,
         at all times has acquitted Sulla. I say that Chrysogonus did all this in order to tell lies;
@@ -1443,11 +1370,10 @@ Added to repository. Passes TEI parsing.
         alone was governing the whole republic, and administering the affairs of the whole world,
         and strengthening by his laws the majesty of the empire, which he had recovered by arms,
         should have been forced to leave some things unnoticed? Unless this is strange that human
-        faculties have not a power which divine might is unable to attain to. <milestone n="132"
-          unit="section"/> But to say no more about what has happened already, cannot any one
+        faculties have not a power which divine might is unable to attain to. <milestone n="132" unit="section"/> But to say no more about what has happened already, cannot any one
         thoroughly understand from what is happening now, that Chrysogonus alone is the author and
         contriver of all this, and that it is he who caused Sextus Roscius to be accused? this trial
-        in which Erucius says that he is the accuser out of regard for honour <gap reason="***"/>
+        in which Erucius says that he is the accuser out of regard for honour <gap reason="lost"/>
         <milestone n="46" unit="chapter"/></p>
       <p> They think they are leading a convenient life, and one arranged rationally, who have a
         house among the Salentii or Brutii, from which they can scarcely receive news three times a
@@ -1475,8 +1401,7 @@ Added to repository. Passes TEI parsing.
         that some ignorant people would think that I wish to injure the cause of the nobility, and
         to detract from their victory; although I have a right to find fault if anything in that
         party displeases me. For I am not afraid that any one will suppose that I have a disposition
-        disaffected to the cause of the nobility. <milestone n="47" unit="chapter"/><milestone
-          n="136" unit="section"/></p>
+        disaffected to the cause of the nobility. <milestone n="47" unit="chapter"/><milestone n="136" unit="section"/></p>
       <p>They who know me, know that I, to the extent of my small and insignificant power, (when
         that which I was most eager for could not be brought about, I mean an accommodation between
         the parties) laboured to ensure the victory of that party which got it. For who was there
@@ -1485,11 +1410,9 @@ Added to repository. Passes TEI parsing.
         safety dignity at home and authority abroad would be preserved. And that all this was done,
         and that his proper honour and rank was restored to every one, I rejoice, O judges, and am
         exceedingly delighted; and I know that it was all done by the kindness of the gods, by the
-        zeal of the Roman people, by the wisdom and government, and good fortune <note
-          anchored="true">Cicero dwells on the <foreign xml:lang="la">felicitas</foreign> of Sulla,
+        zeal of the Roman people, by the wisdom and government, and good fortune <note anchored="true">Cicero dwells on the <foreign xml:lang="la">felicitas</foreign> of Sulla,
           because <foreign xml:lang="la">Felix</foreign> was the name which Sulla himself assumed,
-          priding himself especially on his good fortune. </note> of Lucius Sulla. <milestone
-          n="137" unit="section"/> I have no business to find fault with punishment having been
+          priding himself especially on his good fortune. </note> of Lucius Sulla. <milestone n="137" unit="section"/> I have no business to find fault with punishment having been
         inflicted on those who laboured with all their energies on the other side; and I approve of
         honours having been paid to the brave men whose assistance was eminent in the transaction of
         all these matters. And I consider that the struggle was to a great extent with this object,
@@ -1500,8 +1423,7 @@ Added to repository. Passes TEI parsing.
         Roman people seems to me not to have been strengthened and restored by that war, but to have
         been subdued and crushed. <milestone n="138" unit="section"/> But the ease is totally
         different: nothing of this, O judges, is the truth: the cause of the nobility will not only
-        not be injured if you resist these men, but it will even be embellished. <milestone n="48"
-          unit="chapter"/></p>
+        not be injured if you resist these men, but it will even be embellished. <milestone n="48" unit="chapter"/></p>
       <p>In truth, they who are inclined to find fault with this complain that Chrysogonus has so
         much influence; they who praise it, declare that he has not so much allowed him. And now it
         is impossible for any one to be either so foolish or so worthless as to say: “I wish it were
@@ -1532,8 +1454,7 @@ Added to repository. Passes TEI parsing.
         influence to the injury of an innocent man. <milestone n="49" unit="chapter"/></p>
       <p>Is it for this that the nobility has roused itself, that it has recovered the republic by
         arms and the sword—in order that freedmen and slaves might be able to maltreat the property
-        of the nobles, and all your fortunes and ours, at their pleasure? <milestone n="142"
-          unit="section"/> If that was the object, I confess that I erred in being anxious for their
+        of the nobles, and all your fortunes and ours, at their pleasure? <milestone n="142" unit="section"/> If that was the object, I confess that I erred in being anxious for their
         success. I admit that I was mad in espousing their party, although I espoused it, O judges,
         without taking up arms. But if the victory of the nobles ought to be an ornament and an
         advantage to the republic and the Roman people, then, too, my speech ought to be very
@@ -1557,8 +1478,7 @@ Added to repository. Passes TEI parsing.
         most scrupulous faith; if he has given up to you the very garment with which he was clothed,
         and the ring off his finger; if he has stripped himself bare of everything, and has excepted
         nothing—he entreats you, I say, that he may be allowed to pass his life in innocence and
-        indigence, supported by the assistance of his friends. <milestone n="50" unit="chapter"
-          /><milestone n="145" unit="section"/></p>
+        indigence, supported by the assistance of his friends. <milestone n="50" unit="chapter"/><milestone n="145" unit="section"/></p>
       <p>“You are in possession of my farms,” says he; “I am living on the charity of others; I do
         not object to that, both because I have a calm mind, and because it is inevitable. My own
         house is open to you, and is closed against myself. I endure that. You are master of my
@@ -1572,8 +1492,7 @@ Added to repository. Passes TEI parsing.
         an injury from himself? If, because the possessions which belonged to Roscius have become
         yours, on that account you seek to destroy his son, do you not show that you are afraid of
         that which you above all other men ought not to be afraid of; namely, that sometime or other
-        their father's property may be restored to the children of proscribed persons? <milestone
-          n="146" unit="section"/> You do wrong, O Chrysogonus, if you place greater hope of being
+        their father's property may be restored to the children of proscribed persons? <milestone n="146" unit="section"/> You do wrong, O Chrysogonus, if you place greater hope of being
         able to preserve your purchase, than in those exploits which Lucius Sulla has performed But
         if you have no cause for wishing this unhappy man to be afflicted with such a grievous
         calamity; if he has given up to you everything but his life, and has reserved to himself
@@ -1595,8 +1514,7 @@ Added to repository. Passes TEI parsing.
             Divinatione</title>.</note> the sister of Nepos, a most incomparable woman, who, though
         she had a most illustrious father, most honourable uncles, a most accomplished brother, yet,
         though she was a woman, carried her virtue so far, as to confer on them no less honour by
-        her character than she herself received from their dignity. <milestone n="51" unit="chapter"
-          /><milestone n="148" unit="section"/></p>
+        her character than she herself received from their dignity. <milestone n="51" unit="chapter"/><milestone n="148" unit="section"/></p>
       <p>Does it appear to you a shameful thing that he is defended with earnestness? Believe me,
         if, in return for the hospitality and kindness of his father, all his hereditary friends
         were to choose to be present and dared to speak with freedom, he would be defended
@@ -1628,8 +1546,7 @@ Added to repository. Passes TEI parsing.
         kindness and mercy; and if that remain, we can even yet be saved. But if that cruelty which
         at present stalks abroad in the republic has made your dispositions also more harsh and
         cruel, (but that can never be the case,) then there is an end of everything, O judges; it is
-        better to live among brute beasts than in such a savage state of things as this. <milestone
-          n="151" unit="section"/> Are you reserved for this? Are you chosen for this? to condemn
+        better to live among brute beasts than in such a savage state of things as this. <milestone n="151" unit="section"/> Are you reserved for this? Are you chosen for this? to condemn
         those whom cut-throats and assassins have not been able to murder? Good generals are
         accustomed to do this when they engage in battle—to place soldiers in that spot where they
         think the enemy will retreat, and then if any escape from the battle they make an onset on
@@ -1667,6 +1584,6 @@ Added to repository. Passes TEI parsing.
         men. For when every hour we see or hear of something very cruel being done, even we who are
         by nature most merciful, through the constant repetition of miseries, lose from our minds
         every feeling of humanity. </p>
-    </body>
-  </text>
+    </div>
+  </body></text>
 </TEI>

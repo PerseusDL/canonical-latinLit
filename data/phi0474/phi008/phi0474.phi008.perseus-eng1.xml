@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
  <teiHeader type="text">
   <fileDesc>
    <titleStmt>
-    <title>On Behalf of Aulus Caecina </title>
+    <title type="work">On Behalf of Aulus Caecina </title>
     <title>Three orations on the Agrarian law, the four against Catiline, the orations for Rabirius,
      Murena, Sylla, Archias, Flaccus, Scaurus, etc.</title>
     <title type="sub">Machine readable text</title>
-    <author n="Cic.">M. Tullius Cicero</author>
+    <author n="M. Tullius Cicero">M. Tullius Cicero</author>
     <editor role="editor" n="Yonge">C. D. Yonge</editor>
     <sponsor>Perseus Project, Tufts University</sponsor>
     <principal>Gregory Crane</principal>
@@ -42,16 +43,19 @@
   </fileDesc>
 
   <encodingDesc>
-   <refsDecl>
-    <refState delim=" " unit="text"/>
-    <refState unit="section"/>
-   </refsDecl>
-   <refsDecl>
-    <refState delim=" " unit="text"/>
-    <refState delim="." unit="chapter"/>
-    <refState unit="section"/>
-   </refsDecl>
-   <refsDecl n="text=Catil.;text=Agr.">
+    <refsDecl n="CTS">
+     <cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+      <p>This pointer pattern extracts chapter and section</p>
+     </cRefPattern>
+     <cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+      <p>This pointer pattern extracts chapter</p>
+     </cRefPattern>
+    </refsDecl>
+    <refsDecl>
+     <refState unit="chapter" delim="."/>
+     <refState unit="section"/>
+    </refsDecl>
+   <!--<refsDecl n="text=Catil.;text=Agr.">
     <refState delim=" " unit="text"/>
     <refState delim="." unit="speech"/>
     <refState unit="section"/>
@@ -65,14 +69,14 @@
    <refsDecl n="text=Corn.">
     <refState delim=" " unit="text"/>
     <refState unit="speech"/>
-   </refsDecl>
+   </refsDecl>-->
   </encodingDesc>
 
   <profileDesc>
    <langUsage>
-    <language ident="en">English</language>
-    <language ident="la">Latin</language>
-    <language ident="greek">Greek</language>
+    <language ident="eng">English</language>
+    <language ident="lat">Latin</language>
+    <language ident="grc">Greek</language>
    </langUsage>
   </profileDesc>
 
@@ -197,15 +201,19 @@ Added to repository.
     <item>split composite text and converted to unicode</item>
       </change>-->
    <change when="2014-08-01" who="Stella Dee">edited markup</change>
-  </revisionDesc>
+  <change when="2015-12-13" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change><change when="1997-07-14" who="DAS">ed.</change>
+   <change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change>
+   <change who="balmas01" when="2013-09-13T11:20:04">Revision 1.9  reverting texts back to pre_cts_reorg tagged version</change><change who="lcerrato" when="2011-03-21T16:06:41">Revision 1.7  fixed typo in while to in which</change><change who="lcerrato" when="2011-03-17T14:59:55">Revision 1.6  fixing gap tags against source</change><change who="rsingh04" when="2010-08-31T18:43:06">Revision 1.5  cleaned up log keyword</change><change who="rsingh04" when="2010-08-31T18:30:20">Revision 1.4  cleaned up log keyword</change><change who="student" when="2010-07-08T22:49:11">Revision 1.2  fixing place tags - AD</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1 more reorganizing of texts module by collection</change><change who="rsingh04" when="2009-09-22T16:21:37">Revision 1.8 fixed references to Cic. Ver.</change><change who="packel" when="2007-01-04T20:06:59">Revision 1.7 fixed the refsDecls for Cornelius</change><change who="packel" when="2006-05-05T17:38:06">Revision 1.6 fixed date tags</change><change who="packel" when="2006-02-10T20:50:18">Revision 1.5 places/dates now actually tagged</change><change who="lcerrato" when="2005-11-21T16:51:16">Revision 1.4 changed thought you shall not perceive them to though...</change><change who="lcerrato" when="2005-11-21T16:49:41">Revision 1.3 changed: does not the precaution taken of assembling the senate in thus most defensible place thus to this</change><change who="packel" when="2005-08-01T15:59:24">Revision 1.2 removed stray item tags</change><change who="packel" when="2005-07-25T14:31:53">Revision 1.1 Converted to XML</change><change who="lcerrato" when="2005-03-24T19:34:54">Revision 1.19 Marcus Aquillius changed to Manius Aquilius Agrarian 2.83</change><change who="lcerrato" when="2005-03-23T18:13:06">Revision 1.18 changed Pro Font. 38 Marcus Aquillius to Manius Aquilius based on Latin and user report</change><change who="mimno" when="2005-01-19T18:03:37">Revision 1.17 div1s missing type attributes</change><change who="lcerrato" when="2004-06-14T17:34:00">Revision 1.16 changed Rob. Perd. 31 "heave" to "leave"</change><change who="yorkc" when="2003-07-01T22:15:02">Revision 1.15 Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and
+     typos.)</change><change who="lcerrato" when="2001-03-14T19:13:33">Revision 1.14 changed ought to he to ought to be in first
+     oration against Cataline</change><change who="amahoney" when="2000-05-04T16:23:18">Revision 1.13 really fix language ids</change><change who="amahoney" when="2000-05-04T16:21:33">Revision 1.12 fix language codes</change><change who="dasmith" when="2000-03-04T20:34:16">Revision 1.11 Added separate funder entity to TEI header.</change><change who="amahoney" when="2000-02-22T18:11:54">Revision 1.10 fix a couple of broken bibl refs</change><change who="amahoney" when="1996-12-02T21:58:39">Revision 1.9 replace the
+     refsdecl, which disappeared somehow, and fix a couple of funny syntax errors</change><change who="lcerrato" when="1996-11-30T20:38:39">Revision 1.8 revised and proofread again</change><change who="dasmith" when="1999-10-14T21:36:04">Revision 1.7 Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-09-01T20:30:38">Revision 1.6 Removed tag from attribute value.</change><change who="dasmith" when="1999-08-12T17:17:35">Revision 1.5 Fixed refsDecl</change><change who="textgod" when="1997-11-07T18:45:17">Revision 1.4 Fixed typo.</change><change who="textgod" when="1997-10-31T18:58:38">Revision 1.3 Fixed typo.</change><change who="textgod" when="1997-09-01T19:53:11">Revision 1.2 Added sections.</change><change who="textgod" when="1997-08-18T14:51:46">Revision 1.1 Added to repository.</change></revisionDesc>
  </teiHeader>
- <text xml:lang="en">
+ <text xml:lang="eng">
   <front>
    <head>THE ORATION OF M. T. CICERO IN BEHALF OF AULUS CAECINA.</head>
-   <argument>
+   
     <head>THE ARGUMENT.</head>
-    <p>Marcus Fulcinius, of Tarquinii, who had lived as a banker at <placeName key="perseus,Rome"
-      >Rome</placeName>, had died, leaving his property to his wife Caesennia and his son, the son
+    <p>Marcus Fulcinius, of Tarquinii, who had lived as a banker at <placeName key="perseus,Rome">Rome</placeName>, had died, leaving his property to his wife Caesennia and his son, the son
      also died, and divided his property between his wife and his mother. The property was sold, and
      Caesennia employed Sextus Aebutius, her agent, to buy one of the farms for her. She afterwards
      married Caecina, and died, bequeathing her property to him. When Caesennia was dead, Aebutius
@@ -213,23 +221,20 @@ Added to repository.
      the land, but is driven off by Aebutius at the head of a band of armed slaves. He applies to
      the praetor, and obtains an interdict; <note anchored="true">An interdict was a sort of
       provisional decree obtained from the praetor, chiefly in cases where the dispute is about
-      possession, or quasi possession. The terms which he uses are called <foreign xml:lang="la"
-       >decretum</foreign> when he orders any thing to be done, and <foreign xml:lang="la"
-       >interdictum </foreign> when he forbids anything to be done. The mode of proceeding was, for
+      possession, or quasi possession. The terms which he uses are called <foreign xml:lang="lat">decretum</foreign> when he orders any thing to be done, and <foreign xml:lang="lat">interdictum </foreign> when he forbids anything to be done. The mode of proceeding was, for
       the party aggrieved to state his case to the praetor, which was the foundation of his demand
       of an interdict. If the defendant admitted the plaintiff's case before the interdict was
       granted, or submitted to it after it was granted, the dispute was at an end. If he was
       dissatisfied with the interdict, he also might in his turn apply to the praetor. Whenever the
       praetor's original interdict did not terminate the case, he directed a further inquiry before
       a judex or recuperators. There were also one or two other causes for, and descriptions of,
-      interdict. <foreign xml:lang="la">Vide</foreign> Smith, Dict. Ant. p. 521, v. <foreign
-       xml:lang="la">Interdictum</foreign>.</note> Aebutius defends himself on many pleas, and
-     especially on the ground that Caecina being a <foreign xml:lang="la">municeps</foreign> of
+      interdict. <foreign xml:lang="lat">Vide</foreign> Smith, Dict. Ant. p. 521, v. <foreign xml:lang="lat">Interdictum</foreign>.</note> Aebutius defends himself on many pleas, and
+     especially on the ground that Caecina being a <foreign xml:lang="lat">municeps</foreign> of
      Volaterra, a town which had been disfranchised by Sulla, could not become the heir of
      Caesennia. This trial took place A. U. C. 689.</p>
-   </argument>
+   
   </front>
-  <body>
+  <body><div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0474.phi008.perseus-eng1" subtype="translation">
    <milestone n="1" unit="chapter"/>
    <milestone n="1" unit="section"/>
    <p>If shameless impudence had as much power in the forum and in the courts of law, as audacity
@@ -245,10 +250,9 @@ Added to repository.
     adopt,) but because he has not hesitated to avow the very act which he is accused of; unless,
     perhaps, his idea was this,—if ordinary <note anchored="true">The usual course on claiming
      possession of disputed property was for the claimant to present himself with his friends in the
-     land, and then to be driven off by the occupant. This violence was <foreign xml:lang="la">vis
+     land, and then to be driven off by the occupant. This violence was <foreign xml:lang="lat">vis
       moribus facta</foreign>. On this the claimant appealed to the praetor. But Aebutius had driven
-     Caecina off with armed men, and had used unnecessary and actual violence. This was <foreign
-      xml:lang="la">vis contra jus moremque.</foreign></note> violence according to precedent had
+     Caecina off with armed men, and had used unnecessary and actual violence. This was <foreign xml:lang="lat">vis contra jus moremque.</foreign></note> violence according to precedent had
     been used, he would not have had any superior right of possession; but as the violence was
     committed in a way contrary to all law and precedent, Aulus Caecina fled in alarm with his
     friends. And so in this count, if he defends his cause according to the custom and established
@@ -266,8 +270,7 @@ Added to repository.
     that on their oaths, which I, not being on my oath, am urging in accusation. But if they are not
     so respectable, they do me no injury, since, if they are believed, then the very facts which we
     urge in accusation are believed; and if credit be not given to them, then credit is refused to
-    the witnesses of our adversary. <milestone n="2" unit="chapter"/><milestone n="4" unit="section"
-    /></p>
+    the witnesses of our adversary. <milestone n="2" unit="chapter"/><milestone n="4" unit="section"/></p>
    <p>But when I consider the way in which they are conducting their case, I do not see what more
     impudent thing can be said; when I consider your hesitation in airing your decision, I am afraid
     that what they seem to have been doing shamelessly, may have been done cunningly and wisely; for
@@ -300,8 +303,7 @@ Added to repository.
     crimes, of which the first is the least important object, because it is less severe on
     individuals, and because it is often terminated by some friendly mediator. The other is most
     formidable, because it relates to more important matters, and requires not the honorary
-    assistance of some friend, but the severity and vigour of a judge. <milestone n="7"
-     unit="section"/> That which was the more important, and on account of which judicial
+    assistance of some friend, but the severity and vigour of a judge. <milestone n="7" unit="section"/> That which was the more important, and on account of which judicial
     proceedings were most especially instituted, has been long abolished by evil customs. For the
     more disgraceful a thing is, the more severely and the more promptly ought it to be punished;
     and yet those things which involve danger to a man's character are the slowest to be punished.
@@ -325,8 +327,7 @@ Added to repository.
     matter which was brought before him. In truth, if the praetor, who allows the trials to proceed,
     never prescribes to a claimant what form of action he wishes him to adopt, consider how
     scandalous a thing it must be, when the matter is so far settled, for a judge to ask what might
-    have been done, or what can be done now, and not what has been done. <milestone n="9"
-     unit="section"/> However, in this case we should be complying too much with your good nature if
+    have been done, or what can be done now, and not what has been done. <milestone n="9" unit="section"/> However, in this case we should be complying too much with your good nature if
     we were willing to recover our rights by any process different from that which we are adopting.
     For now, what man is there who thinks that violence offered by armed men ought to be passed
     over; or who can show us a more moderate way of proceeding in so atrocious a case? In the case,
@@ -343,14 +344,10 @@ Added to repository.
     trial, or the nature of the case compels me to, I beseech you to pardon me; for Aulus Caecina is
     not less anxious to appear to have acted according to the strictest law, than he is to obtain
     what by strict law is his due. </p>
-   <p>There was a man named Marcus Fulcinius, O judges, of the municipality of <placeName
-     key="perseus,Tarquinii">Tarquinii</placeName>; who, in his own city, was reckoned one of the
-    most honourable men, and also had a splendid business at <placeName key="perseus,Rome"
-     >Rome</placeName> as a banker. He was married to Caesennia, a woman of the same municipality, a
+   <p>There was a man named Marcus Fulcinius, O judges, of the municipality of <placeName key="perseus,Tarquinii">Tarquinii</placeName>; who, in his own city, was reckoned one of the
+    most honourable men, and also had a splendid business at <placeName key="perseus,Rome">Rome</placeName> as a banker. He was married to Caesennia, a woman of the same municipality, a
     woman of the highest rank and most unimpeachable character, as he both showed while he was alive
-    by many circumstances, and declared also by his will at his death. <milestone n="11"
-     unit="section"/> To this Caesennia he had sold a farm in the district of <placeName
-     key="perseus,Tarquinii">Tarquinii</placeName>, at a time of great commercial embarrassment; for
+    by many circumstances, and declared also by his will at his death. <milestone n="11" unit="section"/> To this Caesennia he had sold a farm in the district of <placeName key="perseus,Tarquinii">Tarquinii</placeName>, at a time of great commercial embarrassment; for
     as he was employing the dowry of his wife, which he had received in ready money, he took care,
     in order that she, being a woman, might have abundant security, to charge her dowry on that
     farm. Some time afterwards, having given up his banking business, Fulcinius buys some lands
@@ -372,8 +369,7 @@ Added to repository.
     business which the woman had to transact, and all her disputes —was employed at that time also
     in this transaction of selling and dividing the property. And he always pushed and thrust
     himself in in such a way as to make Caesennia of opinion, that she, being a woman unskilled in
-    business, could not get on well in any matter in which Aebutius was not concerned. <milestone
-     n="14" unit="section"/> The character that you know, from daily experience, O judges, belongs
+    business, could not get on well in any matter in which Aebutius was not concerned. <milestone n="14" unit="section"/> The character that you know, from daily experience, O judges, belongs
     to a flatterer of women, all agent of widows, an over-litigious defender, eager for strife,
     ignorant and stupid among men, but a shrewd and clever lawyer among women; this was the
     character of Aebutius. For all this was Aebutius to Caesennia. In case you should ask, is he any
@@ -382,8 +378,7 @@ Added to repository.
     just been depicting— a voluntary friend of the woman, united with her, not by any relationship,
     but by a pretended officiousness, and a deceitful eagerness in her behalf; by an occasional
     assistance, seasonable rather than faithful. <milestone n="15" unit="section"/> When, as I had
-    begun to say, the auction was fixed to take place at <placeName key="perseus,Rome"
-     >Rome</placeName>, the friends and relations of Caesennia advised her—as, indeed, had occurred
+    begun to say, the auction was fixed to take place at <placeName key="perseus,Rome">Rome</placeName>, the friends and relations of Caesennia advised her—as, indeed, had occurred
     to her of her own accord,—that, since she had an opportunity of buying that farm of Fulcinius's
     which was contiguous to her own ancient property, there would be no wisdom in letting such an
     opportunity slip, especially as money was owing to her from the division of the inheritance,
@@ -391,8 +386,7 @@ Added to repository.
     commission to buy the farm—to whom? to whom do you suppose? Does it not at once occur to every
     one that this was the natural business of the man who was ready to transact all the woman's
     business, of the man without whom nothing could be done with proper skill and wisdom? You are
-    quite right—the business is entrusted to Aebutius. <milestone n="6" unit="chapter"/><milestone
-     n="16" unit="section"/></p>
+    quite right—the business is entrusted to Aebutius. <milestone n="6" unit="chapter"/><milestone n="16" unit="section"/></p>
    <p>Aebutius is present at the sale—he bids—many purchasers are deterred, some from goodwill to
     Caesennia, some by the price—the farm is knocked down to Aebutius; Aebutius promises the money
     to the banker, which piece of evidence that excellent man is using now to prove that the
@@ -402,8 +396,7 @@ Added to repository.
     as money was due to Caesennia from that inheritance, it was exceedingly advantageous for her
     that it should be invested in farms; and since those farms which were especially desirable for
     the woman were being sold, and since he was bidding whom no one wondered to see acting for
-    Caesennia, no one could possibly suspect was buying them for himself. <milestone n="17"
-     unit="section"/> When this purchase had been made, the money was paid by Caesennia; and of this
+    Caesennia, no one could possibly suspect was buying them for himself. <milestone n="17" unit="section"/> When this purchase had been made, the money was paid by Caesennia; and of this
     that man thinks that no account can be produced, because he himself has detained her
     account-books, and because he has the account-books of the banker in which the money is entered
     as having been paid by him, and credit is given to him for it, as having been received from him;
@@ -415,8 +408,7 @@ Added to repository.
     Fulcinius, a freedman of her first husband, and one-third she leaves to Aebutius. This
     seventy-second part of her property she meant to be a reward to him for the interest he had
     taken in her affairs, and for any trouble that they might have caused him. But he thinks that he
-    can make this small fraction a handle for disputing the whole. <milestone n="7" unit="chapter"
-     /><milestone n="18" unit="section"/></p>
+    can make this small fraction a handle for disputing the whole. <milestone n="7" unit="chapter"/><milestone n="18" unit="section"/></p>
    <p>In the first place he ventured to say that Caecina could not be the heir of Caesennia, because
     he had not the same rights as the rest of the citizens, on account of the disasters and civil
     calamities of the Volaterrans. Did he, therefore, like a timid and ignorant man, who had neither
@@ -437,8 +429,7 @@ Added to repository.
     artfully planning this singular kind of action, Caecina determined, by the advice of his
     friends, to fix a day on which he would go to offer to take possession, and be formally driven
     off the farm. They confer on the subject; a day is agreed on to suit the convenience of both
-    parties; Caecina, with his friends, comes on the appointed day to the castle of <placeName
-     key="perseus,Axia">Axia</placeName>, from which place the farm which is now in question is not
+    parties; Caecina, with his friends, comes on the appointed day to the castle of <placeName key="perseus,Axia">Axia</placeName>, from which place the farm which is now in question is not
     far distant. There he is informed by many people that Aebutius has collected and armed a great
     number of men, both free-men and slaves. While some marvelled at this, and some did not believe
     it, lo! Aebutius himself comes to the castle. He gives notice to Caecina that he has armed men
@@ -446,8 +437,7 @@ Added to repository.
     friends agreed that it was best to try how far they could proceed without personal danger.
      <milestone n="21" unit="section"/> Then they descend from the castle—they go to the farm. It
     seems to some to have been done rashly; but, as I think, this was the reason,—no one supposed
-    that Aebutius would really behave as rashly as he had threatened. <milestone n="8"
-     unit="chapter"/></p>
+    that Aebutius would really behave as rashly as he had threatened. <milestone n="8" unit="chapter"/></p>
    <p>Accordingly Aebutius places armed men at every entrance by which people could pass, not only
     to that farm about which there was the dispute, but also to the next farm, about which there was
     no dispute at all. And therefore, at the first step, when he was about to enter on his ancient
@@ -475,8 +465,7 @@ Added to repository.
     as much as his wickedness injures us. He was wicked, inasmuch as he collected men, armed them,
     and, with them collected and armed, committed deeds of violence. In that he injured Caecina; but
     by the same conduct also he benefited him. For he took with him evidence of the very deeds which
-    he did so wickedly, and that very evidence he brings forward in this case. <milestone n="24"
-     unit="section"/> Therefore I have made up my mind, O judges, before I come to make my defence,
+    he did so wickedly, and that very evidence he brings forward in this case. <milestone n="24" unit="section"/> Therefore I have made up my mind, O judges, before I come to make my defence,
     and to summon my own witnesses, to make use of his confession and his witnesses. What is it that
     he confesses, and confesses so willingly, that he seems not only to admit it, but even to boast
     of it, O judges? “I summoned men; I collected them; I armed them; I prevented you from entering
@@ -487,17 +476,14 @@ Added to repository.
     men there. What more?—That Aebutius threatened Caecina. What shall I say of this witness, O
     judges, except this, that you must not believe him the less because he does not seem to be a
     thoroughly respectable man, but that you must believe him, because his evidence goes to
-    establish the very facts that are most unfavourable to his cause? <milestone n="25"
-     unit="section"/> Aulus Terentius, a second witness, convicts not only Aebutius, but himself
+    establish the very facts that are most unfavourable to his cause? <milestone n="25" unit="section"/> Aulus Terentius, a second witness, convicts not only Aebutius, but himself
     also. He says this against Aebutius, that there were armed men; but concerning himself he makes
     this statement, that he ordered Antiochus, the slave of Aebutius, to attack Caecina with the
     sword if he came on the land. What more shall I say of this man? against whom, indeed, I did not
     wish to say anything, though I was begged by Caecina to do so, that I might not seem to accuse
     him of a capital crime; but now I am in doubt how to speak of him, or how to be silent about
-    him; since he, on his oath, makes this statement about himself. <milestone n="26" unit="section"
-    /> After them, Lucius Caelius not only stated that Aebutius was there with a large force of
-    armed men, but also that Caecina had come thither with a very limited train. <milestone n="10"
-     unit="chapter"/></p>
+    him; since he, on his oath, makes this statement about himself. <milestone n="26" unit="section"/> After them, Lucius Caelius not only stated that Aebutius was there with a large force of
+    armed men, but also that Caecina had come thither with a very limited train. <milestone n="10" unit="chapter"/></p>
    <p>Shall I at all disparage this witness? I beg you to believe him as much as you believe my
     witnesses. Publius Memmius followed; who mentioned his having done a great kindness to the
     friends of Caecina, in giving them a passage through his brother's farm, by which they could
@@ -513,8 +499,7 @@ Added to repository.
     the farm. There was Publius Caesennius, the seller of the farm, a man with a body of greater
     weight than his character; and Sextus Clodius, a banker, whose surname is Phormio, a man no less
     black and no less presuming than that Phormio in Terence: neither of these said anything about
-    violence, nor about anything else which had any reference to this trial. <milestone n="28"
-     unit="section"/> But the tenth witness, the one who had been reserved for the last, a senator
+    violence, nor about anything else which had any reference to this trial. <milestone n="28" unit="section"/> But the tenth witness, the one who had been reserved for the last, a senator
     of the Roman people, the pride of his order, the flower and ornament of the courts of justice
     the model of ancient piety, Fidiculanius Falcula; gave his evidence also. But though he came
     forward so eagerly and violently that he not only attacked Caecina with his perjuries, but
@@ -522,7 +507,7 @@ Added to repository.
     recollect, to say a second time even how many miles his farm was distant from the city. For when
     he had said that it was fifty-three miles <note anchored="true">Some think that the number of
      miles here ought to be forty. In the trial of Cluentius, Cicero imputes to all the judges that
-     they had been bribed with <foreign xml:lang="la">forty</foreign> thousand sesterces; and of
+     they had been bribed with <foreign xml:lang="lat">forty</foreign> thousand sesterces; and of
      these judges Falcula was one, so that the laughter of the people must have been excited by a
      similarity of number between the sesterces and the miles.</note> off, the people cried out with
     a laugh, that that was exactly the distance. For all men recollected how much he had received on
@@ -547,8 +532,7 @@ Added to repository.
     sudden, according to his usual custom, he forgets his previous statement, and says that his
     slaves were the only armed men there. <milestone n="11" unit="chapter"/></p>
    <p>What can you do with such a man as this? Must you not grant to him sometimes to escape from
-    the odium due to his excessive wickedness by the excuse of his prodigious stupidity? <milestone
-     n="31" unit="section"/> Did you not, O judges, believe these witnesses when you considered the
+    the odium due to his excessive wickedness by the excuse of his prodigious stupidity? <milestone n="31" unit="section"/> Did you not, O judges, believe these witnesses when you considered the
     case not proved? But there was no question that they were speaking the truth. When there was a
     multitude collected together, and arms, and weapons, and instant fear of death, and visible
     danger of murder, was it doubtful to you whether there seemed to have been any violence
@@ -557,8 +541,7 @@ Added to repository.
     not drive you out, I opposed your entrance; I did not suffer you to come on the farm at all, but
     I opposed armed men to you, in order that you might understand that, if you set your foot on the
     farm, you would immediately perish?” What do you say? Does not the man who was terrified and put
-    to flight, and driven away by force of arms, appear to have been turned out? <milestone n="32"
-     unit="section"/> We will examine hereafter into the appropriate expression; at present let us
+    to flight, and driven away by force of arms, appear to have been turned out? <milestone n="32" unit="section"/> We will examine hereafter into the appropriate expression; at present let us
     prove the fact, which they do not deny, and let us inquire into the law of the case, and the
     proper method of proceeding by law under such circumstances.</p>
    <p>This fact is proved, which is not denied by the opposite party,—that Caecina, when he had come
@@ -568,13 +551,11 @@ Added to repository.
     of business and of law-suits, think that I can proceed in this way, that I can obtain my rights
     and prosecute you for the injury I have sustained, by means of the interdict which I have
     obtained. Suppose that I am mistaken in this, and that I cannot possibly obtain what I wish by
-    means of this interdict. In this affair I wish to take you for my master. <milestone n="33"
-     unit="section"/> I ask whether there is any legal proceeding open to me in this ease, or
+    means of this interdict. In this affair I wish to take you for my master. <milestone n="33" unit="section"/> I ask whether there is any legal proceeding open to me in this ease, or
     whether there is not. It is not right for men to be summoned together on account of a dispute
     about possession; it is not right for a multitude to be armed for the sake of preserving a
     right; nor is there anything so contrary to law as violence; nor is there anything so
-    irreconcilable with justice as men collected together and armed. <milestone n="12"
-     unit="chapter"/></p>
+    irreconcilable with justice as men collected together and armed. <milestone n="12" unit="chapter"/></p>
    <p>And as the law is such, and the circumstances of the case such, that it appears above all
     others worthy of being brought under the notice of the magistrates, I ask again whether there is
     any legal proceeding open to me in this case, or whether there is not. Will you say that there
@@ -603,12 +584,11 @@ Added to repository.
     yard,—what will you do? My friend Lucius Calpurnius reminds you to say the same thing that he
     said before, namely that you would bring an action for the injury. But what has this to do with
     possession? What has this to do with restoring a man who ought to be restored? or with the civil
-    law? <gap reason="****"/> I will grant you even more. I will allow you not only to bring your
+    law? <gap reason="lost"/> I will grant you even more. I will allow you not only to bring your
     action, but also to succeed in it. Will you be any the more in possession of your property for
     that? For an action for injury done does not carry with it, even if successful, any right of
     possession; but merely makes up to a man for the loss he sustains through the diminution of his
-    liberty, by the trial and penalty imposed upon the offender. <milestone n="13" unit="chapter"
-     /><milestone n="36" unit="section"/></p>
+    liberty, by the trial and penalty imposed upon the offender. <milestone n="13" unit="chapter"/><milestone n="36" unit="section"/></p>
    <p>In the mean time, shall the praetor, O Piso, be silent in so important a matter? Shall he have
     no power to restore you to the possession of your own house? He who is occupied for whole days
     in repressing deeds of violence, and in ordering the restitution of what has been obtained by
@@ -622,8 +602,7 @@ Added to repository.
     That is a new form; I will not say an unusual one, but a form absolutely unheard of. ”Whence you
     were driven.” What will you gain by this, when they make you the same answer that they now make
     me; that armed men opposed you and prevented you from entering your house; moreover, that a man
-    cannot possibly be driven out of a place, who has not entered into it? <milestone n="37"
-     unit="section"/> I am driven out, say you, if any one of my slaves is driven out. Now you are
+    cannot possibly be driven out of a place, who has not entered into it? <milestone n="37" unit="section"/> I am driven out, say you, if any one of my slaves is driven out. Now you are
     right, for you are altering your language, and appealing, to justice. For if we choose to adhere
     to the words themselves, how are you driven out when your servant is driven out? But it is as
     you say—I ought to consider you yourself as driven out, even if you were never touched. Is it
@@ -644,8 +623,7 @@ Added to repository.
     at issue about arms, but that inquiry was only made into the language of the interdict. Shall
     that man gain his cause before your tribunal, who defends himself in this manner, “I drove you
     away with armed men, I did not drive you out,” so that the fact is not to depend on the equity
-    of the defence, but on the correctness of a single expression? <milestone n="39" unit="section"
-    /> Will you lay it down that there is no right of action in such a case as this? that there is
+    of the defence, but on the correctness of a single expression? <milestone n="39" unit="section"/> Will you lay it down that there is no right of action in such a case as this? that there is
     no method established for inquiring who has opposed a person with armed men, who has collected a
     multitude, and so prevented a man not only from effecting an entrance, but even from all access
     to a property? <milestone n="14" unit="chapter"/></p>
@@ -762,15 +740,14 @@ Added to repository.
     say, if we wish to make words and facts tally exactly with each other, that no one should be
     decided to have been thrust down, unless he be understood to have had hands laid on him, and so
     to have been removed and pushed headlong down by personal violence. But how can any one have
-    been treated so, unless he has been removed from a higher place to a lower one?<milestone n="50"
-     unit="section"/> A man may have been driven away, he may have been put to flight, he may have
+    been treated so, unless he has been removed from a higher place to a lower one?<milestone n="50" unit="section"/> A man may have been driven away, he may have been put to flight, he may have
     been cast out; but it is absolutely impossible for any one to have been pushed down, not only
     who has never been touched, but who, if he has been touched, has been touched on even and level
     ground. What then? Are we to think that this interdict was framed for the sake of those men
     alone, who could say that they had been precipitated from high ground? for those are the only
     people who can properly be said to have been driven down. <note anchored="true">The whole of
      this is quite untranslatable so as to give in English the sense which the Latin bears. The
-     truth is, that it is a sort of play on the word <foreign xml:lang="la">dejicio</foreign>, which
+     truth is, that it is a sort of play on the word <foreign xml:lang="lat">dejicio</foreign>, which
      is the Latin word used, and which not only means to drive away, its technical and proper
      meaning here, but also to throw down, which is the meaning which Cicero harps upon.</note>
     <milestone n="18" unit="chapter"/></p>
@@ -795,28 +772,25 @@ Added to repository.
     a proof that right does not depend only on the strict words of the law, but that words are meant
     to be subservient to the intentions and purposes of men? <milestone n="53" unit="section"/> In a
     most elegant and fluent manner did Lucius Crassus, by far the most eloquent of all men, a little
-    before we came into the forum, defend this opinion in a trial before the <foreign xml:lang="la"
-     >centumviri</foreign>; <note anchored="true">The origin, constitution, and powers of the
-      <foreign xml:lang="la">centumviri</foreign> are exceedingly obscure; they were judges, but
-     they differed from other judges in being a definite body or <foreign xml:lang="la"
-      >collegium</foreign>. According to Festus three <foreign xml:lang="la">centumviri</foreign>
+    before we came into the forum, defend this opinion in a trial before the <foreign xml:lang="lat">centumviri</foreign>; <note anchored="true">The origin, constitution, and powers of the
+      <foreign xml:lang="lat">centumviri</foreign> are exceedingly obscure; they were judges, but
+     they differed from other judges in being a definite body or <foreign xml:lang="lat">collegium</foreign>. According to Festus three <foreign xml:lang="lat">centumviri</foreign>
      were chosen out of each tribe, so that their actual number must have been a hundred and five.
      Their powers were probably limited to <placeName key="perseus,Rome">Rome</placeName>, and at
      all events to <placeName key="tgn,1000080">Italy</placeName>. It appears that they had
      cognisance of both civil and criminal matters. It was the practice to set up a spear in the
-     place where the <foreign xml:lang="la">centumviri</foreign> were sitting, and accordingly the
-     word <foreign xml:lang="la">hasta</foreign> or <foreign xml:lang="la">hasta
-      centumviralis</foreign>, is sometimes used as equivalent to <foreign xml:lang="la">judicium
-      centumvirale</foreign>. <foreign xml:lang="la">Vide </foreign>Smith, Dict. Ant. p. 212, v.
-      <foreign xml:lang="la">Centumviri</foreign>.</note>and with great ease, too, though that very
+     place where the <foreign xml:lang="lat">centumviri</foreign> were sitting, and accordingly the
+     word <foreign xml:lang="lat">hasta</foreign> or <foreign xml:lang="lat">hasta
+      centumviralis</foreign>, is sometimes used as equivalent to <foreign xml:lang="lat">judicium
+      centumvirale</foreign>. <foreign xml:lang="lat">Vide </foreign>Smith, Dict. Ant. p. 212, v.
+      <foreign xml:lang="lat">Centumviri</foreign>.</note>and with great ease, too, though that very
     sagacious man, Quintus Mucius, was arguing against him, did he prove to every one that Marcus
     Curius, who had been left a certain person's heir in the case of the death of a posthumous son
     who was expected, ought to be the heir, though the son was not dead, never, in fact, having been
     born. What? was this case sufficiently provided for by the terms of the will? Certainly not.
     What was the thing, then, that influenced the judges? The intention; and if it could be
     understood though we were silent, we should not employ words at all: because it could not, words
-    have been invented, not to hinder people's intentions, but to point them out. <milestone n="19"
-     unit="chapter"/><milestone n="54" unit="section"/></p>
+    have been invented, not to hinder people's intentions, but to point them out. <milestone n="19" unit="chapter"/><milestone n="54" unit="section"/></p>
    <p>The law commands the property in land to be determined by two years' possession. But we adopt
     the same principle also in the case of houses, which are not mentioned at all in the law. If a
     road is not properly made, the law allows a man to drive a beast of burden wherever he likes.
@@ -844,8 +818,7 @@ Added to repository.
     that one slave is not a household. <milestone n="56" unit="section"/> The expression certainly
     does not only require this, but even compels it. But let all consideration of law, and the
     effect of the interdict, and the intention of the praetor, and the wisdom and authority of
-    prudent men, reject this defence and treat it as worthless. <milestone n="20" unit="chapter"
-    /></p>
+    prudent men, reject this defence and treat it as worthless. <milestone n="20" unit="chapter"/></p>
    <p>What, then, are we to think? Cannot those men speak Latin? Yes, they speak it sufficiently to
     make their intentions understood. As their object was that you should replace me in my property,
     whether it was you yourself who drove me away, or any one of your relations, or of your
@@ -857,12 +830,10 @@ Added to repository.
     to examine too curiously into the exact applicability of every word. For the principles of
     equity are not different in the case of one servant from what they are in the case of many;
     there is no different law for this single case, according to whether it was your agent who drove
-    me away,—such a man as is legitimately considered the agent of one who is not in <placeName
-     key="tgn,1000080">Italy</placeName>, who is absent on business of the state, being for the time
+    me away,—such a man as is legitimately considered the agent of one who is not in <placeName key="tgn,1000080">Italy</placeName>, who is absent on business of the state, being for the time
     a sort of matter, that is, a deputy possessing the rights of another, or whether it was one of
     your labourers, or neighbours, or clients, or freedmen,—or any one else who committed that
-    violence and wrought that expulsion at your request, or in your name. <milestone n="58"
-     unit="section"/> Wherefore, if the same principles of law prevail with respect to replacing a
+    violence and wrought that expulsion at your request, or in your name. <milestone n="58" unit="section"/> Wherefore, if the same principles of law prevail with respect to replacing a
     man in his property who has been driven from it by violence, when that is once understood, it
     certainly has nothing to do with the matter, what is the exact force of each word and name. You
     must replace me just as much if your freedman drove me away, though he was not appointed to
@@ -906,8 +877,7 @@ Added to repository.
     such tame and meager evasions. For you will not find any judge or recuperator who will decide on
     a man's being armed as if it were his duty to inspect the arms of a trooper; but it will have
     just the same weight in his mind as if they were most completely armed, if they are found to
-    have been equipped in such a manner as to be able to do violence to life or limb. <milestone
-     n="22" unit="chapter"/><milestone n="62" unit="section"/></p>
+    have been equipped in such a manner as to be able to do violence to life or limb. <milestone n="22" unit="chapter"/><milestone n="62" unit="section"/></p>
    <p>And, that you may more clearly understand of how small value words are,—if you by yourself, or
     if any one person had made an onset on me with shield and sword, and I had been driven away by
     these means, would you venture to say that the interdict spoke of armed men, but that in this
@@ -969,8 +939,7 @@ Added to repository.
      <milestone n="24" unit="chapter"/><milestone n="67" unit="section"/></p>
    <p>Are you, in making this defence, accusing those who are sitting on the bench, because they
     think it right to regard justice rather than the letter of the law? And, while speaking on this
-    point, you mid that Scaevola had not succeeded in his case before the <foreign xml:lang="la"
-     >centumviri</foreign>, whom I mentioned before on the occasion of his doing the same thing
+    point, you mid that Scaevola had not succeeded in his case before the <foreign xml:lang="lat">centumviri</foreign>, whom I mentioned before on the occasion of his doing the same thing
     which you are doing now, (though he had some reason for what he was doing, while you have none,)
     still he did not succeed in any one's opinion in proving the point that be was maintaining,
     because he appeared by his language to be opposing justice. I marvel that you should have made
@@ -993,11 +962,10 @@ Added to repository.
     deciding against the opinion of the lawyers, if they give sentence contrary to the decision of
     Mucius, any more than they would be deciding in compliance with their authority, if sentence
     were given according to the precedent of Manilius. Forsooth, Crassus himself did not plead his
-    cause before the <foreign xml:lang="la">centumviri</foreign> in such a way as to speak against
+    cause before the <foreign xml:lang="lat">centumviri</foreign> in such a way as to speak against
     the lawyers; but he urged that the arguments which Scaevola brought forward in his defence were
     not law; and he not only brought forward good arguments to that point, but he also quoted
-    Quintus Mucius, his father-in-law, and many other most learned men, as precedents. <milestone
-     n="25" unit="chapter"/><milestone n="70" unit="section"/></p>
+    Quintus Mucius, his father-in-law, and many other most learned men, as precedents. <milestone n="25" unit="chapter"/><milestone n="70" unit="section"/></p>
    <p>For he who thinks the civil law is to be despised, he is tearing asunder the bonds, not only
     of all courts of justice, but of all usefulness and of our common life; but he who finds fault
     with the interpreters of the law, if he says that they are ignorant of the law, is only
@@ -1017,8 +985,7 @@ Added to repository.
     in this state, is dormant with respect to cases of this sort; it has no means of attacking the
     judge, or of moving a finger. For this can be said to a judge by some man who is not so
     scrupulous as he is influential; “Decide, I pray you, that this has been done or planned; give
-    credit to this witness; establish the genuineness of these documents;”—<milestone n="72"
-     unit="section"/> but this cannot be said, “Decide that if a man has a posthumous son born to
+    credit to this witness; establish the genuineness of these documents;”—<milestone n="72" unit="section"/> but this cannot be said, “Decide that if a man has a posthumous son born to
     him, his will is not thereby invalidated; decide that a thing is due which a woman had promised
     without the sanction of her trustee.” There is no opening for transactions of this sort, nor for
     any one's power or influence; in fact,—and this gives questions of law a more important and a
@@ -1031,8 +998,7 @@ Added to repository.
    <p>For, indeed, what is the civil law? A thing which can neither be bent by influence, nor broken
     down by power, nor adulterated by corruption; which, if it be, I will not say overwhelmed, but
     even neglected or carelessly upheld, there will then be no ground for any one feeling sure
-    either that he possesses anything, or that he shall leave anything to his children. <milestone
-     n="74" unit="section"/> For what is the advantage of having a house or a farm left one by one's
+    either that he possesses anything, or that he shall leave anything to his children. <milestone n="74" unit="section"/> For what is the advantage of having a house or a farm left one by one's
     father, or in any way legitimately acquired, if it be uncertain whether you will be able to
     retain those things which are yours by every right of property? if law be but little fortified?
     if nothing can be upheld by public and civil law, in opposition to the influence of any powerful
@@ -1050,8 +1016,7 @@ Added to repository.
     inheritance of law which you have received from your ancestors with no less care than your
     private patrimony and property, not only because this last is fenced round and protected by the
     civil law, but also because if a man loses his patrimony, it is only an individual who suffers,
-    but if the law be lost, the disaster affects the whole state. <milestone n="27" unit="chapter"
-    /></p>
+    but if the law be lost, the disaster affects the whole state. <milestone n="27" unit="chapter"/></p>
    <p>In this very cause, O judges, if we do not succeed in establishing this point, that a man is
     driven away,—if it is evident that he has been repelled and put to flight with violence by armed
     Caecina will not lose his property, which, however, he would bear the loss of with a brave
@@ -1091,7 +1056,7 @@ Added to repository.
     But I marvel why you, when you say that any one has formed an opinion unfavourable to me,
     produce the man who is my authority for my arguments, but say nothing of him who is yours. But,
     however, what does the man on whom you rely say? “In whatever terms a law is framed and drawn up
-     <gap reason="***"/>” <milestone n="28" unit="chapter"/></p>
+     <gap reason="lost"/>&gt;” <milestone n="28" unit="chapter"/></p>
    <p>I met a man of that body of lawyers; as I believe, the very same man by whose advice you say
     that you are conducting this cause, and arranging your arguments in defence. And when he began
     that discussion with me, saying that it could not be admitted that a man had been driven from
@@ -1122,8 +1087,7 @@ Added to repository.
     thing which can be included in a law with sufficient accuracy, or guarded against, or excepted
     against, if through some word being overlooked or placed in an ambiguous position, though the
     intention and the truth is completely ascertained, that which is intended is not to prevail, but
-    that which is expressed, is. <milestone n="29" unit="chapter"/><milestone n="82" unit="section"
-    /></p>
+    that which is expressed, is. <milestone n="29" unit="chapter"/><milestone n="82" unit="section"/></p>
    <p>And since I have now stated my objection plainly enough, I will follow you where you invite
     me. I ask of you, Was I driven away? not from the farm of Fulcinius, for the praetor has not
     commanded me to be replaced only in the case of my having been driven away from that particular
@@ -1224,8 +1188,7 @@ Added to repository.
     first of all, notice this, that you are by this driven from that assertion which you made, that
     no one could be driven away from a place, unless he was in the place previously; now you allow
     that a man who is the owner of a place can be driven away from it, even if he is not actually in
-    it at the moment, but you say that a man who is not the owner cannot be driven away. <milestone
-     n="91" unit="section"/> Why, then, in that interdict which is of almost daily occurrence,
+    it at the moment, but you say that a man who is not the owner cannot be driven away. <milestone n="91" unit="section"/> Why, then, in that interdict which is of almost daily occurrence,
     “whence he drove me by violence,” is this added, “when I was in possession,” if no one can be
     driven away who is not in possession; or why is not the same addition made to the interdict
     “about armed men,” if inquiry ought to be made whether a man was the owner or no? You say that
@@ -1234,8 +1197,7 @@ Added to repository.
     gain his cause, if he can show that he was not the owner. You say that a man cannot be driven
     away unless he is the owner. I prove from this interdict “about armed men,” that he, who can
     prove that the man who has been driven away was not the owner, still must inevitably lose his
-    cause, if he confesses that he was driven away at all. <milestone n="32" unit="chapter"
-     /><milestone n="92" unit="section"/></p>
+    cause, if he confesses that he was driven away at all. <milestone n="32" unit="chapter"/><milestone n="92" unit="section"/></p>
    <p>Men are driven away in two ways, either without the employment of men collected together and
     armed, or by means of them, and by violence. There are two separate interdicts for two
     dissimilar cases. In the first and formal kind of violence, it is not enough for a man to be
@@ -1256,16 +1218,14 @@ Added to repository.
     difference whether the words “As Aulus Caecina was in possession” be added, or not? Does the
     consideration of right,—does the dissimilarity of the interdicts,—does the authority of your
     ancestors, at all influence you? If the addition had been made, inquiry must have been made as
-    to this point. The addition has not been made. Must that inquiry still be instituted? <milestone
-     n="94" unit="section"/> And in this particular I do not defend Caecina. For, O judges, Caecina
+    to this point. The addition has not been made. Must that inquiry still be instituted? <milestone n="94" unit="section"/> And in this particular I do not defend Caecina. For, O judges, Caecina
     was in possession; and although it is foreign to this cause, still I will briefly touch upon
     this point, to make you as desirous to protect the man himself, as the common rights of all men.
     You do not deny that Caesennia had a life interest in the farm. As the same farmer who rented it
     of Caesennia continued to hold it on the same tenure, is there any doubt, that if Caesennia was
     the owner while the farmer was tenant of the farm, so after her death her heir was the owner by
     the same right? Afterwards Caecina, when he was going the round of his estates, came to that
-    farm. He received his accounts from the farmer. There is evidence to that point. <milestone
-     n="95" unit="section"/> After that, why, O. Aebutius, did you give notice to Caecina to give up
+    farm. He received his accounts from the farmer. There is evidence to that point. <milestone n="95" unit="section"/> After that, why, O. Aebutius, did you give notice to Caecina to give up
     that farm, rather than some others, if you could find any other, unless Caecina was in
     possession of it? Moreover, why did Caecina consent to be ejected in a regular and formal
     manner? and why did he make you the answer he did by the advice of his friends, and of Caius
@@ -1278,19 +1238,16 @@ Added to repository.
     that there is something. For unless there were, this would not be appended to all statutes.
      <milestone n="96" unit="section"/> But I ask of you whether you think, if the people ordered me
     to be your slave, or, on the other hand, you to be mine, that that order would be authoritative
-    and valid? You see that such an order is worthless. <gap reason="****"/> First of all, you allow
+    and valid? You see that such an order is worthless. <gap reason="lost"/> First of all, you allow
     this,—that it does not follow that whatever the people orders ought to be ratified. In the next
     place, you allege no reason why, if liberty cannot possibly be taken away, citizenship may. For
     we have received our traditions about each in the same way; and if citizenship can once be taken
     away, liberty cannot be preserved. For how can a man be free by the rights of the Quirites, who
     is not included in the number of the Quirites? <milestone n="97" unit="section"/> And I, when
     quite a young man, established this principle when I was pleading against Cotta, the most
-    eloquent man of our city. When I was defending the liberty of a woman of <placeName
-     key="tgn,7006072">Arretium</placeName>, and when Cotta had suggested a scruple to the <foreign
-     xml:lang="la">decemvirs</foreign> that our action was not a regular one, because the rights of
+    eloquent man of our city. When I was defending the liberty of a woman of <placeName key="tgn,7006072">Arretium</placeName>, and when Cotta had suggested a scruple to the <foreign xml:lang="lat">decemvirs</foreign> that our action was not a regular one, because the rights of
     citizenship had been taken from the Arretines, and when I argued rather vehemently that rights
-    of citizenship could not be taken away, at the first hearing the <foreign xml:lang="la"
-     >decemvirs</foreign> gave no decision; afterwards, when they had inquired into, and deliberated
+    of citizenship could not be taken away, at the first hearing the <foreign xml:lang="lat">decemvirs</foreign> gave no decision; afterwards, when they had inquired into, and deliberated
     on, the subject, they decided that our action was quite regular. And this was decided, though
     Cotta spoke in opposition to it, and while Sulla was alive. But now on the other cities, why
     need I tell you how all men who are in the same circumstances proceed by law, and prosecute
@@ -1302,19 +1259,16 @@ Added to repository.
     the Latin colonies. They have gone either of their own accord, or in consequence of some penalty
     inflicted by the law; though if they would have submitted to the penalty, they might have
     remained in the city. <milestone n="34" unit="chapter"/></p>
-   <p>What more need I urge? What shall I say of a man whom the chief of the <foreign xml:lang="la"
-     >fetiales</foreign>
-    <note anchored="true">“The Latin here is <foreign xml:lang="la">pater patratus</foreign>. When
-     an injury had been sustained by the state, four <foreign xml:lang="la">fetiales</foreign> were
+   <p>What more need I urge? What shall I say of a man whom the chief of the <foreign xml:lang="lat">fetiales</foreign>
+    <note anchored="true">“The Latin here is <foreign xml:lang="lat">pater patratus</foreign>. When
+     an injury had been sustained by the state, four <foreign xml:lang="lat">fetiales</foreign> were
      deputed to seek redress, who again elected one of their number to act as their representative,
-     this individual was called pater <foreign xml:lang="la">patratus populi
-     Romani</foreign>.”—Smith Dict. Ant. p. 416, v. <foreign xml:lang="la"
-     >Fetiales</foreign>.</note> has given up, or whom his own father or his people have sold? By
+     this individual was called pater <foreign xml:lang="lat">patratus populi
+     Romani</foreign>.”—Smith Dict. Ant. p. 416, v. <foreign xml:lang="lat">Fetiales</foreign>.</note> has given up, or whom his own father or his people have sold? By
     what law does he lose his right of citizenship? In order that the city may be released from some
     religious obligation, a Roman citizen is surrendered; and when he is accepted, he then belongs
     to those men to whom he has been surrendered. If they refuse to receive him, as the people of
-     <placeName key="tgn,7017511">Numantia</placeName> refused to receive Mancinus, <note
-     anchored="true">Caius Hostilius Mancinus had been defeated by the Numantines and had made a
+     <placeName key="tgn,7017511">Numantia</placeName> refused to receive Mancinus, <note anchored="true">Caius Hostilius Mancinus had been defeated by the Numantines and had made a
      disgraceful peace with them, which the senate refused to ratify, and delivered up Mancinus to
      the Numantines, in order to annul the peace legally, but they refused to receive him.</note> he
     then retains his original rights of citizenship unimpaired. If his father has sold him, he
@@ -1349,23 +1303,19 @@ Added to repository.
     men might understand that the rights of citizenship never had been taken away from any one, and
     could not be taken away. As I wished those men, whom Sulla desired to injure, to know this, so I
     wished, also, all the other citizens, both new and old, to be acquainted with it. For no reason
-    can be produced why, if the rights of citizenship could be taken from any new <note
-     anchored="true">The new citizens are those who had been made citizens of <placeName
-      key="perseus,Rome">Rome</placeName> at the termination of the Social War a few years
+    can be produced why, if the rights of citizenship could be taken from any new <note anchored="true">The new citizens are those who had been made citizens of <placeName key="perseus,Rome">Rome</placeName> at the termination of the Social War a few years
      before.</note> citizen, they cannot also be taken away from all the patricians, from all the
     very oldest citizens. <milestone n="102" unit="section"/> For that, with respect to this cause,
     I had no alarm, may be understood in the first place from this consideration,—that you have no
     business to decide on that matter; and in the second place, that Sulla himself passed a law
     respecting the rights of citizenship, avoiding any taking away of the legal obligations and
-    lights of inheritance of these men. For he orders the people of <placeName
-     key="perseus,Ariminum">Ariminum</placeName> to be under the same law that they have been. And
+    lights of inheritance of these men. For he orders the people of <placeName key="perseus,Ariminum">Ariminum</placeName> to be under the same law that they have been. And
     who is there who does not know that they were one of the eighteen <note anchored="true">The old
      editions usually have “twelve,” but eighteen is the correction of Savigny, which Orellius calls
-      “<foreign xml:lang="la">certissima</foreign>.” In the second Punic War, a.u.c. 543, of the
+      “<foreign xml:lang="lat">certissima</foreign>.” In the second Punic War, a.u.c. 543, of the
      thirty colonies of the Roman people, twelve declared that they had no means of supplying the
      consuls with men or money. The other eighteen remained faithful to their allegiance, and of
-     these eighteen <placeName key="perseus,Ariminum">Ariminum</placeName> was one. <foreign
-      xml:lang="la">Vide</foreign>
+     these eighteen <placeName key="perseus,Ariminum">Ariminum</placeName> was one. <foreign xml:lang="lat">Vide</foreign>
      <bibl n="Liv. 27.9.10">Livy, xxvii. 9,10.</bibl></note> colonies and that they were able to
     receive inheritances from Roman citizens? But if the rights of citizenship could by law be taken
     from Aulus Caecina, still it would be more natural for us and all good men now to inquire by
@@ -1399,7 +1349,7 @@ Added to repository.
     him;—as all this is the case, decide what the interests of the republic with reference to armed
     men, what his own confession of violence, what our decision with respect to justice, and what
     the terms of the interdict respecting right, admonish you to decide. </p>
-  </body>
- </text>
+  </div>
+ </body></text>
 
 </TEI>

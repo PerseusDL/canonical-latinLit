@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
-                <title>History of Rome, books 21-45 - 21</title>
+                <title type="work">History of Rome, books 21-45 - 21</title>
                 <title type="sub">Machine readable text</title>
-                <author>Titus Livius (Livy)</author>
+                <author n="Titus Livius (Livy)">Titus Livius (Livy)</author>
                 <editor role="translator">Rev. Canon Roberts</editor>
                 <sponsor>Perseus Project, Tufts University</sponsor>
                 <principal>Gregory Crane</principal>
@@ -18,7 +18,6 @@
                 </respStmt>
                 <funder n="org:NEH">The National Endowment for the Humanities</funder>
             </titleStmt>
-            <extent>about 1.7 Mb</extent>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
@@ -39,7 +38,7 @@
                                 <publisher>E. P. Dutton and Co.</publisher>
                                 <date>1912</date>
                             </imprint>
-                            <biblScope type="volume">1</biblScope>
+                            <biblScope unit="volume">1</biblScope>
                         </monogr>
                     </biblStruct>
                     <biblStruct default="false">
@@ -55,16 +54,28 @@
                                 <publisher>E. P. Dutton and Co.</publisher>
                                 <date>1912</date>
                             </imprint>
-                            <biblScope type="volume">2</biblScope>
+                            <biblScope unit="volume">2</biblScope>
                         </monogr>
                     </biblStruct>
                 </listBibl>
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="Section" matchPattern="(\\w+).(\\w+).(\\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:milestone[@n=\'$2\']/tei:milestone[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter" matchPattern="(\\w+).(\\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:milestone[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book" matchPattern="(\\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
-                <refState unit="book"/>
-                <refState unit="chapter" n="chunk"/>
+                <refState unit="book" delim="."/>
+                <refState unit="chapter" delim="."/>
+                <refState unit="section"/>
             </refsDecl>
         </encodingDesc>
         <profileDesc>
@@ -117,13 +128,14 @@ Added to repository. Passed SGML parse.
             </change>
         -->
             <change when="2014-10-09" who="Stella Dee">edited markup</change>
-        </revisionDesc>
+        <change when="2015-12-03" who="Zach Himes"/><change when="2006-04-26" who="Jason Bates">ed.</change>
+            <change who="balmas01" when="2013-09-13T11:20:31">Revision 1.3  reverting texts back to pre_cts_reorg tagged version</change><change who="rsingh04" when="2009-12-01T18:17:55">Revision 1.1  moved more xml files around based on copyright status</change><change who="rsingh04" when="2009-07-17T16:01:55">Revision 1.6  major fixes to Livy texts. separated english from latin in loeb texts, added separate abbs for each book since texts do not have all the books.  got rid of views because they didn't work well and were a pain.  things should not link up between different texts much better</change><change who="lcerrato" when="2008-11-14T22:05:52">Revision 1.5  fixing author names for consistent sorting</change><change who="rsingh04" when="2008-11-14T20:52:40">Revision 1.4  updated titles</change><change who="lcerrato" when="2008-11-14T18:45:59">Revision 1.3  fixed dup books 27, added header for book 28 and book 21 (found online)</change><change who="gcrane" when="2006-10-04T13:29:19">Revision 1.2  small mods</change><change who="gcrane" when="2006-09-02T14:04:03">Revision 1.1  copies of the xlation without any automagically added sections</change><change who="gcrane" when="2006-04-28T02:13:21">Revision 1.1  added HEADs for individual books</change><change who="packel" when="2005-07-25T14:55:30">Revision 1.1  Added to repository. Passed SGML parse.</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
-        <body>
-            <div part="N" sample="complete" org="uniform" n="21" type="book">
+    <text>
+        <body><div type="translation" xml:lang="eng" n="urn:cts:canonical-latinLit:phi0914.phi00121.perseus-eng3">
+            <div part="N" sample="complete" org="uniform" n="21" type="textpart" subtype="book">
                 <head>From Saguntum to the Trebia</head>
-                <div part="N" sample="complete" org="uniform" n="1" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="1" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> I consider myself at liberty to commence
                         what is only a section of my history with a prefatory remark such as most
@@ -154,15 +166,14 @@ Added to repository. Passed SGML parse.
                         filched by the Romans during the troubles in Africa, who, not content with
                         seizing it, had imposed an indemnity as well. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="2" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="2" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Smarting under these wrongs, he made it
                         quite clear from his conduct of the African War which followed immediately
                         upon the conclusion of peace with Rome, and from the way in which he
                         strengthened and extended the rule of Carthage during the nine years' war
                         with Spain, that he was meditating a far greater war than any he was
-                        actually engaged in, and that had he lived <milestone n="2??" unit="section"
-                        /> longer it would have been under his command that the Carthaginians
+                        actually engaged in, and that had he lived <milestone n="2??" unit="section"/> longer it would have been under his command that the Carthaginians
                         effected the invasion of Italy, which they actually carried out under
                         Hannibal. <milestone n="3" unit="section"/> The death of Hamilcar, occurring
                         as it did most opportunely, and the tender years of Hannibal delayed the
@@ -176,8 +187,7 @@ Added to repository. Passed SGML parse.
                         nobles. <milestone n="5" unit="section"/> Trusting to policy rather than to
                         arms, he did more to extend the empire of Carthage by forming connections
                         with the petty chieftains and winning over new tribes by making friends of
-                        their leading men than by force of arms or by war. <milestone n="6"
-                            unit="section"/> But peace brought him no security. A barbarian whose
+                        their leading men than by force of arms or by war. <milestone n="6" unit="section"/> But peace brought him no security. A barbarian whose
                         master he had put to death murdered him in broad daylight, and when seized
                         by the bystanders he looked as happy as though he had escaped. Even when put
                         to the torture, his delight at the success of his attempt mastered his pain
@@ -188,20 +198,18 @@ Added to repository. Passed SGML parse.
                         between the two empires, and Saguntum, occupying an intermediate position
                         between them, was to be a free city. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="3" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="3" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> There was no hesitation shown in filling
                         his place. The soldiers led the way by bringing the young Hannibal forthwith
                         to the palace and proclaiming him their commander-in-chief amidst universal
-                        applause. Their action was followed by the plebs. <milestone n="2"
-                            unit="section"/> Whilst little more than a boy, Hasdrubal had written to
+                        applause. Their action was followed by the plebs. <milestone n="2" unit="section"/> Whilst little more than a boy, Hasdrubal had written to
                         invite Hannibal to come to him in Spain, and the matter had actually been
                         discussed in the senate. The Barcines wanted Hannibal to become familiar
                         with military service; Hanno, the leader of the opposite party, resisted
                         this. <milestone n="3" unit="section"/> "Hasdrubal's request," he said,
                         "appears a reasonable one, and yet I do not think we ought to grant it" This
-                        paradoxical utterance aroused the attention of the whole senate. <milestone
-                            n="4" unit="section"/> He continued: "The youthful beauty which
+                        paradoxical utterance aroused the attention of the whole senate. <milestone n="4" unit="section"/> He continued: "The youthful beauty which
                         Hasdrubal surrendered to Hannibal's father he considers he has a fair claim
                         to ask for in return from the son. It ill becomes us, however, to habituate
                         our youths to the lust of our commanders, by way of military training.
@@ -209,19 +217,17 @@ Added to repository. Passed SGML parse.
                         before Hamilcar's son surveys the extravagant power and the pageant of
                         royalty which his father assumed, and that there will be undue delay in our
                         becoming the slaves of the despot to whose son-in-law our armies have been
-                        bequeathed as though they were his patrimony? <milestone n="6"
-                            unit="section"/> I, for my part, consider that this youth ought to be
+                        bequeathed as though they were his patrimony? <milestone n="6" unit="section"/> I, for my part, consider that this youth ought to be
                         kept at home and taught to live in obedience to the laws and the magistrates
                         on an equality with his fellow-citizens; if not, this small fire will some
                         day or other kindle a vast conflagration." </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="4" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="4" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Hanno's proposal received but slight
                         support, though almost all the best men in the council were with him, but as
                         usual, numbers carried the day against reason. No sooner had Hannibal landed
-                        in Spain than he became a favourite with the whole army. <milestone n="2"
-                            unit="section"/> The veterans thought they saw Hamilcar restored to them
+                        in Spain than he became a favourite with the whole army. <milestone n="2" unit="section"/> The veterans thought they saw Hamilcar restored to them
                         as he was in his youth; they saw the same determined expression the same
                         piercing eyes, the same cast of features. He soon showed, however, that it
                         was not his father's memory that helped him most to win the affections of
@@ -231,8 +237,7 @@ Added to repository. Passed SGML parse.
                         attached to him. <milestone n="4" unit="section"/> Whenever courage and
                         resolution were needed Hasdrubal never cared to entrust the command to any
                         one else; and there was no leader in whom the soldiers placed more
-                        confidence or under whom they showed more daring. <milestone n="5"
-                            unit="section"/> He was fearless in exposing himself to danger and
+                        confidence or under whom they showed more daring. <milestone n="5" unit="section"/> He was fearless in exposing himself to danger and
                         perfectly self-possessed in the presence of danger. No amount of exertion
                         could cause him either bodily or mental fatigue; he was equally indifferent
                         to heat and cold; his eating and drinking were measured by the needs of
@@ -254,15 +259,13 @@ Added to repository. Passed SGML parse.
                         by practice or observation the experience necessary for one who was to be a
                         great leader of men. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="5" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="5" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> From the day when he was proclaimed
                         commander-in-chief, he seemed to regard Italy as his assigned field of
-                        action, and war with Rome as a duty imposed upon him. <milestone n="2"
-                            unit="section"/> Feeling that he ought not to delay operations, lest
+                        action, and war with Rome as a duty imposed upon him. <milestone n="2" unit="section"/> Feeling that he ought not to delay operations, lest
                         some accident should overtake him as in the case of his father and
-                        afterwards of Hasdrubal, he decided to attack the Saguntines. <milestone
-                            n="3" unit="section"/> As an attack on them would inevitably set the
+                        afterwards of Hasdrubal, he decided to attack the Saguntines. <milestone n="3" unit="section"/> As an attack on them would inevitably set the
                         arms of Rome in motion, he began by invading the Olcades, a tribe who were
                         within the boundaries but not under the dominion of Carthage. He wished to
                         make it appear that Saguntum was not his immediate object, but that he was
@@ -278,8 +281,7 @@ Added to repository. Passed SGML parse.
                     <p> At the beginning of spring he extended his operations to the Vaccaei, and
                         two of their cities, Arbocala and Hermandica, were taken by assault.
                             <milestone n="6" unit="section"/> Arbocala held out for a considerable
-                        time, owing to the courage and numbers of its defenders; <milestone n="7"
-                            unit="section"/> the fugitives from Hermandica joined hands with those
+                        time, owing to the courage and numbers of its defenders; <milestone n="7" unit="section"/> the fugitives from Hermandica joined hands with those
                         of the Olcades who had abandoned their country-this tribe had been
                         subjugated the previous year-and together they stirred up the Carpetani to
                         war. <milestone n="8" unit="section"/> Not far from the Tagus an attack was
@@ -289,8 +291,7 @@ Added to repository. Passed SGML parse.
                         fixed his camp by the side of the river; as soon as there was quiet and
                         silence amongst the enemy, he forded the stream. His entrenchments had been
                         carried just far enough to allow room for the enemy to cross over, and he
-                        decided to attack them during their passage of the river. <milestone n="10"
-                            unit="section"/> He instructed his cavalry to wait until they had
+                        decided to attack them during their passage of the river. <milestone n="10" unit="section"/> He instructed his cavalry to wait until they had
                         actually entered the water and then to attack them; his forty elephants he
                         stationed on the bank. <milestone n="11" unit="section"/> The Carpetani
                         together with the contingents of the Olcades and Vaccaei numbered altogether
@@ -309,8 +310,7 @@ Added to repository. Passed SGML parse.
                         the midst of the current, could fight at close quarters or not, as they
                         chose. <milestone n="15" unit="section"/> A large proportion were swept down
                         the river, some were carried by cross currents to the other side where the
-                        enemy were, and were trampled to death by the elephants. <milestone n="16"
-                            unit="section"/> Those in the rear thought it safest to return to their
+                        enemy were, and were trampled to death by the elephants. <milestone n="16" unit="section"/> Those in the rear thought it safest to return to their
                         own side, and began to collect together as well as their fears allowed them,
                         but before they had time to recover themselves Hannibal entered the river
                         with his infantry in battle order and drove them in flight from the bank.
@@ -319,7 +319,7 @@ Added to repository. Passed SGML parse.
                         the Carpetani There was no part of the country beyond the Ebro which did not
                         now belong to the Carthaginians, with the exception of Saguntum. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="6" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="6" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> War had not been formally declared against
                         this city, but there were already grounds for war. The seeds of quarrel were
@@ -338,8 +338,7 @@ Added to repository. Passed SGML parse.
                         they were to cross over to Africa and lay before the Carthaginian council
                         the complaints which they had made. <milestone n="5" unit="section"/> But
                         before the commission was despatched news came that the siege of Saguntum
-                        had, to every one's surprise, actually commenced. <milestone n="6"
-                            unit="section"/> The whole position of affairs required to be
+                        had, to every one's surprise, actually commenced. <milestone n="6" unit="section"/> The whole position of affairs required to be
                         reconsidered by the senate; some were for assigning Spain and Africa as
                         separate fields of action for the two consuls, and thought that the war
                         ought to be prosecuted by land and sea; others were for confining the war
@@ -352,11 +351,10 @@ Added to repository. Passed SGML parse.
                         to abandon hostilities they were to proceed to Carthage to demand the
                         surrender of the general to answer for his breach of treaty. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="7" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="7" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> During these proceedings in Rome the siege
-                        of Saguntum was being pressed with the utmost vigour. <milestone n="2"
-                            unit="section"/> That city was by far the most wealthy of all beyond the
+                        of Saguntum was being pressed with the utmost vigour. <milestone n="2" unit="section"/> That city was by far the most wealthy of all beyond the
                         Ebro; it was situated about a mile from the sea. It is said to have been
                         founded by settlers from the island of Zacynthus, with an admixture of
                         Rutulians from Ardea. <milestone n="3" unit="section"/> In a short time,
@@ -375,8 +373,7 @@ Added to repository. Passed SGML parse.
                         vineae being brought up, they found when they had succeeded in doing this
                         that they made no progress. <milestone n="7" unit="section"/> A huge tower
                         overlooked the place, and the wall, being here more open to attack, had been
-                        carried to a greater height than the rest of the fortifications. <milestone
-                            n="8" unit="section"/> As the position was one of especial danger, so
+                        carried to a greater height than the rest of the fortifications. <milestone n="8" unit="section"/> As the position was one of especial danger, so
                         the resistance offered by a picked body of defenders was of the most
                         resolute character. At first they confined themselves to keeping the enemy
                         back by the discharge of missiles and making it impossible for them to
@@ -390,7 +387,7 @@ Added to repository. Passed SGML parse.
                         dismay that ensued that the vineae and siege works were all but abandoned.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="8" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="8" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> For a few days, until the general's wound
                         was healed, there was a blockade rather than an active siege, and during
@@ -406,36 +403,31 @@ Added to repository. Passed SGML parse.
                         being pounded by the rams, and in many places had been shaken down.
                             <milestone n="5" unit="section"/> One part where a continuous fall had
                         taken place laid the city open; three towers in succession, and the whole of
-                        the wall between them fell with a tremendous crash. <milestone n="6"
-                            unit="section"/> The Carthaginians looked upon the town as already
+                        the wall between them fell with a tremendous crash. <milestone n="6" unit="section"/> The Carthaginians looked upon the town as already
                         captured after that fall, and both sides rushed through the breach as though
                         the wall had only served to protect them from each other. There was nothing
                         of the desultory fighting which goes on when cities are stormed, as each
-                        side gets an opportunity of attacking the other. <milestone n="7"
-                            unit="section"/> The two bodies of combatants confronted one another in
+                        side gets an opportunity of attacking the other. <milestone n="7" unit="section"/> The two bodies of combatants confronted one another in
                         the space between the ruined wall and the houses of the city in as regular
-                        formation as though they had been in an open field. <milestone n="8"
-                            unit="section"/> On the one side there was the courage of hope, on the
+                        formation as though they had been in an open field. <milestone n="8" unit="section"/> On the one side there was the courage of hope, on the
                         other the courage of despair. The Carthaginians believed that with a little
                         effort on their part the city would be theirs; the Saguntines opposed their
                         bodies as a shield for their fatherland now stripped of its walls; not a man
                         relaxed his foothold for fear of letting an enemy in through the spot which
                         he had left open. <milestone n="9" unit="section"/> So the hotter and closer
                         the fighting became the greater grew the number of wounded, for no missile
-                        fell ineffectively amongst the crowded ranks. <milestone n="10"
-                            unit="section"/> The missile used by the Saguntines was the phalarica, a
+                        fell ineffectively amongst the crowded ranks. <milestone n="10" unit="section"/> The missile used by the Saguntines was the phalarica, a
                         javelin with a shaft smooth and round up to the head, which, as in the
                         pilum, was an iron point of square section. The shaft was wrapped in tow and
                         then smeared with pitch; the iron head was three feet long and capable of
                         penetrating armour and body alike. <milestone n="11" unit="section"/> Even
                         if it only stuck in the shield and did not reach the body it was a most
-                        formidable weapon, for when it was discharged <milestone n="12??"
-                            unit="section"/> with the tow set on fire the flame was fanned to a
+                        formidable weapon, for when it was discharged <milestone n="12??" unit="section"/> with the tow set on fire the flame was fanned to a
                         fiercer heat by its passage through the air, and it forced the soldier to
                         throw away his shield and left him defenceless against the sword thrusts
                         which followed. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="9" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="9" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The conflict had now gone on for a
                         considerable time without any advantage to either side; the courage of the
@@ -456,7 +448,7 @@ Added to repository. Passed SGML parse.
                         Barcine party, to warn his supporters and prevent the other side from making
                         any concessions to Rome. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="10" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="10" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The result was that, beyond being received
                         and heard by the Carthaginian senate, the embassy found its mission a
@@ -465,12 +457,10 @@ Added to repository. Passed SGML parse.
                         to in silence out of respect to his personal authority, not because his
                         hearers approved of his sentiments. He appealed to them in the name of the
                         gods, who are the witnesses and arbiters of treaties, not to provoke a war
-                        with Rome in addition to the one with Saguntum. <milestone n="3"
-                            unit="section"/> "I urged you," he said, "and warned you not to send
+                        with Rome in addition to the one with Saguntum. <milestone n="3" unit="section"/> "I urged you," he said, "and warned you not to send
                         Hamilcar's son to the army. That man's spirit, that man's offspring cannot
                         rest; as long as any single representative of the blood and name of Barca
-                        survives our treaty with Rome will never remain unimperilled. <milestone
-                            n="4" unit="section"/> You have sent to the army, as though supplying
+                        survives our treaty with Rome will never remain unimperilled. <milestone n="4" unit="section"/> You have sent to the army, as though supplying
                         fuel to the fire, a young man who is consumed with a passion for sovereign
                         power, and who recognises that the only way to it lies in passing his life
                         surrounded by armed legions and perpetually stirring up fresh wars. It is
@@ -486,8 +476,7 @@ Added to repository. Passed SGML parse.
                         nations. Those men, repulsed from a place to which even an enemy's envoys
                         are not refused access, have come to us; they ask for the satisfaction which
                         the treaty prescribes; they demand the surrender of the guilty party in
-                        order that the State may clear itself from all taint of guilt. <milestone
-                            n="7" unit="section"/> The slower they are to take action, the longer
+                        order that the State may clear itself from all taint of guilt. <milestone n="7" unit="section"/> The slower they are to take action, the longer
                         they are in commencing war, so much the more persistence and determination,
                         I fear, will they show when war has begun. Remember the Aegates and Eryx,
                         and all you had to go through for four-and-twenty years. This boy was not
@@ -505,13 +494,11 @@ Added to repository. Passed SGML parse.
                         Saguntum-would that I might prove a false prophet-will fall on our heads,
                         and the war which was begun with Saguntum will have to be carried on with
                         Rome. </p>
-                    <p> "'Shall we then surrender Hannibal?' some one will say. <milestone n="11"
-                            unit="section"/> I am quite aware that as regards him my advice will
+                    <p> "'Shall we then surrender Hannibal?' some one will say. <milestone n="11" unit="section"/> I am quite aware that as regards him my advice will
                         have little weight, owing to my differences with his father, but whilst I
                         was glad to hear of Hamilcar's death, for if he were alive we should already
                         be involved in war with Rome, I feel nothing but loathing and detestation
-                        for this youth, the mad firebrand who is kindling this war. <milestone
-                            n="12" unit="section"/> Not only do I hold that he ought to be
+                        for this youth, the mad firebrand who is kindling this war. <milestone n="12" unit="section"/> Not only do I hold that he ought to be
                         surrendered as an atonement for the broken treaty, but even if no demand for
                         his surrender were made I consider that he ought to be deported to the
                         farthest corner of the earth, exiled to some spot from which no tidings of
@@ -524,7 +511,7 @@ Added to repository. Passed SGML parse.
                         accordance with the terms of the treaty, and I also propose that a third
                         body of commissioners be sent to make reparation to the Saguntines.'" </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="11" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="11" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> When Hanno sat down no one deemed it
                         necessary to make any reply, so completely was the senate, as a body, on the
@@ -540,8 +527,7 @@ Added to repository. Passed SGML parse.
                         and after placing detachments on guard over the vineae and other military
                         engines, he gave his army a few days' rest. He employed this interval in
                         stimulating the courage of his men by exasperating them against the enemy,
-                        and firing them by the prospect of rewards. <milestone n="4" unit="section"
-                        /> After he had given out in the presence of his assembled troops that the
+                        and firing them by the prospect of rewards. <milestone n="4" unit="section"/> After he had given out in the presence of his assembled troops that the
                         plunder of the city would go to them, they were all in such a state of
                         excitement that had the signal been given then and there it seemed
                         impossible for anything to withstand them. <milestone n="5" unit="section"/>
@@ -563,8 +549,7 @@ Added to repository. Passed SGML parse.
                         were not fixed with cement but with layers of mud between the courses in the
                         ancient fashion of construction. <milestone n="8" unit="section"/> More of
                         it consequently fell than had been dug away, and through the gaping ruin the
-                        columns of armed warriors marched into the city. <milestone n="9"
-                            unit="section"/> They seized some high ground, and after massing their
+                        columns of armed warriors marched into the city. <milestone n="9" unit="section"/> They seized some high ground, and after massing their
                         catapults and ballistae there they enclosed it with a wall so as to have a
                         fortified position actually within the city which could dominate it like a
                         citadel. <milestone n="10" unit="section"/> The Saguntines on their side
@@ -577,14 +562,13 @@ Added to repository. Passed SGML parse.
                         Romans, their one hope, were so far away, whilst all immediately round them
                         was in the hands of the enemy. <milestone n="12" unit="section"/> For a few
                         days their drooping spirits were revived by the sudden departure of Hannibal
-                        on an expedition against the Oretani and the Carpetani. <milestone n="13"
-                            unit="section"/> The rigorous way in which troops were being levied in
+                        on an expedition against the Oretani and the Carpetani. <milestone n="13" unit="section"/> The rigorous way in which troops were being levied in
                         these two tribes had created great excitement, and they had kept the
                         officers who were superintending the levy practically prisoners. A general
                         revolt was feared, but the unexpected swiftness of Hannibal's movements took
                         them by surprise and they abandoned their hostile attitude. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="12" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="12" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The attack on Saguntum was not slackened;
                         Maharbal, the son of Himilco, whom Hannibal had left in command, carried on
@@ -592,8 +576,7 @@ Added to repository. Passed SGML parse.
                         either friends or foes. <milestone n="2" unit="section"/> He fought several
                         successful actions, and with the aid of three battering rams brought down a
                         considerable portion of the wall, and on Hannibal's return showed him the
-                        place all strewn with the newly-fallen wall. <milestone n="3" unit="section"
-                        /> The army was at once led to an assault on the citadel; a desperate fight
+                        place all strewn with the newly-fallen wall. <milestone n="3" unit="section"/> The army was at once led to an assault on the citadel; a desperate fight
                         began, with heavy losses on both sides, and a part of the citadel was
                         captured. Attempts were now made in the direction of peace, though with but
                         faint hopes of success. Two men undertook the task, Alco, a Saguntine, and
@@ -607,27 +590,24 @@ Added to repository. Passed SGML parse.
                             <milestone n="5" unit="section"/> The conditions were that restitution
                         should be made to the Turdetani, all the gold and silver should be delivered
                         up, and the inhabitants should depart with one garment each and take up
-                        their abode wherever the Carthaginians should order them. <milestone n="6"
-                            unit="section"/> As Alco insisted that the Saguntines would not accept
+                        their abode wherever the Carthaginians should order them. <milestone n="6" unit="section"/> As Alco insisted that the Saguntines would not accept
                         peace on these terms, Alorcus, convinced, as he said, that when everything
                         else has gone courage also goes, undertook to mediate a peace on those
                         conditions. At that time he was one of Hannibal's soldiers, but he was
-                        recognised as a guest friend by the city of Saguntum. <milestone n="7"
-                            unit="section"/> He started on his mission, gave up his weapon openly to
+                        recognised as a guest friend by the city of Saguntum. <milestone n="7" unit="section"/> He started on his mission, gave up his weapon openly to
                         the guard, crossed the lines, and was at his request conducted to the
                         praetor of Saguntum. <milestone n="8" unit="section"/> A crowd, drawn from
                         all classes of society, soon gathered, and after a way had been cleared
                         through the press, Alorcus was admitted to an audience of the senate. He
                         addressed them in the following terms: </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="13" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="13" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> "If your fellow-townsman, Alco, had shown
                         the same courage in bringing back to you the terms on which Hannibal will
                         grant peace that he showed in going to Hannibal to beg for peace, this
                         journey of mine would have been unnecessary. I have not come to you either
-                        as an advocate for Hannibal or as a deserter. <milestone n="2"
-                            unit="section"/> But as he has remained with the enemy either through
+                        as an advocate for Hannibal or as a deserter. <milestone n="2" unit="section"/> But as he has remained with the enemy either through
                         your fault or his own-his own if his fears were only feigned, yours if those
                         who report what is true have to answer for their lives-I have come to you
                         out of regard to the old ties of hospitality which have so long subsisted
@@ -645,24 +625,21 @@ Added to repository. Passed SGML parse.
                         are, of peace rest upon your accepting as conquered men the terms which
                         Hannibal as conqueror imposes and not looking upon what is taken from you as
                         a positive loss, since everything is at the victor's mercy, but regarding
-                        what is left to you as a free gift from him. <milestone n="6" unit="section"
-                        /> The city, most of which he has laid in ruins, the whole of which he has
+                        what is left to you as a free gift from him. <milestone n="6" unit="section"/> The city, most of which he has laid in ruins, the whole of which he has
                         all but captured, he takes from you; your fields and lands he leaves you;
-                        and he will assign you a site where you can build a new town. <milestone
-                            n="7" unit="section"/> He orders all the gold and silver, both that
+                        and he will assign you a site where you can build a new town. <milestone n="7" unit="section"/> He orders all the gold and silver, both that
                         belonging to the State and that owned by private individuals, to be brought
                         to him; your persons and those of your wives and children he preserves
                         inviolate on condition that you consent to leave Saguntum with only two
                         garments apiece and without arms. <milestone n="8" unit="section"/> These
                         are the demands of your victorious enemy, and heavy and bitter as they are,
-                        your miserable plight urges you to accept them. <milestone n="9"
-                            unit="section"/> I am not without hope that when everything has passed
+                        your miserable plight urges you to accept them. <milestone n="9" unit="section"/> I am not without hope that when everything has passed
                         into his power he will relax some of these conditions, but I consider that
                         even as they are you ought to submit to them rather than permit yourselves
                         to be butchered and your wives and children seized and carried off before
                         your eyes." </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="14" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="14" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> A large crowd had gradually collected to
                         listen to the speaker, and the popular Assembly had become mingled with the
@@ -685,7 +662,7 @@ Added to repository. Passed SGML parse.
                         and children and burnt their houses over their heads, or if they fought,
                         would not cease fighting till they were killed? </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="15" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="15" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> An enormous amount of booty was found in
                         the captured city. Although most of it had been deliberately destroyed by
@@ -701,30 +678,26 @@ Added to repository. Passed SGML parse.
                         it is impossible for P. Cornelius and Ti. Sempronius to have been the
                         consuls to whom the Saguntine envoys were sent at the beginning of the siege
                         and who afterwards, whilst still in office, fought with Hannibal, one of
-                        them at the Ticinus, both shortly afterwards at the Trebia. <milestone n="5"
-                            unit="section"/> Either all the incidents occurred within a much shorter
+                        them at the Ticinus, both shortly afterwards at the Trebia. <milestone n="5" unit="section"/> Either all the incidents occurred within a much shorter
                         period or else it was the capture of Saguntum, not the beginning of the
-                        siege, which occurred when those two entered upon office. <milestone n="6"
-                            unit="section"/> For the battle of the Trebia cannot have fallen so late
+                        siege, which occurred when those two entered upon office. <milestone n="6" unit="section"/> For the battle of the Trebia cannot have fallen so late
                         as the year when Cn. Servilius and C. Flaminius were in office, because C.
                         Flaminius entered upon his consulship at Ariminum, his election taking place
                         under the consul Tiberius Sempronius, who came to Rome after the battle of
                         the Trebia to hold the consular elections, and, after they were over,
                         returned to his army in winter quarters. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="16" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="16" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The commissioners who had been sent to
                         Carthage, on their return to Rome, reported that everything breathed a
                         hostile spirit. Almost on the very day they returned the news arrived of the
-                        fall of Saguntum, and such was the distress <milestone n="2??"
-                            unit="section"/> of the senate at the cruel fate of their allies, such
+                        fall of Saguntum, and such was the distress <milestone n="2??" unit="section"/> of the senate at the cruel fate of their allies, such
                         was their feeling of shame at not having sent help to them, such their
                         exasperation against the Carthaginians and their alarm for the safety of the
                         State-for it seemed as though the enemy were already at their gates-that
                         they were in no mood for deliberating, shaken as they were by so many
-                        conflicting emotions. There were sufficient grounds for alarm. <milestone
-                            n="3" unit="section"/> Never had they met a more active or a more
+                        conflicting emotions. There were sufficient grounds for alarm. <milestone n="3" unit="section"/> Never had they met a more active or a more
                         warlike enemy, and never had the Roman republic been so lacking in energy or
                         so unprepared for war. <milestone n="4" unit="section"/> The operations
                         against the Sardinians, Corsicans, and Histrians, as well as those against
@@ -735,13 +708,12 @@ Added to repository. Passed SGML parse.
                         hard and rough service amongst the Spanish tribes, and had always been
                         victorious, trained under a general of exceptional ability, were now
                         crossing the Ebro fresh from the sack of a most wealthy city, and were
-                        bringing with them all those Spanish tribes, eager for the fray. <milestone
-                            n="6" unit="section"/> They would rouse the various Gaulish tribes, who
+                        bringing with them all those Spanish tribes, eager for the fray. <milestone n="6" unit="section"/> They would rouse the various Gaulish tribes, who
                         were always ready to take up arms; there would be the whole world to fight
                         against; the battleground would be Italy; the struggle would take place
                         before the walls of Rome. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="17" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="17" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The seat of the campaigns had already been
                         decided; the consuls were now ordered to draw lots. Spain fell to Cornelius,
@@ -767,8 +739,7 @@ Added to repository. Passed SGML parse.
                         consul succeeded in preventing the Carthaginian from invading Italy.
                             <milestone n="7" unit="section"/> Cornelius, on the other hand, was
                         provided with a smaller force, as L. Manlius, the praetor, was himself being
-                        despatched to Gaul with a fairly strong detachment. <milestone n="8"
-                            unit="section"/> Cornelius was weakest in his ships; he had only 60
+                        despatched to Gaul with a fairly strong detachment. <milestone n="8" unit="section"/> Cornelius was weakest in his ships; he had only 60
                         warships, for it was never supposed that the enemy would come by sea or use
                         his navy for offensive purposes. His land force was made up of two Roman
                         legions, with their complement of cavalry, and 14,000 infantry from the
@@ -777,7 +748,7 @@ Added to repository. Passed SGML parse.
                         Roman and 1000 allied cavalry. This force was ultimately employed in the
                         Punic War. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="18" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="18" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> When these preparations were completed,
                         the formalities necessary before entering upon war required that a
@@ -787,16 +758,14 @@ Added to repository. Passed SGML parse.
                         whether it was with the sanction of the government that Hannibal had
                         attacked Saguntum, and if, as seemed most probable, the Carthaginians should
                         admit that it was so and proceed to defend their action, then the Roman
-                        envoys were to formally declare war upon Carthage. <milestone n="3"
-                            unit="section"/> As soon as they had arrived in Carthage they appeared
+                        envoys were to formally declare war upon Carthage. <milestone n="3" unit="section"/> As soon as they had arrived in Carthage they appeared
                         before the senate. <milestone n="4" unit="section"/> Q. Fabius had, in
                         accordance with his instructions, simply put the question as to the
                         responsibility of the government, when one of the members present said: "The
                         language of your previous deputation was peremptory enough when you demanded
                         the surrender of Hannibal on the assumption that he was attacking Saguntum
                         on his own authority, but your language now, so far at least, is less
-                        provocative, though in effect more overbearing. <milestone n="5"
-                            unit="section"/> For on that occasion it was Hannibal whose action you
+                        provocative, though in effect more overbearing. <milestone n="5" unit="section"/> For on that occasion it was Hannibal whose action you
                         denounced and whose surrender you demanded, now you are seeking to extort
                         from us a confession of <milestone n="6??" unit="section"/> guilt and insist
                         upon obtaining instant satisfaction, as from men who admit they are in the
@@ -806,8 +775,7 @@ Added to repository. Passed SGML parse.
                         circumstances or not. <milestone n="8" unit="section"/> It is for us to
                         inquire and take proceedings against a citizen when he has done anything on
                         his own authority; the only point for you to discuss is whether his action
-                        was compatible with the terms of the treaty. <milestone n="9" unit="section"
-                        /> Now, as you wish us to draw a distinction between what our generals do
+                        was compatible with the terms of the treaty. <milestone n="9" unit="section"/> Now, as you wish us to draw a distinction between what our generals do
                         with the sanction of the State and what they do on their own initiative, you
                         must remember that the treaty with us was made by your consul, C. Lutatius,
                         and whilst it contained provisions guarding the interests of the allies of
@@ -831,7 +799,7 @@ Added to repository. Passed SGML parse.
                         fall, he said that he gave them war, they replied that they accepted war and
                         would carry it on in the same spirit in which they accepted it. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="19" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="19" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> This straightforward question and threat
                         of war seemed to be more consonant with the dignity of Rome than a wordy
@@ -840,16 +808,13 @@ Added to repository. Passed SGML parse.
                         For had it been a matter for argument, what ground was there for comparing
                         Hasdrubal's treaty with the earlier one of Lutatius? In the latter it was
                         expressly stated that it would only be of force if the people approved it,
-                        whereas in Hasdrubal's treaty there was no such saving clause. <milestone
-                            n="3" unit="section"/> Besides, his treaty had been silently observed
+                        whereas in Hasdrubal's treaty there was no such saving clause. <milestone n="3" unit="section"/> Besides, his treaty had been silently observed
                         for many years during his lifetime, and was so generally approved that, even
-                        after its author's death, none of its articles were altered. <milestone
-                            n="4" unit="section"/> But even if they took their stand upon the
+                        after its author's death, none of its articles were altered. <milestone n="4" unit="section"/> But even if they took their stand upon the
                         earlier treaty-that of Lutatius-the Saguntines were sufficiently safeguarded
                         by the allies of both parties being exempted from hostile treatment, for
                         nothing was said about "the allies for the time being" or anything to
-                        exclude "any who should be hereafter taken into alliance." <milestone n="5"
-                            unit="section"/> And since it was open to both parties to form fresh
+                        exclude "any who should be hereafter taken into alliance." <milestone n="5" unit="section"/> And since it was open to both parties to form fresh
                         alliances, who would think it a fair arrangement that none should be
                         received into alliance whatever their merits, or that when they had been
                         received they should not be loyally protected, on the understanding that the
@@ -863,16 +828,14 @@ Added to repository. Passed SGML parse.
                         from the Carthaginians. <milestone n="7" unit="section"/> The first they
                         came to were the Borgusii, who were tired of Punic domination and gave them
                         a favourable reception, and their success here excited a desire for change
-                        amongst many of the tribes beyond the Ebro. <milestone n="8" unit="section"
-                        /> They came next to the Volciani, and the response they met with became
+                        amongst many of the tribes beyond the Ebro. <milestone n="8" unit="section"/> They came next to the Volciani, and the response they met with became
                         widely known throughout Spain and determined the rest of the tribes against
                         an alliance with Rome. This answer was given by the senior member of their
                         national council in the following terms: <milestone n="9" unit="section"/>
                         "Are you not ashamed, Romans, to ask us to form friendship with you in
                         preference to the Carthaginians, seeing how those who have done so have
                         suffered more through you, their allies, cruelly deserting them than through
-                        any injury inflicted on them by the Carthaginians? <milestone n="10"
-                            unit="section"/> I advise you to look for allies where the fall of
+                        any injury inflicted on them by the Carthaginians? <milestone n="10" unit="section"/> I advise you to look for allies where the fall of
                         Saguntum has never been heard of; the nations of Spain see in the ruins of
                         Saguntum a sad and emphatic warning against putting any trust in alliances
                         with Rome." <milestone n="11" unit="section"/> They were then peremptorily
@@ -880,15 +843,14 @@ Added to repository. Passed SGML parse.
                         the councils throughout Spain gave them a more favourable reply. After this
                         fruitless mission in Spain they crossed over into Gaul. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="20" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="20" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Here a strange and appalling sight met
                         their eyes; the men attended the council fully armed, such was the custom of
                         the country. <milestone n="2" unit="section"/> When the Romans, after
                         extolling the renown and courage of the Roman people and the greatness of
                         their dominion, asked the Gauls not to allow the Carthaginian invaders a
-                        passage through their fields and cities, such <milestone n="3??"
-                            unit="section"/> interruption and laughter broke out that the younger
+                        passage through their fields and cities, such <milestone n="3??" unit="section"/> interruption and laughter broke out that the younger
                         men were with difficulty kept quiet by the magistrates and senior members of
                         the council. <milestone n="4" unit="section"/> They thought it a most stupid
                         and impudent demand to make, that the Gauls, in order to prevent the war
@@ -896,14 +858,12 @@ Added to repository. Passed SGML parse.
                         their own lands to be ravaged instead of other people's. After quiet was
                         restored the envoys were informed that the Romans had rendered them no
                         service, nor had the Carthaginians done them any injury to make them take up
-                        arms either on behalf of the Romans or against the <milestone n="5??"
-                            unit="section"/> Carthaginians. <milestone n="6" unit="section"/> On the
+                        arms either on behalf of the Romans or against the <milestone n="5??" unit="section"/> Carthaginians. <milestone n="6" unit="section"/> On the
                         other hand, they heard that men of their race were being expelled from
                         Italy, and made to pay tribute to Rome, and subjected to every other
                         indignity. <milestone n="7" unit="section"/> Their experience was the same
                         in all the other councils of Gaul, nowhere did they hear a kindly or even a
-                        tolerably peaceable word till they reached Massilia. <milestone n="8"
-                            unit="section"/> There all the facts which their allies had carefully
+                        tolerably peaceable word till they reached Massilia. <milestone n="8" unit="section"/> There all the facts which their allies had carefully
                         and honestly collected were laid before them; they were informed that the
                         interest of the Gauls had already been secured by Hannibal, but even he
                         would not find them very tractable, with their wild and untamable nature,
@@ -915,15 +875,13 @@ Added to repository. Passed SGML parse.
                         that the Carthaginians had crossed the Ebro, and every one was looking
                         forward to war. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="21" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="21" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> After the capture of Saguntum, Hannibal
                         withdrew into winter quarters at New Carthage. Information reached him there
                         of the proceedings at Rome and Carthage, and he learnt that he was not only
-                        the general who was to conduct the war, but <milestone n="2??"
-                            unit="section"/> also the sole person who was responsible for its
-                        outbreak. As further delay would be most inexpedient, he sold and <milestone
-                            n="3??" unit="section"/> distributed the rest of the plunder, and
+                        the general who was to conduct the war, but <milestone n="2??" unit="section"/> also the sole person who was responsible for its
+                        outbreak. As further delay would be most inexpedient, he sold and <milestone n="3??" unit="section"/> distributed the rest of the plunder, and
                         calling together those of his soldiers who were of Spanish blood, he
                         addressed them as follows: <milestone n="4" unit="section"/> "I think,
                         soldiers, that you yourselves recognise that now that we have reduced all
@@ -935,10 +893,8 @@ Added to repository. Passed SGML parse.
                         campaigns far from home, and it is uncertain when you will again see your
                         homes and all that is dear to you, I grant a furlough to every one who
                         wishes to visit his friends. <milestone n="6" unit="section"/> You must
-                        reassemble at the commencement of spring, so that we may, <milestone n="7??"
-                            unit="section"/> with the kindly help of the gods, enter upon a war
-                        which will bring us immense plunder and cover us with glory." <milestone
-                            n="8" unit="section"/> They all welcomed the opportunity, so
+                        reassemble at the commencement of spring, so that we may, <milestone n="7??" unit="section"/> with the kindly help of the gods, enter upon a war
+                        which will bring us immense plunder and cover us with glory." <milestone n="8" unit="section"/> They all welcomed the opportunity, so
                         spontaneously offered, of visiting their homes after so long an absence, and
                         in view of a still longer absence in the future. The winter's rest, coming
                         after their past exertions, and soon to be followed by greater ones,
@@ -967,7 +923,7 @@ Added to repository. Passed SGML parse.
                         to Carthage to strengthen its defence, and also to serve as hostages for the
                         loyalty of their people. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="22" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="22" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Spain also had to be provided for, all the
                         more so as Hannibal was fully aware that Roman commissioners had been going
@@ -980,8 +936,7 @@ Added to repository. Passed SGML parse.
                         Punic and aboriginal African descent-some 1800 Numidians and Moors, dwellers
                         on the shore of the Mediterranean, and a small mounted contingent of 300
                         Ilergetes raised in Spain. Finally, that his land force might be complete in
-                        all its parts, there were twenty-one elephants. <milestone n="4"
-                            unit="section"/> The protection of the coast required a fleet, and as it
+                        all its parts, there were twenty-one elephants. <milestone n="4" unit="section"/> The protection of the coast required a fleet, and as it
                         was natural to suppose that the Romans would again make use of that arm in
                         which they had been victorious before, Hasdrubal had assigned to him a fleet
                         of 57 warships, including 50 quinqueremes, 2 quadriremes, and 5 triremes,
@@ -996,28 +951,23 @@ Added to repository. Passed SGML parse.
                         wander. <milestone n="7" unit="section"/> At first, filled with awe, he
                         followed him without glancing round him or looking back, but as instinctive
                         curiosity impelled him to wonder what it was that he was forbidden to gaze
-                        at behind him, he could no longer command his eyes. <milestone n="8"
-                            unit="section"/> He saw behind him a serpent of vast and marvellous
+                        at behind him, he could no longer command his eyes. <milestone n="8" unit="section"/> He saw behind him a serpent of vast and marvellous
                         bulk, and as it moved along trees and bushes crashed down everywhere before
-                        it, whilst in its wake there rolled a thunder-storm. <milestone n="9"
-                            unit="section"/> He asked what the monstrous portent meant, and was told
+                        it, whilst in its wake there rolled a thunder-storm. <milestone n="9" unit="section"/> He asked what the monstrous portent meant, and was told
                         that it was the devastation of Italy; he was to go forward without further
                         question and allow his destiny to remain hidden. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="23" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="23" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Gladdened by this vision he proceeded to
                         cross the Ebro, with his army in three divisions, after sending men on in
                         advance to secure by bribes the good-will of the Gauls dwelling about his
                         crossing-place, and also to reconnoitre the passes of the Alps. He brought
-                        90,000 infantry and 12,000 cavalry over the Ebro. <milestone n="2"
-                            unit="section"/> His next step was to reduce to submission the
+                        90,000 infantry and 12,000 cavalry over the Ebro. <milestone n="2" unit="section"/> His next step was to reduce to submission the
                         Ilergetes, the Bargusii, and the Ausetani, and also the district of
-                        Lacetania, which lies at the foot of the Pyrenees. <milestone n="3"
-                            unit="section"/> He placed Hanno in charge of the whole coast-line to
+                        Lacetania, which lies at the foot of the Pyrenees. <milestone n="3" unit="section"/> He placed Hanno in charge of the whole coast-line to
                         secure the passes which connect Spain with Gaul, and furnished him with an
-                        army of 10,000 infantry to hold the district, and 1000 cavalry. <milestone
-                            n="4" unit="section"/> When his army commenced the passage of the
+                        army of 10,000 infantry to hold the district, and 1000 cavalry. <milestone n="4" unit="section"/> When his army commenced the passage of the
                         Pyrenees and the barbarians found that there was truth in the rumour that
                         they were being led against Rome, 3000 of the Carpetani deserted. It was
                         understood that they were induced to desert not so much by the prospect of
@@ -1030,7 +980,7 @@ Added to repository. Passed SGML parse.
                         same time he gave out that the Carpetani had also been sent back by him.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="24" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="24" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Then, to prevent his men from being
                         demoralised by further delay and inactivity, he crossed the Pyrenees with
@@ -1039,14 +989,12 @@ Added to repository. Passed SGML parse.
                         against Italy that war was being made, but as they had heard that the
                         Spaniards beyond the Pyrenees had been subjugated by force of arms, and
                         strong garrisons placed in their towns, several tribes, fearing for their
-                        liberty, were roused to arms and mustered at Ruscino. <milestone n="3"
-                            unit="section"/> On receiving the announcement of this movement,
+                        liberty, were roused to arms and mustered at Ruscino. <milestone n="3" unit="section"/> On receiving the announcement of this movement,
                         Hannibal, fearing delay more than hostilities, sent spokesmen to their
                         chiefs to say that he was anxious for a conference with them, and either
                         they might come nearer to Iliberri, or he would approach Ruscino to
                         facilitate their meeting, for he would gladly receive them in his camp or
-                        would himself go to them without loss of time. <milestone n="4"
-                            unit="section"/> He had come into Gaul as a friend not a foe, and unless
+                        would himself go to them without loss of time. <milestone n="4" unit="section"/> He had come into Gaul as a friend not a foe, and unless
                         the Gauls compelled him he would not draw his sword till he reached Italy.
                             <milestone n="5" unit="section"/> This was the proposal made through the
                         envoys, but when the Gauls had, without any hesitation, moved their camp up
@@ -1054,7 +1002,7 @@ Added to repository. Passed SGML parse.
                         free and unmolested passage through their territory under the very walls of
                         Ruscino. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="25" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="25" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> No intelligence, meanwhile, had reached
                         Rome beyond the fact reported by the Massilian envoys, namely that Hannibal
@@ -1110,7 +1058,7 @@ Added to repository. Passed SGML parse.
                         windings of the river and assisted by the Brixian Gauls, they held their
                         ground against an enemy whose numbers were daily increasing. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="26" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="26" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> When the intelligence of this sudden
                         outbreak reached Rome and the senate became aware that they had a Gaulish
@@ -1140,13 +1088,11 @@ Added to repository. Passed SGML parse.
                         sides of the Rhone, but distrusting their ability to stop Hannibal on the
                         side of the river nearest to him, they determined to make the river a
                         barrier and transported nearly all the population to the other side, on
-                        which they prepared to offer armed resistance. <milestone n="7"
-                            unit="section"/> The rest of the river population and those of the
+                        which they prepared to offer armed resistance. <milestone n="7" unit="section"/> The rest of the river population and those of the
                         Volcae even, who still remained in their homes, were induced by presents to
                         collect boats from all sides and to help in constructing others, and their
                         efforts were stimulated by the desire to get rid as soon as possible of the
-                        burdensome presence of such a vast host of men. <milestone n="8"
-                            unit="section"/> So an enormous number of boats and vessels of every
+                        burdensome presence of such a vast host of men. <milestone n="8" unit="section"/> So an enormous number of boats and vessels of every
                         kind, such as they used in their journeys up and down the river, was got
                         together; <milestone n="9" unit="section"/> new ones were made by the Gauls
                         by hollowing out the trunks of trees, then the soldiers themselves, seeing
@@ -1154,17 +1100,15 @@ Added to repository. Passed SGML parse.
                         uncouth canoes, quite content if only they would float and carry burdens and
                         serve to transport themselves and their belongings. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="27" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="27" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Everything was now ready for the crossing,
                         but the whole of the opposite bank was held by mounted and unmounted men
                         prepared to dispute the passage. <milestone n="2" unit="section"/> In order
                         to dislodge them Hannibal sent Hanno, the son of Bomilcar, with a division,
-                        consisting mainly of Spaniards, a day's march up the river. <milestone n="3"
-                            unit="section"/> He was to seize the first chance of crossing without
+                        consisting mainly of Spaniards, a day's march up the river. <milestone n="3" unit="section"/> He was to seize the first chance of crossing without
                         being observed, and then lead his men by a circuitous route behind the enemy
-                        and at the right moment attack them in the rear. <milestone n="4"
-                            unit="section"/> The Gauls who were taken as guides informed Hanno that
+                        and at the right moment attack them in the rear. <milestone n="4" unit="section"/> The Gauls who were taken as guides informed Hanno that
                         about 25 miles up-stream a small island divided the river in two, and the
                         channel was of less depth in consequence. When they reached the spot they
                         hastily cut down the timber and constructed rafts on which men and horses
@@ -1183,12 +1127,11 @@ Added to repository. Passed SGML parse.
                         The infantry had prepared rafts and boats, the cavalry mostly barges on
                         account of the horses. A line of large boats was moored across the river a
                         short distance up-stream to break the force of the current, and consequently
-                        the men in the smaller boats crossed over in smooth water. <milestone n="9"
-                            unit="section"/> Most of the horses were towed astern and swam over,
+                        the men in the smaller boats crossed over in smooth water. <milestone n="9" unit="section"/> Most of the horses were towed astern and swam over,
                         others were carried in barges, ready saddled and bridled so as to be
                         available for the cavalry the moment they landed. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="28" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="28" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The Gauls flocked together on the bank
                         with their customary whoops and war songs, waving their shields over their
@@ -1202,8 +1145,7 @@ Added to repository. Passed SGML parse.
                         alarming shouts were heard behind them; Hanno had captured their camp. Soon
                         he appeared on the scene, and they were now confronted by danger from
                         opposite quarters-the host of armed men landing from the boats and the
-                        sudden attack which was being made on their rear. <milestone n="4"
-                            unit="section"/> For a time the Gauls endeavoured to maintain the
+                        sudden attack which was being made on their rear. <milestone n="4" unit="section"/> For a time the Gauls endeavoured to maintain the
                         conflict in both directions, but finding themselves losing ground they
                         forced their way through where there seemed to be least resistance and
                         dispersed to their various villages. Hannibal brought over the rest of his
@@ -1216,16 +1158,13 @@ Added to repository. Passed SGML parse.
                         collected on the bank the worst-tempered beast amongst them was teased by
                         his driver, and when he ran away from it into the water the elephant
                         followed him and drew the whole herd after it, and as they got out of their
-                        depth they were carried by the current to the opposite bank. <milestone
-                            n="6" unit="section"/> The more general account, however, is that they
+                        depth they were carried by the current to the opposite bank. <milestone n="6" unit="section"/> The more general account, however, is that they
                         were transported on rafts; as this method would have appeared the safest
-                        beforehand so it is most probable that it was the one adopted. <milestone
-                            n="7" unit="section"/> They pushed out into the river a raft 200 feet
+                        beforehand so it is most probable that it was the one adopted. <milestone n="7" unit="section"/> They pushed out into the river a raft 200 feet
                         long and 50 feet broad, and to prevent it from being carried down-stream,
                         one end was secured by several stout hawsers to the bank. It was covered
                         with earth like a bridge in order that the animals, taking it for solid
-                        ground, would not be afraid to venture on it. <milestone n="8"
-                            unit="section"/> A second raft, of the same breadth but only 100 feet
+                        ground, would not be afraid to venture on it. <milestone n="8" unit="section"/> A second raft, of the same breadth but only 100 feet
                         long and capable of crossing the river, was made fast to the former. The
                         elephants led by the females were driven along the fixed raft, as if along a
                         road, until they came on to the smaller one. As soon as they were safely on
@@ -1242,7 +1181,7 @@ Added to repository. Passed SGML parse.
                         steady, and as they felt their way into shallow water they succeeded in
                         getting safely to land. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="29" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="29" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> While the elephants were being ferried
                         across, Hannibal sent 500 Numidian horse towards the Romans to ascertain
@@ -1274,7 +1213,7 @@ Added to repository. Passed SGML parse.
                         prospect of an endless journey over the Alps, which rumour said was, to
                         those at all events who had never tried it, a thing to be dreaded. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="30" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="30" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> When Hannibal had made up his mind to go
                         forward and lose no time in reaching Italy, his goal, he ordered a muster of
@@ -1287,11 +1226,9 @@ Added to repository. Passed SGML parse.
                         remote seas. <milestone n="3" unit="section"/> The Roman people made a
                         demand for all who had taken part in the siege of Saguntum to be given up to
                         them, and you, to avenge the insult, have crossed the Ebro to wipe out the
-                        name of Rome and bring freedom to the world. <milestone n="4" unit="section"
-                        /> When you commenced your march, from the setting to the rising sun, none
+                        name of Rome and bring freedom to the world. <milestone n="4" unit="section"/> When you commenced your march, from the setting to the rising sun, none
                         of you thought it too much for you, but now when you see that by far the
-                        greater part of the way has been accomplished; <milestone n="5"
-                            unit="section"/> the passes of the Pyrenees, which were held by most
+                        greater part of the way has been accomplished; <milestone n="5" unit="section"/> the passes of the Pyrenees, which were held by most
                         warlike tribes, surmounted; <milestone n="6" unit="section"/> the Rhone,
                         that mighty stream, crossed in the face of so many thousand Gauls, and the
                         rush of its waters checked-now that you are within sight of the Alps, on the
@@ -1311,24 +1248,21 @@ Added to repository. Passed SGML parse.
                         war? What toils and perils you went through for eight months to effect the
                         capture of Saguntum! <milestone n="10" unit="section"/> And now that Rome,
                         the capital of the world, is your goal, can you deem anything so difficult
-                        or so arduous that it should prevent you from reaching it? <milestone n="11"
-                            unit="section"/> Many years ago the Gauls captured the place which
+                        or so arduous that it should prevent you from reaching it? <milestone n="11" unit="section"/> Many years ago the Gauls captured the place which
                         Carthaginians despair of approaching; either you must confess yourselves
                         inferior in courage and enterprise to a people whom you have conquered again
                         and again, or else you must look forward to finishing your march on the
                         ground between the Tiber and the walls of Rome." </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="31" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="31" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> After this rousing appeal he dismissed
                         them with orders to prepare themselves by food and rest for the march.
                             <milestone n="2" unit="section"/> The next day they advanced up the left
                         bank of the Rhone towards the central districts of Gaul, not because this
                         was the most direct route to the Alps, but because he thought that there
-                        would be less likelihood of the Romans meeting him, for <milestone n="3??"
-                            unit="section"/> he had no desire to engage them before he arrived in
-                        Italy. Four days' marching brought him to the "Island." <milestone n="4"
-                            unit="section"/> Here the Isere and the Rhone, flowing down from
+                        would be less likelihood of the Romans meeting him, for <milestone n="3??" unit="section"/> he had no desire to engage them before he arrived in
+                        Italy. Four days' marching brought him to the "Island." <milestone n="4" unit="section"/> Here the Isere and the Rhone, flowing down from
                         different points in the Alps, enclose a considerable extent of land and then
                         unite their channels; the district thus enclosed is called the "Island."
                             <milestone n="5" unit="section"/> The adjacent country was inhabited by
@@ -1357,17 +1291,15 @@ Added to repository. Passed SGML parse.
                         in by banks, but flows in many separate channels. As it is constantly
                         shifting its bottom and the direction of its currents, the task of fording
                         it is a most hazardous one, whilst the shingle and boulders carried down
-                        make the foothold insecure and treacherous. <milestone n="12" unit="section"
-                        /> It happened to be swollen by rain at the time, and the men were thrown
+                        make the foothold insecure and treacherous. <milestone n="12" unit="section"/> It happened to be swollen by rain at the time, and the men were thrown
                         into much disorder whilst crossing it, whilst their fears and confused
                         shouting added considerably to their difficulties. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="32" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="32" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Three days after Hannibal had left the
                         banks of the Rhone, P. Cornelius Scipio arrived at the deserted camp with
-                        his army in battle order, ready to engage at once. <milestone n="2"
-                            unit="section"/> When, however, he saw the abandoned lines and realised
+                        his army in battle order, ready to engage at once. <milestone n="2" unit="section"/> When, however, he saw the abandoned lines and realised
                         that it would be no easy matter to overtake his opponent after he had got
                         such a long start, he returned to his ships. He considered that the easier
                         and safer course would be to meet Hannibal as he came down from the Alps.
@@ -1375,14 +1307,12 @@ Added to repository. Passed SGML parse.
                         him, and to prevent its being entirely denuded of Roman troops he sent his
                         brother Cneius Scipio with the greater part of his army to act against
                         Hasdrubal, not only to keep the <milestone n="4??" unit="section"/> old
-                        allies and win new ones, but to drive Hasdrubal out of Spain. <milestone
-                            n="5" unit="section"/> He himself sailed for Genoa with a very small
+                        allies and win new ones, but to drive Hasdrubal out of Spain. <milestone n="5" unit="section"/> He himself sailed for Genoa with a very small
                         force, intending to defend Italy with the army lying in the valley of the
                         Po. From the Durance Hannibal's route lay mostly through open level country,
                         and he reached the Alps without meeting with any opposition from the Gauls
                         who inhabited the district. <milestone n="6" unit="section"/> But the sight
-                        of the Alps revived the terrors in the minds of his men. <milestone n="7"
-                            unit="section"/> Although rumour, which generally magnifies untried
+                        of the Alps revived the terrors in the minds of his men. <milestone n="7" unit="section"/> Although rumour, which generally magnifies untried
                         dangers, had filled them with gloomy forebodings, the nearer view proved
                         much more fearful. The height of the mountains now so close, the snow which
                         was almost lost in the sky, the wretched huts perched on the rocks, the
@@ -1409,21 +1339,18 @@ Added to repository. Passed SGML parse.
                         that the natives had left the heights and were no longer watching his
                         movements, he gave orders, with the <milestone n="12??" unit="section"/>
                         view of deceiving the enemy, for a large number of fires to be lighted,
-                        larger in fact than would be required by those remaining in camp. <milestone
-                            n="13" unit="section"/> Then, leaving the baggage with the cavalry and
+                        larger in fact than would be required by those remaining in camp. <milestone n="13" unit="section"/> Then, leaving the baggage with the cavalry and
                         the greater part of the infantry in camp, he himself with a specially
                         selected body of troops in light marching order rapidly moved out of the
                         defile and occupied the heights which the enemy had held. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="33" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="33" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The following day the rest of the army
-                        broke camp in the grey dawn and commenced its march. <milestone n="2"
-                            unit="section"/> The natives were beginning to assemble at their
+                        broke camp in the grey dawn and commenced its march. <milestone n="2" unit="section"/> The natives were beginning to assemble at their
                         customary post of observation when they suddenly became aware that some of
                         the enemy were in possession of their stronghold right over their heads,
-                        whilst others were advancing on the path beneath. <milestone n="3"
-                            unit="section"/> The double impression made on their eyes and
+                        whilst others were advancing on the path beneath. <milestone n="3" unit="section"/> The double impression made on their eyes and
                         imagination kept them for a few moments motionless, but when they saw the
                         column falling into disorder mainly through the horses becoming frightened,
                         they thought that if they increased the confusion and panic it would be
@@ -1433,8 +1360,7 @@ Added to repository. Passed SGML parse.
                         Carthaginians had to meet this attack at the same time that they were
                         struggling with the difficulties of the way, and as each man was doing his
                         best for himself to get out of the reach of danger, they were fighting more
-                        amongst themselves than against the natives. <milestone n="6" unit="section"
-                        /> The horses did the most mischief; they were terrified at the wild shouts,
+                        amongst themselves than against the natives. <milestone n="6" unit="section"/> The horses did the most mischief; they were terrified at the wild shouts,
                         which the echoing woods and valleys made all the louder, and when they
                         happened to be struck or wounded they created terrible havoc amongst the men
                         and the different baggage animals. <milestone n="7" unit="section"/> The
@@ -1449,23 +1375,20 @@ Added to repository. Passed SGML parse.
                         safely through to no purpose, he ran down from his higher ground and at once
                         scattered the enemy. At the same time, however, he threw his own men into
                         still greater disorder for the moment, but it was very quickly allayed now
-                        that the passage was cleared by the flight of the natives. <milestone n="10"
-                            unit="section"/> In a short time the whole army had traversed the pass,
-                        not only without any further disturbance, but almost in silence. <milestone
-                            n="11" unit="section"/> He then seized a fortified village, the head
+                        that the passage was cleared by the flight of the natives. <milestone n="10" unit="section"/> In a short time the whole army had traversed the pass,
+                        not only without any further disturbance, but almost in silence. <milestone n="11" unit="section"/> He then seized a fortified village, the head
                         place of the district, together with some adjacent hamlets, and from the
                         food and cattle thus secured he provided his army with rations for three
                         days. As the natives, after their first defeat, no longer impeded their
                         march, whilst the road presented little difficulty, they made considerable
                         progress during those three days. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="34" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="34" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> They now came to another canton which,
                         considering that it was a mountain district, had a considerable population.
                         Here he narrowly escaped destruction, not in fair and open fighting, but by
-                        the practices which he himself employed-falsehood and treachery. <milestone
-                            n="2" unit="section"/> The head men from the fortified villages, men of
+                        the practices which he himself employed-falsehood and treachery. <milestone n="2" unit="section"/> The head men from the fortified villages, men of
                         advanced age, came as a deputation to the Carthaginian and told him that
                         they had been taught by the salutary example of other people's misfortunes
                         to seek the friendship of the Carthaginians rather than to feel their
@@ -1484,8 +1407,7 @@ Added to repository. Passed SGML parse.
                         as they reached a part of the pass where it narrowed and was overhung on one
                         side by a wall of rock, the barbarians sprang up from ambush on all sides
                         and assailed the column in front and rear, at close quarters, and at a
-                        distance by rolling huge stones down on it. <milestone n="7" unit="section"
-                        /> The heaviest attack was made in the rear, and as the infantry faced round
+                        distance by rolling huge stones down on it. <milestone n="7" unit="section"/> The heaviest attack was made in the rear, and as the infantry faced round
                         to meet it, it became quite obvious that if the rear of the column had not
                         been made exceptionally strong, a terrible disaster must have occurred in
                         that pass. <milestone n="8" unit="section"/> As it was, they were in the
@@ -1497,12 +1419,11 @@ Added to repository. Passed SGML parse.
                         pass so that Hannibal had to spend that one night without his cavalry or his
                         baggage. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="35" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="35" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The next day, as the savages attacked with
                         less vigour, the column closed up, and the pass was surmounted, not without
-                        loss, more, however, of baggage animals than of men. <milestone n="2"
-                            unit="section"/> From that time the natives made their appearance in
+                        loss, more, however, of baggage animals than of men. <milestone n="2" unit="section"/> From that time the natives made their appearance in
                         smaller numbers and behaved more like banditti than regular soldiers; they
                         attacked either front or rear just as the ground gave them opportunity, or
                         as the advance or halt of the column presented a chance of surprise.
@@ -1510,48 +1431,40 @@ Added to repository. Passed SGML parse.
                         delay, owing to the difficulty of getting them through narrow or precipitous
                         places; on the other hand, they rendered that part of the column safe from
                         attack where they were, for the natives were unaccustomed to the sight of
-                        them and had a great dread of going too near them. <milestone n="4"
-                            unit="section"/> Nine days from their commencing the ascent they arrived
+                        them and had a great dread of going too near them. <milestone n="4" unit="section"/> Nine days from their commencing the ascent they arrived
                         at the highest point of the Alps, after traversing a region mostly without
                         roads and frequently losing their way either through the treachery of their
                         guides or through their own mistakes in trying to find the way for
                         themselves. For two days they remained in camp on the summit, whilst the
-                        troops enjoyed a respite from fatigue and fighting. <milestone n="5"
-                            unit="section"/> Some of the baggage animals which had fallen amongst
+                        troops enjoyed a respite from fatigue and fighting. <milestone n="5" unit="section"/> Some of the baggage animals which had fallen amongst
                         the rocks and had afterwards followed the track of the column came into
                         camp. <milestone n="6" unit="section"/> To add to the misfortunes of the
                         worn-out troops, there was a heavy fall of snow-the Pleiads were near their
-                        setting-and this new experience created considerable alarm. <milestone n="7"
-                            unit="section"/> In the early morning of the third day the army
-                        recommenced its heavy march over ground everywhere deep in snow. <milestone
-                            n="8" unit="section"/> Hannibal saw in all faces an expression of
+                        setting-and this new experience created considerable alarm. <milestone n="7" unit="section"/> In the early morning of the third day the army
+                        recommenced its heavy march over ground everywhere deep in snow. <milestone n="8" unit="section"/> Hannibal saw in all faces an expression of
                         listlessness and despondency. He rode on in front to a height from which
                         there was a wide and extensive view, and halting his men, he pointed out to
                         them the land of Italy and the rich valley of the Po lying at the foot of
                         the Alps. "You are now," he said, "crossing the barriers not only of Italy,
                         but of Rome itself. <milestone n="9" unit="section"/> Henceforth all will be
                         smooth and easy for you; in one or, at the most, two battles, you will be
-                        masters of the capital and stronghold of Italy." <milestone n="10"
-                            unit="section"/> Then the army resumed its advance with no annoyance
+                        masters of the capital and stronghold of Italy." <milestone n="10" unit="section"/> Then the army resumed its advance with no annoyance
                         from the enemy beyond occasional attempts at plunder. The remainder of the
                         march, however, was attended with much greater difficulty than they had
-                        experienced in the ascent, for the distance to <milestone n="11??"
-                            unit="section"/> the plains on the Italian side is shorter, and
-                        therefore the descent is necessarily steeper. <milestone n="12"
-                            unit="section"/> Almost the whole of the way was precipitous, narrow,
+                        experienced in the ascent, for the distance to <milestone n="11??" unit="section"/> the plains on the Italian side is shorter, and
+                        therefore the descent is necessarily steeper. <milestone n="12" unit="section"/> Almost the whole of the way was precipitous, narrow,
                         and slippery, so that they were unable to keep their footing, and if they
                         slipped they could not recover themselves; they kept falling over each
                         other, and the baggage animals rolled over on their drivers. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="36" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="36" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> At length they came to a much narrower
                         pass which descended over such sheer cliffs that a light-armed soldier could
                         hardly get down it even by hanging on to projecting roots and branches.
                             <milestone n="2" unit="section"/> The place had always been precipitous,
                         and a landslip had recently carried away the road for 1000 feet. The cavalry
-                        came to a halt here as though they had arrived <milestone n="3??"
-                            unit="section"/> at their journey's end, and whilst Hannibal was
+                        came to a halt here as though they had arrived <milestone n="3??" unit="section"/> at their journey's end, and whilst Hannibal was
                         wondering what could be causing the delay he was informed that there was no
                         passage. <milestone n="4" unit="section"/> Then he went forward to examine
                         the place and saw that there was nothing for it but to lead the army by a
@@ -1561,8 +1474,7 @@ Added to repository. Passed SGML parse.
                         planted their feet firmly on the new snow, but when it had become melted
                         under the tread of so <milestone n="6??" unit="section"/> many men and
                         beasts there was nothing to walk on but ice covered with slush. Their
-                        progress now became one incessant and miserable struggle. <milestone n="7"
-                            unit="section"/> The smooth ice allowed no foothold, and as they were
+                        progress now became one incessant and miserable struggle. <milestone n="7" unit="section"/> The smooth ice allowed no foothold, and as they were
                         going down a steep incline they were still less able to keep on their legs,
                         whilst, once down, they tried in vain to rise, as their hands and knees were
                         continually slipping. There were no stumps or roots about for them to get
@@ -1574,7 +1486,7 @@ Added to repository. Passed SGML parse.
                         congealed ice below, where most of them stuck as though caught in a gin.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="37" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="37" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> At last, when men and beasts alike were
                         worn out by their fruitless exertions, a camp was formed on the summit,
@@ -1588,18 +1500,16 @@ Added to repository. Passed SGML parse.
                         disintegrate it. <milestone n="3" unit="section"/> After thus treating it by
                         fire they opened a way through it with their tools, and eased the steep
                         slope by winding tracks of moderate gradient, so that not only the baggage
-                        animals but even the elephants could be led down. <milestone n="4"
-                            unit="section"/> Four days were spent over the rock, and the animals
+                        animals but even the elephants could be led down. <milestone n="4" unit="section"/> Four days were spent over the rock, and the animals
                         were almost starved to death, for the heights are mostly bare of vegetation
-                        and what herbage there is is buried beneath the snow. <milestone n="5"
-                            unit="section"/> In the lower levels there were sunny valleys and
+                        and what herbage there is is buried beneath the snow. <milestone n="5" unit="section"/> In the lower levels there were sunny valleys and
                         streams flowing through woods, and spots more deserving of human
                         inhabitants. <milestone n="6" unit="section"/> Here the beasts were turned
                         loose to graze, and the troops, worn out with their engineering, were
                         allowed to rest. In three days more they reached the open plains and found a
                         pleasanter country and pleasanter people living in it </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="38" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="38" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Such, in the main, was the way in which
                         they reached Italy, five months, according to some authorities, after
@@ -1617,8 +1527,7 @@ Added to repository. Passed SGML parse.
                         assert this. <milestone n="5" unit="section"/> Cincius also states that he
                         had heard Hannibal say that subsequently to his passage of the Rhone he lost
                         36,000 men, besides an immense number of horses and other animals. The first
-                        people he came to were the Taurini, a semi-Garlic tribe. <milestone n="6"
-                            unit="section"/> As tradition is unanimous on this point I am the more
+                        people he came to were the Taurini, a semi-Garlic tribe. <milestone n="6" unit="section"/> As tradition is unanimous on this point I am the more
                         surprised that a question should be raised as to what route Hannibal took
                         over the Alps, and that it should be generally supposed that he crossed over
                         the Poenine range, which is said to have derived its name from that
@@ -1634,7 +1543,7 @@ Added to repository. Passed SGML parse.
                         the Carthaginians over it but from the deity Poeninus, whose shrine stands
                         on the highest point of the range. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="39" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="39" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> It was a very fortunate circumstance for
                         Hannibal at the outset of his campaign that the Taurini, the first people he
@@ -1652,8 +1561,7 @@ Added to repository. Passed SGML parse.
                         recovered his strength. <milestone n="4" unit="section"/> But when he
                         reached Placentia Hannibal had already left his encampment and taken by
                         storm one of the cities of the Taurini, their capital, in fact, because they
-                        would not voluntarily maintain friendly relations with him. <milestone n="5"
-                            unit="section"/> He would have secured the adhesion of the Gauls in the
+                        would not voluntarily maintain friendly relations with him. <milestone n="5" unit="section"/> He would have secured the adhesion of the Gauls in the
                         valley of the Po, not by fear but by their own choice, if the sudden arrival
                         of the consul had not taken them by surprise whilst they were waiting for a
                         favourable moment to revolt. <milestone n="6" unit="section"/> Just at the
@@ -1666,17 +1574,15 @@ Added to repository. Passed SGML parse.
                         military skill, were even then imbued with mutual respect and admiration.
                         Even before the fall of Saguntum the name of Hannibal was on all men's lips
                         in Rome, and in Scipio Hannibal recognised a great leader, seeing that he
-                        had been chosen beyond all others to oppose him. <milestone n="9"
-                            unit="section"/> This mutual esteem was enhanced by their recent
+                        had been chosen beyond all others to oppose him. <milestone n="9" unit="section"/> This mutual esteem was enhanced by their recent
                         achievements; Scipio, after Hannibal had left him in Gaul, was in time to
                         meet him on his descent from the Alps; Hannibal had not only dared to
-                        attempt but had actually accomplished the passage of the Alps. <milestone
-                            n="10" unit="section"/> Scipio, however, made the first move by crossing
+                        attempt but had actually accomplished the passage of the Alps. <milestone n="10" unit="section"/> Scipio, however, made the first move by crossing
                         the Po and shifting his camp to the Ticinus. Before leading his men into
                         battle he addressed them in a speech full of encouragement, in the following
                         terms: </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="40" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="40" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> "If, soldiers, I were leading into battle
                         the army which I had with me in Gaul, there would have been no need for me
@@ -1691,8 +1597,7 @@ Added to repository. Passed SGML parse.
                         order, therefore, that you might have a consul to lead you against Hannibal
                         and the Carthaginians, I have volunteered to command in this battle, and as
                         I am new to you and you to me I must say a few words to you. "Now as to the
-                        character of the enemy and the kind of warfare which awaits you. <milestone
-                            n="5" unit="section"/> You have to fight, soldiers, with the men whom
+                        character of the enemy and the kind of warfare which awaits you. <milestone n="5" unit="section"/> You have to fight, soldiers, with the men whom
                         you defeated in the former war by land and sea, from whom you have exacted a
                         war indemnity for the last twenty years, and from whom you wrested Sicily
                         and Sardinia as the prizes of war. You, therefore, will go into this battle
@@ -1711,23 +1616,20 @@ Added to repository. Passed SGML parse.
                         bruised and enfeebled amongst the rocks and precipices, and, what is more,
                         their limbs are frostbitten, their thews and sinews cramped with cold, their
                         frames shrunk and shrivelled with frost, their weapons battered and
-                        shivered, their horses lame and out of condition. <milestone n="10"
-                            unit="section"/> This is the cavalry, this the infantry with whom you
+                        shivered, their horses lame and out of condition. <milestone n="10" unit="section"/> This is the cavalry, this the infantry with whom you
                         are going to fight; you will not have an enemy but only the last vestiges of
                         an enemy to meet. My only fear is that when you have fought it will appear
-                        to be the Alps that have conquered Hannibal. <milestone n="11"
-                            unit="section"/> But perhaps it was right that it should be so, and that
+                        to be the Alps that have conquered Hannibal. <milestone n="11" unit="section"/> But perhaps it was right that it should be so, and that
                         the gods, without any human aid, should begin and all but finish this war
                         with a people and their general who have broken treaties, and that to us,
                         who next to the gods have been sinned against, it should be left to complete
                         what they began. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="41" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="41" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> "I am not afraid of any one thinking that
                         I am saying this in a spirit of bravado for the sake of putting you in good
-                        heart, whilst my real feelings and convictions are far otherwise. <milestone
-                            n="2" unit="section"/> I was at perfect liberty to go with my army to
+                        heart, whilst my real feelings and convictions are far otherwise. <milestone n="2" unit="section"/> I was at perfect liberty to go with my army to
                         Spain, for which country I had actually started, and which was my assigned
                         province. There I should have had my brother to share my plans and dangers;
                         I should have had Hasdrubal rather than Hannibal as my foe, and undoubtedly
@@ -1742,36 +1644,29 @@ Added to repository. Passed SGML parse.
                         almost at the foot of the Alps. <milestone n="5" unit="section"/> Does it
                         seem to you that I have unexpectedly fallen in with him whilst I was anxious
                         to decline a contest and not rather that I am meeting him actually on his
-                        track and challenging and dragging him into action? <milestone n="6"
-                            unit="section"/> I shall be glad to learn whether the earth has suddenly
+                        track and challenging and dragging him into action? <milestone n="6" unit="section"/> I shall be glad to learn whether the earth has suddenly
                         within the last twenty years produced a different breed of Carthaginans, or
-                        whether they are the same as those who fought at the Aegates, and <milestone
-                            n="7??" unit="section"/> whom you allowed to depart from Eryx on payment
+                        whether they are the same as those who fought at the Aegates, and <milestone n="7??" unit="section"/> whom you allowed to depart from Eryx on payment
                         of eighteen denarii a head, and whether this Hannibal is, as he gives out,
                         the rival of Hercules in his journeys, or whether he has been left by his
                         father to pay tax and tribute and to be the slave of the Roman people.
                             <milestone n="8" unit="section"/> If his crime at Saguntum were not
-                        driving him on, he would surely have some regard, if not <milestone n="9??"
-                            unit="section"/> for his conquered country, at all events for his house
+                        driving him on, he would surely have some regard, if not <milestone n="9??" unit="section"/> for his conquered country, at all events for his house
                         and his father, and the treaties signed by that Hamilcar who at the order of
                         our consul withdrew his garrison from Eryx, who with sighs and groans
                         accepted the hard conditions imposed on the conquered Carthaginians, and who
-                        agreed to evacuate Sicily and pay a war indemnity to Rome. <milestone n="10"
-                            unit="section"/> And so I would have you, soldiers, fight not merely in
+                        agreed to evacuate Sicily and pay a war indemnity to Rome. <milestone n="10" unit="section"/> And so I would have you, soldiers, fight not merely in
                         the spirit which you are wont to show against other foes, but with feelings
                         of indignant anger as though you saw your own slaves bearing arms against
                         you. <milestone n="11" unit="section"/> When they were shut up in Eryx we
                         might have inflicted the most terrible of human punishments and starved them
                         to death; we might have taken our victorious fleet across to Africa, and in
-                        a few days destroyed Carthage without a battle. <milestone n="12"
-                            unit="section"/> We granted pardon to their prayers, we allowed them to
+                        a few days destroyed Carthage without a battle. <milestone n="12" unit="section"/> We granted pardon to their prayers, we allowed them to
                         escape from the blockade, we agreed to terms of peace with those whom we had
-                        conquered, and afterwards when they were in <milestone n="13??"
-                            unit="section"/> dire straits through the African war we took them under
+                        conquered, and afterwards when they were in <milestone n="13??" unit="section"/> dire straits through the African war we took them under
                         our protection, To requite us for these acts of kindness they are following
                         the lead of a young madman and coming to attack our fatherland. I only wish
-                        this struggle were for honour alone and not for safety. <milestone n="14"
-                            unit="section"/> It is not about the possession of Sicily and Sardinia,
+                        this struggle were for honour alone and not for safety. <milestone n="14" unit="section"/> It is not about the possession of Sicily and Sardinia,
                         the old subjects of dispute, but for Italy that you have to fight.
                             <milestone n="15" unit="section"/> There is no second army at our back
                         to oppose the enemy if we fall to win, there are no more Alps to delay his
@@ -1785,7 +1680,7 @@ Added to repository. Passed SGML parse.
                         now here, such will be the fortune of our City yonder and of the empire of
                         Rome." </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="42" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="42" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Such was the language which the consul
                         used towards the Romans. Hannibal thought that the courage of his men ought
@@ -1806,7 +1701,7 @@ Added to repository. Passed SGML parse.
                         those who died bravely was lauded quite as much as that of those who were
                         victorious. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="43" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="43" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> After his men had been impressed by
                         watching several pairs of combatants Hannibal dismissed them, and afterwards
@@ -1829,8 +1724,7 @@ Added to repository. Passed SGML parse.
                         rewards as great as any which men are wont to solicit from the immortal
                         gods. <milestone n="6" unit="section"/> Even if we were only going to
                         recover Sicily and Sardinia, possessions which were wrested from our
-                        fathers, they would be prizes ample enough to satisfy us. <milestone n="7"
-                            unit="section"/> Everything that the Romans now possess, which they have
+                        fathers, they would be prizes ample enough to satisfy us. <milestone n="7" unit="section"/> Everything that the Romans now possess, which they have
                         won through so many triumphs, all that they have amassed, will become yours,
                         together with those who own it. Come then, seize your arms and with the help
                         of heaven win this splendid reward. <milestone n="8" unit="section"/> You
@@ -1874,7 +1768,7 @@ Added to repository. Passed SGML parse.
                         surrounded by men whom I have commended and rewarded thousands of times
                         against those who know nothing of each other, who are mutual strangers. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="44" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="44" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> "Wherever I turn my eyes I see nothing but
                         courage and strength, a veteran infantry, a cavalry, regular and irregular
@@ -1884,16 +1778,14 @@ Added to repository. Passed SGML parse.
                             <milestone n="3" unit="section"/> We are taking the aggressive, we are
                         descending in hostile array into Italy, prepared to fight more bravely and
                         more fearlessly than our foe because he who attacks is animated by stronger
-                        hopes and greater courage than he who meets the attack. <milestone n="4"
-                            unit="section"/> Besides, we are smarting from a sense of injustice and
+                        hopes and greater courage than he who meets the attack. <milestone n="4" unit="section"/> Besides, we are smarting from a sense of injustice and
                         humiliation. First they demanded me, your general, as their victim, then
                         they insisted that all of you who had taken part in the siege of Saguntum
                         should be surrendered; had you been given up they would have inflicted upon
                         you the most exquisite tortures. <milestone n="5" unit="section"/> That
                         outrageously cruel and tyrannical nation claims everything for itself, makes
                         everything dependent on its will and pleasure; they think it right to
-                        dictate with whom we are to make war or peace. <milestone n="6"
-                            unit="section"/> They confine and enclose us within mountains and rivers
+                        dictate with whom we are to make war or peace. <milestone n="6" unit="section"/> They confine and enclose us within mountains and rivers
                         as boundaries, but they do not observe the limits which they themselves have
                         fixed. 'Do not cross the Ebro, see that you have nothing to do with the
                         Saguntines.' <milestone n="7" unit="section"/> 'But Saguntum is not on the
@@ -1901,8 +1793,7 @@ Added to repository. Passed SGML parse.
                         taking from me my oldest provinces, Sicily and Sardinia? Will you cross over
                         into Spain as well, and if I withdraw from there, will you cross over into
                         Africa? Do I say, will cross over? You have crossed over.' They have sent
-                        the two consuls for this year, one to Africa, the other to Spain. <milestone
-                            n="8" unit="section"/> There is nothing left to us anywhere except what
+                        the two consuls for this year, one to Africa, the other to Spain. <milestone n="8" unit="section"/> There is nothing left to us anywhere except what
                         we claim by force of arms. Those may be allowed to be cowards and dastards
                         who have something to fall back upon, whom their own land, their own
                         territory will receive as they flee through its safe and peaceful roads; you
@@ -1913,16 +1804,14 @@ Added to repository. Passed SGML parse.
                         to this, I say again you are victors, no keener weapon has been put into
                         men's hands by the immortal gods than a contempt for death." </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="45" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="45" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> After the fighting spirit of both armies
                         had been roused by these harangues, the Romans threw a bridge over the
-                        Ticinus and constructed a blockhouse for its defence. <milestone n="2"
-                            unit="section"/> Whilst they were thus occupied, the Carthaginian sent
+                        Ticinus and constructed a blockhouse for its defence. <milestone n="2" unit="section"/> Whilst they were thus occupied, the Carthaginian sent
                         Maharbal with a troop of 500 Numidian horse to ravage the lands of the
                         allies of Rome, but with orders to spare those of the Gauls as far as
-                        possible, and to win over their chiefs to his side. <milestone n="3"
-                            unit="section"/> When the bridge was completed the Roman army crossed
+                        possible, and to win over their chiefs to his side. <milestone n="3" unit="section"/> When the bridge was completed the Roman army crossed
                         over in the territory of the Insubres and took up a position five miles from
                         Ictumuli, where Hannibal had his camp. <milestone n="4" unit="section"/> As
                         soon as he saw that a battle was imminent, he hastily recalled Maharbal and
@@ -1936,20 +1825,17 @@ Added to repository. Passed SGML parse.
                         any of the allies wished to become Carthaginian citizens he would give them
                         the opportunity; if any preferred to return to their homes he would take
                         care that their circumstances should be such that they would never wish to
-                        exchange them with any of their countrymen. <milestone n="7" unit="section"
-                        /> He even promised freedom to the slaves who followed their masters, and to
-                        the masters, for every slave freed, two more as compensation. <milestone
-                            n="8" unit="section"/> To convince them of his determination to carry
+                        exchange them with any of their countrymen. <milestone n="7" unit="section"/> He even promised freedom to the slaves who followed their masters, and to
+                        the masters, for every slave freed, two more as compensation. <milestone n="8" unit="section"/> To convince them of his determination to carry
                         out these promises, he held a lamb with his left hand and a flint knife in
                         his right and prayed to Jupiter and the other gods, that, if he broke his
                         word and forswore himself they would slay him as he had slain the lamb. He
-                        then crushed the animal's head with the flint. <milestone n="9"
-                            unit="section"/> They all felt then that the gods themselves would
+                        then crushed the animal's head with the flint. <milestone n="9" unit="section"/> They all felt then that the gods themselves would
                         guarantee the fulfilment of their hopes, and looked upon the delay in
                         bringing on an action as delay in gaining their desires; with one mind and
                         one voice they clamoured to be led into battle. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="46" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="46" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The Romans were far from showing this
                         alacrity. Amongst other causes of alarm they had been unnerved by some
@@ -1960,11 +1846,9 @@ Added to repository. Passed SGML parse.
                         been made Scipio moved out with a force of cavalry and light-armed javelin
                         men towards the enemy's camp to get a nearer view and to ascertain the
                         number and nature of his force. He fell in with Hannibal who was also
-                        advancing with his cavalry to explore the neighbourhood. <milestone n="4"
-                            unit="section"/> Neither body at first saw the other; the first
+                        advancing with his cavalry to explore the neighbourhood. <milestone n="4" unit="section"/> Neither body at first saw the other; the first
                         indication of a hostile approach was given by the unusually dense cloud of
-                        dust which was raised by the tramp of so many men and horses. <milestone
-                            n="5" unit="section"/> Each party halted and made ready for battle.
+                        dust which was raised by the tramp of so many men and horses. <milestone n="5" unit="section"/> Each party halted and made ready for battle.
                         Scipio placed the javelin men and the Gaulish cavalry in the front, the
                         Roman horse and the heavy cavalry of the allies as reserves. Hannibal formed
                         his centre with his regular cavalry, and posted the Numidians on the flanks.
@@ -1990,13 +1874,12 @@ Added to repository. Passed SGML parse.
                         son; the majority of authors assert this and the tradition is generally
                         accepted. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="47" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="47" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> This was the first battle with Hannibal,
                         and the result made it quite clear that the Carthaginian was superior in his
                         cavalry, and consequently that the open plains which stretch from the Po to
-                        the Alps were not a suitable battlefield for the Romans. <milestone n="2"
-                            unit="section"/> The next night accordingly, the soldiers were ordered
+                        the Alps were not a suitable battlefield for the Romans. <milestone n="2" unit="section"/> The next night accordingly, the soldiers were ordered
                         to collect their baggage in silence, the army moved away from the Ticinus
                         and marched rapidly to the Po, which they crossed by the pontoon bridge
                         which was still intact, in perfect order and without any molestation by the
@@ -2018,38 +1901,33 @@ Added to repository. Passed SGML parse.
                         across. <milestone n="6" unit="section"/> I attach greater weight to those
                         authorities who state that it took them at least two days to find a spot
                         where they could throw a bridge over the river, and that it was there that
-                        Mago's cavalry and the Spanish light infantry crossed. <milestone n="7"
-                            unit="section"/> Whilst Hannibal was waiting near the river to give
+                        Mago's cavalry and the Spanish light infantry crossed. <milestone n="7" unit="section"/> Whilst Hannibal was waiting near the river to give
                         audience to deputations from the Gauls, he sent his heavy infantry across,
                         and during this interval Mago and his cavalry advanced a day's march from
-                        the river in the direction of the enemy at Placentia. <milestone n="8"
-                            unit="section"/> A few days later Hannibal entrenched himself in a
+                        the river in the direction of the enemy at Placentia. <milestone n="8" unit="section"/> A few days later Hannibal entrenched himself in a
                         position six miles from Placentia, and the next day he drew out his army in
                         battle order in full view of the enemy and gave him the opportunity of
                         fighting. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="48" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="48" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The following night a murderous outbreak
                         took place amongst the Gaulish auxiliaries in the Roman camp; there was,
-                        however, more excitement and confusion than actual loss of life. <milestone
-                            n="2" unit="section"/> About 2000 infantry and 200 horsemen massacred
+                        however, more excitement and confusion than actual loss of life. <milestone n="2" unit="section"/> About 2000 infantry and 200 horsemen massacred
                         the sentinels and deserted to Hannibal. The Carthaginian gave them a kind
                         reception and sent them to their homes with the promise of great rewards if
                         they would enlist the sympathies of their countrymen on his behalf.
                             <milestone n="3" unit="section"/> Scipio saw in this outrage a signal of
                         revolt for all the Gauls, who, infected by the madness of this crime, would
                         at once fly to arms, and though still suffering severely from his wound, he
-                        left his position in the fourth watch of the following night, <milestone
-                            n="4??" unit="section"/> his army marching in perfect silence, and
+                        left his position in the fourth watch of the following night, <milestone n="4??" unit="section"/> his army marching in perfect silence, and
                         shifted his camp close to the Trebia on to higher ground where the hills
                         were impracticable for cavalry. He was less successful in escaping the
                         notice of the enemy than he had been at the Ticinus, Hannibal sent first the
                         Numidians, then afterwards the <milestone n="5??" unit="section"/> whole of
                         his cavalry in pursuit and would have inflicted disaster upon the rear of
                         the column at all events, had not the Numidians been tempted by their desire
-                        for plunder to turn aside to the deserted Roman camp. <milestone n="6"
-                            unit="section"/> Whilst they were wasting their time in prying into
+                        for plunder to turn aside to the deserted Roman camp. <milestone n="6" unit="section"/> Whilst they were wasting their time in prying into
                         every corner of the camp, without finding anything worth waiting for, the
                         enemy slipped out of their hands, and when they caught sight of the Romans
                         they had already crossed the Trebia and were measuring out the site for
@@ -2068,12 +1946,11 @@ Added to repository. Passed SGML parse.
                         quantities of corn. Whilst they were preparing to attack the place they were
                         led to hope that it would be betrayed to them. Dasius, a Brundisian, was
                         commandant of the garrison, and he was induced by a moderate bribe of 400
-                        gold pieces to betray Clastidium to Hannibal. <milestone n="10"
-                            unit="section"/> The place was the granary of the Carthaginians while
+                        gold pieces to betray Clastidium to Hannibal. <milestone n="10" unit="section"/> The place was the granary of the Carthaginians while
                         they were at the Trebia. No cruelty was practiced on the garrison, as
                         Hannibal was anxious to win a reputation for clemency at the outset. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="49" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="49" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> .The war on the Trebia had for the time
                         being come to a standstill, but military and naval actions were taking place
@@ -2089,14 +1966,11 @@ Added to repository. Passed SGML parse.
                             <milestone n="4" unit="section"/> It was ascertained from the prisoners,
                         that besides the fleet of twenty ships to which they belonged which had
                         sailed for Italy thirty-five quinqueremes were also on the way to Sicily
-                        with the object of stirring up the old allies of Carthage. <milestone n="5"
-                            unit="section"/> Their main anxiety was to secure Lilybaeum, and the
+                        with the object of stirring up the old allies of Carthage. <milestone n="5" unit="section"/> Their main anxiety was to secure Lilybaeum, and the
                         prisoners were of opinion that the storm which had separated them from the
-                        rest had also driven that fleet up to the Aegates. <milestone n="6"
-                            unit="section"/> The king communicated this information just as he had
+                        rest had also driven that fleet up to the Aegates. <milestone n="6" unit="section"/> The king communicated this information just as he had
                         received it to M. Aemilius, the praetor, whose province Sicily was, and
-                        advised him to throw a strong garrison into Lilybaeum. <milestone n="7"
-                            unit="section"/> The praetor at once sent envoys and military tribunes
+                        advised him to throw a strong garrison into Lilybaeum. <milestone n="7" unit="section"/> The praetor at once sent envoys and military tribunes
                         to the neighbouring states to urge them to take measures for self-defence.
                             <milestone n="8" unit="section"/> Lilybaeum especially was engrossed in
                         preparations for war; orders were issued for the seamen to carry ten days'
@@ -2106,22 +1980,20 @@ Added to repository. Passed SGML parse.
                         came to pass that although the Carthaginians had purposely lessened the
                         speed of their vessels, so that they might approach Lilybaeum before
                         daylight, they were descried in the offing owing to there being a moon all
-                        night, and also because they were coming with their sails set. <milestone
-                            n="10" unit="section"/> Instantly the signal was given by the look-out
+                        night, and also because they were coming with their sails set. <milestone n="10" unit="section"/> Instantly the signal was given by the look-out
                         men; in the town there was the cry, "To arms," and the ships were manned.
                         Some of the soldiers were on the walls and guarding the gates, others were
                         on board the ships. <milestone n="11" unit="section"/> As the Carthaginians
                         saw that they would have to deal with people who were anything but
                         unprepared, they stood out from the harbour till daylight, and spent the
-                        time in lowering their masts and preparing for action. <milestone n="12"
-                            unit="section"/> When it grew light they put out to sea that they might
+                        time in lowering their masts and preparing for action. <milestone n="12" unit="section"/> When it grew light they put out to sea that they might
                         have sufficient room for fighting, and that the enemy's ships might be free
                         to issue from the harbour. <milestone n="13" unit="section"/> The Romans did
                         not decline battle, encouraged as they were by the recollection of their
                         former conflicts in this very place, and full of confidence in the numbers
                         and courage of their men. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="50" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="50" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> When they had sailed out to sea the Romans
                         were eager to come to close quarters and make a hand-to-hand fight of it;
@@ -2139,8 +2011,7 @@ Added to repository. Passed SGML parse.
                             <milestone n="6" unit="section"/> In the seven ships there were 1700
                         soldiers and sailors, amongst them three members of the Carthaginian
                         nobility. The Roman fleet returned undamaged into port, with the exception
-                        of one which had been rammed, but even that was brought in. <milestone n="7"
-                            unit="section"/> Immediately after this battle Tiberius Sempronius, the
+                        of one which had been rammed, but even that was brought in. <milestone n="7" unit="section"/> Immediately after this battle Tiberius Sempronius, the
                         consul, arrived at Messana before those in the town had heard of it.
                             <milestone n="8" unit="section"/> King Hiero went to meet him at the
                         entrance of the Straits with his fleet fully equipped and manned, and went
@@ -2157,7 +2028,7 @@ Added to repository. Passed SGML parse.
                         in his sailing for Lilybaeum; he started at once and the king accompanied
                         him with his fleet. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="51" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="51" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> At Lilybaeum Hiero and his fleet bade him
                         farewell, and the consul, after leaving the praetor to see to the defence of
@@ -2186,7 +2057,7 @@ Added to repository. Passed SGML parse.
                         cruising along the coast reached Ariminum. From there he marched to the
                         Trebia and effected a junction with his colleague. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="52" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="52" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The fact that both consuls and all the
                         available strength that Rome possessed were now brought up to oppose
@@ -2207,24 +2078,20 @@ Added to repository. Passed SGML parse.
                         same time, a desire to enrich his soldiers with plunder prompted him to send
                         2000 infantry and 1000 cavalry, made up of Gauls and Numidians, mostly the
                         latter, with orders to ravage the whole country, district after district,
-                        right up to the banks of the Po. Though the Gauls had hitherto <milestone
-                            n="6??" unit="section"/> maintained an impartial attitude, they were
+                        right up to the banks of the Po. Though the Gauls had hitherto <milestone n="6??" unit="section"/> maintained an impartial attitude, they were
                         compelled in their need of help to turn from those who had inflicted these
                         outrages to those who they hoped would avenge them. They sent envoys to the
                         consuls to beg the Romans to come to the rescue of a land which was
-                        suffering because its people had been too loyal to Rome. <milestone n="7"
-                            unit="section"/> Cornelius Scipio did not consider that either the
+                        suffering because its people had been too loyal to Rome. <milestone n="7" unit="section"/> Cornelius Scipio did not consider that either the
                         grounds alleged or the circumstances justified his taking action. He
                         regarded that nation with suspicion on account of their many acts of
                         treachery, and even if their past faithlessness could have been forgotten
                         through lapse of time, he could not forget the recent treachery of the Boii.
                             <milestone n="8" unit="section"/> Sempronius, on the other hand, was of
                         opinion that the most effective means of preserving the fidelity of their
-                        allies was to defend those who first asked for their help. <milestone n="9"
-                            unit="section"/> As his colleague still hesitated, he sent his own
+                        allies was to defend those who first asked for their help. <milestone n="9" unit="section"/> As his colleague still hesitated, he sent his own
                         cavalry supported by about a thousand javelin men to protect the territory
-                        of the Gauls on the other side of the Trebia. <milestone n="10"
-                            unit="section"/> They attacked the enemy suddenly whilst they were
+                        of the Gauls on the other side of the Trebia. <milestone n="10" unit="section"/> They attacked the enemy suddenly whilst they were
                         scattered and in disorder, most of them loaded with plunder, and after
                         creating a great panic amongst them, and inflicting severe losses upon them,
                         they drove them in flight to their camp. <milestone n="11" unit="section"/>
@@ -2233,7 +2100,7 @@ Added to repository. Passed SGML parse.
                         wavered as each side retired or pursued, and up to the last the action was
                         undecided. The enemy lost more men; the Romans claimed the victory. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="53" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="53" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> To no one in the whole army did the
                         victory appear more important or more decisive than to the consul himself.
@@ -2242,11 +2109,9 @@ Added to repository. Passed SGML parse.
                         He saw that the spirits of his men were restored, and that there was no one
                         but his colleague who wished to delay battle; he believed that Scipio was
                         more sick in mind than in body, and that the thought of his wound made him
-                        shrink from the dangers of the battlefield. <milestone n="3" unit="section"
-                        /> "But we must not be infected by a sick man's lethargy. What will be
+                        shrink from the dangers of the battlefield. <milestone n="3" unit="section"/> "But we must not be infected by a sick man's lethargy. What will be
                         gained by further delay, or rather, by wasting time? Whom are we expecting
-                        as our third consul; what fresh army are we looking for? <milestone n="4"
-                            unit="section"/> The camp of the Carthaginians is in Italy, almost in
+                        as our third consul; what fresh army are we looking for? <milestone n="4" unit="section"/> The camp of the Carthaginians is in Italy, almost in
                         sight of the City. They are not aiming at Sicily and Sardinia, which they
                         lost after their defeats, nor the Spain which lies on this side the Ebro;
                         their sole object is to drive the Romans away from their ancestral soil,
@@ -2276,8 +2141,7 @@ Added to repository. Passed SGML parse.
                         and the better of the two generals was incapacitated by his wound, and also
                         whilst the Gauls were still in a <milestone n="10??" unit="section"/>
                         warlike mood, for he knew that most of them would follow him with less
-                        alacrity the further they were dragged from their homes. <milestone n="11"
-                            unit="section"/> These and similar considerations led him to hope that a
+                        alacrity the further they were dragged from their homes. <milestone n="11" unit="section"/> These and similar considerations led him to hope that a
                         battle was imminent, and made him desirous of forcing an engagement if there
                         was any holding back on the other side. He sent out some Gauls to
                         reconnoitre-as Gauls were serving in both armies they could be most safely
@@ -2285,15 +2149,14 @@ Added to repository. Passed SGML parse.
                         had prepared for battle, the Carthaginian began to look out for ground which
                         would admit of an ambuscade. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="54" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="54" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Between the two armies there was a stream
                         with very high banks which were overgrown with marshy grass and the brambles
                         and brushwood which are generally found on waste ground. After riding round
                         the place and satisfying himself from personal observation that it was
                         capable of concealing even cavalry, Hannibal, turning to his brother Mago,
-                        said, "This will be the place for you to occupy. <milestone n="2"
-                            unit="section"/> Pick out of our whole force of cavalry and infantry a
+                        said, "This will be the place for you to occupy. <milestone n="2" unit="section"/> Pick out of our whole force of cavalry and infantry a
                         hundred men from each arm, and bring them to me at the first watch, now it
                         is time for food and rest." He then dismissed his staff. Presently Mago
                         appeared with his 200 picked men. <milestone n="3" unit="section"/> "I see
@@ -2301,21 +2164,17 @@ Added to repository. Passed SGML parse.
                         numbers as well as in courage. Each of you therefore go and choose nine
                         others like himself, from the squadrons and the maniples. Mago will show you
                         the place where you are to lie in ambuscade, you have an enemy who are
-                        blindly ignorant of these practices in war." <milestone n="4" unit="section"
-                        /> After sending Mago with his 1000 infantry and 1000 cavalry to take up his
+                        blindly ignorant of these practices in war." <milestone n="4" unit="section"/> After sending Mago with his 1000 infantry and 1000 cavalry to take up his
                         position, Hannibal gave orders for the Numidian cavalry to cross the Trebia
                         in the early dawn and ride up to the gates of the Roman camp; then they were
                         to discharge their missiles on the outposts and so goad the enemy on to
                         battle. When the fighting had once started they were gradually to give
-                        ground and draw their pursuers to their own side of the river. <milestone
-                            n="5" unit="section"/> These were the instructions to the Numidians; the
+                        ground and draw their pursuers to their own side of the river. <milestone n="5" unit="section"/> These were the instructions to the Numidians; the
                         other commanders, both infantry and cavalry, were ordered to see that all
                         their men had breakfast, after which they were to wait for the signal, the
-                        men fully armed, the horses saddled and ready. <milestone n="6"
-                            unit="section"/> Eager for battle, and having already made up his mind
+                        men fully armed, the horses saddled and ready. <milestone n="6" unit="section"/> Eager for battle, and having already made up his mind
                         to fight, Sempronius led out the whole of his cavalry to meet the Numidian
-                        attack, for it was in his cavalry that he placed most confidence; <milestone
-                            n="7" unit="section"/> these were followed by 6000 infantry and at last
+                        attack, for it was in his cavalry that he placed most confidence; <milestone n="7" unit="section"/> these were followed by 6000 infantry and at last
                         the whole of his force marched on to the field. It happened to be the season
                         of winter, a snowstorm was raging, and the district, situated between the
                         Alps and the Apennines, was rendered especially cold by the vicinity of
@@ -2323,14 +2182,13 @@ Added to repository. Passed SGML parse.
                         men and horses alike had been hurriedly sent forward, without any food,
                         without any protection against the cold, so they had no heat in them and the
                         chilling blasts from the river made the cold still more severe as they
-                        approached it in their pursuit of the Numidians. <milestone n="9"
-                            unit="section"/> But when they entered the water which had been swollen
+                        approached it in their pursuit of the Numidians. <milestone n="9" unit="section"/> But when they entered the water which had been swollen
                         by the night's rain and was then breast high, their limbs became stiff with
                         cold, and when they emerged on the other side they had hardly strength to
                         hold their weapons; they began to grow faint from fatigue and as the day
                         wore on, from hunger. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="55" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="55" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Hannibal's men, meanwhile, had made fires
                         in front of their tents, oil had been distributed amongst the maniples for
@@ -2353,8 +2211,7 @@ Added to repository. Passed SGML parse.
                         into difficulties, for the 4000 wearied troopers had been unable to offer an
                         effective resistance to 10,000 who <milestone n="6??" unit="section"/> were
                         fresh and vigorous, and now in addition they were overwhelmed by what seemed
-                        a cloud of missiles from the light infantry. <milestone n="7" unit="section"
-                        /> Moreover, the elephants, towering aloft at the ends of the line,
+                        a cloud of missiles from the light infantry. <milestone n="7" unit="section"/> Moreover, the elephants, towering aloft at the ends of the line,
                         terrified the horses not only by their appearance but by their unaccustomed
                         smell, and created widespread panic. The infantry battle, as far as the
                         Romans were concerned, was maintained more by courage than by physical
@@ -2362,8 +2219,7 @@ Added to repository. Passed SGML parse.
                         had shortly before been getting themselves into trim, brought their powers
                         fresh and unimpaired into action, whilst the Romans were fatigued and hungry
                         and stiff with cold. Still, their courage would have kept them up had it
-                        been only infantry that they were fighting against. <milestone n="9"
-                            unit="section"/> But the light infantry, after repulsing the cavalry,
+                        been only infantry that they were fighting against. <milestone n="9" unit="section"/> But the light infantry, after repulsing the cavalry,
                         were hurling their missiles on the flanks of the legions; the elephants had
                         now come up against the centre of the Roman line, and Mago and his
                         Numidians, as soon as it had passed their ambuscade, rose up in the rear and
@@ -2375,7 +2231,7 @@ Added to repository. Passed SGML parse.
                         them off, and rushed after them, stabbing them under their tails, where the
                         skin is soft and easily penetrated. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="56" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="56" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Maddened with pain and terror, they were
                         beginning to rush wildly on their own men, when Hannibal ordered them to be
@@ -2385,8 +2241,7 @@ Added to repository. Passed SGML parse.
                             <milestone n="2" unit="section"/> They now stood fighting in a square,
                         and about 10,000 of them, unable to escape in any other direction, forced
                         their way through the centre of the African troops and the auxiliary Gauls
-                        who supported them and inflicted an immense loss on the enemy. <milestone
-                            n="3" unit="section"/> They were prevented by the river from returning
+                        who supported them and inflicted an immense loss on the enemy. <milestone n="3" unit="section"/> They were prevented by the river from returning
                         to their camp, and the rain made it impossible for them to judge where they
                         could best go to the assistance of their comrades, so they marched away
                         straight to Placentia. <milestone n="4" unit="section"/> Then desperate
@@ -2410,7 +2265,7 @@ Added to repository. Passed SGML parse.
                         in order that one colony might not be burdened with providing winter
                         quarters for the two armies. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="57" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="57" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> This defeat so unnerved people in Rome
                         that they believed the enemy was already advancing to attack the City, and
@@ -2436,8 +2291,7 @@ Added to repository. Passed SGML parse.
                         capturing the place, Hannibal approached with cavalry and light-armed
                         troops, and as he trusted mainly to secrecy for success, he marched thither
                         by night. But he did not escape the observation of the sentinels, and such a
-                        shouting suddenly arose that it was actually heard at Placentia. <milestone
-                            n="7" unit="section"/> By daybreak the consul was on the spot with his
+                        shouting suddenly arose that it was actually heard at Placentia. <milestone n="7" unit="section"/> By daybreak the consul was on the spot with his
                         cavalry, having given orders for the legions of infantry to follow in battle
                         formation. <milestone n="8" unit="section"/> A cavalry action followed in
                         which Hannibal was wounded, and his retirement from the field discomfited
@@ -2466,22 +2320,20 @@ Added to repository. Passed SGML parse.
                         brutal tyranny towards the wretched inhabitants. Such were the winter
                         operations of Hannibal. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="58" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="58" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The soldiers rested whilst the intolerable
                         cold lasted; it did not, however, last long, and at the first doubtful
                         indications of <milestone n="2??" unit="section"/> spring Hannibal left his
                         winter quarters for Etruria with the intention of inducing that nation to
-                        join forces with him, either voluntarily or under compulsion. <milestone
-                            n="3" unit="section"/> During his passage of the Apennines he was
+                        join forces with him, either voluntarily or under compulsion. <milestone n="3" unit="section"/> During his passage of the Apennines he was
                         overtaken by a storm of such severity as almost to surpass the horrors of
                         the Alps. The rain was driven by the wind straight into the men's faces, and
                         either they had to drop their weapons or if they tried to struggle against
                         the hurricane it caught them and dashed them to the ground, so they came to
                         a halt. <milestone n="4" unit="section"/> Then they found that it was
                         stopping their respiration so that they could not breathe, and they sat down
-                        for a short time with their backs to the wind. <milestone n="5"
-                            unit="section"/> The heavens began to reverberate with terrific roar,
+                        for a short time with their backs to the wind. <milestone n="5" unit="section"/> The heavens began to reverberate with terrific roar,
                         and amidst the awful din lightning flashed and quivered. Sight and sound
                         alike paralysed them with terror. <milestone n="6" unit="section"/> At last,
                         as the force of the gale increased owing to the rain having ceased, they saw
@@ -2505,7 +2357,7 @@ Added to repository. Passed SGML parse.
                         animals perished; of the elephants which survived the battle of the Trebia
                         they lost seven. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="59" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="59" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> After descending from the Apennines
                         Hannibal advanced towards Placentia, and after a ten miles' march formed
@@ -2522,8 +2374,7 @@ Added to repository. Passed SGML parse.
                         ordered them to be on the alert and wait for the signal to make a sortie.
                             <milestone n="5" unit="section"/> It was now about three o'clock; the
                         Romans were worn out with their fruitless efforts as there was no hope of
-                        carrying the camp, and the consul gave the signal to retire. <milestone
-                            n="6" unit="section"/> As soon as Hannibal heard it and saw that the
+                        carrying the camp, and the consul gave the signal to retire. <milestone n="6" unit="section"/> As soon as Hannibal heard it and saw that the
                         fighting had slackened and that the enemy were retiring from the camp, he
                         immediately launched his cavalry against them right and left, and sallied in
                         person with the main strength of his infantry from the middle of the camp.
@@ -2533,8 +2384,7 @@ Added to repository. Passed SGML parse.
                         prolonged; as it was, night put an end to a conflict which had been
                         maintained with such determined courage. <milestone n="8" unit="section"/>
                         There was greater fury than bloodshed, and as the fighting had been almost
-                        equal on both sides, they separated with equal loss. <milestone n="9"
-                            unit="section"/> Not more than 600 infantry and half that number of
+                        equal on both sides, they separated with equal loss. <milestone n="9" unit="section"/> Not more than 600 infantry and half that number of
                         cavalry fell on either side, but the Roman loss was out of proportion to
                         their numbers; several members of the equestrian order and five military
                         tribunes as well as three prefects of the allies were killed. Immediately
@@ -2546,12 +2396,11 @@ Added to repository. Passed SGML parse.
                         Gauls in order that he might feel more confidence in their maintenance of
                         peaceful relations, and their determination to give him active support. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="60" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="60" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> While these events were in progress in
                         Italy, Cn. Cornelius Scipio, who had been sent with a fleet and an army to
-                        Spain, commenced operations in that country. <milestone n="2" unit="section"
-                        /> Starting from the mouth of the Rhone, he sailed round the eastward end of
+                        Spain, commenced operations in that country. <milestone n="2" unit="section"/> Starting from the mouth of the Rhone, he sailed round the eastward end of
                         the Pyrenees and brought up at Emporiae. <milestone n="3" unit="section"/>
                         Here he disembarked his army, and beginning with the Laeetani, he brought
                         the whole of the maritime populations as far as the Ebro within the sphere
@@ -2574,14 +2423,13 @@ Added to repository. Passed SGML parse.
                         general with some of his chiefs was taken; Cissis, a town near the camp, was
                         successfully attacked. <milestone n="8" unit="section"/> The plunder,
                         however, as it was a small place, was of little value, consisting mainly of
-                        the barbarians' household goods and some worthless slaves. <milestone n="9"
-                            unit="section"/> The camp, however, enriched the soldiers with the
+                        the barbarians' household goods and some worthless slaves. <milestone n="9" unit="section"/> The camp, however, enriched the soldiers with the
                         property belonging not only to the army they had defeated but also to the
                         one serving with Hannibal in Italy. They had left almost all their valuable
                         possessions on the other side of the Pyrenees, that they might not have
                         heavy loads to carry. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="61" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="61" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Before he had received definite tidings of
                         this defeat, Hasdrubal had crossed the Ebro with 8000 infantry and 1000
@@ -2596,12 +2444,10 @@ Added to repository. Passed SGML parse.
                         retreated across the Ebro. On hearing of this fresh enemy Scipio came down
                         by forced <milestone n="4??" unit="section"/> marches, and after dealing
                         summary punishment to some of the naval captains, returned by sea to
-                        Emporiae, leaving a small garrison in Tarracona. <milestone n="5"
-                            unit="section"/> He had scarcely left when Hasdrubal appeared on the
+                        Emporiae, leaving a small garrison in Tarracona. <milestone n="5" unit="section"/> He had scarcely left when Hasdrubal appeared on the
                         scene, and instigated the Ilergetes, who had given hostages to Scipio, to
                         revolt, and in conjunction with the warriors of that tribe ravaged the
-                        territories of those tribes who remained loyal to Rome. <milestone n="6"
-                            unit="section"/> This roused Scipio from his winter quarters, on which
+                        territories of those tribes who remained loyal to Rome. <milestone n="6" unit="section"/> This roused Scipio from his winter quarters, on which
                         Hasdrubal again disappeared beyond the Ebro, and Scipio invaded in force the
                         territory of the Ilergetes, after the author of the revolt had left them to
                         their fate. <milestone n="7" unit="section"/> He drove them all into
@@ -2625,13 +2471,12 @@ Added to repository. Passed SGML parse.
                         to pay an indemnity of twenty talents. The army returned to its winter
                         quarters at Tarracona. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="62" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="62" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> During this winter many portents occurred
                         in Rome and the neighbourhood, or at all events, many were reported and
                         easily gained credence, for when once men's minds have been excited by
-                        superstitious fears they easily believe these things. <milestone n="2"
-                            unit="section"/> A six-months-old child, of freeborn parents, is said to
+                        superstitious fears they easily believe these things. <milestone n="2" unit="section"/> A six-months-old child, of freeborn parents, is said to
                         have shouted "Io Triumphe" in the vegetable market, whilst in the Forum
                             <milestone n="3??" unit="section"/> Boarium an ox is reported to have
                         climbed up of its own accord to the third story of a house, and then,
@@ -2648,8 +2493,7 @@ Added to repository. Passed SGML parse.
                         to the other portents, the decemvirs were ordered to consult the Sacred
                         Books, but in the case of the shower of stones at Picenum a nine days'
                         sacred feast was proclaimed, at the close of which almost the whole
-                        community busied itself with the expiation of the others. <milestone n="7"
-                            unit="section"/> First of all the City was purified, and full-grown
+                        community busied itself with the expiation of the others. <milestone n="7" unit="section"/> First of all the City was purified, and full-grown
                         victims were sacrificed to the deities named in the Sacred Books; an
                         offering of forty pounds' weight of gold was conveyed to Juno at Lanuvium,
                         and the matrons dedicated a bronze statue of that goddess on the Aventine.
@@ -2658,15 +2502,13 @@ Added to repository. Passed SGML parse.
                         be rendered to Fortuna on Algidus. <milestone n="9" unit="section"/> In Rome
                         also a lectisternium was ordered for Juventas and a special service of
                         intercession at the temple of Hercules, and afterwards one in which the
-                        whole population were to take part at all the shrines. <milestone n="10"
-                            unit="section"/> Five full-grown victims were sacrificed to the Genius
+                        whole population were to take part at all the shrines. <milestone n="10" unit="section"/> Five full-grown victims were sacrificed to the Genius
                         of Rome, and C. Atilius Serranus, the praetor, received instructions to
                         undertake certain vows which were to be discharged should the commonwealth
-                        remain in the same condition for ten years. <milestone n="11" unit="section"
-                        /> These ceremonial observances and vows, ordered in obedience to the Sacred
+                        remain in the same condition for ten years. <milestone n="11" unit="section"/> These ceremonial observances and vows, ordered in obedience to the Sacred
                         Books, did much to allay the religious fears of the people. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="63" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="63" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> One of the consuls elect was C. Flaminius,
                         and to him was assigned by lot the command of the legions at Placentia. He
@@ -2685,8 +2527,7 @@ Added to repository. Passed SGML parse.
                         patricians. <milestone n="4" unit="section"/> The question excited the
                         keenest opposition and brought Flaminius into the worst possible odium with
                         the nobility through his support of it, but on the other hand made him a
-                        popular favourite and procured for him his second consulship. <milestone
-                            n="5" unit="section"/> Suspecting, therefore, that they would endeavour
+                        popular favourite and procured for him his second consulship. <milestone n="5" unit="section"/> Suspecting, therefore, that they would endeavour
                         to detain him in the City by various devices, such as falsifying the
                         auspices or the delay necessitated by the Latin Festival, or other
                         hindrances to which as consul he was liable, he gave out that he had to take
@@ -2731,6 +2572,6 @@ Added to repository. Passed SGML parse.
                         of the Apennines. </p>
                 </div>
             </div>
-        </body>
-    </text>
+        </div>
+    </body></text>
 </TEI>

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
-                <title>History of Rome, books 21-45 - 36</title>
+                <title type="work">History of Rome, books 21-45 - 36</title>
                 <title type="sub">Machine readable text</title>
-                <author>Titus Livius (Livy)</author>
+                <author n="Titus Livius (Livy)">Titus Livius (Livy)</author>
                 <editor role="translator">Rev. Canon Roberts</editor>
                 <sponsor>Perseus Project, Tufts University</sponsor>
                 <principal>Gregory Crane</principal>
@@ -18,7 +18,6 @@
                 </respStmt>
                 <funder n="org:NEH">The National Endowment for the Humanities</funder>
             </titleStmt>
-            <extent>about 1.7 Mb</extent>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
@@ -39,7 +38,7 @@
                                 <publisher>E. P. Dutton and Co.</publisher>
                                 <date>1912</date>
                             </imprint>
-                            <biblScope type="volume">1</biblScope>
+                            <biblScope unit="volume">1</biblScope>
                         </monogr>
                     </biblStruct>
                     <biblStruct default="false">
@@ -55,16 +54,34 @@
                                 <publisher>E. P. Dutton and Co.</publisher>
                                 <date>1912</date>
                             </imprint>
-                            <biblScope type="volume">2</biblScope>
+                            <biblScope unit="volume">2</biblScope>
                         </monogr>
                     </biblStruct>
                 </listBibl>
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                    matchPattern="(\\w+).(\\w+).(\\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:milestone[@n=\'$2\']/tei:milestone[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                    matchPattern="(\\w+).(\\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:milestone[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                    matchPattern="(\\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
-                <refState unit="book"/>
-                <refState unit="chapter" n="chunk"/>
+                <refState unit="book" delim="."/>
+                <refState unit="chapter" delim="."/>
+                <refState unit="section"/>
             </refsDecl>
         </encodingDesc>
         <profileDesc>
@@ -117,13 +134,14 @@ Added to repository. Passed SGML parse.
             </change>
         -->
             <change when="2014-10-09" who="Stella Dee">edited markup</change>
-        </revisionDesc>
+        <change when="2015-12-03" who="Zach Himes"/><change when="2006-04-26" who="Jason Bates">ed. </change>
+<change who="balmas01" when="2013-09-13T11:20:31">Revision 1.3  reverting texts back to pre_cts_reorg tagged version</change><change who="rsingh04" when="2009-12-01T18:17:55">Revision 1.1  moved more xml files around based on copyright status</change><change who="rsingh04" when="2009-07-17T16:01:55">Revision 1.6  major fixes to Livy texts. separated english from latin in loeb texts, added separate abbs for each book since texts do not have all the books.  got rid of views because they didn't work well and were a pain.  things should not link up between different texts much better</change><change who="lcerrato" when="2008-11-14T22:05:52">Revision 1.5  fixing author names for consistent sorting</change><change who="rsingh04" when="2008-11-14T20:52:40">Revision 1.4  updated titles</change><change who="lcerrato" when="2008-11-14T18:45:59">Revision 1.3  fixed dup books 27, added header for book 28 and book 21 (found online)</change><change who="gcrane" when="2006-10-04T13:29:19">Revision 1.2  small mods</change><change who="gcrane" when="2006-09-02T14:04:03">Revision 1.1  copies of the xlation without any automagically added sections</change><change who="gcrane" when="2006-04-28T02:13:21">Revision 1.1  added HEADs for individual books</change><change who="packel" when="2005-07-25T14:55:30">Revision 1.1  Added to repository. Passed SGML parse.</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
-        <body>
-            <div part="N" sample="complete" org="uniform" n="36" type="book">
+    <text>
+        <body><div type="translation" xml:lang="eng" n="urn:cts:canonical-latinLit:phi0914.phi00136.perseus-eng3">
+            <div part="N" sample="complete" org="uniform" n="36" type="textpart" subtype="book">
                 <head>War Against Antiochus-First Stage</head>
-                <div part="N" sample="complete" org="uniform" n="1" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="1" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> On entering upon their office the new
                         consuls, P. Cornelius Scipio and Manius Acilius Glabrio, were instructed by
@@ -150,22 +168,19 @@ Added to repository. Passed SGML parse.
                         whom Greece was allotted was to take over the army which by order of the
                         senate L. Quinctius had raised from Roman citizens and allies for service in
                         that province, and in addition the army which M. Baebius had with the
-                        authority of the senate taken to Macedonia. <milestone n="8" unit="section"
-                        /> He was also commissioned to take up reinforcements of not more than 5000
+                        authority of the senate taken to Macedonia. <milestone n="8" unit="section"/> He was also commissioned to take up reinforcements of not more than 5000
                         men from the allies outside Italy. It was further decided that L. Quinctius
-                        should be appointed second in command for this war. <milestone n="9"
-                            unit="section"/> The other consul to whom Italy was allotted was
+                        should be appointed second in command for this war. <milestone n="9" unit="section"/> The other consul to whom Italy was allotted was
                         instructed to conduct operations against the Boii with whichever army he
                         preferred of the two which the late consuls had, and to send the other to
                         Rome to form the City legions and be ready to go wherever the senate thought
                         fit. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="2" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="2" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Such were the decrees made by the senate
                         up to the actual allocation of the provinces. Then at last the consuls
-                        balloted, and Greece fell to Acilius, Italy to Cornelius. <milestone n="2"
-                            unit="section"/> When this was settled a senatus consultum was passed in
+                        balloted, and Greece fell to Acilius, Italy to Cornelius. <milestone n="2" unit="section"/> When this was settled a senatus consultum was passed in
                         the following terms: "Whereas the Roman people have at this time ordered
                         that there be war with Antiochus and with all who are under his rule, the
                         consuls shall on this behalf issue orders for a public intercession and M.
@@ -173,8 +188,7 @@ Added to repository. Passed SGML parse.
                         shrines.'' <milestone n="3" unit="section"/> This vow was made by the consul
                         in the following formula, as dictated by P. Licinius the Pontifex Maximus:
                         "If the war which the people has ordered to be taken in hand against King
-                        Antiochus be brought to such a close as the senate and people <milestone
-                            n="4??" unit="section"/> of Rome desire, then all the Roman people shall
+                        Antiochus be brought to such a close as the senate and people <milestone n="4??" unit="section"/> of Rome desire, then all the Roman people shall
                         celebrate in thy honour, Jupiter, Great Games for the space of ten days, and
                         oblations of money shall be made to all thy shrines in such wise as the
                         senate shall decree. <milestone n="5" unit="section"/> Whatsoever magistrate
@@ -191,16 +205,14 @@ Added to repository. Passed SGML parse.
                         <milestone n="7" unit="section"/> The distribution of the armies amongst
                         them was as follows: The new levies which had been raised by L. Quinctius
                         the preceding year were assigned to A. Cornelius, and his duty was to
-                        protect the whole of the coast round Tarentum and Brundisium. <milestone
-                            n="8" unit="section"/> It was decreed that L. Aemilius Paullus should
+                        protect the whole of the coast round Tarentum and Brundisium. <milestone n="8" unit="section"/> It was decreed that L. Aemilius Paullus should
                         take over the army which M. Fulvius had commanded as proconsul the year
                         before and also raise 3000 fresh infantry and 300 cavalry for service in
                         Further Spain, two-thirds to consist of allied troops, the remainder being
                         Romans. <milestone n="9" unit="section"/> A reinforcement of the same
                         strength was sent to C. Flaminius, who was continued in his command in
                         Hither Spain. <milestone n="10" unit="section"/> M. Aemilius Lepidus was
-                        ordered to take over the province and army of Sicily from <milestone
-                            n="11??" unit="section"/> L. Valerius, whom he was to succeed, and if it
+                        ordered to take over the province and army of Sicily from <milestone n="11??" unit="section"/> L. Valerius, whom he was to succeed, and if it
                         seemed advisable he was to retain him as propraetor and divide the province
                         with him; one section was to extend from Agrigentum to Pachynum, the other
                         from Pachynum to Tyndareum. L. Valerius was also to guard the latter coast
@@ -211,12 +223,11 @@ Added to repository. Passed SGML parse.
                         not to be sent to Greece but to Rome. <milestone n="14" unit="section"/> C.
                         Livius, the praetor who was to command the fleet, received instructions to
                         sail to Greece with twenty vessels which had completed their armament and
-                        take over the ships which Atilius had commanded. <milestone n="15"
-                            unit="section"/> The repairing and fitting out of the ships in the
+                        take over the ships which Atilius had commanded. <milestone n="15" unit="section"/> The repairing and fitting out of the ships in the
                         dockyards was placed in the hands of M. Junius, and he was to select the
                         crews of these vessels from freedmen. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="3" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="3" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Six commissioners were sent to Africa to
                         procure corn for Greece, the cost to be borne by Rome; three went to
@@ -228,8 +239,7 @@ Added to repository. Passed SGML parse.
                             <milestone n="3" unit="section"/> It was also forbidden for five
                         senators to be absent from the City at any one time. Whilst C. Livius was
                         doing his utmost to make the fleet ready for sea he was for some time
-                        delayed by a dispute with the citizens of the maritime colonies. <milestone
-                            n="4" unit="section"/> When they were impressed for the fleet they
+                        delayed by a dispute with the citizens of the maritime colonies. <milestone n="4" unit="section"/> When they were impressed for the fleet they
                         appealed to the tribunes of the plebs, who referred them to the senate.
                             <milestone n="5" unit="section"/> The senate unanimously decreed that
                         there was no exemption from service for the colonists. The colonies
@@ -238,8 +248,7 @@ Added to repository. Passed SGML parse.
                         Acilius, in compliance with a resolution of the senate, submitted two
                         questions to the College of Fetials. One was whether the declaration of war
                         had to be made to Antiochus personally, or whether it would be sufficient to
-                        announce it at one of his frontier garrisons. <milestone n="7"
-                            unit="section"/> The other was whether a separate declaration of war
+                        announce it at one of his frontier garrisons. <milestone n="7" unit="section"/> The other was whether a separate declaration of war
                         must be made to the Aetolians and whether in that case the league of amity
                         and alliance must first be denounced. <milestone n="8" unit="section"/> The
                         Fetials replied that they had already on a previous occasion, when they were
@@ -252,18 +261,16 @@ Added to repository. Passed SGML parse.
                         case of the Aetolians, they had actually declared war on Rome by taking
                         forcible possession of Demetrias, <milestone n="11??" unit="section"/> a
                         city belonging to the allies of Rome, by going to attack Chalcis by land and
-                        sea, and by bringing Antiochus into Europe to levy war on Rome. <milestone
-                            n="12" unit="section"/> When all the preparations were at last
+                        sea, and by bringing Antiochus into Europe to levy war on Rome. <milestone n="12" unit="section"/> When all the preparations were at last
                         completed, Acilius issued an edict for a general muster at Brundisium by the
                             <milestone n="13??" unit="section"/> 15th of May of the Roman soldiers
                         whom L. Quinctius had called up and those who had been supplied to him by
                         the Latins and allies, who were under orders to go with him to his province
                         as well as the military tribunes of the first and third legions. He himself
-                        left the City wearing his paludamentum on the 3rd of that month. <milestone
-                            n="14" unit="section"/> The praetors left at the same time for their
+                        left the City wearing his paludamentum on the 3rd of that month. <milestone n="14" unit="section"/> The praetors left at the same time for their
                         respective provinces. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="4" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="4" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Just before this a mission from the two
                         sovereigns, Philip and Ptolemy, arrived in Rome. Philip offered to furnish
@@ -273,13 +280,11 @@ Added to repository. Passed SGML parse.
                             <milestone n="3" unit="section"/> On their each offering to enter
                         Aetolia with all their forces and take their part in the war, Ptolemy was
                         excused, but Philip's envoys were informed that the senate and people of
-                        Rome would be grateful to him if he gave his support to Acilius. <milestone
-                            n="4" unit="section"/> Similar missions were despatched by the
+                        Rome would be grateful to him if he gave his support to Acilius. <milestone n="4" unit="section"/> Similar missions were despatched by the
                         Carthaginians and by Masinissa. <milestone n="5" unit="section"/> The
                         Carthaginians offered 100,000 modii of wheat and 50,000 of barley for the
                         use of the army; half the amount they would transport to Rome, and they
-                        pressed the Romans to accept it as a free gift. <milestone n="6"
-                            unit="section"/> They were further prepared to fit out a fleet at their
+                        pressed the Romans to accept it as a free gift. <milestone n="6" unit="section"/> They were further prepared to fit out a fleet at their
                         own expense and pay in one lump sum the tribute of which many annual
                         instalments had still to run. <milestone n="7" unit="section"/> Masinissa's
                         envoys stated that he was prepared to supply 50,000 modii of wheat and
@@ -287,13 +292,12 @@ Added to repository. Passed SGML parse.
                         250,000 of barley for consumption in Rome. <milestone n="8" unit="section"/>
                         He would also furnish Acilius with 500 cavalry and 20 elephants. In the
                         matter of corn both parties were informed that the Roman people would make
-                        use of it on condition that they paid for it; <milestone n="9"
-                            unit="section"/> the Carthaginian offer of a fleet was declined, beyond
+                        use of it on condition that they paid for it; <milestone n="9" unit="section"/> the Carthaginian offer of a fleet was declined, beyond
                         the vessels which they were bound to supply under the terms of the treaty,
                         and in reply to the offer of money the Romans refused to accept any before
                         the dates at which the instalments became due. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="5" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="5" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> During these proceedings in Rome
                         Antiochus, who was at Chalcis, was not idle during the winter. Some of the
@@ -326,13 +330,12 @@ Added to repository. Passed SGML parse.
                         envoys to them to discuss the matters which concerned him and them alike.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="6" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="6" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> He next proceeded to Boeotia. The reasons
                         which the Boeotians gave for their animosity towards Rome I have already
                         stated-the assassination of Brachyllus and Quinctius' attack on Coronea in
-                        consequence of the massacre of Roman soldiers. <milestone n="2"
-                            unit="section"/> But as a matter of fact, that nation once so famous for
+                        consequence of the massacre of Roman soldiers. <milestone n="2" unit="section"/> But as a matter of fact, that nation once so famous for
                         its discipline had been for many generations deteriorating both in its
                         public and private life, and many were in a condition which could not
                         possibly long continue without a revolutionary change. The leading Boeotians
@@ -342,8 +345,7 @@ Added to repository. Passed SGML parse.
                         committed hostile acts which were neither trifling nor such as could be
                         explained away, he took the same line in addressing the Boeotian council
                         that he had taken at his first conference at Chalcis and had instructed his
-                        envoys to take in the council of the Achaeans. <milestone n="4"
-                            unit="section"/> He simply asked that friendly relations might be
+                        envoys to take in the council of the Achaeans. <milestone n="4" unit="section"/> He simply asked that friendly relations might be
                         established with him, not that war should be declared against Rome. No one
                         was deceived as to what he really meant; however, a resolution veiled in
                         inoffensive terms was passed in support of the king and in opposition to
@@ -351,8 +353,7 @@ Added to repository. Passed SGML parse.
                         returned to Chalcis. <milestone n="6" unit="section"/> Letters had been
                         previously sent to the Aetolian leaders requesting them to meet him at
                         Demetrias that he might discuss with them the general conduct of the war,
-                        and he arrived there by sea on the day fixed for the meeting. <milestone
-                            n="7" unit="section"/> Amynander, who had been invited from Athamania to
+                        and he arrived there by sea on the day fixed for the meeting. <milestone n="7" unit="section"/> Amynander, who had been invited from Athamania to
                         take part in the discussion, and Hannibal, who had not been consulted for
                         some time, were both present. <milestone n="8" unit="section"/> A discussion
                         arose regarding the people of Thessaly; all present thought they ought to be
@@ -364,7 +365,7 @@ Added to repository. Passed SGML parse.
                         their forces and frightening <milestone n="10??" unit="section"/> them into
                         compliance if they hesitated. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="7" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="7" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Whilst the debate was revolving entirely
                         round these details Hannibal was asked for his opinion, and in what he said
@@ -375,16 +376,14 @@ Added to repository. Passed SGML parse.
                         should have expressed the same view which I am expressing now with regard to
                         the Thessalians. <milestone n="3" unit="section"/> I consider that it is of
                         the first importance that we should use every possible means to bring Philip
-                        and the Macedonians into an armed alliance with us. <milestone n="4"
-                            unit="section"/> As to Euboea and the Boeotians and the Thessalians, who
+                        and the Macedonians into an armed alliance with us. <milestone n="4" unit="section"/> As to Euboea and the Boeotians and the Thessalians, who
                         can doubt that these people who have no strength of their own and always
                         cringe before a power which is present to their eyes will display the same
                         craven spirit which marks the proceedings of their councils in suing for
                         pardon, and as soon as they see a Roman army in Greece will turn to their
                         accustomed obedience? <milestone n="5" unit="section"/> Nor will they be
                         blamed for refusing to try conclusions with your strength when you and your
-                        army are amongst them and the Romans are far away. <milestone n="6"
-                            unit="section"/> How much sooner ought we-how much better would it be-to
+                        army are amongst them and the Romans are far away. <milestone n="6" unit="section"/> How much sooner ought we-how much better would it be-to
                         secure the adhesion of Philip than of these people! For if he once takes up
                         the cause he will have everything at stake, and he will contribute an amount
                         of strength which will not only be an accession to us in a war with Rome,
@@ -412,8 +411,7 @@ Added to repository. Passed SGML parse.
                         Greece, the strongest was his constant asseveration that Philip was
                         complaining and chafing under the servile conditions imposed upon him in the
                         guise of peace. He used to compare the king's rage to that of some animal
-                        chained or shut up and longing to burst his prison bars. <milestone n="13"
-                            unit="section"/> If that is his state of mind, let us loose his chains
+                        chained or shut up and longing to burst his prison bars. <milestone n="13" unit="section"/> If that is his state of mind, let us loose his chains
                         and burst the bars that hold him in so that he can vent his long-restrained
                         rage on our common foe. But if our delegates are unable to influence him,
                         let us at all events see to it that if we cannot get him on our side the
@@ -432,14 +430,12 @@ Added to repository. Passed SGML parse.
                         Cisalpine Gaul were wrapped in the flames of war and, what would have
                         alarmed them most of all, that Hannibal was in Italy. I am of opinion that
                         even now you ought to bring up the whole of your military and naval forces
-                        and let a fleet of transports accompany them laden with supplies. <milestone
-                            n="17" unit="section"/> We here are too few for the requirements of war
+                        and let a fleet of transports accompany them laden with supplies. <milestone n="17" unit="section"/> We here are too few for the requirements of war
                         and too many for our scanty commissariat. When you have concentrated your
                         entire strength, Antiochus, you might divide your fleet and keep one
                         division cruising off Corcyra, that there may be no safe and easy passage
                         for the Romans, the other you would <milestone n="18??" unit="section"/>
-                        send across to the coast of Italy opposite Sardinia and Africa. <milestone
-                            n="19" unit="section"/> You yourself would advance with all your land
+                        send across to the coast of Italy opposite Sardinia and Africa. <milestone n="19" unit="section"/> You yourself would advance with all your land
                         forces into the country round Byllis; from there you would protect Greece
                         and give the Romans the impression that you are going to sail to Italy, and
                         should circumstances render it necessary you will be in readiness to do so.
@@ -451,13 +447,12 @@ Added to repository. Passed SGML parse.
                         whatever course, Antiochus, seems best to you may receive the approval of
                         the gods." </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="8" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="8" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Such was the substance of Hannibal's
                         speech, which was applauded at the time but led to no practical results. Not
                         one of the measures he advocated was carried out beyond the despatch of
-                        Polyxenidas to bring up the fleet and the troops from Asia. <milestone n="2"
-                            unit="section"/> Delegates were sent to the council of the Thessalians
+                        Polyxenidas to bring up the fleet and the troops from Asia. <milestone n="2" unit="section"/> Delegates were sent to the council of the Thessalians
                         which was sitting at Larisa, and the Aetolians and Amynander fixed a day for
                         the muster of their armies at Pherae, whither the king proceeded with his
                         troops at once. <milestone n="3" unit="section"/> Whilst waiting there for
@@ -478,7 +473,7 @@ Added to repository. Passed SGML parse.
                         winter quarters; he himself would go to meet him so that they might consult
                         as to what steps ought to be taken. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="9" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="9" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Antiochus was now encamped at Pherae,
                         where the Aetolians and Amynander had joined him, when a deputation came
@@ -493,15 +488,12 @@ Added to repository. Passed SGML parse.
                         purpose of aggression, but solely to establish and protect the freedom of
                         the Thessalians. <milestone n="5" unit="section"/> A commissioner was
                         despatched to Pherae to make a similar statement, but without giving him any
-                        reply the Pheraeans sent their chief magistrate to Antiochus. <milestone
-                            n="6" unit="section"/> He spoke in pretty much the same strain as the
+                        reply the Pheraeans sent their chief magistrate to Antiochus. <milestone n="6" unit="section"/> He spoke in pretty much the same strain as the
                         Chalcidians at the conference under similar circumstances on the Euripus,
-                        though some things he said showed greater courage and resolution. <milestone
-                            n="7" unit="section"/> The king advised them to consider their position
+                        though some things he said showed greater courage and resolution. <milestone n="7" unit="section"/> The king advised them to consider their position
                         most carefully lest they should adopt a policy which, whilst they were
                         cautiously providing against future contingencies, might give them immediate
-                        cause for regret, and with this advice he dismissed their envoy. <milestone
-                            n="8" unit="section"/> When the result of this mission was reported at
+                        cause for regret, and with this advice he dismissed their envoy. <milestone n="8" unit="section"/> When the result of this mission was reported at
                         Pherae, the people did not hesitate for a moment; they were determined to
                         suffer everything which the chances of war might bring in defence of their
                         loyalty to Rome, and made every possible preparation for the defence of
@@ -512,8 +504,7 @@ Added to repository. Passed SGML parse.
                         whole of Thessaly, so he did his utmost to spread terror everywhere.
                             <milestone n="10" unit="section"/> At first the beleaguered garrison
                         offered a stout resistance to his furious assaults, but when they saw many
-                        of the defenders killed or wounded their courage began <milestone n="11??"
-                            unit="section"/> to sink and it was only by the reproaches of their
+                        of the defenders killed or wounded their courage began <milestone n="11??" unit="section"/> to sink and it was only by the reproaches of their
                         officers that they were recalled to the necessity of holding to their
                         purpose. <milestone n="12" unit="section"/> Their numbers became so
                         diminished that they abandoned the outer circuit of their walls and
@@ -521,8 +512,7 @@ Added to repository. Passed SGML parse.
                         line of fortifications. At last their position became hopeless and fearing,
                         if the place were taken by storm, that they would meet with no mercy, they
                         surrendered. The king lost no time in taking advantage of the alarm which
-                        this capture created and sent 4000 men to Scotusa. <milestone n="13"
-                            unit="section"/> Here the townsmen promptly surrendered in view of the
+                        this capture created and sent 4000 men to Scotusa. <milestone n="13" unit="section"/> Here the townsmen promptly surrendered in view of the
                         recent example of the Pheraeans, seeing that they had been compelled by
                         stress of circumstances to do what at first they were determined not to do.
                             <milestone n="14" unit="section"/> Hippolochus and his garrison from
@@ -530,7 +520,7 @@ Added to repository. Passed SGML parse.
                         These were all sent away unhurt as the king thought that this act would go
                         far to gain the sympathies of the Lariseans. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="10" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="10" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> These successes he accomplished within ten
                         days of his appearance before Pherae. Continuing his march with the whole of
@@ -544,23 +534,19 @@ Added to repository. Passed SGML parse.
                         example of so many cities voluntarily surrendering would dissuade them from
                         an obstinate resistance. <milestone n="4" unit="section"/> In order to
                         intimidate the defenders he had his elephants driven in front of the line,
-                        the army following in order of battle up to the city. <milestone n="5"
-                            unit="section"/> The sight made a great many of the Lariseans waver
+                        the army following in order of battle up to the city. <milestone n="5" unit="section"/> The sight made a great many of the Lariseans waver
                         between fear of the enemy at their gates and fear of being false to their
                         distant allies. During this time Amynander and his Athamanians seized
                         Pellinaeum, and Menippus advancing into Perrhaebia with an Aetolian force of
                         3000 infantry and 200 cavalry took Malloea and Cyretiae by storm and ravaged
                         the territory of Tripolis. <milestone n="6" unit="section"/> After these
                         rapid successes they returned to the king at Larisa and found him holding a
-                        council of war to decide what should be done about the city. <milestone
-                            n="7" unit="section"/> There was considerable diversity of opinion. Some
+                        council of war to decide what should be done about the city. <milestone n="7" unit="section"/> There was considerable diversity of opinion. Some
                         were in favour of an immediate assault as the city was situated in a plain
                         open on all sides to an approach over level ground, and they urged that
                         there should be no delay in constructing siege works and bringing up
-                        artillery to attack the walls on all sides simultaneously. <milestone n="8"
-                            unit="section"/> Others reminded the council that there was no
-                        comparison between the strength of this city and that of Pherae; <milestone
-                            n="9" unit="section"/> besides, it was now winter, a season quite
+                        artillery to attack the walls on all sides simultaneously. <milestone n="8" unit="section"/> Others reminded the council that there was no
+                        comparison between the strength of this city and that of Pherae; <milestone n="9" unit="section"/> besides, it was now winter, a season quite
                         unsuitable for warlike operations, most of all so for investing and
                         assaulting a city. <milestone n="10" unit="section"/> While the king was
                         uncertain as to whether there was most to be hoped or feared from the
@@ -580,10 +566,9 @@ Added to repository. Passed SGML parse.
                         that the purpose of his march, the raising of the siege, was effected he
                         nevertheless went on to Larisa to reassure his allies as to the future.
                             <milestone n="13" unit="section"/> They were doubly delighted, first at
-                        the withdrawal of the enemy from their soil and then <milestone n="14??"
-                            unit="section"/> at the sight of Roman troops within their walls. </p>
+                        the withdrawal of the enemy from their soil and then <milestone n="14??" unit="section"/> at the sight of Roman troops within their walls. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="11" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="11" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The king left Demetrias for Chalcis. Here
                         he fell in love with a daughter of Cleoptolemus, a Chalcidian magnate, and
@@ -628,7 +613,7 @@ Added to repository. Passed SGML parse.
                         placed 300 men in Medione and 200 in Tyrrheum, his intention being that they
                         should fall into the king's hands and be practically hostages. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="12" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="12" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Meanwhile the king's agents arrived in
                         Medione. They were received in audience by the council and in the subsequent
@@ -657,11 +642,9 @@ Added to repository. Passed SGML parse.
                             <milestone n="8" unit="section"/> They returned a perfectly unambiguous
                         answer to his summons and told him that they would not enter into any fresh
                         alliance unless the Roman commanders authorised them to do so, at the same
-                        time they closed their gates and manned their walls. <milestone n="9"
-                            unit="section"/> Cn. Octavius had been supplied with a body of troops
+                        time they closed their gates and manned their walls. <milestone n="9" unit="section"/> Cn. Octavius had been supplied with a body of troops
                         and a few ships by A. Postumius, whom Atilius had placed in command at
-                        Cephalania, and his timely arrival in Leucas <milestone n="10??"
-                            unit="section"/> gave the Acarnanians fresh heart, as he reported that
+                        Cephalania, and his timely arrival in Leucas <milestone n="10??" unit="section"/> gave the Acarnanians fresh heart, as he reported that
                         the consul Manius Acilius had crossed the sea with his legions and the
                         Romans were encamped in Thessaly. <milestone n="11" unit="section"/> His
                         report was the more readily believed because the season of the year was
@@ -669,7 +652,7 @@ Added to repository. Passed SGML parse.
                         and in one or two other towns in Acarnania, withdrew from Tyrrheum and
                         passing through the cities of Aetolia and Phocis returned to Chalcis. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="13" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="13" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> M. Baebius and Philip, after their meeting
                         at Dassaretiae, when they sent Ap. Claudius to relieve Larisa had returned
@@ -687,20 +670,18 @@ Added to repository. Passed SGML parse.
                         of the besieging force or hoping to obtain more favourable terms, made their
                         surrender. The two commanders then went on with their combined forces to
                         recover those towns which the Athamanians were holding, namely Aeginium,
-                        Ericinium, Gomphi, Silana, Tricca, Meliboea and Phaloria. <milestone n="6"
-                            unit="section"/> They next invested Pellinaeum, where Philip of
+                        Ericinium, Gomphi, Silana, Tricca, Meliboea and Phaloria. <milestone n="6" unit="section"/> They next invested Pellinaeum, where Philip of
                         Megalopolis was stationed <milestone n="7??" unit="section"/> with 500
                         infantry and 40 cavalry, and before they delivered the assault they sent to
                         Philip to warn him against forcing them to take extreme measures. He sent
                         back a defiant answer and said that he would have trusted himself in the
                         hands of Romans or Thessalians, but he would not place himself at the mercy
                         of Philip. <milestone n="8" unit="section"/> As it was evident that force
-                        must be employed, and that while the siege was <milestone n="9??"
-                            unit="section"/> going on Limnaea could be attacked, it was decided that
+                        must be employed, and that while the siege was <milestone n="9??" unit="section"/> going on Limnaea could be attacked, it was decided that
                         the king should go there whilst Baebius remained to conduct the siege of
                         Pellinaeum. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="14" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="14" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Meantime the consul Manius Atilius had
                         landed with 10,000 infantry, 2000 cavalry and 15 elephants. He ordered the
@@ -720,26 +701,22 @@ Added to repository. Passed SGML parse.
                         surrendered were handed over to Philip. They amounted to 4000 men. The
                         consul went on to Larisa to hold a council of war to decide as to future
                         operations, and on his route he was met by delegates from Cierium and
-                        Metropolis, who offered the surrender of their cities. <milestone n="6"
-                            unit="section"/> Philip was in hopes of gaining possession of Athamania,
+                        Metropolis, who offered the surrender of their cities. <milestone n="6" unit="section"/> Philip was in hopes of gaining possession of Athamania,
                         and he treated his Athamanian prisoners with special indulgence, with the
-                        design of winning their countrymen through them. <milestone n="7"
-                            unit="section"/> After sending them home he led his army into the
+                        design of winning their countrymen through them. <milestone n="7" unit="section"/> After sending them home he led his army into the
                         country. The account which the returned prisoners brought of the king's
                         clemency and generosity towards them produced a great effect upon their
                         countrymen. <milestone n="8" unit="section"/> Had Amynander remained in his
                         kingdom he might have kept some of his subjects loyal by his personal
                         authority, but the fear of being betrayed to his old enemy Philip made him
-                        flee, together with his wife and children, to Ambracia. <milestone n="9"
-                            unit="section"/> The whole of Athamania in consequence submitted to
+                        flee, together with his wife and children, to Ambracia. <milestone n="9" unit="section"/> The whole of Athamania in consequence submitted to
                         Philip. </p>
                     <p> The consul remained a few days at Larisa, mainly in order to recruit the
                         horses and draught cattle, which owing to the voyage and the subsequent
                         marching had got out of condition. <milestone n="10" unit="section"/> When
                         his army was, so to speak, renewed by the short rest, he marched to Crannon,
                         and on his way he received the surrender of Pharsalus, Scotusa and Pherae,
-                        together with the garrisons which Antiochus had placed in them. <milestone
-                            n="11" unit="section"/> These troops were asked whether they would be
+                        together with the garrisons which Antiochus had placed in them. <milestone n="11" unit="section"/> These troops were asked whether they would be
                         willing to remain with him. A thousand volunteered, and these he handed over
                         to Philip; the rest he disarmed and sent back to Demetrias. He next captured
                         Proerna and the fortified posts in the neighbourhood, and continued his
@@ -751,18 +728,16 @@ Added to repository. Passed SGML parse.
                         them within speaking distance and warn them against such madness, but when
                         he saw that they persisted he ordered a military tribune to work round them
                         with two maniples and cut off their retreat to the city, which in the
-                        absence of its defenders the consul occupied. <milestone n="14"
-                            unit="section"/> When they heard the shouts from the captured city
+                        absence of its defenders the consul occupied. <milestone n="14" unit="section"/> When they heard the shouts from the captured city
                         behind them, they fled back from all sides and were cut to pieces.
                             <milestone n="15" unit="section"/> The next day the consul reached the
                         Spercheus, and from there ravaged the fields of the Hypataeans. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="15" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="15" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Antiochus was all this time at Chalcis,
                         having at last discovered that he had gained nothing from Greece beyond a
-                        pleasant winter at Chalcis and a disreputable marriage. <milestone n="2"
-                            unit="section"/> He now accused the Aetolians of having made empty
+                        pleasant winter at Chalcis and a disreputable marriage. <milestone n="2" unit="section"/> He now accused the Aetolians of having made empty
                         promises and admired Hannibal, not only as a man of prudence and foresight,
                         but also as little short of a prophet, seeing how he had foretold everything
                         which was happening. <milestone n="3" unit="section"/> In order that his
@@ -779,8 +754,7 @@ Added to repository. Passed SGML parse.
                         serve. Finding himself deserted on all sides by his own troops, who were
                         hanging back in Asia, and by his allies, who were not doing what they
                             <milestone n="6??" unit="section"/> undertook to do when they invited
-                        him, he withdrew into the pass of Thermopylae. <milestone n="7"
-                            unit="section"/> This mountain range cuts Greece in two, just as Italy
+                        him, he withdrew into the pass of Thermopylae. <milestone n="7" unit="section"/> This mountain range cuts Greece in two, just as Italy
                         is intersected by the Apennines. To the north of the pass are situated
                         Epirus, Perrhaebia, Magnesia, Thessaly, the Achaeans of Phthiotis, and the
                         Maliac Gulf. <milestone n="8" unit="section"/> South of it lie the greater
@@ -794,13 +768,11 @@ Added to repository. Passed SGML parse.
                         name of Callidromus. <milestone n="10" unit="section"/> The road running
                         through the lower ground between its base and the Maliac Gulf is not more
                         than sixty paces broad and is the only military road which can be traversed
-                        by an army, and then only if it meets with no opposition. <milestone n="11"
-                            unit="section"/> For this reason the place is called Pylae, and also
-                        Thermopylae, from the hot springs there, and is famous <milestone n="12??"
-                            unit="section"/> for the battle against the Persians, but still more so
+                        by an army, and then only if it meets with no opposition. <milestone n="11" unit="section"/> For this reason the place is called Pylae, and also
+                        Thermopylae, from the hot springs there, and is famous <milestone n="12??" unit="section"/> for the battle against the Persians, but still more so
                         for the glorious death of the Lacedaemonians who fought there. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="16" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="16" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> In a state of mind very unlike theirs
                         Antiochus pitched his camp inside the narrowest part of the pass and
@@ -813,8 +785,7 @@ Added to repository. Passed SGML parse.
                         hold Heraclea, a place just in front of the pass, the other to Hypata.
                             <milestone n="4" unit="section"/> He quite expected that the consul
                         would attack Heraclea; and from Hypata numerous messages had come stating
-                        that the whole of the surrounding country was being laid waste. <milestone
-                            n="5" unit="section"/> The consul ravaged the territory of Hypata first
+                        that the whole of the surrounding country was being laid waste. <milestone n="5" unit="section"/> The consul ravaged the territory of Hypata first
                         and then that of Heraclea; in neither place did the Aetolians prove of the
                         slightest use, and finally encamped opposite the king in the mouth of the
                         pass at the hot springs. Both the Aetolian detachments shut themselves up in
@@ -835,20 +806,18 @@ Added to repository. Passed SGML parse.
                             <milestone n="10" unit="section"/> If the king were defeated they would
                         then have their forces intact and be able to assist in the defence of the
                         cities round them, if on the other hand he were victorious they would then
-                        be in a position to take up the pursuit of the fugitive Romans. <milestone
-                            n="11" unit="section"/> Each party held to its opinion, and not only
+                        be in a position to take up the pursuit of the fugitive Romans. <milestone n="11" unit="section"/> Each party held to its opinion, and not only
                         held to it but acted upon it; 2000 remained in Heraclea, and the others,
                         formed into three divisions, occupied the three heights of Callidromus,
                         Rhoduntia and Tichius. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="17" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="17" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> When the consul saw that the heights were
                         occupied by the Aetolians he sent M. Porcius Cato and L. Valerius Flaccus,
                         men of consular rank commanding under him, to attack their fortified
                         positions, Flaccus against Rhoduntia and Tichius, and Cato against
-                        Callidromus. They each took a picked force of 2000 infantry. <milestone
-                            n="2" unit="section"/> Before making his general advance against the
+                        Callidromus. They each took a picked force of 2000 infantry. <milestone n="2" unit="section"/> Before making his general advance against the
                         enemy, the consul called his men on parade and addressed a few words to
                         them. "Soldiers," he said, "I see that there are very many amongst you, men
                         of all ranks, who have campaigned in this very province under the leadership
@@ -856,16 +825,14 @@ Added to repository. Passed SGML parse.
                         Macedonian war the pass at the <milestone n="4??" unit="section"/> Aous was
                         more difficult to force than this one, for here we have gates and this
                         passage as though provided by nature is the only one available, every other
-                        route between the two seas being closed to us. <milestone n="5"
-                            unit="section"/> On that occasion, too, the enemy defences were stronger
+                        route between the two seas being closed to us. <milestone n="5" unit="section"/> On that occasion, too, the enemy defences were stronger
                         and constructed on more advantageous ground; the hostile army was more
                         numerous and made up of far better soldiery; there were in that army
                         Macedonians, Thracians and Illyrians, all very warlike tribes; here there
                         are Syrians and Asiatic Greeks, the meanest of mankind, and born only for
                         slavery. <milestone n="6" unit="section"/> The monarch who was opposed to us
                         then was a true soldier, trained from his youth in wars with the Thracians
-                        and the Illyrians and all the nations round him; <milestone n="7"
-                            unit="section"/> this man-to say nothing of his previous life-has done
+                        and the Illyrians and all the nations round him; <milestone n="7" unit="section"/> this man-to say nothing of his previous life-has done
                         nothing during the whole of the winter months more memorable than marrying a
                         girl for love out of a private family and, even when compared with their
                         fellow-townsmen, of obscure origin, and now the newly-wedded bridegroom,
@@ -877,8 +844,7 @@ Added to repository. Passed SGML parse.
                         considerable number, it was impossible to keep them in camp, they are at
                         loggerheads among themselves, and after insisting that Hypata and Heraclea
                         must be defended they refused to defend either place and took refuge on the
-                        mountain heights, some shutting themselves up in Heraclea. <milestone n="10"
-                            unit="section"/> The king himself has shown clearly that he durst not
+                        mountain heights, some shutting themselves up in Heraclea. <milestone n="10" unit="section"/> The king himself has shown clearly that he durst not
                         venture to meet us on fair ground, he is not even fixing his camp in open
                         country; he has abandoned the whole of the district in front of him which he
                         boasts of having taken from us and from Philip, and has hidden himself
@@ -887,8 +853,7 @@ Added to repository. Passed SGML parse.
                         it. <milestone n="11" unit="section"/> What difference is there, as a
                         visible proof of fear, between his shutting himself up here or behind the
                         walls of a besieged city? The pass, however, will not protect Antiochus, nor
-                        will the heights which the Aetolians have seized protect them. <milestone
-                            n="12" unit="section"/> Sufficient caution and foresight have been
+                        will the heights which the Aetolians have seized protect them. <milestone n="12" unit="section"/> Sufficient caution and foresight have been
                         exercised to prevent your having anything to fight against but the actual
                         enemy. <milestone n="13" unit="section"/> You must bear in mind that you are
                         not fighting only for the freedom of Greece, though it will be a splendid
@@ -906,7 +871,7 @@ Added to repository. Passed SGML parse.
                         the field tomorrow assured that <milestone n="16??" unit="section"/> the
                         gods will help us." </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="18" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="18" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> After this address the soldiers were
                         dismissed and got their armour and weapons ready before they took food and
@@ -914,8 +879,7 @@ Added to repository. Passed SGML parse.
                         the consul hung out the signal for battle and formed his line on a narrow
                         front to suit the confined limits of the ground. When the king saw the
                         standards of the enemy he also led out his men. Part of his light infantry
-                        he stationed in front of their rampart to form the first line. <milestone
-                            n="3" unit="section"/> Behind them in support he posted the Macedonians,
+                        he stationed in front of their rampart to form the first line. <milestone n="3" unit="section"/> Behind them in support he posted the Macedonians,
                         the main strength of his arm, known as the "sarisophori"; they extended
                         across the whole length of the rampart. To the left of them were posted a
                         body of javelin men, bowmen and slingers immediately under the foot of the
@@ -924,70 +888,60 @@ Added to repository. Passed SGML parse.
                         right of the Macedonians, towards the end of his lines, where the ground
                         beyond down to the sea is impassable owing to bogs and quicksands, he posted
                         the elephants with their usual guard, and behind them the cavalry, and a
-                        short distance behind them again the rest of his troops. <milestone n="5"
-                            unit="section"/> The Macedonians in front of the rampart had no
+                        short distance behind them again the rest of his troops. <milestone n="5" unit="section"/> The Macedonians in front of the rampart had no
                         difficulty at first in resisting the Romans, who were trying at all points
                         to break through, and they received considerable assistance from those on
                         the higher ground, who discharged bullets from their slings, arrows and
-                        javelins all at once, a perfect cloud of missiles. <milestone n="6"
-                            unit="section"/> But as the enemy's pressure increased and the attack
+                        javelins all at once, a perfect cloud of missiles. <milestone n="6" unit="section"/> But as the enemy's pressure increased and the attack
                         was made in greater force they gradually fell back to their rampart, and
                         standing upon it made practically a second rampart with their levelled
                         spears. <milestone n="7" unit="section"/> The rampart, owing to its moderate
                         height, not only offered a higher position from which to fight, but also
-                        enabled them to reach the enemy below with their long spears. <milestone
-                            n="8" unit="section"/> Many in their reckless attempts to mount the
+                        enabled them to reach the enemy below with their long spears. <milestone n="8" unit="section"/> Many in their reckless attempts to mount the
                         rampart were run through, and they would have had either to retire baffled
                         or sustain serious losses had not M. Porcius appeared on a hill which
                         commanded the camp. He had dislodged the Aetolians from the crest of
                         Callidromus and killed the greater part of them, attacking them when they
                         were off their guard and most of them asleep. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="19" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="19" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Flaccus was not so fortunate, his attempt
                         to reach the fortified posts on Tichius and Rhoduntia was a failure.
                             <milestone n="2" unit="section"/> The Macedonians and the other troops
                         in the king's camp could at first only make out a moving mass of men in the
                         distance, and were under the impression that the Aetolians had seen the
-                        fighting from afar and were coming to their assistance. <milestone n="3"
-                            unit="section"/> When, however, they recognised the approaching
+                        fighting from afar and were coming to their assistance. <milestone n="3" unit="section"/> When, however, they recognised the approaching
                         standards and arms and discovered their mistake, they were so panic-struck
-                        that they flung away their weapons and fled. <milestone n="4" unit="section"
-                        /> The pursuit was impeded by the entrenchments of the camp and the confined
+                        that they flung away their weapons and fled. <milestone n="4" unit="section"/> The pursuit was impeded by the entrenchments of the camp and the confined
                         space through which the pursuers had to pass, but the elephants were the
                         greatest hindrance, for it was difficult for the infantry to get past them,
                         and impossible for the cavalry; the frightened horses created more confusion
                         than in the actual battle. The plunder of the camp still further delayed the
                         pursuit. <milestone n="5" unit="section"/> However, they followed up the
-                        enemy as far as Scarphea, after which they returned to camp. <milestone
-                            n="6" unit="section"/> Large numbers of men and horses had been either
+                        enemy as far as Scarphea, after which they returned to camp. <milestone n="6" unit="section"/> Large numbers of men and horses had been either
                         killed or captured on the way, and even the elephants, which they were
                         unable to secure, had been killed. <milestone n="7" unit="section"/> While
                         the battle was going on the Aetolians who had been holding Heraclea made an
                         attempt on the Roman camp, but they gained nothing from their enterprise,
-                        which was certainly not lacking in audacity. <milestone n="8" unit="section"
-                        /> At the third watch of the following night the consul sent the cavalry to
+                        which was certainly not lacking in audacity. <milestone n="8" unit="section"/> At the third watch of the following night the consul sent the cavalry to
                         continue the pursuit, and at daybreak he put the legions in motion. The king
                         had gained a considerable start, as he did not stop in his headlong ride
                         till he reached Elatia. <milestone n="9" unit="section"/> Here he collected
                         what was left of his army out of the battle and the flight and retreated
-                        with a very small body of half-armed soldiers to Chalcis. <milestone n="10"
-                            unit="section"/> The Roman cavalry did not succeed in overtaking the
+                        with a very small body of half-armed soldiers to Chalcis. <milestone n="10" unit="section"/> The Roman cavalry did not succeed in overtaking the
                         king himself at Elatia, but they cut off a large part of his army, who were
                         unable to go any further through sheer fatigue, or else had lost their way
-                        in an unknown country, with none to guide them. <milestone n="11"
-                            unit="section"/> Out of the whole army not a single man escaped beyond
+                        in an unknown country, with none to guide them. <milestone n="11" unit="section"/> Out of the whole army not a single man escaped beyond
                         the 500 who formed the king's bodyguard, an insignificant number even if we
                         accept Polybius' statement which I have mentioned above that the force the
-                        king brought with him out of Asia did not exceed 10,000 men. <milestone
-                            n="12" unit="section"/> What proportion would it be if we are to believe
+                        king brought with him out of Asia did not exceed 10,000 men. <milestone n="12" unit="section"/> What proportion would it be if we are to believe
                         Valerius Antias, that there were 60,000 men in the king's army, of whom
                         40,000 fell and over 5000 made prisoners, and 230 standards captured? In the
                         battle itself the Roman losses amounted to 150, and in the defence of the
                         camp against the Aetolians not more than 50 were killed. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="20" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="20" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Whilst the consul was taking his army
                         through Phocis and Boeotia the citizens of the revolted towns, conscious of
@@ -1000,11 +954,9 @@ Added to repository. Passed SGML parse.
                         Minerva Itonia, and the soldiers were allowed to plunder the temple domain.
                         It occurred, however, to the consul that as the statue had been placed there
                         by a decree of the national council of Boeotia it was unfair to take
-                        vengeance on the territory of Coronea alone. <milestone n="4" unit="section"
-                        /> He at once recalled the soldiers and stopped the pillaging, and contented
+                        vengeance on the territory of Coronea alone. <milestone n="4" unit="section"/> He at once recalled the soldiers and stopped the pillaging, and contented
                         himself with sternly rebuking the Boeotians for their ingratitude to Rome
-                        after the many benefits she had so lately conferred upon them. <milestone
-                            n="5" unit="section"/> At the time of the battle ten of the king's
+                        after the many benefits she had so lately conferred upon them. <milestone n="5" unit="section"/> At the time of the battle ten of the king's
                         ships, with Isidorus in command, were standing off Thronium in the Maliac
                         Gulf. Alexander the Acarnanian, who had been severely wounded, fled thither
                         with tidings of the defeat, and the ships sailed hurriedly away to Cenaeus
@@ -1021,7 +973,7 @@ Added to repository. Passed SGML parse.
                         distributed the large stock of corn on board to the Athenians and the other
                         friendly cities in that quarter. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="21" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="21" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Just before the consul's arrival Antiochus
                         left Chalcis and directed his course first to Tenos and from there to
@@ -1030,8 +982,7 @@ Added to repository. Passed SGML parse.
                         thrown open to the consul. <milestone n="3" unit="section"/> All the other
                         cities in Euboea were delivered up without any fighting, and in a few days
                         peace was established everywhere in the island and the army returned to
-                        Thermopylae without injuring a single city. <milestone n="4" unit="section"
-                        /> This moderation displayed after the victory was much more deserving of
+                        Thermopylae without injuring a single city. <milestone n="4" unit="section"/> This moderation displayed after the victory was much more deserving of
                         praise than even the victory itself. In order that the senate and people
                         might receive an authoritative report of the operations the consul sent M.
                         Cato to Rome. <milestone n="5" unit="section"/> He set sail from Creusa, the
@@ -1039,12 +990,10 @@ Added to repository. Passed SGML parse.
                         and made for Patrae in Achaia; from Patrae he went on to Corcyra, skirting
                         the shores of Aetolia and Acarnania, and so made his passage to Hydruntum in
                         Italy. <milestone n="6" unit="section"/> From there he journeyed by land,
-                        and by rapid travelling reached Rome in five days. <milestone n="7"
-                            unit="section"/> Entering the City before it was light he went straight
+                        and by rapid travelling reached Rome in five days. <milestone n="7" unit="section"/> Entering the City before it was light he went straight
                         to the praetor, M. Junius, who summoned a meeting of the senate at daybreak.
                         L. Cornelius Scipio had been sent on by the consul some days previously, and
-                        on his arrival found that Cato had outstripped him. <milestone n="8"
-                            unit="section"/> He went into the senate house while Cato was making his
+                        on his arrival found that Cato had outstripped him. <milestone n="8" unit="section"/> He went into the senate house while Cato was making his
                         report and the two generals were conducted by order of the senate to the
                         Assembly, where they gave the same details of the Aetolian campaign as had
                         been given to the senate. <milestone n="9" unit="section"/> A decree was
@@ -1056,7 +1005,7 @@ Added to repository. Passed SGML parse.
                         130,000 silver denarii and 12,000 pounds of other silver, as well as 127
                         pounds of gold. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="22" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="22" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> While Acilius was at Thermopylae he sent a
                         message to the Aetolians, advising them, now that they had found out how
@@ -1079,14 +1028,12 @@ Added to repository. Passed SGML parse.
                             <milestone n="5" unit="section"/> Heraclea lies at the foot of Mount
                         Oeta; <milestone n="6" unit="section"/> the city itself is situated in a
                         plain, and it has a citadel which commands it from a position of
-                        considerable elevation and precipitous on all sides. <milestone n="7"
-                            unit="section"/> After carefully considering all there was to be learnt
+                        considerable elevation and precipitous on all sides. <milestone n="7" unit="section"/> After carefully considering all there was to be learnt
                         he decided to deliver a simultaneous attack from four different points. In
                         the direction of the Asopus, where the Gymnasium stood, he placed L.
                         Valerius in charge of the operations. Towards the citadel outside the walls,
                         where the houses were almost closer together than in the city itself, he
-                        gave the direction of the assault to Tiberius Sempronius Longus. <milestone
-                            n="8" unit="section"/> On the side facing the Maliac Gulf, where the
+                        gave the direction of the assault to Tiberius Sempronius Longus. <milestone n="8" unit="section"/> On the side facing the Maliac Gulf, where the
                         approach presented considerable difficulty, M. Baebius was in command.
                         Towards the stream which they call the Melana, opposite the temple of Diana,
                         he posted Appius Claudius. <milestone n="9" unit="section"/> Through the
@@ -1100,18 +1047,16 @@ Added to repository. Passed SGML parse.
                         including not only beams and planks, but also bricks and building stones of
                         all shapes and sizes. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="23" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="23" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The Romans made more use of machines than
                         of arms in their attack on the city, the Aetolians on the other hand trusted
                         more to their arms for their defence. <milestone n="2" unit="section"/> When
                         the walls were battered by the rams they did not, as is usual, turn aside
                         the blows by using looped ropes, but they made sorties in considerable
-                        strength and some carried firebrands to throw on the siege works. <milestone
-                            n="3" unit="section"/> There were also arched sally-ports in the walls,
+                        strength and some carried firebrands to throw on the siege works. <milestone n="3" unit="section"/> There were also arched sally-ports in the walls,
                         and when they built up the wall where it had been destroyed they left more
-                        of these openings to allow of more numerous sorties. <milestone n="4"
-                            unit="section"/> In the early days of the siege while their strength was
+                        of these openings to allow of more numerous sorties. <milestone n="4" unit="section"/> In the early days of the siege while their strength was
                         unimpaired these sallies were frequent and powerful, but as time went on
                         they became fewer and feebler. <milestone n="5" unit="section"/> Amidst the
                         many difficulties they had to contend with nothing wore them down so much as
@@ -1137,7 +1082,7 @@ Added to repository. Passed SGML parse.
                         quitted their posts and did not resume duty on the walls till the third hour
                         of the following day. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="24" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="24" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> After suspending the operations at
                         midnight the consul recommenced the assault at the fourth watch with extreme
@@ -1151,8 +1096,7 @@ Added to repository. Passed SGML parse.
                         towards it through the darkness. <milestone n="4" unit="section"/> The
                         assailants were trying to climb over the fallen parts of the wall into the
                         city, others were endeavouring to mount the walls by scaling ladders, and
-                        the Aetolians were hurrying up from all parts to meet the attack. <milestone
-                            n="5" unit="section"/> The one quarter where the suburban buildings
+                        the Aetolians were hurrying up from all parts to meet the attack. <milestone n="5" unit="section"/> The one quarter where the suburban buildings
                         stood was so far neither attacked nor guarded, but those who were to attack
                         it were eagerly awaiting the signal and none were there to defend it.
                             <milestone n="6" unit="section"/> It was already dawn when the consul
@@ -1185,7 +1129,7 @@ Added to repository. Passed SGML parse.
                         were encamped there. This piece of arrogance made his surrender all the more
                         pleasing to the victors. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="25" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="25" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Whilst the Romans were laying siege to
                         Heraclea, Philip, as arranged with the consul, was attacking Lamia. He had
@@ -1206,18 +1150,15 @@ Added to repository. Passed SGML parse.
                         they often came to rock upon which iron tools could make no impression.
                             <milestone n="5" unit="section"/> Finding that he was making little
                         progress, the king held conferences with the leading men of the place in the
-                        hope that the townsmen might be induced to surrender. <milestone n="6"
-                            unit="section"/> He felt quite certain that if Heraclea were taken first
+                        hope that the townsmen might be induced to surrender. <milestone n="6" unit="section"/> He felt quite certain that if Heraclea were taken first
                         they would surrender to the Romans sooner than to him and that the consul
-                        would win their gratitude for having raised the siege. <milestone n="7"
-                            unit="section"/> His surmise proved correct, for no sooner was Heraclea
+                        would win their gratitude for having raised the siege. <milestone n="7" unit="section"/> His surmise proved correct, for no sooner was Heraclea
                         taken than a message reached him requesting him to abandon the siege, for as
                         it was the Romans who had fought the engagement with the Aetolians it was
-                        but fair that they should have the prize of victory. <milestone n="8"
-                            unit="section"/> So Lamia was relieved and through the fall of a
+                        but fair that they should have the prize of victory. <milestone n="8" unit="section"/> So Lamia was relieved and through the fall of a
                         neighbouring city escaped a similar fate. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="26" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="26" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Shortly before the fall of Heraclea the
                         Aetolians, assembled in council at Hypata, sent a deputation to Antiochus
@@ -1232,12 +1173,11 @@ Added to repository. Passed SGML parse.
                         safety of his kingdom would be imperilled. <milestone n="5" unit="section"/>
                         What they said was true and therefore made all the deeper impression on the
                         king. He gave them money for their immediate requirements and pledged
-                        himself to send military and naval assistance. <milestone n="6"
-                            unit="section"/> Thoas he kept with him, and the man was very glad to
+                        himself to send military and naval assistance. <milestone n="6" unit="section"/> Thoas he kept with him, and the man was very glad to
                         remain behind, as being on the spot he might make the king fulfil his
                         promises. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="27" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="27" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The fall of Heraclea, however, broke the
                         spirit of the Aetolians. <milestone n="2" unit="section"/> Within a few days
@@ -1248,26 +1188,22 @@ Added to repository. Passed SGML parse.
                         be attended to first. He then granted them a ten days' armistice and
                         directed them to return to Hypata accompanied by L. Valerius Flaccus, to
                         whom they were to refer the questions they had intended to discuss with him,
-                        and any other matters which they wished to discuss. <milestone n="4"
-                            unit="section"/> On his arrival at Hypata, Flaccus found the Aetolian
+                        and any other matters which they wished to discuss. <milestone n="4" unit="section"/> On his arrival at Hypata, Flaccus found the Aetolian
                         leaders assembled in council and deliberating as to what line they should
                         take in negotiating with the consul. <milestone n="5" unit="section"/> They
                         were preparing to begin by alleging the old-standing treaty-rights and their
                         service to Rome, when Flaccus bade them desist from appealing to treaties
-                        which they had themselves violated and broken. <milestone n="6"
-                            unit="section"/> They would gain much more, he told them, by confessing
-                        their misdoings and simply asking for mercy. <milestone n="7" unit="section"
-                        /> Their only hope of safety lay not in the strength of their case but in
+                        which they had themselves violated and broken. <milestone n="6" unit="section"/> They would gain much more, he told them, by confessing
+                        their misdoings and simply asking for mercy. <milestone n="7" unit="section"/> Their only hope of safety lay not in the strength of their case but in
                         the clemency of the Roman people, and if they adopted a suppliant attitude
                         he would stand by them before the consul and in the senate at Rome, for they
-                        would have to send their delegates there also. <milestone n="8"
-                            unit="section"/> All those present saw that only one path led to safety,
+                        would have to send their delegates there also. <milestone n="8" unit="section"/> All those present saw that only one path led to safety,
                         namely their formal submission to Rome. They believed that their appearance
                         as suppliants would give them an inviolable character in Roman eyes, and
                         they would still preserve their independence should Fortune hold out any
                         better prospect. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="28" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="28" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> When they appeared before the consul,
                         Phaeneas, the head of the deputation, made a long speech, adapted in various
@@ -1289,11 +1225,9 @@ Added to repository. Passed SGML parse.
                         To this the consul retorted: "No, I do not trouble myself much as to what
                         the Aetolians consider the usage of the Greeks as long as I follow the usage
                         of the Romans and impose my commands on those who, after being vanquished by
-                        force of arms, have just surrendered by their own formal decree. <milestone
-                            n="6" unit="section"/> If, then, my command is not promptly obeyed, I
+                        force of arms, have just surrendered by their own formal decree. <milestone n="6" unit="section"/> If, then, my command is not promptly obeyed, I
                         shall at once order you to be thrown into irons." He then ordered fetters to
-                        be brought and the lictors to close round Phaeneas. <milestone n="7"
-                            unit="section"/> Phaeneas and the other Aetolians were now thoroughly
+                        be brought and the lictors to close round Phaeneas. <milestone n="7" unit="section"/> Phaeneas and the other Aetolians were now thoroughly
                         cowed, they at last realised their position, and he said that he and the
                         Aetolians with him quite saw that they must carry out the consul's commands,
                         but it was necessary that a decree to that effect should be made at a
@@ -1307,7 +1241,7 @@ Added to repository. Passed SGML parse.
                         must be obeyed and that the Aetolians from every town should be summoned to
                         a general council. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="29" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="29" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The whole population of Aetolia was thus
                         assembled, and when they heard the report they were so exasperated by what
@@ -1323,53 +1257,44 @@ Added to repository. Passed SGML parse.
                         from Ephesus he landed at Phalara on the Maliac Gulf, on his way to Aetolia.
                         From there he went to Lamia, where he left the money which the king had
                         given them, and then started early in the evening for Hypata, with an escort
-                        of light troops, through by-paths with which he was familiar. <milestone
-                            n="5" unit="section"/> Whilst traversing the country between the Roman
+                        of light troops, through by-paths with which he was familiar. <milestone n="5" unit="section"/> Whilst traversing the country between the Roman
                         and Macedonian camps, he came upon a Macedonian outpost and was taken to the
                         king. <milestone n="6" unit="section"/> Philip had not finished dinner, and
                         when he was informed of the arrest he treated him, not as an enemy but as a
-                        guest, and bade him sit down and partake of the banquet. <milestone n="7"
-                            unit="section"/> Then after the other guests had left he detained him,
+                        guest, and bade him sit down and partake of the banquet. <milestone n="7" unit="section"/> Then after the other guests had left he detained him,
                         telling him at the same time that he had nothing to fear. He proceeded to
                         blame the Aetolians severely for their crooked policy, which had always
                         recoiled <milestone n="8??" unit="section"/> on their own heads, for it was
                         they who first brought the Romans and afterwards Antiochus into Greece.
                             <milestone n="9" unit="section"/> He went on to say that he should
                         forget the past, which it was easier to censure than to amend, and he would
-                        not do anything to insult the Aetolians amidst their misfortunes; <milestone
-                            n="10" unit="section"/> they in return ought to put an end to their
+                        not do anything to insult the Aetolians amidst their misfortunes; <milestone n="10" unit="section"/> they in return ought to put an end to their
                         ill-will towards him, and Nicander in particular ought never to forget that
                         day in which he had saved his life. He then assigned him an escort to
-                        conduct him to a place of safety, and Nicander arrived <milestone n="11??"
-                            unit="section"/> at Hypata whilst the Aetolians were debating the
+                        conduct him to a place of safety, and Nicander arrived <milestone n="11??" unit="section"/> at Hypata whilst the Aetolians were debating the
                         question of making peace with Rome. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="30" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="30" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The booty secured round Heraclea was
                         either sold by Manius Acilius or given to the soldiers. On learning that the
                         decision come to at Heraclea did not make for peace and that the Aetolians
-                        had concentrated at Naupactus, where they intended to <milestone n="2??"
-                            unit="section"/> meet the whole brunt of the war, the consul sent Appius
+                        had concentrated at Naupactus, where they intended to <milestone n="2??" unit="section"/> meet the whole brunt of the war, the consul sent Appius
                         Claudius with 4000 men to occupy the heights which commanded the difficult
-                        mountain passes while he himself ascended Mount Oeta. <milestone n="3"
-                            unit="section"/> Here he offered sacrifice to Hercules at a place called
+                        mountain passes while he himself ascended Mount Oeta. <milestone n="3" unit="section"/> Here he offered sacrifice to Hercules at a place called
                         Pyra, because it was there that the mortal body of the god was cremated.
                         From there he continued his march with the whole of his army and made fairly
-                        satisfactory progress till he came to Corax. <milestone n="4" unit="section"
-                        /> This is the highest peak between Callipolis and Naupactus, and whilst
+                        satisfactory progress till he came to Corax. <milestone n="4" unit="section"/> This is the highest peak between Callipolis and Naupactus, and whilst
                         crossing it many of the draught animals fell with their packs down the
-                        precipices, and there were casualties among the troops. <milestone n="5"
-                            unit="section"/> It was easy to see with what an inactive enemy he had
+                        precipices, and there were casualties among the troops. <milestone n="5" unit="section"/> It was easy to see with what an inactive enemy he had
                         to deal, for no attempt had been made to post troops so as to close the
                         pass, which was so difficult and dangerous. As it was, the army had
-                        sustained casualties before the consul got down to Naupactus. <milestone
-                            n="6" unit="section"/> Opposite the citadel he established a fortified
+                        sustained casualties before the consul got down to Naupactus. <milestone n="6" unit="section"/> Opposite the citadel he established a fortified
                         post, the other quarters of the city he invested, the troops being
                         distributed according to the situation of the walls. This siege involved
                         quite as much labour and effort as that of Heraclea. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="31" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="31" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Messene, in the Peloponnese, had refused
                         to join the Achaean league, and the Achaeans now laid siege to it.
@@ -1380,8 +1305,7 @@ Added to repository. Passed SGML parse.
                         and said that when the king's garrison was withdrawn they would consider
                         what they ought to do. <milestone n="4" unit="section"/> The Messenians, on
                         the other hand, dismissed the envoys without vouchsafing any reply whatever
-                        and commenced hostilities. But the devastation of their <milestone n="5??"
-                            unit="section"/> land in all directions by fire and sword and the sight
+                        and commenced hostilities. But the devastation of their <milestone n="5??" unit="section"/> land in all directions by fire and sword and the sight
                         of the Achaean camp near their city made them tremble for their safety, and
                         they sent a message to T. Quinctius at Chalcis to the effect that as he was
                         the author of their liberty the men of Messene were prepared to open their
@@ -1395,16 +1319,14 @@ Added to repository. Passed SGML parse.
                         explain his reasons for attacking the place Quinctius gently rebuked him for
                         taking such <milestone n="8??" unit="section"/> an important step without
                         his sanction and ordered him to disband his army and not to disturb the
-                        peace which had been established for the good of all. <milestone n="9"
-                            unit="section"/> He commanded the Messenians to recall their banished
+                        peace which had been established for the good of all. <milestone n="9" unit="section"/> He commanded the Messenians to recall their banished
                         citizens and join the Achaean league; if there were any conditions they
                         objected to, or any safeguards for the future which they wanted, they were
                         to go to him at Corinth. At the same time he ordered Diophanes to convene a
                         meeting of the Achaean league forthwith, at which he would be present.
                             <milestone n="10" unit="section"/> In his address to the council he
                         pointed out how the island of Zacynthus had been treacherously seized, and
-                        he now demanded its restoration to the Romans. <milestone n="11"
-                            unit="section"/> The island, he explained, had at one time formed part
+                        he now demanded its restoration to the Romans. <milestone n="11" unit="section"/> The island, he explained, had at one time formed part
                         of Philip's dominions and he had given it to Amynander as the price of being
                         allowed to march through Athamania into the north of Aetolia, the result of
                         his expedition being that the Aetolians abandoned all further resistance and
@@ -1413,7 +1335,7 @@ Added to repository. Passed SGML parse.
                         Antiochus in war against Rome he recalled Philip to take up active service
                         and sent Hierocles of Agrigentum to succeed him. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="32" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="32" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> After Antiochus' flight from Thermopylae
                         and the expulsion of Amynander from Athamania at the hands of Philip,
@@ -1435,8 +1357,7 @@ Added to repository. Passed SGML parse.
                         it. <milestone n="6" unit="section"/> When, however, I look at a tortoise
                         which has completely shrunk into its shell I see that it is safe against
                         every blow, but when it puts forth any portion of its body, the part put
-                        forth is exposed and defenceless. Just so with you, Achaeans. <milestone
-                            n="7" unit="section"/> As long as you are shut in on all sides by the
+                        forth is exposed and defenceless. Just so with you, Achaeans. <milestone n="7" unit="section"/> As long as you are shut in on all sides by the
                         sea, you have no difficulty in incorporating in your league and protecting
                         all the States within the frontiers of the Peloponnese, but if through a
                             <milestone n="8??" unit="section"/> passion for aggrandisement you go
@@ -1445,7 +1366,7 @@ Added to repository. Passed SGML parse.
                         unanimous assent of the council-not even Diophanes venturing to raise any
                         opposition-Zacynthus was ceded to the Romans. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="33" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="33" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> As the consul was starting for Naupactus,
                         Philip asked him if he wished him to recover the cities which had renounced
@@ -1458,28 +1379,25 @@ Added to repository. Passed SGML parse.
                         more reason to be angry with them. <milestone n="4" unit="section"/> There
                         was in the city a disorganised body of Antiochus' soldiers, the small force
                         which had been left to hold the city, joined afterwards by the fugitives
-                        from the battle, who came in, most of them, without arms. <milestone n="5"
-                            unit="section"/> They had neither the strength nor the resolution to
+                        from the battle, who came in, most of them, without arms. <milestone n="5" unit="section"/> They had neither the strength nor the resolution to
                         stand a siege, and when emissaries from Philip held out to them hopes of
                         obtaining pardon they sent to him to say that the gates were open to the
                         king. <milestone n="6" unit="section"/> Some of the principal men left the
                         city as he entered it; Eurylochus committed suicide. In accordance with the
                         stipulation, the soldiers of Antiochus were sent through Macedonia and
-                        Thrace to Lysimachia under the protection of a Macedonian escort. <milestone
-                            n="7" unit="section"/> There were also at Demetrias a few ships under
+                        Thrace to Lysimachia under the protection of a Macedonian escort. <milestone n="7" unit="section"/> There were also at Demetrias a few ships under
                         the command of Isodorus, they too were allowed to depart with their
                         commander. Philip then went on to reduce Dolopia, Aperantia, and some cities
                         in Perrhaebia. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="34" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="34" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> While Philip was thus engaged T.
                         Quinctius, after taking over Zacynthus from the Achaean council, sailed to
                         Naupactus, which had been standing a siege for two months, but was now
                         nearing its fall. <milestone n="2" unit="section"/> Its forcible capture
                         would probably have brought ruin on the Aetolians as a nation. Quinctius had
-                        every reason for being embittered against them; <milestone n="3"
-                            unit="section"/> he had not forgotten that they were the only people
+                        every reason for being embittered against them; <milestone n="3" unit="section"/> he had not forgotten that they were the only people
                         that had spoken slightingly of him when he was winning the glory of
                         liberating Greece and had refused to be guided by him when he sought to
                         dissuade them from their mad project by forewarning them as to what would
@@ -1511,28 +1429,24 @@ Added to repository. Passed SGML parse.
                         of victory while you and your soldiers cannot pride yourselves on the
                         conquest of two cities." </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="35" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="35" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The consul quite agreed, but he felt it
                         somewhat humiliating to abandon the siege without accomplishing anything.
-                        Finally the matter was left for Quinctius to settle. <milestone n="2"
-                            unit="section"/> He went back to that section of the walls from which
+                        Finally the matter was left for Quinctius to settle. <milestone n="2" unit="section"/> He went back to that section of the walls from which
                         the Aetolians had been calling out to him. They were still there and began
                         to implore him still more earnestly to take pity on the nation of the
                         Aetolians. <milestone n="3" unit="section"/> On this he told some of them to
                         come out to him; Phaeneas and others of their leaders at once went out. As
                         they prostrated themselves at his feet, he said, "Your unhappy plight makes
-                        me check the expression of my angry feelings. <milestone n="4"
-                            unit="section"/> What I told you beforehand would come to pass has
+                        me check the expression of my angry feelings. <milestone n="4" unit="section"/> What I told you beforehand would come to pass has
                         actually happened, and you have not even the comfort left you of believing
                         that you do not deserve your fate. Since, however, I have been somehow
                         destined to be the nursing father of Greece, I shall not desist from showing
-                        kindness even to those who have shown themselves ungrateful. <milestone
-                            n="5" unit="section"/> Send a deputation to the consul and ask him for
+                        kindness even to those who have shown themselves ungrateful. <milestone n="5" unit="section"/> Send a deputation to the consul and ask him for
                         an armistice to allow you time to send envoys to Rome with instructions to
                         place yourselves entirely at the mercy of the senate. I will support you
-                        before the consul as your advocate and intercessor." <milestone n="6"
-                            unit="section"/> They followed his advice and the consul was not deaf to
+                        before the consul as your advocate and intercessor." <milestone n="6" unit="section"/> They followed his advice and the consul was not deaf to
                         their appeal; an armistice was granted until the result of the mission to
                         Rome was known; the siege was raised and the army sent into Phocis.
                             <milestone n="7" unit="section"/> The consul accompanied by T. Quinctius
@@ -1571,7 +1485,7 @@ Added to repository. Passed SGML parse.
                         close of the campaign which Manius Acilius the consul conducted against
                         Antiochus in Greece. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="36" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="36" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The other consul, Publius Cornelius
                         Scipio, had in the ballot drawn Gaul as his province. Before leaving for the
@@ -1582,8 +1496,7 @@ Added to repository. Passed SGML parse.
                         as he had vowed Games on his own initiative without consulting the senate he
                         should meet the cost of them from the proceeds of the spoils taken from the
                         enemy, if he had any money reserved for the purpose, otherwise he must bear
-                        the expense himself. He celebrated the Games for ten days. <milestone n="3"
-                            unit="section"/> The temple of Mater Magna Idaea was dedicated about
+                        the expense himself. He celebrated the Games for ten days. <milestone n="3" unit="section"/> The temple of Mater Magna Idaea was dedicated about
                         this time. It was during the consulship of P. C. Scipio-afterwards called
                         Africanus-and P. Licinius that the goddess was brought from Asia; the
                         above-named P. Cornelius conducted her from the harbour to the Palatine.
@@ -1603,12 +1516,11 @@ Added to repository. Passed SGML parse.
                         with greater solemnity in view of the fresh war which was impending with
                         Antiochus. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="37" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="37" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> At the beginning of the year in which the
                         above events took place, before M. Acilius had left for the war and whilst
-                        P. Cornelius was still in Rome, various portents were announced. <milestone
-                            n="2" unit="section"/> There is a tradition that two tame oxen in the
+                        P. Cornelius was still in Rome, various portents were announced. <milestone n="2" unit="section"/> There is a tradition that two tame oxen in the
                         Carinae climbed up the stairs on to the flat roof of a building. The
                         haruspices ordered them to be burnt alive and the ashes thrown into the
                         Tiber. <milestone n="3" unit="section"/> At Terracina and Amiternum several
@@ -1618,35 +1530,29 @@ Added to repository. Passed SGML parse.
                         been similarly struck were burnt out. <milestone n="4" unit="section"/> In
                         consequence of these portents the senate gave directions for the decemviri
                         to consult the Sibylline Books, and they ordained that a fast day must be
-                        instituted in honour of Ceres to be observed every five years; <milestone
-                            n="5" unit="section"/> that the sacrifices should be offered for nine
+                        instituted in honour of Ceres to be observed every five years; <milestone n="5" unit="section"/> that the sacrifices should be offered for nine
                         days and solemn intercessions for one day, the suppliants to wear wreaths of
                         laurel leaves, and that the consul should offer sacrifice to such deities
-                        and with such victims as the decemvirs should name. <milestone n="6"
-                            unit="section"/> After the gods had been appeased and the portents duly
+                        and with such victims as the decemvirs should name. <milestone n="6" unit="section"/> After the gods had been appeased and the portents duly
                         expiated the consul left for his province. On his arrival he ordered the
                         proconsul Cneius Domitius to disband his army and depart for Rome; he
                         himself led his army into the country of the Boii. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="38" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="38" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> Shortly before this the Ligurians had
                         assembled an army under the "Lex Sacrata" and made a sudden attack upon the
-                        camp where the proconsul Q. Minucius was in command. <milestone n="2"
-                            unit="section"/> He kept his men drawn up within the rampart until
+                        camp where the proconsul Q. Minucius was in command. <milestone n="2" unit="section"/> He kept his men drawn up within the rampart until
                         daybreak to prevent the enemy from getting over his lines at any point.
                             <milestone n="3" unit="section"/> As soon as it was light he made a
-                        sortie from two of the camp gates simultaneously. <milestone n="4"
-                            unit="section"/> But the Ligurians were not, as he had expected,
+                        sortie from two of the camp gates simultaneously. <milestone n="4" unit="section"/> But the Ligurians were not, as he had expected,
                         repulsed at the first attempt; for more than two hours they maintained the
                         struggle without either side gaining any advantage. At length, as detachment
                         after detachment issued from the camp, and fresh troops relieved those who
                         were exhausted with fighting, the Ligurians, worn out and suffering
-                        especially from want of sleep, turned and fled. <milestone n="5"
-                            unit="section"/> Over 4000 of the enemy were killed, the Romans and
+                        especially from want of sleep, turned and fled. <milestone n="5" unit="section"/> Over 4000 of the enemy were killed, the Romans and
                         allied troops lost less than 300. About two months later, P. Cornelius
-                        fought a most successful action with the army of the Boii. <milestone n="6"
-                            unit="section"/> Valerius Antias states that 28,000 of the enemy were
+                        fought a most successful action with the army of the Boii. <milestone n="6" unit="section"/> Valerius Antias states that 28,000 of the enemy were
                         slain and 3400 made prisoners, and that the spoils included 124 standards,
                         1230 horses and 247 wagons, whilst in the victorious army 1484 men fell.
                             <milestone n="7" unit="section"/> Though we can place little confidence
@@ -1656,27 +1562,24 @@ Added to repository. Passed SGML parse.
                         battle. Moreover, special thanksgivings were ordered by the senate for the
                         victory and full-grown victims sacrificed. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="39" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="39" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> It was about this time that M. Fulvius
                         Nobilior entered the City in ovation after his return from Further Spain.
                             <milestone n="2" unit="section"/> He brought over 10,000 pounds of
-                        silver, 13,000 silver denarii and 127 pounds of gold. <milestone n="3"
-                            unit="section"/> After receiving the hostages from the Boii, P. C.
+                        silver, 13,000 silver denarii and 127 pounds of gold. <milestone n="3" unit="section"/> After receiving the hostages from the Boii, P. C.
                         Scipio by way of punishment mulcted them of nearly half their territory in
                         order that the Roman people might if they chose settle colonists on it.
                             <milestone n="4" unit="section"/> When on the point of departure to
                         celebrate, as he confidently expected, his triumph, he disbanded his army
                         with orders to be in Rome by the day of triumph. The day following his
-                        arrival the senate met in the temple of Bellona and after he <milestone
-                            n="5??" unit="section"/> had given a full account of his campaign he
+                        arrival the senate met in the temple of Bellona and after he <milestone n="5??" unit="section"/> had given a full account of his campaign he
                         requested to be allowed to make a triumphal entry into the City. One of the
                         tribunes of the plebs, P. Sempronius Blaesus, was of opinion that though the
                         honour of a triumph ought not to be refused altogether it ought to be
                         delayed. <milestone n="6" unit="section"/> The wars with the Ligurians, he
                         said, were always closely connected with those against the Gauls, for these
-                        nations being neighbours rendered each other mutual help. <milestone n="7"
-                            unit="section"/> If after his decisive defeat of the Boii Scipio had
+                        nations being neighbours rendered each other mutual help. <milestone n="7" unit="section"/> If after his decisive defeat of the Boii Scipio had
                         either crossed the Ligurian frontiers with his army or sent a part of his
                         force to the assistance of Q. Minucius, who had now been detained there
                         three years by an indecisive war, the Ligurian resistance might have been
@@ -1688,31 +1591,26 @@ Added to repository. Passed SGML parse.
                         ordered to return with his legions to his province and see that the
                         Ligurians were thoroughly subdued; unless they were brought under the
                         dominion of Rome the Boii would be in a constant state of unrest; whether it
-                        be peace or war it must be with both of them together. <milestone n="10"
-                            unit="section"/> When he has reduced the Boii to submission P. Cornelius
+                        be peace or war it must be with both of them together. <milestone n="10" unit="section"/> When he has reduced the Boii to submission P. Cornelius
                         will enjoy his triumph a few months hence like many before him who did not
                         celebrate their triumph during their year of office. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="40" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="40" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The consul in his reply reminded the
                         tribune that he did not receive Liguria as his province nor was it with the
-                        Ligurians that he had been at war, nor was it <milestone n="2??"
-                            unit="section"/> over the Ligurians that he asked for a triumph.
+                        Ligurians that he had been at war, nor was it <milestone n="2??" unit="section"/> over the Ligurians that he asked for a triumph.
                             <milestone n="3" unit="section"/> Q. Minucius would, he felt quite sure,
                         soon subjugate them, and then he would ask for a triumph and it would be
-                        granted him because it would be well deserved. <milestone n="4"
-                            unit="section"/> He (the speaker) was asking for a triumph over the Boii
+                        granted him because it would be well deserved. <milestone n="4" unit="section"/> He (the speaker) was asking for a triumph over the Boii
                         after defeating them in battle, depriving them of their camp, receiving the
                         submission of the entire nation two days after the battle, and bringing away
-                        a number of hostages as a guarantee of peace for the future. <milestone
-                            n="5" unit="section"/> But a much stronger reason for his request being
+                        a number of hostages as a guarantee of peace for the future. <milestone n="5" unit="section"/> But a much stronger reason for his request being
                         granted was the fact that the number of Gauls killed amounted to more than
                         all the thousands of Boii, to say the least, with which any Roman general
                         before his time had ever fought. <milestone n="6" unit="section"/> Out of
                         50,000 men more than half had fallen, many thousands had been made
-                        prisoners, only old men and boys were left among the Boii. <milestone n="7"
-                            unit="section"/> Could then anyone wonder why the victorious army after
+                        prisoners, only old men and boys were left among the Boii. <milestone n="7" unit="section"/> Could then anyone wonder why the victorious army after
                         leaving not a single active enemy in the province had come to Rome to grace
                         the consul's triumph? "If," he continued, "the senate wishes to employ these
                         soldiers in another field, in what way do you think they will be made more
@@ -1736,21 +1634,18 @@ Added to repository. Passed SGML parse.
                         partly wrought, not inartistically, into native vessels, and 23,400 silver
                         denarii. <milestone n="12" unit="section"/> To each of the soldiers who
                         marched behind his chariot he gave as largesse 125 ases, twice as much to
-                        each centurion, and three times as much to each of the horsemen. <milestone
-                            n="13" unit="section"/> The next day the Assembly met, and in his speech
+                        each centurion, and three times as much to each of the horsemen. <milestone n="13" unit="section"/> The next day the Assembly met, and in his speech
                         he gave an account of his campaign and dwelt on the injustice of their
                         tribune in trying to involve him in a war which was outside his province,
-                        and so rob him of the fruits of the victory which he had won. <milestone
-                            n="14" unit="section"/> At the close of his speech he released his men
+                        and so rob him of the fruits of the victory which he had won. <milestone n="14" unit="section"/> At the close of his speech he released his men
                         from their military oath and discharged them. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="41" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="41" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> All this time Antiochus was stopping in
                         Ephesus quite unconcerned about the war with Rome as though the Romans had
                         no intention of landing in Asia. This apathy was due either to the blindness
-                        or the flattery of most of his councillors. <milestone n="2" unit="section"
-                        /> Hannibal, who at that time had great influence with the king, was the
+                        or the flattery of most of his councillors. <milestone n="2" unit="section"/> Hannibal, who at that time had great influence with the king, was the
                         only one who told him the truth. He said that so far from feeling any doubt
                         about the Romans going, his only wonder was that they were not there
                         already. <milestone n="3" unit="section"/> The voyage, he pointed out, from
@@ -1759,20 +1654,18 @@ Added to repository. Passed SGML parse.
                         on sea than on land. <milestone n="4" unit="section"/> Their fleet had been
                         for some time cruising off Malea, and he understood that fresh ships and a
                         fresh commander had come from Italy to take part in the war. He begged
-                        Antiochus therefore to give up all hopes of being left in peace. <milestone
-                            n="5" unit="section"/> Asia would be the scene of conflict, for Asia
+                        Antiochus therefore to give up all hopes of being left in peace. <milestone n="5" unit="section"/> Asia would be the scene of conflict, for Asia
                         itself he would have to fight by sea and by land, and either he must wrest
                         the supreme power from those who were aiming at world-wide dominion or else
                         he must lose his own throne. The king realised that Hannibal was the only
-                        one who saw what was coming and told him the honest truth. <milestone n="6"
-                            unit="section"/> Following his advice, he took all the ships that were
+                        one who saw what was coming and told him the honest truth. <milestone n="6" unit="section"/> Following his advice, he took all the ships that were
                         ready for war to the Chersonese in order to strengthen the places there with
                         garrisons in case the Romans came by land. <milestone n="7" unit="section"/>
                         Polyxenidas received instructions to fit out the rest of the fleet and put
                         to sea, and a number of scouting vessels were sent to patrol the waters
                         round the islands. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="42" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="42" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> C. Livius was in command of the Roman
                         fleet. He proceeded with fifty decked ships to Neapolis, where the open
@@ -1788,23 +1681,21 @@ Added to repository. Passed SGML parse.
                         Roman fleet. <milestone n="4" unit="section"/> When he learnt that the
                         consul and the king were encamped near the Pass of Thermopylae, and that the
                         Roman fleet was lying in the Piraeus, he felt that for every reason he ought
-                        to lose no time and at once set sail for the Peloponnese. <milestone n="5"
-                            unit="section"/> As Same and Zacynthus had taken the side of the
+                        to lose no time and at once set sail for the Peloponnese. <milestone n="5" unit="section"/> As Same and Zacynthus had taken the side of the
                         Aetolians he devastated those islands and then shaped his course to Malea,
                         and as the weather was favourable he reached the Piraeus in a few days and
                         here he found the fleet. <milestone n="6" unit="section"/> Whilst off
                         Scyllaeum he was joined by Eumenes with three ships. Eumenes had remained
                         for some time at Aegina, unable to make up his mind what to do, whether to
                         return home and defend his kingdom, as he was constantly being told that
-                        Antiochus was concentrating naval and military forces at Ephesus. <milestone
-                            n="7" unit="section"/> or whether to remain in close touch with the
+                        Antiochus was concentrating naval and military forces at Ephesus. <milestone n="7" unit="section"/> or whether to remain in close touch with the
                         Romans, on whom he knew that his fate depended. A. Atilius handed over to
                         his successor the twenty-four decked ships in the Piraeus, and then left for
                         Rome. <milestone n="8" unit="section"/> Livius sailed to Delos with
                         eighty-one decked vessels and many smaller, some undecked and beaked, others
                         without beaks, to be used as scouts. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="43" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="43" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> The consul was laying siege to Naupactus
                         at the time. Livius was detained at Delos by contrary winds for several
@@ -1818,11 +1709,9 @@ Added to repository. Passed SGML parse.
                         warships with him. He at once called a council of war to decide whether he
                         ought to risk an engagement. <milestone n="4" unit="section"/> Polyxenidas
                         was opposed to any delay, and said that they certainly ought to engage
-                        before Eumenes and the Rhodians joined the Roman fleet. <milestone n="5"
-                            unit="section"/> In that case they would not be so very unequally
+                        before Eumenes and the Rhodians joined the Roman fleet. <milestone n="5" unit="section"/> In that case they would not be so very unequally
                         matched in point of numbers and in everything else they would have the
-                        advantage, in the speed of their vessels and in various <milestone n="6??"
-                            unit="section"/> other respects, for the Roman ships were awkwardly
+                        advantage, in the speed of their vessels and in various <milestone n="6??" unit="section"/> other respects, for the Roman ships were awkwardly
                         built and slow, and as they were going to a hostile country they would be
                         heavily laden with stores, whilst the king's ships, having none but friends
                         all round them, would carry nothing but soldiers and their equipment.
@@ -1848,15 +1737,14 @@ Added to repository. Passed SGML parse.
                         Phocaea. Eumenes, who had gone to his fleet at Elea, returned in a few days
                         with twenty-four decked ships and a larger number of open ones, and sailed
                         on to Phocaea, where he found the Romans getting their ships ready and
-                        making every preparation for the coming naval contest. <milestone n="13"
-                            unit="section"/> From Phocaea they put to sea with one hundred and five
+                        making every preparation for the coming naval contest. <milestone n="13" unit="section"/> From Phocaea they put to sea with one hundred and five
                         decked ships and about fifty open ones. At first they were driven towards
                         the land by the northerly winds which blew across their course and were
                         forced to sail in almost a single line; when the wind became less violent
                         they endeavoured to make the harbour of Corycus, which lies beyond Cissus.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="44" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="44" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> When news was brought to Polyxenidas of
                         the approach of the Roman fleet he was delighted at the prospect of a fight.
@@ -1864,13 +1752,10 @@ Added to repository. Passed SGML parse.
                         division to align their ships towards the land, and in this way he advanced
                         to battle with a straight front. <milestone n="2" unit="section"/> On seeing
                         this the Roman commander took in sail, lowered his masts, and stowing away
-                        the tackle waited for the ships in the rear to come up. <milestone n="3"
-                            unit="section"/> His front line now consisted of thirty ships, and in
+                        the tackle waited for the ships in the rear to come up. <milestone n="3" unit="section"/> His front line now consisted of thirty ships, and in
                         order to make it extend as far as the enemy's left he directed these vessels
-                        to set up their foresails and steer for the open sea; <milestone n="4"
-                            unit="section"/> those behind, as they came up, were ordered to direct
-                        their course landward against the enemy's right. <milestone n="5"
-                            unit="section"/> Eumenes was bringing up the rear, but as soon as he saw
+                        to set up their foresails and steer for the open sea; <milestone n="4" unit="section"/> those behind, as they came up, were ordered to direct
+                        their course landward against the enemy's right. <milestone n="5" unit="section"/> Eumenes was bringing up the rear, but as soon as he saw
                         the hurried removal of the masts and rigging he urged his ships on with all
                         possible speed. Full in view of both fleets were two Carthaginian vessels
                         which outstripped the Roman fleet and three of the king's ships went to meet
@@ -1891,26 +1776,23 @@ Added to repository. Passed SGML parse.
                         one ship now defeated and captured the two much more easily than the two had
                         captured the single one previously. <milestone n="10" unit="section"/> By
                         this time the fleets were engaged along the whole line and as the fighting
-                        went on the ships became everywhere intermixed. <milestone n="11"
-                            unit="section"/> Eumenes, who had come up after the battle had commenced
+                        went on the ships became everywhere intermixed. <milestone n="11" unit="section"/> Eumenes, who had come up after the battle had commenced
                         seeing that Livius had thrown the enemy's left into confusion, attacked the
                         right division where the struggle was still an equal one. </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="45" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="45" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/> It was not long before the enemy's left
                         division took to flight, for when Polyxenidas saw that he was clearly
                         worsted as far as the courage of his soldiers was concerned he lowered his
                         foresails and fled away in disorder, and those who had been engaged with
-                        Eumenes near the land very soon did the same. <milestone n="2"
-                            unit="section"/> As long as the rowers could hold out and there was any
+                        Eumenes near the land very soon did the same. <milestone n="2" unit="section"/> As long as the rowers could hold out and there was any
                         chance of harassing the hindmost ships Eumenes and the Romans kept up a
                         vigorous pursuit. <milestone n="3" unit="section"/> But when they found that
                         owing to the speed of the enemy's ships, which were light as compared with
                         theirs, loaded as they were with supplies, their attempt to overtake them
                         was baffled, they desisted from the pursuit, after capturing thirteen
-                        vessels with their troops and crews and sinking ten. <milestone n="4"
-                            unit="section"/> The only vessel lost in the Roman fleet was the
+                        vessels with their troops and crews and sinking ten. <milestone n="4" unit="section"/> The only vessel lost in the Roman fleet was the
                         Carthaginian vessel, overpowered by the two assailants at the beginning of
                         the battle. <milestone n="5" unit="section"/> Polyxenidas did not stop his
                         flight till he was in the harbour of Ephesus. The Romans remained for that
@@ -1924,17 +1806,15 @@ Added to repository. Passed SGML parse.
                         sent home and the Romans started for Chios. They sailed past Phocaea, one of
                         the Erythraean ports, and then anchored for the night. The next day they
                         sailed up to the city itself. Here they stayed for a few days mainly to
-                        recruit the crews and then they proceeded to Phocaea. <milestone n="8"
-                            unit="section"/> Here four quinqueremes were left to guard the city and
+                        recruit the crews and then they proceeded to Phocaea. <milestone n="8" unit="section"/> Here four quinqueremes were left to guard the city and
                         the fleet went on to Canae, where as the winter was approaching the ships
-                        were drawn up on land and protected by a ring of entrenchments. <milestone
-                            n="9" unit="section"/> At the close of the year the elections were held.
+                        were drawn up on land and protected by a ring of entrenchments. <milestone n="9" unit="section"/> At the close of the year the elections were held.
                         The new consuls were L. Cornelius Scipio and C. Laelius, and all were
                         looking upon Africanus to end the war with Antiochus. The praetors elected
                         on the following day were M. Tuccius, L. Aurunculeius, Cn. Fulvius, L.
                         Aemilius, P. Junius and C. Atinius Labeo. </p>
                 </div>
             </div>
-        </body>
-    </text>
+        </div>
+    </body></text>
 </TEI>
