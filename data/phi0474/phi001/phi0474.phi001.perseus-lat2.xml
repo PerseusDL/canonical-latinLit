@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
     <fileDesc>
       <titleStmt>
-	<title>For P. Quinctio </title>
+	<title>For P. Quinctio</title>
 	<title>Pro P. Quinctio, Pro Q. Roscio comoedo, Pro A. Caecina, De lege agraria contra Rullum, Pro C. Rabiro perduellionis reo, Pro L. Flacco, In L. Pisonem, Pro C. Rabiro Postumo</title>
 	<title type="sub">Machine readable text</title>
-	<author n="Cic.">M. Tullius Cicero</author>
+	<author>M. Tullius Cicero</author>
 	<editor role="editor" n="OCT">Albert Clark</editor>
 <sponsor>Perseus Project, Tufts University</sponsor>
 <principal>Gregory Crane</principal>
@@ -40,156 +44,123 @@ Albertus Curtis Clark</title>
       </sourceDesc>
     </fileDesc>
 
-    <encodingDesc>
-      <refsDecl>
-	<refState delim=" " unit="text"/>
-	<refState unit="section"/>
+  	<encodingDesc>
+  		<refsDecl n="CTS">
+  			<cRefPattern n="section"
+  				matchPattern="(\w+)"
+  				replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+  				<p>This pointer pattern extracts section</p>
+  			</cRefPattern>
+  		</refsDecl>
+  		<refsDecl>
+  			<refState unit="section"/>
+  		</refsDecl>
+  		
+  		<!-- <refsDecl n="CTS">
+        <cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+          <p>This pointer pattern extracts chapter and section</p>
+        </cRefPattern>
+        <cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+          <p>This pointer pattern extracts chapter</p>
+        </cRefPattern>
       </refsDecl>
       <refsDecl>
-	<refState delim=" " unit="text"/>
-	<refState delim="." n="chunk" unit="chapter"/>
-	<refState unit="section"/>
-      </refsDecl>
-      <refsDecl n="text=Agr.">
-	<refState delim=" " unit="text"/>
-	<refState delim="." unit="speech"/>
-	<refState unit="section"/>
-      </refsDecl>
-      <refsDecl n="text=Agr.">
-	<refState delim=" " unit="text"/>
-	<refState delim="." unit="speech"/>
-	<refState delim="." n="chunk" unit="chapter"/>
-	<refState unit="section"/>
-      </refsDecl>
-    </encodingDesc>
+        <refState unit="chapter" delim="."/>
+        <refState unit="section"/>
+      </refsDecl>-->
+  		<!--
+      <refsDecl n="text=Ver.">
+        <refState delim=" " unit="text"/>
+        <refState delim=" " unit="actio"/>
+        <refState delim="." unit="book"/>
+        <refState unit="section"/>
+      </refsDecl>-->
+  	</encodingDesc>
 
 <profileDesc>
 <langUsage>
-<language ident="la">Latin</language>
-<language ident="greek">Greek</language>
+<language ident="lat">Latin</language>
+<language ident="grc">Greek</language>
 </langUsage>
 </profileDesc>
 
-<revisionDesc><!--
-<change><date>3/26/97</date>
-<respStmt><name>DAS</name><resp>ed.</resp></respStmt>
-<item>
-$Log: cic.oct4_lat.xml,v $
-Revision 1.5  2013-09-13 11:21:41  balmas01
-reverting texts back to pre_cts_reorg tagged version
-
-Revision 1.3  2011-07-19 22:30:38  gcrane
-removed the earlier persName/placeName tags
-
-Revision 1.2  2011-07-09 20:25:36  gcrane
-fixed problems with capitalization
-
-Revision 1.1  2011-01-15 23:14:25  gcrane
-base SDL file
-
-Revision 1.1  2009/10/09 19:49:15  rsingh04
-more reorganizing of texts module by collection
-
-Revision 1.2  2005/08/01 15:59:20  packel
-removed stray item tags
-
-Revision 1.1  2005/07/25 14:31:17  packel
-Converted to XML
-
-Revision 1.15  2005/04/08 17:56:08  mimno
-added default chunks
-
-Revision 1.14  2003/07/01 22:14:58  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.13  2002/12/02 18:41:45  amahoney
-correct spelling of Quirites, improperly 'regularized'
-
-Revision 1.12  2000/03/13 17:37:07  amahoney
-don't put header for fragments next to header for speech:  gets into
-short toc
-
-Revision 1.11  2000/03/06 22:21:49  amahoney
-add headers for groups of speeches, so they show up in the toc:  Catilines,
-Verrines, Philippics, and Agrarian Law
-
-Revision 1.10  2000/03/04 20:34:11  dasmith
-Added separate funder entity to TEI header.
-
-Revision 1.9  1999/10/14 21:36:02  dasmith
-Added explanatory subtitles to titleStmt
-
-Revision 1.8  1999/08/12 17:17:19  dasmith
-Fixed refsDecl
-
-Revision 1.7  1999/08/04 18:12:10  textgod
-Random changes over a period of months.
-
-Revision 1.6  1997/10/17 14:07:07  textgod
-Tagged Greek.
-
-Revision 1.5  1997/08/18 14:54:35  textgod
-???
-
-Revision 1.4  1997/05/12 22:19:56  cjsu
-making sure that the file passed the parcer
-
-Revision 1.3  1997/05/12 22:04:50  cjsu
-Added seven works... SGML varified
-
-Revision 1.2  1997/04/03 20:58:14  textgod
-Changed ADD tags to CORR.
-
-Revision 1.1  1997/03/26 17:34:24  textgod
-Added to repository. Passes TEI parse.
-
-</item></change>
-<change><date>July 2014</date>
-    <respStmt><name>Stella Dee</name><resp>ed.</resp></respStmt>
-    <item>split composite text and converted to unicode</item>
-      </change>--><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
-</teiHeader><text xml:lang="la">
+<revisionDesc>
+	<change when="2016-01-22" who="Lisa Cerrato">bumped urn; CTS work</change>
+	<change when="2015-12-18" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change>
+	<change when="2014-08-01" who="Stella Dee">edited markup</change>
+	<change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change>
+	<change who="balmas01" when="2013-09-13">reverting texts back to pre_cts_reorg tagged version</change>
+	<change who="gcrane" when="2011-07-19">removed the earlier persName/placeName tags</change>
+	<change who="gcrane" when="2011-07-09">fixed problems with capitalization</change>
+	<change who="gcrane" when="2011-01-15">base SDL file</change>
+	<change who="rsingh04" when="2009-10-09">more reorganizing of texts module by collection</change>
+	<change who="packel" when="2005-08-01">removed stray item tags</change>
+	<change who="packel" when="2005-07-25">Converted to XML</change>
+	<change who="mimno" when="2005-04-08">added default chunks</change>
+	<change who="yorkc" when="2003-07-01">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change>
+	<change who="amahoney" when="2002-12-02">correct spelling of Quirites, improperly 'regularized'</change>
+	<change who="amahoney" when="2000-03-13">don't put header for fragments next to header for speech:  gets into
+short toc</change>
+	<change who="amahoney" when="2000-03-06">add headers for groups of speeches, so they show up in the toc:  Catilines,
+Verrines, Philippics, and Agrarian Law</change>
+	<change who="dasmith" when="2000-03-04">Added separate funder entity to TEI header.</change>
+	<change who="dasmith" when="1999-10-14">Added explanatory subtitles to titleStmt</change>
+	<change who="dasmith" when="1999-08-12">Fixed refsDecl</change>
+	<change who="textgod" when="1999-08-04">Random changes over a period of months.</change>
+	<change who="textgod" when="1997-10-17">Tagged Greek.</change>
+	<change who="textgod" when="1997-08-18">???</change>
+	<change who="cjsu" when="1997-05-12">making sure that the file passed the parcer</change>
+	<change who="cjsu" when="1997-05-12">Added seven works... SGML varified</change>
+	<change who="textgod" when="1997-04-03">Changed ADD tags to CORR.</change>
+	<change who="textgod" when="1997-03-26">Added to repository. Passes TEI parse.</change>
+	<change when="1997-03-26" who="DAS">ed.</change>
+</revisionDesc>
+</teiHeader>
+	
+	<text xml:lang="lat">
 <body>
-<head>M. Tulli Ciceroni pro P. Quinctio Oratio</head>
-<p><milestone n="1" unit="chapter"/><milestone n="1" unit="section"/>
-<reg>quae</reg> res in civitate duae plurimum possunt, eae contra 
+	<div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi001.perseus-lat2" subtype="edition">
+	<head>M. Tulli Ciceroni pro P. Quinctio Oratio</head>
+		<milestone n="1" unit="chapter"/><milestone unit="Para" ed="P"/>
+	<div type="textpart" subtype="section" n="1">
+<p><reg>quae</reg> res in civitate duae plurimum possunt, eae contra 
 nos ambae faciunt in hoc tempore, summa gratia et 
 eloquentia; quarum alteram, C. Aquili, vereor, alteram metuo. 
 <reg>eloquentia</reg> Q. Hortensi ne me in dicendo impediat, non 
 nihil commoveor, gratia Sex. Naevi ne P. Quinctio noceat, 
-id vero non mediocriter pertimesco.
+id vero non mediocriter pertimesco.</p></div>
 
 
-<milestone n="2" unit="section"/><reg>neque</reg> hoc tanto 
+<div type="textpart" subtype="section" n="2"><p><reg>neque</reg> hoc tanto 
 opere querendum videretur, haec summa in illis esse, si 
 in nobis essent saltem mediocria; verum ita se res habet, 
 ut ego, qui neque usu satis et ingenio parum possum, cum 
 patrono disertissimo comparer, P. Quinctius, cui tenues 
 opes, nullae facultates, exiguae amicorum copiae sunt, cum 
-adversario gratiosissimo contendat.
+adversario gratiosissimo contendat.</p></div>
 
 
-<milestone n="3" unit="section"/><reg>illud</reg> quoque nobis 
+<div type="textpart" subtype="section" n="3"><p><reg>illud</reg> quoque nobis 
 accedit incommodum, quod M. Iunius, qui hanc causam 
 aliquotiens apud te egit, homo et in aliis causis exercitatus 
 et in hac multum ac saepe versatus, hoc tempore abest 
 nova legatione impeditus, et ad me ventum est qui, ut 
 summa haberem cetera, temporis quidem certe vix satis 
 habui ut rem tantam, tot controversiis implicatam, possem 
-cognoscere.
+cognoscere.</p></div>
 
 
-<milestone n="4" unit="section"/><reg>ita</reg> quod mihi consuevit in ceteris causis esse 
+<div type="textpart" subtype="section" n="4"><p><reg>ita</reg> quod mihi consuevit in ceteris causis esse 
 adiumento, id quoque in hac causa deficit. <reg>nam</reg>, quod  
 ingenio minus possum, subsidium mihi diligentia 
 comparavi; quae quanta sit, nisi tempus et spatium datum sit, 
 intellegi non potest. <reg>quae</reg> quo plura sunt, C. Aquili, eo 
 te et hos qui tibi in consilio sunt meliore mente nostra 
 verba audire oportebit, ut multis incommodis veritas 
-debilitata tandem aequitate talium virorum recreetur.
+debilitata tandem aequitate talium virorum recreetur.</p></div>
 
 
-<milestone n="5" unit="section"/><reg>quod</reg> si 
+<div type="textpart" subtype="section" n="5"><p><reg>quod</reg> si 
 tu iudex nullo praesidio fuisse videbere contra vim et 
 gratiam solitudini atque inopiae, si apud hoc consilium 
 ex opibus, non ex veritate causa pendetur, profecto nihil 
@@ -197,33 +168,33 @@ est iam sanctum atque sincerum in civitate, nihil est quod
 humilitatem cuiusquam gravitas et virtus iudicis consoletur. 
 <reg>certe</reg> aut apud te et hos qui tibi adsunt veritas valebit, 
 aut ex hoc loco repulsa vi et gratia locum ubi consistat 
-reperire non poterit. 
-</p>
-<p><milestone n="2" unit="chapter"/><reg>non</reg> eo dico, C. Aquili, quo mihi veniat in dubium tua 
+reperire non poterit.
+	
+<milestone n="2" unit="chapter"/><milestone unit="Para" ed="P"/><reg>non</reg> eo dico, C. Aquili, quo mihi veniat in dubium tua 
 fides et constantia, aut quo non in his quos tibi advocavisti 
 viris lectissimis civitatis spem summam habere P. Quinctius 
-debeat. <reg>quid</reg> ergo est?
+debeat. <reg>quid</reg> ergo est?</p></div>
 
 
-<milestone n="6" unit="section"/><reg>primum</reg> magnitudo periculi 
+<div type="textpart" subtype="section" n="6"><p><reg>primum</reg> magnitudo periculi 
 summo timore hominem adficit, quod uno iudicio de 
 fortunis omnibus decernit, idque dum cogitat, non minus 
 saepe ei venit in mentem potestatis quam aequitatis tuae, 
 propterea quod omnes quorum in alterius manu vita posita 
 est saepius illud cogitant, quid possit is cuius in dicione 
-ac potestate sunt, quam quid debeat facere.
+ac potestate sunt, quam quid debeat facere.</p></div>
 
 
-<milestone n="7" unit="section"/><reg>deinde</reg> habet 
+<div type="textpart" subtype="section" n="7"><p><reg>deinde</reg> habet 
 adversarium P. Quinctius verbo Sex. Naevium, re vera 
 huiusce aetatis homines disertissimos, fortissimos, 
 florentissimos nostrae civitatis, qui communi studio summis opibus 
 Sex. Naevium defendunt, si id est defendere, cupiditati  
 alterius obtemperare quo is facilius quem velit iniquo 
-iudicio opprimere possit.
+iudicio opprimere possit.</p></div>
 
 
-<milestone n="8" unit="section"/><reg>nam</reg> quid hoc iniquius aut 
+<div type="textpart" subtype="section" n="8"><p><reg>nam</reg> quid hoc iniquius aut 
 indignius, C. Aquili, dici aut commemorari potest, quam 
 me qui caput alterius, famam fortunasque defendam priore 
 loco causam dicere? cum praesertim Q. Hortensius qui 
@@ -235,10 +206,10 @@ adversarius nullum iecerit, illis autem id tempus
 impugnandi detur cum et vitandi illorum impetus potestas 
 adempta nobis erit et, si qua in re, id quod parati sunt 
 facere, falsum crimen quasi venenatum aliquod telum 
-iecerint, medicinae faciendae locus non erit.
+iecerint, medicinae faciendae locus non erit.</p></div>
 
 
-<milestone n="9" unit="section"/><reg>id</reg> accidit 
+<div type="textpart" subtype="section" n="9"><p><reg>id</reg> accidit 
 praetoris iniquitate et iniuria, primum quod contra omnium 
 consuetudinem iudicium prius de probro quam de re 
 maluit fieri, deinde quod ita constituit id ipsum iudicium 
@@ -248,10 +219,10 @@ est qui, quasi sua res aut honos agatur, ita diligenter
 Sex. Naevi studio et cupiditati morem gerunt et in eius 
 modi rebus opes suas experiuntur, in quibus, quo plus 
 propter virtutem nobilitatemque possunt, eo minus quantum 
-possint debent ostendere. 
+possint debent ostendere. </p></div>
 
-</p>
-<p><milestone n="10" unit="section"/>Cum tot tantisque difficultatibus adfectus atque adflictus 
+
+<div type="textpart" subtype="section" n="10"><p>Cum tot tantisque difficultatibus adfectus atque adflictus 
 in tuam, C. Aquili, fidem, veritatem, misericordiam 
 P. Quinctius confugerit, cum adhuc ei propter vim 
 adversariorum non ius par, non agendi potestas eadem, 
@@ -259,13 +230,13 @@ non magistratus aequus reperiri potuerit, cum ei summam
 per iniuriam omnia inimica atque infesta fuerint, te,  
 C. Aquili, vosque qui in consilio adestis, orat atque obsecrat 
 ut multis iniuriis iactatam atque agitatam aequitatem in 
-hoc tandem loco consistere et confirmari patiamini.
+hoc tandem loco consistere et confirmari patiamini.</p></div>
 
 
-<milestone n="3" unit="chapter"/><milestone n="11" unit="section"/><reg>id</reg> 
+<milestone n="3" unit="chapter"/><div type="textpart" subtype="section" n="11"><milestone unit="Para" ed="P"/><p><reg>id</reg> 
 quo facilius facere possitis, dabo operam ut a principio 
-res quem ad modum gesta et contracta sit cognoscatis. </p>
-<p>C. Quinctius fuit P. Quincti huius frater, sane ceterarum 
+res quem ad modum gesta et contracta sit cognoscatis. 
+C. Quinctius fuit P. Quincti huius frater, sane ceterarum 
 rerum pater familias et prudens et attentus, una in re 
 paulo minus consideratus, qui societatem cum Sex. Naevio 
 fecerit, viro bono, verum tamen non ita instituto ut iura 
@@ -275,10 +246,10 @@ Sex. Naevius neque inhumanus praeco umquam est
 existimatus. <reg>quid</reg> ergo est? Cum ei natura nihil melius quam 
 vocem dedisset, pater nihil praeter libertatem reliquisset, 
 vocem in quaestum contulit, libertate usus est quo 
-impunius dicax esset.
+impunius dicax esset.</p></div>
 
 
-<milestone n="12" unit="section"/><reg>qua</reg> re quidem socium tibi eum velles 
+<div type="textpart" subtype="section" n="12"><p><reg>qua</reg> re quidem socium tibi eum velles 
 adiungere nihil erat nisi ut in tua pecunia condisceret qui 
 pecuniae fructus esset; tamen inductus consuetudine ac 
 familiaritate Quinctius fecit, ut dixi, societatem earum 
@@ -289,10 +260,10 @@ Naevius et trans Alpis usque transfertur. <reg>fit</reg> magna
 mutatio loci, non ingeni. <reg>nam</reg> qui ab adulescentulo 
 quaestum sibi instituisset sine impendio, postea quam 
 nescio quid impendit et in commune contulit, mediocri 
-quaestu contentus esse non poterat.
+quaestu contentus esse non poterat.</p></div>
 
 
-<milestone n="13" unit="section"/><reg>nec</reg> mirum, si is qui 
+<div type="textpart" subtype="section" n="13"><p><reg>nec</reg> mirum, si is qui 
 vocem venalem habuerat ea quae voce quaesiverat magno 
 sibi quaestui fore putabat. <reg>itaque</reg> hercule haud 
 mediocriter de communi quodcumque poterat ad se in privatam  
@@ -301,21 +272,21 @@ qui magna fide societatem gererent arbitrium pro socio
 condemnari solerent. <reg>verum</reg> his de rebus non necesse 
 habeo dicere ea quae me P. Quinctius cupit 
 commemorare; tametsi causa postulat, tamen quia postulat, non 
-flagitat, praeteribo. 
+flagitat, praeteribo. </p></div>
 
-</p>
-<p><milestone n="4" unit="chapter"/><milestone n="14" unit="section"/>
-Cum annos iam compluris societas esset, et cum saepe 
+
+<milestone n="4" unit="chapter"/><div type="textpart" subtype="section" n="14">
+<p>Cum annos iam compluris societas esset, et cum saepe 
 suspectus Quinctio Naevius fuisset neque ita commode 
 posset rationem reddere earum rerum quas libidine, non 
 ratione gesserat, moritur in Gallia Quinctius, cum adesset 
 Naevius, et moritur repentino. <reg>heredem</reg> testamento 
 reliquit hunc P. Quinctium ut, ad quem summus maeror morte 
-sua veniebat, ad eundem summus honos quoque perveniret. 
+sua veniebat, ad eundem summus honos quoque perveniret. </p></div>
 
 
 
-<milestone n="15" unit="section"/><reg>quo</reg> mortuo, nec ita multo post, in Galliam proficiscitur 
+<div type="textpart" subtype="section" n="15"><p><reg>quo</reg> mortuo, nec ita multo post, in Galliam proficiscitur 
 Quinctius, ibi cum isto Naevio familiariter vivit. <reg>annum</reg> 
 fere una sunt, cum et de societate multa inter se 
 communicarent et de tota illa ratione atque re Gallicana; neque 
@@ -324,10 +295,10 @@ sibi quippiam debere aut privatim Quinctium debuisse.
 Cum aeris alieni aliquantum esset relictum, quibus 
 nominibus pecuniam Romae curari oporteret, auctionem in Gallia 
 P. hic Quinctius Narbone se facturum esse proscribit earum 
-rerum quae ipsius erant privatae.
+rerum quae ipsius erant privatae.</p></div>
 
 
-<milestone n="16" unit="section"/><reg>ibi</reg> tum vir optimus <reg>sex</reg>. 
+<div type="textpart" subtype="section" n="16"><p><reg>ibi</reg> tum vir optimus <reg>sex</reg>. 
 Naevius hominem multis verbis deterret ne auctionetur; 
 eum non ita commode posse eo tempore quo proscripsisset 
 vendere; Romae sibi nummorum facultatem esse, quam, si 
@@ -338,20 +309,20 @@ virum bonum facere oportebat, id loquebatur Naevius,
 credidit Quinctius eum qui orationem bonorum imitaretur 
 facta quoque imitaturum; auctionem velle facere desistit, 
 Romam proficiscitur; decedit ex Gallia Romam simul 
-Naevius. 
+Naevius.</p></div>
 
 
-<milestone n="17" unit="section"/>Cum pecuniam C. Quinctius P.
+<div type="textpart" subtype="section" n="17"><p>Cum pecuniam C. Quinctius P.
 Scapulae 
 debuisset, per te, C. Aquili, decidit P. Quinctius quid liberis 
 eius dissolveret. <reg>hoc</reg> eo per te agebatur quod propter 
 aerariam rationem non satis erat in tabulis inspexisse 
 quantum deberetur, nisi ad Castoris quaesisses quantum 
 solveretur. <reg>decidis</reg> statuisque tu propter necessitudinem 
-quae tibi cum Scapulis est quid eis ad denarium solveretur. 
+quae tibi cum Scapulis est quid eis ad denarium solveretur.</p></div>
 
-</p>
-<p><milestone n="5" unit="chapter"/><milestone n="18" unit="section"/>
+
+<milestone n="5" unit="chapter"/><div type="textpart" subtype="section" n="18"><p>
 <reg>haec</reg> omnia Quinctius agebat auctore et consuasore 
 Naevio. <reg>nec</reg> mirum, si eius utebatur consilio cuius auxilium 
 sibi paratum putabat; non modo enim pollicitus erat in 
@@ -360,10 +331,10 @@ numeraturum se dicebat. Quinctius porro istum posse
 facere videbat, debere intellegebat, mentiri, quia causa cur 
 mentiretur non erat, non putabat; quasi domi nummos 
 haberet, ita constituit Scapulis se daturum; Naevium 
-certiorem facit, rogat ut curet quod dixisset.
+certiorem facit, rogat ut curet quod dixisset.</p></div>
 
 
-<milestone n="19" unit="section"/><reg>tum</reg> iste vir 
+<div type="textpart" subtype="section" n="19"><p><reg>tum</reg> iste vir 
 optimus—vereor ne se derideri putet quod iterum iam dico 
 'optimus'—qui hunc in summas angustias adductum putaret, 
 ut eum suis condicionibus in ipso articulo temporis 
@@ -373,39 +344,39 @@ Quinctio controversiae nihil futurum. '<reg>posterius</reg>,' inquit,
 'ista videbimus,' Quinctius; 'nunc hoc velim cures, si tibi 
 videtur, quod dixisti.' <reg>negat</reg> se alia ratione facturum; 
 quod promisisset, non plus sua referre quam si, cum   
-auctionem venderet, domini iussu quippiam promisisset. 
+auctionem venderet, domini iussu quippiam promisisset. </p></div>
 
 
-<milestone n="20" unit="section"/>
+<div type="textpart" subtype="section" n="20"><p>
 <reg>destitutione</reg> illa perculsus Quinctius a Scapulis paucos dies 
 aufert, in Galliam mittit ut ea quae proscripserat venirent, 
 deteriore tempore absens auctionatur, Scapulis difficiliore 
 condicione dissolvit. <reg>tum</reg> appellat ultro Naevium ut, 
 quoniam suspicaretur aliqua de re fore controversiam, 
 videret ut quam primum et quam minima cum molestia 
-tota res transigeretur. 
+tota res transigeretur. </p></div>
 
 
-<milestone n="21" unit="section"/><reg>dat</reg> iste amicum M.
+<div type="textpart" subtype="section" n="21"><p><reg>dat</reg> iste amicum M.
 Trebellium, nos 
 communem necessarium, qui istius domi erat eductus et 
 quo utebatur iste plurimum, propinquum nostrum, <reg>sex</reg>. 
 Alfenum. <reg>res</reg> convenire nullo modo poterat, propterea 
 quod hic mediocrem iacturam facere cupiebat, iste mediocri 
-praeda contentus non erat.
+praeda contentus non erat.</p></div>
 
 
-<milestone n="22" unit="section"/><reg>itaque</reg> ex eo tempore res esse 
+<div type="textpart" subtype="section" n="22"><p><reg>itaque</reg> ex eo tempore res esse 
 in vadimonium coepit. Cum vadimonia saepe dilata essent 
 et cum aliquantum temporis in ea re esset consumptum 
 neque quicquam profectum esset, venit ad vadimonium 
-Naevius. </p>
-<p><milestone n="6" unit="chapter"/><reg>obsecro</reg>, C. Aquili vosque qui adestis in consilio, ut 
+Naevius. 
+<milestone n="6" unit="chapter"/><reg>obsecro</reg>, C. Aquili vosque qui adestis in consilio, ut 
 diligenter attendatis, ut singulare genus fraudis et novam 
-rationem insidiarum cognoscere possitis.
+rationem insidiarum cognoscere possitis.</p></div>
 
 
-<milestone n="23" unit="section"/><reg>ait</reg> se auctionatum 
+<div type="textpart" subtype="section" n="23"><p><reg>ait</reg> se auctionatum 
 esse in Gallia; quod sibi videretur se vendidisse; curasse 
 ne quid sibi societas deberet; se iam neque vadari amplius 
 neque vadimonium promittere; si quid agere secum velit 
@@ -414,20 +385,20 @@ revisere, hominem in praesentia non vadatur; ita sine
 vadimonio disceditur. <reg>deinde</reg> Romae dies <num n="30">xxx</num> fere Quinctius 
 commoratur; cum ceteris quae habebat vadimonia differt 
 ut expeditus in Galliam proficisci posset; proficiscitur. 
-Roma egreditur ante diem <num>ii</num> Kalend.
+Roma egreditur ante diem <num>ii</num> Kalend.</p></div>
 
 
-<milestone n="24" unit="section"/>Februarias Quinctius 
+<div type="textpart" subtype="section" n="24"><p>Februarias Quinctius 
 Scipione et Norbano coss. <reg>quaeso</reg> ut eum diem memoriae  
 mandetis. L. Albius <reg>sex</reg>. filius Quirina, vir bonus et cum 
 primis honestus, una profectus est. Cum venissent ad Vada 
 Volaterrana quae nominantur, vident perfamiliarem Naevi, 
 qui ex Gallia pueros venalis isti adducebat, L. Publicium; 
 qui, ut Romam venit, narrat Naevio quo in loco viderit 
-Quinctium.
+Quinctium.</p></div>
 
 
-<milestone n="25" unit="section"/><reg>quod</reg> ubi ex Publicio audivit, pueros circum 
+<div type="textpart" subtype="section" n="25"><p><reg>quod</reg> ubi ex Publicio audivit, pueros circum 
 amicos dimittit, ipse suos necessarios ab atriis Liciniis et 
 a faucibus macelli corrogat ut ad tabulam Sextiam sibi 
 adsint hora secunda postridie. <reg>veniunt</reg> frequentes. 
@@ -436,43 +407,43 @@ tabulae maxime signis hominum nobilium consignantur,
 disceditur. <reg>postulat</reg> a Burrieno praetore Naevius ut ex 
 edicto bona possidere liceat; iussit bona proscribi eius 
 quicum familiaritas fuerat, societas erat, adfinitas liberis 
-istius vivis divelli nullo modo poterat.
+istius vivis divelli nullo modo poterat.</p></div>
 
 
-<milestone n="26" unit="section"/><reg>qua</reg> ex re intellegi 
+<div type="textpart" subtype="section" n="26"><p><reg>qua</reg> ex re intellegi 
 facile potuit nullum esse officium tam sanctum atque 
 sollemne quod non avaritia comminuere ac violare soleat. 
 <reg>etenim</reg> si veritate amicitia, fide societas, pietate propinquitas 
 colitur, necesse est iste qui amicum, socium, adfinem fama 
 ac fortunis spoliare conatus est vanum se et perfidiosum et 
-impium esse fateatur. 
+impium esse fateatur.</p></div>
 
-<milestone n="27" unit="section"/><reg>libellos</reg> Sex. Alfenus, procurator 
+<div type="textpart" subtype="section" n="27"><p><reg>libellos</reg> Sex. Alfenus, procurator 
 P. Quincti, familiaris et propinquus Sex. Naevi, deicit, 
 servolum unum quem iste prenderat abducit, denuntiat sese 
 procuratorem esse, istum aequum esse famae fortunisque 
 P. Quincti consulere et adventum eius exspectare; quod si 
 facere nolit atque imbiberit eius modi rationibus illum ad  
 suas condiciones perducere, sese nihil precari et, si quid agere 
-velit, iudicio defendere.
+velit, iudicio defendere.</p></div>
 
 
-<milestone n="28" unit="section"/><reg>haec</reg> dum Romae geruntur, 
+<div type="textpart" subtype="section" n="28"><p><reg>haec</reg> dum Romae geruntur, 
 Quinctius interea contra ius, consuetudinem, edicta praetorum de 
-saltu agroque communi a servis communibus vi detruditur. 
+saltu agroque communi a servis communibus vi detruditur.
 
 
-<milestone n="7" unit="chapter"/></p><p><reg>existima</reg>, C. Aquili, modo et ratione omnia Romae 
+<milestone n="7" unit="chapter"/><reg>existima</reg>, C. Aquili, modo et ratione omnia Romae 
 Naevium fecisse, si hoc quod per litteras istius in Gallia gestum 
 est recte atque ordine factum videtur. <reg>expulsus</reg> atque 
 eiectus e praedio Quinctius accepta insigni iniuria confugit 
 ad C. Flaccum imperatorem, qui tunc erat in provincia, 
 quem, ut ipsius dignitas poscit, honoris gratia nomino. <reg>is</reg> 
 eam rem quam vehementer vindicandam putarit ex decretis 
-eius poteritis cognoscere.
+eius poteritis cognoscere.</p></div>
 
 
-<milestone n="29" unit="section"/>Alfenus interea Romae cum isto 
+<div type="textpart" subtype="section" n="29"><p>Alfenus interea Romae cum isto 
 gladiatore vetulo cotidie pugnabat; utebatur populo sane 
 suo, propterea quod iste caput petere non desinebat. <reg>iste</reg> 
 postulabat ut procurator iudicatum solvi satis daret; negat 
@@ -480,12 +451,10 @@ Alfenus aequum esse procuratorem satis dare, quod reus satis
 dare non deberet, si ipse adesset. <reg>appellantur</reg> tribuni; a 
 quibus cum esset certum auxilium petitum, ita tum 
 disceditur ut Idibus Septembribus P. Quinctium sisti <reg>sex</reg>. 
-Alfenus promitteret. 
+Alfenus promitteret.</p></div> 
 
 
-<milestone n="8" unit="chapter"/></p><p><milestone n="30" unit="section"/><reg>venit</reg> Romam Quinctius, vadimonium sistit.
-
-<reg>iste</reg>, homo 
+<milestone n="8" unit="chapter"/><div type="textpart" subtype="section" n="30"><p><reg>venit</reg> Romam Quinctius, vadimonium sistit. <reg>iste</reg>, homo 
 acerrimus, bonorum possessor, expulsor, ereptor, annum et 
 sex mensis nihil petit, quiescit, condicionibus hunc quoad 
 potest producit, a Cn. Dolabella denique praetore postulat 
@@ -500,10 +469,10 @@ facere: <quote>si bona sua ex edicto P. Burrieni praetoris dies
 xxx possessa non essent</quote>. <reg>recusabant</reg> qui aderant tum 
 Quinctio, demonstrabant de re iudicium fieri oportere ut aut 
 uterque inter se aut neuter satis daret; non necesse esse 
-famam alterius in iudicium venire.
+famam alterius in iudicium venire.</p></div>
 
 
-<milestone n="31" unit="section"/><reg>clamabat</reg> porro ipse 
+<div type="textpart" subtype="section" n="31"><p><reg>clamabat</reg> porro ipse 
 Quinctius sese idcirco nolle satis dare ne videretur iudicasse 
 bona sua ex edicto possessa esse; sponsionem porro si 
 istius modi faceret, se, id quod nunc evenit, de capite suo 
@@ -512,11 +481,11 @@ modum solent homines nobiles; seu recte seu perperam
 facere coeperunt, ita in utroque excellunt ut nemo nostro 
 loco natus adsequi possit—iniuriam facere fortissime 
 perseverat; aut satis dare aut sponsionem iubet facere, et interea 
-recusantis nostros advocatos acerrime submoveri. 
+recusantis nostros advocatos acerrime submoveri.</p></div> 
 
-</p>
-<p><milestone n="9" unit="chapter"/><milestone n="32" unit="section"/>
-<reg>conturbatus</reg> sane discedit Quinctius; neque mirum, cui 
+
+<milestone n="9" unit="chapter"/><div type="textpart" subtype="section" n="32">
+<p><reg>conturbatus</reg> sane discedit Quinctius; neque mirum, cui 
 haec optio tam misera tamque iniqua daretur ut aut ipse se 
 capitis damnaret, si satis dedisset, aut causam capitis, si 
 sponsionem fecisset, priore loco diceret. Cum in altera re 
@@ -525,8 +494,9 @@ iudicium gravissimum est, in altera spes esset ad talem tamen
 virum iudicem veniendi, unde eo plus opis auferret quo 
 minus attulisset gratiae, sponsionem facere maluit; fecit; 
 te iudicem, C. Aquili, sumpsit, ex sponso egit. <reg>in</reg> hoc summa 
-iudici causaque tota consistit. </p>
-<p><milestone n="33" unit="section"/><reg>iudicium</reg> esse, C. 
+iudici causaque tota consistit.</p></div>
+	
+<div type="textpart" subtype="section" n="33"><p><reg>iudicium</reg> esse, C. 
 Aquili, non de re pecuniaria, sed de 
 fama fortunisque P. Quincti vides. Cum maiores ita   
 constituerint ut, qui pro capite diceret, is posteriore loco diceret, 
@@ -537,15 +507,15 @@ versabantur in salute atque auxilio ferendo. <reg>illud</reg> etiam
 restiterat quod hesterno die fecerunt, ut te in ius educerent, 
 ut nobis tempus quam diu diceremus praestitueres; quam 
 rem facile a praetore impetrassent, nisi tu quod esset tuum 
-ius et officium potestasque docuisses.
+ius et officium potestasque docuisses.</p></div>
 
 
-<milestone n="34" unit="section"/><reg>neque</reg> nobis adhuc 
+<div type="textpart" subtype="section" n="34"><p><reg>neque</reg> nobis adhuc 
 praeter te quisquam fuit, ubi nostrum ius contra illos 
 obtineremus, neque illis umquam satis fuit illud obtinere quod 
 probari omnibus posset; ita sine iniuria potentiam levem 
-atque inopem esse arbitrantur. </p>
-<p><milestone n="10" unit="chapter"/><reg>verum</reg> quoniam tibi instat Hortensius ut eas in 
+atque inopem esse arbitrantur. 
+<milestone n="10" unit="chapter"/><reg>verum</reg> quoniam tibi instat Hortensius ut eas in 
 consilium, a me postulat ne dicendo tempus absumam, 
 queritur priore patrono causam defendente numquam 
 perorari potuisse, non patiar istam manere suspicionem 
@@ -555,9 +525,9 @@ demonstrata sit, neque tamen tam multa verba faciam, propterea
 quod et ab illo qui tum dixit iam informata causa est 
 et a me, qui neque excogitare neque pronuntiare multa 
 possum, brevitas postulatur, quae mihimet ipsi amicissima 
-est; 
+est;</p></div> 
 
-<milestone n="35" unit="section"/>faciam quod te saepe animadverti facere, Hortensi; 
+<div type="textpart" subtype="section" n="35"><p>faciam quod te saepe animadverti facere, Hortensi; 
 totam causae meae dictionem certas in partis dividam. 
 <reg>tu</reg> id semper facis, quia semper potes, ego in hac causa 
 faciam, propterea quod in hac videor posse facere; quod 
@@ -566,8 +536,9 @@ hodie possim. <reg>certos</reg> mihi finis terminosque constituam,
 extra quos egredi non possim, si maxime velim, ut et mihi 
 sit propositum de quo dicam, et Hortensius habeat exposita 
 ad quae respondeat, et tu, C. Aquili, iam ante animo 
-prospicere possis quibus de rebus auditurus sis. </p>
-<p><milestone n="36" unit="section"/><reg>negamus</reg> te bona P. Quincti, <reg>sex</reg>.
+prospicere possis quibus de rebus auditurus sis.</p></div> 
+	
+<div type="textpart" subtype="section" n="36"><p><reg>negamus</reg> te bona P. Quincti, <reg>sex</reg>.
 Naevi, possedisse 
 ex edicto praetoris. <reg>in</reg> eo sponsio facta est. <reg>ostendam</reg> 
 primum causam non fuisse cur a praetore postulares ut 
@@ -579,10 +550,9 @@ accipietis, si haec memineritis, et me facile vestra
 existimatione revocabitis, si extra hos cancellos egredi conabor quos 
 mihi ipse circumdedi. <reg>nego</reg> fuisse causam cur postularet, 
 nego ex edicto possidere potuisse, nego possedisse. <reg>haec</reg> 
-tria cum docuero, peroraro. 
-</p>
-<p><milestone n="11" unit="chapter"/><milestone n="37" unit="section"/><reg>non</reg> fuit causa cur postularet.
+tria cum docuero, peroraro.</p></div> 
 
+<milestone n="11" unit="chapter"/><div type="textpart" subtype="section" n="37"><p><reg>non</reg> fuit causa cur postularet.
 <reg>qui</reg> hoc intellegi potest? 
 <reg>quia</reg> Sex. Naevio neque ex societatis ratione neque 
 privatim quicquam debuit Quinctius. <reg>quis</reg> huic rei testis 
@@ -591,10 +561,10 @@ inquam, testem, Naevi, citabo. <reg>annum</reg> et eo diutius post
 mortem C. Quincti fuit in Gallia tecum simul Quinctius. 
 <reg>doce</reg> te petisse ab eo istam nescio quam innumerabilem 
 pecuniam, doce aliquando mentionem fecisse, dixisse 
-deberi; debuisse concedam. 
+deberi; debuisse concedam.</p></div> 
 
 
-<milestone n="38" unit="section"/><reg>moritur</reg> C.
+<div type="textpart" subtype="section" n="38"><p><reg>moritur</reg> C.
 Quinctius qui 
 tibi, ut ais, certis nominibus grandem pecuniam debuit. 
 Heres eius P. Quinctius in Galliam ad te ipsum venit in 
@@ -610,10 +580,10 @@ faciunt, si qui suos propinquos ac necessarios caros et
 honestos esse atque haberi volunt, id Sex. Naevius non 
 faceret, qui usque eo fervet ferturque avaritia ut de suis 
 commodis aliquam partem velit committere ne quam 
-partem huic propinquo suo ullius ornamenti relinquat? 
+partem huic propinquo suo ullius ornamenti relinquat?</p></div>
 
 
-<milestone n="39" unit="section"/>et is pecuniam, si qua deberetur, non peteret qui, quia, 
+<div type="textpart" subtype="section" n="39"><p>et is pecuniam, si qua deberetur, non peteret qui, quia, 
 quod debitum numquam est, id datum non est, non 
 pecuniam modo verum etiam hominis propinqui sanguinem 
 vitamque eripere conatur? <reg>huic</reg> tum molestus esse 
@@ -626,12 +596,10 @@ confirmasses, cum statuisses mentionem de pecunia facere,
 cum paratus meditatusque venisses, homo timidus virginali 
 verecundia subito ipse te retinebas; excidebat repente 
 oratio; cum cuperes appellare, non audebas, ne invitus 
-audiret. <reg>id</reg> erat profecto. 
+audiret. <reg>id</reg> erat profecto.</p></div> 
 
 
-<milestone n="12" unit="chapter"/><milestone n="40" unit="section"/><reg>credamus</reg> hoc, <reg>sex</reg>.
-
-Naevium, 
+<milestone n="12" unit="chapter"/><div type="textpart" subtype="section" n="40"><p><reg>credamus</reg> hoc, <reg>sex</reg>. Naevium, 
 cuius caput oppugnet, eius auribus pepercisse. <reg>si</reg> debuisset, 
 Sexte, petisses, et petisses statim; si non statim, paulo 
 quidem post; si non paulo, at aliquanto; sex quidem illis 
@@ -641,10 +609,10 @@ fuisset admonendi, verbum nullum facis; biennio iam
 confecto fere appellas. <reg>quis</reg> tam perditus ac profusus 
 nepos non adesa iam sed abundanti etiam pecunia sic 
 dissolutus fuisset ut fuit Sex. Naevius? Cum hominem 
-nomino, satis mihi videor dicere. 
+nomino, satis mihi videor dicere.</p></div> 
 
 
-<milestone n="41" unit="section"/><reg>debuit</reg> tibi C.
+<div type="textpart" subtype="section" n="41"><p><reg>debuit</reg> tibi C.
 Quinctius, 
 numquam petisti; mortuus est ille, res ad heredem venit; 
 cum eum cotidie videres, post biennium denique appellas. 
@@ -657,18 +625,18 @@ ut aut summa neglegentia tibi obstiterit aut unica liberalitas.
 <reg>si</reg> neglegentiam dices, mirabimur, si bonitatem, ridebimus; 
 neque praeterea quid possis dicere invenio. <reg>satis</reg> est 
 argumenti nihil esse debitum Naevio, quod tam diu nihil 
-petivit. 
+petivit.</p></div> 
 
-</p>
-<p><milestone n="13" unit="chapter"/><milestone n="42" unit="section"/><reg>quid</reg> si hoc ipsum quod nunc facit ostendo testimonio 
+
+<milestone n="13" unit="chapter"/><div type="textpart" subtype="section" n="42"><p><reg>quid</reg> si hoc ipsum quod nunc facit ostendo testimonio 
 esse nihil deberi? <reg>quid</reg> enim nunc agit Sex. Naevius? 
 qua de re controversia est? quod est hoc iudicium in quo 
 iam biennium versamur? quid negoti geritur in quo ille tot 
 et talis viros defatigat? <reg>pecuniam</reg> petit. <reg>nunc</reg> denique? 
-verum tamen petat; audiamus.
+verum tamen petat; audiamus.</p></div>
 
 
-<milestone n="43" unit="section"/><reg>de</reg> rationibus et 
+<div type="textpart" subtype="section" n="43"><p><reg>de</reg> rationibus et 
 controversiis societatis volt diiudicari. <reg>sero</reg>, verum aliquando 
 tamen; concedamus. '<reg>non</reg>,' inquit, 'id ago, C. Aquili, 
 neque in eo nunc laboro. <reg>pecunia</reg> mea tot annos utitur 
@@ -680,10 +648,10 @@ de vita et ornamentis suis omnibus, apud iudicem causam
 priore loco dicat et, eam cum orarit, tum denique vocem 
 accusatoris audiat? <reg>quid</reg>? hoc quo pertinet? ut ocius 
 ad tuum pervenias? <reg>at</reg> si id velles, iam pridem actum 
-esse poterat. Vt honestiore iudicio conflictere?
+esse poterat. Vt honestiore iudicio conflictere?</p></div>
 
 
-<milestone n="44" unit="section"/><reg>at</reg> sine 
+<div type="textpart" subtype="section" n="44"><p><reg>at</reg> sine 
 summo scelere P. Quinctium, propinquum tuum, iugulare 
 non potes. Vt facilius iudicium sit? <reg>at</reg> neque C. Aquilius 
 de capite alterius libenter iudicat et Q. Hortensius contra 
@@ -694,16 +662,16 @@ veretur ut res iudicio facto parata sit, iudicatum solvi satis
 accipiat; quibus a me verbis satis acceperit, isdem ipse, 
 quod peto, satis det. <reg>actum</reg> iam potest esse, C. Aquili; 
 iam tu potes liberatus discedere molestia prope dicam 
-non minore quam Quinctius. 
+non minore quam Quinctius.</p></div> 
 
-</p>
-<p><milestone n="45" unit="section"/><reg>quid</reg> agimus, Hortensi? quid de hac condicione dicimus? 
+
+<div type="textpart" subtype="section" n="45"><p><reg>quid</reg> agimus, Hortensi? quid de hac condicione dicimus? 
 <reg>possumus</reg> aliquando depositis armis sine periculo 
 fortunarum de re pecuniaria disceptare? possumus ita rem nostram 
 persequi ut hominis propinqui caput incolume esse 
 patiamur? possumus petitoris personam capere, accusatoris 
 deponere? '<reg>immo</reg>,' inquit, 'abs te satis accipiam; ego 
-autem tibi satis non dabo.' 
+autem tibi satis non dabo.'
 
 
 <milestone n="14" unit="chapter"/><reg>quis</reg> tandem nobis ista iura 
@@ -712,10 +680,10 @@ Quinctium, id iniquum esse in Naevium? 'Quincti bona,'
 inquit, 'ex edicto praetoris possessa sunt.' <reg>ergo</reg>, id ut 
 confitear, postulas ut, quod numquam factum esse iudicio  
 defendimus, id, proinde quasi factum sit, nostro iudicio 
-confirmemus?
+confirmemus?</p></div>
 
 
-<milestone n="46" unit="section"/><reg>inveniri</reg> ratio, C.
+<div type="textpart" subtype="section" n="46"><p><reg>inveniri</reg> ratio, C.
 Aquili, non potest ut ad 
 suum quisque quam primum sine cuiusquam dedecore, 
 infamia pernicieque perveniat? <reg>profecto</reg>, si quid 
@@ -731,10 +699,10 @@ probro facere maluerit, qui, cum revocetur ad id iudicium
 unde haec nata sunt omnia, condicionem aequissimam 
 repudiet, fateatur se non pecuniam sed vitam et sanguinem 
 petere, is non hoc palam dicit: 'mihi si quid deberetur, 
-peterem atque adeo iam pridem abstulissem; 
+peterem atque adeo iam pridem abstulissem;</p></div> 
 
 
-<milestone n="47" unit="section"/>nihil hoc tanto 
+<div type="textpart" subtype="section" n="47"><p>nihil hoc tanto 
 negotio, nihil tam invidioso iudicio, nihil tam copiosa 
 advocatione uterer, si petendum esset; extorquendum est invito 
 atque ingratis; quod non debet, eripiendum atque 
@@ -747,10 +715,10 @@ pugnent video, et cum illum consessum considero, adesse
 atque impendere videntur neque vitari ullo modo posse; 
 cum autem ad te, C. Aquili, oculos animumque rettuli, quo  
 maiore conatu studioque aguntur, eo leviora infirmioraque 
-existimo. <reg>nihil</reg> igitur debuit, ut tu ipse praedicas. 
+existimo. <reg>nihil</reg> igitur debuit, ut tu ipse praedicas.</p></div> 
 
-</p>
-<p><milestone n="48" unit="section"/><reg>quid</reg> si debuisset? continuone causa fuisset cur a 
+
+<div type="textpart" subtype="section" n="48"><p><reg>quid</reg> si debuisset? continuone causa fuisset cur a 
 praetore postulares ut bona possideres? <reg>non</reg> opinor id quidem 
 neque ius esse neque cuiquam expedire. <reg>quid</reg> igitur 
 demonstrat? <reg>vadimonium</reg> sibi ait esse desertum. 
@@ -766,10 +734,10 @@ denique causae et necessitudines veteres intercedebant.
 postulare ut ex edicto bona possidere liceret? ad haec 
 extrema et inimicissima iura tam cupide decurrebas ut tibi 
 nihil in posterum quod gravius atque crudelius facere posses 
-reservares?
+reservares?</p></div>
 
 
-<milestone n="49" unit="section"/><reg>nam</reg> quid homini potest turpius, quid viro 
+<div type="textpart" subtype="section" n="49"><p><reg>nam</reg> quid homini potest turpius, quid viro 
 miserius aut acerbius usu venire? quod tantum evenire 
 dedecus, quae tanta calamitas inveniri potest? <reg>pecuniam</reg> 
 si cuipiam fortuna ademit aut si alicuius eripuit iniuria, 
@@ -783,10 +751,10 @@ victus vestitusque necessarius sub praeconem cum dedecore
 subiectus est, is non modo ex numero vivorum exturbatur, 
 sed, si fieri potest, infra etiam mortuos amandatur. <reg>etenim</reg>  
 mors honesta saepe vitam quoque turpem exornat, vita ita 
-turpis ne morti quidem honestae locum relinquit.
+turpis ne morti quidem honestae locum relinquit.</p></div>
 
 
-<milestone n="50" unit="section"/><reg>ergo</reg> 
+<div type="textpart" subtype="section" n="50"><p><reg>ergo</reg> 
 hercule, cuius bona ex edicto possidentur, huius omnis fama 
 et existimatio cum bonis simul possidetur; de quo libelli 
 in celeberrimis locis proponuntur, huic ne perire quidem 
@@ -796,10 +764,10 @@ pronuntient, de quo homine praeconis vox praedicat et
 pretium conficit, huic acerbissimum vivo videntique funus 
 indicitur, si funus id habendum est quo non amici 
 conveniunt ad exsequias cohonestandas, sed bonorum emptores 
-ut carnifices ad reliquias vitae lacerandas et distrahendas. 
+ut carnifices ad reliquias vitae lacerandas et distrahendas.</p></div> 
 
-</p>
-<p><milestone n="16" unit="chapter"/><milestone n="51" unit="section"/><reg>itaque</reg> maiores nostri raro id accidere voluerunt, 
+
+<milestone n="16" unit="chapter"/><div type="textpart" subtype="section" n="51"><p><reg>itaque</reg> maiores nostri raro id accidere voluerunt, 
 praetores ut considerate fieret comparaverunt. <reg>viri</reg> boni cum 
 palam fraudantur, cum experiendi potestas non est, timide 
 tamen et pedetemptim istuc descendunt vi ac necessitate 
@@ -811,9 +779,9 @@ pepercisse, quam cum parcere potuerit perdidisse. <reg>haec</reg>
 in homines alienissimos, denique in inimicissimos viri boni 
 faciunt et hominum existimationis et communis humanitatis 
 causa, ut, cum ipsi nihil alteri scientes incommodarint, nihil 
-ipsis iure incommodi cadere possit. 
-</p>
-<p><milestone n="52" unit="section"/><reg>ad</reg> vadimonium non venit. <reg>quis</reg>? <reg>propinquus</reg>.
+ipsis iure incommodi cadere possit.</p></div> 
+
+<div type="textpart" subtype="section" n="52"><p><reg>ad</reg> vadimonium non venit. <reg>quis</reg>? <reg>propinquus</reg>.
 <reg>si</reg> res 
 ista gravissima sua sponte videretur, tamen eius atrocitas 
 necessitudinis nomine levaretur. <reg>ad</reg> vadimonium non venit. 
@@ -823,10 +791,10 @@ coniunxisset. <reg>ad</reg> vadimonium non venit. <reg>quis</reg>? <reg>is</reg>
 tibi praesto semper fuit. <reg>ergo</reg> in eum qui semel hoc 
 commisit, ut tibi praesto non esset, omnia tela coniecisti quae 
 parata sunt in eos qui permulta male agendi causa 
-fraudandique fecerunt? 
+fraudandique fecerunt?</p></div> 
 
 
-<milestone n="53" unit="section"/><reg>si</reg> dupondius tuus ageretur, <reg>sex</reg>.
+<div type="textpart" subtype="section" n="53"><p><reg>si</reg> dupondius tuus ageretur, <reg>sex</reg>.
 Naevi, 
 si in parvola re captionis aliquid vererere, non statim ad 
 C. Aquilium aut ad eorum aliquem, qui consuluntur, 
@@ -842,10 +810,10 @@ rationi et consilio dedisses, tu te conlegisses, non in eam
 turpitudinem venisses ut hoc tibi esset apud talis viros 
 confitendum, qua tibi vadimonium non sit obitum, eadem te 
 hora consilium cepisse hominis propinqui fortunas funditus 
-evertere. 
+evertere.</p></div> 
 
-</p>
-<p><milestone n="17" unit="chapter"/><milestone n="54" unit="section"/><reg>ego</reg> pro te nunc hos consulo post tempus et in aliena re, 
+
+<milestone n="17" unit="chapter"/><div type="textpart" subtype="section" n="54"><p><reg>ego</reg> pro te nunc hos consulo post tempus et in aliena re, 
 quoniam tu in tua re, cum tempus erat, consulere oblitus 
 es; quaero abs te, C. Aquili, L. Lucili, P. Quinctili, 
 M. Marcelle: vadimonium mihi non obiit quidam socius 
@@ -860,10 +828,10 @@ primum exspectare, deinde, si latitare ac diutius ludificare
 videatur, amicos convenire, quaerere quis procurator sit, 
 domum denuntiare. <reg>dici</reg> vix potest quam multa sint quae 
 respondeatis ante fieri oportere quam ad hanc rationem 
-extremam necessario devenire.
+extremam necessario devenire.</p></div>
 
 
-<milestone n="55" unit="section"/><reg>quid</reg> ad haec Naevius? 
+<div type="textpart" subtype="section" n="55"><p><reg>quid</reg> ad haec Naevius? 
 <reg>ridet</reg> scilicet nostram amentiam, qui in vita sua rationem 
 summi offici desideremus et instituta virorum bonorum 
 requiramus. '<reg>quid</reg> mihi,' inquit, 'cum ista summa 
@@ -871,15 +839,15 @@ sanctimonia ac diligentia? viderint,' inquit, 'ista officia viri boni,
 de me autem ita considerent: non quid habeam sed quibus 
 rebus invenerim quaerant, et quem ad modum natus et quo 
 pacto educatus sim. <reg>memini</reg>; vetus est, "de scurra multo 
-facilius divitem quam patrem familias fieri posse."'
+facilius divitem quam patrem familias fieri posse."'</p></div>
 
 
-<milestone n="56" unit="section"/><reg>haec</reg> 
+<div type="textpart" subtype="section" n="56"><p><reg>haec</reg> 
 ille, si verbis non audet, re quidem vera palam loquitur. 
 <reg>etenim</reg> si volt virorum bonorum instituto vivere, multa 
 oportet discat ac dediscat, quorum illi aetati utrumque 
-difficile est. </p>
-<p><milestone n="18" unit="chapter"/>'<reg>non</reg> dubitavi,' inquit, 'cum vadimonium desertum 
+difficile est. 
+<milestone n="18" unit="chapter"/>'<reg>non</reg> dubitavi,' inquit, 'cum vadimonium desertum 
 esset, bona proscribere.' <reg>improbe</reg>; verum, quoniam tu id 
 tibi adrogas et concedi postulas, concedamus. <reg>quid</reg> si 
 numquam deseruit, si ista causa abs te tota per summam 
@@ -890,10 +858,10 @@ tamen in ista postulatione et proscriptione bonorum
 improbissimus reperiebare. <reg>malitiosum</reg>? <reg>non</reg> negas. 
 <reg>fraudulentum</reg>? <reg>iam</reg> id quidem adrogas tibi et praeclarum putas. 
 <reg>audacem</reg>, cupidum, perfidiosum? <reg>volgaria</reg> et obsoleta 
-sunt; res autem nova atque inaudita.
+sunt; res autem nova atque inaudita.</p></div>
 
 
-<milestone n="57" unit="section"/><reg>quid</reg> ergo est? 
+<div type="textpart" subtype="section" n="57"><p><reg>quid</reg> ergo est? 
 <reg>vereor</reg> me hercule ne aut gravioribus utar verbis quam 
 natura fert, aut levioribus quam causa postulat. <reg>ais</reg> esse 
 vadimonium desertum. <reg>quaesivit</reg> a te, statim ut Romam 
@@ -902,20 +870,20 @@ diceres. <reg>respondisti</reg> statim: Nonis Febr. <reg>discedens</reg> in
 memoriam redit Quinctius quo die Roma in Galliam 
 profectus sit; ad ephemeridem revertitur; invenitur dies 
 profectionis <date>pridie Kal. Febr.</date> Nonis Febr. si Romae fuit, causae 
-nihil dicimus quin tibi vadimonium promiserit.
+nihil dicimus quin tibi vadimonium promiserit.</p></div>
 
 
-<milestone n="58" unit="section"/><reg>quid</reg>? hoc 
+<div type="textpart" subtype="section" n="58"><p><reg>quid</reg>? hoc 
 inveniri qui potest? <reg>profectus</reg> est una L. Albius, homo 
 cum primis honestus; dicet testimonium. <reg>prosecuti</reg> sunt 
 familiares et Albium et Quinctium; dicent hi quoque 
 testimonium. Litterae P. Quincti, testes tot, quibus omnibus 
 causa iustissima est cur scire potuerint, nulla cur 
-mentiantur, cum astipulatore tuo comparabuntur. 
-</p>
-<p>
+mentiantur, cum astipulatore tuo comparabuntur.</p></div> 
 
-<milestone n="59" unit="section"/><reg>et</reg> in hac eius modi causa P.
+
+
+<div type="textpart" subtype="section" n="59"><p><reg>et</reg> in hac eius modi causa P.
 Quinctius laborabit et 
 diutius in tanto metu miser periculoque versabitur? et 
 vehementius eum gratia adversarii perterrebit quam fides 
@@ -928,10 +896,10 @@ obsolevit. <reg>at</reg> si in causa pari discedere inferior videretur,
 tamen esset non mediocriter conquerendum; nunc in causa 
 superiore ne ut par quidem sit postulat, inferiorem se esse 
 patitur, dumtaxat usque eo ne cum bonis, fama fortunisque 
-omnibus Sex. Naevi cupiditati crudelitatique dedatur. 
+omnibus Sex. Naevi cupiditati crudelitatique dedatur.</p></div> 
 
-</p>
-<p><milestone n="19" unit="chapter"/><milestone n="60" unit="section"/><reg>docui</reg> quod primum pollicitus sum, C.
+
+<milestone n="19" unit="chapter"/><div type="textpart" subtype="section" n="60"><p><reg>docui</reg> quod primum pollicitus sum, C.
 Aquili, causam 
 omnino cur postularet non fuisse, quod neque pecunia 
 debebatur et, si maxime deberetur, commissum nihil esset qua 
@@ -945,25 +913,25 @@ relicto procuratore proficiscuntur. <quote>cui heres non exstabit.</quote>
 Quinctium defendi aut quo modo? tum cum postulabas ut bona 
 possideres? <reg>nemo</reg> adfuit; neque enim quisquam divinare 
 poterat te postulaturum, neque quemquam attinebat id 
-recusare quod praetor non fieri, sed ex edicto suo fieri iubebat. 
+recusare quod praetor non fieri, sed ex edicto suo fieri iubebat.</p></div> 
 
 
 
-<milestone n="61" unit="section"/><reg>qui</reg> locus igitur absentis defendendi procuratori primus 
+<div type="textpart" subtype="section" n="61"><p><reg>qui</reg> locus igitur absentis defendendi procuratori primus 
 datus est? Cum proscribebas. <reg>ergo</reg> adfuit, non passus 
 est, libellos deiecit Sex. Alfenus; qui primus erat offici 
-gradus, servatus est a procuratore summa cum diligentia. </p>
-<p><reg>videamus</reg> quae deinde sint consecuta. <reg>hominem</reg> P. 
+gradus, servatus est a procuratore summa cum diligentia. 
+<reg>videamus</reg> quae deinde sint consecuta. <reg>hominem</reg> P. 
 Quincti deprehendis in publico, conaris abducere; non 
 patitur Alfenus, vi tibi adimit, curat ut domum reducatur  
 ad Quinctium. <reg>hic</reg> quoque summe constat procuratoris 
 diligentis officium. <reg>debere</reg> tibi dicis Quinctium, procurator 
 negat; vadari vis, promittit; in ius vocas, sequitur; iudicium 
 postulas, non recusat. <reg>quid</reg> aliud sit absentem defendi ego 
-non intellego. <reg>at</reg> quis erat procurator?
+non intellego. <reg>at</reg> quis erat procurator?</p></div>
 
 
-<milestone n="62" unit="section"/><reg>credo</reg> aliquem 
+<div type="textpart" subtype="section" n="62"><p><reg>credo</reg> aliquem 
 electum hominem egentem, litigiosum, improbum, qui posset 
 scurrae divitis cotidianum convicium sustinere. <reg>nihil</reg> minus; 
 eques Romanus locuples, sui negoti bene gerens, denique 
@@ -976,10 +944,10 @@ absentem defensum esse Quinctium, cum eum defenderit
 idem qui te solebat? et, cum is iudicium acceperit pro 
 Quinctio cui tu et rem et famam tuam commendare 
 proficiscens et concredere solebas, conaris hoc dicere, neminem 
-exstitisse qui Quinctium iudicio defenderet? 
+exstitisse qui Quinctium iudicio defenderet? </p></div>
 
-</p>
-<p><milestone n="63" unit="section"/>'<reg>postulabam</reg>,' inquit, 'ut satis daret.'
+
+<div type="textpart" subtype="section" n="63"><p>'<reg>postulabam</reg>,' inquit, 'ut satis daret.'
 <reg>iniuria</reg> postulabas. 
 '<reg>ita</reg> iubebare'; recusabat Alfenus. '<reg>ita</reg>, verum praetor 
 decernebat.'—<reg>tribuni</reg> igitur appellabantur.—'<reg>hic</reg> te,' inquit, 
@@ -991,20 +959,20 @@ quid aliud dicere possit non reperio. <reg>fatetur</reg> enim libellos
 Alfenum deiecisse, vadimonium promisisse, iudicium quin 
 acciperet in ea ipsa verba quae Naevius edebat non recusasse, 
 ita tamen, more et instituto, per eum magistratum qui 
-auxili causa constitutus est.
+auxili causa constitutus est.</p></div>
 
 
-<milestone n="64" unit="section"/><reg>aut</reg> haec facta non sint necesse  
+<div type="textpart" subtype="section" n="64"><p><reg>aut</reg> haec facta non sint necesse  
 est aut C. Aquilius, talis vir, iuratus hoc ius in civitate 
 constituat: cuius procurator non omnia iudicia acceperit quae 
 quisque in verba postularit, cuius procurator a praetore 
 tribunos appellare ausus sit, eum non defendi, eius bona 
 recte possideri posse, ei misero, absenti, ignaro fortunarum 
 suarum omnia vitae ornamenta per summum dedecus et 
-ignominiam deripi convenire.
+ignominiam deripi convenire.</p></div>
 
 
-<milestone n="65" unit="section"/><reg>quod</reg> si probari nemini 
+<div type="textpart" subtype="section" n="65"><p><reg>quod</reg> si probari nemini 
 potest, illud certe probari omnibus necesse est, defensum 
 esse iudicio absentem Quinctium. <reg>quod</reg> cum ita sit, ex 
 edicto bona possessa non sunt. <reg>at</reg> enim tribuni plebis ne 
@@ -1012,10 +980,10 @@ audierunt quidem. <reg>fateor</reg>, si ita est, procuratorem decreto
 praetoris oportuisse parere. <reg>quid</reg>? si M. Brutus 
 intercessurum se dixit palam, nisi quid inter ipsum Alfenum 
 et Naevium conveniret, videturne intercessisse appellatio 
-tribunorum non morae, sed auxili causa? 
+tribunorum non morae, sed auxili causa?</p></div>
 
-</p>
-<p><milestone n="21" unit="chapter"/><milestone n="66" unit="section"/><reg>quid</reg> deinde fit?
+
+<milestone n="21" unit="chapter"/><div type="textpart" subtype="section" n="66"><p><reg>quid</reg> deinde fit?
 Alfenus, ut omnes intellegere possent 
 iudicio defendi Quinctium, ne qua subesse posset aliena aut 
 ipsius officio aut huius existimatione suspicio, viros bonos 
@@ -1024,20 +992,20 @@ communi necessitudine id primum petere ne quid atrocius
 in P. Quinctium absentem sine causa facere conetur; sin 
 autem inimicissime atque infestissime contendere perseveret, 
 se paratum esse omni recta atque honesta ratione defendere 
-quod petat non deberi; se iudicium id quod edat accipere. 
+quod petat non deberi; se iudicium id quod edat accipere.</p></div> 
 
 
 
-<milestone n="67" unit="section"/><reg>eius</reg> rei condicionisque tabellas obsignaverunt viri boni 
+<div type="textpart" subtype="section" n="67"><p><reg>eius</reg> rei condicionisque tabellas obsignaverunt viri boni 
 complures. <reg>res</reg> in dubium venire non potest. <reg>fit</reg> rebus 
 omnibus integris neque proscriptis neque possessis bonis 
 ut Alfenus promittat Naevio sisti Quinctium. <reg>venit</reg> ad 
 vadimonium Quinctius. <reg>iacet</reg> res in controversiis isto  
 calumniante biennium, usque dum inveniretur qua ratione 
 res ab usitata consuetudine recederet et in hoc singulare 
-iudicium causa omnis concluderetur. 
-</p>
-<p><milestone n="68" unit="section"/><reg>quod</reg> officium, C.
+iudicium causa omnis concluderetur.</p></div> 
+
+<div type="textpart" subtype="section" n="68"><p><reg>quod</reg> officium, C.
 Aquili, commemorari procuratoris potest 
 quod ab Alfeno praeteritum esse videatur? quid adfertur 
 qua re P. Quinctius negetur absens esse defensus? <reg>an</reg> vero 
@@ -1049,9 +1017,9 @@ non procuratorem P. Quincti neminem fuisse, sed gratiosum
 fuisse. <reg>mihi</reg> autem ad vincendum satis est fuisse 
 procuratorem quicum experiretur; qualis is fuerit, si modo absentem 
 defendebat per ius et per magistratum, nihil ad rem arbitror 
-pertinere. 
-</p>
-<p><milestone n="69" unit="section"/>'<reg>erat</reg>,' inquit, 'illarum partium.'
+pertinere.</p></div> 
+
+<div type="textpart" subtype="section" n="69"><p>'<reg>erat</reg>,' inquit, 'illarum partium.'
 
 <reg>quid</reg> ni? qui apud te 
 esset eductus; quem tu a puero sic instituisses ut nobili 
@@ -1063,10 +1031,10 @@ omnium denique illorum qui tum et poterant per vim et
 scelus plurimum et, quod poterant, id audebant. <reg>an</reg> omnis 
 tu istos vincere volebas qui nunc tu ut vincas tanto opere 
 laborant? <reg>aude</reg> id dicere non palam, sed ipsis quos 
-advocasti.
+advocasti.</p></div>
 
 
-<milestone n="70" unit="section"/><reg>tametsi</reg> nolo eam rem commemorando renovare  
+<div type="textpart" subtype="section" n="70"><p><reg>tametsi</reg> nolo eam rem commemorando renovare  
 cuius omnino rei memoriam omnem tolli funditus ac deleri 
 arbitror oportere; unum illud dico: 
 
@@ -1078,10 +1046,10 @@ quicquam, ut opinor, interfuit; ingenio, vetustate, artificio
 tu facile vicisti. Vt alia omittam, hoc satis est: Alfenus 
 cum eis et propter eos periit quos diligebat, tu, postquam 
 qui tibi erant amici non poterant vincere, ut amici tibi essent 
-qui vincebant effecisti. 
+qui vincebant effecisti.</p></div>
 
-</p>
-<p><milestone n="71" unit="section"/><reg>quod</reg> si tum par tibi ius cum Alfeno fuisse non putas, 
+
+<div type="textpart" subtype="section" n="71"><p><reg>quod</reg> si tum par tibi ius cum Alfeno fuisse non putas, 
 quia tamen aliquem contra te advocare poterat, quia 
 magistratus aliqui reperiebatur apud quem Alfeni causa consisteret, 
 quid hoc tempore Quinctio statuendum est? cui neque 
@@ -1094,10 +1062,10 @@ controversia est.—'<reg>nihil</reg> ad me attinet; causam capitis dicas
 oportet.'—<reg>accusa</reg> ubi ita necesse est.—'<reg>non</reg>,' inquit, 
 'nisi tu ante novo modo priore loco dixeris.'—<reg>dicendum</reg> 
 necessario est.—'<reg>praestituentur</reg> horae ad arbitrium 
-nostrum, iudex ipse coercebitur.'—
+nostrum, iudex ipse coercebitur.'—</p></div>
 
 
-<milestone n="72" unit="section"/><reg>quid</reg> tum?—'<reg>tu</reg> aliquem 
+<div type="textpart" subtype="section" n="72"><p><reg>quid</reg> tum?—'<reg>tu</reg> aliquem 
 patronum invenies, hominem antiqui offici, qui splendorem 
 nostrum et gratiam neglegat; pro me pugnabit L. Philippus, 
 eloquentia, gravitate, honore florentissimus civitatis, dicet 
@@ -1105,36 +1073,36 @@ Hortensius, excellens ingenio, nobilitate, existimatione,
 aderunt autem homines nobilissimi ac potentissimi, ut 
 eorum frequentiam et consessum non modo P. Quinctius 
 qui de capite decernit, sed quivis qui extra periculum sit 
-perhorrescat.'
+perhorrescat.'</p></div>
 
 
-<milestone n="73" unit="section"/><reg>haec</reg> est iniqua certatio, non illa qua tu 
+<div type="textpart" subtype="section" n="73"><p><reg>haec</reg> est iniqua certatio, non illa qua tu 
 contra Alfenum equitabas; huic ne ubi consisteret quidem 
 contra te locum reliquisti. <reg>qua</reg> re aut doceas oportet 
 Alfenum negasse se procuratorem esse, non deiecisse 
 libellos, iudicium accipere noluisse, aut, cum haec ita facta sint, 
-ex edicto te bona P. Quincti non possedisse concedas. </p>
-<p><milestone n="23" unit="chapter"/><reg>etenim</reg> si ex edicto possedisti, quaero cur bona non 
+ex edicto te bona P. Quincti non possedisse concedas. 
+<milestone n="23" unit="chapter"/><reg>etenim</reg> si ex edicto possedisti, quaero cur bona non 
 venierint, cur ceteri sponsores et creditores non convenerint; 
 nemone fuit cui deberet Quinctius? <reg>fuerunt</reg>, et complures 
 fuerunt, propterea quod C. frater aliquantum aeris alieni 
 reliquerat. <reg>quid</reg> ergo est? <reg>homines</reg> erant ab hoc omnes 
 alienissimi, et eis debebatur, neque tamen quisquam 
 inventus est tam insignite improbus qui violare P. Quincti 
-existimationem absentis auderet; 
+existimationem absentis auderet; </p></div>
 
 
-<milestone n="74" unit="section"/>unus fuit, adfinis, socius, 
+<div type="textpart" subtype="section" n="74"><p>unus fuit, adfinis, socius, 
 necessarius, Sex. Naevius, qui, cum ipse ultro deberet, quasi 
 eximio praemio sceleris exposito cupidissime contenderet ut 
 per se adflictum atque eversum propinquum suum non modo 
 honeste partis bonis verum etiam communi luce privaret. 
 Vbi erant ceteri creditores? denique hoc tempore ubi sunt? 
 <reg>quis</reg> est qui fraudationis causa latuisse dicat, quis qui 
-absentem defensum neget esse Quinctium? <reg>nemo</reg> invenitur.
+absentem defensum neget esse Quinctium? <reg>nemo</reg> invenitur.</p></div>
 
 
-<milestone n="75" unit="section"/><reg>at</reg> 
+<div type="textpart" subtype="section" n="75"><p><reg>at</reg> 
 contra omnes, quibuscum ratio huic aut est aut fuit, adsunt, 
 defendunt, fides huius multis locis cognita ne perfidia <reg>sex</reg>. 
 Naevi derogetur laborant. <reg>in</reg> huius modi sponsionem testis 
@@ -1147,10 +1115,10 @@ dixerint. Vnum tamen hoc cogitent, ita se gravis esse ut,
 si veritatem volent retinere, gravitatem possint obtinere; si 
 eam neglexerint, ita levis esse ut omnes intellegant non ad 
 obtinendum mendacium, sed ad verum probandum 
-auctoritatem adiuvare. 
+auctoritatem adiuvare.</p></div> 
 
-</p>
-<p><milestone n="24" unit="chapter"/><milestone n="76" unit="section"/><reg>ego</reg> haec duo quaero, primum qua ratione Naevius 
+
+<milestone n="24" unit="chapter"/><div type="textpart" subtype="section" n="76"><p><reg>ego</reg> haec duo quaero, primum qua ratione Naevius 
 susceptum negotium non transegerit, hoc est cur bona quae 
 ex edicto possidebat non vendiderit, deinde cur ex tot 
 creditoribus alius ad istam rationem nemo accesserit, ut 
@@ -1164,9 +1132,9 @@ bona Sex. Alfeni L. Sulla dictatore vendente; socium tibi
 in his bonis edidisti Quinctium. <reg>plura</reg> non dico. Cum 
 eo tu voluntariam societatem coibas qui te in hereditaria 
 societate fraudarat, et eum iudicio tuo comprobabas quem 
-spoliatum fama fortunisque omnibus arbitrabare? 
-</p>
-<p><milestone n="77" unit="section"/><reg>diffidebam</reg> me hercule, C.
+spoliatum fama fortunisque omnibus arbitrabare? </p></div>
+
+<div type="textpart" subtype="section" n="77"><p><reg>diffidebam</reg> me hercule, C.
 Aquili, satis animo certo et 
 confirmato me posse in hac causa consistere. <reg>sic</reg> cogitabam, 
 cum contra dicturus esset Hortensius et cum me esset 
@@ -1181,10 +1149,10 @@ durissimo esse qui praesente eo gestum agere conarentur; qui
 vero cum ipso contenderent, eos, etiam si quid antea recti 
 aut venusti habere visi essent, id amittere; ne quid mihi 
 eiusdem modi accideret, cum contra talem artificem 
-dicturus essem, me vereri. 
+dicturus essem, me vereri.</p></div> 
 
-</p>
-<p><milestone n="25" unit="chapter"/><milestone n="78" unit="section"/><reg>tum</reg> mihi Roscius et alia multa confirmandi mei causa 
+
+<milestone n="25" unit="chapter"/><div type="textpart" subtype="section" n="78"><p><reg>tum</reg> mihi Roscius et alia multa confirmandi mei causa 
 dixit, ut me hercule, si nihil diceret, tacito ipso officio et 
 studio, quod habebat erga propinquum suum, quemvis 
 commoveret—etenim cum artifex eius modi sit ut solus 
@@ -1194,11 +1162,9 @@ verum tamen: '<reg>quid</reg>? si,' inquit, 'habes eius modi causam
 ut hoc tibi planum sit faciendum, neminem esse qui 
 possit biduo aut summum triduo <num n="700">dcc</num> milia passuum 
 ambulare, tamenne vereris ut possis hoc contra Hortensium 
-contendere?' 
+contendere?'</p></div> 
 
-
-
-<milestone n="79" unit="section"/>'<reg>minime</reg>,' inquam, 'sed quid id ad rem?' 
+<div type="textpart" subtype="section" n="79"><p>'<reg>minime</reg>,' inquam, 'sed quid id ad rem?' 
 '<reg>nimirum</reg>,' inquit, 'in eo causa consistit.' '<reg>quo</reg> modo?' 
 <reg>docet</reg> me eius modi rem et factum simul Sex. Naevi quod, 
 si simul proferretur, satis esse deberet. <reg>quod</reg> abs te, 
@@ -1216,23 +1182,23 @@ quoque ex te audire? <reg>quid</reg> taces? dic, inquam, diem.
 <reg>pudet</reg> dicere; intellego; verum et sero et nequiquam pudet. 
 <reg>deicitur</reg> de saltu, C. Aquili, pridie Kalend. intercalaris; 
 biduo post aut, ut statim de iure aliquis cucurrerit, non toto 
-triduo <num n="700">dcc</num> milia passuum conficiuntur.
+triduo <num n="700">dcc</num> milia passuum conficiuntur.</p></div>
 
 
-<milestone n="80" unit="section"/>O rem 
+<div type="textpart" subtype="section" n="80"><p>O rem 
 incredibilem! o cupiditatem inconsideratam! o nuntium 
 volucrem! <reg>administri</reg> et satellites Sex. Naevi Roma trans Alpis 
 in Sebagninos biduo veniunt. O hominem fortunatum qui 
-eius modi nuntios seu potius Pegasos habeat! </p>
-<p><milestone n="26" unit="chapter"/><reg>hic</reg> ego, si Crassi omnes cum Antoniis exsistant, si tu, 
+eius modi nuntios seu potius Pegasos habeat! 
+<milestone n="26" unit="chapter"/><reg>hic</reg> ego, si Crassi omnes cum Antoniis exsistant, si tu, 
 L. Philippe, qui inter illos florebas, hanc causam voles cum 
 Hortensio dicere, tamen superior sim necesse est; non 
 enim, quem ad modum putatis, omnia sunt in eloquentia; 
 est quaedam tamen ita perspicua veritas ut eam infirmare 
-nulla res possit.
+nulla res possit.</p></div>
 
 
-<milestone n="81" unit="section"/><reg>an</reg>, ante quam postulasti ut bona 
+<div type="textpart" subtype="section" n="81"><p><reg>an</reg>, ante quam postulasti ut bona 
 possideres, misisti qui curaret ut dominus de suo fundo a sua 
 familia vi deiceretur? Vtrumlibet elige; alterum 
 incredibile est, alterum nefarium, et ante hoc tempus utrumque 
@@ -1241,10 +1207,10 @@ dic. <reg>negas</reg>? ante igitur misisti. <reg>malo</reg>; si enim illud
 diceres, improbe mentiri viderere; cum hoc confiteris, id 
 te admisisse concedis quod ne mendacio quidem tegere 
 possis. <reg>hoc</reg> consilium Aquilio et talibus viris tam cupidum,  
-tam audax, tam temerarium probabitur?
+tam audax, tam temerarium probabitur?</p></div>
 
 
-<milestone n="82" unit="section"/><reg>quid</reg> haec amentia, 
+<div type="textpart" subtype="section" n="82"><p><reg>quid</reg> haec amentia, 
 quid haec festinatio, quid haec immaturitas tanta significat? 
 non vim, non scelus, non latrocinium, non denique omnia 
 potius quam ius, quam officium, quam pudorem? Mittis 
@@ -1254,10 +1220,10 @@ eras. <reg>quando</reg>? <reg>post</reg> dies <num n="30">xxx</num>. <reg>nempe<
 impediret, si voluntas eadem maneret, si valeres, denique si 
 viveres. <reg>praetor</reg> scilicet iussisset. <reg>opinor</reg>, si vellet, si 
 valeret, si ius diceret, si nemo recusaret, qui ex ipsius 
-decreto et satis daret et iudicium accipere vellet.
+decreto et satis daret et iudicium accipere vellet.</p></div>
 
 
-<milestone n="83" unit="section"/><reg>nam</reg>, per 
+<div type="textpart" subtype="section" n="83"><p><reg>nam</reg>, per 
 deos immortalis! si Alfenus procurator P. Quincti tibi tum 
 satis daret et iudicium accipere vellet, denique omnia quae 
 postulares facere voluisset, quid ageres? revocares eum 
@@ -1272,10 +1238,10 @@ autem multa possent, spem malefici praesentis in incerto
 reliqui temporis eventu conlocares? <reg>atque</reg> haec perinde 
 loquor, quasi ipso illo tempore, cum te praetor iussisset ex 
 edicto possidere, si in possessionem misisses, debueris aut 
-potueris P. Quinctium de possessione deturbare. 
+potueris P. Quinctium de possessione deturbare.</p></div> 
 
-</p>
-<p><milestone n="27" unit="chapter"/><milestone n="84" unit="section"/><reg>omnia</reg> sunt, C.
+
+<milestone n="27" unit="chapter"/><div type="textpart" subtype="section" n="84"><p><reg>omnia</reg> sunt, C.
 Aquili, eius modi quivis ut perspicere 
 possit in hac causa improbitatem et gratiam cum inopia et 
 veritate contendere. <reg>praetor</reg> te quem ad modum possidere 
@@ -1296,10 +1262,10 @@ licebit.</quote> <reg>quid</reg> tum? <quote>dominum</quote>, inquit, <quote>inv
 detrudere non placet</quote>. Eum ipsum qui fraudandi causa latitet, 
 eum ipsum quem iudicio nemo defenderit, eum ipsum qui 
 cum omnibus creditoribus suis male agat, invitum de 
-praedio detrudi vetat.
+praedio detrudi vetat.</p></div>
 
 
-<milestone n="85" unit="section"/><reg>proficiscenti</reg> tibi in possessionem 
+<div type="textpart" subtype="section" n="85"><p><reg>proficiscenti</reg> tibi in possessionem 
 praetor ipse, Sex. Naevi, palam dicit: 'ita possideto ut 
 tecum simul possideat Quinctius, ita possideto ut Quinctio 
 vis ne adferatur.' <reg>quid</reg>? tu id quem ad modum observas? 
@@ -1307,20 +1273,18 @@ Mitto illud dicere, eum qui non latitaret, cui Romae domus,
 uxor, liberi, procurator esset, eum qui tibi vadimonium non 
 deseruisset; haec omnia mitto; illud dico, dominum 
 expulsum esse de praedio, domino a familia sua manus 
-adlatas esse ante suos Lares familiaris; hoc dico  <gap/> 
-
-
+adlatas esse ante suos Lares familiaris; hoc dico  <gap reason="lost"/> 
 
 <reg>si</reg> qui unum aliquem fundum quavis  
 ratione possideat, ipsum autem dominum patiatur cetera 
 praedia tenere, is, ut opinor, praedium non bona 
-videatur alterius possidere <gap/> <reg>quid</reg> est possidere? <reg>nimirum</reg> in possessione esse 
-earum rerum quae possunt eo tempore possideri <gap/> Cum domus 
+videatur alterius possidere <gap reason="lost"/> <reg>quid</reg> est possidere? <reg>nimirum</reg> in possessione esse 
+earum rerum quae possunt eo tempore possideri <gap reason="lost"/> Cum domus 
 erat Romae, servi, in ipsa Gallia privata P. Quincti 
-praedia, quae numquam ausus es possidere;  <gap/> <reg>quod</reg> si bona P. Quincti possideres, possidere omnia eo 
+praedia, quae numquam ausus es possidere;  <gap reason="lost"/> <reg>quod</reg> si bona P. Quincti possideres, possidere omnia eo 
 iure deberes. (<bibl>Iul. Severian. 16</bibl>)
-</p>
-<p><milestone n="28" unit="chapter"/> <gap/> Naevium ne appellasse quidem Quinctium, cum 
+
+<milestone n="28" unit="chapter"/> <gap reason="lost"/> Naevium ne appellasse quidem Quinctium, cum 
 simul esset et experiri posset cotidie; deinde quod omnia 
 iudicia difficillima cum summa sua invidia maximoque 
 periculo P. Quincti fieri mallet quam illud pecuniarium 
@@ -1328,10 +1292,10 @@ iudicium quod uno die transigi posset; ex quo uno haec
 omnia nata et profecta esse concedit. <reg>quo</reg> in loco 
 condicionem tuli, si vellet pecuniam petere, P. Quinctium 
 iudicatum solvi satis daturum, dum ipse, si quid peteret, 
-pari condicione uteretur. 
+pari condicione uteretur.</p></div> 
 
-</p>
-<p><milestone n="86" unit="section"/><reg>ostendi</reg> quam multa ante fieri convenerit quam hominis 
+
+<div type="textpart" subtype="section" n="86"><p><reg>ostendi</reg> quam multa ante fieri convenerit quam hominis 
 propinqui bona possideri postularentur, praesertim cum 
 Romae domus eius, uxor, liberi essent et procurator aeque 
 utriusque necessarius. <reg>docui</reg>, cum desertum esse dicat 
@@ -1341,10 +1305,9 @@ fuisse; id testibus me pollicitus sum planum facturum qui
 et scire deberent et causam cur mentirentur non haberent. 
 <reg>ex</reg> edicto autem non potuisse bona possideri demonstravi, 
 quod neque fraudandi causa latitasset neque exsili causa  
-solum vertisse diceretur.
+solum vertisse diceretur.</p></div>
 
-
-<milestone n="87" unit="section"/><reg>reliquum</reg> est ut eum nemo 
+<div type="textpart" subtype="section" n="87"><p><reg>reliquum</reg> est ut eum nemo 
 iudicio defenderit. <reg>quod</reg> contra copiosissime defensum 
 esse contendi non ab homine alieno neque ab aliquo 
 calumniatore atque improbo, sed ab equite Romano, 
@@ -1353,10 +1316,10 @@ procuratorem relinquere antea consuesset; neque eum, si tribunos
 appellarit, idcirco minus iudicio pati paratum fuisse, neque 
 potentia procuratoris Naevio ius ereptum; contra istum 
 potentia sua tum tantum modo superiorem fuisse, nunc 
-nobis vix respirandi potestatem dare.
+nobis vix respirandi potestatem dare.</p></div>
 
 
-<milestone n="29" unit="chapter"/><milestone n="88" unit="section"/><reg>quaesivi</reg> quae causa 
+<milestone n="29" unit="chapter"/><div type="textpart" subtype="section" n="88"><p><reg>quaesivi</reg> quae causa 
 fuisset cur bona non venissent, cum ex edicto possiderentur. 
 <reg>deinde</reg> illud quoque requisivi qua ratione ex tot creditoribus 
 nemo neque tum idem fecerit neque nunc contra dicat, 
@@ -1368,11 +1331,11 @@ in vivorum quidem numero tum demonstrat fuisse. <reg>tum</reg>
 illam incredibilem celeritatem seu potius audaciam protuli; 
 confirmavi necesse esse aut biduo <num n="700">dcc</num> milia passuum esse 
 decursa aut Sex. Naevium diebus compluribus ante in 
-possessionem misisse quam postularet uti ei liceret bona possidere. 
+possessionem misisse quam postularet uti ei liceret bona possidere.</p></div> 
 
 
 
-<milestone n="89" unit="section"/><reg>postea</reg> recitavi edictum quod aperte dominum de praedio 
+<div type="textpart" subtype="section" n="89"><p><reg>postea</reg> recitavi edictum quod aperte dominum de praedio 
 detrudi vetaret; in quo constitit Naevium ex edicto non 
 possedisse, cum confiteretur ex praedio vi detrusum esse 
 Quinctium. <reg>omnino</reg> autem bona possessa non esse 
@@ -1381,29 +1344,29 @@ parte, sed in universis quae teneri et possideri possint.
 <reg>dixi</reg> domum Romae fuisse quo iste ne aspirarit quidem, 
 servos compluris, ex quibus iste possederit neminem, ne 
 attigerit quidem; unum fuisse quem attingere conatus sit; 
-prohibitum quievisse.
+prohibitum quievisse.</p></div>
 
 
-<milestone n="90" unit="section"/><reg>in</reg> ipsa Gallia cognostis in praedia 
+<div type="textpart" subtype="section" n="90"><p><reg>in</reg> ipsa Gallia cognostis in praedia 
 privata Quincti Sex. Naevium non venisse; denique ex 
 hoc ipso saltu quem per vim expulso socio possedit servos 
 privatos Quincti non omnis eiectos esse. <reg>ex</reg> quo et ex 
 ceteris dictis, factis cogitatisque Sex. Naevi quivis potest 
 intellegere istum nihil aliud egisse neque nunc agere nisi uti 
 per vim, per iniuriam, per iniquitatem iudici totum agrum, 
-qui communis est, suum facere possit. 
+qui communis est, suum facere possit.</p></div> 
 
-</p>
-<p><milestone n="30" unit="chapter"/><milestone n="91" unit="section"/><reg>nunc</reg> causa perorata res ipsa et periculi magnitudo, 
+
+<milestone n="30" unit="chapter"/><div type="textpart" subtype="section" n="91"><p><reg>nunc</reg> causa perorata res ipsa et periculi magnitudo, 
 C. Aquili, cogere videtur, ut te atque eos qui tibi in 
 consilio sunt obsecret obtesteturque P. Quinctius per senectutem 
 ac solitudinem suam nihil aliud nisi ut vestrae naturae 
 bonitatique obsequamini, ut, cum veritas cum hoc faciat, plus 
 huius inopia possit ad misericordiam quam illius opes ad 
-crudelitatem.
+crudelitatem.</p></div>
 
 
-<milestone n="92" unit="section"/><reg>quo</reg> die ad te iudicem venimus, eodem die 
+<div type="textpart" subtype="section" n="92"><p><reg>quo</reg> die ad te iudicem venimus, eodem die 
 illorum minas quas ante horrebamus neglegere coepimus. 
 <reg>si</reg> causa cum causa contenderet, nos nostram perfacile cuivis 
 probaturos statuebamus; quod vitae ratio cum ratione vitae 
@@ -1412,10 +1375,10 @@ arbitrati sumus. <reg>ea</reg> res nunc enim in discrimine versatur,
 utrum possitne se contra luxuriem ac licentiam rusticana 
 illa atque inculta parsimonia defendere an deformata atque 
 ornamentis omnibus spoliata nuda cupiditati petulantiaeque 
-addicatur. 
+addicatur.</p></div> 
 
 
-<milestone n="93" unit="section"/><reg>non</reg> comparat se tecum gratia P.
+<div type="textpart" subtype="section" n="93"><p><reg>non</reg> comparat se tecum gratia P.
 Quinctius,  
 Sex. Naevi, non opibus, non facultate contendit; omnis 
 tuas artis quibus tu magnus es tibi concedit; fatetur se 
@@ -1427,10 +1390,10 @@ et sanctimoniae, patentem atque adeo expositam cupiditati
 et voluptatibus; contra sibi ait officium, fidem, diligentiam, 
 vitam omnino semper horridam atque aridam cordi fuisse. 
 <reg>ista</reg> superiora esse ac plurimum posse his moribus sentit. 
-<reg>quid</reg> ergo est?
+<reg>quid</reg> ergo est?</p></div>
 
 
-<milestone n="94" unit="section"/><reg>non</reg> usque eo tamen ut in capite 
+<div type="textpart" subtype="section" n="94"><p><reg>non</reg> usque eo tamen ut in capite 
 fortunisque hominum honestissimorum dominentur ei qui 
 relicta virorum bonorum disciplina et quaestum et 
 sumptum Galloni sequi maluerunt atque etiam, quod in illo non 
@@ -1444,9 +1407,9 @@ tandem posse consistere. <reg>sin</reg> et poterit Naevius id quod
 libet, et ei libebit id quod non licet, quid agendum est? 
 qui deus appellandus est? cuius hominis fides imploranda 
 est? qui denique questus, qui luctus, qui maeror dignus 
-inveniri in calamitate tanta potest? 
-</p>
-<p><milestone n="31" unit="chapter"/><milestone n="95" unit="section"/><reg>miserum</reg> est exturbari fortunis omnibus, miserius est 
+inveniri in calamitate tanta potest?</p></div>
+
+<milestone n="31" unit="chapter"/><div type="textpart" subtype="section" n="95"><p><reg>miserum</reg> est exturbari fortunis omnibus, miserius est 
 iniuria; acerbum est ab aliquo circumveniri, acerbius a 
 propinquo; calamitosum est bonis everti, calamitosius cum  
 dedecore; funestum est a forti atque honesto viro iugulari, 
@@ -1454,19 +1417,19 @@ funestius ab eo cuius vox in praeconio quaestu prostitit;
 indignum est a pari vinci aut superiore, indignius ab 
 inferiore atque humiliore; luctuosum est tradi alteri cum 
 bonis, luctuosius inimico; horribile est causam capitis 
-dicere, horribilius priore loco dicere.
+dicere, horribilius priore loco dicere.</p></div>
 
 
-<milestone n="96" unit="section"/><reg>omnia</reg> circumspexit 
+<div type="textpart" subtype="section" n="96"><p><reg>omnia</reg> circumspexit 
 Quinctius, omnia periclitatus est, C. Aquili; non praetorem 
 modo a quo ius impetraret invenire non potuit, atque adeo 
 ne unde arbitratu quidem suo postularet, sed ne amicos 
 quidem Sex. Naevi, quorum saepe et diu ad pedes iacuit 
 stratus obsecrans per deos immortalis, ut aut secum iure 
-contenderent aut iniuriam sine ignominia sibi imponerent. 
+contenderent aut iniuriam sine ignominia sibi imponerent.</p></div> 
 
 
-<milestone n="97" unit="section"/><reg>denique</reg> ipsius inimici voltum superbissimum subiit, ipsius 
+<div type="textpart" subtype="section" n="97"><p><reg>denique</reg> ipsius inimici voltum superbissimum subiit, ipsius 
 Sex. Naevi lacrimans manum prehendit in propinquorum 
 bonis proscribendis exercitatam, obsecravit per fratris sui 
 mortui cinerem, per nomen propinquitatis, per ipsius 
@@ -1474,10 +1437,10 @@ coniugem et liberos, quibus propior P. Quinctio nemo est, ut
 aliquando misericordiam caperet, aliquam, si non 
 propinquitatis, at aetatis suae, si non hominis, at humanitatis 
 rationem haberet, ut secum aliquid integra sua fama qualibet, 
-dum modo tolerabili, condicione transigeret.
+dum modo tolerabili, condicione transigeret.</p></div>
 
 
-<milestone n="98" unit="section"/><reg>ab</reg> ipso 
+<div type="textpart" subtype="section" n="98"><p><reg>ab</reg> ipso 
 repudiatus, ab amicis eius non sublevatus, ab omni magistratu 
 agitatus atque perterritus, quem praeter te appellet habet 
 neminem; tibi se, tibi suas omnis opes fortunasque 
@@ -1487,9 +1450,9 @@ non turpis ad te sed miser confugit; e fundo ornatissimo
 eiectus, ignominiis omnibus appetitus, cum illum in 
 paternis bonis dominari videret, ipse filiae nubili dotem 
 conficere non posset, nihil alienum tamen vita superiore 
-commisit.  
-</p>
-<p><milestone n="99" unit="section"/><reg>itaque</reg> hoc te obsecrat, C.
+commisit.</p></div>  
+
+<div type="textpart" subtype="section" n="99"><p><reg>itaque</reg> hoc te obsecrat, C.
 Aquili, ut, quam existimationem, 
 quam honestatem in iudicium tuum prope acta iam aetate 
 decursaque attulit, eam liceat ei secum ex hoc loco efferre, 
@@ -1498,6 +1461,7 @@ denique anno dedecore, macula turpissimaque ignominia
 notetur, ne ornamentis eius omnibus Sex. Naevius pro 
 spoliis abutatur, ne per te fiat quo minus, quae existimatio 
 P. Quinctium usque ad senectutem produxit, eadem usque 
-ad rogum prosequatur.  </p>
-</body></text>
+ad rogum prosequatur.</p></div>
+		
+</div></body></text>
 </TEI>
