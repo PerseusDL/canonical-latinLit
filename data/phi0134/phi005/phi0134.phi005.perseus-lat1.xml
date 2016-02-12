@@ -1,21 +1,30 @@
-<?xml version="1.0"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersDrama PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersDrama.dtd" >
-%PersDrama;
-]>
-<TEI.2>
-<teiHeader type="text" status="new">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"\?><?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader type="text">
 <fileDesc>
 <titleStmt>
-<title>Hecyra</title>
-<author>P. Terentius Afer (Terence)</author>
+<title type="work">Hecyra</title>
+<title type="sub">Machine readable text</title><author n="P. Terentius Afer (Terence)">P. Terentius Afer (Terence)</author>
 <editor role="editor">Edward St. John Parry</editor>
-&responsibility;
-&fund.DLI2;
+<sponsor>Perseus Project, Tufts University</sponsor>
+<principal>Gregory Crane</principal>
+<respStmt>
+<resp>Prepared under the supervision of</resp>
+<name>Bridget Almas</name>
+<name>Lisa Cerrato</name>
+<name>William Merrill</name>
+<name>Elli Mylonas</name>
+<name>David Smith</name>
+</respStmt>
+<funder n="org:DLI2">NSF, NEH: Digital Libraries Initiative, Phase 2</funder>
 </titleStmt>
-<extent></extent>
-&Perseus.publish;
+<publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+
 
 <sourceDesc>
 <biblStruct>
@@ -35,126 +44,65 @@
 
 <encodingDesc>
 <editorialDecl>
-<correction method="silent" status="medium">&Perseus.DE;</correction>
+<correction method="silent" status="medium"><p>professional data entry</p></correction>
 </editorialDecl>
-<refsDecl doctype="TEI.2">
-<state unit="TLN line"/>
-</refsDecl>
-<refsDecl doctype="TEI.2">
-<state unit="act"/>
-<state n="chunk" unit="scene"/>
-<state unit="line"/>
-</refsDecl>
+   <!--<refsDecl doctype="TEI.2">
+            <state unit="TLN line"/>
+         </refsDecl>-->
+   <refsDecl n="CTS">
+      <cRefPattern n="line" matchPattern="(\w+).(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:l[@n='$3'])">
+         <p>This pointer pattern extracts act and scene and line</p>
+      </cRefPattern>
+      <cRefPattern n="scene" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+         <p>This pointer pattern extracts act and scene</p>
+      </cRefPattern>
+      <cRefPattern n="act" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+         <p>This pointer pattern extracts act</p>
+      </cRefPattern>
+   </refsDecl>
+   <refsDecl>
+      <refState unit="act" delim="."/>
+      <refState unit="scene" delim="."/>
+      <refState unit="line"/>
+   </refsDecl>
 </encodingDesc>
 
 <profileDesc>
 <langUsage>
-<language id="la">Latin</language>
-<language id="greek">Greek</language>
-<language id="en">English</language>
-<language id="de">German</language>
-<language id="fr">French</language>
-<language id="it">Italian</language>
+<language ident="la">Latin</language>
+<language ident="grc">Greek</language>
+<language ident="en">English</language>
+<language ident="de">German</language>
+<language ident="fr">French</language>
+<language ident="it">Italian</language>
 </langUsage>
 </profileDesc>
 
 <revisionDesc>
-<change><date> 2-Jul-01</date>
-<respStmt><name>AEM</name><resp>markup</resp></respStmt>
-<item>
-$Log: hec_lat.xml,v $
-Revision 1.1  2013-09-13 11:17:47  balmas01
-moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory
-
-Revision 1.3  2013-06-08 12:13:48  gcrane
-TEI XML converted to facilitate CTS compatibility
-
-Revision 1.2  2012-02-22 19:38:25  lcerrato
-Quia scibam dubiant  fixed to   Quia scibam dubiam
-
-Revision 1.1  2011-01-17 00:34:55  gcrane
-base SDL files
-
-Revision 1.1  2009/12/08 20:46:27  rsingh04
-moved more xml files around based on copyright status.  renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files
-
-Revision 1.3  2008/11/14 21:28:07  lcerrato
-fixed author names for consistent sorting
-
-Revision 1.2  2005/08/01 16:31:41  packel
-removed stray item tags
-
-Revision 1.1  2005/07/25 15:05:06  packel
-Converted to XML
-
-Revision 1.9  2003/07/01 22:18:13  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.8  2002/11/27 18:49:32  amahoney
-a bit of proofreading, fixing the worst errors
-
-Revision 1.7  2002/11/19 20:47:08  amahoney
-very basic proofreading
-
-Revision 1.6  2001/12/21 17:34:28  amahoney
-fix the 'j's in the English section
-
-Revision 1.5  2001/12/19 21:58:41  amahoney
-fix some OCR errors and modernize aedepol to edepol
-
-Revision 1.4  2001/08/21 18:54:24  amahoney
-get the editor's name into the meta-data
-
-Revision 1.3  2001/08/17 15:32:10  amahoney
-fix line numbers in the English, pick up a few typos in Latin
-
-Revision 1.2  2001/07/02 21:01:51  amahoney
-add through lines, drop the headers, generally tidy up for release
-
-Revision 1.1  2001/07/02 19:27:22  amahoney
-new additions
-
-</item>
-</change>
-</revisionDesc>
+<change when="2016-02-09" who="Zach Himes">Cleaned up teiHeader.</change><change who="balmas01" when="2013-09-13">Revision 1.1  moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change><change who="gcrane" when="2013-06-08">Revision 1.3  TEI XML converted to facilitate CTS compatibility</change><change who="lcerrato" when="2012-02-22">Revision 1.2  Quia scibam dubiant  fixed to   Quia scibam dubiam</change><change who="gcrane" when="2011-01-17">Revision 1.1  base SDL files</change><change who="rsingh04" when="2009-12-08">Revision 1.1  moved more xml files around based on copyright status.  renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files</change><change who="lcerrato" when="2008-11-14">Revision 1.3  fixed author names for consistent sorting</change><change who="packel" when="2005-08-01">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25">Revision 1.1  Converted to XML</change><change who="yorkc" when="2003-07-01">Revision 1.9  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2002-11-27">Revision 1.8  a bit of proofreading, fixing the worst errors</change><change who="amahoney" when="2002-11-19">Revision 1.7  very basic proofreading</change><change who="amahoney" when="2001-12-21">Revision 1.6  fix the 'j's in the English section</change><change who="amahoney" when="2001-12-19">Revision 1.5  fix some OCR errors and modernize aedepol to edepol</change><change who="amahoney" when="2001-08-21">Revision 1.4  get the editor's name into the meta-data</change><change who="amahoney" when="2001-08-17">Revision 1.3  fix line numbers in the English, pick up a few typos in Latin</change><change who="amahoney" when="2001-07-02">Revision 1.2  add through lines, drop the headers, generally tidy up for release</change><change who="amahoney" when="2001-07-02">Revision 1.1  new additions</change></revisionDesc>
 
 </teiHeader>
 
-<text lang="la"><body>
+<text><body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0134.phi005.perseus-lat1" subtype="edition">
 
-<castList>
-<head>FABULAE INTERLOCUTORES.</head>
-
-<castItem type="role"><role>BACCHIS, meretrix, amica Pamphili.</role></castItem>
-<castItem type="role"><role>LACHES, senex, pater Pamphili.</role></castItem>
-<castItem type="role"><role>MYRRHINA, mater Philumenae.</role></castItem>
-<castItem type="role"><role>PAMPHILUS, filius Lachetis et Sostratae.</role></castItem>
-<castItem type="role"><role>PARMENO,</role><roleDesc>servus.</roleDesc></castItem>
-<castItem type="role"><role>PHIDIPPUS, senex, pater Philumenae.</role></castItem>
-<castItem type="role"><role>PHILOTIS,</role><roleDesc>meretrix.</roleDesc></castItem>
-<castItem type="role"><role>SOSIA,</role><roleDesc>servus.</roleDesc></castItem>
-<castItem type="role"><role>SOSTRATA, mater Pamphili.</role></castItem>
-<castItem type="role"><role>SYRA, anus,</role><roleDesc>lena.</roleDesc></castItem>
-</castList>
-
-<div1 type="act" n="introduction">
-<div2 type="scene" n="summary">
+<div type="textpart" n="introduction" subtype="act">
+<div type="textpart" n="summary" subtype="scene">
 <head>INTRODUCTION.</head>
-<p lang="en">THE Hecyra takes its name from the fact that its plot turns upon the misunderstanding between a mother and daughter-in-law. Colman has translated the word 'step-mother;' but <foreign lang="greek">e(kura/</foreign> is etymologically, and in meaning, the same word as '<foreign lang="la">socrus</foreign>,' a mother-in-law; and there is the same close connexion between the correlative words <foreign lang="greek">nuo/s</foreign> and '<foreign lang="la">nurus</foreign>,' a daughter-in-law.</p>
-<p lang="en">The story of the play is as follows: A young man named Pamphilus, son of Laches and Sostrata, used to keep company with one Bacchis. One night as he was going to her house, rather the worse for wine, he met Philumena, the daughter of Phidippus and Myrrhina, on the road, and offered her violence, both of them being ignorant who the other was. She could not get any thing from him which could serve as a clue to his recognition; but he in the struggle managed to tear from her finger a ring, which he carried to Bacchis and gave to her. A short time after this he was married; for his father was very anxious to break off his intimacy with Bacchis, and to see his son quietly settled down, that he might have some prospect of domestic comfort in his old age; and he never let his son have any peace till he consented to take to himself a wife. By a strange coincidence the wife selected for him was this very Philumena, whom he had met at night on his way to his mistress's house; and her mother was only too glad to have her married, hoping that she would be saved from public disgrace. But things did not turn out as smoothly as she expected; for Pamphilus did not at first shake off his old love, but continued to visit Bacchis every day, and totally avoided the company of his wife. Gradually, however, a change took place. Bacehis, being annoyed at the marriage of Pamphilus, behaved with great coldness and caprice towards him. Philumena, on the other hand, bore his neglect with the greatest patience and good temper. And so it came about that Pamphilus abandoned Bacchis altogether, and became devotedly attached to his wife. At this moment a relation of his father's dies at Imbros, and Pamphilus is despatched to the spot to look after his property, his wife being left with her mother-in-law Sostrata. But this arrangement does not last long. Philumena, finding that she has no hope of concealing her situation from her mother-in-law, begins to avoid her, and to withdraw from her company as much as possible; till, at last, she goes to her own mother on the pretence of attending a family sacrifice, and stays with her, refusing to return to her mother-in-law. Sostrata sends for her, but in vain; and she goes to see her, but is refused admittance.</p>
-<p lang="en">This brings us to the beginning of the Second Act of the play, where the action really commences; for all that we had hitherto is merely a kind of prologue. Laches, Pamphilus' father, has now heard of this estrangement between his wife and his daughter-in-law, and comes into town to look into the matter. Priding himself much upon his wonderful knowledge of every thing that is going on, he lays it down decidedly that Sostrata alone is to blame; that all mothers-in-law hate their daughters-in-law, and that she must have driven Philumena away by her unkindness; and he is more confirmed in his opinion by the statement of Phidippus that his daughter refuses to come back to Laches' house while her husband is away. Sostrata in vain endeavours to clear herself.</p>
-<p lang="en">At this moment Philumena's expected child is born; and Pamphilus returns home at the critical moment. Hearing that his wife is ill, he rushes into the house to see her, and there discovers the whole state of the case. Myrrhina entreats him to keep the matter quiet, and he so far retains his affection for his wife that he promises to do so, and is wretched at the thoughts of a separation from her, though he comes to the conclusion that after this child's birth, the son of he does not know whom, it is impossible for him ever to receive her back into his house. Meanwhile he sees the necessity of getting rid of his slave Parmeno, who will otherwise be sure to discover what is going on. So he sends him off on two errands, the last of which keeps him fully employed at a distance the rest of the day.</p>
-<p lang="en">The body of the play is occupied by the indignant expostulations of the two fathers with Pamphilus, and with their wives. Now that Pamphilus has a son, Laches cannot conceive why he should not take his wife home again; and Phidippus is furious with him, with Laches, and with Myrrhina his wife. Sostrata comes to the determination of leaving town, and going to live with her husband in the country, hoping that her absence will remove the last obstacle to Philumena's return; but notwithstanding this, Pamnphilus still persists in his refusal to receive his wife, and at last the old men come to the conclusion that he must be still carrying on his old love affair with Bacchis, and determine to send for her, and to endeavour by fair means or foul to break off her intimacy with Pamphilus.
+<p xml:lang="eng">THE Hecyra takes its name from the fact that its plot turns upon the misunderstanding between a mother and daughter-in-law. Colman has translated the word 'step-mother;' but <foreign xml:lang="grc">e(kura/</foreign> is etymologically, and in meaning, the same word as '<foreign xml:lang="lat">socrus</foreign>,' a mother-in-law; and there is the same close connexion between the correlative words <foreign xml:lang="grc">nuo/s</foreign> and '<foreign xml:lang="lat">nurus</foreign>,' a daughter-in-law.</p>
+<p xml:lang="eng">The story of the play is as follows: A young man named Pamphilus, son of Laches and Sostrata, used to keep company with one Bacchis. One night as he was going to her house, rather the worse for wine, he met Philumena, the daughter of Phidippus and Myrrhina, on the road, and offered her violence, both of them being ignorant who the other was. She could not get any thing from him which could serve as a clue to his recognition; but he in the struggle managed to tear from her finger a ring, which he carried to Bacchis and gave to her. A short time after this he was married; for his father was very anxious to break off his intimacy with Bacchis, and to see his son quietly settled down, that he might have some prospect of domestic comfort in his old age; and he never let his son have any peace till he consented to take to himself a wife. By a strange coincidence the wife selected for him was this very Philumena, whom he had met at night on his way to his mistress's house; and her mother was only too glad to have her married, hoping that she would be saved from public disgrace. But things did not turn out as smoothly as she expected; for Pamphilus did not at first shake off his old love, but continued to visit Bacchis every day, and totally avoided the company of his wife. Gradually, however, a change took place. Bacehis, being annoyed at the marriage of Pamphilus, behaved with great coldness and caprice towards him. Philumena, on the other hand, bore his neglect with the greatest patience and good temper. And so it came about that Pamphilus abandoned Bacchis altogether, and became devotedly attached to his wife. At this moment a relation of his father's dies at Imbros, and Pamphilus is despatched to the spot to look after his property, his wife being left with her mother-in-law Sostrata. But this arrangement does not last long. Philumena, finding that she has no hope of concealing her situation from her mother-in-law, begins to avoid her, and to withdraw from her company as much as possible; till, at last, she goes to her own mother on the pretence of attending a family sacrifice, and stays with her, refusing to return to her mother-in-law. Sostrata sends for her, but in vain; and she goes to see her, but is refused admittance.</p>
+<p xml:lang="eng">This brings us to the beginning of the Second Act of the play, where the action really commences; for all that we had hitherto is merely a kind of prologue. Laches, Pamphilus' father, has now heard of this estrangement between his wife and his daughter-in-law, and comes into town to look into the matter. Priding himself much upon his wonderful knowledge of every thing that is going on, he lays it down decidedly that Sostrata alone is to blame; that all mothers-in-law hate their daughters-in-law, and that she must have driven Philumena away by her unkindness; and he is more confirmed in his opinion by the statement of Phidippus that his daughter refuses to come back to Laches' house while her husband is away. Sostrata in vain endeavours to clear herself.</p>
+<p xml:lang="eng">At this moment Philumena's expected child is born; and Pamphilus returns home at the critical moment. Hearing that his wife is ill, he rushes into the house to see her, and there discovers the whole state of the case. Myrrhina entreats him to keep the matter quiet, and he so far retains his affection for his wife that he promises to do so, and is wretched at the thoughts of a separation from her, though he comes to the conclusion that after this child's birth, the son of he does not know whom, it is impossible for him ever to receive her back into his house. Meanwhile he sees the necessity of getting rid of his slave Parmeno, who will otherwise be sure to discover what is going on. So he sends him off on two errands, the last of which keeps him fully employed at a distance the rest of the day.</p>
+<p xml:lang="eng">The body of the play is occupied by the indignant expostulations of the two fathers with Pamphilus, and with their wives. Now that Pamphilus has a son, Laches cannot conceive why he should not take his wife home again; and Phidippus is furious with him, with Laches, and with Myrrhina his wife. Sostrata comes to the determination of leaving town, and going to live with her husband in the country, hoping that her absence will remove the last obstacle to Philumena's return; but notwithstanding this, Pamnphilus still persists in his refusal to receive his wife, and at last the old men come to the conclusion that he must be still carrying on his old love affair with Bacchis, and determine to send for her, and to endeavour by fair means or foul to break off her intimacy with Pamphilus.
 </p>
-<p lang="en">Bacchis is accordingly sent for, and she completely clears herself and Pamphilus from the suspicion, and further undertakes to explain the real state of affairs to Myrrhina and Philumena. This brings out the true history of Philumena; and Bacchis is able to inform Pamphilus that his wife was the owner of the ring which she had received from him. This entirely changes Pamphilus' view of the case, and he is beside himself with delight.</p>
-<p lang="en">This play is not remarkable for any of the spirit which generally appears in Terence's plays. The event on which the plot of the play depends, and the circumstances of Philumena's illness, having necessarily to be kept in the background, gives an air of restraint to the whole piece. Indeed, within the whole action, properly so called, there is no incident except the discovery of the ring. The plot is much more simple, and the characters less interesting than those of any other play; and in the treatment of the character of the slave we notice a marked departure from the ordinary idea of that part. The Parmeno of the Hecyra is a very different personage from his namesake of the Eunuchus. He is merely sententious and inquisitive; and the only amusement which we get out of him is that he is very anxious to discover his master's secret, and that his curiosity is not gratified.
-</p></div2>
-<div2 type="scene" n="production">
+<p xml:lang="eng">Bacchis is accordingly sent for, and she completely clears herself and Pamphilus from the suspicion, and further undertakes to explain the real state of affairs to Myrrhina and Philumena. This brings out the true history of Philumena; and Bacchis is able to inform Pamphilus that his wife was the owner of the ring which she had received from him. This entirely changes Pamphilus' view of the case, and he is beside himself with delight.</p>
+<p xml:lang="eng">This play is not remarkable for any of the spirit which generally appears in Terence's plays. The event on which the plot of the play depends, and the circumstances of Philumena's illness, having necessarily to be kept in the background, gives an air of restraint to the whole piece. Indeed, within the whole action, properly so called, there is no incident except the discovery of the ring. The plot is much more simple, and the characters less interesting than those of any other play; and in the treatment of the character of the slave we notice a marked departure from the ordinary idea of that part. The Parmeno of the Hecyra is a very different personage from his namesake of the Eunuchus. He is merely sententious and inquisitive; and the only amusement which we get out of him is that he is very anxious to discover his master's secret, and that his curiosity is not gratified.
+</p></div>
+<div type="textpart" n="production" subtype="scene">
 <p>HECYRA.  ACTA LUDIS MEGALENSIBUS, SEX. IUL. CAESARE CN. CORNELIO DOLABELLA AEDILIBUS CURULIBUS. NON EST PERACTA. MODOS FECIT FLACCUS CLAUDII, TIBIIS PARIBUS. TOTA GRAECA APOLLODORU FACTA EST. ACTA PRIMO SINE PROLOGO. DATA SECUNDO CN. OCTAVIO T. MANLIO COSS. RELATA EST L. AEMILII PAULI LUDIS FUNEBRIBUS. NON EST PLACITA. TERTIO RELATA EST Q. FULVIO L. MARCIO AEDILIBUS CURULIBUS. EGIT L. AMBIVIUS TURPIO. PLACUIT.
 
-</p></div2></div1>
-<div1 type="act" n="prologue">
-<div2 type="scene" n="0">
+</p></div></div>
+<div type="textpart" n="prologue" subtype="act">
+<div type="textpart" n="0" subtype="scene">
 <sp><speaker>Prologus</speaker>
 <l n="1">Hecyra est huic nomen fabulae: haec cum data</l>
 <l n="2">Nova est novum intervenit vitium et calamitas,</l>
@@ -164,8 +112,8 @@ new additions
 <l n="6">Et is qui scripsit hanc ob eam rem noluit</l>
 <l n="7">Iterum referre ut iterum posset vendere.</l>
 <l n="8">Alias cognostis eius: quaeso hanc nunc noscite.
-</l></sp></div2>
-<div2 type="scene" n="1">
+</l></sp></div>
+<div type="textpart" n="1" subtype="scene">
 <head>ALTER PROLOGUS.</head>
 <sp><speaker>Prologus</speaker>
 <l n="9">Orator ad vos venio ornatu prologi:</l>
@@ -217,9 +165,9 @@ new additions
 <l n="55">Mea causa causam hanc accipite, et date silentium,</l>
 <l n="56">Ut libeat scribere aliis, mihique ut discere</l>
 <l n="57">Novas expediat posthac pretio emtas meo.
-</l></sp></div2></div1>
-<div1 type="act" n="1">
-<div2 type="scene" n="1">
+</l></sp></div></div>
+<div type="textpart" n="1" subtype="act">
+<div type="textpart" n="1" subtype="scene">
 <stage>PHILOTIS. SYRA.</stage>
 <sp><speaker>Ph.</speaker> <l n="58">Per pol quam paucos reperias meretricibus</l>
 <l n="59">Fideles evenire amatores, Syra.</l>
@@ -241,8 +189,8 @@ new additions
 <l n="73">Aut qua via te captent eadem ipsos capi?</l>
 <l n="74">Eheu me miseram, cur non aut istaec mihi</l>
 <l n="75">Aetas et forma est, aut tibi haec sententia?
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>PARMENO. PHILOTIS. SYRA.</stage>
 <sp><speaker>Pa.</speaker> <l n="76">Senex si quaeret me, modo isse dicito</l>
 <l n="77">Ad portum, percontatum adventum Pamphili.</l>
@@ -387,9 +335,9 @@ new additions
 <l n="198">Quod agas.
    </l></sp><sp><speaker>Ph.</speaker> <l part="Y"> Vale.
    </l></sp><sp><speaker>Pa.</speaker> <l part="Y"> Et tu bene vale, Philotium.
-</l></sp></div2></div1>
-<div1 type="act" n="2">
-<div2 type="scene" n="1">
+</l></sp></div></div>
+<div type="textpart" n="2" subtype="act">
+<div type="textpart" n="1" subtype="scene">
 <stage>LACHES. SOSTRATA.</stage>
 <sp><speaker>La.</speaker> <l n="199">Pro Deum atque hominum fidem, quod hoc genus est, quae haec est coniuratio.</l>
 <l n="200">Utine omnes mulieres eadem aeque studeant, nolintque omnia;</l>
@@ -444,8 +392,8 @@ new additions
 <l n="241">Et merito adeo; nam vestrarum nulla est quin gnatum velit</l>
 <l n="242">Ducere uxorem; et quae vobis placita est conditio datur.</l>
 <lb ed="actscene" n="45"/><l n="243">Ubi duxere impulsu vestro, vestro impulsu easdem exigunt.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>PHIDIPPUS. LACHES. SOSTRATA.</stage>
 <sp><speaker>Ph.</speaker> <l n="244">Etsi scio ego, Philumena, meum ius esse ut te cogam</l>
 <l n="245">Quae ego imperem facere; ego tamen patrio animo victus faciam</l>
@@ -485,8 +433,8 @@ new additions
    </l></sp><sp><speaker>Ph.</speaker> <l part="Y"> Nunc quidem ut videtur: sed numquid vis?</l>
 <l n="274">Nam est quod me transire ad forum iam oporteat.
    </l></sp><sp><speaker>La.</speaker> <l part="Y"> Eo tecum una.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>SOSTRATA.</stage>
 <sp><speaker>Sostrata</speaker>
 <l n="275">Edepol ne nos sumus inique aeque omnes invisae viris,</l>
@@ -496,9 +444,9 @@ new additions
 <lb ed="actscene" n="5"/><l n="279">Omnes esse iniquas: haud pol me quidem; nam nunquam secus</l>
 <l n="280">Habui illam ac si ex me esset nata: nec qui hoc mihi eveniat scio;</l>
 <l n="281">Nisi pol filium multimodis iam exspecto ut redeat domum.
-</l></sp></div2></div1>
-<div1 type="act" n="3">
-<div2 type="scene" n="1">
+</l></sp></div></div>
+<div type="textpart" n="3" subtype="act">
+<div type="textpart" n="1" subtype="scene">
 <stage>PAMPHILUS. PARMENO. MYRRHINA.</stage>
 <sp><speaker>Pam.</speaker> <l n="282">Nemini ego plura acerba credo esse ex amore homini unquam oblata</l>
 <l n="283">Quam mihi. Heu me infelicem, hancine ego vitam parsi perdere?</l>
@@ -570,8 +518,8 @@ new additions
 <l n="334">Aliquid tulisse comminiscentur mali</l>
 <l n="335">Capiti atque aetati illorum, morbus qui auctus siet.</l>
 <lb ed="actscene" n="55"/><l n="336">Hera in crimen veniet, ego vero in magnum malum.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>SOSTRATA. PARMENO. PAMPHILUS.</stage>
 <sp><speaker>So.</speaker> <l n="337">Nescio quid iamdudum audio hic tumultuari misera:</l>
 <l n="338">Male metuo ne Philumenae magis morbus aggravescat;</l>
@@ -614,8 +562,8 @@ new additions
 <sp><speaker>Pam.</speaker> <l n="360">Tu pueris curre Parmeno obviam, atque eis onera adiuta.</l></sp>
 <sp><speaker>Par.</speaker> <lb ed="actscene" n="25"/><l n="361">Quid? non sciunt ipsi viam domum qua redeant?
    </l></sp><sp><speaker>Pam.</speaker> <l part="Y"> Cessas?
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>PAMPHILUS.</stage>
 <sp><speaker>Pamphilius</speaker>
 <l n="362">Nequeo mearum rerum initium ullum invenire idoneum,</l>
@@ -672,8 +620,8 @@ new additions
 <l n="413">Vereor, si clamorem eius hic crebro audiat,</l>
 <l n="414">Ne parturire intelligat: aliquo mihi est</l>
 <l n="415">Hinc ablegandus dum parit Philumena.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>PARMENO. SOSIA. PAMPHILUS.</stage>
 <sp><speaker>Par.</speaker> <l n="416">Ain tu tibi hoc incommodum evenisse iter?</l></sp>
 <sp><speaker>So.</speaker> <l n="417">Non hercle verbis, Parmeno, dici potest</l>
@@ -722,8 +670,8 @@ new additions
 <l n="449">Nam me parenti potius quam amori obsequi</l>
 <lb ed="actscene" n="35"/><l n="450">Oportet. Atat eccum Phidippum et patrem</l>
 <l n="451">Video: horsum pergunt. Quid dicam hisce incertus sum.
-</l></sp></div2>
-<div2 type="scene" n="5">
+</l></sp></div>
+<div type="textpart" n="5" subtype="scene">
 <stage>LACHES. PHIDIPPUS. PAMIPHILUS.</stage>
 <sp><speaker>La.</speaker> <l n="452">Dixtin dudum illam dixisse se exspectare filium?</l></sp>
 <sp><speaker>Ph.</speaker> <l n="453">Factum.
@@ -808,9 +756,9 @@ new additions
 <l n="514">Quae dico parvi pendunt. Porto hoc iurgium</l>
 <l n="515">Ad uxorem, cuius haec fiunt consilio omnia;</l>
 <lb ed="actscene" n="65"/><l n="516">Atque in eam hoc omne quod mihi aegre est evomam.
-</l></sp></div2></div1>
-<div1 type="act" n="4">
-<div2 type="scene" n="1">
+</l></sp></div></div>
+<div type="textpart" n="4" subtype="act">
+<div type="textpart" n="1" subtype="scene">
 <stage>MYRRHINA. PHIDIPPUS.</stage>
 <sp><speaker>My.</speaker> <l n="517">Perii: quid agam? quo me vertam? quid viro meo respondebo</l>
 <l n="518">Misera? nam audivisse vocem pueri visus est vagientis:</l>
@@ -879,8 +827,8 @@ new additions
 <l n="575">Ipse eripuit vi in digito quem habuit virgini abiens annulum.</l>
 <lb ed="actscene" n="60"/><l n="576">Simul vereor Pamphilum, ne orata nostra nequeat diutius</l>
 <l n="577">Celare, quum sciet alienum puerum tolli pro suo.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>SOSTRATA. PAMPHILUS.</stage>
 <sp><speaker>So.</speaker> <l n="578">Non clam me est, nate mi, tibi me esse suspectam uxorem tuam</l>
 <l n="579">Propter meos mores hinc abisse, etsi ea dissimulas sedulo.</l>
@@ -916,8 +864,8 @@ new additions
 <l n="606">Mi gnate, da veniam hanc mihi: reduce illam.
    </l></sp><sp><speaker>Pa.</speaker> <l part="Y"> Vae misero mihi!</l></sp>
 <sp><speaker>So.</speaker> <lb ed="actscene" n="30"/><l n="607">Et mihi quidem! nam haec res non minus me male habet quam te, gnate mi.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>LACHES. SOSTRATA. PAMPHILUS.</stage>
 <sp><speaker>La.</speaker> <l n="608">Quem cum istoc sermonem habueris procul hinc stans accepi, uxor.</l>
 <l n="609">Istuc est sapere, qui ubicumque opus sit animum possis flectere;</l>
@@ -943,8 +891,8 @@ new additions
 <l n="621">E medio aequum excedere est. Postremo iam nos fabula</l>
 <lb ed="actscene" n="15"/><l n="622">Sumus, Pamphile, "senex atque anus."</l>
 <l n="623">Sed video Phidippum egredi per tempus: accedamus.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>PHIDIPPUS. LACHES. PAMPHILUS.</stage>
 <sp><speaker>Ph.</speaker> <l n="624">Tibi quoque edepol iratus sum, Philumena,</l>
 <l n="625">Graviter quidem; nam hercle abs te factum est turpiter;</l>
@@ -1068,9 +1016,9 @@ new additions
 <l n="725">Si ullo modo est ut possit, quod spero fore.</l>
 <l n="726">Sed visne adesse me una, dum istam convenis?</l></sp>
 <sp><speaker>La.</speaker> <l n="727">Immo vero abi: aliquam puero nutricem para.
-</l></sp></div2></div1>
-<div1 type="act" n="5">
-<div2 type="scene" n="1">
+</l></sp></div></div>
+<div type="textpart" n="5" subtype="act">
+<div type="textpart" n="1" subtype="scene">
 <stage>BACCHIS. LACHES.</stage>
 <sp><speaker>Ba.</speaker> <l n="728">Non hoc de nihilo est quod Laches me nunc conventam esse expetit;</l>
 <l n="729">Nec pol me multum fallit quin quod suspicor sit quod velit.</l></sp>
@@ -1120,8 +1068,8 @@ new additions
 <l n="766">Aliter si facias ---- sed reprimam me, ne aegre quicquam ex me audias.</l>
 <lb ed="actscene" n="40"/><l n="767">Verum te hoc moneo unum: amicus qualis sim aut quid possiem</l>
 <l n="768">Potius quam inimicus periclum facias.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>PHIDIPPUS. LACHES. BACCHIS.</stage>
 <sp><speaker>Ph.</speaker> <l n="769">Nihil apud me tibi</l>
 <l n="770">Defieri patiar quin quod opus sit benigne praebeatur.</l>
@@ -1159,8 +1107,8 @@ new additions
 <lb ed="actscene" n="30"/><l n="798">Nam si est ut haec nunc Pamphilum vere ab se segregarit,</l>
 <l n="799">Scit sibi nobilitatem ex eo et rem natam et gloriam esse,</l>
 <l n="800">Referetque gratiam ei, unaque nos sibi opera amicos iunget.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>PARMENO. BACCHIS.</stage>
 <sp><speaker>Pa.</speaker> <l n="801">Edepol nae meam herus esse operam deputat parvi preti,</l>
 <l n="802">Qui ob rem nullam misit, frustra ubi totum desedi diem,</l>
@@ -1212,8 +1160,8 @@ new additions
 <lb ed="actscene" n="40"/><l n="840">Incommode mihi nuptiis evenit: factum fateor.</l>
 <l n="841">At pol me fecisse arbitror ne id merito mihi eveniret.</l>
 <l n="842">Multa ex quo fuerint commoda, eius incommoda aequum est ferre.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>PAMIPHILUS. PARMENO. BACCHIS.</stage>
 <sp><speaker>Pam.</speaker> <l n="843">Vide, mi Parmeno, etiam sodes ut mihi haec certa et clara attuleris,</l>
 <l n="844">Ne me in breve coniicias tempus gaudio hoc falso frui.</l></sp>
@@ -1279,6 +1227,6 @@ new additions
 <sp><speaker>Pam.</speaker> <l n="881">Sequere me intro, Parmeno.
    </l></sp><sp><speaker>Par.</speaker> <l part="Y"> Sequor. Equidem plus hodie boni</l>
 <lb ed="actscene" n="40"/><l n="882">Feci imprudens quam sciens ante hunc diem unquam.
-   </l></sp><sp><speaker>Om.</speaker> <l part="Y">Plaudite.</l></sp></div2></div1>
-</body></text>
-</TEI.2>
+   </l></sp><sp><speaker>Om.</speaker> <l part="Y">Plaudite.</l></sp></div></div>
+</div></body></text>
+</TEI>

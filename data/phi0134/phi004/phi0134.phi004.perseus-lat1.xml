@@ -1,21 +1,31 @@
-<?xml version="1.0"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersDrama PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersDrama.dtd" >
-%PersDrama;
-]>
-<TEI.2>
-<teiHeader type="text" status="new">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"\?><?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader type="text">
 <fileDesc>
 <titleStmt>
-<title>Phormio</title>
-<author>P. Terentius Afer (Terence)</author>
+<title type="work">Phormio</title>
+<title type="sub">Machine readable text</title><author n="P. Terentius Afer (Terence)">P. Terentius Afer (Terence)</author>
 <editor role="editor">Edward St. John Parry</editor>
-&responsibility;
-&fund.DLI2;
+<sponsor>Perseus Project, Tufts University</sponsor>
+<principal>Gregory Crane</principal>
+<respStmt>
+<resp>Prepared under the supervision of</resp>
+<name>Bridget Almas</name>
+<name>Lisa Cerrato</name>
+<name>William Merrill</name>
+<name>Elli Mylonas</name>
+<name>David Smith</name>
+</respStmt>
+<funder n="org:DLI2">NSF, NEH: Digital Libraries Initiative, Phase 2</funder>
 </titleStmt>
-<extent></extent>
-&Perseus.publish;
+<publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+
 
 <sourceDesc>
 <biblStruct>
@@ -35,125 +45,61 @@
 
 <encodingDesc>
 <editorialDecl>
-<correction method="silent" status="high">&Perseus.DE;</correction>
+<correction method="silent" status="high"><p>professional data entry</p></correction>
 </editorialDecl>
-<refsDecl doctype="TEI.2">
-<state unit="TLN line"/>
-</refsDecl>
-<refsDecl doctype="TEI.2">
-<state unit="act"/>
-<state n="chunk" unit="scene"/>
-<state unit="line"/>
-</refsDecl>
+   <!--<refsDecl doctype="TEI.2">
+            <state unit="TLN line"/>
+         </refsDecl>-->
+   <refsDecl n="CTS">
+      <cRefPattern n="line" matchPattern="(\w+).(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:l[@n='$3'])">
+         <p>This pointer pattern extracts act and scene and line</p>
+      </cRefPattern>
+      <cRefPattern n="scene" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+         <p>This pointer pattern extracts act and scene</p>
+      </cRefPattern>
+      <cRefPattern n="act" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+         <p>This pointer pattern extracts act</p>
+      </cRefPattern>
+   </refsDecl>
+   <refsDecl>
+      <refState unit="act" delim="."/>
+      <refState unit="scene" delim="."/>
+      <refState unit="line"/>
+   </refsDecl>
 </encodingDesc>
 
 <profileDesc>
 <langUsage>
-<language id="la">Latin</language>
-<language id="greek">Greek</language>
-<language id="en">English</language>
-<language id="de">German</language>
-<language id="fr">French</language>
-<language id="it">Italian</language>
+<language ident="la">Latin</language>
+<language ident="grc">Greek</language>
+<language ident="en">English</language>
+<language ident="de">German</language>
+<language ident="fr">French</language>
+<language ident="it">Italian</language>
 </langUsage>
 </profileDesc>
 
 <revisionDesc>
-<change><date> 2-Jul-01</date>
-<respStmt><name>AEM</name><resp>markup</resp></respStmt>
-<item>
-$Log: ph_lat.xml,v $
-Revision 1.1  2013-09-13 11:17:47  balmas01
-moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory
-
-Revision 1.3  2013-06-08 12:13:49  gcrane
-TEI XML converted to facilitate CTS compatibility
-
-Revision 1.2  2012-02-22 21:55:36  lcerrato
-AED1L1BUS changed AEDILIBUS
-
-Revision 1.1  2011-01-17 00:34:56  gcrane
-base SDL files
-
-Revision 1.2  2010/07/08 18:07:28  student
-fixed place tags - zr
-
-Revision 1.1  2009/12/08 20:46:27  rsingh04
-moved more xml files around based on copyright status.  renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files
-
-Revision 1.4  2008/11/14 21:28:07  lcerrato
-fixed author names for consistent sorting
-
-Revision 1.3  2006/02/10 20:50:42  packel
-places/dates now actually tagged
-
-Revision 1.2  2005/08/01 16:31:42  packel
-removed stray item tags
-
-Revision 1.1  2005/07/25 15:05:12  packel
-Converted to XML
-
-Revision 1.7  2003/07/01 22:18:13  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.6  2001/12/21 17:34:28  amahoney
-fix the 'j's in the English section
-
-Revision 1.5  2001/12/19 21:58:41  amahoney
-fix some OCR errors and modernize aedepol to edepol
-
-Revision 1.4  2001/08/21 18:54:24  amahoney
-get the editor's name into the meta-data
-
-Revision 1.3  2001/08/17 15:32:10  amahoney
-fix line numbers in the English, pick up a few typos in Latin
-
-Revision 1.2  2001/07/02 21:01:52  amahoney
-add through lines, drop the headers, generally tidy up for release
-
-Revision 1.1  2001/07/02 19:27:22  amahoney
-new additions
-
-</item>
-</change>
-</revisionDesc>
+<change when="2016-02-09" who="Zach Himes">Cleaned up teiHeader.</change><change who="balmas01" when="2013-09-13">Revision 1.1  moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change><change who="gcrane" when="2013-06-08">Revision 1.3  TEI XML converted to facilitate CTS compatibility</change><change who="lcerrato" when="2012-02-22">Revision 1.2  AED1L1BUS changed AEDILIBUS</change><change who="gcrane" when="2011-01-17">Revision 1.1  base SDL files</change><change who="student" when="2010-07-08">Revision 1.2  fixed place tags - zr</change><change who="rsingh04" when="2009-12-08">Revision 1.1  moved more xml files around based on copyright status.  renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files</change><change who="lcerrato" when="2008-11-14">Revision 1.4  fixed author names for consistent sorting</change><change who="packel" when="2006-02-10">Revision 1.3  places/dates now actually tagged</change><change who="packel" when="2005-08-01">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25">Revision 1.1  Converted to XML</change><change who="yorkc" when="2003-07-01">Revision 1.7  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2001-12-21">Revision 1.6  fix the 'j's in the English section</change><change who="amahoney" when="2001-12-19">Revision 1.5  fix some OCR errors and modernize aedepol to edepol</change><change who="amahoney" when="2001-08-21">Revision 1.4  get the editor's name into the meta-data</change><change who="amahoney" when="2001-08-17">Revision 1.3  fix line numbers in the English, pick up a few typos in Latin</change><change who="amahoney" when="2001-07-02">Revision 1.2  add through lines, drop the headers, generally tidy up for release</change><change who="amahoney" when="2001-07-02">Revision 1.1  new additions</change></revisionDesc>
 
 </teiHeader>
 
-<text lang="la"><body>
+<text><body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0134.phi004.perseus-lat1" subtype="edition">
 
-<castList>
-<head>FABULAE INTERLOCUTORES.</head>
-
-<castItem type="role"><role>ANTIPHO, adolescens, filius Demiphonis.</role></castItem>
-<castItem type="role"><role>CHREMIES, senex, frater Demiphonis.</role></castItem>
-<castItem type="role"><role>CRATINUS,</role><roleDesc>advocati.</roleDesc></castItem>
-<castItem type="role"><role>CRITO,</role><roleDesc>advocati.</roleDesc></castItem>
-<castItem type="role"><role>HEGIO,</role><roleDesc>advocati.</roleDesc></castItem>
-<castItem type="role"><role>DAVUS,</role><roleDesc>servus.</roleDesc></castItem>
-<castItem type="role"><role>DEMIPHO, senex, frater Chremetis.</role></castItem>
-<castItem type="role"><role>DORIO,</role><roleDesc>leno.</roleDesc></castItem>
-<castItem type="role"><role>GETA, servus Demiphonis.</role></castItem>
-<castItem type="role"><role>NAUSISTRATA, matrona, uxor Chremetis.</role></castItem>
-<castItem type="role"><role>PHAEDRIA, adolescens, filius Chremetis.</role></castItem>
-<castItem type="role"><role>PHORMIO,</role><roleDesc>parasitus.</roleDesc></castItem>
-<castItem type="role"><role>SOPHRONA, nutrix Phanii.</role></castItem>
-</castList>
-
-<div1 type="act" n="introduction">
-<div2 type="scene" n="summary">
+<div type="textpart" n="introduction" subtype="act">
+<div type="textpart" n="summary" subtype="scene">
 <head>INTRODUCTION.</head>
 
-<p lang="en">In this play we have two brothers, Demipho and Chremes. Chremes had married a lady of property, named Nausistrata, whose estates lay in the island of <placeName key="tgn,7011173">Lemnos</placeName>, and by whom he had a son called Phaedria. Once a year Chremes used to go to <placeName key="tgn,7011173">Lemnos</placeName> to collect his rents, and used to stay there on each occasion rather longer than was necessary, while the rents which he brought home to his wife were less than in former times when the prices of farm produce was not so high as at this time (compare v. 8. 23, 24, and v. 3. 4--8), which appeared unaccountable to his wife, who did not however suspect him of any thing beyond carelessness and indolence in the management of her business. But it had happened that about fifteen years before the events of this play he had fallen in love with a Lemnian woman, by whom he had a daughter called Phanium. So for fifteen years he had two wives and two establishments, with perfect secrecy, for at <placeName key="tgn,7011173">Lemnos</placeName> he went by the name of Stilpho; while he put off his wife's complaints about the short rents by excuses of bad times, ill health, and so on. His brother Demipho had a son named Antipho, and they had agreed that Chremes should now go to <placeName key="tgn,7011173">Lemnos</placeName>, and bring over his wife and daughter, and that the cousins should be married at once, Phanium passing for the daughter of a friend. With this object Chremes now makes his yearly visit to <placeName key="tgn,7011173">Lemnos</placeName>; and Demipho at the same time goes to <placeName key="tgn,7002470">Cilicia</placeName>, where he expects to find a large fortune; while their two sons, Antipho and Phaedria, are left under the charge of Geta, an old family servant of Demipho's, who acted as their paedagogue. At first Geta endeavoured to discharge his duty to his master faithfully; but finding that this conduct got him nothing but abuse, he altered his line, and gave his two pupils every indulgence they demanded. This soon produced the results which might have been anticipated. Phaedria fell madly in love with a music girl, whom he diligently escorted every day to and from the school where she used to go for her finishing lessons; but his case was desperate, for he had not a farthing, and she could not be got from Dorio, the 'leno,' without hard cash. Nor was it long before Antipho got into a similar scrape, which had a very different end, but one quite as embarrassing to him. For when Chremes reached <placeName key="tgn,7011173">Lemnos</placeName> he found that his birds had flown. Phanium and her mother, tired of waiting for him, now that Phanium was grown up, had started for <placeName key="perseus,Athens">Athens</placeName> in search of him, with their nurse Sophrona. They inquire every where for Stilpho, but no such person is to be heard of, and they are reduced to great distress, in consequence of which the mother dies soon after their arrival. By a singular chance Antipho happens at this moment to see Phanium, as she is lamenting the death of her mother, and falls desperately in love with her at first sight. He goes to Sophrona, who will not consent to allow any acquaintance but on condition of marriage; and Antipho will sacrifice himself to a girl without a penny rather than lose her altogether. But how is the marriage to be brought about without exposing Antipho to his father's most severe censure? It is managed in the following way. Phormio, a parasite, who seems to have been under considerable obligations to these young men in the way of good living (see ii. 2. 22), gives him this advice. There is an Athenian law, that orphans should be taken in marriage or portioned out by their nearest relation. He will pretend to be Phanium's guardian, and will bring an action against Antipho, as her nearest relation, and as Antipho has no money he will of course be obliged to marry her. So Demipho will not be able to say a word. The plan succeeds to admiration. Phormio gains his suit, and Antipho immediately marries Phanium. He is devoted to his wife, but lives in continual dread of his father's return; and is quite as wretched in consequence of his success as Phaedria is because his case is hopeless.</p>
-<p lang="en">At this point (Act i. Sc. 4) the action of the play commences. Demipho comes back from <placeName key="tgn,7002470">Cilicia</placeName>, and immediately hears the unwelcome news that his son has married a pauper; and he at once attacks Geta, Antipho having made a hasty retreat, who defends himself as best he can, and begins the second plot which they have in hand for obtaining money for Phaedria, who is now driven to the last extremity; for Dorio has given him notice that if thirty minae are not forthcoming by the next day, Pamphila, the music girl, will be sold. Geta pretends therefore that Phormio will be very glad to take Phanium off their hands if they will make it worth his while to do so; for he has certain debts, and is already under an engagement to marry a lady who will bring him a sufficient portion to enable him to clear them off. He must therefore have thirty minae, and he will settle the matter for them. After some trouble the affair is arranged. Phormio receives the money, and at once carries it off to Phaedria, who purchases his Pamphila at once, and is made supremely happy; while poor Antipho is more wretched than ever, and accuses Geta of blundering stupidity in thus arranging to get rid of his wife for him. Chremes, meanwhile, has returned from <placeName key="tgn,7011173">Lemnos</placeName>, and is in great perplexity about his wife and daughter. He is as anxious as Demipho can be to get rid of this wife of Antipho's, and does his best to persuade his brother to arrange matters with Phormio. After this affair is settled he goes to make inquiries for his family from <placeName key="tgn,7011173">Lemnos</placeName>, when he falls in with Sophrona, and finds to his unbounded astonishment that this wife of Antipho, whom they have been so anxious to get rid of, is no other than his own daughter Phanium. This discovery is imparted to Demipho after an amusing scene of hints rendered necessary by the presence of Nausistrata (Act v. Sc. 3); and the two old men are now as anxious to be off their bargain with Phormio as they were to make it, and above all to get back the thirty minae which the parasite had taken as Phanium's portion. But they do not find it very easy to manage their scheme. Phormio is ready enough to give up Phanium, but has no intention of parting with the money; and when the old men attempt by fair means or foul to get it back, Chremes discovers to his horror that Phormio has discovered the secret of Phanium's parentage, which Geta had overheard when Chremes first recognized his daughter in Demipho's house. The result of all is that Phormio tells the whole story to Nausistrata. Chremes is utterly confounded, and is quite unable to blame his son for his amour with the music girl, when Phaedria describes to Nausistrata the purpose for which the thirty minae were obtained. The play ends with a conditional forgiveness of Chremes, and an invitation to supper for Phormio.</p>
-<p lang="en">In the character of Phormio Terence copied from an original, in which the standing idea of the parasite was strictly observed. See notes on Act ii. Scene 2. We have seen a very different idea, though with the same fondness for good living, worked out in the Eunuchus. See the Introduction to that play. Phormio is, however, a very capital specimen of his class, and shows far more readiness and amiability than most of the tribe. It is not unworthy of remark that this play is said by some to have been acted four times in one year. At all events, this and the Eunuchus, the two most spirited of Terence's plays, came on the stage within six months.
-</p></div2>
-<div2 type="scene" n="production">
+<p xml:lang="eng">In this play we have two brothers, Demipho and Chremes. Chremes had married a lady of property, named Nausistrata, whose estates lay in the island of <placeName key="tgn,7011173">Lemnos</placeName>, and by whom he had a son called Phaedria. Once a year Chremes used to go to <placeName key="tgn,7011173">Lemnos</placeName> to collect his rents, and used to stay there on each occasion rather longer than was necessary, while the rents which he brought home to his wife were less than in former times when the prices of farm produce was not so high as at this time (compare v. 8. 23, 24, and v. 3. 4--8), which appeared unaccountable to his wife, who did not however suspect him of any thing beyond carelessness and indolence in the management of her business. But it had happened that about fifteen years before the events of this play he had fallen in love with a Lemnian woman, by whom he had a daughter called Phanium. So for fifteen years he had two wives and two establishments, with perfect secrecy, for at <placeName key="tgn,7011173">Lemnos</placeName> he went by the name of Stilpho; while he put off his wife's complaints about the short rents by excuses of bad times, ill health, and so on. His brother Demipho had a son named Antipho, and they had agreed that Chremes should now go to <placeName key="tgn,7011173">Lemnos</placeName>, and bring over his wife and daughter, and that the cousins should be married at once, Phanium passing for the daughter of a friend. With this object Chremes now makes his yearly visit to <placeName key="tgn,7011173">Lemnos</placeName>; and Demipho at the same time goes to <placeName key="tgn,7002470">Cilicia</placeName>, where he expects to find a large fortune; while their two sons, Antipho and Phaedria, are left under the charge of Geta, an old family servant of Demipho's, who acted as their paedagogue. At first Geta endeavoured to discharge his duty to his master faithfully; but finding that this conduct got him nothing but abuse, he altered his line, and gave his two pupils every indulgence they demanded. This soon produced the results which might have been anticipated. Phaedria fell madly in love with a music girl, whom he diligently escorted every day to and from the school where she used to go for her finishing lessons; but his case was desperate, for he had not a farthing, and she could not be got from Dorio, the 'leno,' without hard cash. Nor was it long before Antipho got into a similar scrape, which had a very different end, but one quite as embarrassing to him. For when Chremes reached <placeName key="tgn,7011173">Lemnos</placeName> he found that his birds had flown. Phanium and her mother, tired of waiting for him, now that Phanium was grown up, had started for <placeName key="perseus,Athens">Athens</placeName> in search of him, with their nurse Sophrona. They inquire every where for Stilpho, but no such person is to be heard of, and they are reduced to great distress, in consequence of which the mother dies soon after their arrival. By a singular chance Antipho happens at this moment to see Phanium, as she is lamenting the death of her mother, and falls desperately in love with her at first sight. He goes to Sophrona, who will not consent to allow any acquaintance but on condition of marriage; and Antipho will sacrifice himself to a girl without a penny rather than lose her altogether. But how is the marriage to be brought about without exposing Antipho to his father's most severe censure? It is managed in the following way. Phormio, a parasite, who seems to have been under considerable obligations to these young men in the way of good living (see ii. 2. 22), gives him this advice. There is an Athenian law, that orphans should be taken in marriage or portioned out by their nearest relation. He will pretend to be Phanium's guardian, and will bring an action against Antipho, as her nearest relation, and as Antipho has no money he will of course be obliged to marry her. So Demipho will not be able to say a word. The plan succeeds to admiration. Phormio gains his suit, and Antipho immediately marries Phanium. He is devoted to his wife, but lives in continual dread of his father's return; and is quite as wretched in consequence of his success as Phaedria is because his case is hopeless.</p>
+<p xml:lang="eng">At this point (Act i. Sc. 4) the action of the play commences. Demipho comes back from <placeName key="tgn,7002470">Cilicia</placeName>, and immediately hears the unwelcome news that his son has married a pauper; and he at once attacks Geta, Antipho having made a hasty retreat, who defends himself as best he can, and begins the second plot which they have in hand for obtaining money for Phaedria, who is now driven to the last extremity; for Dorio has given him notice that if thirty minae are not forthcoming by the next day, Pamphila, the music girl, will be sold. Geta pretends therefore that Phormio will be very glad to take Phanium off their hands if they will make it worth his while to do so; for he has certain debts, and is already under an engagement to marry a lady who will bring him a sufficient portion to enable him to clear them off. He must therefore have thirty minae, and he will settle the matter for them. After some trouble the affair is arranged. Phormio receives the money, and at once carries it off to Phaedria, who purchases his Pamphila at once, and is made supremely happy; while poor Antipho is more wretched than ever, and accuses Geta of blundering stupidity in thus arranging to get rid of his wife for him. Chremes, meanwhile, has returned from <placeName key="tgn,7011173">Lemnos</placeName>, and is in great perplexity about his wife and daughter. He is as anxious as Demipho can be to get rid of this wife of Antipho's, and does his best to persuade his brother to arrange matters with Phormio. After this affair is settled he goes to make inquiries for his family from <placeName key="tgn,7011173">Lemnos</placeName>, when he falls in with Sophrona, and finds to his unbounded astonishment that this wife of Antipho, whom they have been so anxious to get rid of, is no other than his own daughter Phanium. This discovery is imparted to Demipho after an amusing scene of hints rendered necessary by the presence of Nausistrata (Act v. Sc. 3); and the two old men are now as anxious to be off their bargain with Phormio as they were to make it, and above all to get back the thirty minae which the parasite had taken as Phanium's portion. But they do not find it very easy to manage their scheme. Phormio is ready enough to give up Phanium, but has no intention of parting with the money; and when the old men attempt by fair means or foul to get it back, Chremes discovers to his horror that Phormio has discovered the secret of Phanium's parentage, which Geta had overheard when Chremes first recognized his daughter in Demipho's house. The result of all is that Phormio tells the whole story to Nausistrata. Chremes is utterly confounded, and is quite unable to blame his son for his amour with the music girl, when Phaedria describes to Nausistrata the purpose for which the thirty minae were obtained. The play ends with a conditional forgiveness of Chremes, and an invitation to supper for Phormio.</p>
+<p xml:lang="eng">In the character of Phormio Terence copied from an original, in which the standing idea of the parasite was strictly observed. See notes on Act ii. Scene 2. We have seen a very different idea, though with the same fondness for good living, worked out in the Eunuchus. See the Introduction to that play. Phormio is, however, a very capital specimen of his class, and shows far more readiness and amiability than most of the tribe. It is not unworthy of remark that this play is said by some to have been acted four times in one year. At all events, this and the Eunuchus, the two most spirited of Terence's plays, came on the stage within six months.
+</p></div>
+<div type="textpart" n="production" subtype="scene">
 <p>PHORMIO.  ACTA LUDIS ROMANIS, L. POSTUMIO ALBINO, L. CORNELIO MERULA, AEDILIBUS CURULIBUS. EGERE L. AMBIVIUS TURPIO, L. ATILIUS PRAENEST1NUS. MODOS FECIT FLACCUS CLAUDII, TIBIIS IMPARIBUS. TOTA GRAECA APOLLODORU EPIDICAZOMENOS. FACTA EST IV. C. FANNIO, M. VALERIO, COSS.
 
-</p></div2></div1>
-<div1 type="act" n="prologue">
-<div2 type="scene" n="0">
+</p></div></div>
+<div type="textpart" n="prologue" subtype="act">
+<div type="textpart" n="0" subtype="scene">
 <sp><speaker>Prologus</speaker>
 <l n="1">POSTQUAM poeta vetus poetam non potest</l>
 <l n="2">Retrahere ab studio, et transdere hominem in otium,</l>
@@ -190,10 +136,10 @@ new additions
 <l n="33">Quem actoris virtus nobis restituit locum,</l>
 <l n="34">Bonitasque vestra adiutans atque aequanimitas.
 
-</l></sp></div2></div1>
-<div1 type="act" n="1">
+</l></sp></div></div>
+<div type="textpart" n="1" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>DAVUS.</stage>
 <l n="35">Amicus summus meus et popularis Geta</l>
 <l n="36">Heri ad me venit. Erat ei de ratiuncula</l>
@@ -211,8 +157,8 @@ new additions
 <l n="48">Porro autem alio, ubi erit puero natalis dies;</l>
 <lb ed="actscene" n="15"/><l n="49">Ubi initiabunt. Omne hoc mater auferet:</l>
 <l n="50">Puer causa erit mittendi. Sed videon Getam?
-</l></div2>
-<div2 type="scene" n="2">
+</l></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>GETA. DAVUS.</stage>
 <sp><speaker>Ge.</speaker> <l n="51">Si quis me quaeret rufus--
    </l></sp><sp><speaker>Da.</speaker> <l part="Y"> Praesto est; desine. 
@@ -357,8 +303,8 @@ new additions
    </l></sp><sp><speaker>Ge.</speaker> <l part="Y"> Ut bene sit tibi.</l>
 <l n="152">Puer, hens. Nemone huc prodit? Cape, da hoc Dorcio.
 
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>ANTIPHO. PHAEDRIA.</stage>
 <sp><speaker>An.</speaker> <l n="153">Adeon rem redisse ut qui mihi consultum optime velit esse,</l>
 <l n="154">Phaedria, patrem ut extimescam, ubi in mentem eius adventi venit?</l>
@@ -388,8 +334,8 @@ new additions
 <l n="176">Ut neque mihi eius sit amittendi nec retinendi copia.</l>
 <lb ed="actscene" n="25"/><l n="177">Sed quid hoc est? videone ego Getam currentem huc advenire?</l>
 <l n="178">Is est ipsus: hei timeo miser quam hic nunc mihi nuntiet rem.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>GETA. ANTIPHO. PHAEDR1A.</stage>
 <sp><speaker>Ge.</speaker> <l n="179">Nullus es, Geta, nisi iam aliquod tibi consilium celere repperis:</l>
 <l n="180">Ita nunc imparatum subito tanta te impendent mala,</l>
@@ -481,10 +427,10 @@ new additions
 <l n="230">Succenturiatus, si quid deficias. 
    </l></sp><sp><speaker>Ph.</speaker> <l part="Y"> Age.
 
-</l></sp></div2></div1>
-<div1 type="act" n="2">
+</l></sp></div></div>
+<div type="textpart" n="2" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>DEMIPHO. GETA. PHAEDRIA.</stage>
 <sp><speaker>De.</speaker> <l n="231">Itane tandem uxorem duxit Antipho iniussu meo?</l>
 <l n="232">Nec meum imperium, ac mitto imperium, non simultatem meam</l>
@@ -569,7 +515,7 @@ new additions
 <l n="294">Addo istuc; imprudens timuit adolescens: sino.</l>
 <lb ed="actscene" n="65"/><l n="295">Tu servus: verum, si cognata est maxime,</l>
 <l n="296">Non fuit necesse habere: sed, id quod lex iubet,</l>
-<l n="297">Dotem daretis; qu&aelig;reret alium virum.</l>
+<l n="297">Dotem daretis; quæreret alium virum.</l>
 <l n="298">Qua ratione inopem potius ducebat domum?</l></sp>
 <sp><speaker>Ge.</speaker> <l n="299">Non ratio, verum argentum deerat. 
    </l></sp><sp><speaker>De.</speaker> <l part="Y"> Sumeret</l>
@@ -596,8 +542,8 @@ new additions
 <l n="312">Devertar; inde ibo ad forum, atque aliquot mihi</l>
 <l n="313">Amicos advocabo ad hanc rem qui assient,</l>
 <l n="314">Ut ne imparatus sim, si adveniat Phormio.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>PHORMIO. GETA.</stage>
 <sp><speaker>Ph.</speaker> <l n="315">ITANE patris ais conspectum veritum hinc abisse? 
    </l></sp><sp><speaker>Ge.</speaker> <l part="Y"> Admodum.</l></sp>
@@ -648,8 +594,8 @@ new additions
 </l></sp>
 <sp><speaker>Ge.</speaker> <l n="346">Senex adest: vide quid agas: prima coitio est acerrima.</l>
 <l n="347">Si eam sustinueris, postilla iam, ut libet, ludas licet.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>DEMIPHO. GETA. PHORMIO.</stage>
 <sp><speaker>De.</speaker> <l n="348">En unquam cuiquam contumeliosius</l>
 <l n="349">Audistis factam iniuriam quam haec est mihi?</l>
@@ -747,7 +693,7 @@ new additions
 <sp><speaker>Ph.</speaker> <l n="411">Ha, ha, he! homo suavis. 
    </l></sp><sp><speaker>De.</speaker> <l part="Y"> Quid est? num iniquum postulo?</l>
 <lb ed="actscene" n="65"/><l n="412">An ne hoc quidelm adipiscar ego, quod ius publicum est?</l></sp>
-<sp><speaker>Ph.</speaker> <l n="413">Itane tandem qu&aelig;so, item ut meretricem ubi abusus sis,</l>
+<sp><speaker>Ph.</speaker> <l n="413">Itane tandem quæso, item ut meretricem ubi abusus sis,</l>
 <l n="414">Mercedem dare lex iubet ei atque amittere? An,</l>
 <l n="415">Ut ne quid turpe civis in se admitteret</l>
 <l n="416">Propter egestatem, proximo iussa est dari,</l>
@@ -761,7 +707,7 @@ new additions
    </l></sp><sp><speaker>De.</speaker> <l part="Y"> Sine modo.</l></sp>
 <sp><speaker>Ph.</speaker> <l n="421">Postremo tecum nihil rei nobis, Demipho, est.</l>
 <lb ed="actscene" n="75"/><l n="422">Tuus est damnatus gnatus, non tu; nam tua</l>
-<l n="423">Pr&aelig;terierat iam ad ducendum aetas. 
+<l n="423">Præterierat iam ad ducendum aetas. 
    </l></sp><sp><speaker>De.</speaker> <l part="Y"> Omnia haec</l>
 <l n="424">Illum putato quae ego nunc dico dicere;</l>
 <l n="425">Aut quidem cum uxore hac ipsum prohibebo domo.</l></sp>
@@ -788,8 +734,8 @@ new additions
 <l n="439">Dicam tibi impingam grandem: dixi, Demipho.</l>
 <l n="440">Si quid opus fuerit, heus, domo me. 
    </l></sp><sp><speaker>Ge.</speaker> <l part="Y"> Intelligo.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>DEMIPHO. GETA. HEGIO. CRATINUS. CRITO.</stage>
 <sp><speaker>De.</speaker> <l n="441">Quanta me cura et sollicitudine afficit</l>
 <l n="442">Gnatus, qui me et se hisce impedivit nuptiis;</l>
@@ -827,10 +773,10 @@ new additions
 <sp><speaker>Ge.</speaker> <l n="463">At ego Antiphonem quaeram, ut quae acta hic sint sciat.</l>
 <l n="464">Sed eccum ipsum video in tempore huc se recipere.
 
-</l></sp></div2></div1>
-<div1 type="act" n="3">
+</l></sp></div></div>
+<div type="textpart" n="3" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>ANTIPHO. GETA.</stage>
 <sp><speaker>An.</speaker> <l n="465">Enimvero, Antipho, multimodis cum istoc animo es vituperandus.</l>
 <l n="466">Itane te hinc abisse et vitam tuam tutandam aliis dedisse?</l>
@@ -866,8 +812,8 @@ new additions
 <sp><speaker>Ge.</speaker> <lb ed="actscene" n="20"/><l n="484">Phaedria tibi adest. 
    </l></sp><sp><speaker>An.</speaker> <l part="Y"> Ubinam? 
    </l></sp><sp><speaker>Ge.</speaker> <l part="Y"> Eccum ab sua
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>PHAEDRIA. DORIO. ANTIPHO. GETA.</stage>
 <sp><speaker>Ph.</speaker> <l n="485">Dorio, audi,</l>
 <l n="486">Obsecro. 
@@ -956,8 +902,8 @@ new additions
 <l n="532">Miles dare se dixit: si mihi prior tu attuleris, Phaedria,</l>
 <l n="533">Mea lege utar, ut potior sit qui prior ad dandum est. Vale.
 
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>PHAEDRIA. ANTIPHO. GETA.</stage>
 <sp><speaker>Ph.</speaker> <l n="534">Quid faciam? Unde ego nunc tam subito huic argentum inveniam miser,</l>
 <l n="535">Cui minus nihilo est? quod si hic potuisset nunc exorarier</l>
@@ -1017,10 +963,10 @@ new additions
    </l></sp><sp><speaker>An.</speaker> <l part="Y"> Nihil est aeque quod faciam libens.</l></sp>
 <sp><speaker>Ph.</speaker> <l n="566">Qua via istuc facies? 
    </l></sp><sp><speaker>Ge.</speaker> <l part="Y"> Dicam in itinere: modo te hinc amove.
-</l></sp></div2></div1>
-<div1 type="act" n="4">
+</l></sp></div></div>
+<div type="textpart" n="4" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>DEMIPHO. CHREMES.</stage>
 <sp><speaker>De.</speaker> <l n="567">Quid qua profectus causa hinc es Lemnum, Chreme,</l>
 <l n="568">Adduxtin tecum filiam? 
@@ -1052,8 +998,8 @@ new additions
 <sp><speaker>De.</speaker> <l n="588">Scio ita esse; et istaec mihi res sollicitudini est:</l>
 <l n="589">Neque defetiscar usque adeo experirier,</l>
 <l n="590">Donec tibi id quod pollicitus sum effecero.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>GETA.</stage>
 <l n="591">Ego hominem callidiorem vidi neminem</l>
 <l n="592">Quam Phormionem: venio ad hominem ut dicerem</l>
@@ -1070,8 +1016,8 @@ new additions
 <l n="603">Commodius esse opinor duplici spe utier.</l>
 <l n="604">Petam hinc unde a primo institui: is si dat, sat est:</l>
 <lb ed="actscene" n="15"/><l n="605">Si ab eo nihil fiet, tum hunc adoriar hospitem.
-</l></div2>
-<div2 type="scene" n="3">
+</l></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>ANTIPHO. GETA. CHREMES. DEMIPHO.</stage>
 <sp><speaker>An.</speaker> <l n="606">Exspecto quam mox recipiat huc sese Geta:</l>
 <l n="607">Sed patruum video cum patre adstantem. Hei mihi,</l>
@@ -1176,8 +1122,8 @@ new additions
 <sp><speaker>Ch.</speaker> <l n="679">Opportune adeo argentum nunc mecum attuli,</l>
 <lb ed="actscene" n="75"/><l n="680">Fructum quem Lemni uxoris reddunt praedia:</l>
 <l n="681">Id sumam: uxori tibi opus esse dixero.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>ANTIPHO. GETA.</stage>
 <sp><speaker>An.</speaker> <l n="682">Geta. 
    </l></sp><sp><speaker>Ge.</speaker> <l part="Y"> Hem. 
@@ -1223,8 +1169,8 @@ new additions
    </l></sp><sp><speaker>Ge.</speaker> <l part="Y"> Fient: me vide.</l>
 <l n="712">Pater exit: abi, die, esse argentum, Phaedriae.
 
-</l></sp></div2>
-<div2 type="scene" n="5">
+</l></sp></div>
+<div type="textpart" n="5" subtype="scene">
 <stage>DEMIPHO. GETA. CHREMES.</stage>
 <sp><speaker>De.</speaker> <l n="713">Quietus esto, inquam: ego curabo ne quid verborum duit.</l>
 <l n="714">Hoc temere nunquam amittam ego a me quin mihi testes adhibeam:</l>
@@ -1250,10 +1196,10 @@ new additions
 <sp><speaker>De.</speaker> <lb ed="actscene" n="15"/><l n="727">Rogabo. 
    </l></sp><sp><speaker>Ch.</speaker> <l part="Y"> Ubi illas ego nunc reperire possim cogito.
 
-</l></sp></div2></div1>
-<div1 type="act" n="5">
+</l></sp></div></div>
+<div type="textpart" n="5" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>SOPHRONA. CHREMES.</stage>
 <sp><speaker>So.</speaker> <l n="728">Quid agam? quem mihi amicum inveniam misera? aut quo consilia haec referam? aut</l>
 <l n="729">Unde mihi auxilium petam?</l>
@@ -1318,8 +1264,8 @@ new additions
 <l n="764">Sed per Deos atque homines, meam esse hanc cave resciscat quisquam.</l></sp>
 <sp><speaker>So.</speaker> <l n="765">Nemo ex me scibit. 
    </l></sp><sp><speaker>Ch.</speaker> <l part="Y"> Sequere me: intus caetera audies.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>DEMIPHO. GETA.</stage>
 <sp><speaker>De.</speaker> <l n="766">Nostrapte culpa facimus ut malis expediat esse,</l>
 <l n="767">Dum nimium dici nos bonos studemus et benignos.</l>
@@ -1343,8 +1289,8 @@ new additions
 <l n="781">Geta. Praesens quod fuerat malum in diem abiit: plagae crescunt,</l>
 <l n="782">Nisi prospicis. Nunc hinc domum ibo, ac Phanium edocebo</l>
 <l n="783">Ne quid vereatur Phormionem aut eius orationem.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>DEMIPHO. NAUSISTRATA. CHREMES.</stage>
 <sp><speaker>De.</speaker> <l n="784">Agedum, ut soles, Nausistrata, fac illa ut placetur nobis;</l>
 <l n="785">Ut sua voluntate id quod est faciendum faciat. 
@@ -1429,8 +1375,8 @@ new additions
    </l></sp><sp><speaker>Ch.</speaker> <l part="Y"> Non satis tutus est ad narrandum hic locus.</l></sp>
 <sp><speaker>De.</speaker> <l n="819">At tu abi intro. 
    </l></sp><sp><speaker>Ch.</speaker> <l part="Y"> Heus, ne filii quidem nostri hoc resciscant volo.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>ANTIPHO.</stage>
 <l n="820">Laetus sum, ut meae res sese habent, fratri obtigisse quod vult.</l>
 <l n="821">Quam scitum est eiusmodi parare in animo cupiditates</l>
@@ -1441,8 +1387,8 @@ new additions
 <l n="826">Neque me domum nunc reciperem, ni mihi esset spes ostenta</l>
 <l n="827">Huiusce habendae. Sed ubinam Getam invenire possum,</l>
 <l n="828">Ut rogem quod tempus conveniendi patris me capere iubeat?
-</l></div2>
-<div2 type="scene" n="5">
+</l></div>
+<div type="textpart" n="5" subtype="scene">
 <stage>PHORMIO. ANTIPHO.</stage>
 <sp><speaker>Ph.</speaker> <l n="829">Argentum accepi; tradidi lenoni; abduxi mulierem;</l>
 <l n="830">Curavi propria ea Phaedria ut poteretur; nam emissa est manu.</l>
@@ -1463,8 +1409,8 @@ new additions
    </l></sp><sp><speaker>An.</speaker> <l part="Y"> Vide quis egrediatur. 
    </l></sp><sp><speaker>Ph.</speaker> <l part="Y"> Geta est.
 
-</l></sp></div2>
-<div2 type="scene" n="6">
+</l></sp></div>
+<div type="textpart" n="6" subtype="scene">
 <stage>GETA. ANTIPHO. PHORMIO.</stage>
 <sp><speaker>Ge.</speaker> <l n="841">O Fortuna, O Fors fortuna, quantis commoditatibus</l>
 <l n="842">Quam subito hero meo Antiphoni ope vestra hunc onerastis diem;</l></sp>
@@ -1548,8 +1494,8 @@ new additions
 <l n="891">Sed hince concedam in angiportum hoc proximum:</l>
 <l n="892">Inde hisce ostendam me, ubi erunt egressi foras.</l>
 <l n="893">Quo me assimularam ire ad mercatum non eo.
-</l></sp></div2>
-<div2 type="scene" n="7">
+</l></sp></div>
+<div type="textpart" n="7" subtype="scene">
 <stage>DEMIPHO. PHORMIO. CHREMES.</stage>
 <sp><speaker>De.</speaker> <l n="894">Dis magnas merito gratias habeo atque ago,</l>
 <l n="895">Quando evenere haec nobis, frater, prospere.</l>
@@ -1696,8 +1642,8 @@ new additions
    </l></sp><sp><speaker>De.</speaker> <l part="Y"> Nisi sequitur, pugnos in ventrem ingere.</l></sp>
 <sp><speaker>Ph.</speaker> <l n="989">Vel oculum exclude: est ubi vos ulciscar probe.
 
-</l></sp></div2>
-<div2 type="scene" n="8">
+</l></sp></div>
+<div type="textpart" n="8" subtype="scene">
 <stage>NAUSISTRATA. CHREMES. PHORMIO. DEMIPHO.</stage>
 <sp><speaker>Na.</speaker> <l n="990">Quis nominat me? 
    </l></sp><sp><speaker>Ch.</speaker> <l part="Y"> Hem. 
@@ -1812,6 +1758,6 @@ new additions
    </l></sp><sp><speaker>Ch.</speaker> <l part="Y"> Fiat: sed ubi est Phaedria,</l>
 <l n="1055">Iudex noster? 
    </l></sp><sp><speaker>Ph.</speaker> <l part="Y"> Iam hic faxo aderit. 
-   </l></sp><sp><speaker>Om.</speaker> <l part="Y">Vos valete et plaudite.</l></sp></div2></div1>
-</body></text>
-</TEI.2>
+   </l></sp><sp><speaker>Om.</speaker> <l part="Y">Vos valete et plaudite.</l></sp></div></div>
+</div></body></text>
+</TEI>
