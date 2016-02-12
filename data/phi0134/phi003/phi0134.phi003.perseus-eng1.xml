@@ -1,20 +1,31 @@
-<?xml version="1.0"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersDrama PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersDrama.dtd" >
-%PersDrama;
-]>
-<TEI.2>
-	<teiHeader type="text" status="new">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"\?><?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+	<teiHeader type="text">
 		<fileDesc>
 			<titleStmt>
-				<title>The Eunuch</title>
-				<author>P. Terentius Afer (Terence)</author>
-				<editor role="transl">Henry Thomas Riley</editor> &responsibility; &fund.DLI2; </titleStmt> &Perseus.publish; <sourceDesc>
+				<title type="work">The Eunuch</title>
+				<title type="sub">Machine readable text</title><author n="P. Terentius Afer (Terence)">P. Terentius Afer (Terence)</author>
+				<editor role="translator">Henry Thomas Riley</editor> <sponsor>Perseus Project, Tufts University</sponsor>
+<principal>Gregory Crane</principal>
+<respStmt>
+<resp>Prepared under the supervision of</resp>
+<name>Bridget Almas</name>
+<name>Lisa Cerrato</name>
+<name>William Merrill</name>
+<name>Elli Mylonas</name>
+<name>David Smith</name>
+</respStmt> <funder n="org:DLI2">NSF, NEH: Digital Libraries Initiative, Phase 2</funder> </titleStmt> <publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+ <sourceDesc>
 				<biblStruct>
 					<monogr>
 						<title>The Comedies of Terence</title>
-						<editor role="transl">Henry Thomas Riley</editor>
+						<editor role="translator">Henry Thomas Riley</editor>
 						<imprint>
 							<pubPlace>Ney York</pubPlace>
 							<publisher>Harper and Brothers</publisher>
@@ -27,214 +38,57 @@
 
 		<encodingDesc>
 			<editorialDecl>
-				<correction method="silent" status="medium">&Perseus.DE;</correction>
+				<correction method="silent" status="medium"><p>professional data entry</p></correction>
 			</editorialDecl>
-			<refsDecl doctype="TEI.2">
-				<state unit="TLN line"/>
+			<!--<refsDecl doctype="TEI.2">
+                <state/>
+            </refsDecl>-->
+            <refsDecl n="CTS">
+				<cRefPattern n="line" matchPattern="(\w+).(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:div/tei:l[@n='$3'])">
+					<p>This pointer pattern extracts act and scene and line</p>
+				</cRefPattern>
+				<cRefPattern n="scene" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+					<p>This pointer pattern extracts act and scene</p>
+				</cRefPattern>
+				<cRefPattern n="act" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+					<p>This pointer pattern extracts act</p>
+				</cRefPattern>
 			</refsDecl>
-			<refsDecl doctype="TEI.2">
-				<state unit="act"/>
-				<state n="chunk" unit="scene"/>
-				<state unit="line"/>
+			<refsDecl>
+				<refState unit="act" delim="."/>
+				<refState unit="scene" delim="."/>
+				<refState unit="line"/>
 			</refsDecl>
-		</encodingDesc>
+        </encodingDesc>
 
 		<profileDesc>
 			<langUsage>
-				<language id="en">English</language>
-				<language id="la">Latin</language>
-				<language id="greek">Greek</language>
-				<language id="de">German</language>
-				<language id="fr">French</language>
-				<language id="it">Italian</language>
+				<language ident="en">English</language>
+				<language ident="la">Latin</language>
+				<language ident="grc">Greek</language>
+				<language ident="de">German</language>
+				<language ident="fr">French</language>
+				<language ident="it">Italian</language>
 			</langUsage>
 		</profileDesc>
 
 		<revisionDesc>
-			<change>
-				<date>14-Aug-01</date>
-				<respStmt>
-					<name>AEM</name>
-					<resp>markup</resp>
-				</respStmt>
-				<item> 
-$Log: eu_eng.xml,v $
-Revision 1.1  2013-09-13 11:17:25  balmas01
-moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory
-
-Revision 1.5  2013-06-30 12:34:38  gcrane
-the card divs had had a line range but there was a problem with this, so we just have the start line in the n attribute.
-
-Revision 1.3  2010-08-31 18:43:06  rsingh04
-cleaned up log keyword
- 
-Revision 1.1 2009/12/08 20:46:27 rsingh04 
-moved more xml  files around based on copyright status. renamed terence files to follow the
-                    abbreviations and split up minora_lat.xml into separate files 
-
-Revision 1.8 2009/06/25 23:08:37 student 
-fixed bibl error - zr 
-
-Revision 1.7 2009/06/24 15:46:48 student 
-fixed Ter. Hau. references - zr 
-
-Revision 1.6 2009/06/22 18:52:12 student 
-fixed Pl. Ps. references - zr 
-
-Revision 1.5 2008/11/14 21:28:07 lcerrato 
-fixed author names for consistent sorting 
-
-Revision 1.4 2006/05/05 17:38:31 packel 
-fixed date tags 
-
-Revision 1.3 2006/02/10 20:50:43 packel
-places/dates now actually tagged 
-
-Revision 1.2 2005/08/01 16:31:41 packel 
-removed stray item tags 
-
-Revision 1.1 2005/07/25 15:04:51 packel 
-Converted to XML
-                    
-Revision 1.8 2003/07/01 22:18:13 yorkc 
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.) 
-
-Revision 1.7 2002/03/13 20:09:06 czietz 
-began mark-up 
-
-Revision 1.6 2001/08/29 19:56:38 amahoney 
-make the various Dramatis Personae lists independent instead of cross
-                    referencing each other 
-
-Revision 1.5 2001/08/21 18:49:51 amahoney 
-get translator's name into proper place in meta-data, use same form of author's name
-                    as in Latin 
-
-Revision 1.4 2001/08/17 17:32:56 amahoney 
-fix headers for TOC
-                    
-Revision 1.3 2001/08/17 17:24:11 amahoney 
-begin marking the Latin 
-
-Revision 1.2 2001/08/17 15:32:08 amahoney 
-fix line numbers in the English, pick up a few
-                    typos in Latin 
-
-Revision 1.1 2001/08/16 21:11:14 amahoney 
-new texts 
-				</item>
-			</change>
-		</revisionDesc>
+			<change when="2016-02-09" who="Zach Himes">Cleaned up teiHeader. Converted milestones to divs.</change><change who="balmas01" when="2013-09-13">Revision 1.1  moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change><change who="gcrane" when="2013-06-30">Revision 1.5  the card divs had had a line range but there was a problem with this, so we just have the start line in the n attribute.</change><change who="rsingh04" when="2010-08-31">Revision 1.3  cleaned up log keyword</change><change who="rsingh04" when="2009-12-08">Revision 1.1 moved more xml  files around based on copyright status. renamed terence files to follow the
+                    abbreviations and split up minora_lat.xml into separate files</change><change who="student" when="2009-06-25">Revision 1.8 fixed bibl error - zr</change><change who="student" when="2009-06-24">Revision 1.7 fixed Ter. Hau. references - zr</change><change who="student" when="2009-06-22">Revision 1.6 fixed Pl. Ps. references - zr</change><change who="lcerrato" when="2008-11-14">Revision 1.5 fixed author names for consistent sorting</change><change who="packel" when="2006-05-05">Revision 1.4 fixed date tags</change><change who="packel" when="2006-02-10">Revision 1.3 places/dates now actually tagged</change><change who="packel" when="2005-08-01">Revision 1.2 removed stray item tags</change><change who="packel" when="2005-07-25">Revision 1.1 Converted to XML</change><change who="yorkc" when="2003-07-01">Revision 1.8 Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="czietz" when="2002-03-13">Revision 1.7 began mark-up</change><change who="amahoney" when="2001-08-29">Revision 1.6 make the various Dramatis Personae lists independent instead of cross
+                    referencing each other</change><change who="amahoney" when="2001-08-21">Revision 1.5 get translator's name into proper place in meta-data, use same form of author's name
+                    as in Latin</change><change who="amahoney" when="2001-08-17">Revision 1.4 fix headers for TOC</change><change who="amahoney" when="2001-08-17">Revision 1.3 begin marking the Latin</change><change who="amahoney" when="2001-08-17">Revision 1.2 fix line numbers in the English, pick up a few
+                    typos in Latin</change><change who="amahoney" when="2001-08-16">Revision 1.1 new texts</change></revisionDesc>
 	</teiHeader>
 
-	<text lang="en">
+	<text>
 		<body>
-
-			<castList>
-				<castItem type="role">
-					<role>LACHES,<note anchored="yes">From <foreign lang="greek">lagxu/nw,</foreign>
-                            "to obtain by lot" or "heirship."</note>
-					</role>
-					<roleDesc>an aged Athenian.</roleDesc>
-				</castItem>
-				<castGroup>
-					<castItem type="role">
-						<role>PHAEDRIA,<note anchored="yes">From <foreign lang="greek">faidro\s</foreign>, "cheerful."</note>
-						</role>
-						<roleDesc>his sons.</roleDesc>
-					</castItem>
-					<castItem type="role">
-						<role>CHAEREA<note anchored="yes">From <foreign lang="greek">xai/rwn,</foreign> "rejoicing."</note></role>
-					</castItem>
-				</castGroup>
-				<castItem type="role">
-					<role>ANTIPHO,<note anchored="yes">From <foreign lang="greek">a)nti\</foreign>,
-                            "opposite to," and <foreign lang="greek">fw=s,</foreign> "light," or
-                                <foreign lang="greek">fh=mi</foreign>, "to speak."</note>
-					</role>
-					<roleDesc>a young man, friend of Chaerea.</roleDesc>
-				</castItem>
-				<castItem type="role">
-					<role>CHREMES,<note anchored="yes">From <foreign lang="greek">xremi/zw,</foreign> "to neigh;" delighting in horses.</note>
-					</role>
-					<roleDesc>a young man, brother of Pamphila.</roleDesc>
-				</castItem>
-				<castItem type="role">
-					<role>THRASO,<note anchored="yes">From <foreign lang="greek">qraso\s,</foreign>
-                            "boldness."</note>
-					</role>
-					<roleDesc>a boastful Captain.</roleDesc>
-				</castItem>
-				<castItem type="role">
-					<role>GNATHO,<note anchored="yes">From <foreign lang="greek">gnaqo\s,</foreign>
-                            "the jawbone;" a glutton.</note>
-					</role>
-					<roleDesc>a Parasite.</roleDesc>
-				</castItem>
-				<castItem type="role">
-					<role>PARMENO,<note anchored="yes">From <foreign lang="greek">para\,</foreign>
-                            "by," and <foreign lang="greek">me/nw,</foreign> "to remain."</note>
-					</role>
-					<roleDesc>servant of Phldria.</roleDesc>
-				</castItem>
-				<castItem type="role">
-					<role>SANGA,<note anchored="yes">From
-                            Sangia in <placeName key="tgn,7002613">Phrygia</placeName>, his native
-                            country.</note>
-					</role>
-					<roleDesc>cook to Thraso.</roleDesc>
-				</castItem>
-				<castGroup>
-					<castItem type="role">
-						<role>DONAX,<note anchored="yes">From <foreign lang="greek">do/nu\c,</foreign> "a reed."</note>
-						</role>
-						<roleDesc>servants of Thraso.</roleDesc>
-					</castItem>
-					<castItem type="role">
-						<role>SIMALIO<note anchored="yes">From <foreign lang="greek">simo\s,</foreign> "flat-nosed."</note></role>
-					</castItem>
-					<castItem type="role">
-						<role>SYRISCUS<note anchored="yes">From <placeName key="tgn,1000140">Syria</placeName>, his country; or from <foreign lang="greek">suri/skos,</foreign> "a basket of figs."</note></role>
-					</castItem>
-				</castGroup>
-				<castItem type="role">
-					<role>DORUS, </role>
-					<roleDesc>a Eunuch slave.</roleDesc>
-				</castItem>
-				<castItem type="role">
-					<role>THAIS,<note anchored="yes">From <foreign lang="greek">qeu/omai,</foreign>
-                            "to look at."</note>
-					</role>
-					<roleDesc>a Courtesan.</roleDesc>
-				</castItem>
-				<castGroup>
-					<castItem type="role">
-						<role>PYTHIAS,<note anchored="yes">From <foreign lang="greek">puqome/nh,</foreign> "asking questions."</note></role>
-						<roleDesc>her attendants.</roleDesc>
-					</castItem>
-					<castItem type="role">
-						<role>DORIAS<note anchored="yes">From Doris, their country, a part of
-                                    <placeName key="tgn,7002358">Caria</placeName>.</note></role>
-					</castItem>
-				</castGroup>
-				<castItem type="role">
-					<role>SOPHRONA,<note anchored="yes">From <foreign lang="greek">sw/frwn,</foreign> "prudent."</note>
-					</role>
-					<roleDesc>a nurse.</roleDesc>
-				</castItem>
-				<castItem type="role">
-					<role>PAMPHILA,<note anchored="yes">From <foreign lang="greek">pa=n,</foreign>
-                            "all" and <foreign lang="greek">filo\s,</foreign> "a friend."</note>
-					</role>
-					<roleDesc>a female slave.</roleDesc>
-				</castItem>
-			</castList>
+			<div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0134.phi003.perseus-eng1" subtype="translation">
 
 			<p>Scene.--<placeName key="perseus,Athens">Athens</placeName>; before the houses of
                 LACHES and THAIS. </p>
-			<div1 type="act" n="introduction">
+			<div type="textpart" n="introduction" subtype="act">
 				<head>Introduction</head>
-				<div2 type="scene" n="subject">
+				<div type="textpart" n="subject" subtype="scene">
 					<head>THE SUBJECT.</head>
 
 					<p>A CERTAIN citizen of <placeName key="perseus,Athens">Athens</placeName> had a
@@ -270,10 +124,10 @@ new texts
                         her brother Chremes, and is promised in marriage to Chaerea; while Thraso
                         becomes reconciled to Phaedria, through the mediation of Gnatho, his
                         Parasite. </p>
-				</div2>
-				<div2 type="scene" n="production">
+				</div>
+				<div type="textpart" n="production" subtype="scene">
 					<head>THE
-						TITLE<note anchored="yes">Colman has the following remark on this
+						TITLE<note anchored="true">Colman has the following remark on this
                             Play: "This seems to lave been the most popular of all the Comedies of
                             Terence. Suetonius and Donatus both inform us that it was acted with the
                             greatest applause, and that the Poet received a larger price for it from
@@ -285,18 +139,18 @@ new texts
 					<p>PERFORMIED at the Megalensian Games; L. Posthumius Albinus and L. Cornelius
                         Merula being Curule Aediles. L. Ambivius Turpio and L. Atilius Praenestinus
                         performed it. Flaccus, the freedman of Claudius, composed the music to two
-                        treble flutes. From the Greek of Menander. It was acted twice,<note anchored="yes"><lemma targOrder="U">Acted twice</lemma> This probably
+                        treble flutes. From the Greek of Menander. It was acted twice,<note anchored="true"><app><lem>Acted twice</lem></app> This probably
                             means "twice in one day." As it is generally supposed that something is
-                            wanting after the figures II, this is presumed to be "<foreign lang="la">die</foreign>," "in one day," in confirmation of which Suetonius
+                            wanting after the figures II, this is presumed to be "<foreign xml:lang="lat">die</foreign>," "in one day," in confirmation of which Suetonius
                             informs us that it really was performed twice in one day. Donatus says
                             it was performed three times, by which he may probably mean, twice on
                             one day and once on another.</note> M. Valerius and C. Fannius being
-                            Consuls.<note anchored="yes"><lemma targOrder="U">Being Consuls</lemma>
+                            Consuls.<note anchored="true"><app><lem>Being Consuls</lem></app>
                             M. Valerius Messala and C. Fannius Strabo were Consuls in the year from
-                            the building of the City 591, or B.C. <date value="-162">162</date>.</note>
+                            the building of the City 591, or B.C. <date when="-0162">162</date>.</note>
                     </p>
-				</div2>
-				<div2 type="scene" n="summary">
+				</div>
+				<div type="textpart" n="summary" subtype="scene">
 					<head>THE SUMMARY OF C. SULPITIUS APOLLINARIS.</head>
 					<p>THE Captain, Thraso, being ignorant of the same, has brought from abroad a
                         girl who used wrongly to be called the sister of Thais, and presents her to
@@ -308,37 +162,38 @@ new texts
                         prompts him; he goes in; he ravishes the maiden; but at length her brother
                         being discovered, a citizen of <placeName key="tgn,7002681">Attica</placeName>, betroths her who has been ravished, to the youth,
                         and Thraso prevails upon Phaedria by his entreaties. </p>
-				</div2>
+				</div>
 			
-			</div1>
-<milestone unit="act" n="prologue"/>
+			</div>
+<div type="textpart" subtype="act" n="prologue">
 
-<milestone unit="scene" n="0"/>
-<div1 type="card" n="1">
+</div>
+				<div type="textpart" subtype="scene" n="0">
+<div type="textpart" n="1" subtype="card">
 					<sp>
 						<speaker>THE PROLOGUE.</speaker>
 						<p>IF there is any one who desires to please as many good men as possible,
                             and to give offense to extremely few, among those does our Poet enroll
-                            his name. Next, if there is one who thinks<milestone n="4" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">If there
-                                    is one who thinks</lemma>: He alludes to his old enemy, Luscus
+                            his name. Next, if there is one who thinks<l n="4"/><note anchored="true"><app><lem>If there
+                                    is one who thinks</lem></app>: He alludes to his old enemy, Luscus
                                 Lavinius, the Comic Poet, who is alluded to in the Prologue to the
                                     <title>Andria</title>, and has since
                                 continued his attacks upon him.</note> that language too harsh is
                             here applied to him, let him bear this in mind--that it is an answer,
                             not an attack; inasmuch as he has himself been the first aggressor; who,
-                            by translating plays verbally,<milestone n="7" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">By translating
-                                literally</lemma>: "<foreign lang="la">Bene vertendo, at eosdem
+                            by translating plays verbally,<l n="7"/><note anchored="true"><app><lem>By translating
+                                literally</lem></app>: "<foreign xml:lang="lat">Bene vertendo, at eosdem
                                     scribendo male</foreign>." This passage has greatly puzzled some
                                 of the Commentators. Bentley has, however, it appears, come to the most
-                                reasonable conclusion; who supposes that Terence means by "<foreign lang="la">bene vertere</foreign>," a literal translation, word
+                                reasonable conclusion; who supposes that Terence means by "<foreign xml:lang="lat">bene vertere</foreign>," a literal translation, word
                                 for word, from the Greek, by which a servile adherence to the idiom
                                 of that language was preserved to the neglect of the Latin idiom; in
                                 consequence of which the Plays of Luscus Lavinius were, as he
-                                remarks, "<foreign lang="la">male scriptae</foreign>," written in
+                                remarks, "<foreign xml:lang="lat">male scriptae</foreign>," written in
                                 bad Latin.</note> and writing them in bad Latin, has made out of
                             good Greek Plays Latin ones by no means good. Just as of late he has
-                            published the Phasma<milestone n="9" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Has published the
-                                Phasma</lemma>: The <title lang="greek">fasma/,</title> or
+                            published the Phasma<l n="9"/><note anchored="true"><app><lem>Has published the
+                                Phasma</lem></app>: The <title xml:lang="greek">fasma/,</title> or
                                 "Apparition," was a play of Menander, so called, in which a young
                                 man looking through a hole in the wall between his father's house
                                 and that next door, sees a young woman of marvelous beauty, and is
@@ -361,8 +216,8 @@ new texts
                                 meaning of the passage, and that, content with this slight reference
                                 to a well-known fact, the author passes it by in contemptuous
                                 silence.</note> [the Apparition] of Menander; and in the Thesaurus
-                            [the Treasure] has described<milestone n="10" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">And in the Thesaurus has
-                                    described</lemma> Cook has the following appropriate remark upon
+                            [the Treasure] has described<l n="10"/><note anchored="true"><app><lem>And in the Thesaurus has
+                                    described</lem></app> Cook has the following appropriate remark upon
                                 this passage: "In the 'Thesaurus,' or 'Treasure' of Luscus Lavinius,
                                 a young fellow, having wasted his estate by his extravagance, sends
                                 a servant to search his father's monument: but he had before sold
@@ -371,7 +226,7 @@ new texts
                                 discover a hoard and a letter. The old fellow sees the treasure and
                                 keeps it; the young one goes to law with him, and the old man is
                                 represented as opening his cause first before the judge, which he
-                                begins with these words:-- <quote lang="la">'Athenienses, bellum cum
+                                begins with these words:-- <quote xml:lang="lat">'Athenienses, bellum cum
                                     Rhodiensibus, Quod fuerit, quid ego praedicem?'</quote>
                                 'Athenians, why should I relate the war with the Rhodians?' And lie
                                 goes on in a manner contrary to the rules of court; which Terence
@@ -379,10 +234,10 @@ new texts
                                 open his cause first. Thus far Bentley, from the same Scholiast [as referred to in
                                 the last Note]. This Note is a clear explanation of the four verses
                                 to which it belongs. Hare concurs with Madame Dacier in her opinion
-                                    <foreign lang="la">'de Thesauro,'</foreign> that it is only a
+                                    <foreign xml:lang="lat">'de Thesauro,'</foreign> that it is only a
                                 part of the Phasma of Menander, and not a distinct Play; but were I
                                 not determined by the more learned Bentley, the text itself would not permit me to be
-                                of their opinion; for the words <foreign lang="la">'atque in
+                                of their opinion; for the words <foreign xml:lang="lat">'atque in
                                     Thesauro scripsit'</foreign> seem plainly to me to be a
                                 transition to another Play. The subject of the Thesaurus is related
                                 by Eugraphius, though not with all the circumstances mentioned in my
@@ -401,7 +256,7 @@ new texts
                             hereafter, if he persists in attacking me, as he has begun to do. After
                             the Aediles had purchased the Eunuch of Menander, the Play which we are
                             about to perform, he managed to get an opportunity of viewing
-                                it.<milestone n="21" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Opportunity of viewing it</lemma> Colman thinks
+                                it.<l n="21"/><note anchored="true"><app><lem>Opportunity of viewing it</lem></app> Colman thinks
                                 that this means something "stronger than merely being present at the
                                 representation," and he takes the meaning to be, that having
                                 obtained leave to peruse the MS., he furnished himself with
@@ -414,19 +269,19 @@ new texts
                                 behaved himself in the unseemly manner mentioned in the text.</note>
                             When the magistrates were present it began to be performed. He exclaimed
                             that a thief, no Poet, had produced the piece, but still had not
-                                deceived<milestone n="24" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Produced the piece, but still had not
-                                    deceived him</lemma> There is a pun here upon the resemblance in
-                                meaning of the words "<foreign lang="la">verba dare</foreign>" and
-                                    "<foreign lang="la">fabulam dare</foreign>." The first
+                                deceived<l n="24"/><note anchored="true"><app><lem>Produced the piece, but still had not
+                                    deceived him</lem></app> There is a pun here upon the resemblance in
+                                meaning of the words "<foreign xml:lang="lat">verba dare</foreign>" and
+                                    "<foreign xml:lang="lat">fabulam dare</foreign>." The first
                                 expression means to "deceive" or "impose upon;" the latter phrase
                                 has also the same meaning, but it may signify as well "to represent"
                                 or "produce a Play." Thus the exclamation in its ambiguity may mean,
                                 "he has produced a Play, and has not succeeded in deceiving us," or
                                 "he has deceived us, and yet has not deceived us." This is the
                                 interpretation which Donatus puts upon the passage.</note> him;
-                            that, in fact, it was the Colax, an old Play of Plautus;<note anchored="yes"><lemma targOrder="U">Colax, an old Play of
-                                    Plautus</lemma> Although Nonius Marcellus professes to quote
-                                from the Colax of Plautus (so called from the Greek <foreign lang="greek">*kolu\c,</foreign> "a flatterer" or "parasite"),
+                            that, in fact, it was the Colax, an old Play of Plautus;<note anchored="true"><app><lem>Colax, an old Play of
+                                    Plautus</lem></app> Although Nonius Marcellus professes to quote
+                                from the Colax of Plautus (so called from the Greek <foreign xml:lang="grc">*kolu\c,</foreign> "a flatterer" or "parasite"),
                                 some scholars have disbelieved in the existence of any Play of
                                 Plautus known by that name. Cooke says: "If Plautus had wrote a Play
                                 under the title of 'Colax,' I should think it very unlikely that it
@@ -452,7 +307,7 @@ new texts
                                 remarks: "Though there is much good criticism in the above Note, it
                                 is certain that Plautus did not take his 'Miles Gloriosus' from the
                                 Colax of Menander, as he himself informs us it was translated from a
-                                Greek play called <foreign lang="greek">*ala/zwn,</foreign> 'the
+                                Greek play called <foreign xml:lang="grc">*ala/zwn,</foreign> 'the
                                 Boaster,' and the Parasite is but a trifling character in that play,
                                 never appearing after the first Scene."</note> and that from it were
                             taken the characters of the Parasite and the Captain. If this is a
@@ -464,7 +319,7 @@ new texts
                             this, that he was aware that those pieces had been already translated
                             into Latin. But if it is not permitted us to use the same characters as
                             others, how can it any more be allowed to represent hurrying
-                                servants,<milestone n="45" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Hurrying servants</lemma> On the "<foreign lang="la">currentes servi</foreign>," see the Prologue to the
+                                servants,<l n="45"/><note anchored="true"><app><lem>Hurrying servants</lem></app> On the "<foreign xml:lang="lat">currentes servi</foreign>," see the Prologue to the
                                 Heautontimorumenos, <bibl n="Ter. Hau. prologue.0">l. 31</bibl>.
                                     <persName>Ovid</persName>, in the Amores, <bibl n="Ov. Am. 1.15">B. i., El. 15, l. 17, 18</bibl>, mentions a very similar
                                 combination of the characters of Menander's Comedy: "So long as the
@@ -480,16 +335,18 @@ new texts
 					</sp>
 				
 			
-			</div1>
-<milestone unit="act" n="1"/>
+			</div>
+</div>
+			<div type="textpart" subtype="act" n="1">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="46">
+</div>
+				<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="46" subtype="card">
 					<stage>Enter PHAEDRIA and PARMENO.</stage>
 					<sp>
 						<speaker>PHAEDRIA</speaker>
-						<p> What then, shall I do?<note anchored="yes"><lemma targOrder="U">What,
-                                    then, shall I do?</lemma> Phaedria, on being sent for by Thais,
+						<p> What then, shall I do?<note anchored="true"><app><lem>What,
+                                    then, shall I do?</lem></app> Phaedria, on being sent for by Thais,
                                 breaks out into these words as he enters, after having deliberated
                                 upon his parting with her. Both <persName>Horace</persName> and Persius have imitated this passage in
                                 their Satires.</note> Ought I not to go, not now even, when I am
@@ -513,7 +370,7 @@ new texts
                             peace; if you expect to render these things, naturally uncertain,
                             certain by dint of reason, you wouldn't effect it a bit the more than if
                             you were to use your endeavors to be mad with reason. And, what you are
-                            now, in anger, meditating to yourself, "What! I to her?<note anchored="yes">What! I to her?)--Ver. 65. Donatus remarks that this
+                            now, in anger, meditating to yourself, "What! I to her?<note anchored="true">What! I to her?)--Ver. 65. Donatus remarks that this
                                 is an abrupt manner of speaking familiarly to persons in anger; and
                                 that the sentences are thus to be understood, "I, go to her? Her,
                                 who has received him! Who has excluded me!"--inasmuch as indignation
@@ -546,19 +403,20 @@ new texts
 						<speaker>PARMENO</speaker>
 						<p> If you are wise. And don't be adding to the troubles which love itself
                             produces; those which it does produce, bear patiently. But see, here she
-                            is coming herself, the downfall of our fortunes,<note anchored="yes">The
+                            is coming herself, the downfall of our fortunes,<note anchored="true">The
                                 downfall of our fortunes)--Ver. 79. Colman observes, "There is an extreme elegance in
                                 this passage in the original; and the figurative expression is
-                                beautifully employed." <foreign lang="la">"Calamitas"</foreign> was
+                                beautifully employed." <foreign xml:lang="lat">"Calamitas"</foreign> was
                                 originally a word used in husbandry, which signified the destruction
-                                of growing corn; because, as Donatus says, <foreign lang="la">"Comminuit calamum et segetem;"</foreign>--"it strikes down the
+                                of growing corn; because, as Donatus says, <foreign xml:lang="lat">"Comminuit calamum et segetem;"</foreign>--"it strikes down the
                                 blades and standing corn."</note>--for that which we ought ourselves
                             to enjoy she intercepts.</p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="2"/>
-<div1 type="card" n="81">
+</div>
+				<div type="textpart" subtype="scene" n="2">
+<div type="textpart" n="81" subtype="card">
 					<stage>Enter THAIS from her house.</stage>
 					<sp>
 						<speaker>THAIS</speaker>
@@ -576,7 +434,7 @@ new texts
 					<sp>
 						<speaker>PARMENO</speaker>
 						<p>
-                            <stage>apart.</stage> Be of good heart; only approach this fire,<note anchored="yes">Approach this fire)--Ver. 85. <quote lang="la">"Ignem"</quote> is generally supposed to be used figuratively
+                            <stage>apart.</stage> Be of good heart; only approach this fire,<note anchored="true">Approach this fire)--Ver. 85. <quote xml:lang="lat">"Ignem"</quote> is generally supposed to be used figuratively
                                 here, and to mean "the flame of love." Eugraphius, however, would
                                 understand the expression literally, observing that courtesans
                                 usually had near their doors an altar sacred to <persName>Venus</persName>, on which they daily
@@ -601,11 +459,11 @@ new texts
 					</sp>
 					<sp>
 						<speaker>PHAEDRIA</speaker>
-						<p> Of course, it's because<note anchored="yes">Of course it's
+						<p> Of course, it's because<note anchored="true">Of course it's
                                 because)--Ver. 89. It must be observed that these words, conmencing
-                                with <quote lang="la">"Sane, quia vero,"</quote> in the original,
+                                with <quote xml:lang="lat">"Sane, quia vero,"</quote> in the original,
                                 are said by Phaedria not in answer to the words of Thais immediately
-                                preceding, but to her previous question, <foreign lang="la">"Cur non
+                                preceding, but to her previous question, <foreign xml:lang="lat">"Cur non
                                     recta introibas?"</foreign> "Why didn't you come into the house
                                 at once?" and that they are spoken in bitter irony.</note> this door
                             is always open to me, or because I'm the highest in your favor?</p>
@@ -678,7 +536,7 @@ new texts
                             mother's and her father's name; her country and other tokens she didn't
                             know, nor, by reason of her age, was she able. The merchant added this:
                             that he had heard front the kidnappers that she had been carried off
-                            from Sunium.<milestone n="115" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">From Sunium</lemma>: This was a town
+                            from Sunium.<l n="115"/><note anchored="true"><app><lem>From Sunium</lem></app>: This was a town
                                 situate near a lofty Promontory of that name in <placeName key="tgn,7002681">Attica</placeName>. It was famous for a fair
                                 which was held there. "Sunium's rocky brow" is mentioned by Byron in
                                 the song of the Greek Captive in the third Canto of Don Juan.</note>
@@ -706,8 +564,8 @@ new texts
 						<speaker>THAIS</speaker>
 						<p> Such is the fact; but do allow me to arrive at the point I wish. In the
                             mean time, the Captain, who had begun to take a fancy to me, set out to
-                                <placeName key="tgn,7002358">Caria</placeName>;<milestone n="126" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Set out
-                                    for <placeName key="tgn,7002358">Caria</placeName></lemma>: This
+                                <placeName key="tgn,7002358">Caria</placeName>;<l n="126"/><note anchored="true"><app><lem>Set out
+                                    for <placeName key="tgn,7002358">Caria</placeName></lem></app>: This
                                 was a country of <placeName key="tgn,7002294">Asia Minor</placeName>
                                 upon the sea-coast, opposite to the island of <placeName key="tgn,7011266">Rhodes</placeName>.</note> since when, in the
                             interval, I became acquainted with you. You yourself are aware how very
@@ -782,16 +640,16 @@ new texts
 						<p> What else, then, gives you concern? Let me know. Is he the only person
                             who makes presents? Have you found my bounty shut against you? Did I
                             not, when you told me that you wished for a servant-maid from
-                                Aethiopia,<milestone n="165" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Servant-maid from Aethiopia</lemma>: No
+                                Aethiopia,<l n="165"/><note anchored="true"><app><lem>Servant-maid from Aethiopia</lem></app>: No
                                 doubt Aethiopian or negro slaves were much prized by the great, and
                                 those courtesans whose object it was to ape their manners.</note>
                             setting all other matters aside, go and seek for one? Then you said that
-                            you wanted a Eunuch, because ladies of quality<milestone n="168" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Ladies of
-                                    quality</lemma>: <quote lang="la">"Reginae,"</quote> literally
+                            you wanted a Eunuch, because ladies of quality<l n="168"/><note anchored="true"><app><lem>Ladies of
+                                    quality</lem></app>: <quote xml:lang="lat">"Reginae,"</quote> literally
                                 "queens," here means women of rank and distinction.</note> alone
                             make use of them; I found you one. I yesterday paid twenty
-                                minae<milestone n="169" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Paid twenty minoe</lemma>: The "mina" contained
-                                one hundred "drachmae" of about 9&frac34;d. each.</note> for
+                                minae<l n="169"/><note anchored="true"><app><lem>Paid twenty minoe</lem></app>: The "mina" contained
+                                one hundred "drachmae" of about 9¾d. each.</note> for
                             them both. Though slighted by you, I still kept these things in mind; as
                             a reward for so doing, I am despised by you.</p>
 					</sp>
@@ -875,15 +733,15 @@ new texts
 					<sp>
 						<speaker>THAIS</speaker>
 						<p>
-                            <stage>to herself.</stage> Ah wretched me!<milestone n="197" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Ah
-                                    wretched me!</lemma>: Donatus remarks that the Poet judiciously
+                            <stage>to herself.</stage> Ah wretched me!<l n="197"/><note anchored="true"><app><lem>Ah
+                                    wretched me!</lem></app>: Donatus remarks that the Poet judiciously
                                 reserves that part of the plot to betold here, which Thais did not
                                 relate to Phaedria in the presence of Parmeno; whom the Poet keeps
                                 in ignorance as to the rank of the damsel, that he may with the more
                                 probability dare to assist Chaerea in his attempt on her.</note>
                             perhaps now he puts but little faith in me, and forms his estimate of me
-                            from the dispositions of other women.<milestone n="198" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">From the dispositions of
-                                    other women</lemma>: Donatus observes that this is one of the
+                            from the dispositions of other women.<l n="198"/><note anchored="true"><app><lem>From the dispositions of
+                                    other women</lem></app>: Donatus observes that this is one of the
                                 peculiar points of excellence shown by Terence, introducing common
                                 characters in a new manner, without departing from custom or nature;
                                 since he draws a good Courtesan, and yet engages the attention of
@@ -905,13 +763,12 @@ new texts
                             and wait until he comes. <stage>She goes into her house.</stage>
                         </p>
 					</sp>
-				
-			
-			</div1>
-<milestone unit="act" n="2"/>
+			</div>
+</div>
+			<div type="textpart" subtype="act" n="2">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="207">
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="207" subtype="card">
 					<stage>Enter PHAEDRIA and PARMENO.</stage>
 					<sp>
 						<speaker>PHAEDRIA</speaker>
@@ -1025,8 +882,8 @@ new texts
 						<p>
                             <stage>to himself.</stage> Good Gods! What a malady is this! That a man
                             should become so changed through love, that you wouldn't know him to be
-                            the same person! Not any one was there<milestone n="226" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Not any one was
-                                    there</lemma>: --Ver. 226-7. Very nearly the same words as these
+                            the same person! Not any one was there<l n="226"/><note anchored="true"><app><lem>Not any one was
+                                    there</lem></app>: --Ver. 226-7. Very nearly the same words as these
                                 occur in the Mostellaria of Plautus, 1. 29, 30: "Than whom,
                                 hitherto, no one of the youth of all <placeName key="tgn,7002681">Attica</placeName> has been considered more temperate or
                                 equally frugal."</note> less inclined to folly than he, and no one
@@ -1037,10 +894,11 @@ new texts
                             Eunuch of mine. She surpasses Thais herself. <stage>Stands
                                 aside.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="2"/>
-<div1 type="card" n="232">
+</div>
+				<div type="textpart" subtype="scene" n="2">
+<div type="textpart" n="232" subtype="card">
 					<stage>Enter GNATHO at a distance, leading PAMPHILA.</stage>
 					<sp>
 						<speaker>GNATHO</speaker>
@@ -1061,11 +919,11 @@ new texts
                             and well dressed, what portliness of person? I have every thing, yet
                             have nothing; and although I possess nothing, still, of nothing am I in
                             want." "But I," said he, "unhappily, can neither be a butt nor submit to
-                                blows."<milestone n="244" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Nor submit to blows</lemma>: It has been
+                                blows."<l n="244"/><note anchored="true"><app><lem>Nor submit to blows</lem></app>: It has been
                                 remarked in the Notes to the Translation of Plautus that the
                                 Parasites had, in consequence of their state of dependence, to
                                 endure blows and indignities from their fellow-guests. Their
-                                attempts to be <foreign lang="la">"ridiculi"</foreign> or "drolls"
+                                attempts to be <foreign xml:lang="lat">"ridiculi"</foreign> or "drolls"
                                 were made in order to give some small return to their entertainers.
                                 See especially the character of Gelasimus in the Stichus of Plautus,
                                 and the words of Ergasilus in the Captivi, 1. 88, 90. Diderot, as:
@@ -1100,9 +958,9 @@ new texts
 						<p>
                             <stage>to himself, continuing.</stage> While we were thus talking, in
                             the mean time we arrived at the market-place; overjoyed, all the
-                            confectioners ran at once to meet me; fishmongers,<milestone n="257" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Fishmongers</lemma>: <quote lang="la">"Cetarii;"</quote>
+                            confectioners ran at once to meet me; fishmongers,<l n="257"/><note anchored="true"><app><lem>Fishmongers</lem></app>: <quote xml:lang="lat">"Cetarii;"</quote>
                                 strictly speaking, "dealers in large fish."</note> butchers,
-                                cooks,<milestone n="257" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Cooks</lemma>: The <quote lang="la">"coqui"</quote> were in the habit of standing in the
+                                cooks,<l n="257"/><note anchored="true"><app><lem>Cooks</lem></app>: The <quote xml:lang="lat">"coqui"</quote> were in the habit of standing in the
                                 market-place for hire by those who required their services. See the
                                 Pseudolus, the Aulularia, and the Mercator of Plautus, and the Notes
                                 to Bohn's Translation. See also a remark on the knavish character of
@@ -1113,10 +971,10 @@ new texts
                             welcome. When this poor hungry wretch saw that I was in such great
                             esteem, and that I obtained a living so easily, then the fellow began to
                             entreat me that I would allow him to learn this method of me; I bade him
-                            become my follower<milestone n="262" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Become my follower</lemma>:
-                                    <quote lang="la">"Sectari."</quote> In allusion to the manners
+                            become my follower<l n="262"/><note anchored="true"><app><lem>Become my follower</lem></app>:
+                                    <quote xml:lang="lat">"Sectari."</quote> In allusion to the manners
                                 of the ancient Philosophers, who were wont to be followed by a crowd
-                                of their disciples, who were styled <foreign lang="la">"sectatores"</foreign> and <foreign lang="la">"sectae."</foreign> Gnatho intends to found a new school of
+                                of their disciples, who were styled <foreign xml:lang="lat">"sectatores"</foreign> and <foreign xml:lang="lat">"sectae."</foreign> Gnatho intends to found a new school of
                                 Parasites, who shall be called the "Gnathonics," and who, by their
                                 artful adulation, shall contrive to be caressed instead of being
                                 maltreated. Artotrogus, the Parasite in the Miles Gloriosus of
@@ -1155,15 +1013,15 @@ new texts
 					</sp>
 					<sp>
 						<speaker>PARMENO</speaker>
-						<p> I'm standing.<milestone n="271" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">I'm standing</lemma>: <foreign lang="la">"Quid agitur?" "Statur."</foreign> The same joke occurs in the <cit>
+						<p> I'm standing.<l n="271"/><note anchored="true"><app><lem>I'm standing</lem></app>: <foreign xml:lang="lat">"Quid agitur?" "Statur."</foreign> The same joke occurs in the <cit>
                                     <bibl n="Pl. Ps. 1.5">Pseudolus of Plautus, l. 457.</bibl>
-                                    <quote lang="la">"Quid agitur? Statur hic ad hunc
+                                    <quote xml:lang="lat">"Quid agitur? Statur hic ad hunc
                                         modum?"</quote>
                                 </cit> "What is going on?" or "What are you about?" "About standing
                                 here in this fashion;" assuming an attitude. Colman observes that
                                 there is much the same kind of conceit in the <cit>
                                     <bibl n="shak. wiv 1.3.30">"Merry Wives of Windsor."</bibl>
-                                    <quote lang="en">
+                                    <quote xml:lang="eng">
                                         <sp>
                                             <speaker>FALSTAFF.</speaker>
                                             <p>"My honest lads, I will tell you what I am
@@ -1174,14 +1032,14 @@ new texts
                                             <p>"Two yards or more."</p>
                                         </sp>
                                     </quote>
-                                </cit> Cooke has the following note: "'<foreign lang="la">Quid
+                                </cit> Cooke has the following note: "'<foreign xml:lang="lat">Quid
                                     agitur</foreign>' is to be supposed to have a single meaning as
                                 spoken by Gnatho, but Parmeno archly renders it ambiguous by his
                                 answer. Our two first English translations, that by Bernard and that
                                 by Hoole, make nothing of it, nor indeed any other part of their
                                 author. Echard follows Madame Dacier, and perceives a joke; but he
-                                does not render '<foreign lang="la">quid agitur</foreign>' as the
-                                question ought to be translated. '<foreign lang="la">Quid
+                                does not render '<foreign xml:lang="lat">quid agitur</foreign>' as the
+                                question ought to be translated. '<foreign xml:lang="lat">Quid
                                     agitur</foreign>' sometimes means,' What are you doing?'
                                 Sometimes, 'How do you do?' 'How are you?' or 'How goes the world
                                 with you?'"</note></p>
@@ -1304,7 +1162,7 @@ new texts
 						<speaker>PARMENO</speaker>
 						<p> Smartly said; really they ought to be wonderful things to please the
                             Captain. But I see my master's youngest son coming this way; I wonder
-                            why he has come away from the <placeName key="perseus,Piraeus">Piraeus</placeName>,<note anchored="yes">From the Piroeus)--Ver.
+                            why he has come away from the <placeName key="perseus,Piraeus">Piraeus</placeName>,<note anchored="true">From the Piroeus)--Ver.
                                 290. The <placeName key="perseus,Piraeus">Piraeus</placeName> was
                                 the chief harbor of <placeName key="perseus,Athens">Athens</placeName>, at the mouth of the Cephisus, about three
                                 miles from the City. It was joined to the town by two walls, one of
@@ -1315,10 +1173,11 @@ new texts
                             nothing; he's coming in a hurry, too; I can't imagine why he's looking
                             around in all directions.</p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="3"/>
-<div1 type="card" n="292">
+</div>
+				<div type="textpart" subtype="scene" n="3">
+<div type="textpart" n="292" subtype="card">
 					<stage>Enter CHAEREA on the other side of the stage, in haste.</stage>
 					<sp>
 						<speaker>CHAEREA</speaker>
@@ -1377,8 +1236,8 @@ new texts
                             often promised me to this effect: "Chaerea, do you only find some object
                             to fall in love with; I'll make you sensible of my usefulness in such
                             matters," when I used to be storing up my father's provisions for you on
-                            the sly in your little room.<note anchored="yes">In your little
-                                room)--Ver. 310. Though <quote lang="la">"cellulam"</quote> seems to
+                            the sly in your little room.<note anchored="true">In your little
+                                room)--Ver. 310. Though <quote xml:lang="lat">"cellulam"</quote> seems to
                                 be considered by some to mean "cupboard" or "larder," it is more
                                 probable that it here signifies the little room which was
                                 appropriated to each slave in the family for his own use.
@@ -1394,17 +1253,17 @@ new texts
                             good, if you please, or if indeed the affair is a deserving one for you
                             to exert your energies upon. The girl isn't like our girls, whom their
                             mothers are anxious to have with shoulders kept down, and chests well
-                                girthed,<milestone n="314" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Shoulders kept down and chests well
-                                    girthed</lemma>: Ovid, in the Art of Love, B. iii., 1. 274,
+                                girthed,<l n="314"/><note anchored="true"><app><lem>Shoulders kept down and chests well
+                                    girthed</lem></app>: Ovid, in the Art of Love, B. iii., 1. 274,
                                 alludes to the "strophium" or "girth" here referred to: "For high
                                 shoulders, small pads are suitable; and let the girth encircle the
                                 bosom that is too prominent." Becker thinks that the "strophium" was
-                                different from the <foreign lang="la">"fascia"</foreign> or <foreign lang="la">"stomacher,"</foreign> mentioned in the Remedy of
+                                different from the <foreign xml:lang="lat">"fascia"</foreign> or <foreign xml:lang="lat">"stomacher,"</foreign> mentioned in the Remedy of
                                 Love, 1. 338: "Does a swelling bosom cover all her breast, let no
                                 stomacher conceal it." From Martial we learn that the "strophium"
                                 was made of leather.</note> that they may be slender. If one is a
                             little inclined to plumpness, they declare that she's training for a
-                                boxer,<milestone n="315" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Training for a boxer</lemma>: <quote lang="la">"Pugilem."</quote> This means "robust as a boxer," or
+                                boxer,<l n="315"/><note anchored="true"><app><lem>Training for a boxer</lem></app>: <quote xml:lang="lat">"Pugilem."</quote> This means "robust as a boxer," or
                                 "athlete." These persons were naturally considered as the types of
                                 robustness, being dieted for the purpose of increasing their flesh
                                 and muscle.</note> and stint her food; although their constitutions
@@ -1426,14 +1285,14 @@ new texts
 					</sp>
 					<sp>
 						<speaker>CHAEREA</speaker>
-						<p> Her complexion genuine,<milestone n="318" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Complexion genuine</lemma>:
+						<p> Her complexion genuine,<l n="318"/><note anchored="true"><app><lem>Complexion genuine</lem></app>:
                                 "Color verus." The same expression is used by Ovid, in the Art of
-                                Love, B. iii., 1. 164: <foreign lang="la">"Et melior vero quaeritur
+                                Love, B. iii., 1. 164: <foreign xml:lang="lat">"Et melior vero quaeritur
                                     arte color:"</foreign> "And by art a color is sought superior to
                                 the genuine one."</note> her flesh firm and full of
-                                juiciness.<milestone n="318" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Full of juiciness</lemma>: <quote lang="la">"Succi plenum."</quote> A similar expression occurs in
+                                juiciness.<l n="318"/><note anchored="true"><app><lem>Full of juiciness</lem></app>: <quote xml:lang="lat">"Succi plenum."</quote> A similar expression occurs in
                                 the Miles Gloriosus of Plautus, 1. 787, where Periplecoimenus wishes
-                                inquiry to be made for a woman who is <foreign lang="la">"siccam, at
+                                inquiry to be made for a woman who is <foreign xml:lang="lat">"siccam, at
                                     succidam,"</foreign> "sober, but full of juice:" i. e. replete
                                 with the plumpness and activity of youth.</note></p>
 					</sp>
@@ -1447,8 +1306,8 @@ new texts
 					</sp>
 					<sp>
 						<speaker>PARMENO</speaker>
-						<p> The very flower of youth.<note anchored="yes">The very flower of
-                                youth)--Ver. 319. Ovid makes mention of the <foreign lang="la">"flos"</foreign> or "bloom" of youth, Art of Love, B. ii., 1.
+						<p> The very flower of youth.<note anchored="true">The very flower of
+                                youth)--Ver. 319. Ovid makes mention of the <foreign xml:lang="lat">"flos"</foreign> or "bloom" of youth, Art of Love, B. ii., 1.
                                 663: "And don't you inquire what year she is now passing, nor under
                                 what Consulship she was born; a privilege which the rigid Censor
                                 possesses. And this, especially, if she has passed the bloom of
@@ -1543,8 +1402,8 @@ new texts
                             halloo!" said he; "I've something to say to you." I stopped. "Do you
                             know what it is I want with you?" said he. "Say on," said I. "To-morrow
                             my cause comes on," said he. "What then?" "Be sure and tell your father
-                            to remember and be my advocate<note anchored="yes">Be my advocate)--Ver.
-                                340. <quote lang="la">"Advocatus."</quote> It must be remembered
+                            to remember and be my advocate<note anchored="true">Be my advocate)--Ver.
+                                340. <quote xml:lang="lat">"Advocatus."</quote> It must be remembered
                                 that this word did not among the Romans bear the same sense as
                                 the-word "advocate" does with us. The "advocati" were the friends of
                                 a man who accompanied him when his cause was pleaded, and often
@@ -1554,7 +1413,7 @@ new texts
                                 modern duel. In the Phormio, Hegio, Cratinus, and Crito are
                                 introduced as the "advocati" of Demipho. See also the Paenulus of
                                 Plautus, and the Notes to that Play in Bohn's Translation. </note>
-                            in the morning." In talking of this, an hour elapsed.<note anchored="yes">An hour elapsed)--Ver. 341. <quote lang="la">"Hora"</quote> is here used to signify the long time, that, in
+                            in the morning." In talking of this, an hour elapsed.<note anchored="true">An hour elapsed)--Ver. 341. <quote xml:lang="lat">"Hora"</quote> is here used to signify the long time, that, in
                                 his impatience, it appeared to him to be. </note> I inquired if he
                             wanted any thing else. "That's all," said he. I left him. When I looked
                             in this direction for the damsel, she had that very instant turned this
@@ -1582,8 +1441,8 @@ new texts
 						<speaker>PARMENO</speaker>
 						<p>
                             <stage>apart.</stage> It's the very same. <stage>To CHAEREA.</stage>
-                            It's all over with you; make an end of it; you've said your last.<note anchored="yes">It's all over with you,--you've said your last)--Ver.
-                                347. <foreign lang="la">"Ilicet"</foreign> and <foreign lang="la">"conclamatum est,"</foreign> are words of mournful import,
+                            It's all over with you; make an end of it; you've said your last.<note anchored="true">It's all over with you,--you've said your last)--Ver.
+                                347. <foreign xml:lang="lat">"Ilicet"</foreign> and <foreign xml:lang="lat">"conclamatum est,"</foreign> are words of mournful import,
                                 which were used with regard to the funeral rites of the Romans.
                                 "Ilicet," "you may begone," was said aloud when the funeral was
                                 concluded. "Conclamare," implied the ceremony of calling upon the
@@ -1617,7 +1476,7 @@ new texts
 					<sp>
 						<speaker>PARMENO</speaker>
 						<p> She has been brought here <stage>pointing</stage> to the house of Thais
-                            the Courtesan.<note anchored="yes">Thais the Courtesan)--Ver. 352. Cooke
+                            the Courtesan.<note anchored="true">Thais the Courtesan)--Ver. 352. Cooke
                                 remarks here, somewhat hypercritically as it would seem: "Thais is
                                 not called 'meretrix' here opprobriously, but to distinguish her
                                 from other ladies of the same name, who were not of the same
@@ -1647,7 +1506,7 @@ new texts
 					</sp>
 					<sp>
 						<speaker>PARMENO</speaker>
-						<p> A Eunuch.<milestone n="356" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">A Eunuchl</lemma>: Eunuchs formed part of the
+						<p> A Eunuch.<l n="356"/><note anchored="true"><app><lem>A Eunuchl</lem></app>: Eunuchs formed part of the
                                 establishment of wealthy persons, who, in imitation of the Eastern
                                 nobles, confided the charge of their wives, daughters, or mistresses
                                 to them. Though Thais would have no such necessity for his services,
@@ -1677,7 +1536,7 @@ new texts
 					<sp>
 						<speaker>CHAEREA</speaker>
 						<p> Unhappy wretch that I am! never to have seen her, even. Come now, just
-                            tell me, is she as handsome as she is reported to be?<note anchored="yes">As she is reported to be)--Ver. 361. Donatus remarks
+                            tell me, is she as handsome as she is reported to be?<note anchored="true">As she is reported to be)--Ver. 361. Donatus remarks
                                 this as an instance of the art of Terence, in preserving the
                                 probability of Chaerea's being received for the Eunuch. He shows
                                 hereby that he is so entirely a stranger to the family that he does
@@ -1816,7 +1675,7 @@ new texts
 					</sp>
 					<sp>
 						<speaker>PARMENO</speaker>
-						<p> Aye, but I shall have to pay the penalty<note anchored="yes">Have to pay
+						<p> Aye, but I shall have to pay the penalty<note anchored="true">Have to pay
                                 the penalty)--Ver. 381. "In me cudetur faba," literally, "the bean
                                 will be struck" or "laid about me;" meaning, "I shall have to smart
                                 for it." There is considerable doubt what is the origin of this
@@ -1842,7 +1701,7 @@ new texts
 					</sp>
 					<sp>
 						<speaker>CHAEREA</speaker>
-						<p> What, is it disgraceful<note anchored="yes">Is it disqraceful)--Ver.
+						<p> What, is it disgraceful<note anchored="true">Is it disqraceful)--Ver.
                                 382. Donatus remarks that here Terence obliquely defends the subject
                                 of the Play. </note> to be taken to the house of a Courtesan, and to
                             return the compliment upon those tormentors who treat us and our
@@ -1878,11 +1737,13 @@ new texts
 					</sp>
 				
 			
-			</div1>
-<milestone unit="act" n="3"/>
+			</div>
+</div>
+			</div>
+				<div type="textpart" subtype="act" n="3">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="390">
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="390" subtype="card">
 					<stage>Enter THRASO and GNATHO.</stage>
 					<sp>
 						<speaker>THRASO</speaker>
@@ -1920,7 +1781,7 @@ new texts
 					</sp>
 					<sp>
 						<speaker>THRASO</speaker>
-						<p> The most mighty King,<milestone n="397" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">The most mighty King</lemma>: It
+						<p> The most mighty King,<l n="397"/><note anchored="true"><app><lem>The most mighty King</lem></app>: It
                                 has been suggested that Darius III. is here alluded to, who was a
                                 contemporary of Menander. As however Pyrrhus, king of <placeName key="tgn,7002705">Epirus</placeName>, is mentioned in this Play,
                                 there is no necessity to go out of the way to make Terence guilty of
@@ -1943,7 +1804,7 @@ new texts
 					</sp>
 					<sp>
 						<speaker>THRASO</speaker>
-						<p> You've just hit it.<note anchored="yes">You've just hit it)--Ver. 401.
+						<p> You've just hit it.<note anchored="true">You've just hit it)--Ver. 401.
                                 Colman here remarks, quoting the following passage from Shakspeare's
                                 "Love's Labor Lost," "That that Poet was familiarly acquainted with
                                 this Comedy is evident from the passage, 'Holofernes says, Novi
@@ -1956,7 +1817,7 @@ new texts
 					</sp>
 					<sp>
 						<speaker>GNATHO</speaker>
-						<p> The king, then, kept you in his eye.<note anchored="yes">In his
+						<p> The king, then, kept you in his eye.<note anchored="true">In his
                                 eye)--Ver. 401. "In oculis" is generally supposed to mean "as dearly
                                 in his eyes." As, however, the Satraps of the East were called "the
                                 king's eyes," those who suppose that Darius is alluded to, might
@@ -1984,7 +1845,7 @@ new texts
 						<speaker>THRASO</speaker>
 						<p> Then if, on any occasion, a surfeit of society, or a dislike of
                             business, came upon him, when he was desirous to take some recreation;
-                            just as though--you understand?<milestone n="405" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">You understand</lemma>: He says
+                            just as though--you understand?<l n="405"/><note anchored="true"><app><lem>You understand</lem></app>: He says
                                 this at the very moment when lie is at a loss what to say next; the
                                 Parasite obligingly steps in to help him out with the
                                 difficulty.</note></p>
@@ -2011,7 +1872,7 @@ new texts
 					<sp>
 						<speaker>GNATHO</speaker>
 						<p>
-                            <stage>aside.</stage> Indeed, of none,<milestone n="410" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Indeed, of none</lemma>:
+                            <stage>aside.</stage> Indeed, of none,<l n="410"/><note anchored="true"><app><lem>Indeed, of none</lem></app>:
                                 "Immo, nullorum arbitror, si tecum vivit." This expression which is
                                 used "aside," has two meanings, neither of which is complimentary to
                                 the Captain. It may mean, "he has no society if he associates with
@@ -2024,8 +1885,8 @@ new texts
 						<speaker>THRASO</speaker>
 						<p> All the people envied me, and attacked me privately. I don't care one
                             straw. They envied me dreadfully; but one in particular, whom the King
-                            had appointed over the Indian elephants.<milestone n="413" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Over the
-                                    Indian elephants</lemma>: Here he shows his lofty position to
+                            had appointed over the Indian elephants.<l n="413"/><note anchored="true"><app><lem>Over the
+                                    Indian elephants</lem></app>: Here he shows his lofty position to
                                 perfection; he dares to take down the pride of one who commanded
                                 even the royal elephants. The Braggart Captain of Plautus comes into
                                 collision with the elephants themselves: l. 26. Artotrogus says to
@@ -2069,8 +1930,8 @@ new texts
 						<p> There was in my company at a banquet, this young man of Rhodes, whom I'm
                             speaking of. By chance I had a mistress there; he began to toy with her,
                             and to annoy me. "What are you doing, sir impudence?" said I to the
-                            fellow; "a hare yourself, and looking out for game?"<milestone n="426" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Lookinq
-                                    out for game?</lemma>: "Pulmentum," more strictly speaking, "A
+                            fellow; "a hare yourself, and looking out for game?"<l n="426"/><note anchored="true"><app><lem>Lookinq
+                                    out for game?</lem></app>: "Pulmentum," more strictly speaking, "A
                                 nice bit." Patrick has the following Note on this passage: "'Lepus
                                 tute es, et pulmentum quaeris?' A proverbial expression in use at
                                 that time: the proper meaning of it, stripped of its figure, is,
@@ -2165,8 +2026,8 @@ new texts
 					</sp>
 					<sp>
 						<speaker>THRASO</speaker>
-						<p> If, indeed, she loved me,<milestone n="446" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">If, indeed, she loved
-                                me</lemma>: Colman has the following Note upon this passage: "I am
+						<p> If, indeed, she loved me,<l n="446"/><note anchored="true"><app><lem>If, indeed, she loved
+                                me</lem></app>: Colman has the following Note upon this passage: "I am
                                 at a loss to determine whether it was in order to show the absurdity
                                 of the Captain or from inadvertence in the Poet, that Terence here
                                 makes Thraso and Gnatho speak in contradiction to the idea of
@@ -2189,10 +2050,11 @@ new texts
 						<p> Nonsense. You never thought about it; else how much more readily would
                             you yourself have hit upon it, Thraso!</p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="2"/>
-<div1 type="card" n="453">
+</div>
+				<div type="textpart" subtype="scene" n="2">
+<div type="textpart" n="453" subtype="card">
 					<stage>Enter THAIS from her house, attended by PYTHIAS.</stage>
 					<sp>
 						<speaker>THAIS</speaker>
@@ -2313,16 +2175,16 @@ new texts
 						<p> What say you, Gnatho? Do you see any thing to find fault with? And what
                             say you, Thraso? <stage>Aside.</stage> They hold their tongues; they
                             praise him sufficiently thereby. <stage>To THAIS.</stage> Make trial of
-                            him in literature, try him in exercises,<milestone n="477" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">In
-                                    exercises</lemma>: Reference will be found made to the
+                            him in literature, try him in exercises,<l n="477"/><note anchored="true"><app><lem>In
+                                    exercises</lem></app>: Reference will be found made to the
                                 "palaestrae," or "places of exercise," in the Notes to the
                                 Translation of Plautus.</note> and in music; I'll warrant him well
                             skilled in what it becomes a gentleman to know.</p>
 					</sp>
 					<sp>
 						<speaker>THRASO</speaker>
-						<p> That Eunuch, if occasion served,<milestone n="479" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">If occasion
-                                    served</lemma>: The Aposiopesis in this line is very aptly
+						<p> That Eunuch, if occasion served,<l n="479"/><note anchored="true"><app><lem>If occasion
+                                    served</lem></app>: The Aposiopesis in this line is very aptly
                                 introduced, on account of the presence of the female; but it
                                 admirably illustrates the abominable turpitude of the speaker, and
                                 perhaps in a somewhat more decent manner than that in which Plautus
@@ -2354,8 +2216,8 @@ new texts
 						<p> You hold your tongue--a fellow whom I consider beneath all men of the
                             very lowest grade: for when you can bring yourself to flatter that
                             fellow <stage>pointing at THRASO</stage>, I do believe you could pick
-                            your victuals out of the very flames.<milestone n="491" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Out of the very
-                                    flames</lemma>: This was a proverb expressive of the lowest
+                            your victuals out of the very flames.<l n="491"/><note anchored="true"><app><lem>Out of the very
+                                    flames</lem></app>: This was a proverb expressive of the lowest
                                 degree of meanness and infamy. When they burned the bodies of the
                                 dead, it was the custom of the ancients to throw meat and various
                                 articles of food upon the funeral pile, and it was considered the
@@ -2414,7 +2276,7 @@ new texts
 					<sp>
 						<speaker>THAIS</speaker>
 						<p> Take care, Pythias, and be sure that if Chremes should happen to
-                                come,<milestone n="513" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">If Chremes should happen to come</lemma>: This is
+                                come,<l n="513"/><note anchored="true"><app><lem>If Chremes should happen to come</lem></app>: This is
                                 the first allusion to the arrangement which ultimately causes the
                                 quarrel between Thais and the Captain.</note> to beg him to wait; if
                             that is not convenient, then to come again; if he can not do that, bring
@@ -2440,10 +2302,11 @@ new texts
                                 THRASO, followed by the Attendants. PYTHIAS goes into the
                                 house.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="3"/>
-<div1 type="card" n="506">
+</div>
+				<div type="textpart" subtype="scene" n="3">
+<div type="textpart" n="506" subtype="card">
 					<stage>Enter CHREMES.</stage>
 					<sp>
 						<speaker>CHREMES</speaker>
@@ -2454,8 +2317,8 @@ new texts
                             occasion when she first requested me to be fetched to her (any one might
                             ask me, "What business had you with her?" Really I don't know.) When I
                             came, she found an excuse for me to remain there; she said that she had
-                            been offering a sacrifice,<milestone n="513" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Had been offering a
-                                    sacrifice</lemma>: It was the custom to sacrifice before
+                            been offering a sacrifice,<l n="513"/><note anchored="true"><app><lem>Had been offering a
+                                    sacrifice</lem></app>: It was the custom to sacrifice before
                                 entering on affairs of importance. Thus, too, Jupiter, in the
                                 Amphitryon of Plautus, l. 938, speaks of offering sacrifice on his
                                 safe return.</note> and that she was desirous to speak upon some
@@ -2538,10 +2401,11 @@ new texts
                                 <stage>(Exit CHREMES with DORIAS, PYTHIAS goes into the
                                 house.)</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="4"/>
-<div1 type="card" n="538">
+</div>
+				<div type="textpart" subtype="scene" n="4">
+<div type="textpart" n="538" subtype="card">
 					<stage>Enter ANTIPHO.</stage>
 					<sp>
 						<speaker>ANTIPHO</speaker>
@@ -2549,8 +2413,8 @@ new texts
                             <stage>to himself.</stage> Yesterday some young fellows of us agreed
                             together at the <placeName key="perseus,Piraeus">Piraeus</placeName>
                             that we were to go shares today in a club-entertainment. We gave Chaerea
-                            charge of this matter; our rings were given<milestone n="541" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Our rings
-                                    were given</lemma>: It was the custom of parties who agreed to
+                            charge of this matter; our rings were given<l n="541"/><note anchored="true"><app><lem>Our rings
+                                    were given</lem></app>: It was the custom of parties who agreed to
                                 join in a "symbola," or "club" or "picnic" entertainment, to give
                                 their rings as pledges to the "rex convivii," or "getter up the
                                 feast." Stakes were also deposited on making bets at races. See
@@ -2566,10 +2430,11 @@ new texts
                             like first at a distance to try and find out. <stage>He stands
                                 apart.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="5"/>
-<div1 type="card" n="548">
+</div>
+				<div type="textpart" subtype="scene" n="5">
+<div type="textpart" n="548" subtype="card">
 					<stage>Enter CHAEREA from the house of Thais, in the EUNUCH'S dress.</stage>
 					<sp>
 						<speaker>CHAEREA</speaker>
@@ -2578,10 +2443,10 @@ new texts
                             here? There's no one. Is there any one following me from there? There's
                             not a person. Now am I not at liberty to give vent to these raptures? O
                             supreme <persName>Jupiter</persName>! now assuredly
-                            is the time for me to meet my death,<milestone n="550" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">To meet my
-                                death</lemma>: There is a passage in the Othello of Shakspeare
+                            is the time for me to meet my death,<l n="550"/><note anchored="true"><app><lem>To meet my
+                                death</lem></app>: There is a passage in the Othello of Shakspeare
                                 extremely similar to this: <cit>
-                                    <quote lang="en">
+                                    <quote xml:lang="eng">
                                         <l>----"If I were now to die,</l>
                                         <l>I were now to be most happy; for, I fear,</l>
                                         <l>My soul hath her content so absolute,</l>
@@ -2695,7 +2560,7 @@ new texts
 						<speaker>CHAEREA</speaker>
 						<p> She gave orders that no male was to come near her, and commanded me not
                             to stir away from her; that I was to remain alone with her in the inner
-                                apartments.<milestone n="579" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">In the inner apartments</lemma>: The
+                                apartments.<l n="579"/><note anchored="true"><app><lem>In the inner apartments</lem></app>: The
                                 "Gynecaea," or women's apartments, among the Greeks, always occupied
                                 the interior part of the house, which was most distant from the
                                 street, and there they were kept in great seclusion.</note> Looking
@@ -2710,36 +2575,36 @@ new texts
 						<speaker>CHAEREA</speaker>
 						<p>
                             <stage>continuing.</stage> "I am going out," said she, "to dinner." She
-                            took her maids with her; a few novices of girls<milestone n="582" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">A few
-                                    novices of girls</lemma>: These "noviciae" were young slaves
+                            took her maids with her; a few novices of girls<l n="582"/><note anchored="true"><app><lem>A few
+                                    novices of girls</lem></app>: These "noviciae" were young slaves
                                 recently bought, and intended to be trained to the calling of a
                                 Courtesan.</note> remained, to be about her. These immediately made
                             preparations for her to bathe. I urged them to make haste. While
                             preparations were being made, the damsel sat in a room looking up at a
-                            certain painting,<milestone n="584" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">At a certain painting</lemma>:
+                            certain painting,<l n="584"/><note anchored="true"><app><lem>At a certain painting</lem></app>:
                                 See the story of <persName>Jupiter</persName>
-                                and Dana&euml;, the daughter of Acrisius, king of <placeName key="perseus,Argos">Argos</placeName>, in the Metamorphoses of
+                                and Danaë, the daughter of Acrisius, king of <placeName key="perseus,Argos">Argos</placeName>, in the Metamorphoses of
                                 Ovid, B. iv., l. 610. Pictures of Venus and Adonis, and of
                                     <persName>Jupiter</persName> and Ganymede,
                                 are mentioned in the Menaechmi of Plautus; l. 144, and paintings on
                                 the walls are also mentioned in the Mostellaria of Plautus, l. 821,
                                 where Tranio tries to impose upon Theuropides by pretending to point
                                 out a picture of a crow between two vultures.</note> in which was
-                            represented how Jove<milestone n="584" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">How Jove</lemma>: Donatus
+                            represented how Jove<l n="584"/><note anchored="true"><app><lem>How Jove</lem></app>: Donatus
                                 remarks here that this was "a very proper piece of furniture for the
                                 house of a Courtesan, giving an example of loose and mercenary Love,
                                 calculated to excite wanton thoughts, and at the same time hinting
                                 to the young lover that he must make his way to the bosom of his
                                 mistress, like <persName>Jupiter</persName> to
-                                Dana&euml;, in a shower of gold. Oh the avarice of
+                                Danaë, in a shower of gold. Oh the avarice of
                                 harlots!"</note> is said once to have sent a golden shower into the
-                            bosom of Dana&euml;. I myself began to look at it as well, and as he
+                            bosom of Danaë. I myself began to look at it as well, and as he
                             had in former times played the like game, I felt extremely delighted
                             that a God should change himself into money, and slily come through the
                             tiles of another person's house, to deceive the fair one by means of a
                             shower. But what God was this? He who shakes the most lofty temples of
-                            heaven with his thunders. Was I, a poor creature of a mortal,<milestone n="591" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">A
-                                    poor creature of a mortal</lemma>: "Homuncio." He uses this word
+                            heaven with his thunders. Was I, a poor creature of a mortal,<l n="591"/><note anchored="true"><app><lem>A
+                                    poor creature of a mortal</lem></app>: "Homuncio." He uses this word
                                 the better to contrast his abject nature as a poor mortal with the
                                 majesty of <persName>Jupiter</persName>. St.
                                     Augustin refers to this
@@ -2749,7 +2614,7 @@ new texts
                             myself, the damsel meantime was fetched away to bathe; she went, bathed,
                             and came back; after which they laid her on a couch. I stood waiting to
                             see if they gave me any orders. One came up, "Here, Dorus," said she,
-                            "take this fan,<milestone n="595" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Take this fan</lemma>: As to the fans of
+                            "take this fan,<l n="595"/><note anchored="true"><app><lem>Take this fan</lem></app>: As to the fans of
                                 the ancients, see the Trinummus of Plautus, l. 252, and the Note to
                                 the passage in Bohn's Translation. See also the Amours of <persName>Ovid</persName>, B. iii., El. 2, l.
                                 38.</note> and let her have a little air in this fashion, while we
@@ -2767,21 +2632,21 @@ new texts
 						<p>
                             <stage>continuing.</stage> Hardly had she said this, when all, in a
                             moment, betook themselves off: away they went to bathe, and chattered
-                                aloud;<milestone n="600" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Chattered aloud</lemma>: This line bears a
+                                aloud;<l n="600"/><note anchored="true"><app><lem>Chattered aloud</lem></app>: This line bears a
                                 strong resemblance to two lines found in Anstey's new Bath Guide:
-                                    <quote lang="en">
+                                    <quote xml:lang="eng">
                                     <l>"And how the young ladies all set up their clacks,</l>
                                     <l>All the while an old woman was rubbing their backs."</l>
                                 </quote></note> just as the way is when masters are absent.
-                            Meanwhile, sleep overtook the damsel; I slily looked askance<milestone n="601" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">I
-                                    slily looked askance</lemma>: This way of looking aside,
+                            Meanwhile, sleep overtook the damsel; I slily looked askance<l n="601"/><note anchored="true"><app><lem>I
+                                    slily looked askance</lem></app>: This way of looking aside,
                                 "limis," is mentioned in the Miles Gloriosus of Plautus, where
                                 Milphidippa tells Acroteleutium to look at the Captain sideways,
                                 "Aspicito limis," l. 1217; also in the Bacchides, l. 1131. Those
                                 familiar with the works of Hogarth will readily call to mind the
                                 picture of Bedlam in the Rake's Progress, where the young woman is
                                 looking askance through her fan at the madman in his cell.</note>
-                            through the fan;<milestone n="602" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Through the fan</lemma>: This shows that
+                            through the fan;<l n="602"/><note anchored="true"><app><lem>Through the fan</lem></app>: This shows that
                                 the fan was probably one made of thin boards, and not of
                                 feathers.</note> this way <stage>showing how</stage>: at the same
                             time I looked round in all directions, to see whether all was quite
@@ -2802,7 +2667,7 @@ new texts
 					<sp>
 						<speaker>CHAEREA</speaker>
 						<p> Was I to let slip the opportunity offered me, so excellent, so
-                                short-lived,<milestone n="605" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">So short-lived</lemma>: Colman has the following Note
+                                short-lived,<l n="605"/><note anchored="true"><app><lem>So short-lived</lem></app>: Colman has the following Note
                                 here: "Short indeed, considering the number of incidents, which,
                                 according to Chaerea's relation, are crowded into it. All the time
                                 allowed for this adventure is the short space between the departure
@@ -2869,11 +2734,12 @@ new texts
 					</sp>
 				
 			
-			</div1>
-<milestone unit="act" n="4"/>
+			</div>
+</div>
+			<div type="textpart" subtype="act" n="4">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="614">
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="614" subtype="card">
 					<stage>Enter DORIAS, with a casket in her hand.</stage>
 					<sp>
 						<speaker>DORIAS</speaker>
@@ -2892,7 +2758,7 @@ new texts
                             you, boy," said he, "go fetch Pamphila, that she may amuse us here." She
                             exclaimed, "At a banquet! Certainly not." The Captain still persisted to
                             a downright quarrel. Meanwhile my mistress secretly took off her golden
-                                jewels,<milestone n="627" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Took off her golden jewels</lemma>: This
+                                jewels,<l n="627"/><note anchored="true"><app><lem>Took off her golden jewels</lem></app>: This
                                 was probably because it was contrary to the laws of <placeName key="perseus,Athens">Athens</placeName> for a Courtesan to appear
                                 with gold or jewels in the street. Madame Dacier suggests another
                                 reason, in which there is some force, although it is ridiculed by
@@ -2908,16 +2774,17 @@ new texts
                                 house.</stage>
                         </p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="2"/>
-<div1 type="card" n="628">
+</div>
+				<div type="textpart" subtype="scene" n="2">
+<div type="textpart" n="628" subtype="card">
 					<stage>Enter PHAEDRIA.</stage>
 					<sp>
 						<speaker>PHAEDRIA</speaker>
 						<p>
-                            <stage>to himself.</stage> While I was going<milestone n="629" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">While I
-                                    was going</lemma>: Donatus remarks that here the Poet artfully
+                            <stage>to himself.</stage> While I was going<l n="629"/><note anchored="true"><app><lem>While I
+                                    was going</lem></app>: Donatus remarks that here the Poet artfully
                                 finds a reason to bring Phaedria back again; as he at first with
                                 equal art sent him out of the way, to give probability to those
                                 incidents necessary to happen in his absence.</note> into the
@@ -2932,25 +2799,26 @@ new texts
                             then? It's nothing at all. What? Nothing at all? Well now, if I haven;t
                             the privilege of touching her, am I not even to have that of seeing her?
                             If I may not do the one, at least I may the other. Surely to love at a
-                                distance<milestone n="640" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">At a distance</lemma>: "Extrem&acirc;
-                                line&acirc;." There have been many suggestions offered for the
+                                distance<l n="640"/><note anchored="true"><app><lem>At a distance</lem></app>: "Extremâ
+                                lineâ." There have been many suggestions offered for the
                                 origin of this figurative expression. Some suggest that it alludes
                                 to the last or lowest stage of the supposed ladder of love; others
                                 that it refers to the first or elementary line traced by the
                                 student, when beginning to learn the art of painting. It is however
                                 more generally thought to be a metaphor taken from the chariotraces
                                 in the Circus, where, in going round the turning-place, he who was
-                                nearest was said "currere in prim&acirc; line&acirc;;" the
-                                next, "in secund&acirc;;" and so on to the last, who took the
-                                widest range, and was said to run "in extrem&acirc;
-                                line&acirc;."</note> even, is better than nothing at all." I
+                                nearest was said "currere in primâ lineâ;" the
+                                next, "in secundâ;" and so on to the last, who took the
+                                widest range, and was said to run "in extremâ
+                                lineâ."</note> even, is better than nothing at all." I
                             purposely passed the house. But how's this, that Pythias is suddenly
                             hurrying out in such a fright? <stage>Stands apart.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="3"/>
-<div1 type="card" n="642">
+</div>
+				<div type="textpart" subtype="scene" n="3">
+<div type="textpart" n="642" subtype="card">
 					<stage>Enter PYTHIAS and DORIAS in haste from the house of THAIS.</stage>
 					<sp>
 						<speaker>PYTHIAS</speaker>
@@ -3062,10 +2930,11 @@ new texts
                             otherwise I should have shut him up somewhere, and not have intrusted
                             the girl to him.</p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="4"/>
-<div1 type="card" n="667">
+</div>
+				<div type="textpart" subtype="scene" n="4">
+<div type="textpart" n="667" subtype="card">
 					<stage>Enter PHAEDRIA from the house of LACHES, with DORUS in CHAEREA'S clothes.</stage>
 					<sp>
 						<speaker>PHAEDRIA</speaker>
@@ -3154,7 +3023,7 @@ new texts
 					<sp>
 						<speaker>PHAEDRIA</speaker>
 						<p> He seemed so, just then, because he was decked out in party-colored
-                                clothes:<milestone n="683" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">In party-colored clothes</lemma>: It was
+                                clothes:<l n="683"/><note anchored="true"><app><lem>In party-colored clothes</lem></app>: It was
                                 the custom to dress Eunuchs in party-colored clothes of bright hue.
                                 Most probably it was from them that the "motley" descended to the
                                 fools and buffoons of the Middle Ages.</note> now he appears ugly,
@@ -3165,7 +3034,7 @@ new texts
 						<p> Prithee, do hold your tongue; as though indeed the difference was so
                             trifling. A young man was brought to our house to-day, whom, really,
                             Phaedria, you would have liked to look upon. This is a withered,
-                            antiquated, lethargic, old fellow, with a speckled complexion.<milestone n="689" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">With a speckled complexion</lemma>: "Colore stellionino;"
+                            antiquated, lethargic, old fellow, with a speckled complexion.<l n="689"/><note anchored="true"><app><lem>With a speckled complexion</lem></app>: "Colore stellionino;"
                                 probably having spots or freckles on his face like a "stellio" or
                                 "lizard."</note></p>
 					</sp>
@@ -3382,7 +3251,7 @@ new texts
 						<p> Upon my word, if you are prudent, you won't know what you do know,
                             either about the Eunuch or the girl's misfortune. By this method you'll
                             both rid yourself of all perplexity, and have done a service to
-                                her.<milestone n="722" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Have done a service to her</lemma>: Though some
+                                her.<l n="722"/><note anchored="true"><app><lem>Have done a service to her</lem></app>: Though some
                                 would have "illi" here to refer to the damsel, and others again to
                                 Phaedria, it is pretty clear that Madame Dacier is right in
                                 suggesting that Thais is the person meant.</note> Say this only,
@@ -3410,10 +3279,11 @@ new texts
 						<p> Take in these golden trinkets; I shall learn from him what's the matter.
                                 <stage>DORIAS takes the casket into the house.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="5"/>
-<div1 type="card" n="726">
+</div>
+				<div type="textpart" subtype="scene" n="5">
+<div type="textpart" n="726" subtype="card">
 					<stage>Enter CHREMES, somewhat drunk.</stage>
 					<sp>
 						<speaker>CHREMES</speaker>
@@ -3470,10 +3340,11 @@ new texts
                             of the house. But look, here she is; I wonder how it was I got here
                             before her.</p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="6"/>
-<div1 type="card" n="738">
+</div>
+				<div type="textpart" subtype="scene" n="6">
+<div type="textpart" n="738" subtype="card">
 					<stage>Enter THAIS.</stage>
 					<sp>
 						<speaker>THAIS</speaker>
@@ -3542,8 +3413,8 @@ new texts
 						<p> But still, take care, Chremes, that you don't lose her, before you
                             receive her from me; for it is she, whom the Captain is now coming to
                             take away from me by force. Do you go, Pythias, and bring out of the
-                            house the casket with the tokens.<milestone n="752" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Casket with the
-                                    tokens</lemma>: It was the custom with the ancients when they
+                            house the casket with the tokens.<l n="752"/><note anchored="true"><app><lem>Casket with the
+                                    tokens</lem></app>: It was the custom with the ancients when they
                                 exposed their children, to leave with them some pledge or token of
                                 value, that they might afterward be recognized by means of them. The
                                 catastrophes of the Curculio, the Rudens, and other Plays of
@@ -3592,7 +3463,7 @@ new texts
 					<sp>
 						<speaker>THAIS</speaker>
 						<p> Nay, and consider this too; the person that you have to deal with is a
-                                foreigner;<milestone n="758" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Is a foreigner</lemma>: And therefore the
+                                foreigner;<l n="758"/><note anchored="true"><app><lem>Is a foreigner</lem></app>: And therefore the
                                 more unlikely to obtain redress from an Athenian tribunal. See the
                                     <title>Andria</title>, l. 811, and the
                                 Note to the passage.</note> of less influence than you, less known,
@@ -3652,10 +3523,11 @@ new texts
                             I've provided as a champion, wants one himself. <stage>They all go into
                                 the house.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="7"/>
-<div1 type="card" n="770">
+</div>
+				<div type="textpart" subtype="scene" n="7">
+<div type="textpart" n="770" subtype="card">
 					<stage>Enter THRASO, followed by GNATHO, SANGA, and other Attendants.</stage>
 					<sp>
 						<speaker>THRASO</speaker>
@@ -3688,7 +3560,7 @@ new texts
 						<p>
                             <stage>arranging the men.</stage> Advance hither to the main body,
                             Donax, with your crowbar; you, Simalio, to the left wing; you, Syriscus,
-                            to the right. Bring up the rest; where's the centurion Sanga, and his maniple<milestone n="775" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">And his maniple</lemma>: We learn from the Fasti of Ovid, B.
+                            to the right. Bring up the rest; where's the centurion Sanga, and his maniple<l n="775"/><note anchored="true"><app><lem>And his maniple</lem></app>: We learn from the Fasti of Ovid, B.
                                 iii., l. 117-8, that in early times the Roman armies carried bundles
                                 or wisps of hay upon poles by way of standards. "A long pole used to
                                 bear the elevated wisps, from which circumstance the manipular
@@ -3708,7 +3580,7 @@ new texts
 					</sp>
 					<sp>
 						<speaker>THRASO</speaker>
-						<p> What, you booby, do you think of fighting with a dish-clout,<milestone n="776" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">With a dish-clout</lemma>: "Peniculo." This word meant a sponge
+						<p> What, you booby, do you think of fighting with a dish-clout,<l n="776"/><note anchored="true"><app><lem>With a dish-clout</lem></app>: "Peniculo." This word meant a sponge
                                 fastened to a stick, or the tail of a fox or an ox, which was used
                                 as dusters or dish-clouts are at the present day for cleaning
                                 tables, dishes, or even shoes. See the Menaechmi of Plautus, ver. 77
@@ -3733,8 +3605,8 @@ new texts
 						<speaker>THRASO</speaker>
 						<p>
                             <stage>to GNATHO.</stage> Do you draw up your men in battle order; I'll
-                            be behind the second rank;<milestone n="780" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Be behind the second
-                                    rank</lemma>: "Post principia." The Captain, with that
+                            be behind the second rank;<l n="780"/><note anchored="true"><app><lem>Be behind the second
+                                    rank</lem></app>: "Post principia." The Captain, with that
                                 discretion which is the better part of valor, chooses the safest
                                 place in his army. The "principes" originally fought in the van,
                                 fronting the enemy, and behind them were the "hastati" and the
@@ -3755,7 +3627,7 @@ new texts
 						<speaker>THRASO</speaker>
 						<p>
                             <stage>pointing to the arrangements.</stage> This is just the way
-                            Pyrrhus used to proceed.<milestone n="782" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Pyrrhus used to proceed</lemma>:
+                            Pyrrhus used to proceed.<l n="782"/><note anchored="true"><app><lem>Pyrrhus used to proceed</lem></app>:
                                 He attempts to defend his cowardice by the example of Pyrrhus, the
                                 powerful antagonist of the Romans, and one of the greatest generals
                                 of antiquity. He might have more correctly cited the example of
@@ -3780,7 +3652,7 @@ new texts
 					</sp>
 					<sp>
 						<speaker>GNATHO</speaker>
-						<p> I could very much<milestone n="785" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">I could very much</lemma>:
+						<p> I could very much<l n="785"/><note anchored="true"><app><lem>I could very much</lem></app>:
                                 Although Vollbehr gives these words to Gnatho, yet, judging from the
                                 context, and the words "ex occulto," and remembering that Thais and
                                 Chremes are up at the window, there is the greatest probability that
@@ -3849,8 +3721,8 @@ new texts
 					</sp>
 					<sp>
 						<speaker>CHREMES</speaker>
-						<p> Your own, indeed, you gallows-bird!<milestone n="797" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">You
-                                gallows-bird</lemma>: "Furcifer;" literally, "bearer of the
+						<p> Your own, indeed, you gallows-bird!<l n="797"/><note anchored="true"><app><lem>You
+                                gallows-bird</lem></app>: "Furcifer;" literally, "bearer of the
                                 furca."</note>
                         </p>
 					</sp>
@@ -3975,8 +3847,8 @@ new texts
 					</sp>
 					<sp>
 						<speaker>GNATHO</speaker>
-						<p> Sanga, as befits gallant soldiers,<milestone n="814" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">As befits gallant
-                                    soldiers</lemma>: Beaumont and Fletcher not improbably had this scene
+						<p> Sanga, as befits gallant soldiers,<l n="814"/><note anchored="true"><app><lem>As befits gallant
+                                    soldiers</lem></app>: Beaumont and Fletcher not improbably had this scene
                                 in view in their picture of the mob regiment in Philaster. The
                                 ragged regiment which Shakspeare places under the commend of
                                 Falstaff was not very unlike it, nor that which owned the valiant
@@ -4000,11 +3872,13 @@ new texts
 					</sp>
 				
 			
-			</div1>
-<milestone unit="act" n="5"/>
+			</div>
+</div>
+			</div>
+				<div type="textpart" subtype="act" n="5">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="816">
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="816" subtype="card">
 					<stage>Enter THAIS from her house, followed by PYTHIAS.</stage>
 					<sp>
 						<speaker>THAIS</speaker>
@@ -4113,16 +3987,16 @@ new texts
 						<speaker>PYTHIAS</speaker>
 						<p> Besides, what effrontery he has.</p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="2"/>
-<div1 type="card" n="839">
+</div><div type="textpart" subtype="scene" n="2">
+<div type="textpart" n="839" subtype="card">
 					<stage>Enter CHAEREA, in the EUNUCH'S dress, on the other side of the stage.</stage>
 					<sp>
 						<speaker>CHAEREA</speaker>
 						<p>
-                            <stage>to himself.</stage> At Antipho's,<milestone n="839" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">At
-                                    Antipho's</lemma>: Madame Decier here observes that Chaerea
+                            <stage>to himself.</stage> At Antipho's,<l n="839"/><note anchored="true"><app><lem>At
+                                    Antipho's</lem></app>: Madame Decier here observes that Chaerea
                                 assigns very natural reasons for not having changed his dress; in
                                 which the art of Terence is evident, since the sequel of the Play
                                 makes it absolutely necessary that Chaerea should appear again
@@ -4379,10 +4253,10 @@ new texts
 						<p> Go first; I'll follow. You stay here, Pythias, that you may show Chremes
                             in. <stage>THAIS and CHAEREA go into the house.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="3"/>
-<div1 type="card" n="909">
+</div><div type="textpart" subtype="scene" n="3">
+<div type="textpart" n="909" subtype="card">
 					<stage>Enter CHREMES and SOPHRONA.</stage>
 					<sp>
 						<speaker>PYTHIAS</speaker>
@@ -4432,10 +4306,10 @@ new texts
                             know for certain about the discovery; afterward I'll come out, and give
                             this villain a terrible fright. <stage>Goes into the house.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="4"/>
-<div1 type="card" n="922">
+</div><div type="textpart" subtype="scene" n="4">
+<div type="textpart" n="922" subtype="card">
 					<stage>Enter PAIMENO.</stage>
 					<sp>
 						<speaker>PARMENO</speaker>
@@ -4453,7 +4327,7 @@ new texts
                             after. <stage>PYTHIAS enters from the house unperceived.</stage> For
                             while they are out of doors, nothing seems more cleanly, nothing more
                             neat or more elegant; and when they dine with a gallant, they pick
-                            daintily about:<milestone n="935" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Pick daintily about</lemma>: He seems here
+                            daintily about:<l n="935"/><note anchored="true"><app><lem>Pick daintily about</lem></app>: He seems here
                                 to reprehend the same practice against which Ovid warns his fair
                                 readers, in his Art of Love, B. iii. l. 75. He says, "Do not first
                                 take food at home," when about to go to an entertainment.
@@ -4594,15 +4468,15 @@ new texts
 						<p> You are wise. I'm going in-doors; do you relate to him every thing
                             exactly as it happened. <stage>Goes into the house.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="5"/>
-<div1 type="card" n="970">
+</div><div type="textpart" subtype="scene" n="5">
+<div type="textpart" n="970" subtype="card">
 					<stage>Enter LACHES.</stage>
 					<sp>
 						<speaker>LACHES</speaker>
 						<p>
-                            <stage>to himself.</stage> I have this advantage<note anchored="yes"><lemma targOrder="U">This advantage</lemma>: Donatus here
+                            <stage>to himself.</stage> I have this advantage<note anchored="true"><app><lem>This advantage</lem></app>: Donatus here
                                 observes that the Poet introduces Laches, as he has Parmeno just
                                 before, in a state of perfect tranquillity, that their sudden change
                                 of feeling may be the more diverting to the Audience.</note> from my
@@ -4730,16 +4604,16 @@ new texts
                             heavy punishment for this affair, only that I was obliged to act thus.
                             I'm glad of this, that some mischief will befall these women here
                             through my agency, for the old man has, for a long time, been on the
-                            look-out for some occasion<milestone n="999" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">For some occasion</lemma>: We
+                            look-out for some occasion<l n="999"/><note anchored="true"><app><lem>For some occasion</lem></app>: We
                                 learn from Donatus that Menander was more explicit concerning the
                                 resentment of Laches against Thais, on account of her having
                                 corrupted Phaedria.</note> to do them a bad turn; at last he has
                             found it. </p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="6"/>
-<div1 type="card" n="1001">
+</div><div type="textpart" subtype="scene" n="6">
+<div type="textpart" n="1001" subtype="card">
 					<stage>Enter PYTHIAS from the house of THAIS, laughing.</stage>
 					<sp>
 						<speaker>PYTHIAS</speaker>
@@ -4747,7 +4621,7 @@ new texts
                             <stage>to herself, on entering.</stage> Never, upon my faith, for a long
                             time past, has any thing happened to me that I could have better liked
                             to happen, than the old gentleman just now, full of his mistake, coming
-                            into our house. I had the joke all to myself, as I knew<milestone n="1003" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">As I knew</lemma>: She enjoyed it the more, knowing that the
+                            into our house. I had the joke all to myself, as I knew<l n="1003"/><note anchored="true"><app><lem>As I knew</lem></app>: She enjoyed it the more, knowing that the
                                 old man had nothing to fear, as he had just heard the fiction which
                                 she had imparted to Parmeno. Donatus observes that the terror of
                                 Laches accounts for his sudden consent to the union of Chaerea with
@@ -4845,8 +4719,8 @@ new texts
 					<sp>
 						<speaker>PYTHIAS</speaker>
 						<p> This reward has been found you in return for that present of
-                                yours;<milestone n="1022" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">In return for that present of
-                                    yours</lemma>: By the present she means Chaerea in the disguise
+                                yours;<l n="1022"/><note anchored="true"><app><lem>In return for that present of
+                                    yours</lem></app>: By the present she means Chaerea in the disguise
                                 of the Eunuch.</note> I'm off. <stage>Goes into the
                             house.</stage></p>
 					</sp>
@@ -4854,14 +4728,14 @@ new texts
 						<speaker>PARMENO</speaker>
 						<p>
                             <stage>to himself.</stage> Wretch that I am; just like a rat, this day
-                            I've come to destruction through betrayal of myself.<milestone n="1023" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Through
-                                    betrayal of myself</lemma>: Which betrays itself by its own
+                            I've come to destruction through betrayal of myself.<l n="1023"/><note anchored="true"><app><lem>Through
+                                    betrayal of myself</lem></app>: Which betrays itself by its own
                                 squeaking.</note></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="7"/>
-<div1 type="card" n="1024">
+</div><div type="textpart" subtype="scene" n="7">
+<div type="textpart" n="1024" subtype="card">
 					<stage>Enter THRASO and GNATHO.</stage>
 					<sp>
 						<speaker>GNATHO</speaker>
@@ -4879,8 +4753,8 @@ new texts
 					</sp>
 					<sp>
 						<speaker>THRASO</speaker>
-						<p> Why any the less so, than <persName>Hercules</persName> served Omphale.<milestone n="1026" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Hercules
-                                    served Omphale</lemma>: He alludes to the story of Omphale,
+						<p> Why any the less so, than <persName>Hercules</persName> served Omphale.<l n="1026"/><note anchored="true"><app><lem>Hercules
+                                    served Omphale</lem></app>: He alludes to the story of Omphale,
                                 Queen of <placeName key="tgn,7016631">Lydia</placeName>, and
                                     <persName>Hercules</persName>. Being
                                 violently in love with her, the hero laid aside his club and boar's
@@ -4897,8 +4771,8 @@ new texts
 					<sp>
 						<speaker>GNATHO</speaker>
 						<p> The precedent pleases me. <stage>Aside.</stage> I only wish I may see
-                            your head stroked down with a slipper;<milestone n="1027" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">With a
-                                    slipper</lemma>: He doubtless alludes to the treatment of
+                            your head stroked down with a slipper;<l n="1027"/><note anchored="true"><app><lem>With a
+                                    slipper</lem></app>: He doubtless alludes to the treatment of
                                     <persName>Hercules</persName> by Omphale;
                                 and, according to <persName><surname>Lucian</surname></persName>,
                                 there was a story that Omphale used to beat him with her slipper or
@@ -4911,10 +4785,10 @@ new texts
                             why, I wonder, is he rushing out in such a hurry? <stage>They stand
                                 aside.</stage></p>
 					</sp>
-				</div1>
+				</div>
 
-<milestone unit="scene" n="8"/>
-<div1 type="card" n="1030-">
+</div><div type="textpart" subtype="scene" n="8">
+<div type="textpart" n="1030" subtype="card">
 					<stage>Enter CHAEREA from the house of THAIS, on the other side of the stage.</stage>
 					<sp>
 						<speaker>CHAEREA</speaker>
@@ -4958,8 +4832,8 @@ new texts
 						<speaker>CHAEREA</speaker>
 						<p> And then, besides, I am delighted that my brother's mistress is secured
                             to him; the family is united. Thais has committed herself to the
-                            patronage of my father;<milestone n="1038" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">To the patronage of my
-                                    father</lemma>: It was the custom at <placeName key="perseus,Athens">Athens</placeName> for strangers, such as
+                            patronage of my father;<l n="1038"/><note anchored="true"><app><lem>To the patronage of my
+                                    father</lem></app>: It was the custom at <placeName key="perseus,Athens">Athens</placeName> for strangers, such as
                                 Thais was, to put themselves under the protection (in clientelam) of
                                 some wealthy citizen, who, as their patron, was bound to protect
                                 them against injury. An exactly parallel case to the present is
@@ -5215,7 +5089,7 @@ new texts
 					<sp>
 						<speaker>GNATHO</speaker>
 						<p> You act properly. One thing I have still to beg of you,--that you'll
-                            receive me into your fraternity; I've been rolling that stone<milestone n="1084" unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Been rolling that stone</lemma>: Donatus thinks that he alludes
+                            receive me into your fraternity; I've been rolling that stone<l n="1084"/><note anchored="true"><app><lem>Been rolling that stone</lem></app>: Donatus thinks that he alludes
                                 to the story of Sisyphus, who, in the Infernal Regions, was
                                 condemned eternally to roll a stone up a hill, which, on arriving at
                                 the summit, immediately fell to the bottom.</note> for a
@@ -5232,7 +5106,7 @@ new texts
 					<sp>
 						<speaker>GNATHO</speaker>
 						<p> Then I, in return for this, Phaedria, and you, Chaerea, make him over to
-                                you<note anchored="yes">Make him over to you)--Ver. 1086.. "Vobis
+                                you<note anchored="true">Make him over to you)--Ver. 1086.. "Vobis
                                 propino." The word "propino" was properly applied to the act of
                                 tasting a cup of wine, and then handing it to another; he means that
                                 he has had his taste of the Captain, and is now ready to hand him
@@ -5244,7 +5118,7 @@ new texts
 					</sp>
 					<sp>
 						<speaker>PHAEDRIA</speaker>
-						<p> He quite deserves it.<note anchored="yes">He quite deserves it)--Ver
+						<p> He quite deserves it.<note anchored="true">He quite deserves it)--Ver
                                 1087. Cooke has the following appropriate remark: "I can not think
                                 that this Play, excellent as it is in almost all other respects,
                                 concludes consistently with the manners of gentlemen; there is a
@@ -5287,7 +5161,9 @@ new texts
                             you well, and grant us your applause. </p>
 					</sp>
 				
-			
-		</div1></body>
-	</text>
-</TEI.2>
+</div>
+		</div>
+			</div>
+		</div>
+	</div></body></text>
+</TEI>
