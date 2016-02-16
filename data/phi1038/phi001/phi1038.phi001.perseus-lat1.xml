@@ -1,6 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
-schematypens="http://relaxng.org/ns/structure/1.0"\?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -33,20 +35,20 @@ schematypens="http://relaxng.org/ns/structure/1.0"\?><TEI xmlns="http://www.tei-
 
     <encodingDesc>
       <refsDecl n="CTS">
-        <cRefPattern n="book"
-          matchPattern="(\\w+)"
-          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
-          <p>This pointer pattern extracts book</p>
+        <cRefPattern n="section"
+          matchPattern="(\w+).(\w+).(\w+)" 
+          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:div[@n='$3'])">
+          <p>This pointer pattern extracts book and chapter and section</p>
         </cRefPattern>
         <cRefPattern n="chapter"
-          matchPattern="(\\w+).(\\w+)"
-          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body//tei:div[@Book=\'$1\']//tei:l[@n=\'$2\'])">
+          matchPattern="(\w+).(\w+)"
+          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
           <p>This pointer pattern extracts book and chapter</p>
         </cRefPattern>
-        <cRefPattern n="section"
-          matchPattern="(\\w+).(\\w+).(\\w+)" 
-          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body//tei:div[@Book=\'$1\']//tei:l[@n=\'$2\']//tei:l[@n=\'$3\'])">
-          <p>This pointer pattern extracts book and chapter and section</p>
+        <cRefPattern n="book"
+          matchPattern="(\w+)"
+          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+          <p>This pointer pattern extracts book</p>
         </cRefPattern>
       </refsDecl>
       <refsDecl>
@@ -58,14 +60,14 @@ schematypens="http://relaxng.org/ns/structure/1.0"\?><TEI xmlns="http://www.tei-
 
     <profileDesc>
       <langUsage>
-	<language ident="la">Latin</language>
+	<language ident="lat">Latin</language>
 	<language ident="grc">Greek</language>
       </langUsage>
     </profileDesc>
     <revisionDesc><change who="Zach Himes" when="2015-11-13">Converted to TEI P5 and EpiDoc</change></revisionDesc>
   </teiHeader>
 
-  <text><body><div type="textpart" xml:lang="lat" n="urn:cts:canonical-latinLit:phi1038.phi001.perseus-lat1" subtype="edition">
+  <text><body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi1038.phi001.perseus-lat1">
 <head>Facta et Dicta Memorabilia</head>
 <div type="textpart" n="1" subtype="book">
 <head>LIBER PRIMVS</head> 
@@ -400,7 +402,7 @@ senatus imperio et quidem summam duplicando
 recuperauit. 
 </p></div></div>
 
-<div type="textpart" n="1(ext)" subtype="chapter">
+<div type="textpart" n="1e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Quae, quod ad Plemini facinus pertinuit, 
 bene a patribus conscriptis uindicata, quod ad
@@ -467,7 +469,7 @@ Apollini decimarum nomine dicauerant, incitato ad eam
 partiendam populo, ut comperit <gap reason="lost"/><pb/> 
 </p></div></div>
 
-<div type="textpart" n="4(ext)" subtype="chapter">
+<div type="textpart" n="4e" subtype="chapter">
 
 
 <div type="textpart" n="2" subtype="section">
@@ -596,7 +598,7 @@ oppugnaret interque adhortationem militum dixisset
 proeliando fortuitum iactum uocis leto suo confirmauit. 
 </p></div></div>
 
-<div type="textpart" n="5(ext)" subtype="chapter">
+<div type="textpart" n="5e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Adici nostris duo eiusdem generis
 alienigena exempla non absurde possunt. Sami
@@ -849,7 +851,7 @@ parricidium, qui, dum te hominum numero subtrahere
 uolunt, deorum concilio adiecerunt. 
 </p></div></div>
 
-<div type="textpart" n="6(ext)" subtype="chapter">
+<div type="textpart" n="6e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Claudatur hoc exemplo talium
 ostentorum domestica relatio, ne, si ulterius Romana
@@ -1051,7 +1053,7 @@ murmillone et abiecto, dum iacentem ferire conatur,
 traiectum gladio Haterium interemit. 
 </p></div></div>
 
-<div type="textpart" n="7(ext)" subtype="chapter">
+<div type="textpart" n="7e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Hannibalis quoque ut detestandum
 Romano sanguini, ita certae praedictionis somnium, 
@@ -1467,7 +1469,7 @@ iam flammis circumdatus fato subtrahi non potuit.</p>
 fuisse super rogum constitit. 
 </p></div></div>
 
-<div type="textpart" n="8(ext)" subtype="chapter">
+<div type="textpart" n="8e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Quae minus admirabilia fere Eris
 Pamphyli casus facit, quem Plato scribit inter eos, qui 
@@ -2857,7 +2859,7 @@ iussit eorumque corpora sepulturae mandari
 mortemque lugeri uetuit. 
 </p></div></div>
 
-<div type="textpart" n="7(ext)" subtype="chapter">
+<div type="textpart" n="7e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Leniter hoc patres conscripti, si
 Karthaginiensium senatus in militiae negotiis procurandis 
@@ -3361,7 +3363,7 @@ quisquis sanctum et egregium ciuem significare uelit,
 sub nomine Catonis definiat. 
 </p></div></div>
 
-<div type="textpart" n="10(ext)" subtype="chapter">
+<div type="textpart" n="10e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Dandum est aliquid loci etiam alienigenis 
 exemplis, ut dometicis aspersa ipsa uarietate
@@ -3464,7 +3466,7 @@ facturum minitantem colapho percussit. dignam
 manum, quae publico parricidio se non contaminaret. 
 </p></div></div>
 
-<div type="textpart" n="1(ext)" subtype="chapter">
+<div type="textpart" n="1e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Et ut a Graecis aliquid, Alcibiades ille, 
 cuius nescio utrum bona an uitia patriae
@@ -3930,7 +3932,7 @@ armillae <hi rend="7">clx</hi>, hastae <hi rend="7">xviii</hi>, phalerae <hi ren
 etiam legioni, nedum militi satis multa. 
 </p></div></div>
 
-<div type="textpart" n="2(ext)" subtype="chapter">
+<div type="textpart" n="2e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Ille quoque ex pluribus corporibus in 
 unum magna cum admiratione Calibus cruor
@@ -4125,7 +4127,7 @@ ita nullum publicum maerorem continent, externa
 subnectam. <pb/> 
 </p></div></div>
 
-<div type="textpart" n="3(ext)" subtype="chapter">
+<div type="textpart" n="3e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Vetusto Macedoniae more regi Alexandro 
 nobilissimi pueri praesto erant sacrificanti. e quibus 
@@ -4334,7 +4336,7 @@ prorogata familia, in qua maximum decus posterior ortus
 est Cato. 
 </p></div></div>
 
-<div type="textpart" n="4(ext)" subtype="chapter">
+<div type="textpart" n="4e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Sed ut Romanis externa iungamus,
 Socrates, non solum hominum consensu, uerum etiam 
@@ -4756,7 +4758,7 @@ quia ibi uoluminum, non imaginum certamina
 exercebantur. 
 </p></div></div>
 
-<div type="textpart" n="7(ext)" subtype="chapter">
+<div type="textpart" n="7e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Ne Euripides quidem Athenis arrogans 
 uisus est, cum postulante <del>ui</del> populo ut ex tragoedia 
@@ -5042,7 +5044,7 @@ eo facilius impetrauit: Antonius enim uirtuti eius
 incolumitatem tribuit. <pb/> 
 </p></div></div>
 
-<div type="textpart" n="8(ext)" subtype="chapter">
+<div type="textpart" n="8e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Conplura huiusce notae Romana exempla 
 supersunt, sed satietas modo uitanda est. itaque stilo 
@@ -5452,7 +5454,7 @@ potestatem huius uindictae non suam, sed senatus esse
 debere. 
 </p></div></div>
 
-<div type="textpart" n="1(ext)" subtype="chapter">
+<div type="textpart" n="1e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Tarentinus Archytas, dum se Pythagorae 
 praeceptis Metaponti penitus inmergit, magno labore 
@@ -5944,7 +5946,7 @@ misericors continentia plebis tacitum crudelium
 uictorum conuicium fuit. 
 </p></div></div>
 
-<div type="textpart" n="3(ext)" subtype="chapter">
+<div type="textpart" n="3e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Ac ne eiusdem laudis commemorationem 
 externis inuideamus, Pericles Atheniensium princeps, 
@@ -6306,7 +6308,7 @@ conlaberetur. in hunc modum non homines expirant, sed
 di immortales sedes suas repetunt. 
 </p></div></div>
 
-<div type="textpart" n="5(ext)" subtype="chapter">
+<div type="textpart" n="5e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Quod sequitur externis adnectam, quia 
 ante gestum est quam Etruriae ciuitas daretur.
@@ -6423,7 +6425,7 @@ sed nescio an hoc fortius, quod ille usitato, <add>tu</add> nouo
 genere mortis absumpta e<add>s</add>. 
 </p></div></div>
 
-<div type="textpart" n="6(ext)" subtype="chapter">
+<div type="textpart" n="6e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Sunt et alienigeni amores iusti
 obscuritate ignorantiae non obruti, e quibus paucos attigisse 
@@ -6685,7 +6687,7 @@ intuens aetas in excolendo iure amicitiae qua libentius
 qua etiam religiosius erit operata. 
 </p></div></div>
 
-<div type="textpart" n="7(ext)" subtype="chapter">
+<div type="textpart" n="7e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Haeret animus in domesticis, sed aliena 
 quoque bene facta referre Romanae urbis candor
@@ -6867,7 +6869,7 @@ sensit commemorari: ut enim illic meritae, ita hic
 redditae laudis conmendatio est. 
 </p></div></div>
 
-<div type="textpart" n="8(ext)" subtype="chapter">
+<div type="textpart" n="8e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Hiero Syracusarum rex audita clade, qua 
 Romani apud Trasimennum lacum erant adflicti, <hi rend="7">ccc</hi> 
@@ -7179,7 +7181,7 @@ Philippii campi libenter uiderunt, sed ne ista quidem
 generosissimae indignationis uerba inuiti audierunt. 
 </p></div></div>
 
-<div type="textpart" n="1(ext)" subtype="chapter">
+<div type="textpart" n="1e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Commemoratione Romani exempli in
 Macedoniam deductus morum Alexandri praeconium 
@@ -7484,7 +7486,7 @@ memoria non intercidat, licet separatum locum
 obtineant, ut nec his adiecti nec illis praelati uideantur. <pb/> 
 </p></div></div>
 
-<div type="textpart" n="2(ext)" subtype="chapter">
+<div type="textpart" n="2e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Darius priuatae adhuc fortunae amiculo 
 Sylosontis Sami delectatus curio<add>sio</add>re contemplatione 
@@ -7723,7 +7725,7 @@ quia tam ingrato facto plus L. Sullae uiribus quam
 propriae indulsisti uerecundiae. 
 </p></div></div>
 
-<div type="textpart" n="3(ext)" subtype="chapter">
+<div type="textpart" n="3e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Ac ne nostra confessis alienigenae urbes 
 insultent, Karthaginienses Hannibalem, qui pro <pb/>
@@ -7989,7 +7991,7 @@ alitam? putarit aliquis hoc contra rerum naturam
 factum, nisi diligere parentis prima naturae lex esset. 
 </p></div></div>
 
-<div type="textpart" n="4(ext)" subtype="chapter">
+<div type="textpart" n="4e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Idem praedicatum de pietate Perus
 existimetur, quae patrem suum Mycona consi<add>mi</add>li
@@ -8321,7 +8323,7 @@ itaque et proprio ingenio <add>et</add> exemplo uetustatis
 admoniti nulla sibi in re cessandum existimauerunt. 
 </p></div></div>
 
-<div type="textpart" n="6(ext)" subtype="chapter">
+<div type="textpart" n="6e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p><add>Sunt</add> et externa eiusdem propositi exempla. 
 Rex Atheniensium Codrus, cum ingenti hostium
@@ -8463,7 +8465,7 @@ sui patrem ipsius opera sic expirantem intueri
 necesse fuit! 
 </p></div></div>
 
-<div type="textpart" n="7(ext)" subtype="chapter">
+<div type="textpart" n="7e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Ceterum ut ad iucundiora cognitu
 ueniamus, Seleuci regis filius Antiochus nouercae
@@ -8747,7 +8749,7 @@ calamitosum patrem et strenuum consulem neutra in
 parte cessato officio partiri non potuisset. 
 </p></div></div>
 
-<div type="textpart" n="10(ext)" subtype="chapter">
+<div type="textpart" n="10e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Princeps Atheniensium Pericles intra 
 quadriduum duobus mirificis adulescentibus filiis
@@ -8966,7 +8968,7 @@ qui deprehenderat familiae stuprandum obiecit.
 quibus irae suae indulsisse fraudi non fuit. 
 </p></div></div>
 
-<div type="textpart" n="1(ext)" subtype="chapter">
+<div type="textpart" n="1e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Atque ut domesticis externa subnectam, 
 Graeca femina nomine Hippo, cum hostium classe 
@@ -9227,7 +9229,7 @@ hominibus amarissimae uiderentur, magnam sibi
 licentiam praebere respondit, senectutem et orbitatem. 
 </p></div></div>
 
-<div type="textpart" n="2(ext)" subtype="chapter">
+<div type="textpart" n="2e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Inserit se tantis uiris mulier alienigeni 
 sanguinis, quae a Philippo rege temulento immerenter 
@@ -9478,7 +9480,7 @@ ignorante ludos ausam spectare. ergo, dum sic olim
 feminis occurritur, mens earum a delictis aberat. 
 </p></div></div>
 
-<div type="textpart" n="3(ext)" subtype="chapter">
+<div type="textpart" n="3e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Ceterum etsi Romana seueritatis
 exemplis totus terrarum orbis instrui potest, tamen
@@ -9623,7 +9625,7 @@ uidelicet neque uiuere se sine uictoria neque mori
 sine securitate posse. 
 </p></div></div>
 
-<div type="textpart" n="4(ext)" subtype="chapter">
+<div type="textpart" n="4e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Cuius mentio mihi subicit quod aduersus 
 D. Brutum in Hispania grauiter dictum est referre: 
@@ -9832,7 +9834,7 @@ illo scelere parto pilleo iussit, uictor alioquin
 insolens, hoc imperio iustissimus. 
 </p></div></div>
 
-<div type="textpart" n="5(ext)" subtype="chapter">
+<div type="textpart" n="5e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Verum ne alienigenae iustitiae obliti 
 uideamur, Pittacus Mitylenaeus, cuius aut meritis 
@@ -9981,7 +9983,7 @@ benignam praestitit, ita in sociorum quoque animis
 constantem recognouit. 
 </p></div></div>
 
-<div type="textpart" n="6(ext)" subtype="chapter">
+<div type="textpart" n="6e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Post duorum in Hispania Scipionum
 totidemque Romani sanguinis exercituum miserabilem 
@@ -10404,7 +10406,7 @@ numen se ab iniuria uindicauit: continuo enim
 captos praedones crucibus adfixit. 
 </p></div></div>
 
-<div type="textpart" n="9(ext)" subtype="chapter">
+<div type="textpart" n="9e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Adtento studio nostra commemorauimus: 
 remissiore nunc animo aliena narrentur. perditae 
@@ -10709,7 +10711,7 @@ numquam fida pace quiescentem feritatem a ualuis suis
 reppulit. 
 </p></div></div>
 
-<div type="textpart" n="2(ext)" subtype="chapter">
+<div type="textpart" n="2e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Tempus deficiet domestica narrantem, 
 quoniam imperium nostrum non tam robore
@@ -11149,7 +11151,7 @@ concubitus resolutum ad id, quod non licebat,
 tardiorem pigrioremque adferens paulatim deposuit. 
 </p></div></div>
 
-<div type="textpart" n="3(ext)" subtype="chapter">
+<div type="textpart" n="3e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Cum Alexander Macedonum rex sorte 
 monitus ut eum, qui sibi porta egresso primus
@@ -11440,7 +11442,7 @@ scrutari coegisset, ad ultimam ei senectutem apud
 moenia <add>Con</add>trebiae armato sedendum foret. <pb/> 
 </p></div></div>
 
-<div type="textpart" n="4(ext)" subtype="chapter">
+<div type="textpart" n="4e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Agathocles autem Syracusarum rex
 audaciter callidus: cum enim urbem eius maiore ex parte 
@@ -11710,7 +11712,7 @@ tempestatem Augusti cura tutelae tunc terrarum uacans
 dispulit. 
 </p></div></div>
 
-<div type="textpart" n="6(ext)" subtype="chapter">
+<div type="textpart" n="6e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Cretensibus nihil tale praesidii adfulsit, 
 qui obsidione Metelli ad ultimam penuriam conpulsi <pb/> 
@@ -12035,7 +12037,7 @@ motus tolerentur, recordemur inuidia laborantes
 quibus de causis aut absoluti sint aut damnati. 
 </p></div></div>
 
-<div type="textpart" n="1(absol)" subtype="chapter">
+<div type="textpart" n="1a" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>M. Horatius interfectae sororis crimine 
 a Tullo rege damnatus ad populum prouocato
@@ -12229,7 +12231,7 @@ occiso patre supra uulnera et cruorem eius quietem
 capere potuerint. 
 </p></div></div>
 
-<div type="textpart" n="1(damn)" subtype="chapter">
+<div type="textpart" n="1d" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Percurremus nunc eos, quibus in
 causae dictione magis quae extra quaestionem erant 
@@ -12304,7 +12306,7 @@ nomine publica quaestione adflictus est, innocens,
 nisi tam prisco saeculo natus esset. 
 </p></div></div>
 
-<div type="textpart" n="1(ambust)" subtype="chapter">
+<div type="textpart" n="1A" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Atque ut eos quoque referamus, qui 
 in discrimen capitis adducti neque damnati neque 
@@ -12728,7 +12730,7 @@ propter quae tantorum uirorum laudibus non inpudenter
 se persona histrionis inseruit. 
 </p></div></div>
 
-<div type="textpart" n="7(ext)" subtype="chapter">
+<div type="textpart" n="7e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Graeca quoque industria, quoniam nostrae 
 multum profuit, quem meretur fructum Latina
@@ -13014,7 +13016,7 @@ in <del>scaelus</del> lusibus hominem agebat, quem rerum
 natura continui laboris patientem esse non sinit. <pb/> 
 </p></div></div>
 
-<div type="textpart" n="8(ext)" subtype="chapter">
+<div type="textpart" n="8e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Idque uidit, cui nulla pars sapientiae 
 obscura fuit, Socrates, ideoque non erubuit tunc, 
@@ -13080,7 +13082,7 @@ nullum maius adiecerim exemplum,
 peregrinandum est. 
 </p></div></div>
 
-<div type="textpart" n="9(ext)" subtype="chapter">
+<div type="textpart" n="9e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Pisistratus dicendo tantum ualuisse
 traditus est, ut ei Athenienses regium imperium
@@ -13175,7 +13177,7 @@ adiecit totum hunc locum ita claudendo: 'tu istud,
 M. Calidi, nisi fingeres, sic ageres?' 
 </p></div></div>
 
-<div type="textpart" n="10(ext)" subtype="chapter">
+<div type="textpart" n="10e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Consentaneum huic Demosthenis
 iudicium. qui<del>dam</del>, cum interrogaretur quidnam esset 
@@ -13241,7 +13243,7 @@ uacuam esse arbitratus est. utinam haruspicem potius
 augurium quam patriae parentem securitas fefellisset. 
 </p></div></div>
 
-<div type="textpart" n="11(ext)" subtype="chapter">
+<div type="textpart" n="11e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Sed ut alienigena scrutemur, cum
 obscurato repente sole inusitatis perfusae tenebris
@@ -13347,7 +13349,7 @@ a quibus et propria studia uerecunde et aliena
 callide aestimantur. 
 </p></div></div>
 
-<div type="textpart" n="12(ext)" subtype="chapter">
+<div type="textpart" n="12e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Platonis quoque eruditissimum pectus 
 haec cogitatio attigit, qui conductores sacrae arae 
@@ -13446,7 +13448,7 @@ filiis ante amissis quintum decimum et centesimum
 expleuit annum. 
 </p></div></div>
 
-<div type="textpart" n="13(ext)" subtype="chapter">
+<div type="textpart" n="13e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Iungam his duos reges, quorum
 diuturnitas populo Romano fuit utilissima. Siciliae rector 
@@ -13618,7 +13620,7 @@ effigiem suam inclusit, qua conuulsa tota operis
 conligatio solueretur. 
 </p></div></div>
 
-<div type="textpart" n="14(ext)" subtype="chapter">
+<div type="textpart" n="14e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Sed melius aliquanto, si aliena imitatione 
 capiebatur, Themistoclis ardorem esset aemulatus, 
@@ -13853,7 +13855,7 @@ decem sorte ductae de sanctissima femina iudicium
 facerent, cunctis castitate praelata est. 
 </p></div></div>
 
-<div type="textpart" n="15(ext)" subtype="chapter">
+<div type="textpart" n="15e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Ceterum quia sine ulla deminutione
 Romanae maiestatis extera quoque insignia respici 
@@ -14067,7 +14069,7 @@ egerat, filii pariter manibus et nefarie adtemptatae
 patriae poenas dedit. 
 </p></div></div>
 
-<div type="textpart" n="1(ext)" subtype="chapter">
+<div type="textpart" n="1e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>At Campana luxuria perquam utilis
 nostrae ciuitati fuit: inuictum enim armis Hannibalem <pb/> 
@@ -14257,7 +14259,7 @@ sunt, cuius gentis praesidio Flaccus uallatus diuinis
 opibus uaecordi pertinacia resistebat. 
 </p></div></div>
 
-<div type="textpart" n="2(ext)" subtype="chapter">
+<div type="textpart" n="2e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Transgrediemur nunc ad illa, quibus ut 
 par dolor, ita nullus nostrae ciuitatis rubor inest. 
@@ -14526,7 +14528,7 @@ dubio est Sullane prior an iracundia sullae sit
 extincta. <pb/> 
 </p></div></div>
 
-<div type="textpart" n="3(ext)" subtype="chapter">
+<div type="textpart" n="3e" subtype="chapter">
 
 
 <div type="textpart" n="pr" subtype="section">
@@ -14627,7 +14629,7 @@ exemplo, clientis tamen scelesta famis in has usque
 iacentis iniurias esurire non debuit. 
 </p></div></div>
 
-<div type="textpart" n="4(ext)" subtype="chapter">
+<div type="textpart" n="4e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Odium merita Septimulei auaritia,
 Ptolomaei autem regis Cypriorum risu prosequenda: nam 
@@ -14699,7 +14701,7 @@ esset dicturus, 'hunc ego' inquit 'notum non habui'.
 superba de senatore, inpotens de occiso confessio. 
 </p></div></div>
 
-<div type="textpart" n="5(ext)" subtype="chapter">
+<div type="textpart" n="5e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Satis multa de nostris: aliena nunc
 adiciantur. Alexandri regis uirtus ac felicitas tribus 
@@ -14801,7 +14803,7 @@ quia is sceleris huius auctor inpunitate promissa fuit
 uictoriamque non meruit, sed emit. 
 </p></div></div>
 
-<div type="textpart" n="6(ext)" subtype="chapter">
+<div type="textpart" n="6e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Verum ut ipsum fontem perfidiae
 contemplemur, Karthaginienses Xanthippum
@@ -14878,7 +14880,7 @@ fugere extra forum coactum inque tabernula latitantem
 praetextatum discerpserunt. 
 </p></div></div>
 
-<div type="textpart" n="7(MilRom)" subtype="chapter">
+<div type="textpart" n="7M" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Detestanda fori condicio, sed si 
 castra respicias, aeque magna orietur indignatio. cum 
@@ -14954,7 +14956,7 @@ indignationis non recipit, oranti atque obsecranti duci a
 militibus causae dicendae potestas negata est. 
 </p></div></div>
 
-<div type="textpart" n="8(ext)" subtype="chapter">
+<div type="textpart" n="8e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Itaque minus miror apud trucem et
 saeuum animum Hannibalis defensionis locum innoxio 
@@ -15073,7 +15075,7 @@ quaestio ulla in urbe hac de re habita nec querella
 uersata est. 
 </p></div></div>
 
-<div type="textpart" n="10(ext)" subtype="chapter">
+<div type="textpart" n="10e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Clarae ultionis utraque regina, et
 Tomyris, quae caput Cyri abscisum in utrem humano 
@@ -15195,7 +15197,7 @@ quid dicam, tradidit an ipsa iugulauit? quanto enim
 leuius est scelus, cui tantum modo manus abest? 
 </p></div></div>
 
-<div type="textpart" n="11(ext)" subtype="chapter">
+<div type="textpart" n="11e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Illud autem facinus, quia externum est, 
 tranquilliore adfectu narrabitur. Scipione Africano 
@@ -15373,7 +15375,7 @@ occultis causis exposito interdum quae inmerentia
 tempus mortis incidant quam ipsa mortem accersant. 
 </p></div></div>
 
-<div type="textpart" n="12(ext)" subtype="chapter">
+<div type="textpart" n="12e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Sunt et externae mortes dignae adnotatu. 
 qualis in primis Comae, quem ferunt maximi
@@ -15531,7 +15533,7 @@ sanae rationis modum expugnando, quae uitam
 diligere, mortem non timere praecepit. 
 </p></div></div>
 
-<div type="textpart" n="13(ext)" subtype="chapter">
+<div type="textpart" n="13e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Eadem Xerxen regem pro totius Asiae 
 armata iuuentute, quod intra centum annos esset 
@@ -15660,7 +15662,7 @@ personis sunt excellentia et non obscura notitia
 celebrantur. 
 </p></div></div>
 
-<div type="textpart" n="14(ext)" subtype="chapter">
+<div type="textpart" n="14e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Regi Antiocho unus ex aequalibus et 
 ipse regiae stirpis nomine Artemo perquam similis 
@@ -15770,7 +15772,7 @@ publicam</add> reduxit, gubernacula Romani imperii iustiore
 principe obtinente in publica custodia spiritum posuit. 
 </p></div></div>
 
-<div type="textpart" n="15(ext)" subtype="chapter">
+<div type="textpart" n="15e" subtype="chapter">
 <div type="textpart" n="1" subtype="section">
 <p>Eodem praeside rei publicae in consimili 
 mendacio muliebris temeritas Mediolani repressa est. 

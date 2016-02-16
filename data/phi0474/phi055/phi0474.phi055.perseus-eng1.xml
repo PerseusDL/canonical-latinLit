@@ -1,31 +1,22 @@
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
-<teiHeader type="text">
+<?xml version="1.0"?>
+<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
+<!ENTITY % TEI.XML "INCLUDE">
+<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Prose//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" >
+%PersProse;
+]>
+<TEI.2>
+<teiHeader type="text" status="new">
 <fileDesc>
 <titleStmt>
 <title type="work">De Officiis</title>
 <title type="sub">Machine readable text</title>
 	<author n="Cic.">M. Tullius Cicero</author>
 <editor role="editor" n="Miller">Walter Miller</editor>
-<sponsor>Perseus Project, Tufts University</sponsor>
-<principal>Gregory Crane</principal>
-<respStmt>
-<resp>Prepared under the supervision of</resp>
-<name>Bridget Almas</name>
-<name>Lisa Cerrato</name>
-<name>William Merrill</name>
-<name>Elli Mylonas</name>
-<name>David Smith</name>
-</respStmt>
-<funder n="org:AnnCPB">The Annenberg CPB/Project</funder>
+&responsibility;
+&fund.AnnCPB;
 </titleStmt>
 <extent>About 100Kb</extent>
-<publicationStmt>
-<publisher>Trustees of Tufts Universities</publisher>
-<pubPlace>Medford, MA</pubPlace>
-<authority>Perseus Project</authority>
-</publicationStmt>
-
+&Perseus.publish;
 <sourceDesc>
 <biblStruct>
 	<monogr>
@@ -43,43 +34,33 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 </sourceDesc>
 </fileDesc>
 
-	<encodingDesc>
-		<refsDecl n="CTS">
-			<cRefPattern n="section" matchPattern="(\w+).(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:milestone[@n='$2']/tei:milestone[@n='$3'])">
-				<p>This pointer pattern extracts book and chapter and section</p>
-			</cRefPattern>
-			<cRefPattern n="chapter" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:milestone[@n='$2'])">
-				<p>This pointer pattern extracts book and chapter</p>
-			</cRefPattern>
-			<cRefPattern n="book" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
-				<p>This pointer pattern extracts book</p>
-			</cRefPattern>
-		</refsDecl>
-		<refsDecl>
-			<refState unit="book" delim="."/>
-			<refState unit="chapter" delim="."/>
-			<refState unit="section"/>
-		</refsDecl>
-	</encodingDesc>
+<encodingDesc>
+	<refsDecl doctype="TEI.2">
+		<state unit="book"/>
+		<state unit="section"/>
+	</refsDecl>
+</encodingDesc>
 
 <profileDesc>
 <langUsage>
-	<language ident="eng">English</language>
-<language ident="grc">Greek</language>
+	<language id="en">English</language>
+<language id="greek">Greek</language>
 </langUsage>
 </profileDesc>
 <revisionDesc>
-<change who="GRC" when="2006">tagging
+<change><date>2006</date>
+<respStmt><name>GRC</name><resp>tagging</resp></respStmt>
+<item></item>
 </change>
-<change who="Zach Himes" when="2015-12-17">Changed teiHeader</change>
+
 </revisionDesc>
 </teiHeader>
 
 <text><body>
-	<div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0474.phi055.perseus-eng1" subtype="translation">
-<pb xml:id="p.3"/>
 
-<div type="textpart" subtype="book" n="1"><head>Book I: Moral Goodness</head>
+<pb id="p.3"/>
+
+<div1 type="book" n="1"><head>Book I: Moral Goodness</head>
 
 <p><milestone unit="section" n="1"/> <milestone unit="chapter" n="1"/> My dear son Marcus, you have now been studying <note type="marg">Introduction: the importance of combining Greek and Latin studies.</note> a full year under Cratippus, and that too in
 Athens, and you should be fully equipped with the
@@ -88,8 +69,8 @@ much at least one might expect from the pre-eminence not only of your teacher bu
 the former is able to enrich you with learning, the
 latter to supply you with models. Nevertheless, just
 as I for my own improvement have always combined
-Greek and Latin studies—and I have done this not
-only in the study of philosophy but also in the practice of oratory—so I recommend that you should do
+Greek and Latin studies&mdash;and I have done this not
+only in the study of philosophy but also in the practice of oratory&mdash;so I recommend that you should do
 the same, so that you may have equal command of
 both languages. And it is in this very direction that
 I have, if I mistake not, rendered a great service
@@ -109,7 +90,7 @@ Plato). As to the conclusions you may reach, I leave
 that to your own judgment (for I would put no hindrance in your way), but by reading my philosophical
 
 
-<pb xml:id="p.5"/>
+<pb id="p.5"/>
 
 writings you will be sure to render your mastery of
 the Latin language more complete. But I would by
@@ -132,7 +113,7 @@ to succeed in both departments, both in the forensic
 style and in that of calm philosophic discussion has
 not, I observe, been the good fortune of any one of the
 Greeks so far, unless, perhaps, Demetrius of Phalerum
-can be reckoned in that number—a clever reasoner,
+can be reckoned in that number&mdash;a clever reasoner,
 indeed, and, though rather a spiritless orator, he is
 yet charming, so that you can recognize in him the
 disciple of Theophrastus. But let others judge how
@@ -148,7 +129,7 @@ brilliancy. I feel the same way about Aristotle and
 Isocrates, each of whom, engrossed in his own profession, undervalued that of the other.</p>
 
 
-<pb xml:id="p.7"/>
+<pb id="p.7"/>
 
 <p><milestone unit="chapter" n="2"/> But since I have decided to write you a little<note type="marg">Statement of subject.</note>
 now (and a great deal by and by), I wish, if possible,
@@ -173,7 +154,7 @@ schools that distort all notions of duty by the theories
 they propose touching the supreme good and the
 supreme evil. For he who posits the supreme good
 as having no connection with virtue and measures it
-not by a moral standard but by his own interests—
+not by a moral standard but by his own interests&mdash;
 if he should be consistent and not rather at times
 over-ruled by his better nature, he could value
 neither friendship nor justice nor generosity; and
@@ -184,7 +165,7 @@ pleasure to be the supreme good.</p>
 subject does not call for discussion, still I have discussed it in another connection. If, therefore, these
 
 
-<pb xml:id="p.9"/>
+<pb id="p.9"/>
 
 schools should claim to be consistent, they could not
 say anything about duty; and no fixed, invariable,
@@ -214,20 +195,20 @@ duties are absolute; whether one duty is more important than another; and so on.
 special duties for which positive rules are laid down,
 though they are affected by the doctrine of the
 supreme good, still the fact is not so obvious, because
-they seem rather to look to the regulation of everyday <pb xml:id="p.11"/> life; and it is these special duties that I propose
+they seem rather to look to the regulation of everyday <pb id="p.11"/> life; and it is these special duties that I propose
 to treat at length in the following books.</p>
 <p><milestone unit="section" n="8"/> And yet there is still another classification of
 duties: we distinguish between <quote>mean</quote> <note>Cicero's technical terms are difficult because he has to
 invent them to translate Greek that is perfectly simple:
-<p><hi rend="italic">rectum</hi> is 'right,' i.e. perfect, absolute. Its opposite is
-<hi rend="italic">medium,</hi> 'mean,' i.e. intermediate, falling short of the ' absolute' and occupying a middle ground; common; ordinary.</p>
-<p><hi rend="italic">honestum</hi> is ' morally right'; as a noun, 'moral goodness'
-(= <hi rend="italic">honestas</hi>); its opposite is <hi rend="italic">turpe,</hi> 'morally wrong.</p>
-<p><hi rend="italic">honestas</hi> is 'moral rectitude,'—'moral goodness'; 'morality '; its opposite <hi rend="italic">turpitude,</hi> 'moral wrong,' ' immorality.'</p>
-<p><hi rend="italic">honestus,</hi> on the other hand, is always 'honourable '; and
-<hi rend="italic">honores</hi> are always ' offices of honour.'</p></note> duty, so called, and <quote>absolute</quote> duty. Absolute duty we
+<p><hi rend="italics">rectum</hi> is 'right,' i.e. perfect, absolute. Its opposite is
+<hi rend="italics">medium,</hi> 'mean,' i.e. intermediate, falling short of the ' absolute' and occupying a middle ground; common; ordinary.</p>
+<p><hi rend="italics">honestum</hi> is ' morally right'; as a noun, 'moral goodness'
+(= <hi rend="italics">honestas</hi>); its opposite is <hi rend="italics">turpe,</hi> 'morally wrong.</p>
+<p><hi rend="italics">honestas</hi> is 'moral rectitude,'&mdash;'moral goodness'; 'morality '; its opposite <hi rend="italics">turpitude,</hi> 'moral wrong,' ' immorality.'</p>
+<p><hi rend="italics">honestus,</hi> on the other hand, is always 'honourable '; and
+<hi rend="italics">honores</hi> are always ' offices of honour.'</p></note> duty, so called, and <quote>absolute</quote> duty. Absolute duty we
 may, I presume, call <quote>right,</quote> for the Greeks call it
-<foreign xml:lang="grc">kato/rqwma,</foreign> while the ordinary duty they call <foreign xml:lang="grc">kaqh=kon.</foreign>
+<foreign lang="greek">kato/rqwma,</foreign> while the ordinary duty they call <foreign lang="greek">kaqh=kon.</foreign>
 And the meaning of those terms they fix thus: whatever is right they define as <quote>absolute</quote> duty, but
 <quote>mean</quote> duty, they say, is duty for the performance
 of which an adequate reason may be rendered.</p>
@@ -252,7 +233,7 @@ irresolution that is born of deliberation.</p>
 classification, two points have been overlooked in
 
 
-<pb xml:id="p.13"/>
+<pb id="p.13"/>
 
 the foregoing:<note>For Panaetius was a Stoic, and the Stoics did not admit
 that there were any degrees of right or wrong.</note> for we usually consider not only
@@ -262,12 +243,12 @@ is offered, which one is morally better; and likewise,
 when a choice of two expedients is offered, which one
 is more expedient. Thus the question which Panaetius thought threefold ought, we find, to be divided
 into five parts. First, therefore, we must discuss the
-moral—and that, under two sub-heads; secondly, in
+moral&mdash;and that, under two sub-heads; secondly, in
 the same manner, the expedient; and finally, the
 cases where they must be weighed against each other.</p>
 <p><milestone unit="section" n="11"/> <milestone unit="chapter" n="4"/> First of all, Nature has endowed every species<note type="marg">The essential differences between man and the lower animals.</note>
 of living creature with the instinct of self-preservation, of avoiding what seems likely to cause injury
-to life or limb, and of procuring and providing everything needful for life—food, shelter, and the like.
+to life or limb, and of procuring and providing everything needful for life&mdash;food, shelter, and the like.
 A common property of all creatures is also the
 reproductive instinct (the purpose of which is the
 propagation of the species) and also a certain amount<note type="marg">Instinct and Reason.</note>
@@ -276,26 +257,26 @@ difference between man and beast is this: the beast,
 just as far as it is moved by the senses and with
 very little perception of past or future, adapts itself
 to that alone which is present at the moment; while
-man—because he is endowed with reason, by which
+man&mdash;because he is endowed with reason, by which
 he comprehends the chain of consequences, perceives
 the causes of things, understands the relation of
 cause to effect and of effect to cause, draws analogies,
 and connects and associates the present and the
-future—easily surveys the course of his whole life
+future&mdash;easily surveys the course of his whole life
 and makes the necessary preparations for its conduct.</p>
 <p><milestone unit="section" n="12"/> Nature likewise by the power of reason associates
 man with man in the common bonds of speech and<note type="marg">Family ties.</note>
 life; she implants in him above all, I may say, a
 
 
-<pb xml:id="p.15"/>
+<pb id="p.15"/>
 
 strangely tender love for his offspring. She also
 prompts men to meet in companies, to form public
 assemblies and to take part in them themselves; and
 she further dictates, as a consequence of this, the
 effort on man's part to provide a store of things that
-minister to his comforts and wants—and not for
+minister to his comforts and wants&mdash;and not for
 himself alone, but for his wife and children and the
 others whom he holds dear and for whom he ought
 to provide; and this responsibility also stimulates
@@ -325,7 +306,7 @@ Nature and Reason, extending the analogy of this
 from the world of sense to the world of spirit, find that
 
 
-<pb xml:id="p.17"/>
+<pb id="p.17"/>
 
 beauty, consistency, order are far more to be maintained in thought and deed, and the same Nature
 and Reason are careful to do nothing in an improper
@@ -333,8 +314,8 @@ or unmanly fashion, and in every thought and deed
 to do or think nothing capriciously.</p>
 <p>It is from these elements that is forged and
 fashioned that moral goodness which is the subject
-of this inquiry—something that, even though it be
-not generally ennobled, is still worthy of all honour;<note>Cicero plays on the double meaning of <hi rend="italic">honestum.:</hi> (1)
+of this inquiry&mdash;something that, even though it be
+not generally ennobled, is still worthy of all honour;<note>Cicero plays on the double meaning of <hi rend="italics">honestum.:</hi> (1)
 'moral goodness,' and (2) ' honourable,' ' distinguished,'
 etc.</note>
 and by its own nature, we correctly maintain, it
@@ -362,7 +343,7 @@ truth and its discovery; and this is the peculiar
 province of that virtue.<milestone unit="section" n="16"/>  For the more clearly anyone observes the most essential truth in any given
 
 
-<pb xml:id="p.19"/>
+<pb id="p.19"/>
 
 case and the more quickly and accurately he can
 see and explain the reasons for it, the more understanding and wise he is generally esteemed, and
@@ -398,7 +379,7 @@ not treat the unknown as known and too readily
 accept it; and he who wishes to avoid this error (as
 
 
-<pb xml:id="p.21"/>
+<pb id="p.21"/>
 
 all should do) will devote both time and attention
 to the weighing of evidence.<milestone unit="section" n="19"/>  The other error is
@@ -430,12 +411,12 @@ source of duty.</p>
 extensive in its application is the principle by which
 society and what we may call its <quote>common bonds</quote>
 are maintained. Of this again there are two
-divisions—justice, in which is the crowning glory
+divisions&mdash;justice, in which is the crowning glory
 of the virtues and on the basis of which men are
 called <quote>good men</quote>; and, close akin to justice,
 
 
-<pb xml:id="p.23"/>
+<pb id="p.23"/>
 
 charity, which may also be called kindness or
 generosity.</p>
@@ -443,7 +424,7 @@ generosity.</p>
 doing harm to another, unless provoked by wrong;
 and the next is to lead men to use common possessions for the common interests, private property
 for their own.</p>
-<p><milestone unit="section" n="21"/> There is, however, no such thing as private<note type="marg">Public <hi rend="italic">vs.</hi> private interests.</note>
+<p><milestone unit="section" n="21"/> There is, however, no such thing as private<note type="marg">Public <hi rend="italics">vs.</hi> private interests.</note>
 ownership established by nature, but property becomes private either through long occupancy (as in
 the case of those who long ago settled in unoccupied
 territory) or through conquest (as in the case of
@@ -467,18 +448,18 @@ we ought to follow Nature as our guide, to contribute to the general good by an 
 of kindness, by giving and receiving, and thus by
 
 
-<pb xml:id="p.25"/>
+<pb id="p.25"/>
 
 our skill, our industry, and our talents to cement
 human society more closely together, man to man.</p>
-<p><milestone unit="section" n="23"/> The foundation of justice, moreover, is good faith—<note type="marg">Good faith</note>
+<p><milestone unit="section" n="23"/> The foundation of justice, moreover, is good faith&mdash;<note type="marg">Good faith</note>
 that is, truth and fidelity to promises and agreements. And therefore we may follow the Stoics,
 who diligently investigate the etymology of words;
 and we may accept their statement that <quote>good faith</quote>
 is so called because what is promised is <quote>made good,</quote>
 although some may find this derivation<note>Of course, <quote>good faith</quote> <quote>and made good</quote> have just as
-little etymological connection as <hi rend="italic">fiat</hi> and <hi rend="italic">fidem.</hi></note> rather farfetched.</p>
-<p>There are, on the other hand, two kinds of injustice—the <note type="marg">Injustice; active and passive.</note> one, on the part of those who inflict wrong,
+little etymological connection as <hi rend="italics">fiat</hi> and <hi rend="italics">fidem.</hi></note> rather farfetched.</p>
+<p>There are, on the other hand, two kinds of injustice&mdash;the <note type="marg">Injustice; active and passive.</note> one, on the part of those who inflict wrong,
 the other on the part of those who, when they can, do
 not shield from wrong those upon whom it is being
 inflicted. For he who, under the influence of anger
@@ -502,7 +483,7 @@ power and influence and the means of bestowing
 favours; Marcus Crassus, for example, not long since
 
 
-<pb xml:id="p.27"/>
+<pb id="p.27"/>
 
 declared that no amount of wealth was enough for
 the man who aspired to be the foremost citizen of
@@ -540,7 +521,7 @@ the more heedful not to go wrong in that direction.</p>
 <p><milestone unit="section" n="27"/> But in any case of injustice it makes a vast deal<note type="marg">The motives to wrong.</note>
 
 
-<pb xml:id="p.29"/>
+<pb id="p.29"/>
 
 of difference whether the wrong is done as a result
 of some impulse of passion, which is usually brief
@@ -574,7 +555,7 @@ voluntary.</p>
 attending to their own business or through some
 
 
-<pb xml:id="p.31"/>
+<pb id="p.31"/>
 
 sort of aversion to their fellow-men, claim that they
 are occupied solely with their own affairs, without
@@ -611,7 +592,7 @@ and it may become right and proper sometimes to
 evade and not to observe what truth and honour
 
 
-<pb xml:id="p.33"/>
+<pb id="p.33"/>
 
 would usually demand. For we may well be guided
 by those fundamental principles of justice which I
@@ -650,15 +631,15 @@ see that those promises are not binding which are
 extorted by intimidation or which we make when
 
 
-<pb xml:id="p.35"/>
+<pb id="p.35"/>
 
 misled by false pretences? Such obligations are
 annulled in most cases by the praetor's edict in
 equity,<note>Each praetor, at his inauguration, announced publicly
 the principles and policies that should guide him in the
 administration of his office. These were the source of the
-<hi rend="italic">Ius Praetorium,</hi> which explained and supplemented the
-common law (<hi rend="italic">Ius Civile</hi>) and even modified its ancient rigour
+<hi rend="italics">Ius Praetorium,</hi> which explained and supplemented the
+common law (<hi rend="italics">Ius Civile</hi>) and even modified its ancient rigour
 so as to conform with a more advanced public sentiment,
 and form a most valuable part of the body of Roman Law.</note> in some cases by the laws.</p>
 <p><milestone unit="section" n="33"/> Injustice often arises also through chicanery, that<note type="marg">Chicanery.</note>
@@ -673,7 +654,7 @@ Lacon. 223 A.)</note> went to ravaging
 their fields by night, because, he said, the truce
 stipulated <quote>days,</quote> not nights. Not even our own
 countryman's action is to be commended, if what is
-told of Quintus Fabius Labeo is true—or whoever it
+told of Quintus Fabius Labeo is true&mdash;or whoever it
 was (for I have no authority but hearsay): appointed
 by the Senate to arbitrate a boundary dispute between Nola and Naples, he took up the case and
 interviewed both parties separately, asking them not
@@ -692,7 +673,7 @@ am inclined to think, it is sufficient that the aggressor
 should be brought to repent of his wrong-doing, in
 
 
-<pb xml:id="p.37"/>
+<pb id="p.37"/>
 
 order that he may not repeat the offence and that
 others may be deterred from doing wrong.</p>
@@ -711,7 +692,7 @@ instance, our forefathers actually admitted to full
 rights of citizenship the Tusculans, Aequians, Volscians, Sabines, and Hernicians, but they razed
 Carthage and Numantia to the ground. I wish they
 had not destroyed Corinth; but I believe they had
-some special reason for what they did—its convenient situation, probably—and feared that its very
+some special reason for what they did&mdash;its convenient situation, probably&mdash;and feared that its very
 location might some day furnish a temptation to
 renew the war. In my opinion, at least, we should
 always strive to secure a peace that shall not admit
@@ -727,7 +708,7 @@ our generals, even though the battering-ram has
 hammered at their walls. And among our countrymen justice has been observed so conscientiously in
 
 
-<pb xml:id="p.39"/>
+<pb id="p.39"/>
 
 this direction, that those who have given promise of
 protection to states or nations subdued in war become,
@@ -754,14 +735,14 @@ by the consul,<note>Lucius Aemilius Paulus (B.C. 168).</note> when he was servin
 the war with Perseus. He warns him, therefore, to be
 careful not to go into battle; for, he says, the man who is
 not legally a soldier has no right to be fighting the foe.</p>
-<p><milestone unit="chapter" n="12"/> This also I observe—that he who would
+<p><milestone unit="chapter" n="12"/> This also I observe&mdash;that he who would
 properly have been called <quote>a fighting enemy</quote>
-(<hi rend="italic">perduellis</hi>) was called <quote>a guest</quote> (<hi rend="italic">hostis</hi>), thus relieving the ugliness of the fact by a softened
-expression; for <quote>enemy</quote> (<hi rend="italic">hostis</hi>) meant to our ancestors <pb xml:id="p.41"/> what we now call <quote>stranger</quote> (<hi rend="italic">peregrinus</hi>).
+(<hi rend="italics">perduellis</hi>) was called <quote>a guest</quote> (<hi rend="italics">hostis</hi>), thus relieving the ugliness of the fact by a softened
+expression; for <quote>enemy</quote> (<hi rend="italics">hostis</hi>) meant to our ancestors <pb id="p.41"/> what we now call <quote>stranger</quote> (<hi rend="italics">peregrinus</hi>).
 This is proved by the usage in the Twelve Tables:
-<quote>Or a day fixed for trial with a stranger</quote> (<hi rend="italic">hostis</hi>).
+<quote>Or a day fixed for trial with a stranger</quote> (<hi rend="italics">hostis</hi>).
 And again: <quote>Right of ownership is inalienable for
-ever in dealings with a stranger</quote> (<hi rend="italic">hostis</hi>). What can
+ever in dealings with a stranger</quote> (<hi rend="italics">hostis</hi>). What can
 exceed such charity, when he with whom one is at war
 is called by so gentle a name? And yet long lapse of
 time has given that word a harsher meaning: for it has
@@ -790,7 +771,7 @@ this famous speech on the exchange of prisoners:
 <l>Nay; let us venture our lives, and the sword, not gold, weigh the outcome.</l>
 
 
-<pb xml:id="p.43"/>
+<pb id="p.43"/>
 
 <l>Make we the trial by valour in arms and see if Dame Fortune</l>
 <l>Wills it that ye shall prevail or I, or what be her judgment.</l>
@@ -822,7 +803,7 @@ long as any one of them lived, the censors kept them
 all degraded and disfranchised, because they were
 
 
-<pb xml:id="p.45"/>
+<pb id="p.45"/>
 
 guilty of perjury in not returning. And they
 punished in like manner the one who had incurred
@@ -856,7 +837,7 @@ the lion; both are wholly unworthy of man, but
 fraud is the more contemptible. But of all forms of
 
 
-<pb xml:id="p.47"/>
+<pb id="p.47"/>
 
 injustice, none is more flagrant than that of the
 hypocrite who, at the very moment when he is most
@@ -880,8 +861,8 @@ those who injure one man, in order to be generous
 to another, are guilty of the same injustice as if
 they diverted to their own accounts the property of
 their neighbours.</p>
-<p><milestone unit="section" n="43"/> Now, there are many—and especially those who<note type="marg">Generosity must be (1) hurtful to no one,</note>
-are ambitious for eminence and glory—who rob one
+<p><milestone unit="section" n="43"/> Now, there are many&mdash;and especially those who<note type="marg">Generosity must be (1) hurtful to no one,</note>
+are ambitious for eminence and glory&mdash;who rob one
 to enrich another; and they expect to be thought
 generous towards their friends, if they put them in
 the way of getting rich, no matter by what means.
@@ -893,7 +874,7 @@ hurt no one. The conveyance of property by Lucius
 Sulla and Gaius Caesar from its rightful owners to
 
 
-<pb xml:id="p.49"/>
+<pb id="p.49"/>
 
 the hands of strangers should, for that reason, not
 be regarded as generosity; for nothing is generous,
@@ -930,15 +911,15 @@ weight.</p>
 <p><milestone unit="section" n="46"/> <milestone unit="chapter" n="15"/> Now, the men we live with are not perfect
 
 
-<pb xml:id="p.51"/>
+<pb id="p.51"/>
 
 and ideally wise, but men who do very well, if there
 be found in them but the semblance of virtue. I
 therefore think that this is to be taken for granted,
 that no one should be entirely neglected who shows
 any trace of virtue; but the more a man is endowed
-with these finer virtues—temperance, self-control,
-and that very justice about which so much has already been said—the more he deserves to be favoured.
+with these finer virtues&mdash;temperance, self-control,
+and that very justice about which so much has already been said&mdash;the more he deserves to be favoured.
 I do not mention fortitude, for a courageous spirit
 in a man who has not attained perfection and ideal
 wisdom is generally too impetuous; it is those other
@@ -965,7 +946,7 @@ ought we to deal with those who have already
 helped us? For generosity is of two kinds: doing
 
 
-<pb xml:id="p.53"/>
+<pb id="p.53"/>
 
 a kindness and requiting one. Whether we do
 the kindness or not is optional; but to fail to requite
@@ -982,8 +963,8 @@ the wind. Such acts of generosity are not to be so
 highly esteemed as those which are performed with
 judgment, deliberation, and mature consideration.</p>
 <p>But in bestowing a kindness, as well as in making
-a requital, the first rule of duty requires us—other
-things being equal—to lend assistance preferably to
+a requital, the first rule of duty requires us&mdash;other
+things being equal&mdash;to lend assistance preferably to
 people in proportion to their individual need. Most
 people adopt the contrary course: they put themselves most eagerly at the service of the one from<note type="marg">(3) self-interest,</note>
 whom they hope to receive the greatest favours,
@@ -998,7 +979,7 @@ Nature has established among men. The first
 principle is that which is found in the connection subsisting between all the members of the human race;
 
 
-<pb xml:id="p.55"/>
+<pb id="p.55"/>
 
 and that bond of connection is reason and speech,
 which by the processes of teaching and learning, of
@@ -1016,7 +997,7 @@ has produced for the common use of man is to be
 maintained, with the understanding that, while
 everything assigned as private property by the
 statutes and by civil law shall be so held as prescribed by those same laws, everything else shall be
-regarded in the light indicated by the Greek proverb: <quote>Amongst friends all things in common.</quote><note><foreign xml:lang="grc">koina\ ta\</foreign> (<foreign xml:lang="grc">tw=n</foreign>) <foreign xml:lang="grc">fi/lwn</foreign> (Plato, Phaedr. 279 C; Aristotle,
+regarded in the light indicated by the Greek proverb: <quote>Amongst friends all things in common.</quote><note><foreign lang="greek">koina\ ta\</foreign> (<foreign lang="greek">tw=n</foreign>) <foreign lang="greek">fi/lwn</foreign> (Plato, Phaedr. 279 C; Aristotle,
 Eth. VIII, 11).</note>
 Furthermore, we find the common property of all
 men in things of the sort defined by Ennius; and,
@@ -1034,22 +1015,22 @@ anyone who will take fire from our fire;</quote> <quote rend="blockquote">Honest
 counsel give to one who is in doubt;</quote>
 
 
-<pb xml:id="p.57"/>
+<pb id="p.57"/>
 
 for such acts are useful to the recipient and cause
 the giver no loss. We should, therefore, adopt these
 principles and always be contributing something to
 the common weal. But since the resources of individuals are limited and the number of the needy is
 infinite, this spirit of universal liberality must be
-regulated according to that test of Ennius—<quote>No
-less shines his</quote> —in order that we may continue to
+regulated according to that test of Ennius&mdash;<quote>No
+less shines his</quote> &mdash;in order that we may continue to
 have the means for being generous to our friends.</p>
 <p><milestone unit="section" n="53"/> <milestone unit="chapter" n="17"/> Then, too, there are a great many degrees<note type="marg">Degrees of social relationship: (1) citizenship,</note>
 of closeness or remoteness in human society. To
 proceed beyond the universal bond of our common
 humanity, there is the closer one of belonging to the
 same people, tribe, and tongue, by which men are
-very closely bound together; it is a still closer relation to be citizens of the same city-state; for fellow-citizens have much in common—forum, temples,
+very closely bound together; it is a still closer relation to be citizens of the same city-state; for fellow-citizens have much in common&mdash;forum, temples,
 colonnades, streets, statutes laws. Courts, rights of
 suffrage, to say nothing of social and friendly circles
 and diverse business relations with many.</p>
@@ -1066,7 +1047,7 @@ of second cousins; and when they can no longer be
 sheltered under one roof, they go out into other
 
 
-<pb xml:id="p.59"/>
+<pb id="p.59"/>
 
 homes, as into colonies. Then follow between these,
 in turn, marriages and connections by marriage, and
@@ -1104,7 +1085,7 @@ them all more close, none more dear than that
 which links each one of us with our country. Parents
 
 
-<pb xml:id="p.61"/>
+<pb id="p.61"/>
 
 are dear; dear are children, relatives, friends; but
 one native land embraces all our loves; and who that
@@ -1136,7 +1117,7 @@ to another: for example, one would sooner assist
 a neighbour in gathering his harvest than either
 
 
-<pb xml:id="p.63"/>
+<pb id="p.63"/>
 
 a brother or a friend; but should it be a case in
 court, one would defend a kinsman and a friend
@@ -1173,7 +1154,7 @@ and this:
 <quote rend="blockquote"><quote><l>Thou son of Salmacis, win spoils that cost nor sweat nor blood.</l></quote></quote>
 
 
-<pb xml:id="p.65"/>
+<pb id="p.65"/>
 
 When, on the other hand, we wish to pay a compliment, we somehow or other praise in more eloquent
 strain the brave and noble work of some great soul.
@@ -1209,7 +1190,7 @@ truth, and foes to deception; for these qualities are
 the centre and soul of justice.</p>
 
 
-<pb xml:id="p.67"/>
+<pb id="p.67"/>
 
 <p><milestone unit="section" n="64"/> But the mischief is that from this exaltation and
 greatness of spirit spring all too readily self-will and
@@ -1245,7 +1226,7 @@ encountered dangers and does not then wish for
 glory as a reward for his achievements.</p>
 
 
-<pb xml:id="p.69"/>
+<pb id="p.69"/>
 
 <p><milestone unit="section" n="66"/> <milestone unit="chapter" n="20"/> The soul that is altogether courageous and<note type="marg">Characteristics of Fortitude:</note>
 great is marked above all by two characteristics:
@@ -1281,7 +1262,7 @@ for the man who is not overcome by fear to be overcome by desire, or for the man
 invincible to toil to be conquered by pleasure. We
 
 
-<pb xml:id="p.71"/>
+<pb id="p.71"/>
 
 must, therefore, not only avoid the latter, but also
 beware of ambition for wealth; for there is nothing so
@@ -1308,7 +1289,7 @@ found the most famous and by far the foremost philosophers<note>e.g. Plato, Aris
 who could not endure the conduct of either the
 people or their leaders; some of them, too, lived in
 the country and found their pleasure in the management of their private estates.<milestone unit="section" n="70"/>  Such men have had
-the same aims as kings—to suffer no want, to be
+the same aims as kings&mdash;to suffer no want, to be
 subject to no authority, to enjoy their liberty, that
 is, in its essence, to live just as they please.</p>
 <p><milestone unit="chapter" n="21"/> So, while this desire is common to men of
@@ -1316,9 +1297,9 @@ political ambitions and men of retirement, of whom
 I have just spoken, the one class think they can
 
 
-<pb xml:id="p.73"/>
+<pb id="p.73"/>
 
-attain their end if they secure large means; the<note type="marg">The life of public service <hi rend="italic">vs.</hi> the life of retirement.</note>
+attain their end if they secure large means; the<note type="marg">The life of public service <hi rend="italics">vs.</hi> the life of retirement.</note>
 other, if they are content with the little they have
 And, in this matter, neither way of thinking is altogether to be condemned; but the life of retirement is
 easier and safer and at the same time less burdensome or troublesome to others, while the career
@@ -1348,14 +1329,14 @@ consistency.</p>
 capacity for administering public affairs should put
 
 
-<pb xml:id="p.75"/>
+<pb id="p.75"/>
 
 aside all hesitation, enter the race for public office,
 and take a hand in directing the government; for
 in no other way can a government be administered
 or greatness of spirit be made manifest. Statesmen,
-too, no less than philosophers—perhaps even more
-so—should carry with them that greatness of spirit
+too, no less than philosophers&mdash;perhaps even more
+so&mdash;should carry with them that greatness of spirit
 and indifference to outward circumstances to which
 I so often refer, together with calm of soul and freedom from care, if they are to be free from worries
 and lead a dignified and self-consistent life.<milestone unit="section" n="73"/>  This is
@@ -1375,7 +1356,7 @@ to lose heart too readily through discouragement nor
 yet to be over-confident through ambition. In a
 word, before undertaking any enterprise, careful
 preparation must be made.</p>
-<p><milestone unit="section" n="74"/> <milestone unit="chapter" n="22"/> Most people think that the achievements<note type="marg">Victories of war <hi rend="italic">vs.</hi> victories of peace.</note>
+<p><milestone unit="section" n="74"/> <milestone unit="chapter" n="22"/> Most people think that the achievements<note type="marg">Victories of war <hi rend="italics">vs.</hi> victories of peace.</note>
 of war are more important than those of peace; but
 this opinion needs to be corrected. For many men
 have sought occasions for war from the mere ambition for fame. This is notably the case with men
@@ -1383,19 +1364,19 @@ of great spirit and natural ability, and it is the more
 likely to happen, if they are adapted to a soldier's
 
 
-<pb xml:id="p.77"/>
+<pb id="p.77"/>
 
 life and fond of warfare. But if we will face the
 facts, we shall find that there have been many
 instances of achievement in peace more important
 and no less renowned than in war.</p>
-<p><milestone unit="section" n="75"/> However highly Themistocles, for example, may<note type="marg">Themistocles <hi rend="italic">vs.</hi> Solon.</note>
-be extolled—and deservedly—and however much
+<p><milestone unit="section" n="75"/> However highly Themistocles, for example, may<note type="marg">Themistocles <hi rend="italics">vs.</hi> Solon.</note>
+be extolled&mdash;and deservedly&mdash;and however much
 more illustrious his name may be than Solon's, and
 however much Salamis may be cited as witness of
-his most glorious victory—a victory glorified above
+his most glorious victory&mdash;a victory glorified above
 Solon's statesmanship in instituting the Areopagus
-—yet Solon's achievement is not to be accounted less
+&mdash;yet Solon's achievement is not to be accounted less
 illustrious than his. For Themistocles's victory served
 the state once and only once; while Solon's work
 will be of service for ever. For through his legislation the laws of the Athenians and the institutions
@@ -1405,7 +1386,7 @@ Areopagus, the Areopagus might with justice assert
 that Themistocles had received assistance from it;
 for the war was directed by the counsels of that
 senate which Solon had created.</p>
-<p><milestone unit="section" n="76"/> The same may be said of Pausanias and Lysander. <note type="marg">Pausanias and Lysander <hi rend="italic">vs.</hi> Lycurgus.</note>
+<p><milestone unit="section" n="76"/> The same may be said of Pausanias and Lysander. <note type="marg">Pausanias and Lysander <hi rend="italics">vs.</hi> Lycurgus.</note>
 Although it is thought that it was by their achievements that Sparta gained her supremacy, yet these
 are not even remotely to be compared with the
 legislation and discipline of Lycurgus. Nay, rather,
@@ -1417,7 +1398,7 @@ public life. For arms are of little value in the field
 unless there is wise counsel at home. So, too,
 
 
-<pb xml:id="p.79"/>
+<pb id="p.79"/>
 
 Africanus, though a great man and a soldier of extraordinary ability, did no greater service to the state by
 destroying Numantia than was done at the same time
@@ -1441,7 +1422,7 @@ never was the republic in more serious peril, never
 was peace more profound. Thus, as the result of my
 counsels and my vigilance, their weapons slipped
 suddenly from the hands of the most desperate
-traitors—dropped to the ground of their own accord!
+traitors&mdash;dropped to the ground of their own accord!
 What achievement in war, then, was ever so great?
 What triumph can be compared with that?<milestone unit="section" n="78"/>  For I
 may boast to you, my son Marcus; for to you belong
@@ -1455,7 +1436,7 @@ services to the state a place in which to celebrate it.</p>
 <p>There are, therefore, instances of civic courage
 
 
-<pb xml:id="p.81"/>
+<pb id="p.81"/>
 
 that are not inferior to the courage of the soldier.
 Nay, the former calls for even greater energy and
@@ -1492,7 +1473,7 @@ not to swerve from the path of reason.</p>
 it calls also for great intellectual ability by reflection
 
 
-<pb xml:id="p.83"/>
+<pb id="p.83"/>
 
 to anticipate the future, to discover some time in
 advance what may happen whether for good or for
@@ -1527,7 +1508,7 @@ dangerous sickness they are compelled to apply
 hazardous and even desperate remedies. It is, therefore, only a madman who, in a calm, would pray
 
 
-<pb xml:id="p.85"/>
+<pb id="p.85"/>
 
 for a storm; a wise man's way is, when the storm
 does come, to withstand it with all the means at his
@@ -1545,7 +1526,7 @@ the state and all the advantages it brings.</note></p>
 <p><milestone unit="section" n="84"/> Many, on the other hand, have been found who
 were ready to pour out not only their money but
 their lives for their country and yet would not
-consent to make even the slightest sacrifice of personal glory—even though the interests of their
+consent to make even the slightest sacrifice of personal glory&mdash;even though the interests of their
 country demanded it. For example, when Callicratidas, as Spartan admiral in the Peloponnesian War,
 had won many signal successes, he spoiled everything at the end by refusing to listen to the proposal
 of those who thought he ought to withdraw his fleet
@@ -1559,12 +1540,12 @@ proved disastrous, when Cleombrotus in fear of criticism recklessly went into ba
 fell.</p>
 
 
-<pb xml:id="p.87"/>
+<pb id="p.87"/>
 
 <p>How much better was the conduct of Quintus
 Maximus! Of him Ennius says:
 
-<quote rend="blockquote"><quote><l>One man—and he alone—restored our state by delaying.</l>
+<quote rend="blockquote"><quote><l>One man&mdash;and he alone&mdash;restored our state by delaying.</l>
 <l>Not in the least did fame with him take precedence of safety;</l>
 <l>Therefore now does his glory shine bright, and it grows ever brighter.</l></quote></quote></p>
 
@@ -1583,7 +1564,7 @@ must be conducted for the benefit of those entrusted
 to one's care, not of those to whom it is entrusted.
 Now, those who care for the interests of a part of
 the citizens and neglect another part, introduce
-into the civil service a dangerous element—dissension and party strife. The result is that some
+into the civil service a dangerous element&mdash;dissension and party strife. The result is that some
 are found to be loyal supporters of the democratic,
 others of the aristocratic party, and few of the nation
 as a whole.</p>
@@ -1591,7 +1572,7 @@ as a whole.</p>
 at Athens,<note>From the death of Pericles on.</note> and in our own country not only dissensions<note>Such as the conspiracy of Catiline.</note> but also disastrous civil wars<note>The civil wars of Marius and Sulla, Caesar and Pompey.</note> broke out.
 
 
-<pb xml:id="p.89"/>
+<pb id="p.89"/>
 
 All this the citizen who is patriotic, brave, and worthy
 of a leading place in the state will shun with abhorrence; he will dedicate himself unreservedly to his
@@ -1624,11 +1605,11 @@ becoming in a pre-eminently great man than courtesy and forbearance. Indeed, in 
 where all enjoy equal rights before the law, we
 
 
-<pb xml:id="p.91"/>
+<pb id="p.91"/>
 
 must school ourselves to affability and what is called
-<quote>mental poise</quote>;<note>The quality elsewhere expressed by Cicero with <foreign xml:lang="grc">baqu/ths</foreign>
-—'depth,' 'reserve,' the art of concealing and controlling
+<quote>mental poise</quote>;<note>The quality elsewhere expressed by Cicero with <foreign lang="greek">baqu/ths</foreign>
+&mdash;'depth,' 'reserve,' the art of concealing and controlling
 one's feelings under an outward serenity of manner.</note> for if we are irritated when
 people intrude upon us at unseasonable hours or make
 unreasonable requests, we shall develop a sour,
@@ -1647,7 +1628,7 @@ to allow no trace of anger. For if anyone proceeds
 in a passion to inflict punishment, he will never
 observe that happy mean which lies between excess
 and defect. This doctrine of the mean is approved
-by the Peripatetics—and wisely approved, if only
+by the Peripatetics&mdash;and wisely approved, if only
 they did not speak in praise of anger and tell us
 that it is a gift bestowed on us by Nature for a good
 purpose. But, in reality, anger is in every circumstance to be eradicated; and it is to be desired that
@@ -1658,7 +1639,7 @@ wrath but by justice.</p>
 of life flows according to our wishes, let us diligently
 
 
-<pb xml:id="p.93"/>
+<pb id="p.93"/>
 
 avoid all arrogance, haughtiness, and pride. For it
 is as much a sign of weakness to give way to one's
@@ -1690,11 +1671,11 @@ beware of lending an ear to sycophants or allowing
 them to impose upon us with their flattery. For
 it is easy in this way to deceive ourselves, since
 we thus come to think ourselves duly entitled to
-praise; and to this frame of mind a thousand delusions <pb xml:id="p.95"/> may be traced, when men are puffed up with
+praise; and to this frame of mind a thousand delusions <pb id="p.95"/> may be traced, when men are puffed up with
 conceit and expose themselves to ignominy and
 ridicule by committing the most egregious blunders.</p>
 <p>So much for this subject.</p>
-<p><milestone unit="section" n="92"/> To revert to the original question<note>§ 70.</note>—we must<note type="marg">Greatness of mind in public and in private life.</note>
+<p><milestone unit="section" n="92"/> To revert to the original question<note>&sect; 70.</note>&mdash;we must<note type="marg">Greatness of mind in public and in private life.</note>
 decide that the most important activities, those
 most indicative of a great spirit, are performed by
 the men who direct the affairs of nations; for such
@@ -1706,7 +1687,7 @@ enterprises and yet kept themselves within the
 limits of their own affairs; or, taking a middle
 course between philosophers on the one hand and
 statesmen on the other, they were content with
-managing their own property—not increasing it by
+managing their own property&mdash;not increasing it by
 any and every means nor debarring their kindred
 from the enjoyment of it, but rather, if ever there
 were need, sharing it with their friends and with
@@ -1723,24 +1704,24 @@ truth and charity toward all.</p>
 <p><milestone unit="section" n="93"/> <milestone unit="chapter" n="27"/> We have next to discuss the one remaining <note type="marg">D. Temperance.</note> division of moral rectitude. That is the one
 
 
-<pb xml:id="p.97"/>
+<pb id="p.97"/>
 
 in which we find considerateness and self-control,
 which give, as it were, a sort of polish to life; it
 embraces also temperance, complete subjection of
 all the passions, and moderation in all things.
 Under this head is further included what, in Latin,<note type="marg">Propriety.</note>
-may be called <hi rend="italic">decorum</hi><note><hi rend="italic">Decorum,</hi> Cicero's attempt to translate <foreign xml:lang="grc">pre/pon,</foreign> means
+may be called <hi rend="italics">decorum</hi><note><hi rend="italics">Decorum,</hi> Cicero's attempt to translate <foreign lang="greek">pre/pon,</foreign> means
 an appreciation of the fitness of things, propriety in inward
 feeling or outward appearance, in speech, behaviour, dress,
-etc. <hi rend="italic">Decorum</hi> is as difficult to translate into English as
-<foreign xml:lang="grc">pre/pon</foreign> is to reproduce in Latin; as an adjective, it is here
+etc. <hi rend="italics">Decorum</hi> is as difficult to translate into English as
+<foreign lang="greek">pre/pon</foreign> is to reproduce in Latin; as an adjective, it is here
 rendered by ' proper,' as a noun, by ' propriety.'</note> (propriety); for in Greek
-it is called <foreign xml:lang="grc">pre/pon.</foreign><note><hi rend="italic">Decorum,</hi> Cicero's attempt to translate <foreign xml:lang="grc">pre/pon,</foreign> means
+it is called <foreign lang="greek">pre/pon.</foreign><note><hi rend="italics">Decorum,</hi> Cicero's attempt to translate <foreign lang="greek">pre/pon,</foreign> means
 an appreciation of the fitness of things, propriety in inward
 feeling or outward appearance, in speech, behaviour, dress,
-etc. <hi rend="italic">Decorum</hi> is as difficult to translate into English as
-<foreign xml:lang="grc">pre/pon</foreign> is to reproduce in Latin; as an adjective, it is here
+etc. <hi rend="italics">Decorum</hi> is as difficult to translate into English as
+<foreign lang="greek">pre/pon</foreign> is to reproduce in Latin; as an adjective, it is here
 rendered by ' proper,' as a noun, by ' propriety.'</note> Such is its essential nature,
 that it is inseparable from moral goodness;<milestone unit="section" n="94"/>  for what
 is proper is morally right, and what is morally right
@@ -1753,9 +1734,9 @@ rectitude which we have now to discuss but also in
 the three preceding divisions, it is clearly brought out
 what propriety is. For to employ reason and speech<note type="marg">Propriety and the Cardinal Virtues.</note>
 rationally, to do with careful consideration whatever one does, and in everything to discern the
-truth and to uphold it—that is proper. To be
+truth and to uphold it&mdash;that is proper. To be
 mistaken, on the other hand, to miss the truth,
-to fall into error, to be led astray—that is as
+to fall into error, to be led astray&mdash;that is as
 improper as to be deranged and lose one's mind.
 And all things just are proper; all things unjust,
 like all things immoral, are improper.</p>
@@ -1769,7 +1750,7 @@ that it is perfectly self-evident and does not require
 any abstruse process of reasoning to see it. For
 
 
-<pb xml:id="p.99"/>
+<pb id="p.99"/>
 
 there is a certain element of propriety perceptible
 in every act of moral rectitude; and this can be
@@ -1806,7 +1787,7 @@ or:
 <quote rend="blockquote"><quote><l>The father is himself his children's tomb,</l></quote></quote>
 
 
-<pb xml:id="p.101"/>
+<pb id="p.101"/>
 
 that would seem improper, because we are told that
 they were just men. But when Atreus speaks those
@@ -1818,8 +1799,8 @@ herself has assigned a character of surpassing excellence, far superior to that 
 decide what propriety requires.</p>
 <p><milestone unit="section" n="98"/> The poets will observe, therefore, amid a great
 variety of characters, what is suitable and proper
-for all—even for the bad. But to us Nature<note type="marg">Moral propriety.</note>
-has assigned the rôles of steadfastness, temperance,
+for all&mdash;even for the bad. But to us Nature<note type="marg">Moral propriety.</note>
+has assigned the r&ocirc;les of steadfastness, temperance,
 self-control, and considerateness of others; Nature
 also teaches us not to be careless in our behaviour
 towards our fellow-men. Hence we may clearly see
@@ -1835,10 +1816,10 @@ of our fellow-men by the order, consistency, and
 self-control it imposes upon every word and deed.</p>
 <p><milestone unit="section" n="99"/> We should, therefore, in our dealings with people<note type="marg">Considerateness.</note>
 show what I may almost call reverence toward all
-men—not only toward the men who are the best, but
+men&mdash;not only toward the men who are the best, but
 toward others as well. For indifference to public
 opinion implies not merely self-sufficiency, but even
-total lack of principle. There is, too, a difference between <pb xml:id="p.103"/> justice and considerateness in one's relations
+total lack of principle. There is, too, a difference between <pb id="p.103"/> justice and considerateness in one's relations
 to one's fellow-men. It is the function of justice
 not to do wrong to one's fellow-men; of considerateness, not to wound their feelings; and in this the
 essence of propriety is best seen.</p>
@@ -1857,7 +1838,7 @@ of virtue which is now under discussion (Temperance). For it is only when they a
 laws that we should give our approval to the movements not only of the body, but still more of the
 spirit.</p>
 <p><milestone unit="section" n="101"/> Now we find that the essential activity of the<note type="marg">(2) subject appetite to reason.</note>
-spirit is twofold: one force is appetite (that is, <foreign xml:lang="grc">o(rmh/,</foreign>
+spirit is twofold: one force is appetite (that is, <foreign lang="greek">o(rmh/,</foreign>
 in Greek), which impels a man this way and that;
 the other is reason, which teaches and explains
 what should be done and what should be left undone.
@@ -1870,7 +1851,7 @@ definition of duty.</p>
 <p><milestone unit="section" n="102"/> The appetites, moreover, must be made to obey
 
 
-<pb xml:id="p.105"/>
+<pb id="p.105"/>
 
 the reins of reason and neither allowed to run ahead
 of it nor from listlessness or indolence to lag behind;
@@ -1890,7 +1871,7 @@ of men in a rage or under the influence of some
 passion or fear or beside themselves with extravagant
 joy: in every instance their features, voices, motions,
 attitudes undergo a change.</p>
-<p><milestone unit="section" n="103"/> From all this—to return to our sketch of duty—
+<p><milestone unit="section" n="103"/> From all this&mdash;to return to our sketch of duty&mdash;
 we see that all the appetites must be controlled
 and calmed and that we must take infinite pains
 not to do anything from mere impulse or at random,
@@ -1907,7 +1888,7 @@ not grant our children unlimited licence to play,
 but only such freedom as is not incompatible with
 
 
-<pb xml:id="p.107"/>
+<pb id="p.107"/>
 
 good conduct, so even in our jesting let the light
 of a pure character shine forth.<milestone unit="section" n="104"/>  There are, generally
@@ -1916,8 +1897,8 @@ vicious, indecent; the other, refined, polite, clever,
 witty. With this latter sort not only our own
 Plautus and the Old Comedy of Athens, but also
 the books of Socratic philosophy abound; and we
-have many witty sayings of many men—like those
-collected by old Cato under the title of <hi rend="italic">Bons Mots</hi>
+have many witty sayings of many men&mdash;like those
+collected by old Cato under the title of <hi rend="italics">Bons Mots</hi>
 (or Apophthegms). So the distinction between the
 elegant and the vulgar jest is an easy matter: the
 one kind, if well timed (for instance, in hours of
@@ -1941,10 +1922,10 @@ hearing. Nay, even if a man is more than ordinarily
 inclined to sensual pleasures, provided, of course, <note type="marg">(4) pleasure.</note>
 that he be not quite on a level with the beasts of
 the field (for some people are men only in name,
-not in fact)—if, I say, he is a little too susceptible
+not in fact)&mdash;if, I say, he is a little too susceptible
 
 
-<pb xml:id="p.109"/>
+<pb id="p.109"/>
 
 to the attractions of pleasure, he hides the fact,
 however much he may be caught in its toils, and
@@ -1978,7 +1959,7 @@ wit; Gaius Caesar, Lucius's son, had a still richer
 fund and employed it with more studied purpose.
 
 
-<pb xml:id="p.111"/>
+<pb id="p.111"/>
 
 Contemporary with them, Marcus Scaurus and
 Marcus Drusus, the younger, were examples of
@@ -1987,7 +1968,7 @@ jollity; while his intimate friend, Scipio, cherished
 more serious ideals and lived a more austere life.
 Among the Greeks, history tells us, Socrates was
 fascinating and witty, a genial conversationalist;
-he was what the Greeks call <foreign xml:lang="grc">ei)/rwn</foreign>—in every conversation, pretending to need information and professing admiration for the wisdom of his companion.
+he was what the Greeks call <foreign lang="greek">ei)/rwn</foreign>&mdash;in every conversation, pretending to need information and professing admiration for the wisdom of his companion.
 Pythagoras and Pericles, on the other hand, reached
 the heights of influence and power without any
 seasoning of mirthfulness. We read that Hannibal,
@@ -2011,15 +1992,15 @@ Callicratidas, who succeeded Lysander as admiral of
 the fleet. So we find that another, no matter how
 
 
-<pb xml:id="p.113"/>
+<pb id="p.113"/>
 
 eminent he may be, will condescend in social intercourse to make himself appear but a very ordinary
 person. Such graciousness of manner we have seen
-in the case of Catulus—both father and son—and also
+in the case of Catulus&mdash;both father and son&mdash;and also
 of Quintus Mucius Mancia. I have heard from my
 elders that Publius Scipio Nasica was another master
-of this art; but his father, on the other hand—the
-man who punished Tiberius Gracchus for his nefarious undertakings—had no such gracious manner in
+of this art; but his father, on the other hand&mdash;the
+man who punished Tiberius Gracchus for his nefarious undertakings&mdash;had no such gracious manner in
 social intercourse [ . . . ], and because of that very
 fact he rose to greatness and fame.</p>
 <p>Countless other dissimilarities exist in natures and
@@ -2039,14 +2020,14 @@ For it is of no avail to fight against one's nature or to
 aim at what is impossible of attainment. From this
 fact the nature of that propriety defined above comes
 into still clearer light, inasmuch as nothing is proper
-that <quote>goes against the grain,</quote> as the saying is—
+that <quote>goes against the grain,</quote> as the saying is&mdash;
 that is, if it is in direct opposition to one's natural
 genius.</p>
 <p><milestone unit="section" n="111"/> If there is any such thing as propriety at all,
 it can be nothing more than uniform consistency
 
 
-<pb xml:id="p.115"/>
+<pb id="p.115"/>
 
 in the course of our life as a whole and all its individual actions. And this uniform consistency one
 could not maintain by copying the personal traits of
@@ -2077,7 +2058,7 @@ a thousand times rather than suffer such indignities!</p>
 <p>If we take this into consideration, we shall see
 
 
-<pb xml:id="p.117"/>
+<pb id="p.117"/>
 
 that it is each man's duty to weigh well what are<note type="marg">Let every one sustain his own character.</note>
 his own peculiar traits of character, to regulate these
@@ -2098,7 +2079,7 @@ rarely in the Ajax. Shall a player have regard to
 this in choosing his role upon the stage, and a wise
 man fail to do so in selecting his part in life?</p>
 <p>We shall, therefore, work to the best advantage
-in that rôle to which we are best adapted. But
+in that r&ocirc;le to which we are best adapted. But
 if at some time stress of circumstances shall thrust
 us aside into some uncongenial part, we must devote
 to it all possible thought, practice, and pains, that
@@ -2107,17 +2088,17 @@ at least with as little impropriety as possible; and
 we need not strive so hard to attain to points of
 excellence that have not been vouchsafed to us as
 to correct the faults we have.</p>
-<p><milestone unit="section" n="115"/> <milestone unit="chapter" n="32"/> To the two above-mentioned characters<note>The universal and the individual; § 107.</note>
+<p><milestone unit="section" n="115"/> <milestone unit="chapter" n="32"/> To the two above-mentioned characters<note>The universal and the individual; &sect; 107.</note>
 is added a third, which some chance or some circumstance imposes, and a fourth also, which we
 assume by our own deliberate choice. Regal powers
 and military commands, nobility of birth and political
 office, wealth and influence, and their opposites
 
 
-<pb xml:id="p.119"/>
+<pb id="p.119"/>
 
 depend upon chance and are, therefore, controlled
-by circumstances. But what rôle we ourselves may<note type="marg">Selection of a career:</note>
+by circumstances. But what r&ocirc;le we ourselves may<note type="marg">Selection of a career:</note>
 choose to sustain is decided by our own free choice.
 And so some turn to philosophy, others to the civil
 law, and still others to oratory, while in case of the
@@ -2152,7 +2133,7 @@ life shall be that to which he has taken a special
 liking. And thus he becomes engaged in some
 
 
-<pb xml:id="p.121"/>
+<pb id="p.121"/>
 
 particular calling and career in life, before he is fit
 to decide intelligently what is best for him.</p>
@@ -2191,7 +2172,7 @@ of each individual act but also in ordering the whole
 course of one's life; and this last is a matter to
 
 
-<pb xml:id="p.123"/>
+<pb id="p.123"/>
 
 which still greater care must be given, in order
 that we may be true to ourselves throughout all our
@@ -2207,7 +2188,7 @@ Nature seems like a combat between a mortal and a
 goddess. If, therefore, anyone has conformed his
 whole plan of life to the kind of nature that is his
 (that is, his better nature), let him go on with it
-consistently—for that is the essence of Propriety—
+consistently&mdash;for that is the essence of Propriety&mdash;
 unless, perchance, he should discover that he has
 made a mistake in choosing his life work. If this<note type="marg">Change of vocation.</note>
 should happen (and it can easily happen), he must
@@ -2227,7 +2208,7 @@ other things, if our nature does not permit such
 imitation; for example, the son of the elder Africanus (that Scipio who adopted the younger Africanus,
 
 
-<pb xml:id="p.125"/>
+<pb id="p.125"/>
 
 the son of Paulus) could not on account of ill-health.
 be so much like his father as Africanus had been
@@ -2235,7 +2216,7 @@ like his. If, then, a man is unable to conduct cases
 at the bar or to hold the people spell-bound with
 his eloquence or to conduct wars, still it will be his
 duty to practise these other virtues, which are within
-his reach—justice, good faith, generosity, temperance, self-control—
+his reach&mdash;justice, good faith, generosity, temperance, self-control&mdash;
 that his deficiencies in other respects may be less conspicuous. The noblest heritage,
 however, that is handed down from fathers to children,
 And one more precious than any inherited wealth, is
@@ -2257,7 +2238,7 @@ the rules of modesty. And this will be easier, if
 the young are not unwilling to have their elders join
 them even in their pleasures.</p>
 <p><milestone unit="section" n="123"/> The old, on the other hand, should, it seems, have<note type="marg">(2) age,</note>
-their physical labours reduced; their mental activities <pb xml:id="p.127"/> should be actually increased. They should
+their physical labours reduced; their mental activities <pb id="p.127"/> should be actually increased. They should
 endeavour, too, by means of their counsel and practical wisdom to be of as much service as possible to
 their friends and to the young, and above all to the
 state. But there is nothing against which old age
@@ -2288,7 +2269,7 @@ view of our duties when the question arises what is
 proper and what is appropriate to each character,
 
 
-<pb xml:id="p.129"/>
+<pb id="p.129"/>
 
 circumstance, and age. But there is nothing so
 essentially proper as to maintain consistency in the
@@ -2296,7 +2277,7 @@ performance of every act and in the conception of
 every plan.</p>
 <p><milestone unit="section" n="126"/> <milestone unit="chapter" n="35"/> But the propriety to which I refer shows<note type="marg">Propriety in bodily actions.</note>
 itself also in every deed, in every word, even in every
-movement and attitude of the body. And in outward, visible propriety there are three elements—
+movement and attitude of the body. And in outward, visible propriety there are three elements&mdash;
 beauty, tact, and taste; these conceptions are difficult
 to express in words, but it will be enough for my
 purpose if they are understood. In these three
@@ -2318,13 +2299,13 @@ and take pains to respond to Nature's demands as
 privately as possible; and in the case of those parts
 of the body which only serve Nature's needs, neither
 the parts nor the functions are called by their real
-names. To perform these functions—if only it be
-done in private—is nothing immoral; but to speak
+names. To perform these functions&mdash;if only it be
+done in private&mdash;is nothing immoral; but to speak
 of them is indecent. And so neither public performance of those acts nor vulgar mention of them
 is free from indecency.</p>
 
 
-<pb xml:id="p.131"/>
+<pb id="p.131"/>
 
 <p><milestone unit="section" n="128"/> But we should give no heed to the Cynics (or to
 some Stoics who are practically Cynics) who censure
@@ -2361,7 +2342,7 @@ especially when Nature is our teacher and guide.</p>
 in the one, loveliness predominates; in the other,
 
 
-<pb xml:id="p.133"/>
+<pb id="p.133"/>
 
 dignity; of these, we ought to regard loveliness as
 the attribute of woman, and dignity as the attribute
@@ -2376,7 +2357,7 @@ are often rather objectionable, and the gestures of
 actors on the stage are not always free from affectation; but simple, unaffected manners are commendable in both instances. Now dignity of mien is also to
 be enhanced by a good complexion; the complexion
 is the result of physical exercise. We must besides
-present an appearance of neatness—not too punctilious or exquisite, but just enough to avoid boorish
+present an appearance of neatness&mdash;not too punctilious or exquisite, but just enough to avoid boorish
 and ill-bred slovenliness. We must follow the same
 principle in regard to dress. In this, as in most
 things, the best rule is the golden mean.</p>
@@ -2392,7 +2373,7 @@ keep our minds intent on the observance of propriety.</p>
 <p><milestone unit="section" n="132"/> Our mental operations, moreover, are of two
 
 
-<pb xml:id="p.135"/>
+<pb id="p.135"/>
 
 kinds: some have to do with thought, others with
 impulse. Thought is occupied chiefly with the discovery of truth; impulse prompts to action. We
@@ -2427,7 +2408,7 @@ they were men of culture, it is true; and so were
 others; but the Catuli were looked upon as the perfect
 
 
-<pb xml:id="p.137"/>
+<pb id="p.137"/>
 
 masters of the Latin tongue. Their pronunciation
 was charming; their words were neither mouthed
@@ -2462,11 +2443,11 @@ on purpose to injure their reputations.</p>
 the home or politics or the practice of the professions
 
 
-<pb xml:id="p.139"/>
+<pb id="p.139"/>
 
 and learning. Accordingly, if the talk begins to
 drift off to other channels, pains should be taken to
-bring it back again to the matter in hand—but with
+bring it back again to the matter in hand&mdash;but with
 due consideration to the company present; for we
 are not all interested in the same things at all times
 or in the same degree. We must observe, too, how
@@ -2485,7 +2466,7 @@ administering reproof. On such occasions we should,
 perhaps, use a more emphatic tone of voice and
 more forcible and severe terms and even assume an
 appearance of being angry. But we shall have recourse to this sort of reproof, as we do to cautery
-and amputation, rarely and reluctantly—never at all,
+and amputation, rarely and reluctantly&mdash;never at all,
 unless it is unavoidable and no other remedy can be
 discovered. We may seem angry, but anger should
 be far from us; for in anger nothing right or judicious can be done.<milestone unit="section" n="137"/>  In most cases, we may apply a
@@ -2494,25 +2475,25 @@ is avoided. Nay more, we must show clearly that
 even that very harshness which goes with our reproof is designed for the good of the person reproved.</p>
 
 
-<pb xml:id="p.141"/>
+<pb id="p.141"/>
 
 <p>The right course, moreover, even in our differences<note type="marg">(2) in disputes.</note>
 with our bitterest enemies, is to maintain our dignity and to repress our anger, even though we are
 treated outrageously. For what is done under some
 degree of excitement cannot be done with perfect
 self-respect or the approval of those who witness it.</p>
-<p>It is bad taste also to talk about oneself—especially <note type="marg">(3) in self-praise.</note> if what one says is not true—and, amid the
+<p>It is bad taste also to talk about oneself&mdash;especially <note type="marg">(3) in self-praise.</note> if what one says is not true&mdash;and, amid the
 derision of one's hearers, to play <quote>The Braggart
-Captain.</quote><note>Like Pyrgopolinices in the <hi rend="italic">Miles Gloriosus</hi> of Plautus,
-or Thraso in the <hi rend="italic">Eunuchus</hi> of Terence.</note></p>
+Captain.</quote><note>Like Pyrgopolinices in the <hi rend="italics">Miles Gloriosus</hi> of Plautus,
+or Thraso in the <hi rend="italics">Eunuchus</hi> of Terence.</note></p>
 <p><milestone unit="section" n="138"/> <milestone unit="chapter" n="39"/> But since I am investigating this subject<note type="marg">The proper home.</note>
 in all its phases (at least, that is my purpose), I
 must discuss also what sort of house a man of rank
 and station should, in my opinion, have. Its prime
 object is serviceableness. To this the plan of the
 building should be adapted; and yet careful attention should be paid to its convenience and distinction.</p>
-<p>We have heard that Gnaeus Octavius—the first
-of that family to be elected consul—distinguished
+<p>We have heard that Gnaeus Octavius&mdash;the first
+of that family to be elected consul&mdash;distinguished
 himself by building upon the Palatine an attractive
 and imposing house. Everybody went to see it,
 and it was thought to have gained votes for the
@@ -2527,7 +2508,7 @@ enhanced by the house he lives in, but not wholly
 secured by it; the owner should bring honour to his
 
 
-<pb xml:id="p.143"/>
+<pb id="p.143"/>
 
 house, not the house to its owner. And, as in
 everything else a man must have regard not for
@@ -2563,7 +2544,7 @@ and by that same standard of moderation the comforts and wants of life generally
 <p>But enough on this part of my theme.</p>
 
 
-<pb xml:id="p.145"/>
+<pb id="p.145"/>
 
 <p><milestone unit="section" n="141"/> In entering upon any course of action, then, <note type="marg">Three rules for the duty of propriety.</note>
 we must hold fast to three principles: first, that
@@ -2580,25 +2561,25 @@ rule for securing this is strictly to observe that
 propriety which we have discussed above, and not
 to overstep it. Yet of these three principles, the
 one of prime importance is to keep impulse subservient to reason.</p>
-<p><milestone unit="section" n="142"/> <milestone unit="chapter" n="40"/> Next, then, we must discuss orderliness of<note type="marg">Orderliness— the right thing at the right time.</note>
+<p><milestone unit="section" n="142"/> <milestone unit="chapter" n="40"/> Next, then, we must discuss orderliness of<note type="marg">Orderliness&mdash; the right thing at the right time.</note>
 conduct and seasonableness of occasions. These two
 qualities are embraced in that science which the
-Greeks call <foreign xml:lang="grc">eu)taci/a</foreign>—not that <foreign xml:lang="grc">eu)taci/a</foreign> which we
-translate with <hi rend="italic">moderation</hi> [<hi rend="italic">modestia</hi>], derived from
-<hi rend="italic">moderate;</hi> but this is the <foreign xml:lang="grc">eu)taci/a</foreign> by which we understand <hi rend="italic">orderly conduct.</hi> And so, if we may call it
-also <hi rend="italic">moderation,</hi> it is defined by the Stoics as follows:
+Greeks call <foreign lang="greek">eu)taci/a</foreign>&mdash;not that <foreign lang="greek">eu)taci/a</foreign> which we
+translate with <hi rend="italics">moderation</hi> [<hi rend="italics">modestia</hi>], derived from
+<hi rend="italics">moderate;</hi> but this is the <foreign lang="greek">eu)taci/a</foreign> by which we understand <hi rend="italics">orderly conduct.</hi> And so, if we may call it
+also <hi rend="italics">moderation,</hi> it is defined by the Stoics as follows:
 <quote>Moderation is the science of disposing aright
 everything that is done or said.</quote> So the essence
-of <hi rend="italic">orderliness</hi> and of right-placing, it seems, will be
-the same; for <hi rend="italic">orderliness</hi> they define also as <quote>the
+of <hi rend="italics">orderliness</hi> and of right-placing, it seems, will be
+the same; for <hi rend="italics">orderliness</hi> they define also as <quote>the
 arrangement of things in their suitable and appropriate places.</quote> By <quote>place of action,</quote> moreover,
-they mean <hi rend="italic">seasonableness of circumstance;</hi> and the
-<hi rend="italic">seasonable circumstance</hi> for an action is called in
-Greek <foreign xml:lang="grc">eu)kairi/a,</foreign> in Latin <hi rend="italic">occasio</hi> (occasion). So it
-comes about that in this sense <hi rend="italic">moderation,</hi> which we
+they mean <hi rend="italics">seasonableness of circumstance;</hi> and the
+<hi rend="italics">seasonable circumstance</hi> for an action is called in
+Greek <foreign lang="greek">eu)kairi/a,</foreign> in Latin <hi rend="italics">occasio</hi> (occasion). So it
+comes about that in this sense <hi rend="italics">moderation,</hi> which we
 
 
-<pb xml:id="p.147"/>
+<pb id="p.147"/>
 
 explain as I have indicated, is the science of doing
 the right thing at the right time.</p>
@@ -2633,7 +2614,7 @@ similar circumstances apply his closest thought to
 some other subject, he would not be open to censure
 
 
-<pb xml:id="p.149"/>
+<pb id="p.149"/>
 
 but if he should do that same thing at a dinner,
 he would be thought ill-bred, because he ignored
@@ -2645,7 +2626,7 @@ pass unnoticed by the many. However slightly out
 of tune a harp or flute may be, the fault is still
 detected by a connoisseur; so we must be on the
 watch lest haply something in our life be out of
-tune—nay, rather, far greater is the need for painstaking, inasmuch as harmony of actions is far better
+tune&mdash;nay, rather, far greater is the need for painstaking, inasmuch as harmony of actions is far better
 and far more important than harmony of sounds.</p>
 <p><milestone unit="section" n="146"/> <milestone unit="chapter" n="41"/> As, therefore, a musical ear detects even the<note type="marg">We correct our faults</note>
 slightest falsity of tone in a harp, so we, if we wish<note type="marg">(1) by observing others,</note>
@@ -2668,7 +2649,7 @@ to do better whose faults the masters mimic for the
 sake of correcting them.</p>
 
 
-<pb xml:id="p.151"/>
+<pb id="p.151"/>
 
 <p><milestone unit="section" n="147"/> Nor is it out of place in making a choice between<note type="marg">(2) by the criticisms of the wise.</note>
 duties involving a doubt, to consult men of learning
@@ -2701,7 +2682,7 @@ in keeping with their high moral standards, and who,
 as true patriots, have rendered or are now rendering
 
 
-<pb xml:id="p.153"/>
+<pb id="p.153"/>
 
 efficient service to their country, just as much as if
 they were invested with some civil or military authority; it is our duty also to show proper respect to old
@@ -2733,15 +2714,15 @@ sensual pleasures:
 <l part="I">And fishermen,</l></quote></quote>
 
 
-<pb xml:id="p.155"/>
+<pb id="p.155"/>
 
 as Terence says. Add to these, if you please, the
-perfumers, dancers, and the whole <hi rend="italic">corps de ballet</hi><note>The <hi rend="italic">ludus talarius</hi> was a kind of low variety show, with
+perfumers, dancers, and the whole <hi rend="italics">corps de ballet</hi><note>The <hi rend="italics">ludus talarius</hi> was a kind of low variety show, with
 loose songs and dances and bad music.</note></p>
 <p><milestone unit="section" n="151"/> But the professions in which either a higher<note type="marg">(2) liberal.</note>
 degree of intelligence is required or from which no
-small benefit to society is derived—medicine and
-architecture, for example, and teaching—these are
+small benefit to society is derived&mdash;medicine and
+architecture, for example, and teaching&mdash;these are
 proper for those whose social position they become.
 Trade, if it is on a small scale, is to be considered
 vulgar; but if wholesale and on a large scale, importing large quantities from all parts of the world
@@ -2763,10 +2744,10 @@ enough how moral duties are derived from the four
 divisions of moral rectitude. But between those
 very actions which are morally right, a conflict and
 comparison may frequently arise, as to which of two
-moral actions is morally better—a point overlooked by
+moral actions is morally better&mdash;a point overlooked by
 Panaetius. For, since all moral rectitude springs from
 four sources (one of which is prudence; the second,
-social instinct; the third, courage; the fourth, temperance),it <pb xml:id="p.157"/> is often necessary in deciding a question of
+social instinct; the third, courage; the fourth, temperance),it <pb id="p.157"/> is often necessary in deciding a question of
 duty that these virtues be weighed against one
 another.</p>
 <p><milestone unit="section" n="153"/> My view, therefore, is that those duties are closer<note type="marg">Justice vs. Wisdom.</note>
@@ -2779,9 +2760,9 @@ pouring in upon him, he might in perfect peace
 study and ponder over everything that is worth
 knowing, still, if the solitude were so complete that
 he could never see a human being, he would die.
-And then, the foremost of all virtues is wisdom—what
-the Greeks call <foreign xml:lang="grc">sofi/a;</foreign> for by prudence, which they
-call <foreign xml:lang="grc">fro/nhsis,</foreign> we understand something else, namely,
+And then, the foremost of all virtues is wisdom&mdash;what
+the Greeks call <foreign lang="greek">sofi/a;</foreign> for by prudence, which they
+call <foreign lang="greek">fro/nhsis,</foreign> we understand something else, namely,
 the practical knowledge of things to be sought for
 and of things to be avoided. (2) Again, that wisdom
 which I have given the foremost place is the knowledge of things human and divine, which is concerned
@@ -2799,13 +2780,13 @@ man to man</quote> are derived from wisdom, and therewith side-tracks wisdom and
 instinct the place from which wisdom has been shunted.
 <p>Cicero could not refrain from introducing a bit of
 theoretical speculation that has no value for his practical
-position—it actually prejudices it and confuses the reader.</p></note>
+position&mdash;it actually prejudices it and confuses the reader.</p></note>
 And (3) service is better than mere theoretical knowledge, for the study and knowledge of the universe
 would somehow be lame and defective, were no practical results to follow. Such results, moreover, are best
 seen in the safeguarding of human interests. It is
 
 
-<pb xml:id="p.159"/>
+<pb id="p.159"/>
 
 essential, then, to human society; and it should,
 therefore, be ranked above speculative knowledge.</p>
@@ -2835,14 +2816,14 @@ larger service to their country. So, for example, the
 Pythagorean Lysis taught Epaminondas of Thebes;
 Plato, Dion of Syracuse; and many, many others. As
 for me myself, whatever service I have rendered to
-my country—if, indeed, I have rendered any—I
+my country&mdash;if, indeed, I have rendered any&mdash;I
 came to my task trained and equipped for it by my
 teachers and what they taught me.<milestone unit="section" n="156"/>  And not only
 while present in the flesh do they teach and train those
 who are desirous of learning, but by the written
 
 
-<pb xml:id="p.161"/>
+<pb id="p.161"/>
 
 memorials of their learning they continue the same
 service after they are dead. For they have overlooked no point that has a bearing upon laws, customs,
@@ -2858,7 +2839,7 @@ while speech extends its benefits to those with whom
 we are united by the bonds of society.</p>
 <p><milestone unit="section" n="157"/> And again, as swarms of bees do not gather for
 the sake of making honeycomb but make the honeycomb because they are gregarious by nature, so human
-beings—and to a much higher degree—exercise their
+beings&mdash;and to a much higher degree&mdash;exercise their
 skill together in action and thought because they are
 naturally gregarious. And so, if that virtue [Justice] <note type="marg">Justice more valuable than Wisdom and Fortitude.</note>
 which centres in the safeguarding of human interests, that is, in the maintenance of human society,
@@ -2876,7 +2857,7 @@ in order to provide for the needs of daily life; for,
 they say, without the aid of others we could not
 
 
-<pb xml:id="p.163"/>
+<pb id="p.163"/>
 
 secure for ourselves or supply to others the things
 that Nature requires; but if all that is essential to our
@@ -2890,7 +2871,7 @@ wish to teach, as well as to learn; to hear, as well as
 to speak. Every duty, therefore, that tends effectively to maintain and safeguard human society should
 be given the preference over that duty which arises
 from speculation and science alone.</p>
-<p><milestone unit="section" n="159"/> <milestone unit="chapter" n="45"/> The following question should, perhaps, be<note type="marg">Justice <hi rend="italic">vs.</hi> Temperance.</note>
+<p><milestone unit="section" n="159"/> <milestone unit="chapter" n="45"/> The following question should, perhaps, be<note type="marg">Justice <hi rend="italics">vs.</hi> Temperance.</note>
 asked: whether this social instinct, which is the
 deepest feeling in our nature, is always to have precedence over temperance and moderation also. I think
 not. For there are some acts either so repulsive or so
@@ -2907,7 +2888,7 @@ it could be to the state's interest to have the wise
 man do any of those things.</p>
 <p><milestone unit="section" n="160"/> This, then, may be regarded as settled: in choosing <note type="marg">Order of precedence of duties.</note> between conflicting duties, that class takes precedence which is demanded by the interests of
 human society. [And this is the natural sequence;
-for discreet action will presuppose learning and practical <pb xml:id="p.165"/> wisdom; it follows, therefore, that discreet
+for discreet action will presuppose learning and practical <pb id="p.165"/> wisdom; it follows, therefore, that discreet
 action is of more value than wise (but inactive)
 speculation.]</p>
 <p>So much must suffice for this topic. For, in its
@@ -2923,10 +2904,10 @@ an action is morally right or wrong, but also, when
 a choice is offered between two moral actions, which
 one is morally better. This point, as I remarked
 above, has been overlooked by Panaetius. But let us
-now pass on to what remains.</p></div>
+now pass on to what remains.</p></div1>
 
-<pb xml:id="p.169"/>
-<div type="textpart" subtype="book" n="2"><head>Book II: Expediency</head>
+<pb id="p.169"/>
+<div1 type="book" n="2"><head>Book II: Expediency</head>
 <p><milestone unit="section" n="1"/> <milestone unit="chapter" n="1"/> I believe, Marcus, my son, that I have fully<note type="marg">Statement of subject.</note>
 explained in the preceding book how duties are
 derived from moral rectitude, or rather from each of
@@ -2956,7 +2937,7 @@ standing, I did not resign myself to grief, by which
 I should have been overwhelmed, had I not struggled
 
 
-<pb xml:id="p.171"/>
+<pb id="p.171"/>
 
 against it; neither, on the other hand, did I surrender myself to a life of sensual pleasure unbecoming to a philosopher.</p>
 <p><milestone unit="section" n="3"/> I would that the government had stood fast in
@@ -2985,13 +2966,13 @@ the state; all of this was spent in reading; I had no
 leisure for writing.</p>
 <p><milestone unit="section" n="5"/> <milestone unit="chapter" n="2"/> Therefore, amid all the present most awful<note type="marg">Why philosophy is worth while.</note>
 calamities I yet flatter myself that I have won
-this good out of evil—that I may commit to written
+this good out of evil&mdash;that I may commit to written
 form matters not at all familiar to our countrymen
 but still very much worth their knowing. For
 what, in the name of heaven, is more to be desired
 
 
-<pb xml:id="p.173"/>
+<pb id="p.173"/>
 
 than wisdom? What is more to be prized? What
 is better for a man, what more worthy of his nature?
@@ -3023,12 +3004,12 @@ as I have done in another of my books. For the
 present I meant only to explain why, deprived of
 the tasks of public service, I have devoted myself to
 this particular pursuit.</p>
-<p><milestone unit="section" n="7"/> But people raise other objections against me—
+<p><milestone unit="section" n="7"/> But people raise other objections against me&mdash;
 
 
-<pb xml:id="p.175"/>
+<pb id="p.175"/>
 
-and that, too, philosophers and scholars—asking<note type="marg">Position of the New Academy.</note>
+and that, too, philosophers and scholars&mdash;asking<note type="marg">Position of the New Academy.</note>
 whether I think I am quite consistent in my conduct: for although our school maintains that nothing
 can be known for certain, yet, they urge, I make a
 habit of presenting my opinions on all sorts of subjects and at this very moment am trying to formulate
@@ -3055,11 +3036,11 @@ were made of all the arguments on both sides.</p>
 forth in my <quote>Academics.</quote> And although, my dear
 Cicero, you are a student of that most ancient and
 celebrated school of philosophy, with Cratippus as
-your master—and he deserves to be classed with the
-founders of that illustrious sect<note>Aristotle and Theophrastus.</note>—still I wish our
+your master&mdash;and he deserves to be classed with the
+founders of that illustrious sect<note>Aristotle and Theophrastus.</note>&mdash;still I wish our
 
 
-<pb xml:id="p.177"/>
+<pb id="p.177"/>
 
 school, which is closely related to yours, not to be
 unknown to you.</p>
@@ -3067,7 +3048,7 @@ unknown to you.</p>
 <p><milestone unit="section" n="9"/> <milestone unit="chapter" n="3"/> Five principles, accordingly, have been laid<note type="marg">Expediency and Moral Rectitude identical.</note>
 down for the pursuance of duty: two of them have to
 do with propriety and moral rectitude; two, with the
-external conveniences of life—means, wealth, influence; the fifth, with the proper choice, if ever the
+external conveniences of life&mdash;means, wealth, influence; the fifth, with the proper choice, if ever the
 four first mentioned seem to be in conflict. The
 division treating of moral rectitude, then, has been
 completed, and this is the part with which I desire
@@ -3093,7 +3074,7 @@ follows, then, that whatever is morally right is also
 expedient.] Those who fail to comprehend that
 
 
-<pb xml:id="p.179"/>
+<pb id="p.179"/>
 
 theory do often, in their admiration for shrewd and
 clever men, take craftiness for wisdom. But they
@@ -3110,7 +3091,7 @@ some are rational, others irrational. Horses, oxen,
 and the other cattle, [bees,] whose labour contributes
 more or less to the service and subsistence of man,
 are not endowed with reason; of rational beings two
-divisions are made—gods and men. Worship and
+divisions are made&mdash;gods and men. Worship and
 purity of character will win the favour of the gods;
 and next to the gods, and a close second to them,
 men can be most helpful to men.</p>
@@ -3130,7 +3111,7 @@ have been no provisions for health, no navigation,
 no agriculture, no ingathering or storing of the
 
 
-<pb xml:id="p.181"/>
+<pb id="p.181"/>
 
 fruits of the field or other kinds of produce.<milestone unit="section" n="13"/>  Then,
 too, there would surely be no exportation of our
@@ -3164,7 +3145,7 @@ of use are captured.</p>
 which life would not be worth living at all? For
 
 
-<pb xml:id="p.183"/>
+<pb id="p.183"/>
 
 how would the sick be healed? What pleasure
 would the hale enjoy? What comforts should we
@@ -3184,7 +3165,7 @@ succeeded in meeting all our wants.</p>
 <p><milestone unit="section" n="16"/> <milestone unit="chapter" n="5"/> I have dwelt longer on this point than was
 necessary. For who is there to whom those facts
 which Panaetius narrates at great length are not
-self-evident—namely, that no one, either as a
+self-evident&mdash;namely, that no one, either as a
 general in war or as a statesman at home, could have
 accomplished great things for the benefit of the
 state, without the hearty co-operation of other men?
@@ -3201,16 +3182,16 @@ man. There is a book by Dicaearchus on <quote>The
 Destruction of Human Life.</quote> He was a famous
 
 
-<pb xml:id="p.185"/>
+<pb id="p.185"/>
 
 and eloquent Peripatetic, and he gathered together
-all the other causes of destruction—floods, epidemics,
+all the other causes of destruction&mdash;floods, epidemics,
 famines, and sudden incursions of wild animals in
 myriads, by whose assaults, he informs us, whole
 tribes of men have been wiped out. And then he
 proceeds to show by way of comparison how many
 more men have been destroyed by the assaults
-of men—that is, by wars or revolutions—than by
+of men&mdash;that is, by wars or revolutions&mdash;than by
 any and all other sorts of calamity.</p>
 <p><milestone unit="section" n="17"/> Since, therefore, there can be no doubt on this<note type="marg">Co-operation and the virtues.</note>
 point, that man is the source of both the greatest
@@ -3228,15 +3209,15 @@ the first is [Wisdom,] the ability to perceive what in
 any given instance is true and real, what its relations
 are, its consequences, and its causes; the second is
 [Temperance,] the ability to restrain the passions
-(which the Greeks call <foreign xml:lang="grc">pa/qh</foreign>) and make the impulses
-(<foreign xml:lang="grc">o(rmai/</foreign>) obedient to reason; and the third is [Justice,] the skill to treat with consideration and
+(which the Greeks call <foreign lang="greek">pa/qh</foreign>) and make the impulses
+(<foreign lang="greek">o(rmai/</foreign>) obedient to reason; and the third is [Justice,] the skill to treat with consideration and
 wisdom those with whom we are associated, in order
 that we may through their co-operation have our
 natural wants supplied in full and overflowing measure, that we may ward off any impending trouble,
 avenge ourselves upon those who have attempted to
 
 
-<pb xml:id="p.187"/>
+<pb id="p.187"/>
 
 injure us, and visit them with such retribution as
 justice and humanity will permit.</p>
@@ -3244,22 +3225,22 @@ justice and humanity will permit.</p>
 can gain the ability to win and hold the affections of
 our fellow-men; but I must say a few words by way
 of preface.</p>
-<p>Who fails to comprehend the enormous, two-fold<note type="marg">Co-operation <hi rend="italic">vs.</hi> Fortune.</note>
+<p>Who fails to comprehend the enormous, two-fold<note type="marg">Co-operation <hi rend="italics">vs.</hi> Fortune.</note>
 power of Fortune for weal and for woe? When we
 enjoy her favouring breeze, we are wafted over to
 the wished-for haven; when she blows against us,
 we are dashed to destruction. Fortune herself,
 then, does send those other less usual calamities,
-arising, first, from inanimate Nature—hurricanes,
+arising, first, from inanimate Nature&mdash;hurricanes,
 storms, shipwrecks, catastrophes, conflagrations;
-second, from wild beasts—kicks, bites, and attacks.
+second, from wild beasts&mdash;kicks, bites, and attacks.
 But these, as I have said, are comparatively rare.
 <milestone unit="section" n="20"/> But think, on the one side, of the destruction of
 armies (three lately, and many others at many different times), the loss of generals (of a very able and
 eminent commander recently), the hatred of the
 masses, too, and the banishment that as a consequence frequently comes to men of eminent services, their degradation and voluntary exile; think,
 on the other hand, of the successes, the civil and
-military honours, and the victories;—though all
+military honours, and the victories;&mdash;though all
 these contain an element of chance, still they
 cannot be brought about, whether for good or for
 ill, without the influence and the co-operation of our
@@ -3270,7 +3251,7 @@ in our service. And if the discussion of this point
 is unduly prolonged, let the length be compared
 
 
-<pb xml:id="p.189"/>
+<pb id="p.189"/>
 
 with the importance of the object in view. It will
 then, perhaps, seem even too short.</p>
@@ -3284,7 +3265,7 @@ deserving of the most splendid fortune a man can
 have; (3) they may have confidence in him and think
 that they are thus acting for their own interests; or
 (4) they may fear his power; (5) they may, on the
-contrary, hope for some favour—as, for example, when
+contrary, hope for some favour&mdash;as, for example, when
 princes or demagogues bestow gifts of money; or,
 finally, (6) they may be moved by the promise of
 payment or reward. This last is, I admit, the
@@ -3307,10 +3288,10 @@ submit; (5) they may be captivated by the hope of
 gifts of money and by liberal promises; or, finally,
 
 
-<pb xml:id="p.191"/>
+<pb id="p.191"/>
 
 (6) they may be bribed with money, as we have frequently seen in our own country.</p>
-<p><milestone unit="section" n="23"/> <milestone unit="chapter" n="7"/> But, of all motives, none is better adapted to<note type="marg">The motive of love <hi rend="italic">vs.</hi> that of fear.</note>
+<p><milestone unit="section" n="23"/> <milestone unit="chapter" n="7"/> But, of all motives, none is better adapted to<note type="marg">The motive of love <hi rend="italics">vs.</hi> that of fear.</note>
 secure influence and hold it fast than love; nothing
 is more foreign to that end than fear. For Ennius
 says admirably:
@@ -3329,7 +3310,7 @@ For fear is but a poor safeguard of lasting power;
 while affection, on the other hand, may be trusted to
 keep it safe for ever.</p>
 <p><milestone unit="section" n="24"/> But those who keep subjects in check by force
-would of course have to employ severity—masters, for
+would of course have to employ severity&mdash;masters, for
 example, toward their servants, when these cannot
 be held in control in any other way. But those who
 in a free state deliberately put themselves in a
@@ -3342,12 +3323,12 @@ or through secret ballots disposing of some high
 office of state. Freedom suppressed and again regained bites with keener fangs than freedom never
 
 
-<pb xml:id="p.193"/>
+<pb id="p.193"/>
 
 endangered. Let us, then, embrace this policy, which
 appeals to every heart and is the strongest support
 not only of security but also of influence and power
-—namely, to banish fear and cleave to love. And
+&mdash;namely, to banish fear and cleave to love. And
 thus we shall most easily secure success both in
 private and in public life.</p>
 <p>Furthermore, those who wish to be feared must inevitably be afraid of those whom they intimidate.
@@ -3358,8 +3339,8 @@ what state of mind do we fancy Alexander of Pherae
 lived? We read in history that he dearly loved his
 wife Thebe; and yet, whenever he went from the
 banquet-hall to her in her chamber, he used to order
-a barbarian—one, too, tattooed like a Thracian, as
-the records state—to go before him with a drawn
+a barbarian&mdash;one, too, tattooed like a Thracian, as
+the records state&mdash;to go before him with a drawn
 sword; and he used to send ahead some of his bodyguard to pry into the lady's caskets and to search and
 see whether some weapon were not concealed in her
 wardrobe. Unhappy man! To think a barbarian, a
@@ -3373,7 +3354,7 @@ Alexander whom I named but now), not by a few
 conspirators (like that tyrant of ours), but the whole
 population of Agrigentum rose against him with one
 accord.</p>
-<p>Again, did not the Macedonians abandon Demetrius <pb xml:id="p.195"/> and march over as one man to Pyrrhus? And
+<p>Again, did not the Macedonians abandon Demetrius <pb id="p.195"/> and march over as one man to Pyrrhus? And
 again, when the Spartans exercised their supremacy
 tyrannically, did not practically all the allies desert
 them and view their disaster at Leuctra, as idle
@@ -3399,14 +3380,14 @@ outrageous were committed against Roman citizens.
 In Sulla's case, therefore, an unrighteous victory
 disgraced a righteous cause. For when he had
 planted his spear<note>The Romans were accustomed to set up a spear as a
-sign of an auction-sale—a symbol derived from the sale of
+sign of an auction-sale&mdash;a symbol derived from the sale of
 booty taken in war.</note> and was selling under the hammer
 in the forum the property of men who were patriots
 and men of wealth and, at least, Roman citizens, he
 had the effrontery to announce that <quote>he was selling
 
 
-<pb xml:id="p.197"/>
+<pb id="p.197"/>
 
 his spoils.</quote> After him came one who, in an unholy
 cause, made an even more shameful use of victory;
@@ -3435,12 +3416,12 @@ dictatorship, was under the later one a city quaestor.
 From this, one would realize that, if such rewards are
 offered, civil wars will never cease to be.</p>
 <p>And so in Rome only the walls of her houses remain
-standing—and even they wait now in fear of the
-most unspeakable crimes—but our republic we have
+standing&mdash;and even they wait now in fear of the
+most unspeakable crimes&mdash;but our republic we have
 lost for ever. But to return to my subject: it is
 
 
-<pb xml:id="p.199"/>
+<pb id="p.199"/>
 
 while we have preferred to be the object of fear
 rather than of love and affection, that all these misfortunes have fallen upon us. And if such retribution
@@ -3455,7 +3436,7 @@ extent; for it must be determined in conformity
 with each individual's vocation in life whether it is
 essential for him to have the affection of many or
 whether the love of a few will suffice. Let this then
-be settled as the first and absolute essential—that
+be settled as the first and absolute essential&mdash;that
 we have the devotion of friends, affectionate and
 loving, who value our worth. For in just this one
 point there is but little difference between the
@@ -3472,7 +3453,7 @@ up the discussion of Glory, although I have published
 two books<note>Now lost, though they were still known to Petrarch.</note> on that subject also. Still, let us touch
 briefly on it here, since it is of very great help in
 the conduct of more important business.</p>
-<p>The highest, truest glory depends upon the following <pb xml:id="p.201"/> three things: the affection, the confidence,
+<p>The highest, truest glory depends upon the following <pb id="p.201"/> three things: the affection, the confidence,
 and the mingled admiration and esteem of the
 people. Such sentiments, if I may speak plainly and
 concisely, are awakened in the masses in the same
@@ -3497,7 +3478,7 @@ hearts both by its inward essence and its outward
 aspect and shines forth with most lustre through
 those virtues named above, we are, therefore, compelled by Nature herself to love those in whom we
 believe those virtues to reside. Now these are only
-the most powerful motives to love—not all of them;
+the most powerful motives to love&mdash;not all of them;
 there may be some minor ones besides.</p>
 <p><milestone unit="section" n="33"/> Secondly, the command of confidence can be<note type="marg">(2) through confidence.</note>
 secured on two conditions: (1) if people think us
@@ -3506,7 +3487,7 @@ of justice. For we have confidence in those who we
 think have more understanding than ourselves, who,
 
 
-<pb xml:id="p.203"/>
+<pb id="p.203"/>
 
 we believe, have better insight into the future, and
 who, when an emergency arises and a crisis comes, can
@@ -3514,12 +3495,12 @@ clear away the difficulties and reach a safe decision
 according to the exigencies of the occasion; for that
 kind of wisdom the world accounts genuine and
 practical. But (2) confidence is reposed in men
-who are just and true—that is, good men—on
+who are just and true&mdash;that is, good men&mdash;on
 the definite assumption that their characters admit
 of no suspicion of dishonesty or wrong-doing. And
 so we believe that it is perfectly safe to entrust our
 lives, our fortunes, and our children to their care.</p>
-<p><milestone unit="section" n="34"/> Of these two qualities, then, justice has the greater<note type="marg">Justice <hi rend="italic">vs.</hi> Wisdom;</note>
+<p><milestone unit="section" n="34"/> Of these two qualities, then, justice has the greater<note type="marg">Justice <hi rend="italics">vs.</hi> Wisdom;</note>
 power to inspire confidence; for even without the
 aid of wisdom, it has considerable weight; but
 wisdom without justice is of no avail to inspire
@@ -3531,7 +3512,7 @@ all the confidence we can desire; justice without
 wisdom will be able to do much; wisdom without
 justice will be of no avail at all.</p>
 <p><milestone unit="section" n="35"/> <milestone unit="chapter" n="10"/> But I am afraid someone may wonder why I am
-now separating the virtues—as if it were possible for
+now separating the virtues&mdash;as if it were possible for
 anyone to be just who is not at the same time wise;
 for it is agreed upon among all philosophers, and
 I myself have often argued, that he who has one
@@ -3542,7 +3523,7 @@ employed, when we are adapting our language
 entirely to popular thinking, is another. And therefore I am speaking here in the popular sense, when
 
 
-<pb xml:id="p.205"/>
+<pb id="p.205"/>
 
 I call some men brave, others good, and still others
 wise; for in dealing with popular conceptions we
@@ -3573,7 +3554,7 @@ virtue; and when the fiery trial of affliction draws
 near, most people are terrified beyond measure.
 
 
-<pb xml:id="p.207"/>
+<pb id="p.207"/>
 
 Life and death, wealth and want affect all men most
 powerfully. But when men, with a spirit great and
@@ -3585,7 +3566,7 @@ admire in them the splendour and beauty of virtue?</p>
 <p><milestone unit="section" n="38"/> <milestone unit="chapter" n="11"/> As, then, this superiority of mind to such<note type="marg">Justice is the best way to popularity.</note>
 externals inspires great admiration, so justice,
 above all, on the basis of which alone men are called
-<quote>good men,</quote> seems to people generally a quite marvellous virtue—and not without good reason; for no
+<quote>good men,</quote> seems to people generally a quite marvellous virtue&mdash;and not without good reason; for no
 one can be just who fears death or pain or exile or
 poverty, or who values their opposites above equity.
 And people admire especially the man who is uninfluenced by money; and if a man has proved himself
@@ -3596,17 +3577,17 @@ of help to the greatest number; (2) confidence, for
 the same reason; and (3) admiration, because it scorns
 and cares nothing for those things, with a consuming passion for which most people are carried away.</p>
 <p><milestone unit="section" n="39"/> Now, in my opinion at least, every walk and
-vocation in life calls for human co-operation—first
+vocation in life calls for human co-operation&mdash;first
 and above all, in order that one may have friends
 with whom to enjoy social intercourse. And this is
 not easy, unless one is looked upon as a good man.
 So, even to a man who shuns society and to one who
 spends his life in the country a reputation for justice
-is essential—even more so than to others; for they
+is essential&mdash;even more so than to others; for they
 who do not have it [but are considered unjust] will
 
 
-<pb xml:id="p.209"/>
+<pb id="p.209"/>
 
 have no defence to protect them and so will be
 the victims of many kinds of wrong.<milestone unit="section" n="40"/>  So also to
@@ -3625,8 +3606,8 @@ code of laws to observe and obey. And so, because
 of his impartial division of booty, Bardulis, the Illyrian bandit, of whom we read in Theopompus,
 acquired great power, Viriathus, of Lusitania, much
 greater. He actually defied even our armies and
-generals. But Gaius Laelius—the one surnamed
-<quote>the Wise</quote>—in his praetorship crushed his power,
+generals. But Gaius Laelius&mdash;the one surnamed
+<quote>the Wise</quote>&mdash;in his praetorship crushed his power,
 reduced him to terms, and so checked his intrepid
 daring, that he left to his successors an easy conquest.</p>
 <p>Since, therefore, the efficacy of justice is so great
@@ -3641,7 +3622,7 @@ helplessness were oppressed by the strong, they
 appealed for protection to some one man who was
 
 
-<pb xml:id="p.211"/>
+<pb id="p.211"/>
 
 conspicuous for his virtue; and, as he shielded the
 weaker classes from wrong, he managed by establishing equitable conditions to hold the higher and the
@@ -3664,16 +3645,16 @@ leadership. Justice is, therefore, in every way to be
 cultivated and maintained, both for its own sake (for
 otherwise it would not be justice) and for the enhancement of personal honour and glory.</p>
 <p>But as there is a method not only of acquiring
-money but also of investing it so as to yield an income to meet our continuously recurring expenses—both for the necessities and for the more refined
-comforts of life—so there must be a method of gaining glory and turning it to account. <milestone unit="section" n="43"/> And yet, as
-Socrates used to express it so admirably, <quote>the nearest <note type="marg">The way to glory is Justice.</note> way to glory—a short cut, as it were—is to strive
+money but also of investing it so as to yield an income to meet our continuously recurring expenses&mdash;both for the necessities and for the more refined
+comforts of life&mdash;so there must be a method of gaining glory and turning it to account. <milestone unit="section" n="43"/> And yet, as
+Socrates used to express it so admirably, <quote>the nearest <note type="marg">The way to glory is Justice.</note> way to glory&mdash;a short cut, as it were&mdash;is to strive
 to be what you wish to be thought to be.</quote> For if
 anyone thinks that he can win lasting glory by
 pretence, by empty show, by hypocritical talk and
 looks, he is very much mistaken. True glory strikes
 
 
-<pb xml:id="p.213"/>
+<pb id="p.213"/>
 
 deep root and spreads its branches wide; but all
 pretences soon fall to the ground like fragile
@@ -3708,7 +3689,7 @@ ideal before their eyes and to strive with unswerving zeal towards its realizati
 do with the better heart, because that time of life is
 
 
-<pb xml:id="p.215"/>
+<pb id="p.215"/>
 
 accustomed to find favour rather than to meet with
 opposition.</p>
@@ -3745,7 +3726,7 @@ the public the expectation that they will be like
 them, seeing that they have themselves selected them
 
 
-<pb xml:id="p.217"/>
+<pb id="p.217"/>
 
 for imitation.<milestone unit="section" n="47"/>  His frequent visits to the home of
 Publius Mucius assisted young Publius Rutilius to
@@ -3761,8 +3742,8 @@ students of oratory, this Roman Demosthenes, Lucius
 Crassus, was already proving himself in the law-courts
 a master of the art which he might even then have
 been studying at home with credit to himself.</p>
-<p><milestone unit="section" n="48"/> <milestone unit="chapter" n="14"/> But as the classification of discourse is a twofold <note type="marg">(4) by eloquence.</note> one—conversation, on the one side; oratory, on
-the other—there can be no doubt that of the two
+<p><milestone unit="section" n="48"/> <milestone unit="chapter" n="14"/> But as the classification of discourse is a twofold <note type="marg">(4) by eloquence.</note> one&mdash;conversation, on the one side; oratory, on
+the other&mdash;there can be no doubt that of the two
 this debating power (for that is what we mean by
 eloquence) counts for more toward the attainment of
 glory; and yet, it is not easy to say how far an affable
@@ -3778,7 +3759,7 @@ an assembly often stirs the hearts of thousands at
 once; for the eloquent and judicious speaker is received with high admiration, and his hearers think
 
 
-<pb xml:id="p.219"/>
+<pb id="p.219"/>
 
 him understanding and wise beyond all others. And,
 if his speech have also dignity combined with moderation, he will be admired beyond all measure,
@@ -3789,7 +3770,7 @@ our republic have obtained distinction by their
 speeches in the courts, in the popular assemblies,
 and in the senate, yet it is the speeches before our
 courts that excite the highest admiration.</p>
-<p>The classification of forensic speeches also is a<note type="marg">Prosecution <hi rend="italic">vs.</hi> defence.</note>
+<p>The classification of forensic speeches also is a<note type="marg">Prosecution <hi rend="italics">vs.</hi> defence.</note>
 twofold one: they are divided into arguments for
 the prosecution and arguments for the defence. And
 while the side of the defence is more honourable,
@@ -3798,7 +3779,7 @@ established a reputation. I spoke of Crassus a moment ago; Marcus Antonius, when
 same success. A prosecution brought the eloquence
 of Publius Sulpicius into favourable notice, when he
 brought an action against Gaius Norbanus, a seditious and dangerous citizen.<milestone unit="section" n="50"/>  But this should not be
-done often—never, in fact, except in the interest of
+done often&mdash;never, in fact, except in the interest of
 the state (as in the cases of those above mentioned)
 or to avenge wrongs (as the two Luculli, for example,
 did) or for the protection of our provincials (as I did
@@ -3811,11 +3792,11 @@ do it as a service to his country; for it is no disgrace
 to be often employed in the prosecution of her
 
 
-<pb xml:id="p.221"/>
+<pb id="p.221"/>
 
 enemies. And yet a limit should be set even to
 that. For it requires a heartless man, it seems, or
-rather one who is well-nigh inhuman, to be arraigning one person after another on capital charges.<note>A <quote>capital charge</quote> meant to the Roman a charge endangering a person's <hi rend="italic">caput,</hi> or civil status. A conviction
+rather one who is well-nigh inhuman, to be arraigning one person after another on capital charges.<note>A <quote>capital charge</quote> meant to the Roman a charge endangering a person's <hi rend="italics">caput,</hi> or civil status. A conviction
 on such a charge resulted in his civil degradation and the
 loss of his privileges as a Roman citizen.</note> It is
 not only fraught with danger to the prosecutor himself, but is damaging to his reputation, to allow
@@ -3846,7 +3827,7 @@ and persecuted by the influence of someone in power.
 This I have done on many other occasions; and once
 
 
-<pb xml:id="p.223"/>
+<pb id="p.223"/>
 
 in particular, in my younger days, I defended Sextus
 Roscius of Ameria against the power of Lucius Sulla
@@ -3867,8 +3848,8 @@ material substance tends to exhaust the very fountain
 of liberality. Liberality is thus forestalled by liberality: for the more people one has helped with
 gifts of money, the fewer one can help.<milestone unit="section" n="53"/>  But if
 people are generous and kind in the way of personal
-service—that is, with their ability and personal
-effort—various advantages arise: first, the more
+service&mdash;that is, with their ability and personal
+effort&mdash;various advantages arise: first, the more
 people they assist, the more helpers they will have
 in works of kindness; and second, by acquiring the
 habit of kindness they are better prepared and in
@@ -3881,7 +3862,7 @@ mischief induced you to entertain such a hope,</quote> he
 says, <quote>as that those men would be loyal subjects to
 
 
-<pb xml:id="p.225"/>
+<pb id="p.225"/>
 
 you whom you had corrupted with money? Or are
 you trying to do what you can to lead the Macedonians to expect that you will be not their king but
@@ -3905,7 +3886,7 @@ by indiscriminate giving. But what is worse folly than
 to do the thing you like in such a way that you can
 no longer do it at all? Then, too, lavish giving
 leads to robbery;<note>Cicero evidently had in mind such instances as Sulla,
-Caesar, Antony, and Catiline—<hi rend="italic">alieni appetens, sui profusus</hi>
+Caesar, Antony, and Catiline&mdash;<hi rend="italics">alieni appetens, sui profusus</hi>
 (Sall., Cat. V).</note> for when through over-giving
 men begin to be impoverished, they are constrained
 to lay their hands on the property of others. And
@@ -3918,7 +3899,7 @@ that a generous impulse cannot open it, nor yet so
 loosely held as to be open to everybody. A limit
 
 
-<pb xml:id="p.227"/>
+<pb id="p.227"/>
 
 should be observed and that limit should be determined by our means. We ought, in a word, to
 remember the phrase, which, through being repeated
@@ -3932,7 +3913,7 @@ who have not wish for the same bounty?</p>
 who give largely: the one class is the lavish, the
 other the generous. The lavish are those who
 squander their money on public banquets, doles of
-meat among the people, gladiatorial shows, magnificent games, and wild-beast fights—vanities of which
+meat among the people, gladiatorial shows, magnificent games, and wild-beast fights&mdash;vanities of which
 but a brief recollection will remain, or none at all.
 <milestone unit="section" n="56"/> The generous, on the other hand, are those who
 employ their own means to ransom captives from
@@ -3953,7 +3934,7 @@ words, as he rebukes us for not being amazed at this
 extravagant waste of money, all to win the favour of
 
 
-<pb xml:id="p.229"/>
+<pb id="p.229"/>
 
 the populace. <quote>If people in time of siege,</quote> he says,
 <quote>are required to pay a mina for a pint of water, this
@@ -3980,14 +3961,14 @@ his aedileship; and a little later Lucius Crassus (with
 Quintus Mucius, the most unpretentious man in the
 world, as his colleague) gave most magnificent entertainments in his aedileship. Then came Gaius
 Claudius, the son of Appius, and, after him, many
-others—the Luculli, Hortensius, and Silanus. Publius
+others&mdash;the Luculli, Hortensius, and Silanus. Publius
 Lentulus, however, in the year of my consulship,
 eclipsed all that had gone before him, and Scaurus
 emulated him. And my friend Pompey's exhibitions
 in his second consulship were the most magnificent
 
 
-<pb xml:id="p.231"/>
+<pb id="p.231"/>
 
 of all. And so you see what I think about all this
 sort of thing.</p>
@@ -4005,7 +3986,7 @@ more useful object. Thus Orestes recently won
 great honour by his public dinners given in the
 streets, on the pretext of their being a tithe-offering.
 Neither did anybody find fault with Marcus Seius
-for supplying grain to the people at an <hi rend="italic">as</hi><note>The <hi rend="italic">as</hi> was a copper coin worth somewhat less than a
+for supplying grain to the people at an <hi rend="italics">as</hi><note>The <hi rend="italics">as</hi> was a copper coin worth somewhat less than a
 penny. Selling grain to the people at such a price was
 practically giving it away to purchase their good-will.</note> the peck
 at a time when the market-price was prohibitive;
@@ -4026,15 +4007,15 @@ To be sure, Lucius Philippus, the son of Quintus, a
 man of great ability and unusual renown, used to
 
 
-<pb xml:id="p.233"/>
+<pb id="p.233"/>
 
 make it his boast that without giving any entertainments he had risen to all the positions looked upon
 as the highest within the gift of the state. Cotta
 could say the same, and Curio. I, too, may make
-this boast my own—to a certain extent;<note>The saving clause is added, because Cicero never filled
+this boast my own&mdash;to a certain extent;<note>The saving clause is added, because Cicero never filled
 the office of Censor.</note> for in comparison with the eminence of the offices to which I
-was unanimously elected at the earliest legal age— and this was not the good fortune of any one of
-those just mentioned—the outlay in my aedileship
+was unanimously elected at the earliest legal age&mdash; and this was not the good fortune of any one of
+those just mentioned&mdash;the outlay in my aedileship
 was very inconsiderable.</p>
 <p><milestone unit="section" n="60"/> Again, the expenditure of money is better justified<note type="marg">Lavish expenditure on public works.</note>
 when it is made for walls, docks, harbours, aqueducts, and all those works which are of service to
@@ -4045,7 +4026,7 @@ greater gratitude with posterity. Out of respect
 for Pompey's memory I am rather diffident about
 expressing any criticism of theatres, colonnades, and
 new temples; and yet the greatest philosophers do
-not approve of them—our Panaetius himself, for
+not approve of them&mdash;our Panaetius himself, for
 example, whom I am following, not slavishly translating, in these books; so, too, Demetrius of
 Phalerum, who denounces Pericles, the foremost
 man of Greece, for throwing away so much money
@@ -4060,7 +4041,7 @@ to our ability and regulated by the golden mean.</p>
 <p><milestone unit="section" n="61"/> <milestone unit="chapter" n="18"/> Now, as touching that second division of<note type="marg">General rules of beneficence.</note>
 
 
-<pb xml:id="p.235"/>
+<pb id="p.235"/>
 
 gifts of money, those which are prompted by a spirit
 of generosity, we ought to look at different cases
@@ -4096,7 +4077,7 @@ the common foe of all the poor.</p>
 the poor is a form of charity that is a service to the
 
 
-<pb xml:id="p.237"/>
+<pb id="p.237"/>
 
 state as well as to the individual. And we find in
 one of Crassus's orations the full proof given that
@@ -4109,8 +4090,8 @@ I may call them so, who tickle with idle pleasure,
 so to speak, the fickle fancy of the rabble.</p>
 <p><milestone unit="section" n="64"/> It will, moreover, befit a gentleman to be at the
 same time liberal in giving and not inconsiderate in
-exacting his dues, but in every business relation—in buying or selling, in hiring or letting, in relations
-arising out of adjoining houses and lands—to be fair,
+exacting his dues, but in every business relation&mdash;in buying or selling, in hiring or letting, in relations
+arising out of adjoining houses and lands&mdash;to be fair,
 reasonable, often freely yielding much of his own
 right, and keeping out of litigation as far as his
 interests will permit and perhaps even a little
@@ -4130,7 +4111,7 @@ abroad do not fail to find hospitable entertainment
 of this kind in our city. It is, moreover, a very
 
 
-<pb xml:id="p.239"/>
+<pb id="p.239"/>
 
 great advantage, too, for those who wish to obtain a
 powerful political influence by honourable means to
@@ -4170,7 +4151,7 @@ calculated to bind people closely to us by our good
 services.</p>
 
 
-<pb xml:id="p.241"/>
+<pb id="p.241"/>
 
 <p><milestone unit="section" n="66"/> Closely connected with this profession, furthermore, <note type="marg">Eloquence at the bar.</note> is the gift of eloquence; it is at once more
 popular and more distinguished. For what is better
@@ -4192,7 +4173,7 @@ nevertheless, what orators have lost their lives and
 how few of any promise are left, how far fewer there
 are who have ability, and how many there are who
 have nothing but presumption. But though not all
-—no, not even many—can be learned in the law or
+&mdash;no, not even many&mdash;can be learned in the law or
 eloquent as pleaders, still anybody may be of service
 to many by canvassing in their support for appointments, by witnessing to their character before juries
 and magistrates, by looking out for the interests of
@@ -4205,7 +4186,7 @@ need to be warned (for the point is self-evident) to
 be careful when they seek to oblige some, not to
 
 
-<pb xml:id="p.243"/>
+<pb id="p.243"/>
 
 offend others. For oftentimes they hurt those whom
 they ought not or those whom it is inexpedient to
@@ -4237,7 +4218,7 @@ wish even to be put under obligations by our kind
 services. Why, they actually think that they have
 
 
-<pb xml:id="p.245"/>
+<pb id="p.245"/>
 
 conferred a favour by accepting one, however great;
 and they even suspect that a claim is thereby set up
@@ -4248,15 +4229,15 @@ of slender means, on the other hand, feels that whatever is done for him is done
 he strives to show himself grateful not only to the
 one who has obliged him in the past but also to those
 from whom he expects similar favours in the future
-—and he needs the help of many; and his own
+&mdash;and he needs the help of many; and his own
 service, if he happens to render any in return, he does
 not exaggerate, but he actually depreciates it. This
-fact, furthermore, should not be overlooked—that, if
+fact, furthermore, should not be overlooked&mdash;that, if
 one defends a wealthy favourite of fortune, the
 favour does not extend further than to the man himself or, possibly, to his children. But, if one defends
 a man who is poor but honest and upright, all the
-lowly who are not dishonest—and there is a large
-proportion of that sort among the people—look upon
+lowly who are not dishonest&mdash;and there is a large
+proportion of that sort among the people&mdash;look upon
 such an advocate as a tower of defence raised up for
 them.<milestone unit="section" n="71"/>  I think, therefore, that kindness to the good
 is a better investment than kindness to the favourites
@@ -4272,7 +4253,7 @@ said: <quote>For my part, I prefer a man without money
 to money without a man.</quote> But the moral sense of
 
 
-<pb xml:id="p.247"/>
+<pb id="p.247"/>
 
 to-day is demoralized and depraved by our worship
 of wealth. Of what concern to any one of us is the
@@ -4307,7 +4288,7 @@ Marcus Octavius inaugurated a moderate dole; this
 was both practicable for the state and necessary for
 
 
-<pb xml:id="p.249"/>
+<pb id="p.249"/>
 
 the commons; it was, therefore, a blessing both to
 the citizens and to the state.</p>
@@ -4338,10 +4319,10 @@ treasury and their incessant wars. But, if any state
 (I say <quote>any,</quote> for I would rather speak in general
 terms than forebode evils to our own; however, I
 am not discussing our own state but states in general)
-—if any state ever has to face a crisis requiring the
+&mdash;if any state ever has to face a crisis requiring the
 
 
-<pb xml:id="p.251"/>
+<pb id="p.251"/>
 
 imposition of such a burden, every effort must be
 made to let all the people realize that they must
@@ -4368,7 +4349,7 @@ Piso's bill to punish extortion; there had been no
 such law before. But afterward came so many laws,
 each more stringent than the other, so many men
 were accused and so many convicted, so horrible a
-war<note>The Italian or Social War, B.C. 100–88.</note> was stirred up on account of the fear of what
+war<note>The Italian or Social War, B.C. 100&ndash;88.</note> was stirred up on account of the fear of what
 our courts would do to still others, so frightful was
 the pillaging and plundering of the allies when the
 laws and courts were suppressed,<note>During the dictatorships of Sulla and Caesar.</note> that how we
@@ -4378,12 +4359,12 @@ the weakness of others.</p>
 in public life. Why should he not? But Africanus
 
 
-<pb xml:id="p.253"/>
+<pb id="p.253"/>
 
 had other and greater virtues. The boast of official
 integrity belongs not to that man alone but also to
 his times. When Paulus got possession of all the
-wealth of Macedon—and it was enormous—he
+wealth of Macedon&mdash;and it was enormous&mdash;he
 brought into our treasury so much money<note>Nearly two million pounds sterling.</note> that the
 spoils of a single general did away with the need for a
 tax on property in Rome for all time to come. But to
@@ -4397,7 +4378,7 @@ foundations the richest of cities? He preferred to
 adorn Italy rather than his own house. And yet by
 the adornment of Italy his own house was, as it
 seems to me, still more splendidly adorned.</p>
-<p><milestone unit="section" n="77"/> There is, then, to bring the discussion back to the<note type="marg">Integrity <hi rend="italic">vs.</hi> avarice.</note>
+<p><milestone unit="section" n="77"/> There is, then, to bring the discussion back to the<note type="marg">Integrity <hi rend="italics">vs.</hi> avarice.</note>
 point from which it digressed, no vice more offensive
 than avarice, especially in men who stand foremost
 and hold the helm of state. For to exploit the state
@@ -4416,7 +4397,7 @@ laws passed, in order that the occupants may be
 driven out of their homes, or propose that money
 
 
-<pb xml:id="p.255"/>
+<pb id="p.255"/>
 
 loaned should be remitted to the borrowers, are
 undermining the foundations of the commonwealth:
@@ -4448,12 +4429,12 @@ years or even generations, and that he who had
 them before should lose possession of them?</p>
 <p><milestone unit="section" n="80"/> <milestone unit="chapter" n="23"/> Now, it was on account of just this sort of<note type="marg">Instances of agrarian legislation.</note>
 wrong-doing that the Spartans banished their ephor
-Lysander, and put their king Agis to death—an act
+Lysander, and put their king Agis to death&mdash;an act
 without precedent in the history of Sparta. From
-that time on—and for the same reason—dissensions
+that time on&mdash;and for the same reason&mdash;dissensions
 
 
-<pb xml:id="p.257"/>
+<pb id="p.257"/>
 
 so serious ensued that tyrants arose, the nobles were
 sent into exile, and the state, though most admirably constituted, crumbled to pieces. Nor did it
@@ -4489,7 +4470,7 @@ have money to meet the situation, he announced
 that he meant to make a trip to Alexandria and gave
 
 
-<pb xml:id="p.259"/>
+<pb id="p.259"/>
 
 orders that matters should remain as they were until
 his return. And so he went in haste to his friend
@@ -4523,7 +4504,7 @@ on the part of a good citizen, not to divide the interests of the citizens but t
 impartial justice. <quote>Let them live in their neighbour's
 
 
-<pb xml:id="p.261"/>
+<pb id="p.261"/>
 
 house rent-free.</quote> <note>An assumed appeal to one of Caesar's edicts.</note> Why so? In order that, when I
 have bought, built, kept up, and spent my money
@@ -4555,10 +4536,10 @@ payment was enforced by law. But the present
 victor, though vanquished then, still carried out his
 old design, when it was no longer of any personal
 advantage to him.<note>Caesar, it seems, had had some part in the schemes of
-Catiline in B.C. 63 and possibly in the plot of B.C. 66–65. When
+Catiline in B.C. 63 and possibly in the plot of B.C. 66&ndash;65. When
 his conquests in Gaul had freed him from his debts and
 made him rich, his party, with his consent, passed (B.C. 49)
-the obnoxious legislation here referred to—that all interest
+the obnoxious legislation here referred to&mdash;that all interest
 in arrears should be remitted, and that that which had been
 paid should be deducted from the principal.</note> So great was his passion for
 wrong-doing that the very doing of wrong was a joy
@@ -4566,7 +4547,7 @@ to him for its own sake, even when there was no
 motive for it.</p>
 
 
-<pb xml:id="p.263"/>
+<pb id="p.263"/>
 
 <p><milestone unit="section" n="85"/> Those, then, whose office it is to look after the
 interests of the state will refrain from that form of
@@ -4586,7 +4567,7 @@ perform duties such as these, they will win popularity and glory for themselves 
 render eminent service to the state.</p>
 <p><milestone unit="section" n="86"/> Now, in this list of rules touching expediency, <note type="marg">Sanitation.</note>
 Antipater of Tyre, a Stoic philosopher who recently
-died at Athens, claims that two points were overlooked by Panaetius—the care of health and of
+died at Athens, claims that two points were overlooked by Panaetius&mdash;the care of health and of
 property. I presume that the eminent philosopher
 overlooked these two items because they present no
 difficulty. At all events they are expedient. Although they are a matter of course, I will still say a
@@ -4596,7 +4577,7 @@ the professional skill of those to whose science these
 matters belong.</p>
 
 
-<pb xml:id="p.265"/>
+<pb id="p.265"/>
 
 <p><milestone unit="section" n="87"/> As for property, it is a duty to make money, but<note type="marg">Finance.</note>
 only by honourable means; it is a duty also to save
@@ -4612,7 +4593,7 @@ take cognizance of them; for they come fitly under
 the head of expediency, and that is the subject of
 the present book.</p>
 <p><milestone unit="section" n="88"/> <milestone unit="chapter" n="25"/> But it is often necessary to weigh one<note type="marg">Comparison of expediencies.</note>
-expediency against another;—for this, as I stated, is a
+expediency against another;&mdash;for this, as I stated, is a
 fourth point overlooked by Panaetius. For not only
 are physical advantages regularly compared with outward advantages [and outward, with physical], but
 physical advantages are compared with one another,
@@ -4629,7 +4610,7 @@ derived from city property to one derived from the
 farm.<milestone unit="section" n="89"/>  To this class of comparisons belongs that
 
 
-<pb xml:id="p.267"/>
+<pb id="p.267"/>
 
 famous saying of old Cato's: when he was asked
 what was the most profitable feature of an estate, he
@@ -4645,12 +4626,12 @@ weighed against one another and that it is proper
 for us to add this fourth division in the discussion of
 moral duty.</p>
 <p>Let us now pass on to the remaining problems.</p>
-</div>
+</div1>
 	<pb/>
 	
-<pb xml:id="p.271"/>
+<pb id="p.271"/>
 
-<div type="textpart" subtype="book" n="1"><head>Book III: the conflict between the right and the expedient</head>
+<div1 type="book" n="1"><head>Book III: the conflict between the right and the expedient</head>
 
 <p><milestone unit="section" n="1"/> <milestone unit="chapter" n="1"/> Cato, who was of about the same years, Marcus,<note type="marg">Preface: Scipio and Cicero.</note>
 my son, as that Publius Scipio who first bore the
@@ -4664,8 +4645,8 @@ his thoughts were occupied with public business and
 that he used to commune with himself when alone;
 and so not only was he never unoccupied, but he
 sometimes had no need for company. The two
-conditions, then, that prompt others to idleness—
-leisure and solitude—only spurred him on. I wish
+conditions, then, that prompt others to idleness&mdash;
+leisure and solitude&mdash;only spurred him on. I wish
 I could say the same of myself and say it truly. But
 if by imitation I cannot attain to such excellence of
 character, in aspiration, at all events, I approach it as
@@ -4682,7 +4663,7 @@ and to retreat from the assemblies and the throngs
 of men into solitude, as into a haven of rest. But
 
 
-<pb xml:id="p.273"/>
+<pb id="p.273"/>
 
 my leisure is forced upon me by want of public<note type="marg">The orator's retirement.</note>
 business, not prompted by any desire for repose.
@@ -4694,10 +4675,10 @@ publicity, I am now shunning the sight of the miscreants with whom the world abo
 am often alone. But I have learned from philosophers that among evils one ought not only to choose
 the least, but also to extract even from these any
 element of good that they may contain. For that
-reason, I am turning my leisure to account—though
+reason, I am turning my leisure to account&mdash;though
 it is not such repose as the man should be entitled
 to who once brought the state repose from civil
-strife—and I am not letting this solitude, which
+strife&mdash;and I am not letting this solitude, which
 necessity and not my will imposes on me, find me idle.</p>
 <p><milestone unit="section" n="4"/> And yet, in my judgment, Africanus earned the
 higher praise. For no literary monuments of his
@@ -4714,7 +4695,7 @@ than I did in the course of many years, while the
 republic stood.</p>
 
 
-<pb xml:id="p.275"/>
+<pb id="p.275"/>
 
 <p><milestone unit="section" n="5"/> <milestone unit="chapter" n="2"/> But, my dear Cicero, while the whole field of<note type="marg">Young Cicero admonished to diligence in his studies.</note>
 philosophy is fertile and productive and no portion
@@ -4749,13 +4730,13 @@ do your part.</p>
 and again for your encouragement. Let us now
 
 
-<pb xml:id="p.277"/>
+<pb id="p.277"/>
 
 return to the remaining section of our subject as
 outlined.</p>
 <p><milestone unit="section" n="7"/> Panaetius, then, has given us what is unquestionably <note type="marg">Panaetius on Moral Duties.</note> the most thorough discussion of moral duties
 that we have, and I have followed him in the main
-—but with slight modifications. He classifies under
+&mdash;but with slight modifications. He classifies under
 three general heads the ethical problems which
 people are accustomed to consider and weigh: first,
 the question whether the matter in hand is morally
@@ -4778,14 +4759,14 @@ who say that that point was not overlooked but purposely omitted by Panaetius, a
 that ever needed discussion, because there never can
 be such a thing as a conflict between expediency and
 moral rectitude. But with regard to this assertion,
-the one point may admit of doubt—whether that
+the one point may admit of doubt&mdash;whether that
 question which is third in Panaetius's classification
 ought to have been included or omitted altogether;
 
 
-<pb xml:id="p.279"/>
+<pb id="p.279"/>
 
-but the other point is not open to debate—that it
+but the other point is not open to debate&mdash;that it
 was included in Panaetius's plan but left unwritten.
 For, if a writer has finished two divisions of a threefold subject, the third must necessarily remain for
 him to do. Besides, he promises at the close of the
@@ -4816,7 +4797,7 @@ the Stoics are in agreement in so far as they
 maintain that if anything is morally right, it is
 
 
-<pb xml:id="p.281"/>
+<pb id="p.281"/>
 
 expedient, and if anything is not morally right, it
 is not expedient.</p>
@@ -4850,13 +4831,13 @@ these books the Stoics call <quote>mean duties</quote>;<note>See Note on I,8.</n
 a common possession and have wide application; and
 
 
-<pb xml:id="p.283"/>
+<pb id="p.283"/>
 
 many people attain to the knowledge of them through
 natural goodness of heart and through advancement
 in learning. But that duty which those same Stoics
 call <quote>right</quote> is perfect and absolute and <quote>satisfies all
-the numbers,</quote><note>I.e., fills all the requirements of absolute perfection—an
+the numbers,</quote><note>I.e., fills all the requirements of absolute perfection&mdash;an
 allusion to the Pythagorean doctrine that specific numbers
 stand for perfection of specific kinds; <quote>absolute duty</quote>
 combines them all.</note> as that same school says, and is
@@ -4888,7 +4869,7 @@ model of justice, as if we had in one of them the
 ideal <quote>wise man.</quote> For no one of them was wise in
 
 
-<pb xml:id="p.285"/>
+<pb id="p.285"/>
 
 the sense in which we wish to have <quote>wise</quote> understood; neither were Marcus Cato and Gaius Laelius
 wise, though they were so considered and were surnamed <quote>the wise.</quote> Not even the famous Seven were
@@ -4914,14 +4895,14 @@ and refuse to have these outweighed by considerations of moral rectitude are acc
 what they think the expedient; good men are not.
 And so I believe that when Panaetius stated that
 people were accustomed to hesitate to do such
-weighing, he meant precisely what he said—merely
+weighing, he meant precisely what he said&mdash;merely
 that <quote>such was their custom,</quote> not that such was
 their duty. And he gave it no approval; for it is
 most immoral to think more highly of the apparently
 expedient than of the morally right, or even to set
 
 
-<pb xml:id="p.287"/>
+<pb id="p.287"/>
 
 these over against each other and to hesitate to
 choose between them.</p>
@@ -4935,8 +4916,8 @@ morally wrong. For the sake of illustration, let us
 assume some particular case that admits of wider
 application: what more atrocious crime can there be
 than to kill a fellow-man, and especially an intimate
-friend? But if anyone kills a tyrant—be he never
-so intimate a friend—he has not laden his soul with
+friend? But if anyone kills a tyrant&mdash;be he never
+so intimate a friend&mdash;he has not laden his soul with
 guilt, has he? The Roman People, at all events, are
 not of that opinion; for of all glorious deeds they
 hold such an one to be the most noble. Has expediency, then, prevailed over moral rectitude? Not at
@@ -4954,7 +4935,7 @@ reason: the older Academicians and your Peripatetics (who were once the same as 
 what seems expedient; and yet the discussion of
 
 
-<pb xml:id="p.289"/>
+<pb id="p.289"/>
 
 these problems, if conducted by those who consider
 whatever is morally right also expedient and nothing
@@ -4988,7 +4969,7 @@ everybody may prefer to secure for himself rather
 than for his neighbour what is essential for the conduct of life; but Nature's laws do forbid us to increase
 
 
-<pb xml:id="p.291"/>
+<pb id="p.291"/>
 
 our means, wealth, and resources by despoiling
 others.</p>
@@ -5016,7 +4997,7 @@ are much more in harmony with Nature than are
 selfish pleasure, riches, and life itself; but it requires
 a great and lofty spirit to despise these latter and
 count them as naught, when one weighs them over
-against the common weal. [But for anyone to rob<note type="marg">Self-seeking <hi rend="italic">vs.</hi> self-sacrifice.</note>
+against the common weal. [But for anyone to rob<note type="marg">Self-seeking <hi rend="italics">vs.</hi> self-sacrifice.</note>
 his neighbour for his own profit is more contrary to
 Nature than death, pain, and the like.]</p>
 <p><milestone unit="section" n="25"/> In like manner it is more in accord with Nature
@@ -5025,7 +5006,7 @@ greatest toil and trouble for the sake of aiding or
 saving the world, if possible, than to live in seclusion,
 
 
-<pb xml:id="p.293"/>
+<pb id="p.293"/>
 
 not only free from all care, but revelling in pleasures
 and abounding in wealth, while excelling others
@@ -5048,8 +5029,8 @@ If he thinks he is not violating the laws of Nature,
 when he wrongs his fellow-men, how is one to argue
 with the individual who takes away from man all
 that makes him man? But if he believes that, while
-such a course should be avoided, the other alternatives are much worse—namely, death, poverty, pain
-—he is mistaken in thinking that any ills affecting
+such a course should be avoided, the other alternatives are much worse&mdash;namely, death, poverty, pain
+&mdash;he is mistaken in thinking that any ills affecting
 either his person or his property are more serious
 than those affecting his soul.</p>
 <p><milestone unit="chapter" n="6"/> This, then, ought to be the chief end of all<note type="marg">The interest of society is the interest of the individual.</note>
@@ -5061,7 +5042,7 @@ destroyed.</p>
 <p><milestone unit="section" n="27"/> And further, if Nature ordains that one man shall
 
 
-<pb xml:id="p.295"/>
+<pb id="p.295"/>
 
 desire to promote the interests of a fellow-man,
 whoever he may be, just because he is a fellow-man,
@@ -5091,14 +5072,14 @@ beings, and the closest bond of this fellowship is
 the conviction that it is more repugnant to Nature
 for man to rob a fellow-man for his own gain than
 to endure all possible loss, whether to his property
-or to his person . . . or even to his very soul—so far
+or to his person . . . or even to his very soul&mdash;so far
 as these losses are not concerned with justice;<note>I.e., there are no circumstances of loss or gain that can
 warrant a violation of justice.</note> for
 this virtue is the sovereign mistress and queen of
 all the virtues.</p>
 
 
-<pb xml:id="p.297"/>
+<pb id="p.297"/>
 
 <p><milestone unit="section" n="29"/> But, perhaps, someone may say: <quote>Well, then,
 suppose a wise man were starving to death, might
@@ -5114,7 +5095,7 @@ keep himself from freezing to death?</quote></p>
 for one's own benefit one were to take something
 away from a man, though he were a perfectly worthless fellow, it would be an act of meanness and contrary to Nature's law. But suppose one would be<note type="marg">The interests of society must decide about exceptions.</note>
 able, by remaining alive, to render signal service to
-the state and to human society—if from that motive
+the state and to human society&mdash;if from that motive
 one should take something from another, it would not
 be a matter for censure. But, if such is not the case,
 each one must bear his own burden of distress rather
@@ -5132,7 +5113,7 @@ man's death would be a heavy loss to the common
 weal; only let him beware that self-esteem and self-love do not find in such a transfer of possessions
 
 
-<pb xml:id="p.299"/>
+<pb id="p.299"/>
 
 a pretext for wrong-doing. But, thus guided in his
 decision, the good man will always perform his duty,
@@ -5142,7 +5123,7 @@ which I am so fond of dwelling.</p>
 simple: we have no ties of fellowship with a tyrant,
 but rather the bitterest feud; and it is not opposed
 to Nature to rob, if one can, a man whom it is morally
-right to kill;—nay, all that pestilent and abominable
+right to kill;&mdash;nay, all that pestilent and abominable
 race should be exterminated from human society.
 And this may be done by proper measures; for, as
 certain members are amputated, if they show signs
@@ -5169,17 +5150,17 @@ require that certain axioms be assumed as true, in
 order more easily to explain their meaning, so, my
 
 
-<pb xml:id="p.301"/>
+<pb id="p.301"/>
 
 dear Cicero, I ask you to assume with me, if you can, <note type="marg">Moral Right the only good or the chief good.</note>
 that nothing is worth the seeking for its own sake
-except what is morally right. But if Cratippus<note>As a Peripatetic, Cratippus insisted that there was <hi rend="italic">natural</hi>
-good as well as <hi rend="italic">moral</hi> good; thus health, honour, etc., were
+except what is morally right. But if Cratippus<note>As a Peripatetic, Cratippus insisted that there was <hi rend="italics">natural</hi>
+good as well as <hi rend="italics">moral</hi> good; thus health, honour, etc., were
 good and worth seeking for their own sake, though in less
 degree than virtue. But the Stoics (and Cicero is now speaking as a Stoic) called all those other blessings not <quote>good</quote>
 nor <quote>worth seeking for their own sake,</quote> but <quote>indifferent.</quote></note> does
 not permit this assumption, you will still grant this
-at least—that what is morally right is the object
+at least&mdash;that what is morally right is the object
 most worth the seeking for its own sake. Either
 alternative is sufficient for my purposes; first the one
 and then the other seems to me the more probable;
@@ -5190,7 +5171,7 @@ mentioning them, the Epicureans, Cyrenaics, etc.</note></p>
 of Panaetius on this point; for he has said, not that
 the truly expedient could under certain circumstances clash with the morally right (for he could
 not have said that conscientiously<note>Because he was a Stoic.</note>), but only that
-what <hi rend="italic">seemed</hi> expedient could do so. For he often
+what <hi rend="italics">seemed</hi> expedient could do so. For he often
 bears witness to the fact that nothing is really expedient that is not at the same time morally right,
 and nothing morally right that is not at the same
 time expedient; and he says that no greater curse
@@ -5209,7 +5190,7 @@ of Panaetius, nothing that has come into my hands is
 at all satisfactory to me.</p>
 
 
-<pb xml:id="p.303"/>
+<pb id="p.303"/>
 
 <p><milestone unit="section" n="35"/> <milestone unit="chapter" n="8"/> Now when we meet with expediency in<note type="marg">Expediency and immorality incompatible.</note>
 some specious form or other, we cannot help being
@@ -5243,10 +5224,10 @@ finally for making oneself king even in the midst of
 a free people; and anything more atrocious or repulsive than such a passion cannot be conceived. For
 
 
-<pb xml:id="p.305"/>
+<pb id="p.305"/>
 
 with a false perspective they see the material rewards
-but not the punishment—I do not mean the penalty
+but not the punishment&mdash;I do not mean the penalty
 of the law, which they often escape, but the heaviest
 penalty of all, their own demoralization.</p>
 <p><milestone unit="section" n="37"/> Away, then, with questioners of this sort (for
@@ -5276,7 +5257,7 @@ hand, he became invisible to everyone, while lie
 himself saw everything; but as often as he turned
 
 
-<pb xml:id="p.307"/>
+<pb id="p.307"/>
 
 it back to its proper position, he became visible
 again. And so, with the advantage which the ring
@@ -5295,7 +5276,7 @@ are not at all vicious but who are not very discerning, declare that the story r
 actually true or even possible! But the force of the<note type="marg">The moral of the story.</note>
 illustration of the ring is this: if nobody were to
 know or even to suspect the truth, when you do anything to gain riches or power or sovereignty or
-sensual gratification—if your act should be hidden
+sensual gratification&mdash;if your act should be hidden
 for ever from the knowledge of gods and men, would
 you do it? The condition, they say, is impossible.
 Of course it is. But my question is, if that were
@@ -5311,7 +5292,7 @@ should they answer that, if impunity were assured,
 they would do what was most to their selfish interest,
 
 
-<pb xml:id="p.309"/>
+<pb id="p.309"/>
 
 that would be a confession that they are criminally
 minded; should they say that they would not do
@@ -5333,7 +5314,7 @@ family. But when the leading men of the state had
 determined that all the kindred of Superbus and the
 very name of the Tarquins and every reminder of the
 monarchy should be obliterated, then the course that
-was expedient—namely, to serve the country's interests—was so pre-eminently right, that it was even
+was expedient&mdash;namely, to serve the country's interests&mdash;was so pre-eminently right, that it was even
 Collatinus's own duty to acquiesce in its justice. And
 so expediency gained the day because of its moral
 rightness; for without moral rectitude there could
@@ -5344,13 +5325,13 @@ that actuated him; and when he decided that it
 was more expedient for him to reign alone than to
 share the throne with another, he slew his brother.<note>Remus.</note>
 He threw to the winds his brotherly affection and his
-human feelings, to secure what seemed to him—but
-was not—expedient; and yet in defence of his deed
+human feelings, to secure what seemed to him&mdash;but
+was not&mdash;expedient; and yet in defence of his deed
 
 
-<pb xml:id="p.311"/>
+<pb id="p.311"/>
 
-he offered the excuse about his wall—a specious show
+he offered the excuse about his wall&mdash;a specious show
 of moral rectitude, neither reasonable nor adequate
 at all. He committed a crime, therefore, with due
 respect to him let me say so, be he Quirinus or
@@ -5373,8 +5354,8 @@ is a breach of duty either to fail to do for a friend
 what one rightly can do, or to do for him what is
 not right. But for our guidance in all such cases we
 have a rule that is short and easy to master: apparent
-advantages—political preferment, riches, sensual
-pleasures, and the like—should never be preferred
+advantages&mdash;political preferment, riches, sensual
+pleasures, and the like&mdash;should never be preferred
 to the obligations of friendship. But an upright
 man will never for a friend's sake do anything in
 violation of his country's interests or his oath or his
@@ -5386,16 +5367,16 @@ his friend's side to be the juster one and that he will
 set the time for presenting his case, as far as the
 
 
-<pb xml:id="p.313"/>
+<pb id="p.313"/>
 
 laws will allow, to suit his friend's convenience.
 <milestone unit="section" n="44"/> But when he comes to pronounce the verdict under
 oath, he should remember that he has God as his
-witness—that is, as I understand it, his own conscience, than which God himself has bestowed upon
+witness&mdash;that is, as I understand it, his own conscience, than which God himself has bestowed upon
 man nothing more divine. From this point of view
 it is a fine custom that we have inherited from our
 forefathers (if we were only true to it now), to appeal
-to the juror with this formula—<quote>to do what he can
+to the juror with this formula&mdash;<quote>to do what he can
 consistently with his sacred honour.</quote> This form of
 appeal is in keeping with what I said a moment ago
 would be morally right for a judge to concede to a
@@ -5421,13 +5402,13 @@ be expedient in friendship against what is morally
 right, let apparent expediency be disregarded and
 
 
-<pb xml:id="p.315"/>
+<pb id="p.315"/>
 
 moral rectitude prevail; and when in friendship
 requests are submitted that are not morally right, let
 conscience and scrupulous regard for the right take
 precedence of the obligations of friendship. In this
-way we shall arrive at a proper choice between conflicting duties—the subject of this part of our
+way we shall arrive at a proper choice between conflicting duties&mdash;the subject of this part of our
 investigation.</p>
 <p><milestone unit="chapter" n="11"/> Through a specious appearance of expediency<note type="marg">(4) apparent political expediency and duty to humanity.</note>
 wrong is very often committed in transactions between state and state, as by our own country in the
@@ -5457,7 +5438,7 @@ country has many instances to offer throughout her
 history, and especially in the Second Punic War,
 
 
-<pb xml:id="p.317"/>
+<pb id="p.317"/>
 
 when news came of the disaster at Cannae, Rome displayed a loftier courage than ever she did in success;
 never a trace of faint-heartedness, never a mention
@@ -5473,7 +5454,7 @@ named Cyrsilus proposed that they should stay at
 home and open the gates of their city to Xerxes.
 They stoned him to death for it. And yet he was
 working for what he thought was expediency; but
-it was not—not at all, for it clashed with moral
+it was not&mdash;not at all, for it clashed with moral
 rectitude.</p>
 <p><milestone unit="section" n="49"/> After the victorious close of that war with Persia,
 Themistocles announced in the Assembly that he
@@ -5494,7 +5475,7 @@ was not morally right was likewise not expedient,
 and at the instance of Aristides they rejected the
 
 
-<pb xml:id="p.319"/>
+<pb id="p.319"/>
 
 whole proposition without even listening to it. Their
 attitude was better than ours; for we let pirates go
@@ -5507,10 +5488,10 @@ Marseilles and King Deiotarus of Armenia had supported
 Pompey and in consequence were made tributary by Caesar's
 party.</note></p>
 <p><milestone unit="chapter" n="12"/> Let it be set down as an established principle, then, that what is morally wrong can never be
-expedient—not even when one secures by means of
+expedient&mdash;not even when one secures by means of
 it that which one thinks expedient; for the mere
 act of thinking a course expedient, when it is morally
-wrong, is demoralizing.<milestone unit="section" n="50"/>  But, as I said above, cases<note type="marg">Expediency <hi rend="italic">vs.</hi> moral rectitude in business relations.</note>
+wrong, is demoralizing.<milestone unit="section" n="50"/>  But, as I said above, cases<note type="marg">Expediency <hi rend="italics">vs.</hi> moral rectitude in business relations.</note>
 often arise in which expediency may seem to clash
 with moral rectitude; and so we should examine in
 carefully and see whether their conflict is inevitable
@@ -5531,14 +5512,14 @@ think and reason who would not conceal the facts
 from the Rhodians if he thought that it was immoral
 to do so, but who might be in doubt whether such
 silence would really be immoral.</p>
-<p><milestone unit="section" n="51"/> In deciding cases of this kind Diogenes of Baby-<note type="marg">Diogenes <hi rend="italic">vs.</hi> Antipater.</note>
+<p><milestone unit="section" n="51"/> In deciding cases of this kind Diogenes of Baby-<note type="marg">Diogenes <hi rend="italics">vs.</hi> Antipater.</note>
 lonia, a great and highly esteemed Stoic, consistently
 holds one view; his pupil Antipater, a most profound
 scholar, holds another. According to Antipater all
 the facts should be disclosed, that the buyer may
 
 
-<pb xml:id="p.321"/>
+<pb id="p.321"/>
 
 not be uninformed of any detail that the seller
 knows; according to Diogenes the seller should
@@ -5548,7 +5529,7 @@ but for the rest, since he has goods to sell, he may
 try to sell them to the best possible advantage,
 provided he is guilty of no misrepresentation.</p>
 <p><quote>I have imported my stock,</quote> Diogenes's merchant will say; <quote>I have offered it for sale; I sell
-at a price no higher than my competitors—perhaps
+at a price no higher than my competitors&mdash;perhaps
 even lower, when the market is overstocked. Who
 is wronged?</quote></p>
 <p><milestone unit="section" n="52"/> <quote>What say you?</quote> comes Antipater's argument on
@@ -5573,7 +5554,7 @@ may be to your interest to be told.</quote></p>
 must admit, if you will only bethink you of the
 
 
-<pb xml:id="p.323"/>
+<pb id="p.323"/>
 
 bonds of fellowship forged by Nature and existing
 between man and man.</quote></p>
@@ -5608,7 +5589,7 @@ lost his way' (a crime which at Athens is prohibited
 on pain of public execration), what is? It is even
 
 
-<pb xml:id="p.325"/>
+<pb id="p.325"/>
 
 worse than refusing to set a man on his way: it is
 deliberately leading a man astray.</quote></p>
@@ -5644,7 +5625,7 @@ the house to deal in the same way with his purchaser,
 The fact is that merely holding one's peace about a
 
 
-<pb xml:id="p.327"/>
+<pb id="p.327"/>
 
 thing does not constitute concealment, but concealment consists in trying for your own profit to keep
 others from finding out something that you know,
@@ -5657,7 +5638,7 @@ one who is shifty, sly, artful, shrewd, underhand,
 cunning, one grown old in fraud and subtlety. Is it
 not inexpedient to subject oneself to all these terms
 of reproach and many more besides?</p>
-<p><milestone unit="section" n="58"/> <milestone unit="chapter" n="14"/> If, then, they are to be blamed who suppress<note type="marg">Concealment of truth <hi rend="italic">vs.</hi> misrepresentation and falsehood.</note>
+<p><milestone unit="section" n="58"/> <milestone unit="chapter" n="14"/> If, then, they are to be blamed who suppress<note type="marg">Concealment of truth <hi rend="italics">vs.</hi> misrepresentation and falsehood.</note>
 the truth, what are we to think of those who actually state what is false? Gaius Canius, a Roman
 a man of considerable wit and literary culture, once went to Syracuse for a vacation, as he
 himself used to say, and not for business. He gave
@@ -5678,13 +5659,13 @@ to dinner at the appointed hour; Pythius had a
 sumptuous banquet prepared; there was a whole
 
 
-<pb xml:id="p.329"/>
+<pb id="p.329"/>
 
 fleet of boats before their eyes; each fisherman
 brought in in turn the catch that he had made; and
 the fishes were deposited at the feet of Pythius.</p>
 <p><milestone unit="section" n="59"/> <quote>Pray, Pythius,</quote> said Canius thereupon, <quote>what
-does this mean?—all these fish?—all these boats?</quote></p>
+does this mean?&mdash;all these fish?&mdash;all these boats?</quote></p>
 <p><quote>No wonder,</quote> answered Pythius; <quote>this is where
 all the fish in Syracuse are; here is where the fresh
 water comes from; the fishermen cannot get along
@@ -5709,14 +5690,14 @@ not yet had my colleague and friend, Gaius Aquilius,
 introduced the established forms to apply to criminal
 fraud. When asked what he meant by <quote>criminal
 fraud,</quote> as specified in these forms, he would reply:</p>
-<p><quote>Pretending one thing and practising another</quote>—a
+<p><quote>Pretending one thing and practising another</quote>&mdash;a
 very felicitous definition, as one might expect from
 an expert in making them. Pythius, therefore, and
 all others who do one thing while they pretend
 another are faithless, dishonest, and unprincipled
 
 
-<pb xml:id="p.331"/>
+<pb id="p.331"/>
 
 scoundrels. No act of theirs can be expedient, when
 what they do is tainted with so many vices.</p>
@@ -5728,7 +5709,7 @@ prohibited by the statutes: the penalty in the matter
 of trusteeships, for example, is fixed by the Twelve
 Tables; for the defrauding of minors, by the Plaetorian law. The same prohibition is effective, without statutory enactment, in equity cases, in which
 it is added that the decision shall be <quote>as good
-faith requires.</quote><note>See § 70 below.</note> In all other cases in equity,
+faith requires.</quote><note>See &sect; 70 below.</note> In all other cases in equity,
 moreover, the following phrases are most noteworthy: in a case calling for arbitration in the matter
 of a wife's dowry: what is <quote>the fairer is the better</quote>;
 in a suit for the restoration of a trust: <quote>honest
@@ -5748,7 +5729,7 @@ Scaevola, asked that the price of a farm that he
 desired to purchase be definitely named and the
 
 
-<pb xml:id="p.333"/>
+<pb id="p.333"/>
 
 vendor named it, he replied that he considered it
 worth more, and paid him 100,000 sesterces over
@@ -5757,7 +5738,7 @@ this was not the act of an honest man; but people do
 say that it was not the act of a worldly-wise man, any
 more than if he had sold for a smaller amount than
 he could have commanded. Here, then, is that
-mischievous idea—the world accounting some men
+mischievous idea&mdash;the world accounting some men
 upright, others wise; and it is this fact that gives
 Ennius occasion to say:
 
@@ -5784,7 +5765,7 @@ gratitude.</p>
 few transactions into which <quote>criminal fraud</quote> does
 
 
-<pb xml:id="p.335"/>
+<pb id="p.335"/>
 
 not enter; or, if he only is a good man who help
 all he can, and harms no one, it will certainly be no
@@ -5821,7 +5802,7 @@ only after the augurs had ordered them to be pulled
 down, he summoned the former owner before a court
 
 
-<pb xml:id="p.337"/>
+<pb id="p.337"/>
 
 of equity to decide <quote>what indemnity the owner was
 under obligation 'in good faith ' to pay and deliver
@@ -5858,7 +5839,7 @@ pleading that, <quote>inasmuch as the defect in question
 had not been unknown to Sergius (for it was the
 
 
-<pb xml:id="p.339"/>
+<pb id="p.339"/>
 
 same house that he had sold to Marius), no declaration of it was needed, and in purchasing it back he
 had not been imposed upon, for he knew to what
@@ -5866,7 +5847,7 @@ legal liability his purchase was subject.</quote></p>
 <p><milestone unit="section" n="68"/> What is the purpose of these illustrations? To
 let you see that our forefathers did not countenance
 sharp practice.</p>
-<p><milestone unit="chapter" n="17"/> Now the law disposes of sharp practices in<note type="marg">Law <hi rend="italic">vs.</hi> philosophy in dealing with knavery.</note>
+<p><milestone unit="chapter" n="17"/> Now the law disposes of sharp practices in<note type="marg">Law <hi rend="italics">vs.</hi> philosophy in dealing with knavery.</note>
 one way, philosophers in another: the law deals with
 them as far as it can lay its strong arm upon them;
 philosophers, as far as they can be apprehended by
@@ -5878,12 +5859,12 @@ start the game or to drive it into them? Why, wild
 creatures often fall into snares undriven and unpursued. Could one in the same way advertise a house
 for sale, post up a notice <quote>To be sold,</quote> like a snare,
 and have somebody run into it unsuspecting?</p>
-<p><milestone unit="section" n="69"/> Owing to the low ebb of public sentiment, such<note type="marg">Civil law <hi rend="italic">vs.</hi> moral law.</note>
+<p><milestone unit="section" n="69"/> Owing to the low ebb of public sentiment, such<note type="marg">Civil law <hi rend="italics">vs.</hi> moral law.</note>
 a method of procedure, I find, is neither by custom
 accounted morally wrong nor forbidden either by
 statute or by civil law; nevertheless it is forbidden
-by the moral law. For there is a bond of fellowship—although I have often made this statement, I
-must still repeat it again and again—which has the
+by the moral law. For there is a bond of fellowship&mdash;although I have often made this statement, I
+must still repeat it again and again&mdash;which has the
 very widest application, uniting all men together
 and each to each. This bond of union is closer
 between those who belong to the same nation, and
@@ -5893,7 +5874,7 @@ our forefathers chose to understand one thing by the
 universal law and another by the civil law. The
 
 
-<pb xml:id="p.341"/>
+<pb id="p.341"/>
 
 civil law is not necessarily also the universal law;
 but the universal law ought to be also the civil law.
@@ -5906,14 +5887,14 @@ For how weighty are the words:<milestone unit="section" n="70"/>  <quote>That I 
 deceived and defrauded through you and my confidence in you</quote>! How precious are these: <quote>As
 between honest people there ought to be honest
 dealing, and no deception</quote>! But who are <quote>honest
-people,</quote> and what is <quote>honest dealing</quote> —these are
+people,</quote> and what is <quote>honest dealing</quote> &mdash;these are
 serious questions.</p>
 <p>It was Quintus Scaevola, the pontifex maximus,
 who used to attach the greatest importance to all
 questions of arbitration to which the formula was
 appended <quote>as good faith requires</quote>; and he held
 that the expression <quote>good faith</quote> had a very extensive application, for it was employed in trusteeships
-and partnerships, in trusts and commissions, in buying and selling, in hiring and letting—in a word, in
+and partnerships, in trusts and commissions, in buying and selling, in hiring and letting&mdash;in a word, in
 all the transactions on which the social relations of
 daily life depend; in these, he said, it required
 a judge of great ability to decide the extent of
@@ -5927,7 +5908,7 @@ whereas, inasmuch as all things morally wrong are
 evil, trickery prefers the evil to the good.</p>
 
 
-<pb xml:id="p.343"/>
+<pb id="p.343"/>
 
 <p>It is not only in the case of real estate transfers
 that the civil law, based upon a natural feeling for
@@ -5962,7 +5943,7 @@ reputation of being honest men.</p>
 a forged will, purporting to be that of the wealthy
 
 
-<pb xml:id="p.345"/>
+<pb id="p.345"/>
 
 Lucius Minucius Basilus. The more easily to procure validity for it, they made joint-heirs with themselves two of the most influential men of the day,
 Marcus Crassus and Quintus Hortensius. Although
@@ -5977,15 +5958,15 @@ that he is dead.<milestone unit="section" n="74"/>  Be that as it may, Basilus h
 desired that his nephew Marcus Satrius should bear
 his name and inherit his property. (I refer to the
 Satrius who is the present patron of Picenum and
-the Sabine country—and oh, what a shameful stigma
+the Sabine country&mdash;and oh, what a shameful stigma
 it is upon the times!<note>The shame was that states enjoying the rights of Roman
 citizenship should need a patron to protect their interests in
 the Roman capital.</note>) And therefore it was not
 right that two of the leading citizens of Rome
 should take the estate and Satrius succeed to nothing
 except his uncle's name. For if he does wrong who
-does not ward off and repel injury when he can—as
-I explained in the course of the First Book—what is to
+does not ward off and repel injury when he can&mdash;as
+I explained in the course of the First Book&mdash;what is to
 be thought of the man who not only does not try to
 prevent wrong, but actually aids and abets it? For
 my part, I do not believe that even genuine legacies
@@ -5997,7 +5978,7 @@ course is likely to appear expedient and another
 morally right.<milestone unit="section" n="75"/>  The appearance is deceptive; for
 our standard is the same for expediency and for
 moral rectitude.<milestone unit="alternatesection" n="75"/>  And the man who does not accept
-the truth of this will be capable of any sort of dishonesty, <pb xml:id="p.347"/> any sort of crime. For if he reasons,
+the truth of this will be capable of any sort of dishonesty, <pb id="p.347"/> any sort of crime. For if he reasons,
 <quote>That is, to be sure, the right course, but this
 course brings advantage,</quote> he will not hesitate in his
 mistaken judgment to divorce two conceptions that
@@ -6006,7 +5987,7 @@ door to all sorts of dishonesty, wrong-doing, and
 crime.</p>
 <p><milestone unit="chapter" n="19"/> Suppose, then, that a good man had such<note type="marg">The good man not tempted to unrighteous gain.</note>
 power that at a snap of his fingers his name could
-steal into rich men's wills, he would not avail himself of that power—no, not even though he could be
+steal into rich men's wills, he would not avail himself of that power&mdash;no, not even though he could be
 perfectly sure that no one would ever suspect it.
 Suppose, on the other hand, that one were to offer
 a Marcus Crassus the power, by the mere snapping
@@ -6031,7 +6012,7 @@ be brought to realize that nothing that is unjust is
 either advantageous or expedient; if he does not
 
 
-<pb xml:id="p.349"/>
+<pb id="p.349"/>
 
 learn this lesson, it will never be possible for him to
 be a <quote>good man.</quote></p>
@@ -6051,7 +6032,7 @@ number.</p>
 to a Socrates but even to a Fimbria, nothing can
 possibly seem expedient that is not morally right.
 Such a man, therefore, will never venture to think
-—to say nothing of doing—anything that he would
+&mdash;to say nothing of doing&mdash;anything that he would
 not dare openly to proclaim. Is it not a shame
 that philosophers should be in doubt about moral
 questions on which even peasants have no doubts
@@ -6061,11 +6042,11 @@ praise a man's honour and honesty, they say, <quote>He
 is a man with whom you can safely play at odd
 and even<note>Lit. flash with the fingers'; shoot out some fingers,
 the number of which had to be guessed.</note> in the dark.</quote> What is the point of
-the proverb but this—that what is not proper
+the proverb but this&mdash;that what is not proper
 brings no advantage, even if you can gain your
 
 
-<pb xml:id="p.351"/>
+<pb id="p.351"/>
 
 end without anyone's being able to convict you of
 wrong?</p>
@@ -6100,7 +6081,7 @@ of absence from him.</p>
 <p><milestone unit="section" n="80"/> Evea our kinsman Gratidianus failed on one occa-<note type="marg">(2) Gratidianu</note>
 
 
-<pb xml:id="p.353"/>
+<pb id="p.353"/>
 
 sion to perform what would be a good man's duty:
 in his praetorship the tribunes of the people summoned the college of praetors to council, in order
@@ -6137,7 +6118,7 @@ have one rule, with which I desire you to be perfectly familiar: that which seem
 not be morally wrong; or, if it is morally wrong, it
 
 
-<pb xml:id="p.355"/>
+<pb id="p.355"/>
 
 must not seem expedient. What follows? Can we
 account either the great Marius or our Marius Gratidianus a good man? Work out your own ideas and
@@ -6169,19 +6150,19 @@ upon another; and he failed to see how unjust to
 his country this was, and how wrong morally. But<note type="marg">(4) Caesar.</note>
 the father-in-law himself used to have continually
 upon his lips the Greek verses from the Phoenissae,
-which I will reproduce as well as I can—awkwardly,
+which I will reproduce as well as I can&mdash;awkwardly,
 it may be, but still so that the meaning can be
 understood:
 
-<pb xml:id="p.357"/>
+<pb id="p.357"/>
 
 <quote rend="blockquote"><cit><quote><l>If wrong may e'er be right, for a throne's sake</l>
-<l>Were wrong most right:—be God in all else feared!</l></quote><bibl>From A. S. Way's translation.</bibl></cit></quote>
+<l>Were wrong most right:&mdash;be God in all else feared!</l></quote><bibl>From A. S. Way's translation.</bibl></cit></quote>
 
 Our tyrant deserved his death for having made an
 exception of the one thing that was the blackest
 crime of all.<milestone unit="section" n="83"/>  Why do we gather instances of petty
-crime—legacies criminally obtained and fraudulent
+crime&mdash;legacies criminally obtained and fraudulent
 buying and selling? Behold, here you have a man
 who was ambitious to be king of the Roman People
 and master of the whole world; and he achieved it!
@@ -6194,7 +6175,7 @@ now, and yet imagines that it is advantageous for
 him who can reach that position, with what remonstrance or rather with what appeal should I try to
 tear him away from so strange a delusion? For, oh
 ye immortal gods! can the most horrible and hideous
-of all murders—that of fatherland—bring advantage
+of all murders&mdash;that of fatherland&mdash;bring advantage
 to anybody, even though he who has committed
 such a crime receives from his enslaved fellow-citizens the title of <quote>Father of his Country</quote>?<note>The title bestowed on Cicero for saving the republic
 (in 63) and on Caesar for overthrowing it (after the battle
@@ -6210,7 +6191,7 @@ question back to the standard of truth, then I find
 nothing more disadvantageous for one who has risen to
 
 
-<pb xml:id="p.359"/>
+<pb id="p.359"/>
 
 that height by injustice. For can occasions for worry,
 anxiety, fear by day and by night, and a life all beset
@@ -6247,7 +6228,7 @@ and promised, if Fabricius would assure him of a reward, to return to the camp o
 he had come, administer poison to the king, and bring
 
 
-<pb xml:id="p.361"/>
+<pb id="p.361"/>
 
 about his death. Fabricius saw to it that this fellow
 was taken back to Pyrrhus; and his action was commended by the senate. And yet, if the mere show
@@ -6260,7 +6241,7 @@ valour but by crime the man with whom we had a
 contest for glory.</p>
 <p><milestone unit="section" n="87"/> Which course, then, was more expedient for
 Fabricius, who was to our city what Aristides was to
-Athens, or for our senate, who never divorced expediency from honour—to contend against the enemy
+Athens, or for our senate, who never divorced expediency from honour&mdash;to contend against the enemy
 with the sword or with poison? If supremacy is to
 be sought for the sake of glory, crime should be excluded, for there can be no glory in crime; but if it
 is power for its own sake that is sought, whatever
@@ -6281,7 +6262,7 @@ therefore it was expedient.</quote> How long will people
 venture to say that a thing that is not morally right
 
 
-<pb xml:id="p.363"/>
+<pb id="p.363"/>
 
 can be expedient?<milestone unit="section" n="88"/>  Furthermore, can hatred and
 shame be expedient for any government? For
@@ -6294,7 +6275,7 @@ that the farmers of the revenue asked for and much
 that the allies desired; whereas, as I insisted, it was
 our duty to be generous to the allies and to treat
 the publicans as we were accustomed individually to
-treat our tenants—and all the more, because harmony
+treat our tenants&mdash;and all the more, because harmony
 between the orders was essential to the welfare of
 the republic.<note>The publicans, farmers of the revenue, were the moneyed
 men of the times, and belonged to the equestrian order. They
@@ -6315,7 +6296,7 @@ that the claims were not just, because they were
 not expedient for the republic, than to have admitted
 that they were just, when, as he maintained, they
 were not expedient.</p>
-<p><milestone unit="section" n="89"/> <milestone unit="chapter" n="23"/> The sixth book of Hecaton's <quote>Moral<note type="marg">Hecaton debates the question of expediency <hi rend="italic">vs.</hi> moral rectitude.</note>
+<p><milestone unit="section" n="89"/> <milestone unit="chapter" n="23"/> The sixth book of Hecaton's <quote>Moral<note type="marg">Hecaton debates the question of expediency <hi rend="italics">vs.</hi> moral rectitude.</note>
 Duties</quote> is full of questions like the following: <quote>Is
 it consistent with a good man's duty to let his slaves
 go hungry when provisions are at famine prices?</quote></p>
@@ -6329,7 +6310,7 @@ should he prefer to sacrifice a high-priced horse or a
 cheap and worthless slave? In this case regard for
 
 
-<pb xml:id="p.365"/>
+<pb id="p.365"/>
 
 his property interest inclines him one way, human
 feeling the other.</p>
@@ -6345,7 +6326,7 @@ on the ground that the ship was his. For until they
 reach the place for which the ship is chartered, she
 belongs to the passengers, not to the owner.</quote></p>
 <p><milestone unit="section" n="90"/> <quote>Again; suppose there were two to be saved from
-the sinking ship—both of them wise men—and only
+the sinking ship&mdash;both of them wise men&mdash;and only
 one small plank, should both seize it to save themselves? Or should one give place to the other?</quote></p>
 <p><quote>Why of course, one should give place to the
 other, but that other must be the one whose life is
@@ -6364,11 +6345,11 @@ his father, in case he were indicted.</quote></p>
 <p><quote>Well, then, are not the claims of country paramount to all other duties?</quote></p>
 
 
-<pb xml:id="p.367"/>
+<pb id="p.367"/>
 
 <p><quote>Aye, verily; but it is to our country's interest to
 have citizens who are loyal to their parents.</quote></p>
-<p><quote>But once more—if the father attempts to make
+<p><quote>But once more&mdash;if the father attempts to make
 himself king, or to betray his country, shall the son
 hold his peace?</quote></p>
 <p><quote>Nay, verily; he will plead with his father not to
@@ -6376,7 +6357,7 @@ do so. If that accomplishes nothing, he will take
 him to task; he will even threaten; and in the end,
 if things point to the destruction of the state, he
 will sacrifice his father to the safety of his country.</quote></p>
-<p><milestone unit="section" n="91"/> Again, he raises the question: <quote>If a wise man<note type="marg">A similar debate by Diogenes <hi rend="italic">vs.</hi> Antipater.</note>
+<p><milestone unit="section" n="91"/> Again, he raises the question: <quote>If a wise man<note type="marg">A similar debate by Diogenes <hi rend="italics">vs.</hi> Antipater.</note>
 should inadvertently accept counterfeit money for
 good, will he offer it as genuine in payment of a
 debt after he discovers his mistake?</quote> Diogenes
@@ -6387,7 +6368,7 @@ spoiling, ought he to tell his customers? Diogenes
 thinks that it is not required; Antipater holds that
 an honest man would do so. These are like so
 many points of the law disputed among the Stoics.
-<quote>In selling a slave, should his faults be declared—not those only which the seller is bound by the civil
+<quote>In selling a slave, should his faults be declared&mdash;not those only which the seller is bound by the civil
 law to declare or have the slave returned to him, but
 also the fact that he is untruthful, or disposed to
 gamble, or steal, or get drunk?</quote> The one thinks
@@ -6401,7 +6382,7 @@ on these questions, and what are the grounds of
 dispute between the above-named philosophers.</p>
 
 
-<pb xml:id="p.369"/>
+<pb id="p.369"/>
 
 <p><milestone unit="chapter" n="24"/> The question arises also whether agreements <note type="marg">Promises not binding: (1) when life or health is at stake,</note> and promises must always be kept, <quote>when,</quote>
 in the language of the praetors' edicts, <quote>they have
@@ -6421,7 +6402,7 @@ is justified in doing what he can for his own life and
 health.</p>
 <p><milestone unit="section" n="93"/> Again: suppose that a millionaire is making some<note type="marg">(2) when reputation is at stake,</note>
 wise man his heir and leaving him in his will a
-hundred million sesterces;<note>Approximately £750,000.</note> and suppose that he has
+hundred million sesterces;<note>Approximately &pound;750,000.</note> and suppose that he has
 asked the wise man, before he enters upon his inheritance, to dance publicly in broad daylight in the
 forum; and suppose that the wise man has given his
 promise to do so, because the rich man would not
@@ -6432,11 +6413,11 @@ keeping with his dignity. But, seeing that he has
 made it, it will be morally better for him, if he
 believes it morally wrong to dance in the forum, to
 break his promise and refuse to accept his inheritance rather than to keep his promise and accept it
-—unless, perhaps, he contributes the money to the
+&mdash;unless, perhaps, he contributes the money to the
 state to meet some grave crisis. In that case, to
 
 
-<pb xml:id="p.371"/>
+<pb id="p.371"/>
 
 promote thereby the interests of one's country, it
 would not be morally wrong even to dance, if you
@@ -6472,7 +6453,7 @@ to make war upon your common country, should you
 restore the trust? I believe you should not; for
 
 
-<pb xml:id="p.373"/>
+<pb id="p.373"/>
 
 you would be acting against the state, which ought to
 be the dearest thing in the world to you. Thus there
@@ -6495,7 +6476,7 @@ expedient. There remain for our discussion two
 divisions of moral rectitude, the one of which is
 discernible in the greatness and pre-eminence of a
 superior soul, the other, in the shaping and regulation of it by temperance and self-control.</p>
-<p><milestone unit="section" n="97"/> <milestone unit="chapter" n="26"/> Ulysses thought his ruse expedient, as<note type="marg">Apparent Expediency <hi rend="italic">vs.</hi> Fortitude: (1) Ulysses's ruse,</note>
+<p><milestone unit="section" n="97"/> <milestone unit="chapter" n="26"/> Ulysses thought his ruse expedient, as<note type="marg">Apparent Expediency <hi rend="italics">vs.</hi> Fortitude: (1) Ulysses's ruse,</note>
 the tragic poets, at least, have represented him. In
 Homer, our most reliable authority, no such suspicion
 is cast upon him; but the tragedies charge him with
@@ -6505,7 +6486,7 @@ parents, wife, and son. Do you think that there
 is any glory in facing daily toil and danger that can
 be compared with a life of such tranquillity?</quote></p>
 
-<pb xml:id="p.375"/>
+<pb id="p.375"/>
 
 <p>Nay; I think that tranquillity at such a price is to
 be despised and rejected; for if it is not morally
@@ -6540,11 +6521,11 @@ was sent to the senate on parole, sworn to return
 to Carthage himself, if certain noble prisoners of
 war<note>At the battle of Panormus in 250 Lucius Caecilius
 Metellus took among the prisoners no less than thirteen
-Carthaginian generals—all men of noble birth.</note> were not restored to the Carthaginians. When
+Carthaginian generals&mdash;all men of noble birth.</note> were not restored to the Carthaginians. When
 he came to Rome, he could not fail to see the
 
 
-<pb xml:id="p.377"/>
+<pb id="p.377"/>
 
 specious appearance of expediency, but he decided
 that it was unreal, as the outcome proves. His apparent interest was to remain in his own country, to
@@ -6564,9 +6545,9 @@ He came into the senate and stated his mission;
 but he refused to give his own vote on the question;
 for, he held, he was not a member of the senate so
 long as he was bound by the oath sworn to his
-enemies. And more than that, he said—<quote>What a
+enemies. And more than that, he said&mdash;<quote>What a
 foolish fellow,</quote> someone will say, <quote>to oppose his
-own best interests</quote> —he said that it was not expedient that the prisoners should be returned; for
+own best interests</quote> &mdash;he said that it was not expedient that the prisoners should be returned; for
 they were young men and gallant officers, while he
 was already bowed with age. And when his counsel
 prevailed, the prisoners were retained and he himself returned to Carthage; affection for his country
@@ -6579,7 +6560,7 @@ to death by enforced wakefulness, he enjoyed a
 happier lot than if he had remained at home an
 
 
-<pb xml:id="p.379"/>
+<pb id="p.379"/>
 
 aged prisoner of war, a man of consular rank forsworn.</p>
 <p><milestone unit="section" n="101"/> <quote>But,</quote> you will say, <quote>it was foolish of him not
@@ -6611,7 +6592,7 @@ that God is ever working and ever directing His
 world. Furthermore, suppose Jupiter had been
 
 
-<pb xml:id="p.381"/>
+<pb id="p.381"/>
 
 wroth, what greater injury could He have inflicted
 upon Regulus than Regulus brought upon himself?
@@ -6646,7 +6627,7 @@ them each in turn.</p>
 Jupiter in anger would inflict injury upon him; he
 is not wont to be angry or hurtful.</quote></p>
 
-<pb xml:id="p.383"/>
+<pb id="p.383"/>
 
 <p>This argument, at all events, has no more weight<note type="marg">(1) An oath is a covenant with Justice and Good Faith;</note>
 against Regulus's conduct than it has against the
@@ -6675,16 +6656,16 @@ upon himself.</quote></p>
 <p>Quite true, if there is no evil except pain. But
 philosophers<note>The Stoics</note> of the highest authority assure us that
 pain is not only not the supreme evil but no evil at
-all. And pray do not disparage Regulus, as no unimportant witness—nay, I am rather inclined to
-think he was the very best witness—to the truth of
+all. And pray do not disparage Regulus, as no unimportant witness&mdash;nay, I am rather inclined to
+think he was the very best witness&mdash;to the truth of
 their doctrine. For what more competent witness
 do we ask for than one of the foremost citizens of
 Rome, who voluntarily faced torture for the sake of
 being true to his moral duty?</p>
-<p>Again, they say, <quote>Of evils choose the least</quote>—
+<p>Again, they say, <quote>Of evils choose the least</quote>&mdash;
 
 
-<pb xml:id="p.385"/>
+<pb id="p.385"/>
 
 that is, shall one <quote>choose moral wrong rather than<note type="marg">(2) no evil can be greater than moral wrong;</note>
 misfortune,</quote> or is there any evil greater than moral
@@ -6714,14 +6695,14 @@ understanding, it does not count as perjury if one
 does not perform the vow. For example, suppose
 that one does not deliver the amount agreed upon
 with pirates as the price of one's life, that would be
-accounted no deception—not even if one should fail
+accounted no deception&mdash;not even if one should fail
 to deliver the ransom after having sworn to do so;
 for a pirate is not included in the number of lawful
 enemies, but is the common foe of all the world;
 and with him there ought not to be any pledged
 
 
-<pb xml:id="p.387"/>
+<pb id="p.387"/>
 
 word nor any oath mutually binding.<milestone unit="section" n="108"/>  For swearing
 to what is false is not necessarily perjury, but to
@@ -6755,7 +6736,7 @@ of the said delivery.</p>
 experience: he advocated the bill, introduced in
 
 
-<pb xml:id="p.389"/>
+<pb id="p.389"/>
 
 accordance with a decree of the senate by Lucius
 Furius and Sextus Atilius, that he should be delivered
@@ -6791,7 +6772,7 @@ to suffer for it.</p>
 rather to say not that it <quote>may prove to be</quote> but that
 
 
-<pb xml:id="p.391"/>
+<pb id="p.391"/>
 
 it actually is morally right. For nothing can be expedient which is not at the same time morally right;
 neither can a thing be morally right just because it
@@ -6830,11 +6811,11 @@ son Titus (afterward surnamed Torquatus) from all
 companionship with his fellow-men, and with requiring him to live in the country. When the son, who
 
 
-<pb xml:id="p.393"/>
+<pb id="p.393"/>
 
 was then a young man, heard that his father was
-in trouble on his account, he hastened to Rome—
-so the story goes—and at daybreak presented himself at the house of Pomponius. The visitor was
+in trouble on his account, he hastened to Rome&mdash;
+so the story goes&mdash;and at daybreak presented himself at the house of Pomponius. The visitor was
 announced to Pomponius. Inasmuch as he thought
 that the son in his anger meant to bring him some
 new evidence to use against the father, he arose
@@ -6866,7 +6847,7 @@ which had fallen into the hands of the Carthaginians,
 if they did not succeed in negotiating an exchange
 
 
-<pb xml:id="p.395"/>
+<pb id="p.395"/>
 
 of prisoners. Historians are not in agreement in
 regard to the facts. Polybius, one of the very best
@@ -6879,7 +6860,7 @@ forgotten something or other, remained behind at
 Rome; he explained that by his return to the camp
 he was released from the obligation of his oath.
 He was wrong; for deceit does not remove the guilt
-of perjury—it merely aggravates it. His cunning
+of perjury&mdash;it merely aggravates it. His cunning
 that impudently tried to masquerade as prudence<note type="marg">The ancient Roman discipline.</note>
 was, therefore, only folly. And so the senate
 ordered that the cunning scoundrel should be taken
@@ -6904,7 +6885,7 @@ history of Rome in Greek, says that there were
 several who played the same trick of returning to
 
 
-<pb xml:id="p.397"/>
+<pb id="p.397"/>
 
 the camp to release themselves thus from the obligation of their oath, and that they were branded by
 the censors with every mark of disgrace.</p>
@@ -6913,16 +6894,16 @@ must be perfectly apparent that acts that are done with a cowardly, craven, abje
 act of Regulus would have been if he had supported
 in regard to the prisoners a measure that seemed to
 be advantageous for him personally, but disadvantageous for the state, or if he had consented to
-remain at home—that such acts are not expedient,
+remain at home&mdash;that such acts are not expedient,
 because they are shameful, dishonourable, and immoral.</p>
-<p><milestone unit="section" n="116"/> <milestone unit="chapter" n="33"/> We have still left our fourth division, <note type="marg">Apparent Expediency <hi rend="italic">vs.</hi> Temperance.</note>
+<p><milestone unit="section" n="116"/> <milestone unit="chapter" n="33"/> We have still left our fourth division, <note type="marg">Apparent Expediency <hi rend="italics">vs.</hi> Temperance.</note>
 comprising propriety, moderation, temperance, selfrestraint, self-control.</p>
 <p>Can anything be expedient, then, which is contrary to such a chorus of virtues? And yet the
 Cyrenaics, adherents of the school of Aristippus,
 and the philosophers who bear the name of Anniceris find all good to consist in pleasure and consider
 virtue praiseworthy only because it is productive of
 pleasure. Now that these schools are out of date,
-Epicurus has come into vogue—an advocate and
+Epicurus has come into vogue&mdash;an advocate and
 supporter of practically the same doctrine. Against
 such a philosophy we must fight it out <quote>with horse
 and foot,</quote> as the saying is, if our purpose is to
@@ -6931,22 +6912,22 @@ defend and maintain our standard of moral rectitude.</p>
 not only expediency but happiness in life depends
 wholly upon a sound physical constitution and the
 reasonable expectation that it will always remain
-sound, then that expediency—and, what is more,
-the highest expediency, as they estimate it—will
+sound, then that expediency&mdash;and, what is more,
+the highest expediency, as they estimate it&mdash;will
 
 
-<pb xml:id="p.399"/>
+<pb id="p.399"/>
 
 assuredly clash with moral rectitude. For, first of all,
 what position will wisdom occupy in that system?
 The position of collector of pleasures from every
 possible source? What a sorry state of servitude
-for a virtue—to be pandering to sensual pleasure!
+for a virtue&mdash;to be pandering to sensual pleasure!
 And what will be the function of wisdom? To make
 skilful choice between sensual pleasures? Granted
 that there may be nothing more pleasant, what can
 be conceived more degrading for wisdom than such
-a rôle?</p>
+a r&ocirc;le?</p>
 <p>Then again, if anyone hold that pain is the
 supreme evil, what place in his philosophy has fortitude, which is but indifference to toil and pain?
 For, however many passages there are in which
@@ -6971,10 +6952,10 @@ their doctrines, when they teach that it is a rational
 means for looking with indifference upon death and
 
 
-<pb xml:id="p.401"/>
+<pb id="p.401"/>
 
 for enduring pain. They bring even temperance in
-—not very easily, to be sure, but still as best they can;
+&mdash;not very easily, to be sure, but still as best they can;
 for they hold that the height of pleasure is found
 in the absence of pain. Justice totters or rather, I
 should say, lies already prostrate; so also with all
@@ -7006,13 +6987,13 @@ can still be no possible union between it and moral
 rectitude. For, to make the most generous admission
 
 
-<pb xml:id="p.403"/>
+<pb id="p.403"/>
 
 we can in favour of pleasure, we will grant that it
 may contribute something that possibly gives some
 spice to life, but certainly nothing that is really expedient.</p>
 <p><milestone unit="section" n="121"/> Herewith, my son Marcus, you have a present<note type="marg">Conclusion.</note>
-from your father—a generous one, in my humble
+from your father&mdash;a generous one, in my humble
 opinion; but its value will depend upon the spirit in
 which you receive it. And yet you must welcome
 these three books as fellow-guests, so to speak, along
@@ -7025,7 +7006,7 @@ as much time as you can to these volumes, for in
 them my voice will travel to you; and you can
 devote to them as much time as you will. And
 when I see that you take delight in this branch of
-philosophy, I shall then talk further with you—at
+philosophy, I shall then talk further with you&mdash;at
 an early date,<note>But Cicero never saw his son Marcus again.</note> I hope, face to face-but as long as
 you are abroad, I shall converse with you thus at a
 distance.</p>
@@ -7033,8 +7014,7 @@ distance.</p>
 while you are the object of my deepest affection, you
 will be dearer to me still, if you find pleasure in
 such counsel and instruction.</p>
-</div>
-</div>
+</div1>
 </body>
 </text>
-</TEI>
+</TEI.2>

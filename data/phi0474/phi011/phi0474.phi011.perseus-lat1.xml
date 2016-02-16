@@ -1,15 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader type="text">
 		<fileDesc>
 			<titleStmt>
-				<title type="work">The First Oration on the Agrarian Law </title>
+				<title>The First Oration on the Agrarian Law </title>
 				<title>Pro P. Quinctio, Pro Q. Roscio comoedo, Pro A. Caecina, De lege agraria
 					contra Rullum, Pro C. Rabiro perduellionis reo, Pro L. Flacco, In L. Pisonem,
 					Pro C. Rabiro Postumo</title>
 				<title type="sub">Machine readable text</title>
-				<author n="M. Tullius Cicero">M. Tullius Cicero</author>
+				<author n="Cic.">M. Tullius Cicero</author>
 				<editor role="editor" n="OCT">Albert Clark</editor>
 				<sponsor>Perseus Project, Tufts University</sponsor>
 				<principal>Gregory Crane</principal>
@@ -50,24 +49,32 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 		</fileDesc>
 
 		<encodingDesc>
-			<refsDecl n="CTS">
-				<cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
-					<p>This pointer pattern extracts chapter and section</p>
-				</cRefPattern>
-				<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
-					<p>This pointer pattern extracts chapter</p>
-				</cRefPattern>
+			<refsDecl>
+				<refState delim=" " unit="text"/>
+				<refState unit="section"/>
 			</refsDecl>
 			<refsDecl>
-				<refState unit="chapter" delim="."/>
+				<refState delim=" " unit="text"/>
+				<refState delim="." n="chunk" unit="chapter"/>
+				<refState unit="section"/>
+			</refsDecl>
+			<refsDecl n="text=Agr.">
+				<refState delim=" " unit="text"/>
+				<refState delim="." unit="speech"/>
+				<refState unit="section"/>
+			</refsDecl>
+			<refsDecl n="text=Agr.">
+				<refState delim=" " unit="text"/>
+				<refState delim="." unit="speech"/>
+				<refState delim="." n="chunk" unit="chapter"/>
 				<refState unit="section"/>
 			</refsDecl>
 		</encodingDesc>
 
 		<profileDesc>
 			<langUsage>
-				<language ident="lat">Latin</language>
-				<language ident="grc">Greek</language>
+				<language ident="la">Latin</language>
+				<language ident="greek">Greek</language>
 			</langUsage>
 		</profileDesc>
 
@@ -151,34 +158,34 @@ Added to repository. Passes TEI parse.
     <item>split composite text and converted to unicode</item>
       </change>-->
 			<change when="2014-08-01" who="Stella Dee">edited markup</change>
-		<change when="2015-12-18" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change><change when="1997-03-26" who="DAS">ed.</change>
-			<change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change><change who="balmas01" when="2013-09-13T11:21:41">Revision 1.5  reverting texts back to pre_cts_reorg tagged version</change><change who="gcrane" when="2011-07-19T22:30:38">Revision 1.3  removed the earlier persName/placeName tags</change><change who="gcrane" when="2011-07-09T20:25:36">Revision 1.2  fixed problems with capitalization</change><change who="gcrane" when="2011-01-15T23:14:25">Revision 1.1  base SDL file</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1  more reorganizing of texts module by collection</change><change who="packel" when="2005-08-01T15:59:20">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25T14:31:17">Revision 1.1  Converted to XML</change><change who="mimno" when="2005-04-08T17:56:08">Revision 1.15  added default chunks</change><change who="yorkc" when="2003-07-01T22:14:58">Revision 1.14  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2002-12-02T18:41:45">Revision 1.13  correct spelling of Quirites, improperly 'regularized'</change><change who="amahoney" when="2000-03-13T17:37:07">Revision 1.12  don't put header for fragments next to header for speech:  gets into
-short toc</change><change who="amahoney" when="2000-03-06T22:21:49">Revision 1.11  add headers for groups of speeches, so they show up in the toc:  Catilines,
-Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-03-04T20:34:11">Revision 1.10  Added separate funder entity to TEI header.</change><change who="dasmith" when="1999-10-14T21:36:02">Revision 1.9  Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-08-12T17:17:19">Revision 1.8  Fixed refsDecl</change><change who="textgod" when="1999-08-04T18:12:10">Revision 1.7  Random changes over a period of months.</change><change who="textgod" when="1997-10-17T14:07:07">Revision 1.6  Tagged Greek.</change><change who="textgod" when="1997-08-18T14:54:35">Revision 1.5  ???</change><change who="cjsu" when="1997-05-12T22:19:56">Revision 1.4  making sure that the file passed the parcer</change><change who="cjsu" when="1997-05-12T22:04:50">Revision 1.3  Added seven works... SGML varified</change><change who="textgod" when="1997-04-03T20:58:14">Revision 1.2  Changed ADD tags to CORR.</change><change who="textgod" when="1997-03-26T17:34:24">Revision 1.1  Added to repository. Passes TEI parse.</change></revisionDesc>
+		</revisionDesc>
 	</teiHeader>
-	<text>
-		<body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi011.perseus-lat1" subtype="edition">
+	<text xml:lang="la">
+		<body>
 			<head>Orationes de Lege Agraria</head>
-			<div type="textpart" n="1" subtype="Speech">
+			<div type="Speech" n="1">
 				<head>DE LEGE AGRARIA ORATIO PRIMA CONTRA P. SERVILIVM RVLLVM TR. PLEB. IN
 					SENATV</head>
 
 				<milestone n="fr1" unit="section"/>
 				<p>imberba iuventute <milestone n="fr2" unit="section"/></p>
 				<p>Capuam colonis deductis occupabunt, Atellam praesidio communient, Nuceriam, Cumas
-					multitudine suorum obtinebunt, cetera oppida praesidiis devincient. <milestone n="fr3" unit="section"/></p>
+					multitudine suorum obtinebunt, cetera oppida praesidiis devincient. <milestone
+						n="fr3" unit="section"/></p>
 				<p>Venibit igitur sub praecone tota Propontis atque Hellespontus, addicetur omnis
 					ora Lyciorum atque Cilicum, Mysia et Phrygia eidem condicioni legique parebunt.
 						<milestone n="fr4" unit="section"/></p>
 				<p><reg>praedam</reg>, manubias, sectionem, castra denique Cn. Pompei sedente
-					imperatore <num>x</num>viri vendent. <milestone n="1" unit="chapter"/><milestone n="1" unit="section"/></p>
+					imperatore <num>x</num>viri vendent. <milestone n="1" unit="chapter"/><milestone
+						n="1" unit="section"/></p>
 				<p>* * * quae res aperte petebatur, ea nunc occulte cuniculis oppugnatur.
 						<reg>dicent</reg> enim <num>x</num>viri, id quod et dicitur a multis et
 					saepe dictum est, post eosdem consules regis Alexandri testamento regnum illud
 					populi Romani esse factum. <reg>dabitis</reg> igitur Alexandream clam petentibus
 					eis quibus apertissime pugnantibus restitistis? <reg>haec</reg>, per deos
 					immortalis! utrum esse vobis consilia siccorum an vinolentorum somnia, et utrum
-					cogitata sapientium an optata furiosorum videntur? <milestone n="2" unit="section"/><reg>videte</reg> nunc proximo capite ut impurus helluo
+					cogitata sapientium an optata furiosorum videntur? <milestone n="2"
+						unit="section"/><reg>videte</reg> nunc proximo capite ut impurus helluo
 					turbet rem publicam, ut a maioribus nostris possessiones relictas disperdat ac
 					dissipet, ut sit non minus in populi Romani patrimonio nepos quam in suo.
 						<reg>perscribit</reg> in sua lege vectigalia quae <num>x</num>viri vendant,
@@ -197,7 +204,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					ornamenta pacis eripias? <reg>tum</reg> vero hoc me inertiorem consulem iudicabo
 					quam illos fortissimos viros qui apud maiores nostros fuerunt, quod, quae
 					vectigalia illis consulibus populo Romano parta sunt, ea me consule ne retineri
-					quidem potuisse iudicabuntur. <milestone n="2" unit="chapter"/><milestone n="4" unit="section"/>
+					quidem potuisse iudicabuntur. <milestone n="2" unit="chapter"/><milestone n="4"
+						unit="section"/>
 					<reg>vendit</reg> Italiae possessiones ex ordine omnis. <reg>sane</reg> est in
 					eo diligens; nullam enim praetermittit. <reg>persequitur</reg> in tabulis
 					censoriis totam Siciliam; nullum aedificium, nullos agros relinquit. Audistis
@@ -216,12 +224,14 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					duorum Scipionum eximia virtute possessos; tum vero ipsam veterem Carthaginem
 					vendunt quam P. Africanus nudatam tectis ac moenibus sive ad notandam
 					Carthaginiensium calamitatem, sive ad testificandam nostram victoriam, sive
-					oblata aliqua religione ad aeternam hominum memoriam consecravit. <milestone n="6" unit="section"/><reg>his</reg> insignibus atque infulis imperi
+					oblata aliqua religione ad aeternam hominum memoriam consecravit. <milestone
+						n="6" unit="section"/><reg>his</reg> insignibus atque infulis imperi
 					venditis quibus ornatam nobis maiores nostri rem publicam tradiderunt, iubent
 					eos agros venire quos rex Mithridates in Paphlagonia, Ponto Cappadociaque
 					possederit. <reg>num</reg> obscure videntur prope hasta praeconis insectari Cn.
 					Pompei exercitum qui venire iubeant eos ipsos agros in quibus ille etiam nunc
-					bellum gerat atque versetur? <milestone n="3" unit="chapter"/><milestone n="7" unit="section"/></p>
+					bellum gerat atque versetur? <milestone n="3" unit="chapter"/><milestone n="7"
+						unit="section"/></p>
 				<p><reg>hoc</reg> vero cuius modi est, quod eius auctionis quam constituunt locum
 					sibi nullum definiunt? <reg>nam</reg>
 					<num>x</num>viris quibus in locis ipsis videatur vendendi potestas lege
@@ -230,12 +240,14 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					etiam nequissimi homines consumptis patrimoniis faciunt ut in atriis
 					auctionariis potius quam in triviis aut in compitis auctionentur; hic permittit
 					sua lege <num>x</num>viris ut in quibus commodum sit tenebris, ut in qua velint
-					solitudine, bona populi Romani possint divendere. <milestone n="8" unit="section"/><reg>iam</reg> illa omnibus in provinciis, regnis, liberis
+					solitudine, bona populi Romani possint divendere. <milestone n="8"
+						unit="section"/><reg>iam</reg> illa omnibus in provinciis, regnis, liberis
 					populis quam acerba, quam formidolosa, quam quaestuosa concursatio
 					<num>x</num>viralis futura sit, non videtis? <reg>hereditatum</reg> obeundarum
 					causa quibus vos legationes dedistis, qui et privati et privatum ad negotium
 					exierunt non maximis opibus neque summa auctoritate praediti, tamen auditis
-					profecto quam graves eorum adventus sociis nostris esse soleant. <milestone n="9" unit="section"/><reg>quam</reg> ob rem quid putatis impendere hac lege
+					profecto quam graves eorum adventus sociis nostris esse soleant. <milestone
+						n="9" unit="section"/><reg>quam</reg> ob rem quid putatis impendere hac lege
 					omnibus gentibus terroris et mali, cum immittantur in orbem terrarum
 						<num>x</num>viri summo cum imperio, summa cum avaritia infinitaque omnium
 					rerum cupiditate? quorum cum adventus graves, cum fasces formidolosi, tum vero
@@ -243,7 +255,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					iudicare, quod iudicarint vendere. <reg>etiam</reg> illud quod homines sancti
 					non facient, ut pecuniam accipiant ne vendant, tamen id eis ipsum per legem
 					licebit. <reg>hinc</reg> vos quas spoliationes, quas pactiones, quam denique in
-					omnibus locis nundinationem iuris ac fortunarum fore putatis? <milestone n="10" unit="section"/><reg>etenim</reg>, quod superiore parte legis praefinitum
+					omnibus locis nundinationem iuris ac fortunarum fore putatis? <milestone n="10"
+						unit="section"/><reg>etenim</reg>, quod superiore parte legis praefinitum
 					fuit, '<quote>Svlla et Pompeio consvlibvs</quote>,' id rursus liberum
 					infinitumque fecerunt. <milestone n="4" unit="chapter"/><reg>iubet</reg> enim
 					eosdem <num>x</num>viros omnibus agris publicis pergrande vectigal imponere, ut
@@ -253,7 +266,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				<p><reg>sunt</reg> tamen in tota lege exceptiones duae non tam iniquae quam
 					suspiciosae. <reg>excipit</reg> enim in vectigali imponendo agrum Recentoricum
 					Siciliensem, in vendendis agris eos agros de quibus cautum sit foedere.
-						<reg>hi</reg> sunt in Africa, qui ab Hiempsale possidentur. <milestone n="11" unit="section"/><reg>hic</reg> quaero, si Hiempsali satis est cautum
+						<reg>hi</reg> sunt in Africa, qui ab Hiempsale possidentur. <milestone
+						n="11" unit="section"/><reg>hic</reg> quaero, si Hiempsali satis est cautum
 					foedere et Recentoricus ager privatus est, quid attinuerit excipi; sin et foedus
 					illud habet aliquam dubitationem et ager Recentoricus dicitur non numquam esse
 					publicus, quem putet existimaturum duas causas in orbe terrarum repertas quibus
@@ -269,7 +283,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					iudicio comparant, sed maximam pecuniam se a Fausto ablaturos arbitrantur.
 						<reg>quam</reg> causam suscipere iurati iudices noluerunt, hanc isti
 						<num>x</num>viri susceperunt: idcirco a iudicibus fortasse praetermissam
-					esse arbitrantur quod sit ipsis reservata. <milestone n="13" unit="section"/><reg>deinde</reg> etiam in reliquum tempus diligentissime sancit ut, quod
+					esse arbitrantur quod sit ipsis reservata. <milestone n="13" unit="section"
+						/><reg>deinde</reg> etiam in reliquum tempus diligentissime sancit ut, quod
 					quisque imperator habeat pecuniae, protinus ad <num>x</num>viros deferat.
 						<reg>hic</reg> tamen excipit Pompeium simillime, ut mihi videtur, atque ut
 					illa lege qua peregrini Roma eiciuntur Glaucippus excipitur. <reg>non</reg> enim
@@ -308,14 +323,16 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					constrictam teneretis? Vbi enim cavetur ne in Ianiculo coloniam constituatis, ne
 					urbem hanc urbe alia premere atque urgere possitis? '<reg>non</reg> faciemus,'
 					inquit. <reg>primum</reg> nescio, deinde timeo, postremo non committam ut vestro
-					beneficio potius quam nostro consilio salvi esse possimus. <milestone n="6" unit="chapter"/><milestone n="17" unit="section"/><reg>quod</reg> vero totam
+					beneficio potius quam nostro consilio salvi esse possimus. <milestone n="6"
+						unit="chapter"/><milestone n="17" unit="section"/><reg>quod</reg> vero totam
 					Italiam vestris coloniis complere voluistis, id cuius modi esset neminemne
 					nostrum intellecturum existimavistis? <reg>scriptum</reg> est enim: '<quote>Qvae
 						in mvnicipia qvasqve in colonias xviri velint, dedvcant colonos qvos velint
 						et eis agros adsignent qvibvs in locis velint</quote>,' ut, cum totam
 					Italiam militibus suis occuparint, nobis non modo dignitatis retinendae, verum
 					ne libertatis quidem recuperandae spes relinquatur. <reg>atque</reg> haec a me
-					suspicionibus et coniectura coarguuntur. <milestone n="18" unit="section"/><reg>iam</reg> omnis omnium tolletur error, iam aperte ostendent sibi
+					suspicionibus et coniectura coarguuntur. <milestone n="18" unit="section"
+						/><reg>iam</reg> omnis omnium tolletur error, iam aperte ostendent sibi
 					nomen huius rei publicae, sedem urbis atque imperi, denique hoc templum Iovis
 						<reg>optimi</reg>
 					<reg>maximi</reg> atque hanc arcem omnium gentium displicere. Capuam deduci
@@ -333,7 +350,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					rei publicae vestigium illis moenibus contineretur, urbem ipsam imperio
 					domicilium praebere posse; vos haec, nisi evertere rem publicam cuperetis ac
 					vobis novam dominationem comparare, credo, quam perniciosa essent non videretis.
-						<milestone n="7" unit="chapter"/><milestone n="20" unit="section"/><reg>quid</reg> enim cavendum est in coloniis deducendis? <reg>si</reg>
+						<milestone n="7" unit="chapter"/><milestone n="20" unit="section"
+						/><reg>quid</reg> enim cavendum est in coloniis deducendis? <reg>si</reg>
 					luxuries, Hannibalem ipsum Capua corrupit, si superbia, nata inibi esse haec ex
 					Campanorum fastidio videtur, si praesidium, non praeponitur huic urbi ista
 					colonia, sed opponitur. <reg>at</reg> quem ad modum armatur, di immortales!
@@ -341,7 +359,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					nunc omnes urbes quae circum Capuam sunt a colonis per eosdem <num>x</num>viros
 					occupabuntur; hanc enim ob causam permittit ipsa lex, in omnia quae velint
 					oppida colonos ut <num>x</num>viri deducant quos velint. <reg>atque</reg> his
-					colonis agrum Campanum et Stellatem campum dividi iubet. <milestone n="21" unit="section"/><reg>non</reg> queror deminutionem vectigalium, non
+					colonis agrum Campanum et Stellatem campum dividi iubet. <milestone n="21"
+						unit="section"/><reg>non</reg> queror deminutionem vectigalium, non
 					flagitium huius iacturae atque damni, praetermitto illa quae nemo est quin
 					gravissime et verissime conqueri possit, nos caput patrimoni publici,
 					pulcherrimam populi Romani possessionem, subsidium annonae, horreum belli, sub
@@ -367,7 +386,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					concordiam, quam otium reperiemus. <reg>sollicitam</reg> mihi civitatem
 					suspicione, suspensam metu, perturbatam vestris legibus et contionibus et
 					deductionibus tradidistis; spem improbis ostendistis, timorem bonis iniecistis,
-					fidem de foro, dignitatem de re publica sustulistis. <milestone n="24" unit="section"/><reg>hoc</reg> motu atque hac perturbatione animorum atque
+					fidem de foro, dignitatem de re publica sustulistis. <milestone n="24"
+						unit="section"/><reg>hoc</reg> motu atque hac perturbatione animorum atque
 					rerum cum populo Romano vox et auctoritas consulis repente in tantis tenebris
 					inluxerit, cum ostenderit nihil esse metuendum, nullum exercitum, nullam manum,
 					nullas colonias, nullam venditionem vectigalium, nullum imperium novum, nullum
@@ -380,11 +400,13 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					contione consistere, praesertim cum mihi deliberatum et constitutum sit ita
 					gerere consulatum quo uno modo geri graviter et libere potest, ut neque
 					provinciam neque honorem neque ornamentum aliquod aut commodum neque rem ullam
-					quae a tribuno plebis impediri possit appetiturus sim. <milestone n="26" unit="section"/><reg>dicit</reg> frequentissimo senatu consul Kalendis
+					quae a tribuno plebis impediri possit appetiturus sim. <milestone n="26"
+						unit="section"/><reg>dicit</reg> frequentissimo senatu consul Kalendis
 					Ianuariis sese, si status hic rei publicae maneat neque aliquod negotium
 					exstiterit quod honeste subterfugere non possit, in provinciam non iturum.
 						<reg>sic</reg> me in hoc magistratu geram, patres conscripti, ut possim
-					tribunum plebis rei publicae iratum coercere, mihi iratum contemnere. <milestone n="9" unit="chapter"/></p>
+					tribunum plebis rei publicae iratum coercere, mihi iratum contemnere. <milestone
+						n="9" unit="chapter"/></p>
 				<p><reg>quam</reg> ob rem, per deos immortalis! conligite vos, tribuni plebis,
 					deserite eos a quibus, nisi prospicitis, brevi tempore deseremini, conspirate
 					nobiscum, consentite cum bonis, communem rem publicam communi studio atque amore
@@ -405,7 +427,7 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					publica desiderat, ut huius ordinis auctoritas, quae apud maiores nostros fuit,
 					eadem nunc longo intervallo rei publicae restituta esse videatur. </p>
 			</div>
-			<div type="textpart" n="2" subtype="Speech">
+			<div type="Speech" n="2">
 				<head>DE LEGE AGRARIA ORATIO SECVNDA CONTRA P. SERVILIVM RVLLVM TR. PLEB. AD
 					POPVLVM</head>
 
@@ -419,19 +441,22 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					esse videatur, unde etiam quod posteris solveretur redundaret. <reg>mihi</reg>,
 					Quirites, apud vos de meis maioribus dicendi facultas non datur, non quo non
 					tales fuerint qualis nos illorum sanguine creatos disciplinisque institutos
-					videtis, sed quod laude populari atque honoris vestri luce caruerunt. <milestone n="2" unit="section"/><reg>de</reg> me autem ipso vereor ne adrogantis sit
+					videtis, sed quod laude populari atque honoris vestri luce caruerunt. <milestone
+						n="2" unit="section"/><reg>de</reg> me autem ipso vereor ne adrogantis sit
 					apud vos dicere, ingrati tacere. <reg>nam</reg> et quibus studiis hanc
 					dignitatem consecutus sim memet ipsum commemorare perquam grave est, et silere
 					de tantis vestris beneficiis nullo modo possum. <reg>qua</reg> re adhibebitur a
 					me certa ratio moderatioque dicendi, ut quid a vobis acceperim commemorem, qua
 					re dignus vestro summo honore singularique iudicio sim, ipse modice dicam, si
-					necesse erit, vos eosdem existimaturos putem qui iudicavistis. <milestone n="3" unit="section"/></p>
+					necesse erit, vos eosdem existimaturos putem qui iudicavistis. <milestone n="3"
+						unit="section"/></p>
 				<p><reg>me</reg> perlongo intervallo prope memoriae temporumque nostrorum primum
 					hominem novum consulem fecistis et eum locum quem nobilitas praesidiis firmatum
 					atque omni ratione obvallatum tenebat me duce rescidistis virtutique in posterum
 					patere voluistis. <reg>neque</reg> me tantum modo consulem, quod est ipsum per
 					sese amplissimum, sed ita fecistis quo modo pauci nobiles in hac civitate
-					consules facti sunt, novus ante me nemo. <milestone n="2" unit="chapter"/><reg>nam</reg> profecto, si recordari volueritis de novis hominibus,
+					consules facti sunt, novus ante me nemo. <milestone n="2" unit="chapter"
+						/><reg>nam</reg> profecto, si recordari volueritis de novis hominibus,
 					reperietis eos qui sine repulsa consules facti sunt diuturno labore atque aliqua
 					occasione esse factos, cum multis annis post petissent quam praetores fuissent,
 					aliquanto serius quam per aetatem ac per leges liceret; qui autem anno suo
@@ -456,7 +481,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					est difficilis et magna ratio, tum vero mihi praeter ceteros cuius errato nulla
 					venia, recte facto exigua laus et ab invitis expressa proponitur; non dubitanti
 					fidele consilium, non laboranti certum subsidium nobilitatis ostenditur.
-						<milestone n="3" unit="chapter"/><milestone n="6" unit="section"/><reg>quod</reg> si solus in discrimen aliquod adducerer, ferrem, Quirites,
+						<milestone n="3" unit="chapter"/><milestone n="6" unit="section"
+						/><reg>quod</reg> si solus in discrimen aliquod adducerer, ferrem, Quirites,
 					animo aequiore; sed mihi videntur certi homines, si qua in re me non modo
 					consilio verum etiam casu lapsum esse arbitrabuntur, vos universos qui me
 					antetuleritis nobilitati vituperaturi. <reg>mihi</reg> autem, Quirites, omnia
@@ -468,7 +494,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					partim magno opere fugerunt, partim non vehementer secuti sunt. <reg>ego</reg>
 					autem non solum hoc in loco dicam ubi est id dictu facillimum, sed in ipso
 					senatu in quo esse locus huic voci non videbatur popularem me futurum esse
-					consulem prima illa mea oratione Kalendis Ianuariis dixi. <milestone n="7" unit="section"/><reg>neque</reg> enim ullo modo facere possum ut, cum me
+					consulem prima illa mea oratione Kalendis Ianuariis dixi. <milestone n="7"
+						unit="section"/><reg>neque</reg> enim ullo modo facere possum ut, cum me
 					intellegam non hominum potentium studio, non excellentibus gratiis paucorum, sed
 					universi populi Romani iudicio consulem ita factum ut nobilissimis hominibus
 					longe praeponerer, non et in hoc magistratu et in omni vita <add>videar</add>
@@ -476,14 +503,16 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					interpretationem vehementer opus est vestra sapientia. <reg>versatur</reg> enim
 					magnus error propter insidiosas non nullorum simulationes qui, cum populi non
 					solum commoda verum etiam salutem oppugnant et impediunt, oratione adsequi
-					volunt ut populares esse videantur. <milestone n="8" unit="section"/><reg>ego</reg> qualem Kalendis Ianuariis acceperim rem publicam, Quirites,
+					volunt ut populares esse videantur. <milestone n="8" unit="section"
+						/><reg>ego</reg> qualem Kalendis Ianuariis acceperim rem publicam, Quirites,
 					intellego, plenam sollicitudinis, plenam timoris; in qua nihil erat mali, nihil
 					adversi quod non boni metuerent, improbi exspectarent; omnia turbulenta consilia
 					contra hunc rei publicae statum et contra vestrum otium partim iniri, partim
 					nobis consulibus designatis inita esse dicebantur; sublata erat de foro fides
 					non ictu aliquo novae calamitatis, sed suspicione ac perturbatione iudiciorum,
 					infirmatione rerum iudicatarum; novae dominationes, extraordinaria non imperia,
-					sed regna quaeri putabantur. <milestone n="4" unit="chapter"/><milestone n="9" unit="section"/><reg>quae</reg> cum ego non solum suspicarer, sed plane
+					sed regna quaeri putabantur. <milestone n="4" unit="chapter"/><milestone n="9"
+						unit="section"/><reg>quae</reg> cum ego non solum suspicarer, sed plane
 					cernerem—neque enim obscure gerebantur—dixi in senatu in hoc magistratu me
 					popularem consulem futurum. <reg>quid</reg> enim est tam populare quam pax? qua
 					non modo ei quibus natura sensum dedit sed etiam tecta atque agri mihi laetari
@@ -497,21 +526,24 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 						<reg>qua</reg> re qui possum non esse popularis, cum videam haec omnia,
 					Quirites, pacem externam, libertatem propriam generis ac nominis vestri, otium
 					domesticum, denique omnia quae vobis cara atque ampla sunt in fidem et quodam
-					modo in patrocinium mei consulatus esse conlata? <milestone n="10" unit="section"/><reg>neque</reg> enim, Quirites, illud vobis iucundum aut
+					modo in patrocinium mei consulatus esse conlata? <milestone n="10"
+						unit="section"/><reg>neque</reg> enim, Quirites, illud vobis iucundum aut
 					populare debet videri, largitio aliqua promulgata, quae verbis ostentari potest,
 					re vera fieri nisi exhausto aerario nullo pacto potest; neque vero illa
 					popularia sunt existimanda, iudiciorum perturbationes, rerum iudicatarum
 					infirmationes, restitutio damnatorum, qui civitatum adflictarum perditis iam
 					rebus extremi exitiorum solent esse exitus; nec, si qui agros populo Romano
 					pollicentur, si aliud quiddam obscure moliuntur, aliud spe ac specie
-					simulationis ostentant, populares existimandi sunt. <milestone n="5" unit="chapter"/></p>
+					simulationis ostentant, populares existimandi sunt. <milestone n="5"
+						unit="chapter"/></p>
 				<p><reg>nam</reg> vere dicam, Quirites, genus ipsum legis agrariae vituperare non
 					possum. <reg>venit</reg> enim mihi in mentem duos clarissimos, ingeniosissimos,
 					amantissimos plebei Romanae viros, <reg>ti</reg>. et C. Gracchos, plebem in
 					agris publicis constituisse, qui agri a privatis antea possidebantur.
 						<reg>non</reg> sum autem ego is consul qui, ut plerique, nefas esse arbitrer
 					Gracchos laudare, quorum consiliis, sapientia, legibus multas esse video rei
-					publicae partis constitutas. <milestone n="11" unit="section"/><reg>itaque</reg>, ut initio mihi designato consuli nuntiabatur legem agrariam
+					publicae partis constitutas. <milestone n="11" unit="section"
+					/><reg>itaque</reg>, ut initio mihi designato consuli nuntiabatur legem agrariam
 					tribunos plebis designatos conscribere, cupiebam quid cogitarent cognoscere;
 					etenim arbitrabar, quoniam eodem anno gerendi nobis essent magistratus, esse
 					aliquam oportere inter nos rei publicae bene administrandae societatem.
@@ -539,7 +571,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 						<reg>tametsi</reg>, qui acutiores in contione steterant, de lege agraria
 					nescio quid voluisse eum dicere suspicabantur. <reg>aliquando</reg> tandem me
 					designato lex in publicum proponitur. <reg>concurrunt</reg> iussu meo plures uno
-					tempore librarii, descriptam legem ad me adferunt. <milestone n="6" unit="chapter"/><milestone n="14" unit="section"/><reg>omni</reg> hoc
+					tempore librarii, descriptam legem ad me adferunt. <milestone n="6"
+						unit="chapter"/><milestone n="14" unit="section"/><reg>omni</reg> hoc
 					ratione vobis confirmare possum, Quirites, hoc animo me ad legendam legem
 					cognoscendamque venisse ut, si eam vobis accommodatam atque utilem esse
 					intellegerem, auctor eius atque adiutor essem. <reg>non</reg> enim natura neque
@@ -547,7 +580,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					cum tribunatu, quia persaepe seditiosis atque improbis tribunis plebis boni et
 					fortes consules obstiterunt, et quia vis tribunicia non numquam libidini
 					restitit consulari. <reg>non</reg> potestatum dissimilitudo, sed animorum
-					disiunctio dissensionem facit. <milestone n="15" unit="section"/><reg>itaque</reg> hoc animo legem sumpsi in manus ut eam cuperem esse
+					disiunctio dissensionem facit. <milestone n="15" unit="section"
+						/><reg>itaque</reg> hoc animo legem sumpsi in manus ut eam cuperem esse
 					aptam vestris commodis et eius modi quam consul re, non oratione popularis et
 					honeste et libenter posset defendere. <reg>atque</reg> ego a primo capite legis
 					usque ad extremum reperio, Quirites, nihil aliud cogitatum, nihil aliud
@@ -569,7 +603,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					leviter quo animo libertatis vestrae deminutionem ferre possitis.
 						<reg>iubet</reg> enim tribunum plebis qui eam legem tulerit creare
 						<num>x</num>viros per tribus <num>xvii</num>, ut, quem <num>viiii</num>
-					tribus fecerint, is <num>x</num>vir sit. <milestone n="17" unit="section"/><reg>hic</reg> quaero quam ob causam initium rerum ac legum suarum hinc
+					tribus fecerint, is <num>x</num>vir sit. <milestone n="17" unit="section"
+						/><reg>hic</reg> quaero quam ob causam initium rerum ac legum suarum hinc
 					duxerit ut populus Romanus suffragio privaretur. <reg>totiens</reg> legibus
 					agrariis curatores constituti sunt <num>iii</num>viri, <num>v</num>viri,
 						<num>x</num>viri; quaero a populari tribuno plebis ecquando nisi per
@@ -580,7 +615,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					quisque studio et suffragio suo viam sibi ad beneficium impetrandum munire
 					possit. <reg>hoc</reg> tribuno plebis potissimum venit in mentem, populum
 					Romanum universum privare suffragiis, paucas tribus non certa condicione iuris,
-					sed sortis beneficio fortuito ad usurpandam libertatem vocare. <milestone n="18" unit="section"/>'<quote><reg>item</reg></quote>,' inquit, '<quote>eodemqve
+					sed sortis beneficio fortuito ad usurpandam libertatem vocare. <milestone n="18"
+						unit="section"/>'<quote><reg>item</reg></quote>,' inquit, '<quote>eodemqve
 						modo</quote>,' capite altero, '<quote>vt comitiis pontificis
 					maximi.</quote>' <reg>ne</reg> hoc quidem vidit, maiores nostros tam fuisse
 					popularis ut, quem per populum creari fas non erat propter religionem sacrorum,
@@ -620,7 +656,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					arbitramini, sed tribuniciae vobis maioribusque vestris vehementer gratae atque
 					iucundae; Licinia est lex et altera Aebutia, quae non modo eum qui tulerit de
 					aliqua curatione ac potestate sed etiam conlegas eius, cognatos, adfinis
-					excipit, ne eis ea potestas curatiove mandetur. <milestone n="22" unit="section"/><reg>etenim</reg> si populo consulis, remove te a suspicione alicuius tui
+					excipit, ne eis ea potestas curatiove mandetur. <milestone n="22" unit="section"
+						/><reg>etenim</reg> si populo consulis, remove te a suspicione alicuius tui
 					commodi, fac fidem te nihil nisi populi utilitatem et fructum quaerere, sine ad
 					alios potestatem, ad te gratiam benefici tui pervenire. <reg>nam</reg> hoc
 					quidem vix est liberi populi, vix vestrorum animorum ac magnificentiae.
@@ -636,7 +673,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					renuntiabit, et videlicet conlegas suos ascriptores legis agrariae non
 					repudiabit, a quibus ei locus primus in indice et in praescriptione legis
 					concessus est; ceteri fructus omnium rerum qui in spe legis huius positi sunt
-					communi cautione atque aequa ex parte retinentur. <milestone n="23" unit="section"/></p>
+					communi cautione atque aequa ex parte retinentur. <milestone n="23"
+						unit="section"/></p>
 				<p><reg>at</reg> videte hominis diligentiam, si aut Rullum <add>illud</add>
 					cogitasse aut si Rullo potuisse in mentem venire arbitramini.
 						<reg>viderunt</reg> ei qui haec machinabantur, si vobis ex omni populo
@@ -645,7 +683,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					principem delaturos. <reg>etenim</reg> quem unum ex cunctis delegissetis ut eum
 					omnibus omnium gentium bellis terra et mari praeponeretis, certe in
 					<num>x</num>viris faciendis sive fides haberetur sive honos, et committi huic
-					optime et ornari hunc iustissime posse intellegebant. <milestone n="24" unit="section"/><reg>itaque</reg> excipitur hac lege non adulescentia, non
+					optime et ornari hunc iustissime posse intellegebant. <milestone n="24"
+						unit="section"/><reg>itaque</reg> excipitur hac lege non adulescentia, non
 					legitimum aliquod impedimentum, non potestas, non magistratus ullus aliis
 					negotiis ac legibus impeditus, reus denique quo minus <num>x</num>vir fieri
 					possit, non excipitur; Cn. Pompeius excipitur, ne cum P. Rullo—taceo de ceteris
@@ -679,7 +718,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					singulis magistratibus bis vos sententiam ferre voluerunt. <reg>nam</reg> cum
 					centuriata lex censoribus ferebatur, cum curiata ceteris patriciis
 					magistratibus, tum iterum de eisdem iudicabatur, ut esset reprehendendi
-					potestas, si populum benefici sui paeniteret. <reg>nunc</reg>, <milestone n="27" unit="section"/>Quirites, prima illa comitia tenetis, centuriata et tributa,
+					potestas, si populum benefici sui paeniteret. <reg>nunc</reg>, <milestone n="27"
+						unit="section"/>Quirites, prima illa comitia tenetis, centuriata et tributa,
 					curiata tantum auspiciorum causa remanserunt. <reg>hic</reg> autem tribunus
 					plebis quia videbat potestatem neminem iniussu populi aut plebis posse habere,
 					curiatis eam comitiis quae vos non initis confirmavit, tributa quae vestra erant
@@ -705,7 +745,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					haberent, si optima lege a populo essent creati? <reg>reges</reg> constituuntur,
 					non <num>x</num>viri, Quirites, itaque ab his initiis fundamentisque nascuntur,
 					ut non modo cum <add>magistratum</add> gerere coeperint, sed etiam cum
-					constituentur, omne vestrum ius, potestas libertasque tollatur. <milestone n="12" unit="chapter"/><milestone n="30" unit="section"/><reg>at</reg>
+					constituentur, omne vestrum ius, potestas libertasque tollatur. <milestone
+						n="12" unit="chapter"/><milestone n="30" unit="section"/><reg>at</reg>
 					videte quam diligenter retineat ius tribuniciae potestatis.
 						<reg>consulibus</reg> legem curiatam ferentibus a tribunis plebis saepe est
 					intercessum—neque tamen nos id querimur, esse hanc tribunorum plebis potestatem;
@@ -717,7 +758,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					cui vetat intercedi, ei potestatem, etiam si intercessum sit, tamen eandem
 					constituit quam si lata esset lex, ut non intellegam qua re aut hic vetet
 					intercedere aut quemquam intercessurum putet, cum intercessio stultitiam
-					intercessoris significatura sit, non rem impeditura. <milestone n="31" unit="section"/></p>
+					intercessoris significatura sit, non rem impeditura. <milestone n="31"
+						unit="section"/></p>
 				<p><reg>sint</reg> igitur <num>x</num>viri neque veris comitiis, hoc est, populi
 					suffragiis, neque illis ad speciem atque ad usurpationem vetustatis per
 						<num>xxx</num> lictores auspiciorum causa adumbratis constituti.
@@ -730,7 +772,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					Semproniae, nec te ea lex ipsa commonet <num>iii</num>viros illos
 						<num>xxxv</num> tribuum suffragio creatos esse? <reg>et</reg> cum tu a Ti.
 					Gracchi aequitate ac pudore longissime remotus sis, id quod dissimillima ratione
-					factum sit eodem iure putas esse oportere? <milestone n="13" unit="chapter"/><milestone n="32" unit="section"/><reg>dat</reg> praeterea potestatem
+					factum sit eodem iure putas esse oportere? <milestone n="13" unit="chapter"
+						/><milestone n="32" unit="section"/><reg>dat</reg> praeterea potestatem
 					verbo praetoriam, re vera regiam; definit in quinquennium, facit sempiternam;
 					tantis enim confirmat opibus et copiis ut invitis eripi nullo modo possit.
 						<reg>deinde</reg> ornat apparitoribus, scribis, librariis, praeconibus,
@@ -748,7 +791,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 						<reg>primum</reg> permittitur infinita potestas innumerabilis pecuniae
 					conficiendae vestris vectigalibus non fruendis, sed alienandis; deinde orbis
 					terrarum gentiumque omnium datur cognitio sine consilio, poena sine
-					provocatione, animadversio sine auxilio. <milestone n="34" unit="section"/><reg>iudicare</reg> per quinquennium vel de consulibus vel de ipsis
+					provocatione, animadversio sine auxilio. <milestone n="34" unit="section"
+						/><reg>iudicare</reg> per quinquennium vel de consulibus vel de ipsis
 					tribunis plebis poterunt; de illis interea nemo iudicabit; magistratus eis
 					petere licebit, causam dicere non licebit; emere agros a quibus volent et quos
 					volent quam volent magno poterunt; colonias deducere novas, renovare veteres,
@@ -758,7 +802,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					imperio iudicioque rerum omnium vagari ut liceat conceditur; interea dissolvant
 					iudicia publica, e consiliis abducant quos velint, singuli de maximis rebus
 					iudicent, quaestori permittant, finitorem mittant, ratum sit quod finitor uni
-					illi a quo missus erit renuntiaverit. <reg>verbum</reg> mihi deest, <milestone n="14" unit="chapter"/><milestone n="35" unit="section"/>Quirites, cum ego
+					illi a quo missus erit renuntiaverit. <reg>verbum</reg> mihi deest, <milestone
+						n="14" unit="chapter"/><milestone n="35" unit="section"/>Quirites, cum ego
 					hanc potestatem regiam appello, sed profecto maior est quaedam.
 						<reg>nullum</reg> enim regnum fuit umquam quod non se, <add>si</add> minus
 					iure aliquo, at regionibus tamen certis contineret. <reg>hoc</reg> vero
@@ -778,13 +823,15 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					tribunicia <num>x</num>viri vendent. <reg>accedet</reg> eo mons Gaurus, accedent
 					salicta ad Minturnas, adiungetur etiam illa via vendibilis Herculanea multarum
 					deliciarum et magnae pecuniae, permulta alia quae senatus propter angustias
-					aerari vendenda censuit, consules propter invidiam non vendiderunt. <milestone n="37" unit="section"/><reg>verum</reg> haec fortasse propter pudorem in
+					aerari vendenda censuit, consules propter invidiam non vendiderunt. <milestone
+						n="37" unit="section"/><reg>verum</reg> haec fortasse propter pudorem in
 					lege reticentur. <reg>sed</reg> illud magis est credendum et pertimescendum quod
 					audaciae <num>x</num>virali corrumpendarum tabularum publicarum fingendorumque
 					senatus consultorum, quae facta numquam sint, cum ex eo numero qui per eos annos
 					consules fuerunt multi mortui sint, magna potestas permittitur. Nisi forte nihil
 					est aequum nos de eorum audacia suspicari quorum cupiditati nimium angustus
-					orbis terrarum esse videatur. <milestone n="15" unit="chapter"/><milestone n="38" unit="section"/></p>
+					orbis terrarum esse videatur. <milestone n="15" unit="chapter"/><milestone
+						n="38" unit="section"/></p>
 				<p><reg>habetis</reg> unum venditionis genus quod magnum videri vobis intellego; sed
 					attendite animos ad ea quae consequuntur; hunc quasi gradum quendam atque aditum
 					ad cetera factum intellegetis. '<quote>Qvi agri, qvae loca, aedificia.</quote>'
@@ -795,7 +842,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					praeteriret; ascripsit '<quote>alivdve qvid</quote>,' qua brevitate rem nullam
 					esse exceptam videtis. <reg>quicquid</reg> igitur sit extra Italiam quod
 					publicum populi Romani factum sit L. Sulla Q. Pompeio consulibus aut postea, id
-						<num>x</num>viros iubet vendere. <milestone n="39" unit="section"/><reg>hoc</reg> capite, Quirites, omnis gentis, nationes, provincias, regna
+						<num>x</num>viros iubet vendere. <milestone n="39" unit="section"
+						/><reg>hoc</reg> capite, Quirites, omnis gentis, nationes, provincias, regna
 						<num>x</num>virum dicioni, iudicio potestatique permissa et condonata esse
 					dico. <reg>primum</reg> hoc quaero, ecqui tandem locus usquam sit quem non
 					possint <num>x</num>viri dicere publicum populi Romani esse factum.
@@ -828,14 +876,16 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					genere neque animo regio esse inter omnis fere video convenire.
 						<reg>dicitur</reg> contra nullum esse testamentum, non oportere populum
 					Romanum omnium regnorum appententem videri, demigraturos in illa loca nostros
-					homines propter agrorum bonitatem et omnium rerum copiam. <milestone n="43" unit="section"/><reg>hac</reg> tanta de re P. Rullus cum ceteris
+					homines propter agrorum bonitatem et omnium rerum copiam. <milestone n="43"
+						unit="section"/><reg>hac</reg> tanta de re P. Rullus cum ceteris
 						<num>x</num>viris conlegis suis iudicabit, et utrum iudicabit?
 						<reg>nam</reg> utrumque ita magnum est ut nullo modo neque concedendum neque
 					ferendum sit. <reg>volet</reg> esse popularis; populo Romano adiudicabit.
 						<reg>ergo</reg> idem ex sua lege vendet Alexandream, vendet Aegyptum, urbis
 					copiosissimae pulcherrimorumque agrorum iudex, arbiter, dominus, rex denique
 					opulentissimi regni reperietur. <reg>non</reg> sumet sibi tantum, non appetet;
-					iudicabit Alexandream regis esse, a populo Romano abiudicabit. <milestone n="17" unit="chapter"/><milestone n="44" unit="section"/><reg>primum</reg> cur
+					iudicabit Alexandream regis esse, a populo Romano abiudicabit. <milestone n="17"
+						unit="chapter"/><milestone n="44" unit="section"/><reg>primum</reg> cur
 						<add>de</add> populi Romani hereditate <num>x</num>viri iudicent, cum vos
 					volueritis de privatis hereditatibus <num>c</num>viros iudicare?
 						<reg>deinde</reg> quis aget causam populi Romani? ubi res ista agetur? qui
@@ -866,7 +916,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					negotio praeponi an praedae et quaestui, mitti ad socios liberandos an ad
 					opprimendos! <reg>denique</reg>, si qui est honos singularis, nihilne interest,
 					utrum populus Romanus eum cui velit deferat, an is impudenter populo Romano per
-					legis fraudem surripiatur? <milestone n="18" unit="chapter"/><milestone n="47" unit="section"/></p>
+					legis fraudem surripiatur? <milestone n="18" unit="chapter"/><milestone n="47"
+						unit="section"/></p>
 				<p><reg>intellexistis</reg> quot res et quantas <num>x</num>viri legis permissu
 					vendituri sint. <reg>non</reg> est satis. Cum se sociorum, cum exterarum
 					nationum, cum regum sanguine implerint, incidant nervos populi Romani, adhibeant
@@ -891,10 +942,12 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					eodem in loco personam hanc imposuistis ut, quibuscumque rebus possem, illius
 					absentis dignitatem vobiscum una tuerer. <reg>feci</reg> adhuc quae potui, neque
 					familiaritate illius adductus nec spe honoris atque amplissimae dignitatis, quam
-					ego, etsi libente illo, tamen absente illo per vos consecutus sum. <milestone n="50" unit="section"/><reg>quam</reg> ob rem, cum intellegam totam hanc
+					ego, etsi libente illo, tamen absente illo per vos consecutus sum. <milestone
+						n="50" unit="section"/><reg>quam</reg> ob rem, cum intellegam totam hanc
 					fere legem ad illius opes evertendas tamquam machinam comparari, et resistam
 					consiliis hominum et perficiam profecto, quod ego video, ut id vos universi non
-					solum videre verum etiam tenere possitis. <milestone n="19" unit="chapter"/><reg>iubet</reg> venire quae Attalensium, quae Phaselitum, quae
+					solum videre verum etiam tenere possitis. <milestone n="19" unit="chapter"
+						/><reg>iubet</reg> venire quae Attalensium, quae Phaselitum, quae
 					Olympenorum fuerint, agrumque Aperensem et Oroandicum et Gedusanum.
 						<reg>haec</reg> P. Servili imperio et victoria, clarissimi viri, vestra
 					facta sunt. <reg>adiungit</reg> agros Bithyniae regios quibus nunc publicani
@@ -919,7 +972,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					quorum adhuc penes Cn. Pompeium omne iudicium et potestas more maiorum debet
 					esse <num>x</num>viri vendent? <milestone n="53" unit="section"/><reg>et</reg>,
 					credo, P. Rullus—is enim sic se gerit ut sibi iam <num>x</num>vir designatus
-					esse videatur—ad eam auctionem potissimum proficiscetur! <milestone n="20" unit="chapter"/><reg>is</reg> videlicet, ante quam veniat in Pontum,
+					esse videatur—ad eam auctionem potissimum proficiscetur! <milestone n="20"
+						unit="chapter"/><reg>is</reg> videlicet, ante quam veniat in Pontum,
 					litteras ad Cn. Pompeium mittet, quarum ego iam exemplum ab istis compositum
 					esse arbitror: '<quote>P. Servilivs Rvllvs tribvnvs plebis xvir s. d.
 							<add>Cn.</add> Pompeio Cn. f.</quote>' <reg>non</reg> credo ascripturum
@@ -939,7 +993,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					insidiarum fieri, aliquid de eius exercitu, copiis, gloria detrahi posse.
 						<reg>putant</reg>, si quam spem in Cn. Pompeio exercitus habeat aut agrorum
 					aut aliorum commodorum, hanc non habiturum, cum viderit earum rerum omnium
-					potestatem ad <num>x</num>viros esse translatam. <milestone n="55" unit="section"/><reg>patior</reg> non moleste tam stultos esse qui haec
+					potestatem ad <num>x</num>viros esse translatam. <milestone n="55"
+						unit="section"/><reg>patior</reg> non moleste tam stultos esse qui haec
 					sperent, tam impudentis qui conentur; illud queror, tam me ab eis esse
 					contemptum ut haec portenta me consule potissimum cogitarent. </p>
 				<p><reg>atque</reg> in omnibus his agris aedificiisque vendendis permittitur
@@ -972,7 +1027,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					excipere nominatim qui publicum se esse fateatur? <reg>ergo</reg> eorum ager
 					excipitur qui apud Rullum aliqua ratione valuerunt, ceteri agri omnes qui ubique
 					sunt sine ullo dilectu, sine populi Romani notione, sine iudicio senatus
-						<num>x</num>viris addicentur? <milestone n="22" unit="chapter"/><milestone n="58" unit="section"/><reg>atque</reg> etiam est alia superiore capite quo
+						<num>x</num>viris addicentur? <milestone n="22" unit="chapter"/><milestone
+						n="58" unit="section"/><reg>atque</reg> etiam est alia superiore capite quo
 					omnia veneunt quaestuosa exceptio, quae teget eos agros de quibus foedere cautum
 					est. <reg>audivit</reg> hanc rem non a me, sed ab aliis agitari saepe in senatu,
 					non numquam ex hoc loco, possidere agros in ora maritima regem Hiempsalem quos
@@ -1013,7 +1069,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					intolerandum hos <num>x</num>viros portitores omnibus omnium pecuniis constitui,
 					qui non modo reges atque exterarum nationum homines sed etiam imperatores
 					vestros excutiant, non mihi videntur honoris causa excipere Pompeium, sed
-					metuere ne ille eandem contumeliam quam ceteri ferre non possit. <milestone n="62" unit="section"/>Pompeius autem <add>cum</add> hoc animo sit ut,
+					metuere ne ille eandem contumeliam quam ceteri ferre non possit. <milestone
+						n="62" unit="section"/>Pompeius autem <add>cum</add> hoc animo sit ut,
 					quicquid vobis placeat, sibi ferendum putet, quod vos ferre non poteritis, id
 					profecto perficiet ne diutius inviti ferre cogamini. <reg>verum</reg> tamen
 					cavet ut, si qua pecunia post nos consules ex novis vectigalibus recipiatur, ea
@@ -1025,13 +1082,15 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					etiam vectigalia vestra venierint, accesserint in cumulum manubiae vestrorum
 					imperatorum; quantae et quam immanes divitiae <num>x</num>viris in tantis
 					auctionibus, tot iudiciis, tam infinita potestate rerum omnium quaerantur
-					videtis. <milestone n="24" unit="chapter"/><milestone n="63" unit="section"/><reg>cognoscite</reg> nunc alios immensos atque intolerabilis quaestus, ut
+					videtis. <milestone n="24" unit="chapter"/><milestone n="63" unit="section"
+						/><reg>cognoscite</reg> nunc alios immensos atque intolerabilis quaestus, ut
 					intellegatis ad certorum hominum importunam avaritiam hoc populare legis
 					agrariae nomen esse quaesitum. <reg>hac</reg> pecunia iubet agros emi quo
 					deducamini. <reg>non</reg> consuevi homines appellare asperius, Quirites, nisi
 					lacessitus. <reg>vellem</reg> fieri posset ut a me sine contumelia nominarentur
 					ei qui se <num>x</num>viros sperant futuros; iam videretis quibus hominibus
-					omnium rerum et vendendarum et emendarum potestatem permitteretis. <milestone n="64" unit="section"/><reg>sed</reg> quod ego nondum statuo mihi esse
+					omnium rerum et vendendarum et emendarum potestatem permitteretis. <milestone
+						n="64" unit="section"/><reg>sed</reg> quod ego nondum statuo mihi esse
 					dicendum, vos tamen id potestis cum animis vestris cogitare; unum hoc certe
 					videor mihi verissime posse dicere: tum cum haberet haec res publica Luscinos,
 					Calatinos, Acidinos, homines non solum honoribus populi rebusque gestis verum
@@ -1041,7 +1100,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					idem iudicaret et venderet et hoc faceret per quinquennium toto in orbe terrarum
 					idemque agros vectigalis populi Romani abalienaret et, cum summam tantae
 					pecuniae nullo teste sibi ipse ex sua voluntate fecisset, tum denique emeret a
-					quibus vellet quod videretur. <milestone n="65" unit="section"/><reg>committite</reg> vos nunc, Quirites, his hominibus haec omnia quos
+					quibus vellet quod videretur. <milestone n="65" unit="section"
+						/><reg>committite</reg> vos nunc, Quirites, his hominibus haec omnia quos
 					odorari hunc <num>x</num>viratum suspicamini; reperietis partem esse eorum
 					quibus ad habendum, partem quibus ad consumendum nihil satis esse videatur.
 						<milestone n="25" unit="chapter"/><reg>hic</reg> ego iam illud quod
@@ -1075,7 +1135,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					'agros nominare non possum quia tangam nullum ab invito.' <reg>hoc</reg>,
 					Quirites, multo est quaestuosius quam si ab invito sumeret; inibitur enim ratio
 					quaestus de vestra pecunia, et tum denique ager emetur cum idem expediet emptori
-					et venditori. <milestone n="26" unit="chapter"/><milestone n="68" unit="section"/></p>
+					et venditori. <milestone n="26" unit="chapter"/><milestone n="68" unit="section"
+					/></p>
 				<p><reg>sed</reg> videte vim legis agrariae. <reg>ne</reg> ei quidem qui agros
 					publicos possident decedent de possessione, nisi erunt deducti optima condicione
 					et pecunia maxima. <reg>conversa</reg> ratio. <reg>antea</reg> cum erat a
@@ -1089,7 +1150,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					pertimescebant, ei nunc etiam ultro rogabuntur atque orabuntur ut agros partim
 					publicos, partim plenos invidiae, plenos periculi quanti ipsi velint
 						<num>x</num>viris tradant. <reg>atque</reg> hoc carmen hic tribunus plebis
-					non vobis, sed sibi intus canit. <milestone n="69" unit="section"/><reg>habet</reg> socerum, virum optimum, qui tantum agri in illis rei
+					non vobis, sed sibi intus canit. <milestone n="69" unit="section"
+						/><reg>habet</reg> socerum, virum optimum, qui tantum agri in illis rei
 					publicae tenebris occupavit quantum concupivit. <reg>huic</reg> subvenire volt
 					succumbenti iam et oppresso, Sullanis oneribus gravi, sua lege, ut liceat illi
 					invidiam deponere, pecuniam condere. <reg>et</reg> vos non dubitatis quin
@@ -1106,7 +1168,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					non vendiderint, relinquendos. <reg>et</reg> nimirum id est quod ab hoc tribuno
 					plebis dictum est in senatu, urbanam plebem nimium in re publica posse;
 					exhauriendam esse; hoc enim <add>verbo</add> est usus, quasi de aliqua sentina
-					ac non de optimorum civium genere loqueretur. <milestone n="27" unit="chapter"/><milestone n="71" unit="section"/><reg>vos</reg> vero, Quirites, si me
+					ac non de optimorum civium genere loqueretur. <milestone n="27" unit="chapter"
+						/><milestone n="71" unit="section"/><reg>vos</reg> vero, Quirites, si me
 					audire voltis, retinete istam possessionem gratiae, libertatis, suffragiorum,
 					dignitatis, urbis, fori, ludorum, festorum dierum, ceterorum omnium commodorum,
 					nisi forte mavoltis relictis his rebus atque hac luce rei publicae in Sipontina
@@ -1116,7 +1179,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					vendiderit, tum harenam aliquam aut paludes emat, id vos potestis, quaeso,
 					concedere? <reg>quamquam</reg> illud est egregium quod hac lege ante omnia
 					veneunt, ante pecuniae coguntur et coacervantur quam gleba una ematur.
-						<reg>deinde</reg> emi iubet, ab invito vetat. <milestone n="72" unit="section"/><reg>quaero</reg>, si qui velint vendere non fuerint, quid
+						<reg>deinde</reg> emi iubet, ab invito vetat. <milestone n="72"
+						unit="section"/><reg>quaero</reg>, si qui velint vendere non fuerint, quid
 					pecuniae fiet? <reg>referre</reg> in aerarium lex vetat, exigi prohibet.
 						<reg>igitur</reg> pecuniam omnem <num>x</num>viri tenebunt, vobis ager non
 					emetur; vectigalibus abalienatis, sociis vexatis, regibus atque omnibus gentibus
@@ -1140,7 +1204,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					colonorum deduci velis, tu occupes locum quem idoneum ad vim tuam iudicaris,
 					compleas numero, confirmes praesidio quo velis, populi Romani vectigalibus atque
 					omnibus copiis ipsum populum Romanum coerceas, opprimas, redigas in istam
-						<num>x</num>viralem dicionem ac potestatem? <milestone n="28" unit="chapter"/><milestone n="75" unit="section"/>Vt vero totam Italiam suis praesidiis
+						<num>x</num>viralem dicionem ac potestatem? <milestone n="28" unit="chapter"
+						/><milestone n="75" unit="section"/>Vt vero totam Italiam suis praesidiis
 					obsidere atque occupare cogitet, quaeso, Quirites, cognoscite.
 						<reg>permittit</reg>
 					<num>x</num>viris ut in omnia municipia, in omnis colonias totius Italiae
@@ -1150,7 +1215,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					tollitur? <reg>nam</reg> cum idem omnem pecuniam, maximam multitudinem
 						<add>obtinebunt</add>, idem totam Italiam suis opibus obsidebunt, idem
 					vestram libertatem suis praesidiis et coloniis interclusam tenebunt, quae spes
-					tandem, quae facultas recuperandae vestrae libertatis relinquetur? <milestone n="76" unit="section"/></p>
+					tandem, quae facultas recuperandae vestrae libertatis relinquetur? <milestone
+						n="76" unit="section"/></p>
 				<p><reg>at</reg> enim ager Campanus hac lege dividetur orbi terrae pulcherrimus et
 					Capuam colonia deducetur, urbem amplissimam atque ornatissimam. <reg>quid</reg>
 					ad haec possumus dicere? <reg>de</reg> commodo prius vestro dicam, Quirites;
@@ -1158,7 +1224,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					bonitate delectatur, ne quid exspectet, si quem rei indignitas commovet, ut huic
 					simulatae largitioni resistat. <reg>ac</reg> primum de oppido dicam, si quis est
 					forte quem Capua magis quam Roma delectet. V milia colonorum Capuam scribi
-					iubet; ad hunc numerum quingenos sibi singuli sumunt. <milestone n="77" unit="section"/><reg>quaeso</reg>, nolite vosmet ipsos consolari; vere et
+					iubet; ad hunc numerum quingenos sibi singuli sumunt. <milestone n="77"
+						unit="section"/><reg>quaeso</reg>, nolite vosmet ipsos consolari; vere et
 					diligenter considerate. <reg>num</reg> vobis aut vestri similibus integris,
 					quietis, otiosis hominibus in hoc numero locum fore putatis? <reg>si</reg> est
 					omnibus vobis maiori<add>ve</add> vestrum parti, quamquam me vester honos
@@ -1175,7 +1242,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 						<reg>neque</reg> istorum pecuniis quicquam aliud deesse video nisi eius modi
 					fundos quorum subsidio familiarum magnitudines et Cumanorum ac Puteolanorum
 					praediorum sumptus sustentare possint. <reg>quod</reg> si vestrum commodum
-					spectat, veniat et coram mecum de agri Campani divisione disputet. <milestone n="29" unit="chapter"/><milestone n="79" unit="section"/><reg>quaesivi</reg>
+					spectat, veniat et coram mecum de agri Campani divisione disputet. <milestone
+						n="29" unit="chapter"/><milestone n="79" unit="section"/><reg>quaesivi</reg>
 					ex eo Kalendis Ianuariis quibus hominibus et quem ad modum illum agrum esset
 					distributurus. <reg>respondit</reg> a Romilia tribu se initium esse facturum.
 						<reg>primum</reg> quae est ista superbia et contumelia ut populi pars
@@ -1195,7 +1263,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					an ignoratis cetera illa magnifica populi Romani vectigalia perlevi saepe
 					momento fortunae inclinatione temporis pendere? <reg>quid</reg> nos Asiae
 					portus, quid Syriae ora, quid omnia transmarina vectigalia iuvabunt tenuissima
-					suspicione praedonum aut hostium iniecta? <milestone n="81" unit="section"/><reg>at</reg> vero hoc agri Campani vectigal, Quirites, eius modi est ut
+					suspicione praedonum aut hostium iniecta? <milestone n="81" unit="section"
+						/><reg>at</reg> vero hoc agri Campani vectigal, Quirites, eius modi est ut
 					cum domi sit et omnibus praesidiis oppidorum tegatur, tum neque bellis infestum
 					nec fructibus varium nec caelo ac loco calamitosum esse soleat.
 						<reg>maiores</reg> nostri non solum id quod <add>de</add> Campanis ceperant
@@ -1204,7 +1273,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					commodis plurimum cogitaverunt, nec L. Sulla qui omnia sine ulla religione
 					quibus voluit est dilargitus, agrum Campanum attingere ausus est; Rullus
 					exstitit qui ex ea possessione rem publicam demoveret ex qua nec Gracchorum
-					benignitas eam nec Sullae dominatio deiecisset. <milestone n="30" unit="chapter"/><reg>quem</reg> agrum nunc praetereuntes vestrum esse dicitis et quem per
+					benignitas eam nec Sullae dominatio deiecisset. <milestone n="30" unit="chapter"
+						/><reg>quem</reg> agrum nunc praetereuntes vestrum esse dicitis et quem per
 					iter qui faciunt, externi homines, vestrum esse audiunt, is, cum erit divisus,
 						<add>neque erit vester</add> neque vester esse dicetur. <reg>at</reg> qui
 					homines possidebunt? <milestone n="82" unit="section"/><reg>primo</reg> quidem
@@ -1219,7 +1289,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					qui in publicum Campanum incurrebant pecunia publica coemeret, dicitur
 					renuntiasse nulla se pecunia fundum cuiusdam emere potuisse, eumque qui nollet
 					vendere ideo negasse se adduci posse uti venderet quod, cum pluris fundos
-					haberet, ex illo solo fundo numquam malum nuntium audisset. <milestone n="83" unit="section"/><reg>itane</reg> vero? privatum haec causa commovit; populum
+					haberet, ex illo solo fundo numquam malum nuntium audisset. <milestone n="83"
+						unit="section"/><reg>itane</reg> vero? privatum haec causa commovit; populum
 					Romanum ne agrum Campanum privatis gratis Rullo rogante tradat non commovebit?
 						<reg>at</reg> idem populus Romanus de hoc vectigali potest dicere quod ille
 					de suo fundo dixisse dicitur. Asia multos annos vobis fructum Mithridatico bello
@@ -1229,7 +1300,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					belli difficultatibus adfliguntur; hoc vectigali etiam belli difficultates
 					sustentantur. <milestone n="84" unit="section"/><reg>deinde</reg> in hac
 					adsignatione agrorum ne illud quidem dici potest quod in ceteris, agros desertos
-					a plebe atque a cultura hominum liberorum esse non oportere. <milestone n="31" unit="chapter"/><reg>sic</reg> enim dico, si Campanus ager dividatur,
+					a plebe atque a cultura hominum liberorum esse non oportere. <milestone n="31"
+						unit="chapter"/><reg>sic</reg> enim dico, si Campanus ager dividatur,
 					exturbari et expelli plebem ex agris, non constitui et conlocari.
 						<reg>totus</reg> enim ager Campanus colitur et possidetur a plebe, et a
 					plebe optima et modestissima; quod genus hominum optime moratum, optimorum et
@@ -1259,7 +1331,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					adventiciis copiis occupabunt. <milestone n="32" unit="chapter"/><reg>tunc</reg>
 					illud vexillum Campanae coloniae vehementer huic imperio timendum Capuam a
 						<num>x</num>viris inferetur, tunc contra hanc Romam, communem patriam omnium
-					nostrum, illa altera Roma quaeretur. <milestone n="87" unit="section"/><reg>in</reg> id oppidum homines nefarie rem publicam vestram transferre
+					nostrum, illa altera Roma quaeretur. <milestone n="87" unit="section"
+						/><reg>in</reg> id oppidum homines nefarie rem publicam vestram transferre
 					conantur, quo in oppido maiores nostri nullam omnino rem publicam esse
 					voluerunt, qui tris solum urbis in terris omnibus, Carthaginem, Corinthum,
 					Capuam, statuerunt posse imperi gravitatem ac nomen sustinere. <reg>deleta</reg>
@@ -1270,7 +1343,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					terra claustra locorum teneret et duo maria maxime navigationi diversa paene
 					coniungeret, cum pertenui discrimine separentur. <reg>haec</reg> quae procul
 					erant a conspectu imperi non solum adflixerunt sed etiam, ne quando recreata
-					exsurgere atque erigere se possent, funditus, ut dixi, sustulerunt. <milestone n="88" unit="section"/><reg>de</reg> Capua multum est et diu consultatum;
+					exsurgere atque erigere se possent, funditus, ut dixi, sustulerunt. <milestone
+						n="88" unit="section"/><reg>de</reg> Capua multum est et diu consultatum;
 					exstant litterae, Quirites, publicae, sunt senatus consulta complura.
 						<reg>statuerunt</reg> homines sapientes, si agrum Campanis ademissent,
 					magistratus, senatum, publicum ex illa urbe consilium sustulissent, imaginem rei
@@ -1279,7 +1353,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					esset urbs quae res eas quibus ager Campanus coleretur suppeditare posset, ut
 					esset locus comportandis condendisque fructibus, ut aratores cultu agrorum
 					defessi urbis domiciliis uterentur, idcirco illa aedificia non esse deleta.
-						<milestone n="33" unit="chapter"/><milestone n="89" unit="section"/><reg>videte</reg> quantum intervallum sit interiectum inter maiorum
+						<milestone n="33" unit="chapter"/><milestone n="89" unit="section"
+						/><reg>videte</reg> quantum intervallum sit interiectum inter maiorum
 					nostrorum consilia et inter istorum hominum dementiam. <reg>illi</reg> Capuam
 					receptaculum aratorum, nundinas rusticorum, cellam atque horreum Campani agri
 					esse voluerunt, hi expulsis aratoribus, effusis ac dissipatis fructibus vestris
@@ -1316,7 +1391,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					perduxerunt. <reg>sic</reg> et crudelitatis infamiam effugerunt quod urbem ex
 					Italia pulcherrimam non sustulerunt, et multum in posterum providerunt quod
 					nervis urbis omnibus exsectis urbem ipsam solutam ac debilitatam reliquerunt.
-						<milestone n="34" unit="chapter"/><milestone n="92" unit="section"/><reg>haec</reg> consilia maiorum M. Bruto, ut antea dixi, reprehendenda et
+						<milestone n="34" unit="chapter"/><milestone n="92" unit="section"
+						/><reg>haec</reg> consilia maiorum M. Bruto, ut antea dixi, reprehendenda et
 					P. Rullo visa sunt; neque te, P. Rulle, omina illa M. Bruti atque auspicia a
 					simili furore deterrent. <reg>nam</reg> et ipse qui deduxit, et qui magistratum
 					Capuae illo creante ceperunt, et qui aliquam partem illius deductionis, honoris,
@@ -1337,10 +1413,12 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					conscripti vocabantur. <reg>iam</reg> vero voltum Considi videre ferendum vix
 					erat. <reg>quem</reg> hominem 'vegrandi macie torridum' Romae contemptum,
 					abiectum videbamus, hunc Capuae Campano fastidio ac regio spiritu cum videremus,
-					Blossios mihi videbar illos videre ac Vibellios. <milestone n="94" unit="section"/><reg>iam</reg> vero qui metus erat tunicatorum illorum! et
+					Blossios mihi videbar illos videre ac Vibellios. <milestone n="94"
+						unit="section"/><reg>iam</reg> vero qui metus erat tunicatorum illorum! et
 					in Albana et Seplasia quae concursatio percontantium quid praetor edixisset, ubi
 					cenaret, quo denuntiasset! <reg>nos</reg> autem, hinc Roma qui veneramus, iam
-					non hospites, sed peregrini atque advenae nominabamur. <milestone n="35" unit="chapter"/><milestone n="95" unit="section"/><reg>haec</reg> qui
+					non hospites, sed peregrini atque advenae nominabamur. <milestone n="35"
+						unit="chapter"/><milestone n="95" unit="section"/><reg>haec</reg> qui
 					prospexerint, maiores nostros dico, Quirites, non eos in deorum immortalium
 					numero venerandos a nobis et colendos putatis? <reg>quid</reg> enim viderunt?
 						<reg>hoc</reg> quod nunc vos, quaeso, perspicite atque cognoscite.
@@ -1365,7 +1443,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					atque uberibus campis conferendos scilicet non putabunt. <reg>oppidorum</reg>
 					autem finitimorum illam copiam cum hac per risum ac iocum contendent; Veios,
 					Fidenas, Collatiam, ipsum hercle Lanuvium, Ariciam, Tusculum cum Calibus, Teano,
-					Neapoli, Puteolis, Cumis, Pompeiis, Nuceria comparabunt. <milestone n="97" unit="section"/><reg>quibus</reg> illi rebus elati et inflati fortasse non
+					Neapoli, Puteolis, Cumis, Pompeiis, Nuceria comparabunt. <milestone n="97"
+						unit="section"/><reg>quibus</reg> illi rebus elati et inflati fortasse non
 					continuo, sed certe, si paulum adsumpserint vetustatis ac roboris, non
 					continebuntur; progredientur, cuncta secum ferent. <reg>singularis</reg> homo
 					privatus, nisi magna sapientia praeditus, vix cancellis et regionibus offici
@@ -1375,7 +1454,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					immo vero etiam hoc magis quam illi veteres germanique Campani, quod in vetere
 					fortuna illos natos et educatos nimiae tamen rerum omnium copiae depravabant, hi
 					ex summa egestate in eandem rerum abundantiam traducti non solum copia verum
-					etiam insolentia commovebuntur. <milestone n="36" unit="chapter"/><milestone n="98" unit="section"/></p>
+					etiam insolentia commovebuntur. <milestone n="36" unit="chapter"/><milestone
+						n="98" unit="section"/></p>
 				<p><reg>haec</reg> tu, P. Rulle, M. Bruti sceleris vestigia quam monumenta maiorum
 					sapientiae sequi maluisti, haec tu cum istis tuis auctoribus excogitasti, ut
 					vetera vectigalia nostra <add>expilaretis,</add> exploraretis nova, <add>urbem
@@ -1412,7 +1492,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					deprecentur. <milestone n="37" unit="chapter"/><reg>qua</reg> re, modo mihi vita
 					suppetat, quam ego <add>conabor</add> ab istorum scelere insidiisque defendere,
 					polliceor hoc vobis, Quirites, bona fide: rem publicam vigilanti homini, non
-					timido, diligenti, <add>non ignavo,</add> commisistis. <milestone n="101" unit="section"/><reg>ego</reg>
+					timido, diligenti, <add>non ignavo,</add> commisistis. <milestone n="101"
+						unit="section"/><reg>ego</reg>
 					<add>sum</add> is consul qui contionem metuam, qui tribunum plebis perhorrescam,
 					qui saepe et sine causa tumultuer, qui timeam ne mihi in carcere habitandum sit,
 					si tribunus plebis duci iusserit? <reg>ego</reg> cum vestris armis armatus
@@ -1422,7 +1503,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					praesidiis ab istis vinci aut opprimi possit. <reg>si</reg> antea timuissem,
 					tamen hac contione, hoc populo certe non vererer. <reg>quis</reg> enim umquam
 					tam secunda contione legem agrariam suasit quam ego dissuasi? si hoc dissuadere
-					est ac non disturbare atque pervertere. <milestone n="102" unit="section"/><reg>ex</reg> quo intellegi, Quirites, potest nihil esse tam populare quam
+					est ac non disturbare atque pervertere. <milestone n="102" unit="section"
+						/><reg>ex</reg> quo intellegi, Quirites, potest nihil esse tam populare quam
 					id quod ego vobis in hunc annum consul popularis adfero, pacem, tranquillitatem,
 					otium. <reg>quae</reg> nobis designatis timebatis, ea ne accidere possent
 					consilio meo ac ratione provisa sunt. <reg>non</reg> modo vos eritis in otio qui
@@ -1445,7 +1527,7 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					esse perfecturum ut iam tandem illi qui honori inviderunt meo tamen vos
 					universos in consule deligendo plurimum vidisse fateantur. </p>
 			</div>
-			<div type="textpart" n="3" subtype="Speech">
+			<div type="Speech" n="3">
 				<head>DE LEGE AGRARIA ORATIO TERTIA CONTRA P. SERVILIVM RVLLVM TR. PLEB. AD
 					POPVLVM</head>
 
@@ -1475,19 +1557,22 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					consulere ut facile appareat eam legem non a vestrorum commodorum patrono, sed a
 					Valgi genero esse conscriptam, num quid est causae, Quirites, quin illa
 					criminatione qua in me absentem usus est non solum meam sed etiam vestram
-					diligentiam prudentiamque despexerit? <milestone n="2" unit="chapter"/><milestone n="4" unit="section"/></p>
+					diligentiam prudentiamque despexerit? <milestone n="2" unit="chapter"
+						/><milestone n="4" unit="section"/></p>
 				<p><reg>caput</reg> est legis <num>xl</num> de quo ego consulto, Quirites, neque
 					apud vos ante feci mentionem, ne aut refricare obductam iam rei publicae
 					cicatricem viderer aut aliquid alienissimo tempore novae dissensionis commovere,
 					neque vero nunc ideo disputabo quod hunc statum rei publicae non magno opere
 					defendendum putem, praesertim qui oti et concordiae patronum me in hunc annum
 					populo Romano professus sim, sed ut doceam Rullum posthac in eis saltem tacere
-					rebus in quibus de se et de suis factis taceri velit. <milestone n="5" unit="section"/><reg>omnium</reg> legum iniquissimam dissimillimamque legis
+					rebus in quibus de se et de suis factis taceri velit. <milestone n="5"
+						unit="section"/><reg>omnium</reg> legum iniquissimam dissimillimamque legis
 					esse arbitror eam quam L. Flaccus interrex de Sulla tulit, ut omnia quaecumque
 					ille fecisset essent rata. <reg>nam</reg> cum ceteris in civitatibus tyrannis
 					institutis leges omnes exstinguantur atque tollantur, hic rei publicae tyrannum
 					lege constituit. <reg>est</reg> invidiosa lex, sicuti dixi, verum tamen habet
-					excusationem; non enim videtur hominis lex esse, sed temporis. <milestone n="6" unit="section"/><reg>quid</reg> si est haec multo impudentior?
+					excusationem; non enim videtur hominis lex esse, sed temporis. <milestone n="6"
+						unit="section"/><reg>quid</reg> si est haec multo impudentior?
 						<reg>nam</reg> Valeria lege Corneliisque legibus eripitur civi,
 						<add>civi</add> datur, coniungitur impudens gratificatio cum acerba iniuria;
 					sed tamen imbibit illis legibus spem non nullam cui ademptum est, aliquem
@@ -1506,7 +1591,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					concessit praeter Sullam?—'<quote>ea omnia eo ivre sint</quote>'—quo iure?
 					labefactat videlicet nescio quid. <reg>nimium</reg> acer, nimium vehemens
 					tribunus plebis Sullana rescindit—'<quote>vt qvae optimo ivre privata
-						svnt.</quote>' <reg>etiamne</reg> meliore quam paterna et avita? <milestone n="8" unit="section"/><reg>meliore</reg>. <reg>at</reg> hoc Valeria lex non
+						svnt.</quote>' <reg>etiamne</reg> meliore quam paterna et avita? <milestone
+						n="8" unit="section"/><reg>meliore</reg>. <reg>at</reg> hoc Valeria lex non
 					dicit, Corneliae leges non sanciunt, Sulla ipse non postulat. <reg>si</reg> isti
 					agri partem aliquam iuris, aliquam similitudinem propriae possessionis, aliquam
 					spem diuturnitatis attingunt, nemo est tam impudens istorum quin agi secum
@@ -1521,7 +1607,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					subsignata omnia, si modo Sullana sunt, liberantur. <reg>immunia</reg>
 					commodiore condicione sunt quam illa quae pensitant; ego Tusculanis pro aqua
 					Crabra vectigal pendam, quia mancipio fundum accepi; si a Sulla mihi datus
-					esset, Rulli lege non penderem. <milestone n="3" unit="chapter"/><milestone n="10" unit="section"/><reg>video</reg> vos, Quirites, sicuti res ipsa
+					esset, Rulli lege non penderem. <milestone n="3" unit="chapter"/><milestone
+						n="10" unit="section"/><reg>video</reg> vos, Quirites, sicuti res ipsa
 					cogit, commoveri vel legis vel orationis impudentia, legis quae ius melius
 					Sullanis praediis constituat quam paternis, orationis quae eius modi
 						<add>in</add> causa insimulare quemquam audeat rationes Sullae nimium
@@ -1529,7 +1616,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					data, tacerem, modo ipse se Sullanum esse confiteretur. <reg>sed</reg> non modo
 					illis cavet verum etiam aliud quoddam genus donationis inducit; et is qui a me
 					Sullanas possessiones defendi criminatur non eas solum sancit verum ipse novas
-					adsignationes instituit et repentinus Sulla nobis exoritur. <milestone n="11" unit="section"/><reg>nam</reg> attendite quantas concessiones agrorum hic
+					adsignationes instituit et repentinus Sulla nobis exoritur. <milestone n="11"
+						unit="section"/><reg>nam</reg> attendite quantas concessiones agrorum hic
 					noster obiurgator uno verbo facere conetur: '<quote>Qvae data, donata, concessa,
 						vendita.</quote>' <reg>patior</reg>, audio. <reg>quid</reg> deinde?
 						'<quote>possessa.</quote>' <reg>hoc</reg> tribunus plebis promulgare ausus
@@ -1568,7 +1656,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					Italiae, Siciliae ceterarumque provinciarum possessiones venalis ac proscriptas
 					hac lege video; vestra sunt praedia, vestrae possessiones; resistam atque
 					repugnabo neque patiar a quoquam populum Romanum de suis possessionibus me
-					consule demoveri, praesertim, Quirites, cum vobis nihil quaeratur. <milestone n="16" unit="section"/><reg>hoc</reg> enim vos <add>in</add> errore versari
+					consule demoveri, praesertim, Quirites, cum vobis nihil quaeratur. <milestone
+						n="16" unit="section"/><reg>hoc</reg> enim vos <add>in</add> errore versari
 					diutius non oportet. <reg>num</reg> quis vestrum ad vim, ad facinus, ad caedem
 					accommodatus est? <reg>nemo</reg>. <reg>atqui</reg> ei generi hominum, mihi
 					credite, Campanus ager et praeclara illa Capua servatur; exercitus contra vos,
@@ -1577,6 +1666,6 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					duces comparantur. <reg>veniant</reg> et coram, quoniam me in vestram contionem
 					vobis flagitantibus evocaverunt, disserant. </p>
 			</div>
-		</div>
-	</body></text>
+		</body>
+	</text>
 </TEI>

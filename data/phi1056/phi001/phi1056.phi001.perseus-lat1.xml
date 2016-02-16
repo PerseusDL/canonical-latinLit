@@ -1,6 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
-schematypens="http://relaxng.org/ns/structure/1.0"\?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
 <teiHeader type="text">
 <fileDesc>
 <titleStmt>
@@ -43,20 +45,20 @@ schematypens="http://relaxng.org/ns/structure/1.0"\?><TEI xmlns="http://www.tei-
 </fileDesc>
     <encodingDesc>
         <refsDecl n="CTS">
-            <cRefPattern n="book"
-                matchPattern="(\\w+)"
-                replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
-                <p>This pointer pattern extracts book</p>
+            <cRefPattern n="section"
+                matchPattern="(\w+).(\w+).(\w+)"
+                replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:div[@n='$3'])">
+                <p>This pointer pattern extracts book and chapter and section</p>
             </cRefPattern>
             <cRefPattern n="chapter"
-                matchPattern="(\\w+).(\\w+)"
-                replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])">
+                matchPattern="(\w+).(\w+)"
+                replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
                 <p>This pointer pattern extracts book and chapter</p>
             </cRefPattern>
-            <cRefPattern n="section"
-                matchPattern="(\\w+).(\\w+).(\\w+)"
-                replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:div[@n=\'$2\'])/tei:div[@n=\'$3\']">
-                <p>This pointer pattern extracts book and chapter and section</p>
+            <cRefPattern n="book"
+                matchPattern="(\w+)"
+                replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+                <p>This pointer pattern extracts book</p>
             </cRefPattern>
         </refsDecl>
         <refsDecl>
@@ -68,8 +70,8 @@ schematypens="http://relaxng.org/ns/structure/1.0"\?><TEI xmlns="http://www.tei-
 
 <profileDesc>
 <langUsage>
-<language ident="la">Latin</language>
-<language ident="en">English</language>
+<language ident="lat">Latin</language>
+<language ident="eng">English</language>
 <language ident="grc">Greek</language>
 </langUsage>
 </profileDesc>
@@ -79,12 +81,12 @@ schematypens="http://relaxng.org/ns/structure/1.0"\?><TEI xmlns="http://www.tei-
 </teiHeader>
 
 <text xml:lang="lat">
-<body><div type="textpart" xml:lang="lat" n="urn:cts:canonical-latinLit:phi1056.phi001.perseus-lat1" subtype="edition">
+<body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi1056.phi001.perseus-lat1">
 <note anchored="true" type="title" place="inline">DE ARCHITECTURA</note>
 <div type="textpart" n="1" subtype="book">
 <!-- 1,t,1,1 -->
 <head>LIBER PRIMUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 <div type="textpart" n="1" subtype="section"><p>Cum divina tua mens et numen, imperator Caesar, imperio potiretur orbis terrarum invictaque virtute cunctis
 hostibus stratis triumpho victoriaque tua cives gloriarentur
 et gentes omnes subactae tuum spectarent nutum populusque Romanus et senatus liberatus timore amplissimis tuis
@@ -729,7 +731,7 @@ peragere et in singulis voluminibus explicare.
 <div type="textpart" n="2" subtype="book">
 <!-- 2,t,1,1 -->
 <head>LIBER SECUNDUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 
 <div type="textpart" n="1" subtype="section"><p>Dinocrates architectus cogitationibus et sollertia fretus,
 cum Alexander rerum potiretur, profectus est e Macedonia
@@ -1463,7 +1465,7 @@ insequenti perscribam.
 <div type="textpart" n="3" subtype="book">
 <!-- 3,t,1,1 -->
 <head>LIBER TERTIUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 <div type="textpart" n="1" subtype="section"><p>Delphicus Apollo Socratem omnium sapientissimum
 Pythiae responsis est professus. is autem memoratur prudenter doctissimeque dixisse, oportuisse hominum pectora
 fenestrata et aperta esse, uti non occultos haberent sensus 
@@ -1921,7 +1923,7 @@ sint proportiones, insequenti libro explicabo.
 <div type="textpart" n="4" subtype="book">
 <!-- 4,t,1,1 -->
 <head>LIBER QUARTUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 <div type="textpart" n="1" subtype="section"><p>Cum animadvertissem, imperator, plures de architectura
 praecepta voluminaque commentariorum non ordinata sed
 incepta uti particulas errabundas reliquisse, dignam et utilissimam rem putavi tantae disciplinae corpus ad perfectam
@@ -2381,7 +2383,7 @@ modulationibus ararum deformationes.</p>
 <div type="textpart" n="5" subtype="book">
 <!-- 5,t,1,1 -->
 <head>LIBER QUINTUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 <div type="textpart" n="1" subtype="section"><p>Qui amplioribus voluminibus, imperator, ingenii cogitationes praeceptaque explicaverunt, maximas et egregias
 adiecerunt suis scriptis auctoritates. quod etiam velim
 nostris quoque studiis res pateretur, ut amplificationibus
@@ -3007,7 +3009,7 @@ insequenti volumine ratiocinabor.</p></div>
 <div type="textpart" n="6" subtype="book">
 <!-- 6,t,1,1 -->
 <head>LIBER SEXTUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 <div type="textpart" n="1" subtype="section"><p>Aristippus philosophus Socraticus, naufragio cum eiectus
 ad Rhodiensium litus animadvertisset geometrica schemata descripta, exclamavisse ad comites ita dicitur: 'bene
 speremus! hominum enim vestigia video.' statimque in
@@ -3566,7 +3568,7 @@ vitiis ad vetustatem, insequenti volumine exponam.
 <div type="textpart" n="7" subtype="book">
 <!-- 7,t,1,1 -->
 <head>LIBER SEPTIMUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 <div type="textpart" n="1" subtype="section"><p>Maiores cum sapienter tum etiam utiliter instituerunt,
 per commentariorum relationes cogitata tradere posteris,
 ut ea non interirent, sed singulis aetatibus crescentia voluminibus edita gradatim pervenirent vetustatibus ad summam doctrinarum subtilitatem. itaque non mediocres sed
@@ -4214,7 +4216,7 @@ salubris et idonea, probetur, explicabo.</p>
 <div type="textpart" n="8" subtype="book">
 <!-- 8,t,1,1 -->
 <head>LIBER OCTAVUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 <div type="textpart" n="1" subtype="section"><p>De septem sapientibus Thales Milesius omnium rerum
 principium aquam est professus, Heraclitus ignem, Magorum sacerdotes aquam et ignem, Euripides, auditor Anaxagorae, quem philosophum Athenienses scaenicum appellaverunt, aera et terram, eamque e caelestium imbrium
 conceptionibus inseminatam fetus gentium et omnium animalium in mundo procreavisse, et quae ex ea essent
@@ -4857,7 +4859,7 @@ hoc volumine posui; de gnomonicis vero rebus et horologiorum rationibus insequen
 <div type="textpart" n="9" subtype="book">
 <!-- 9,t,1,1 -->
 <head>LIBER NONUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 <div type="textpart" n="1" subtype="section"><p>Nobilibus athletis, qui Olympia, Pythia, Isthmia, Nemea vicissent, Graecorum maiores ita magnos honores
 constituerunt, uti non modo in conventu stantes cum palma
 et corona ferant laudes, sed etiam, cum revertantur in
@@ -5541,7 +5543,7 @@ earum principiis ratiocinari. itaque de his, ut corpus emendatum architecturae p
 <div type="textpart" n="10" subtype="book">
 <!-- 10,t,1,1 -->
 <head>LIBER DECIMUS</head>
-<div type="textpart" n="preface" subtype="chapter">
+<div type="textpart" n="pr" subtype="chapter">
 <div type="textpart" n="1" subtype="section"><p>Nobili Graecorum et ampla civitate Ephesi lex vetusta
 dicitur a maioribus dura condicione sed iure esse non
 iniquo constituta. nam architectus, cum publicum opus

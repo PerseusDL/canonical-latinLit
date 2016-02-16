@@ -1,15 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader type="text">
 		<fileDesc>
 			<titleStmt>
-				<title type="work">In Defense of Caius Rabirius Postumus </title>
+				<title>In Defense of Caius Rabirius Postumus </title>
 				<title>Pro P. Quinctio, Pro Q. Roscio comoedo, Pro A. Caecina, De lege agraria
 					contra Rullum, Pro C. Rabiro perduellionis reo, Pro L. Flacco, In L. Pisonem,
 					Pro C. Rabiro Postumo</title>
 				<title type="sub">Machine readable text</title>
-				<author n="M. Tullius Cicero">M. Tullius Cicero</author>
+				<author n="Cic.">M. Tullius Cicero</author>
 				<editor role="editor" n="OCT">Albert Clark</editor>
 				<sponsor>Perseus Project, Tufts University</sponsor>
 				<principal>Gregory Crane</principal>
@@ -50,24 +49,32 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 		</fileDesc>
 
 		<encodingDesc>
-			<refsDecl n="CTS">
-				<cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
-					<p>This pointer pattern extracts chapter and section</p>
-				</cRefPattern>
-				<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
-					<p>This pointer pattern extracts chapter</p>
-				</cRefPattern>
+			<refsDecl>
+				<refState delim=" " unit="text"/>
+				<refState unit="section"/>
 			</refsDecl>
 			<refsDecl>
-				<refState unit="chapter" delim="."/>
+				<refState delim=" " unit="text"/>
+				<refState delim="." n="chunk" unit="chapter"/>
+				<refState unit="section"/>
+			</refsDecl>
+			<refsDecl n="text=Agr.">
+				<refState delim=" " unit="text"/>
+				<refState delim="." unit="speech"/>
+				<refState unit="section"/>
+			</refsDecl>
+			<refsDecl n="text=Agr.">
+				<refState delim=" " unit="text"/>
+				<refState delim="." unit="speech"/>
+				<refState delim="." n="chunk" unit="chapter"/>
 				<refState unit="section"/>
 			</refsDecl>
 		</encodingDesc>
 
 		<profileDesc>
 			<langUsage>
-				<language ident="lat">Latin</language>
-				<language ident="grc">Greek</language>
+				<language ident="la">Latin</language>
+				<language ident="greek">Greek</language>
 			</langUsage>
 		</profileDesc>
 
@@ -151,14 +158,10 @@ Added to repository. Passes TEI parse.
     <item>split composite text and converted to unicode</item>
       </change>-->
 			<change when="2014-08-01" who="Stella Dee">edited markup</change>
-		<change when="2015-12-17" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change>
-			<change when="1997-03-26" who="DAS">ed.</change>
-			<change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change><change who="balmas01" when="2013-09-13T11:21:41">Revision 1.5  reverting texts back to pre_cts_reorg tagged version</change><change who="gcrane" when="2011-07-19T22:30:38">Revision 1.3  removed the earlier persName/placeName tags</change><change who="gcrane" when="2011-07-09T20:25:36">Revision 1.2  fixed problems with capitalization</change><change who="gcrane" when="2011-01-15T23:14:25">Revision 1.1  base SDL file</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1  more reorganizing of texts module by collection</change><change who="packel" when="2005-08-01T15:59:20">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25T14:31:17">Revision 1.1  Converted to XML</change><change who="mimno" when="2005-04-08T17:56:08">Revision 1.15  added default chunks</change><change who="yorkc" when="2003-07-01T22:14:58">Revision 1.14  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2002-12-02T18:41:45">Revision 1.13  correct spelling of Quirites, improperly 'regularized'</change><change who="amahoney" when="2000-03-13T17:37:07">Revision 1.12  don't put header for fragments next to header for speech:  gets into
-short toc</change><change who="amahoney" when="2000-03-06T22:21:49">Revision 1.11  add headers for groups of speeches, so they show up in the toc:  Catilines,
-Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-03-04T20:34:11">Revision 1.10  Added separate funder entity to TEI header.</change><change who="dasmith" when="1999-10-14T21:36:02">Revision 1.9  Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-08-12T17:17:19">Revision 1.8  Fixed refsDecl</change><change who="textgod" when="1999-08-04T18:12:10">Revision 1.7  Random changes over a period of months.</change><change who="textgod" when="1997-10-17T14:07:07">Revision 1.6  Tagged Greek.</change><change who="textgod" when="1997-08-18T14:54:35">Revision 1.5  ???</change><change who="cjsu" when="1997-05-12T22:19:56">Revision 1.4  making sure that the file passed the parcer</change><change who="cjsu" when="1997-05-12T22:04:50">Revision 1.3  Added seven works... SGML varified</change><change who="textgod" when="1997-04-03T20:58:14">Revision 1.2  Changed ADD tags to CORR.</change><change who="textgod" when="1997-03-26T17:34:24">Revision 1.1  Added to repository. Passes TEI parse.</change></revisionDesc>
+		</revisionDesc>
 	</teiHeader>
-	<text>
-		<body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi030.perseus-lat1" subtype="edition">
+	<text xml:lang="la">
+		<body>
 			<head>PRO C. RABIRIO POSTVMO ORATIO</head>
 
 			<milestone n="1" unit="chapter"/>
@@ -183,11 +186,13 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				hominum ac memoria patrum virtutes celebrantur, cupidissime persequantur, si quidem
 				non modo in gloria rei militaris Paulum Scipio ac <reg>maximus</reg> filii, sed
 				etiam in devotione vitae et in ipso genere mortis imitatus est P. Decium filius.
-					<reg>sint</reg> igitur similia, iudices, parva magnis. <milestone n="2" unit="chapter"/><milestone n="3" unit="section"/><reg>fuit</reg> enim pueris
+					<reg>sint</reg> igitur similia, iudices, parva magnis. <milestone n="2"
+					unit="chapter"/><milestone n="3" unit="section"/><reg>fuit</reg> enim pueris
 				nobis huius pater, C. Curtius, princeps ordinis equestris, fortissimus et maximus
 				publicanus, cuius in negotiis gerendis magnitudinem animi non tam homines
 				probassent, nisi in eodem benignitas incredibilis fuisset, ut in augenda re non
-				avaritiae praedam, sed instrumentum bonitati quaerere videretur. <milestone n="4" unit="section"/><reg>hoc</reg> ille natus, quamquam patrem suum numquam viderat,
+				avaritiae praedam, sed instrumentum bonitati quaerere videretur. <milestone n="4"
+					unit="section"/><reg>hoc</reg> ille natus, quamquam patrem suum numquam viderat,
 				tamen et natura ipsa duce, quae plurimum valet, et adsiduis domesticorum sermonibus
 				in paternae disciplinae similitudinem deductus est. <reg>multa</reg> gessit, multa
 				contraxit, magnas partis habuit publicorum; credidit populis; in pluribus provinciis
@@ -199,10 +204,12 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				consiliis, ut dixit Sibylla, sensit Postumus, Romam venit. <reg>cui</reg> egenti et
 				roganti hic infelix pecuniam credidit, nec tum primum; nam regnanti crediderat
 				absens; nec temere se credere putabat, quod erat nemini dubium quin is in regnum
-				restitueretur a senatu populoque Romano. <milestone n="5" unit="section"/><reg>in</reg> dando autem et credendo processit longius nec suam solum
+				restitueretur a senatu populoque Romano. <milestone n="5" unit="section"
+					/><reg>in</reg> dando autem et credendo processit longius nec suam solum
 				pecuniam credidit sed etiam amicorum, stulte; quis negat, aut quis iam audebit, quod
 				male cecidit, bene consultum putare? sed est difficile, quod cum spe magna sis
-				ingressus, id non exsequi usque ad extremum. <milestone n="3" unit="chapter"/><reg>supplex</reg> erat rex, multa rogabat, omnia pollicebatur, ut iam metuere
+				ingressus, id non exsequi usque ad extremum. <milestone n="3" unit="chapter"
+					/><reg>supplex</reg> erat rex, multa rogabat, omnia pollicebatur, ut iam metuere
 				Postumus cogeretur ne quod crediderat perderet, si credendi constituisset modum.
 					<reg>nihil</reg> autem erat illo blandius, nihil hoc benignius, ut magis
 				paeniteret coepisse quam liceret desistere. <milestone n="6" unit="section"/></p>
@@ -232,7 +239,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					solutae</add>. <reg>iubet</reg> lex Iulia persequi ab eis ad quos ea pecunia
 				quam is ceperit qui damnatus sit pervenerit. <reg>si</reg> est hoc novum in lege
 				Iulia, sicuti multa sunt severius scripta quam in antiquis legibus et sanctius,
-				inducatur sane etiam consuetudo huius generis iudiciorum nova; <milestone n="9" unit="section"/>sin hoc totidem verbis translatum caput est quot fuit non modo
+				inducatur sane etiam consuetudo huius generis iudiciorum nova; <milestone n="9"
+					unit="section"/>sin hoc totidem verbis translatum caput est quot fuit non modo
 				in Cornelia sed etiam ante in lege Servilia, per deos immortalis! quid agimus,
 				iudices, aut quem hunc morem novorum iudiciorum in rem publicam inducimus?
 					<reg>erat</reg> enim haec consuetudo nota vobis quidem omnibus, sed, si usus
@@ -241,10 +249,12 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				facultatem discendi adferre posset a me afuit. <reg>ita</reg> contendo, neminem
 				umquam '<quote>Qvo ea pecvnia pervenisset</quote>' causam dixisse qui in aestimandis
 				litibus appellatus non esset. <reg>in</reg> litibus autem nemo appellabatur nisi ex
-				testium dictis aut tabulis privatorum aut rationibus civitatum. <milestone n="10" unit="section"/><reg>itaque</reg> in inferendis litibus adesse solebant qui
+				testium dictis aut tabulis privatorum aut rationibus civitatum. <milestone n="10"
+					unit="section"/><reg>itaque</reg> in inferendis litibus adesse solebant qui
 				aliquid de se verebantur, et, cum erant appellati, si videbatur, statim contra
 				dicere solebant; sin eius temporis recentem invidiam pertimuerant, respondebant
-				postea. <reg>quod</reg> cum fecissent, permulti saepe vicerunt. <milestone n="5" unit="chapter"/><reg>hoc</reg> vero novum et ante hoc tempus omnino inauditum.
+				postea. <reg>quod</reg> cum fecissent, permulti saepe vicerunt. <milestone n="5"
+					unit="chapter"/><reg>hoc</reg> vero novum et ante hoc tempus omnino inauditum.
 					<reg>in</reg> litibus Postumi nomen est nusquam. <reg>in</reg> litibus dico;
 				modo vos idem in A. Gabinium iudices sedistis; num quis testis Postumum appellavit?
 				testis autem? num accusator? num denique toto illo in iudicio Postumi nomen
@@ -267,7 +277,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					pervenerit.' <reg>nihil</reg> audisti</add> in Postumum, cum in Gabinium iudex
 				esses, nihil Gabinio damnato, cum in eum litis aestimares. '<reg>at</reg> nunc
 				audio.' <reg>reus</reg> igitur Postumus est ea lege qua non modo ipse sed totus
-				etiam ordo solutus ac liber est. <milestone n="6" unit="chapter"/><milestone n="13" unit="section"/></p>
+				etiam ordo solutus ac liber est. <milestone n="6" unit="chapter"/><milestone n="13"
+					unit="section"/></p>
 			<p><reg>hic</reg> ego nunc non vos prius implorabo, equites Romani, quorum ius iudicio
 				temptatur, quam vos, senatores, quorum agitur fides in hunc ordinem; quae quidem cum
 				saepe ante, tum in hac ipsa causa nuper est cognita. <reg>nam</reg> cum optimo et
@@ -290,7 +301,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					<reg>moneo</reg> et praedico, integra re causaque denuntio, omnis homines
 				deosque testor: dum potestis, dum licet, providete ne duriorem vobis condicionem
 				statuatis ordinique vestro quam ferre possitis. <reg>serpet</reg> hoc malum, mihi
-				credite, longius quam putatis. <milestone n="7" unit="chapter"/><milestone n="16" unit="section"/><reg>potentissimo</reg> et nobilissimo tribuno pl., M. Druso,
+				credite, longius quam putatis. <milestone n="7" unit="chapter"/><milestone n="16"
+					unit="section"/><reg>potentissimo</reg> et nobilissimo tribuno pl., M. Druso,
 				novam in equestrem ordinem quaestionem ferenti: '<quote><reg>si</reg> qvis ob rem
 					ivdicandam pecvniam cepisset</quote>' aperte equites Romani restiterunt.
 					<reg>quid</reg>? hoc licere volebant? <reg>minime</reg>; neque solum hoc genus
@@ -325,7 +337,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				dicebat rei publicae causa, quod classem Archelai timeret, quod mare refertum fore
 				praedonum putaret; lege etiam id sibi licuisse dicebat. <reg>tu</reg> inimicus
 				negas. <reg>ignosco</reg>, et eo magis quod est contra illud iudicatum.
-					<reg>redeo</reg> igitur ad crimen et accusationem tuam. <milestone n="21" unit="section"/><reg>quid</reg> vociferabare? decem milia talentum Gabinio esse
+					<reg>redeo</reg> igitur ad crimen et accusationem tuam. <milestone n="21"
+					unit="section"/><reg>quid</reg> vociferabare? decem milia talentum Gabinio esse
 				promissa. <reg>auctor</reg> videlicet perblandus reperiendus fuit qui hominem, ut tu
 				vis, avarissimum exoraret, HS bis miliens et quadringentiens <add>ne</add> magno
 				opere contemneret. Gabinius illud, quoquo consilio fecit, fecit certe suo;
@@ -341,19 +354,22 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					<reg>verum</reg> si quaerimus, stulte. <reg>quid</reg> enim stultius quam
 				equitem Romanum ex hac urbe, huius, inquam, rei publicae civem, quae est una maxime
 				et fuit semper libera, venire in eum locum ubi parendum alteri et serviendum sit?
-					<milestone n="9" unit="chapter"/><milestone n="23" unit="section"/><reg>sed</reg> ego in hoc tamen Postumo non ignoscam, homini mediocriter
+					<milestone n="9" unit="chapter"/><milestone n="23" unit="section"
+					/><reg>sed</reg> ego in hoc tamen Postumo non ignoscam, homini mediocriter
 				docto, <add>in</add> quo videam sapientissimos homines esse lapsos? <reg>virum</reg>
 				unum totius Graeciae facile doctissimum, Platonem, iniquitate Dionysi, Siciliae
 				tyranni, cui se ille commiserat, in maximis periculis insidiisque esse versatum
 				accepimus; Callisthenem, doctum hominem, comitem Magni Alexandri, ab Alexandro
 				necatum; Demetrium, qui Phalereus vocitatus est, et ex re publica Atheniensi, quam
 				optime gesserat, et ex doctrina nobilem et clarum, in eodem isto Aegyptio regno
-				aspide ad corpus admota vita esse privatum. <milestone n="24" unit="section"/><reg>plane</reg> confiteor fieri nihil posse dementius quam scientem in eum
+				aspide ad corpus admota vita esse privatum. <milestone n="24" unit="section"
+					/><reg>plane</reg> confiteor fieri nihil posse dementius quam scientem in eum
 				locum venire ubi libertatem sis perditurus. <reg>sed</reg> huius ipsius facti
 				stultitiam alia iam superior stultitia defendit, quae facit ut hoc stultissimum
 				facinus, quod in regnum venerit, quod <add>se</add> regi commiserit, sapienter
 				factum esse videatur, si quidem <add>non</add> tam semper stulti quam sero sapientis
-				est, cum stultitia sua impeditus sit, quoquo modo possit se expedire. <milestone n="25" unit="section"/><reg>quam</reg> ob rem illud maneat et fixum sit quod
+				est, cum stultitia sua impeditus sit, quoquo modo possit se expedire. <milestone
+					n="25" unit="section"/><reg>quam</reg> ob rem illud maneat et fixum sit quod
 				neque moveri neque mutari potest; in quo aequi sperasse Postumum dicunt, peccasse
 				iniqui, ipse etiam insanisse se confitetur, quod suam, quod amicorum pecuniam regi
 				crediderit cum tanto fortunarum suarum periculo, hoc quidem semel suscepto atque
@@ -361,9 +377,11 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					<reg>itaque</reg> obicias licet quam voles saepe palliatum fuisse, aliqua
 				habuisse non Romani hominis insignia, quotiens eorum quippiam dices, totiens unum
 				dices atque <add>idem</add> illud, temere hunc pecuniam regi credidisse, suas
-				fortunas atque famam libidini regiae commisisse. <milestone n="26" unit="section"/><reg>fecerat</reg> temere, fateor; mutari factum iam nullo modo poterat; aut
+				fortunas atque famam libidini regiae commisisse. <milestone n="26" unit="section"
+					/><reg>fecerat</reg> temere, fateor; mutari factum iam nullo modo poterat; aut
 				pallium sumendum Alexandreae ut ei Romae togato esse liceret, aut omnes fortunae
-				abiciendae, si togam retinuisset. <milestone n="10" unit="chapter"/><reg>deliciarum</reg> causa et voluptatis non modo <add>notos</add> civis
+				abiciendae, si togam retinuisset. <milestone n="10" unit="chapter"
+					/><reg>deliciarum</reg> causa et voluptatis non modo <add>notos</add> civis
 				Romanos, sed et nobilis adulescentis et quosdam etiam senatores summo loco natos non
 				in hortis aut suburbanis suis, sed Neapoli, <milestone n="27" unit="section"/>in
 				celeberrimo oppido, in tunica pulla saepe <add>vidi, ibidem multi</add> viderunt
@@ -376,7 +394,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				fuit hominibus nostris virtutis, antiquitatis, prudentiae, consularis homo soccos
 				habuit et pallium; nec vero id homini quisquam sed tempori adsignandum putavit;
 				Postumo crimen vestitus adferet is in quo spes fuit posse sese aliquando ad fortunas
-				suas pervenire? <reg>nam</reg> ut ventum est Alexandream, <milestone n="28" unit="section"/>iudices, haec una ratio a rege proposita Postumo est servandae
+				suas pervenire? <reg>nam</reg> ut ventum est Alexandream, <milestone n="28"
+					unit="section"/>iudices, haec una ratio a rege proposita Postumo est servandae
 				pecuniae, si curationem et quasi dispensationem regiam suscepisset. <reg>id</reg>
 				autem facere non poterat, nisi dioecetes—hoc enim nomine utitur qui ea regit—esset
 				constitutus. <reg>odiosum</reg> negotium Postumo videbatur, sed erat nulla omnino
@@ -385,7 +404,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				poterat nec munus tueri. <reg>ergo</reg> 'aderat vis' ut ait poeta ille noster, </p>
 			<p>'quae summas frangit infirmatque opes.' <milestone n="29" unit="section"/></p>
 			<p>'<reg>moreretur</reg>,' inquies; nam id sequitur. <reg>fecisset</reg> certe, si sine
-				maximo dedecore tam impeditis suis rebus potuisset emori. <milestone n="11" unit="chapter"/><reg>noli</reg> igitur fortunam convertere in culpam neque regis
+				maximo dedecore tam impeditis suis rebus potuisset emori. <milestone n="11"
+					unit="chapter"/><reg>noli</reg> igitur fortunam convertere in culpam neque regis
 				iniuriam huius crimen putare nec consilium ex necessitate nec voluntatem ex vi
 				interpretari, nisi forte eos etiam qui in hostis aut in praedones inciderint, si
 				aliter quippiam coacti faciant <add>ac</add> liberi, vituperandos putes.
@@ -412,11 +432,13 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				redigeretur non dixerit? <reg>age</reg>, si is qui non dixit solet, etiamne is solet
 				qui laudavit? <milestone n="32" unit="section"/>
 				<reg>isdem</reg> testibus, et quidem non productis, sed dictis testium recitatis,
-				quasi praeiudicata res ad has causas deferri solet. <milestone n="12" unit="chapter"/><reg>et</reg> ait etiam meus familiaris et necessarius eandem causam
+				quasi praeiudicata res ad has causas deferri solet. <milestone n="12" unit="chapter"
+					/><reg>et</reg> ait etiam meus familiaris et necessarius eandem causam
 				Alexandrinis fuisse cur laudarent Gabinium quae mihi fuerit cur eundem defenderem.
 					<reg>mihi</reg>, C. Memmi, causa defendendi Gabini fuit reconciliatio gratiae.
 					<reg>neque</reg> me vero paenitet mortalis inimicitias, sempiternas amicitias
-				habere. <reg>nam</reg> si me invitum putas, ne Cn. <milestone n="33" unit="section"/>Pompei animum offenderem, defendisse causam, et illum et me vehementer ignoras.
+				habere. <reg>nam</reg> si me invitum putas, ne Cn. <milestone n="33" unit="section"
+				/>Pompei animum offenderem, defendisse causam, et illum et me vehementer ignoras.
 					<reg>neque</reg> enim Pompeius me sua causa quicquam facere voluisset invitum,
 				neque ego cui omnium civium libertas carissima fuisset meam proiecissem.
 						<add><reg>nec</reg>,</add> quam diu inimicissimus Gabinio fui, non
@@ -424,7 +446,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				veniam quam debui, quicquam simulate <add>feci</add>, ne cum mea perfidia illi etiam
 				ipsi facerem cui beneficium dedissem iniuriam. <reg>nam</reg> non redeundo in
 				gratiam cum inimico non violabam Pompeium; si per eum reductus insidiose redissem,
-				me scilicet maxime, sed proxime illum quoque fefellissem. <milestone n="34" unit="section"/><reg>ac</reg> de me omittamus; ad Alexandrinos istos revertamur.
+				me scilicet maxime, sed proxime illum quoque fefellissem. <milestone n="34"
+					unit="section"/><reg>ac</reg> de me omittamus; ad Alexandrinos istos revertamur.
 					<reg>quod</reg> habent os, quam audaciam! <reg>modo</reg> vobis inspectantibus
 				in iudicio Gabini tertio quoque verbo excitabantur; negabant pecuniam Gabinio datam.
 					<reg>recitabatur</reg> identidem Pompei testimonium regem ad se scripsisse
@@ -437,7 +460,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				mentiti sunt, doceant nos verum quo voltu soleant dicere. <reg>audiebamus</reg>
 				Alexandream, nunc cognoscimus. <reg>illinc</reg> omnes praestigiae, illinc, inquam,
 				omnes fallaciae, omnia denique ab eis mimorum argumenta nata sunt. <reg>nec</reg>
-				mihi longius quicquam est, iudices, quam videre hominum voltus. <milestone n="13" unit="chapter"/><milestone n="36" unit="section"/><reg>dixerunt</reg> hic modo
+				mihi longius quicquam est, iudices, quam videre hominum voltus. <milestone n="13"
+					unit="chapter"/><milestone n="36" unit="section"/><reg>dixerunt</reg> hic modo
 				nobiscum ad haec subsellia, quibus superciliis renuentes huic decem milium crimini!
 					<reg>iam</reg> nostis insulsitatem Graecorum; umeris gestum agebant tum
 				temporis, credo, causa; nunc scilicet tempus nullum est. Vbi semel quis peieraverit,
@@ -452,7 +476,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				quae ad aliquem reum qui damnatus est <add>venisset</add>, pervenisse ad aliquem in
 				illo primo iudicio planum factum sit, id hoc genere iudici redigi solere.
 					<reg>nunc</reg> vero quid agitur? ubi terrarum sumus? quid tam perversum,
-					<add>tam</add> praeposterum dici aut excogitari potest? <milestone n="38" unit="section"/><reg>accusatur</reg> is qui non abstulit a rege, sicut Gabinius
+					<add>tam</add> praeposterum dici aut excogitari potest? <milestone n="38"
+					unit="section"/><reg>accusatur</reg> is qui non abstulit a rege, sicut Gabinius
 				iudicatus est, sed qui maximam regi pecuniam credidit. <reg>ergo</reg> is Gabinio
 				dedit qui non huic reddidit. <reg>itane</reg>? <reg>age</reg>, cedo, cum is qui
 				pecuniam Postumo debuit non huic, sed Gabinio dederit, condemnato Gabinio utrum illi
@@ -462,7 +487,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				gloriae? <reg>si</reg> nihil habuisset umquam, tamen, si quaesisset, cur se
 				dissimularet habere causa non esset. <reg>qui</reg> vero duo lauta et copiosa
 				patrimonia accepisset remque praeterea bonis et honestis rationibus auxisset, quid
-				esset tandem causae cur existimari vellet nihil habere? <milestone n="39" unit="section"/><reg>an</reg>, cum credebat inductus usuris, id agebat ut
+				esset tandem causae cur existimari vellet nihil habere? <milestone n="39"
+					unit="section"/><reg>an</reg>, cum credebat inductus usuris, id agebat ut
 				haberet quam plurimum; postea quam exegit quod crediderat, ut existimaretur egere?
 					<reg>novum</reg> genus hoc gloriae concupiscit. '<reg>dominatus</reg> est enim,'
 				inquit, 'Alexandreae.' <reg>immo</reg> vero in superbissimo dominatu fuit; pertulit
@@ -487,7 +513,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				praesertim et absentem, et in tanta fortuna sua ut alienam respicere magnum sit,
 					<add>et in</add> tanta occupatione maximarum rerum quas gerit atque gessit
 					<add>ut</add> vel oblivisci aliorum non sit mirum vel, si meminerit, oblitum
-				esse <add>se</add> facile possit probare. <milestone n="42" unit="section"/><reg>multas</reg> equidem C. Caesaris virtutes magnas incredibilisque cognovi,
+				esse <add>se</add> facile possit probare. <milestone n="42" unit="section"
+					/><reg>multas</reg> equidem C. Caesaris virtutes magnas incredibilisque cognovi,
 				sed sunt ceterae maioribus quasi theatris propositae et paene populares.
 					<reg>castris</reg> locum capere, exercitum instruere, expugnare urbis, aciem
 				hostium profligare, hanc vim frigorum hiemumque quam nos vix huius urbis tectis
@@ -495,14 +522,16 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				tegant atque omnia bella iure gentium conquiescant— sunt ea quidem magna; quis
 				negat? sed magnis excitata sunt praemiis ac memoria hominum sempiterna.
 					<reg>quo</reg> minus admirandum est eum facere illa qui immortalitatem
-				concupiverit. <milestone n="16" unit="chapter"/><milestone n="43" unit="section"/><reg>haec</reg> vera laus est, quae non poetarum carminibus, non annalium
+				concupiverit. <milestone n="16" unit="chapter"/><milestone n="43" unit="section"
+					/><reg>haec</reg> vera laus est, quae non poetarum carminibus, non annalium
 				monumentis celebratur, sed prudentium iudicio expenditur. <reg>equitem</reg> Romanum
 				veterem amicum suum studiosum, amantem, observantem sui non libidine, non turpibus
 				impensis cupiditatum atque iacturis, sed experientia patrimoni amplificandi labentem
 				excepit, corruere non sivit, fulsit et sustinuit re, fortuna, fide, hodieque
 				sustinet nec amicum pendentem corruere patitur; nec illius animi aciem praestringit
 				splendor sui nominis, nec mentis quasi luminibus officit altitudo fortunae et
-				gloriae. <reg>sint</reg> sane illa magna, quae re vera magna sunt; <milestone n="44" unit="section"/>de iudicio animi mei, ut volet quisque, sentiat; ego enim hanc
+				gloriae. <reg>sint</reg> sane illa magna, quae re vera magna sunt; <milestone n="44"
+					unit="section"/>de iudicio animi mei, ut volet quisque, sentiat; ego enim hanc
 				in tantis opibus, tanta fortuna liberalitatem in suos, memoriam amicitiae reliquis
 				virtutibus omnibus antepono. <reg>quam</reg> quidem vos, iudices, eius in novo
 				genere bonitatem, inusitatam claris ac praepotentibus viris, non modo <add>non</add>
@@ -510,7 +539,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				videtis hos quidem sumptos dies ad labefactandam illius dignitatem. <reg>ex</reg>
 				qua illi nihil detrahi potest quod non aut fortiter ferat aut facile restituat;
 				amicissimum hominem si honestate spoliatum audierit, nec sine magno dolore feret et
-				id amiserit quod posse non speret recuperari. <milestone n="17" unit="chapter"/><milestone n="45" unit="section"/></p>
+				id amiserit quod posse non speret recuperari. <milestone n="17" unit="chapter"
+					/><milestone n="45" unit="section"/></p>
 			<p><reg>satis</reg> multa hominibus non iniquis haec esse debent, nimis etiam multa
 				vobis quos aequissimos esse confidimus. <reg>sed</reg> ut omnium vel suspicioni vel
 				malivolentiae vel crudelitati satis fiat: 'occultat pecuniam Postumus, latent regiae
@@ -526,7 +556,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				iam oblivisci vestrae mansuetudinis volueritis, quicquam praeterea potestis eripere.
 					<reg>quod</reg>, iudices, ne faciatis oro obtestorque vos, atque eo magis, si
 				adventicia pecunia petitur ab eo cui sua non redditur. <reg>nam</reg> in eum cui
-				misericordia opitulari debebat invidia quaesita est. <milestone n="47" unit="section"/><reg>sed</reg> iam, quoniam, <add>ut</add> spero, fidem quam
+				misericordia opitulari debebat invidia quaesita est. <milestone n="47"
+					unit="section"/><reg>sed</reg> iam, quoniam, <add>ut</add> spero, fidem quam
 					<add>tibi dedi</add> praestiti, Postume, reddam etiam lacrimas quas debeo; quas
 				quidem ego tuas in meo casu plurimas vidi. <reg>versatur</reg> ante oculos luctuosa
 				nox meis omnibus, cum tu totum te cum tuis copiis ad me detulisti. <reg>tu</reg>
@@ -542,7 +573,7 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				nihil orat nisi ut rectis oculis hanc urbem sibi intueri atque ut in hoc foro
 				vestigium facere liceat, quod ipsum fortuna eripuerat, nisi unius amici opes
 				subvenissent. </p>
-		</div>
-	</body></text>
+		</body>
+	</text>
 
 </TEI>

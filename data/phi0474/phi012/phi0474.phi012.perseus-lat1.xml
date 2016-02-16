@@ -1,15 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader type="text">
 		<fileDesc>
 			<titleStmt>
-				<title type="work">In Defense of Caius Rabirius </title>
+				<title>In Defense of Caius Rabirius </title>
 				<title>Pro P. Quinctio, Pro Q. Roscio comoedo, Pro A. Caecina, De lege agraria
 					contra Rullum, Pro C. Rabiro perduellionis reo, Pro L. Flacco, In L. Pisonem,
 					Pro C. Rabiro Postumo</title>
 				<title type="sub">Machine readable text</title>
-				<author n="M. Tullius Cicero">M. Tullius Cicero</author>
+				<author n="Cic.">M. Tullius Cicero</author>
 				<editor role="editor" n="OCT">Albert Clark</editor>
 				<sponsor>Perseus Project, Tufts University</sponsor>
 				<principal>Gregory Crane</principal>
@@ -50,24 +49,32 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 		</fileDesc>
 
 		<encodingDesc>
-			<refsDecl n="CTS">
-				<cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
-					<p>This pointer pattern extracts chapter and section</p>
-				</cRefPattern>
-				<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
-					<p>This pointer pattern extracts chapter</p>
-				</cRefPattern>
+			<refsDecl>
+				<refState delim=" " unit="text"/>
+				<refState unit="section"/>
 			</refsDecl>
 			<refsDecl>
-				<refState unit="chapter" delim="."/>
+				<refState delim=" " unit="text"/>
+				<refState delim="." n="chunk" unit="chapter"/>
+				<refState unit="section"/>
+			</refsDecl>
+			<refsDecl n="text=Agr.">
+				<refState delim=" " unit="text"/>
+				<refState delim="." unit="speech"/>
+				<refState unit="section"/>
+			</refsDecl>
+			<refsDecl n="text=Agr.">
+				<refState delim=" " unit="text"/>
+				<refState delim="." unit="speech"/>
+				<refState delim="." n="chunk" unit="chapter"/>
 				<refState unit="section"/>
 			</refsDecl>
 		</encodingDesc>
 
 		<profileDesc>
 			<langUsage>
-				<language ident="lat">Latin</language>
-				<language ident="grc">Greek</language>
+				<language ident="la">Latin</language>
+				<language ident="greek">Greek</language>
 			</langUsage>
 		</profileDesc>
 
@@ -151,14 +158,10 @@ Added to repository. Passes TEI parse.
     <item>split composite text and converted to unicode</item>
       </change>-->
 			<change when="2014-08-01" who="Stella Dee">edited markup</change>
-		<change when="2015-12-18" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change><change when="1997-03-26" who="DAS">ed.</change>
-			<change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change>
-			<change who="balmas01" when="2013-09-13T11:21:41">Revision 1.5  reverting texts back to pre_cts_reorg tagged version</change><change who="gcrane" when="2011-07-19T22:30:38">Revision 1.3  removed the earlier persName/placeName tags</change><change who="gcrane" when="2011-07-09T20:25:36">Revision 1.2  fixed problems with capitalization</change><change who="gcrane" when="2011-01-15T23:14:25">Revision 1.1  base SDL file</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1  more reorganizing of texts module by collection</change><change who="packel" when="2005-08-01T15:59:20">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25T14:31:17">Revision 1.1  Converted to XML</change><change who="mimno" when="2005-04-08T17:56:08">Revision 1.15  added default chunks</change><change who="yorkc" when="2003-07-01T22:14:58">Revision 1.14  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2002-12-02T18:41:45">Revision 1.13  correct spelling of Quirites, improperly 'regularized'</change><change who="amahoney" when="2000-03-13T17:37:07">Revision 1.12  don't put header for fragments next to header for speech:  gets into
-short toc</change><change who="amahoney" when="2000-03-06T22:21:49">Revision 1.11  add headers for groups of speeches, so they show up in the toc:  Catilines,
-Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-03-04T20:34:11">Revision 1.10  Added separate funder entity to TEI header.</change><change who="dasmith" when="1999-10-14T21:36:02">Revision 1.9  Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-08-12T17:17:19">Revision 1.8  Fixed refsDecl</change><change who="textgod" when="1999-08-04T18:12:10">Revision 1.7  Random changes over a period of months.</change><change who="textgod" when="1997-10-17T14:07:07">Revision 1.6  Tagged Greek.</change><change who="textgod" when="1997-08-18T14:54:35">Revision 1.5  ???</change><change who="cjsu" when="1997-05-12T22:19:56">Revision 1.4  making sure that the file passed the parcer</change><change who="cjsu" when="1997-05-12T22:04:50">Revision 1.3  Added seven works... SGML varified</change><change who="textgod" when="1997-04-03T20:58:14">Revision 1.2  Changed ADD tags to CORR.</change><change who="textgod" when="1997-03-26T17:34:24">Revision 1.1  Added to repository. Passes TEI parse.</change></revisionDesc>
+		</revisionDesc>
 	</teiHeader>
-	<text>
-		<body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi012.perseus-lat1" subtype="edition">
+	<text xml:lang="la">
+		<body>
 
 			<head>PRO C. RABIRIO PERDVELLIONIS REO AD QVIRITES ORATIO</head>
 
@@ -169,7 +172,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				semper satis iustam mihi causam necessitudinis esse duxi, tamen in hac defensione
 				capitis, famae fortunarumque omnium C. Rabiri proponenda ratio videtur esse offici
 				mei, propterea quod, quae iustissima mihi causa ad hunc defendendum esse visa est,
-				eadem vobis ad absolvendum debet videri. <milestone n="2" unit="section"/><reg>nam</reg> me cum amicitiae vetustas, cum dignitas hominis, cum ratio
+				eadem vobis ad absolvendum debet videri. <milestone n="2" unit="section"
+					/><reg>nam</reg> me cum amicitiae vetustas, cum dignitas hominis, cum ratio
 				humanitatis, cum meae vitae perpetua consuetudo ad C. Rabirium defendendum est
 				adhortata, tum vero, ut id studiosissime facerem, salus rei publicae, consulare
 				officium, consulatus denique ipse mihi una <add>a</add> vobis cum salute rei
@@ -179,13 +183,15 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				quod nobis a maioribus est traditum de re publica tolleretur, ut nihil posthac
 				auctoritas senatus, nihil consulare imperium, nihil consensio bonorum contra pestem
 				ac perniciem civitatis valeret, idcirco in his rebus evertendis unius hominis
-				senectus, infirmitas solitudoque temptata est. <milestone n="3" unit="section"/><reg>quam</reg> ob rem si est boni consulis, cum cuncta auxilia rei publicae
+				senectus, infirmitas solitudoque temptata est. <milestone n="3" unit="section"
+					/><reg>quam</reg> ob rem si est boni consulis, cum cuncta auxilia rei publicae
 				labefactari convellique videat, ferre opem patriae, succurrere saluti fortunisque
 				communibus, implorare civium fidem, suam salutem posteriorem salute communi ducere,
 				est etiam bonorum et fortium civium, quales vos omnibus rei publicae temporibus
 				exstitistis, intercludere omnis seditionum vias, munire praesidia rei publicae,
 				summum in consulibus imperium, summum in senatu consilium putare; ea qui secutus
-				sit, laude potius et honore quam poena et supplicio dignum iudicare. <milestone n="4" unit="section"/><reg>quam</reg> ob rem labor in hoc defendendo praecipue
+				sit, laude potius et honore quam poena et supplicio dignum iudicare. <milestone
+					n="4" unit="section"/><reg>quam</reg> ob rem labor in hoc defendendo praecipue
 				meus est, studium vero conservandi hominis commune mihi vobiscum esse debebit.
 					<milestone n="2" unit="chapter"/></p>
 			<p><reg>sic</reg> enim existimare debetis, Quirites, post hominum memoriam rem nullam
@@ -204,17 +210,20 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				potestas proxime ad deorum immortalium numen accedit, oro atque obsecro, quoniam uno
 				tempore vita C. Rabiri, hominis miserrimi atque innocentissimi, salus rei publicae
 				vestris manibus suffragiisque permittitur, adhibeatis in hominis fortunis
-				misericordiam, in rei publicae salute sapientiam quam soletis. <milestone n="6" unit="section"/></p>
+				misericordiam, in rei publicae salute sapientiam quam soletis. <milestone n="6"
+					unit="section"/></p>
 			<p><reg>nunc</reg> quoniam, T. Labiene, diligentiae meae temporis angustiis obstitisti
 				meque ex comparato et constituto spatio defensionis in semihorae articulum coegisti,
 				parebitur et, quod iniquissimum est, accusatoris condicioni et, quod miserrimum,
 				inimici potestati. <reg>quamquam</reg> in hac praescriptione semihorae patroni mihi
 				partis reliquisti, consulis ademisti, propterea quod ad defendendum prope modum
-				satis erit hoc mihi temporis, ad conquerendum vero parum. <milestone n="7" unit="section"/>Nisi forte de locis religiosis ac de lucis quos ab hoc violatos
+				satis erit hoc mihi temporis, ad conquerendum vero parum. <milestone n="7"
+					unit="section"/>Nisi forte de locis religiosis ac de lucis quos ab hoc violatos
 				esse dixisti pluribus verbis tibi respondendum putas; quo in crimine nihil est
 				umquam abs te dictum, nisi a C. Macro obiectum esse crimen id C. Rabirio.
 					<reg>in</reg> quo ego demiror meminisse te quid obiecerit C. Rabirio Macer
-				inimicus, oblitum esse quid aequi et iurati iudices iudicarint. <milestone n="3" unit="chapter"/><milestone n="8" unit="section"/><reg>an</reg> de peculatu facto
+				inimicus, oblitum esse quid aequi et iurati iudices iudicarint. <milestone n="3"
+					unit="chapter"/><milestone n="8" unit="section"/><reg>an</reg> de peculatu facto
 				aut de tabulario incenso longa oratio est expromenda? quo in crimine propinquus C.
 				Rabiri iudicio clarissimo, C. Curtius, pro virtute sua est honestissime liberatus,
 				ipse vero Rabirius non modo in iudicium horum criminum, sed ne in tenuissimam quidem
@@ -252,7 +261,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				defigi et constitui iubes, an ego qui funestari contionem contagione carnificis
 				veto, qui expiandum forum populi Romani ab illis nefarii sceleris vestigiis esse
 				dico, qui castam contionem, sanctum campum, inviolatum corpus omnium civium
-				Romanorum, integrum ius libertatis defendo servari oportere? <milestone n="12" unit="section"/><reg>popularis</reg> vero tribunus pl. custos defensorque iuris
+				Romanorum, integrum ius libertatis defendo servari oportere? <milestone n="12"
+					unit="section"/><reg>popularis</reg> vero tribunus pl. custos defensorque iuris
 				et libertatis! Porcia lex virgas ab omnium civium Romanorum corpore amovit, hic
 				misericors flagella rettulit; Porcia lex libertatem civium lictori eripuit,
 				Labienus, homo popularis, carnifici tradidit; C. Gracchus legem tulit ne de capite
@@ -269,7 +279,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				carmina quae tu, homo lenis ac popularis, libentissime commemoras: '<quote>Capvt
 					obnvbito</quote>, <quote>arbori infelici svspendito</quote>,' quae verba,
 				Quirites, iam pridem in hac re publica non solum tenebris vetustatis verum etiam
-				luce libertatis oppressa sunt. <milestone n="5" unit="chapter"/><milestone n="14" unit="section"/></p>
+				luce libertatis oppressa sunt. <milestone n="5" unit="chapter"/><milestone n="14"
+					unit="section"/></p>
 			<p><reg>an</reg> vero, si actio ista popularis esset et si ullam partem aequitatis
 				haberet aut iuris, C. Gracchus eam reliquisset? <reg>scilicet</reg> tibi graviorem
 				dolorem patrui tui mors attulit quam C. Graccho fratris, et tibi acerbior eius
@@ -279,7 +290,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				populum Romanum Labienus iste, patruus vester, quisquis fuit, ac Ti. Gracchus
 				reliquerat. <reg>an</reg> pietas tua maior quam <add>C.</add> Gracchi, an animus, an
 				consilium, an opes, an auctoritas, an eloquentia? quae si in illo minima fuissent,
-				tamen prae tuis facultatibus maxima putarentur. <milestone n="15" unit="section"/>Cum vero his rebus omnibus C. Gracchus omnis vicerit, quantum intervallum tandem
+				tamen prae tuis facultatibus maxima putarentur. <milestone n="15" unit="section"
+				/>Cum vero his rebus omnibus C. Gracchus omnis vicerit, quantum intervallum tandem
 				inter te atque illum interiectum putas? <reg>sed</reg> moreretur prius acerbissima
 				morte miliens <add>C.</add> Gracchus quam in eius contione carnifex consisteret;
 				quem non modo foro sed etiam caelo hoc ac spiritu censoriae leges atque urbis
@@ -305,7 +317,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				depulsum. <reg>qua</reg> tu in actione quamquam omnia exempla maiorum, omnis leges,
 				omnem auctoritatem senatus, omnis religiones atque auspiciorum publica iura
 				neglexisti, tamen a me haec in hoc tam exiguo meo tempore non audies; liberum tempus
-				nobis dabitur ad istam disceptationem. <milestone n="6" unit="chapter"/><milestone n="18" unit="section"/></p>
+				nobis dabitur ad istam disceptationem. <milestone n="6" unit="chapter"/><milestone
+					n="18" unit="section"/></p>
 			<p><reg>nunc</reg> de Saturnini crimine ac de clarissimi patrui tui morte dicemus.
 					<reg>arguis</reg> occisum esse a C. Rabirio L. Saturninum. <reg>at</reg> id C.
 				Rabirius multorum testimoniis, Q. Hortensio copiosissime defendente, antea falsum
@@ -369,7 +382,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				parere potissimum velles? '<reg>patruus</reg>,' inquit, 'meus cum Saturnino fuit.'
 					<reg>quid</reg>? pater quicum? quid? propinqui vestri, equites Romani? quid?
 				omnis praefectura, regio, vicinitas vestra? quid? ager Picenus universus utrum
-				tribunicium furorem, an consularem auctoritatem secutus est? <milestone n="23" unit="section"/><reg>equidem</reg> hoc adfirmo quod tu nunc de tuo patruo
+				tribunicium furorem, an consularem auctoritatem secutus est? <milestone n="23"
+					unit="section"/><reg>equidem</reg> hoc adfirmo quod tu nunc de tuo patruo
 				praedicas, neminem umquam adhuc de se esse confessum; nemo est, inquam, inventus tam
 				profligatus, tam perditus, tam ab omni non modo honestate sed etiam simulatione
 				honestatis relictus, qui se in Capitolio fuisse cum Saturnino fateretur.
@@ -377,7 +391,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				vi, nulla desperatione rerum suarum, nullis domesticis volneribus coactus; induxerit
 				eum L. Saturnini familiaritas ut amicitiam patriae praeponeret; idcircone oportuit
 				C. Rabirium desciscere a re publica, non comparere in illa armata multitudine
-				bonorum, consulum voci atque imperio non oboedire? <milestone n="24" unit="section"/><reg>atqui</reg> videmus haec in rerum natura tria fuisse, ut aut cum
+				bonorum, consulum voci atque imperio non oboedire? <milestone n="24" unit="section"
+					/><reg>atqui</reg> videmus haec in rerum natura tria fuisse, ut aut cum
 				Saturnino esset, aut cum bonis, aut lateret. <reg>latere</reg> mortis erat instar
 				turpissimae, cum Saturnino esse furoris et sceleris; virtus et honestas et pudor cum
 				consulibus esse cogebat. <reg>hoc</reg> tu igitur in crimen vocas, quod cum eis
@@ -389,7 +404,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				suae, condemnatus est. <reg>statuerunt</reg> equites Romani illo iudicio improbum
 				civem esse et non retinendum in civitate, qui hominis hostilem in modum seditiosi
 				imagine aut mortem eius honestaret, aut desideria imperitorum misericordia
-				commoveret, aut suam significaret imitandae improbitatis voluntatem. <milestone n="25" unit="section"/><reg>itaque</reg> mihi mirum videtur unde hanc tu,
+				commoveret, aut suam significaret imitandae improbitatis voluntatem. <milestone
+					n="25" unit="section"/><reg>itaque</reg> mihi mirum videtur unde hanc tu,
 				Labiene, imaginem quam habes inveneris; nam <reg>sex</reg>. Titio damnato qui istam
 				habere auderet inventus est nemo. <reg>quod</reg> tu si audisses aut si per aetatem
 				scire potuisses, numquam profecto istam imaginem quae domi posita pestem atque
@@ -398,7 +414,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				quibus C. Deciani naufragium fortunarum videres. <reg>sed</reg> in his rebus omnibus
 				imprudentia laberis. <reg>causam</reg> enim suscepisti antiquiorem memoria tua, quae
 				causa ante mortua est quam tu natus es; et qua in causa tute profecto fuisses, si
-				per aetatem esse potuisses, eam causam in iudicium vocas. <milestone n="26" unit="section"/><reg>an</reg> non intellegis, primum quos homines et qualis
+				per aetatem esse potuisses, eam causam in iudicium vocas. <milestone n="26"
+					unit="section"/><reg>an</reg> non intellegis, primum quos homines et qualis
 				viros mortuos summi sceleris arguas, deinde quot ex his qui vivunt eodem crimine in
 				summum periculum capitis arcessas? <reg>nam</reg> si C. Rabirius fraudem capitalem
 				admisit quod arma contra L. Saturninum tulit, huic quidem adferet aliquam
@@ -407,7 +424,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				gravitate, illo consilio, illa prudentia, duos Mucios, L. Crassum, M. Antonium, qui
 				tum extra urbem cum praesidio fuit, quorum in hac civitate longe maxima consilia
 				atque ingenia fuerunt, ceteros pari dignitate praeditos custodes gubernatoresque rei
-				publicae quem ad modum mortuos defendemus? <milestone n="27" unit="section"/><reg>quid</reg> de illis honestissimis viris atque optimis civibus, equitibus
+				publicae quem ad modum mortuos defendemus? <milestone n="27" unit="section"
+					/><reg>quid</reg> de illis honestissimis viris atque optimis civibus, equitibus
 				Romanis, dicemus qui tum una cum senatu salutem rei publicae defenderunt? quid de
 				tribunis aerariis ceterorumque ordinum omnium hominibus qui tum arma pro communi
 				libertate ceperunt? <milestone n="10" unit="chapter"/><reg>sed</reg> quid ego de eis
@@ -435,13 +453,15 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				versatur quin spe posteritatis fructuque ducatur. <reg>itaque</reg> cum multis aliis
 				de causis virorum bonorum mentes divinae mihi atque aeternae videntur esse, tum
 				maxime quod optimi et sapientissimi cuiusque animus ita praesentit in posterum ut
-				nihil nisi sempiternum spectare videatur. <milestone n="30" unit="section"/><reg>quapropter</reg> equidem et C. Mari et ceterorum virorum sapientissimorum
+				nihil nisi sempiternum spectare videatur. <milestone n="30" unit="section"
+					/><reg>quapropter</reg> equidem et C. Mari et ceterorum virorum sapientissimorum
 				ac fortissimorum civium mentis, quae mihi videntur ex hominum vita ad deorum
 				religionem et sanctimoniam demigrasse, testor me pro illorum fama, gloria, memoria
 				non secus ac pro patriis fanis atque delubris propugnandum putare, ac, si pro
 				illorum laude mihi arma capienda essent, non minus strenue caperem, quam illi pro
 				communi salute ceperunt. <reg>etenim</reg>, Quirites, exiguum nobis vitae curriculum
-				natura circumscripsit, immensum gloriae. <milestone n="11" unit="chapter"/><reg>qua</reg> re, si eos qui iam de vita decesserunt ornabimus, iustiorem
+				natura circumscripsit, immensum gloriae. <milestone n="11" unit="chapter"
+					/><reg>qua</reg> re, si eos qui iam de vita decesserunt ornabimus, iustiorem
 				nobis mortis condicionem relinquemus. <reg>sed</reg> si illos, Labiene, quos iam
 				videre non possumus neglegis, ne his quidem quos vides consuli putas oportere?
 					<milestone n="31" unit="section"/><reg>neminem</reg> esse dico ex his omnibus,
@@ -456,7 +476,7 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				<reg>maximi</reg> templis ac sedibus praecidi imperarat, quod in clivo Capitolino
 				improborum civium * * * </p>
 
-			<div type="textpart" subtype="fragments">
+			<div type="fragments">
 				<head>FRAGMENTA</head>
 				<milestone n="12" unit="chapter"/>
 				<milestone n="32" unit="section"/>
@@ -478,8 +498,9 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 						re</add>liquerunt, vo<add>cem</add> illam consulis: 'qui <add>rem
 						publicam</add> salvam esse <add>vellent</add>.' <reg>huic</reg> voci
 						fave<add>te, Quirites, neque v</add>estro iudicio <add>abstu</add>leritis
-					mihi <gap reason="lost"/> neque eripueri<add>tis rei publicae</add> spem liberta<add>tis,
-						sp</add>em salutis, spem <add>digni</add>tatis. <milestone n="35" unit="section"/><add><reg>quid</reg> fac</add>erem, si T. Labie<add>nus
+					mihi <gap/> neque eripueri<add>tis rei publicae</add> spem liberta<add>tis,
+						sp</add>em salutis, spem <add>digni</add>tatis. <milestone n="35"
+						unit="section"/><add><reg>quid</reg> fac</add>erem, si T. Labie<add>nus
 						c</add>aedem civium <add>fecis</add>set ut L. Satur<add>ninus</add>, si
 					carcerem re<add>fregi</add>sset, si Capitoli<add>um cum armatis
 					occupa</add>visset? <reg>facerem</reg>
@@ -492,11 +513,13 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					publicam, non vos ad arma vocan<add>dos esse, verum</add> ad suffragia
 					cohortandos contra oppugnationem vestrae maiestatis putavi. <reg>itaque</reg>
 					nunc vos omnis oro atque obtestor hortorque. <reg>non</reg> ita mos est,
-					consulem es * * * <milestone n="13" unit="chapter"/><milestone n="36" unit="section"/></p>
+					consulem es * * * <milestone n="13" unit="chapter"/><milestone n="36"
+						unit="section"/></p>
 				<p>* * * <add>t</add>imet; qui hasce ore adverso pro re publica cicatrices ac notas
 					virtutis accepit, is ne quod accipiat famae volnus perhorrescit; quem numquam
 					incursiones hostium loco movere potuerunt, is nunc impetum civium,
-					<add>c</add>ui n<add>e</add>cessario cedendum est, perhorrescit. <milestone n="37" unit="section"/><add>N</add>eque a vobis iam bene <add>v</add>ivendi
+					<add>c</add>ui n<add>e</add>cessario cedendum est, perhorrescit. <milestone
+						n="37" unit="section"/><add>N</add>eque a vobis iam bene <add>v</add>ivendi
 					sed hones<add>t</add>e moriendi facul<add>t</add>atem petit, neque tam
 						<add>u</add>t domo sua frua<add>t</add>ur quam ne patrio <add>s</add>epulcro
 					privetur laborat. <reg>nihil</reg> al<add>iud</add> iam vos orat atque
@@ -507,9 +530,10 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				<p><reg>dixi</reg> ad id tempus q<add>uod</add> mihi a tribuno pl.
 						pra<add>esti</add>tutum est; a vob<add>is peto</add> quaesoque ut ha<add>nc
 						me</add>am defension<add>em</add> pro amici pericu<add>lo fi</add>delem, pro
-					rei publicae salu<add>te</add> consularem pu<add>te</add>tis. <milestone n="38a(fr)" unit="section"/></p>
+					rei publicae salu<add>te</add> consularem pu<add>te</add>tis. <milestone
+						n="38a(fr)" unit="section"/></p>
 				<p>et cum universo populo Romano, tum vero equestri ordini longe carissimus. </p>
 			</div>
-		</div>
-	</body></text>
+		</body>
+	</text>
 </TEI>

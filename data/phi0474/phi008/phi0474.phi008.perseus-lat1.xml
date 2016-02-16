@@ -1,15 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader type="text">
 		<fileDesc>
 			<titleStmt>
-				<title type="work">On Behalf of Aulus Caecina </title>
+				<title>On Behalf of Aulus Caecina </title>
 				<title>Pro P. Quinctio, Pro Q. Roscio comoedo, Pro A. Caecina, De lege agraria
 					contra Rullum, Pro C. Rabiro perduellionis reo, Pro L. Flacco, In L. Pisonem,
 					Pro C. Rabiro Postumo</title>
 				<title type="sub">Machine readable text</title>
-				<author n="M. Tullius Cicero">M. Tullius Cicero</author>
+				<author n="Cic.">M. Tullius Cicero</author>
 				<editor role="editor" n="OCT">Albert Clark</editor>
 				<sponsor>Perseus Project, Tufts University</sponsor>
 				<principal>Gregory Crane</principal>
@@ -50,24 +49,32 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 		</fileDesc>
 
 		<encodingDesc>
-			<refsDecl n="CTS">
-				<cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
-					<p>This pointer pattern extracts chapter and section</p>
-				</cRefPattern>
-				<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
-					<p>This pointer pattern extracts chapter</p>
-				</cRefPattern>
+			<refsDecl>
+				<refState delim=" " unit="text"/>
+				<refState unit="section"/>
 			</refsDecl>
 			<refsDecl>
-				<refState unit="chapter" delim="."/>
+				<refState delim=" " unit="text"/>
+				<refState delim="." n="chunk" unit="chapter"/>
+				<refState unit="section"/>
+			</refsDecl>
+			<refsDecl n="text=Agr.">
+				<refState delim=" " unit="text"/>
+				<refState delim="." unit="speech"/>
+				<refState unit="section"/>
+			</refsDecl>
+			<refsDecl n="text=Agr.">
+				<refState delim=" " unit="text"/>
+				<refState delim="." unit="speech"/>
+				<refState delim="." n="chunk" unit="chapter"/>
 				<refState unit="section"/>
 			</refsDecl>
 		</encodingDesc>
 
 		<profileDesc>
 			<langUsage>
-				<language ident="lat">Latin</language>
-				<language ident="grc">Greek</language>
+				<language ident="la">Latin</language>
+				<language ident="greek">Greek</language>
 			</langUsage>
 		</profileDesc>
 
@@ -151,14 +158,10 @@ Added to repository. Passes TEI parse.
     <item>split composite text and converted to unicode</item>
       </change>-->
 			<change when="2014-08-01" who="Stella Dee">edited markup</change>
-		<change when="2015-12-17" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change><change when="1997-03-26" who="DAS">ed.</change>
-			<change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change>
-			<change who="balmas01" when="2013-09-13T11:21:41">Revision 1.5  reverting texts back to pre_cts_reorg tagged version</change><change who="gcrane" when="2011-07-19T22:30:38">Revision 1.3  removed the earlier persName/placeName tags</change><change who="gcrane" when="2011-07-09T20:25:36">Revision 1.2  fixed problems with capitalization</change><change who="gcrane" when="2011-01-15T23:14:25">Revision 1.1  base SDL file</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1  more reorganizing of texts module by collection</change><change who="packel" when="2005-08-01T15:59:20">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25T14:31:17">Revision 1.1  Converted to XML</change><change who="mimno" when="2005-04-08T17:56:08">Revision 1.15  added default chunks</change><change who="yorkc" when="2003-07-01T22:14:58">Revision 1.14  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2002-12-02T18:41:45">Revision 1.13  correct spelling of Quirites, improperly 'regularized'</change><change who="amahoney" when="2000-03-13T17:37:07">Revision 1.12  don't put header for fragments next to header for speech:  gets into
-short toc</change><change who="amahoney" when="2000-03-06T22:21:49">Revision 1.11  add headers for groups of speeches, so they show up in the toc:  Catilines,
-Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-03-04T20:34:11">Revision 1.10  Added separate funder entity to TEI header.</change><change who="dasmith" when="1999-10-14T21:36:02">Revision 1.9  Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-08-12T17:17:19">Revision 1.8  Fixed refsDecl</change><change who="textgod" when="1999-08-04T18:12:10">Revision 1.7  Random changes over a period of months.</change><change who="textgod" when="1997-10-17T14:07:07">Revision 1.6  Tagged Greek.</change><change who="textgod" when="1997-08-18T14:54:35">Revision 1.5  ???</change><change who="cjsu" when="1997-05-12T22:19:56">Revision 1.4  making sure that the file passed the parcer</change><change who="cjsu" when="1997-05-12T22:04:50">Revision 1.3  Added seven works... SGML varified</change><change who="textgod" when="1997-04-03T20:58:14">Revision 1.2  Changed ADD tags to CORR.</change><change who="textgod" when="1997-03-26T17:34:24">Revision 1.1  Added to repository. Passes TEI parse.</change></revisionDesc>
+		</revisionDesc>
 	</teiHeader>
-	<text>
-		<body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi008.perseus-lat1" subtype="edition">
+	<text xml:lang="la">
+		<body>
 			<head>PRO A. CAECINA ORATIO</head>
 			<milestone n="1" unit="chapter"/>
 			<milestone n="1" unit="section"/>
@@ -178,7 +181,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				in agendo non futuros; sin a consuetudine recedatur, se, quo impudentius egerit, hoc
 				superiorem discessurum. <reg>quasi</reg> vero aut idem possit in iudicio improbitas
 				quod in vi confidentia, aut nos non eo libentius tum audaciae cesserimus quo nunc
-				impudentiae facilius obsisteremus. <milestone n="3" unit="section"/><reg>itaque</reg> longe alia ratione, recuperatores, ad agendam causam hac
+				impudentiae facilius obsisteremus. <milestone n="3" unit="section"
+					/><reg>itaque</reg> longe alia ratione, recuperatores, ad agendam causam hac
 				actione venio atque initio veneram. <reg>tum</reg> enim nostrae causae spes erat
 				posita in defensione mea, nunc in confessione adversarii, tum in nostris, nunc vero
 				in illorum testibus; de quibus ego antea laborabam ne, si improbi essent, falsi
@@ -186,7 +190,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				aequissimo. <reg>si</reg> enim sunt viri boni, me adiuvant, cum id iurati dicunt
 				quod ego iniuratus insimulo; sin autem minus idonei, me non laedunt, cum eis sive
 				creditur, <add>creditur</add> hoc ipsum quod nos arguimus, sive fides non habetur,
-				de adversarii testium fide derogatur. <milestone n="2" unit="chapter"/><milestone n="4" unit="section"/></p>
+				de adversarii testium fide derogatur. <milestone n="2" unit="chapter"/><milestone
+					n="4" unit="section"/></p>
 			<p><reg>verum</reg> tamen cum illorum actionem causae considero, non video quid
 				impudentius dici possit, cum autem vestram in iudicando dubitationem, vereor ne id
 				quod videntur impudenter fecisse astute et callide fecerint. <reg>nam</reg>, si
@@ -196,7 +201,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				iniecturos vobis causam deliberandi et iudicandi iustam moram ac religionem.
 					<reg>simul</reg> illud quod indignissimum est futurum arbitrati sunt, ut in hac
 				causa non de improbitate Sex. Aebuti, sed de iure civili iudicium fieri videretur.
-					<reg>qua</reg> in re, si mihi esset unius A. <milestone n="5" unit="section"/>Caecinae causa agenda, profiterer satis idoneum esse me defensorem, propterea quod
+					<reg>qua</reg> in re, si mihi esset unius A. <milestone n="5" unit="section"
+				/>Caecinae causa agenda, profiterer satis idoneum esse me defensorem, propterea quod
 				fidem meam diligentiamque praestarem; quae cum sunt in actore causae, nihil est in
 				re praesertim aperta ac simplici quod excellens ingenium requiratur. <reg>sed</reg>
 				cum de eo mihi iure dicendum sit, quod pertineat ad omnis, quodque constitutum sit a
@@ -215,7 +221,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				puniendorum maleficiorum causa reperta sunt, quorum alterum levius est, propterea
 				quod et minus laedit et persaepe disceptatore domestico diiudicatur, alterum est
 				vehementissimum, quod et ad graviores res pertinet et non honorariam operam amici,
-				sed severitatem iudicis ac vim requirit. <milestone n="7" unit="section"/><reg>quod</reg> est gravius, et cuius rei causa maxime iudicia constituta
+				sed severitatem iudicis ac vim requirit. <milestone n="7" unit="section"
+					/><reg>quod</reg> est gravius, et cuius rei causa maxime iudicia constituta
 				sunt, id iam mala consuetudine dissolutum est. <reg>nam</reg> ut quaeque res est
 				turpissima, sic maxime et maturissime vindicanda est, at eadem, quia existimationis
 				periculum est, tardissime iudicatur. <milestone n="3" unit="chapter"/><reg>qui</reg>
@@ -223,7 +230,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				iudicandum? <reg>si</reg> quis quod spopondit, qua in re verbo se uno obligavit, id
 				non facit, maturo iudicio sine ulla religione iudicis condemnatur; qui per tutelam
 				aut societatem aut rem mandatam aut fiduciae rationem fraudavit quempiam, in eo quo
-				delictum maius est, eo poena est tardior? <milestone n="8" unit="section"/>'<reg>est</reg> enim turpe iudicium.' <reg>ex</reg> facto quidem turpi.
+				delictum maius est, eo poena est tardior? <milestone n="8" unit="section"
+					/>'<reg>est</reg> enim turpe iudicium.' <reg>ex</reg> facto quidem turpi.
 					<reg>videte</reg> igitur quam inique accidat, quia res indigna sit, ideo turpem
 				existimationem sequi; quia turpis existimatio sequatur, ideo rem indignam non
 				vindicari. <reg>ac</reg> si qui mihi hoc iudex recuperatorve dicat: 'potuisti enim
@@ -267,7 +275,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				cupiebat et ex quo maximum fructum ipsa capiebat. <reg>sed</reg> hunc fructum mature
 				fortuna ademit. <reg>nam</reg> brevi tempore M. Fulcinius adulescens mortuus est;
 				heredem P. Caesennium fecit; uxori grande pondus argenti matrique partem maiorem
-				bonorum legavit. <reg>itaque</reg> in partem mulieres vocatae sunt. <milestone n="5" unit="chapter"/><milestone n="13" unit="section"/></p>
+				bonorum legavit. <reg>itaque</reg> in partem mulieres vocatae sunt. <milestone n="5"
+					unit="chapter"/><milestone n="13" unit="section"/></p>
 			<p>Cum esset haec auctio hereditaria constituta, Aebutius iste, qui iam diu Caesenniae
 				viduitate ac solitudine aleretur ac se in eius familiaritatem insinuasset, hac
 				ratione ut cum aliquo suo compendio negotia mulieris, si qua acciderent,
@@ -282,14 +291,16 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				propinquus?—nihil alienius—amicus a patre aut a viro traditus? —nihil minus—quis
 				igitur? ille, ille quem supra deformavi, voluntarius amicus mulieris non
 				necessitudine aliqua, sed ficto officio simulataque sedulitate coniunctus magis
-				opportuna opera non numquam quam aliquando fideli. <milestone n="15" unit="section"/>Cum esset, ut dicere institueram, constituta auctio Romae, suadebant amici
+				opportuna opera non numquam quam aliquando fideli. <milestone n="15" unit="section"
+				/>Cum esset, ut dicere institueram, constituta auctio Romae, suadebant amici
 				cognatique Caesenniae, id quod ipsi quoque mulieri veniebat in mentem, quoniam
 				potestas esset emendi fundum illum Fulcinianum, qui fundo eius antiquo continens
 				esset, nullam esse rationem amittere eius modi occasionem, cum ei praesertim pecunia
 				ex partitione deberetur; nusquam posse eam melius conlocari. <reg>itaque</reg> hoc
 				mulier facere constituit; mandat ut fundum sibi emat,—cui tandem? —cui putatis? an
 				non in mentem vobis venit omnibus illius hoc munus esse ad omnia mulieris negotia
-				parati, sine quo nihil satis caute, nihil satis callide posset agi? <milestone n="6" unit="chapter"/><milestone n="16" unit="section"/><reg>recte</reg> attenditis.
+				parati, sine quo nihil satis caute, nihil satis callide posset agi? <milestone n="6"
+					unit="chapter"/><milestone n="16" unit="section"/><reg>recte</reg> attenditis.
 				Aebutio negotium datur. <reg>adest</reg> ad tabulam, licetur Aebutius; deterrentur
 				emptores multi partim gratia Caesenniae, partim etiam pretio. <reg>fundus</reg>
 				addicitur Aebutio; pecuniam argentario promittit Aebutius; quo testimonio nunc vir
@@ -309,14 +320,16 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				Caecinam, ex duabus sextulis M. Fulcinium, libertum superioris viri, Aebutio
 				sextulam aspergit. <reg>hanc</reg> sextulam illa mercedem isti esse voluit
 				adsiduitatis et molestiae si quam ceperat. <reg>iste</reg> autem hac sextula se
-				ansam retinere omnium controversiarum putat. <milestone n="7" unit="chapter"/><milestone n="18" unit="section"/></p>
+				ansam retinere omnium controversiarum putat. <milestone n="7" unit="chapter"
+					/><milestone n="18" unit="section"/></p>
 			<p><reg>iam</reg> principio ausus est dicere non posse heredem esse Caesenniae Caecinam,
 				quod is deteriore iure esset quam ceteri cives propter incommodum Volaterranorum
 				calamitatemque civilem. <reg>itaque</reg> homo timidus imperitusque, qui neque animi
 				neque consili satis haberet, non putavit esse tanti hereditatem ut de civitate in
 				dubium veniret; concessit, credo, Aebutio, quantum vellet de Caesenniae bonis ut
 				haberet. <reg>immo</reg>, ut viro forti ac sapienti dignum fuit, ita calumniam
-				stultitiamque eius obtrivit ac contudit. <milestone n="19" unit="section"/><reg>in</reg> possessione bonorum cum esset, et cum iste sextulam suam nimium
+				stultitiamque eius obtrivit ac contudit. <milestone n="19" unit="section"
+					/><reg>in</reg> possessione bonorum cum esset, et cum iste sextulam suam nimium
 				exaggeraret, nomine heredis arbitrum familiae herciscundae postulavit.
 					<reg>atque</reg> illis paucis diebus, postea quam videt nihil se ab A. Caecina
 				posse litium terrore abradere, homini Romae in foro denuntiat fundum illum de quo
@@ -340,7 +353,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				omnis introitus qua adiri poterat non modo in eum fundum de quo erat controversia,
 				sed etiam in illum proximum de quo nihil ambigebatur armatos homines opponit.
 					<reg>itaque</reg> primo cum in antiquum fundum ingredi vellet, quod ea proxime
-				accedi poterat, frequentes armati obstiterunt. <milestone n="22" unit="section"/><reg>quo</reg> loco depulsus Caecina tamen qua potuit ad eum fundum profectus
+				accedi poterat, frequentes armati obstiterunt. <milestone n="22" unit="section"
+					/><reg>quo</reg> loco depulsus Caecina tamen qua potuit ad eum fundum profectus
 					<add>est</add> in quo ex conventu vim fieri oportebat; eius autem fundi extremam
 				partem oleae derecto ordine definiunt. <reg>ad</reg> eas cum accederetur, iste cum
 				omnibus copiis praesto fuit servumque suum nomine Antiochum ad se vocavit et voce
@@ -355,7 +369,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				P. Dolabella praetor interdixit, ut est consuetudo, <quote>de vi hominibvs
 					ar</quote><quote>matis</quote> sine ulla exceptione, tantum ut unde deiecisset
 				restitueret. <reg>restituisse</reg> se dixit. <add><reg>sponsio</reg> facta est.
-						<reg>hac</reg> de</add> sponsione vobis iudicandum est. <milestone n="9" unit="chapter"/></p>
+						<reg>hac</reg> de</add> sponsione vobis iudicandum est. <milestone n="9"
+					unit="chapter"/></p>
 			<p><reg>maxime</reg> fuit optandum Caecinae, recuperatores, ut controversiae nihil
 				haberet, secundo loco ut ne cum tam improbo homine, tertio ut cum tam stulto
 				haberet. <reg>etenim</reg> non minus nos stultitia illius sublevat quam laedit
@@ -373,7 +388,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					<reg>quid</reg> aliud? <reg>minatum</reg> esse Aebutium Caecinae.
 					<reg>quid</reg> ego de hoc teste dicam nisi hoc, recuperatores, ut ne idcirco
 				minus ei credatis quod homo minus idoneus habetur, sed ideo credatis quod ex illa
-				parte id dicit quod illi causae maxime sit alienum? A. <milestone n="25" unit="section"/>Terentius, alter testis, non modo Aebutium sed etiam se pessimi
+				parte id dicit quod illi causae maxime sit alienum? A. <milestone n="25"
+					unit="section"/>Terentius, alter testis, non modo Aebutium sed etiam se pessimi
 				facinoris arguit. <reg>in</reg> Aebutium hoc dicit, armatos homines fuisse, de se
 				autem hoc praedicat, Antiocho, Aebuti servo, se imperasse ut in Caecinam advenientem
 				cum ferro invaderet. <reg>quid</reg> loquar amplius de hoc homine? <reg>in</reg>
@@ -411,7 +427,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				posset, non ad cognoscendam causam sed ad explendam damnationem praesto fuisse?
 				Vtrum gravius aliquid in quempiam dici potest quam ad hominem condemnandum quem
 				numquam vidisset neque audisset adductum esse pretio? an certius quicquam obici
-				potest quam quod is cui obicitur ne nutu quidem infirmare conatur? <milestone n="30" unit="section"/><reg>verum</reg> tamen is testis, —ut facile intellegeretis eum
+				potest quam quod is cui obicitur ne nutu quidem infirmare conatur? <milestone n="30"
+					unit="section"/><reg>verum</reg> tamen is testis, —ut facile intellegeretis eum
 				non adfuisse animo, cum causa ab illis ageretur testesque dicerent, sed tantisper de
 				aliquo reo cogitasse—cum omnes ante eum dixissent testes armatos cum Aebutio fuisse
 				compluris, solus dixit non fuisse. <reg>visus</reg> est mihi primo veterator
@@ -428,7 +445,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				praeclara visa est: '<reg>non</reg> deieci, sed obstiti; non enim sum passus in
 				fundum ingredi, sed armatos homines opposui, ut intellegeres, si in fundo pedem
 				posuisses, statim tibi esse pereundum?' <reg>quid</reg> ais? is qui armis
-				proterritus, fugatus, pulsus est, non videtur esse deiectus? <milestone n="32" unit="section"/><reg>posterius</reg> de verbo videbimus; nunc rem ipsam ponamus
+				proterritus, fugatus, pulsus est, non videtur esse deiectus? <milestone n="32"
+					unit="section"/><reg>posterius</reg> de verbo videbimus; nunc rem ipsam ponamus
 				quam illi non negant et eius rei ius actionemque quaeramus. </p>
 			<p><reg>est</reg> haec res posita quae ab adversario non negatur, Caecinam, cum ad
 				constitutam diem tempusque venisset ut vis ac deductio moribus fieret, pulsum
@@ -446,7 +464,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					<reg>audire</reg> cupio, qui in pace et otio, cum manum fecerit, copias pararit,
 				multitudinem hominum coegerit, armarit, instruxerit, homines inermos qui ad
 				constitutum experiendi iuris gratia venissent armis, viris, terrore periculoque
-				mortis reppulerit, fugarit, averterit, hoc dicat: <milestone n="34" unit="section"/>'<reg>feci</reg> equidem quae dicis omnia, et ea sunt et turbulenta et
+				mortis reppulerit, fugarit, averterit, hoc dicat: <milestone n="34" unit="section"
+					/>'<reg>feci</reg> equidem quae dicis omnia, et ea sunt et turbulenta et
 				temeraria et periculosa. <reg>quid</reg> ergo est? impune feci; nam quid agas mecum
 				ex iure civili ac praetorio non habes.' <reg>itane</reg> vero? recuperatores, hoc
 				vos audietis et apud vos dici patiemini saepius? Cum maiores nostri tanta diligentia
@@ -454,7 +473,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				iura statuerint persecutique sint, hoc genus unum vel maximum praetermitterent, ut,
 				si qui me exire domo mea coegisset armis, haberem actionem, si qui introire
 				prohibuisset, non haberem? <reg>nondum</reg> de Caecinae causa disputo, nondum de
-				iure possessionis nostrae loquor; tantum de tua defensione, C. <milestone n="35" unit="section"/>Piso, quaero. <reg>quoniam</reg> ita dicis et ita constituis, si
+				iure possessionis nostrae loquor; tantum de tua defensione, C. <milestone n="35"
+					unit="section"/>Piso, quaero. <reg>quoniam</reg> ita dicis et ita constituis, si
 				Caecina, cum in fundo esset, inde deiectus esset, tum per hoc interdictum eum
 				restitui oportuisse; nunc vero deiectum nullo modo esse inde ubi non fuerit; hoc
 				interdicto nihil nos adsecutos esse: quaero, si te hodie domum tuam redeuntem coacti
@@ -466,7 +486,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				iniuriarum. <reg>plus</reg> tibi ego largiar; non solum egeris verum etiam
 				condemnaris licet; num quid magis possidebis? actio enim iniuriarum non ius
 				possessionis adsequitur sed dolorem imminutae libertatis iudicio poenaque mitigat.
-					<milestone n="13" unit="chapter"/><milestone n="36" unit="section"/><reg>praetor</reg> interea, Piso, tanta de re tacebit? quem ad modum te
+					<milestone n="13" unit="chapter"/><milestone n="36" unit="section"
+					/><reg>praetor</reg> interea, Piso, tanta de re tacebit? quem ad modum te
 				restituat in aedis tuas non habebit? <reg>qui</reg> dies totos aut vim fieri vetat
 				aut restitui factam iubet, qui de fossis, de cloacis, de minimis aquarum itinerumque
 				controversiis interdicit, is repente obmutescet, in atrocissima re quid faciat non
@@ -487,7 +508,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				proterritus, utrum hanc actionem habebis qua nos usi sumus, an aliam quampiam, an
 				omnino nullam? <reg>nullam</reg> esse actionem dicere in re tam insigni tamque
 				atroci neque prudentiae neque auctoritatis tuae est; alia si quae forte est quae nos
-				fugerit, dic quae sit; cupio discere. <milestone n="38" unit="section"/><reg>haec</reg> si est qua nos usi sumus te iudice vincamus necesse est.
+				fugerit, dic quae sit; cupio discere. <milestone n="38" unit="section"
+					/><reg>haec</reg> si est qua nos usi sumus te iudice vincamus necesse est.
 					<reg>non</reg> enim vereor ne hoc dicas, in eadem causa eodem interdicto te
 				oportere restitui, Caecinam non oportere. <reg>etenim</reg> cui non perspicuum est
 				ad incertum revocari bona, fortunas, possessiones omnium, si ulla ex parte sententia
@@ -504,7 +526,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				atque in possessione vestigium fecero, tum expellar ac deiciar, an eadem vi et isdem
 				armis mihi ante occurratur, ne non modo intrare verum aspicere aut aspirare possim?
 					<reg>quid</reg> hoc ab illo differt, ut ille cogatur restituere qui ingressum
-				expulerit, ille qui ingredientem reppulerit non cogatur? <milestone n="40" unit="section"/><reg>videte</reg>, per deos immortalis! quod ius nobis, quam
+				expulerit, ille qui ingredientem reppulerit non cogatur? <milestone n="40"
+					unit="section"/><reg>videte</reg>, per deos immortalis! quod ius nobis, quam
 				condicionem vobismet ipsis, quam denique civitati legem constituere velitis.
 					<reg>huiusce</reg> generis una est actio per hoc interdictum quo nos usi sumus
 				constituta; ea si nihil valet aut si ad hanc rem non pertinet, quid neglegentius aut
@@ -524,13 +547,15 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				controversia et de privatorum hominum contentione iuris loquamur, tu vim negabis
 				factam, si caedes et occisio facta non erit? <reg>at</reg> exercitus maximos saepe
 				pulsos et fugatos esse dico terrore ipso impetuque hostium sine cuiusquam non modo
-				morte verum etiam volnere. <milestone n="15" unit="chapter"/><milestone n="42" unit="section"/><reg>etenim</reg>, recuperatores, non ea sola vis est quae ad
+				morte verum etiam volnere. <milestone n="15" unit="chapter"/><milestone n="42"
+					unit="section"/><reg>etenim</reg>, recuperatores, non ea sola vis est quae ad
 				corpus nostrum vitamque pervenit, sed etiam multo maior ea quae periculo mortis
 				iniecto formidine animum perterritum loco saepe et certo de statu demovet.
 					<reg>itaque</reg> saucii saepe homines cum corpore debilitantur, animo tamen non
 				cedunt neque eum relinquunt locum quem statuerunt defendere; at alii pelluntur
 				integri; ut non dubium sit quin maior adhibita vis ei sit cuius animus sit
-				perterritus quam illi cuius corpus volneratum sit. <milestone n="43" unit="section"/><reg>quod</reg> si vi pulsos dicimus exercitus esse eos qui metu ac tenui
+				perterritus quam illi cuius corpus volneratum sit. <milestone n="43" unit="section"
+					/><reg>quod</reg> si vi pulsos dicimus exercitus esse eos qui metu ac tenui
 				saepe suspicione periculi fugerunt, et si non solum impulsu scutorum neque conflictu
 				corporum neque ictu comminus neque coniectione telorum, sed saepe clamore ipso
 				militum aut instructione aspectuque signorum magnas copias pulsas esse et vidimus et
@@ -546,7 +571,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					<reg>potestis</reg> igitur principia negare, cum extrema conceditis?
 					<reg>fugisse</reg> perterritos confitemini; causam fugae dicitis eandem quam
 				omnes intellegimus, arma, multitudinem hominum, incursionem atque impetum armatorum;
-				haec ubi conceduntur esse facta, ibi vis facta negabitur? <milestone n="16" unit="chapter"/><milestone n="45" unit="section"/></p>
+				haec ubi conceduntur esse facta, ibi vis facta negabitur? <milestone n="16"
+					unit="chapter"/><milestone n="45" unit="section"/></p>
 			<p><reg>at</reg> vero hoc quidem iam vetus est et maiorum exemplo multis in rebus
 				usitatum, cum ad vim faciendam veniretur, si quos armatos quamvis procul
 				conspexissent, ut statim testificati discederent, <add>cum</add> optime sponsionem
@@ -571,14 +597,16 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					<reg>hoc</reg> si ita statuetis, non modo non erit cur depugnare quisquam
 				posthac possessionis causa velit, sed ne illud quidem cur repugnare. <reg>sin</reg>
 				autem vim sine caede, sine volneratione, sine sanguine nullam intellegetis,
-				statuetis homines possessionis cupidiores quam vitae esse oportere. <milestone n="17" unit="chapter"/><milestone n="48" unit="section"/></p>
+				statuetis homines possessionis cupidiores quam vitae esse oportere. <milestone
+					n="17" unit="chapter"/><milestone n="48" unit="section"/></p>
 			<p><reg>age</reg> vero, de vi te ipsum habebo iudicem, Aebuti. <reg>responde</reg>, si
 				tibi videtur. <reg>in</reg> fundum Caecina utrum tandem noluit, an non potuit
 				accedere? Cum te obstitisse et reppulisse dicis, certe hunc voluisse concedis.
 					<reg>potes</reg> igitur dicere non ei vim fuisse impedimento cui, cum cuperet
 				eoque consilio venisset, per homines coactos licitum non sit accedere? <reg>si</reg>
 				enim id quod maxime voluit nullo modo potuit, vis profecto quaedam obstiterit
-				necesse est; aut tu dic quam ob rem, cum vellet accedere, non accesserit. <milestone n="49" unit="section"/><reg>iam</reg> vim factam negare non potes; deiectus quem
+				necesse est; aut tu dic quam ob rem, cum vellet accedere, non accesserit. <milestone
+					n="49" unit="section"/><reg>iam</reg> vim factam negare non potes; deiectus quem
 				ad modum sit, qui non accesserit, id quaeritur. <reg>demoveri</reg> enim et depelli
 				de loco necesse est eum qui deiciatur. <reg>id</reg> autem accidere ei qui potest
 				qui omnino in eo loco unde se deiectum esse dicit numquam fuit? <reg>quid</reg>? si
@@ -599,7 +627,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				enim vere possumus dicere esse deiectos— <milestone n="18" unit="chapter"/>an, cum
 				voluntas et consilium et sententia interdicti intellegatur, impudentiam summam aut
 				stultitiam singularem putabimus in verborum errore versari, rem et causam et
-				utilitatem communem non relinquere solum sed etiam prodere? <milestone n="51" unit="section"/></p>
+				utilitatem communem non relinquere solum sed etiam prodere? <milestone n="51"
+					unit="section"/></p>
 			<p><reg>an</reg> hoc dubium est quin neque verborum tanta copia sit non modo in nostra
 				lingua, quae dicitur esse inops, sed ne in alia quidem ulla, res ut omnes suis
 				certis ac propriis vocabulis nominentur, neque vero quicquam opus sit verbis, cum ea
@@ -624,7 +653,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				hoc satis erat cautum? <reg>minime</reg>. <reg>quae</reg> res igitur valuit?
 					<reg>voluntas</reg>, quae si tacitis nobis intellegi posset, verbis omnino non
 				uteremur; quia non potest, verba reperta sunt, non quae impedirent sed quae
-				indicarent voluntatem. <milestone n="19" unit="chapter"/><milestone n="54" unit="section"/><reg>lex</reg> usum et auctoritatem fundi iubet esse biennium;
+				indicarent voluntatem. <milestone n="19" unit="chapter"/><milestone n="54"
+					unit="section"/><reg>lex</reg> usum et auctoritatem fundi iubet esse biennium;
 				at utimur eodem iure in aedibus, quae in lege non appellantur. <reg>si</reg> via sit
 				immunita, iubet qua velit agere iumentum; potest hoc ex ipsis verbis intellegi,
 				licere, si via sit in Bruttiis immunita, agere si velit iumentum per M. Scauri
@@ -646,7 +676,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				deiecerit, clames videlicet: '<reg>si</reg> habeo familiam, a familia mea fateor te
 				esse deiectum.' <reg>neque</reg> enim dubium est quin, si ad rem iudicandam verbo
 				ducimur, non re, familiam intellegamus quae constet ex servis pluribus; quin unus
-				homo familia non sit; verbum certe hoc non modo postulat, <milestone n="56" unit="section"/>sed etiam cogit, at vero ratio iuris interdictique vis et
+				homo familia non sit; verbum certe hoc non modo postulat, <milestone n="56"
+					unit="section"/>sed etiam cogit, at vero ratio iuris interdictique vis et
 				praetorum voluntas et hominum prudentium consilium et auctoritas respuit hanc
 				defensionem et pro nihilo putat. <milestone n="20" unit="chapter"/><reg>quid</reg>
 				ergo? isti homines Latine non loquuntur? <reg>immo</reg> vero tantum loquuntur
@@ -671,7 +702,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				servolus unus quod familia, verum quia non quibus verbis quidque dicatur quaeritur,
 				sed quae res agatur. <reg>etiam</reg>, ut longius a verbo recedamus, ab aequitate ne
 				tantulum quidem, si tuus servus nullus fuerit et omnes alieni ac mercennarii, tamen
-				ei ipsi tuae familiae genere et nomine continebuntur. <milestone n="21" unit="chapter"/><milestone n="59" unit="section"/>Perge porro hoc idem
+				ei ipsi tuae familiae genere et nomine continebuntur. <milestone n="21"
+					unit="chapter"/><milestone n="59" unit="section"/>Perge porro hoc idem
 				interdictum sequi. '<quote>hominibvs coactis.</quote>' <reg>neminem</reg> coegeris,
 				ipsi convenerint sua sponte; certe cogit is qui congregat homines et convocat;
 				coacti sunt ei qui ab aliquo sunt unum in locum congregati. <reg>si</reg> non modo
@@ -692,12 +724,14 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				non fuisse armatos eos qui saxa iacerent quae de terra ipsi tollerent, non esse arma
 				caespites neque glebas; non fuisse armatos eos qui praetereuntes ramum defringerent
 				arboris; arma esse suis nominibus alia ad tegendum, alia ad nocendum; quae qui non
-				habuerint, eos inermos fuisse vinces. <milestone n="61" unit="section"/><reg>verum</reg> si quod erit armorum iudicium, tum ista dicito; iuris
+				habuerint, eos inermos fuisse vinces. <milestone n="61" unit="section"
+					/><reg>verum</reg> si quod erit armorum iudicium, tum ista dicito; iuris
 				iudicium cum erit et aequitatis, cave in ista tam frigida, tam ieiuna calumnia
 				delitiscas. <reg>non</reg> enim reperies quemquam iudicem aut recuperatorem qui,
 				tamquam si arma militis inspicienda sint, ita probet armatum; sed perinde valebit
 				quasi armatissimi fuerint, si reperientur ita parati fuisse ut vim vitae aut corpori
-				potuerint adferre. <milestone n="22" unit="chapter"/><milestone n="62" unit="section"/></p>
+				potuerint adferre. <milestone n="22" unit="chapter"/><milestone n="62"
+					unit="section"/></p>
 			<p><reg>atque</reg> ut magis intellegas quam verba nihil valeant, si tu solus aut quivis
 				unus cum scuto et gladio impetum in me fecisset atque ego ita deiectus essem,
 				auderesne dicere interdictum esse de hominibus armatis, hic autem hominem armatum
@@ -705,7 +739,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				multo nunc sis impudentior. <reg>nam</reg> tum quidem omnis mortalis implorare
 				posses, quod homines in tuo negotio Latine obliviscerentur, quod inermi armati
 				iudicarentur, quod, cum interdictum esset de pluribus, commissa res esset ab uno,
-				unus homo plures esse homines iudicaretur. <milestone n="63" unit="section"/><reg>verum</reg> in his causis non verba veniunt in iudicium, sed ea res cuius
+				unus homo plures esse homines iudicaretur. <milestone n="63" unit="section"
+					/><reg>verum</reg> in his causis non verba veniunt in iudicium, sed ea res cuius
 				causa verba haec in interdictum coniecta sunt. <reg>vim</reg> quae ad caput ac vitam
 				pertineret restitui sine ulla exceptione voluerunt. <reg>ea</reg> fit plerumque per
 				homines coactos armatosque; si alio consilio, eodem periculo facta sit, eodem iure
@@ -716,7 +751,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				ad nocendum, non si pluribus quam si uno armato. <reg>quibus</reg> enim rebus
 				plerumque vis fit eius modi, eae res appellantur in interdicto. <reg>si</reg> per
 				alias res eadem facta vis est, ea tametsi verbis interdicti non concluditur,
-				sententia tamen iuris atque auctoritate retinetur. <milestone n="23" unit="chapter"/><milestone n="64" unit="section"/></p>
+				sententia tamen iuris atque auctoritate retinetur. <milestone n="23" unit="chapter"
+					/><milestone n="64" unit="section"/></p>
 			<p><reg>venio</reg> nunc ad illud tuum: 'non deieci; non enim sivi accedere.'
 					<reg>puto</reg> te ipsum, Piso, perspicere quanto ista sit angustior iniquiorque
 				defensio quam si illa uterere: 'non fuerunt armati, cum fustibus et cum saxis
@@ -737,26 +773,30 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					nive</quote>,' inrident, tum aucupia verborum et litterarum tendiculas in
 				invidiam vocant, tum vociferantur ex aequo et bono, non ex callido versutoque iure
 				rem iudicari oportere; scriptum sequi calumniatoris esse bonique iudicis voluntatem
-				scriptoris auctoritatemque defendere. <milestone n="66" unit="section"/><reg>in</reg> ista vero causa cum tu sis is qui te verbo litteraque defendas,
+				scriptoris auctoritatemque defendere. <milestone n="66" unit="section"
+					/><reg>in</reg> ista vero causa cum tu sis is qui te verbo litteraque defendas,
 				cum tuae sint hae partes: 'unde deiectus es? an inde quo prohibitus es accedere?
 				reiectus es, non deiectus,' cum tua sit haec oratio: 'fateor me homines coegisse,
 				fateor armasse, fateor tibi mortem esse minitatum, fateor hoc interdicto praetoris
 				vindicari, si voluntas et aequitas valeat; sed ego invenio in interdicto verbum unum
 				ubi delitiscam: non deieci te ex eo loco quem in locum prohibui ne venires'—in ista
 				defensione accusas eos qui consuluntur, quod aequitatis censeant rationem, non verbi
-				haberi oportere? <milestone n="24" unit="chapter"/><milestone n="67" unit="section"/></p>
+				haberi oportere? <milestone n="24" unit="chapter"/><milestone n="67" unit="section"
+				/></p>
 			<p><reg>et</reg> hoc loco Scaevolam dixisti causam apud <num>c</num>viros non tenuisse;
 				quem ego antea commemoravi, cum idem faceret quod tu nunc—tametsi ille in aliqua
 				causa faciebat, tu in nulla facis—tamen probasse nemini quod defendebat, quia verbis
 				oppugnare aequitatem videbatur. Cum id miror, te hoc in hac re alieno tempore et
 				contra quam ista causa postulasset defendisse, tum illud volgo in iudiciis et non
 				numquam ab ingeniosis hominibus defendi mihi mirum videri solet, nec iuris consultis
-				concedi nec ius civile in causis semper valere oportere. <milestone n="68" unit="section"/><reg>nam</reg> hoc qui disputant, si id dicunt non recte aliquid
+				concedi nec ius civile in causis semper valere oportere. <milestone n="68"
+					unit="section"/><reg>nam</reg> hoc qui disputant, si id dicunt non recte aliquid
 				statuere eos qui consulantur, non hoc debent dicere iuris consultis, sed hominibus
 				stultis obtemperari non oportere; sin illos recte respondere concedunt et aliter
 				iudicari dicunt oportere, male iudicari oportere dicunt; neque enim fieri potest ut
 				aliud iudicari de iure, aliud responderi oporteat, nec ut quisquam iuris numeretur
-				peritus qui id statuat esse ius quod non oporteat iudicari. <milestone n="69" unit="section"/>'<reg>at</reg> est aliquando contra iudicatum.'
+				peritus qui id statuat esse ius quod non oporteat iudicari. <milestone n="69"
+					unit="section"/>'<reg>at</reg> est aliquando contra iudicatum.'
 					<reg>primum</reg> utrum recte, an perperam? <reg>si</reg> recte, id fuit ius
 				quod iudicatum est; sin aliter, non dubium est utrum iudices an iuris consulti
 				vituperandi sint. <reg>deinde</reg>, si de iure vario quippiam iudicatum est,
@@ -765,7 +805,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				iudicatum. <reg>etenim</reg> ipse Crassus non ita causam apud <num>c</num>viros egit
 				ut contra iuris consultos diceret, sed ut hoc doceret, illud quod Scaevola
 				defendebat, non esse iuris, et in eam rem non solum rationes adferret, sed etiam Q.
-				Mucio, socero suo, multisque peritissimis hominibus auctoribus uteretur. <milestone n="25" unit="chapter"/><milestone n="70" unit="section"/><reg>nam</reg> qui ius
+				Mucio, socero suo, multisque peritissimis hominibus auctoribus uteretur. <milestone
+					n="25" unit="chapter"/><milestone n="70" unit="section"/><reg>nam</reg> qui ius
 				civile contemnendum putat, is vincula revellit non modo iudiciorum sed etiam
 				utilitatis vitaeque communis; qui autem interpretes iuris vituperat, si imperitos
 				iuris esse dicit, de hominibus, non de iure civili detrahit; sin peritis non putat
@@ -773,20 +814,23 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				venire in mentem profecto necesse est, nihil esse in civitate tam diligenter quam
 				ius civile retinendum. <reg>etenim</reg> hoc sublato nihil est qua re exploratum
 				cuiquam possit esse quid suum aut quid alienum sit, nihil est quod aequabile inter
-				omnis atque unum omnibus esse possit. <milestone n="71" unit="section"/><reg>itaque</reg> in ceteris controversiis atque iudiciis cum quaeritur
+				omnis atque unum omnibus esse possit. <milestone n="71" unit="section"
+					/><reg>itaque</reg> in ceteris controversiis atque iudiciis cum quaeritur
 				aliquid factum necne sit, verum an falsum proferatur, et fictus testis subornari
 				solet et interponi falsae tabulae, non numquam honesto ac probabili nomine bono viro
 				iudici error obici, improbo facultas dari ut, cum sciens perperam iudicarit, testem
 				tamen aut tabulas secutus esse videatur; in iure nihil est eius modi, recuperatores,
 				non tabulae falsae, non testis improbus, denique nimia ista quae dominatur in
 				civitate potentia in hoc solo genere quiescit; quid agat, quo modo adgrediatur
-				iudicem, qua denique digitum proferat, non habet. <milestone n="72" unit="section"/><reg>illud</reg> enim potest dici iudici ab aliquo non tam verecundo homine
+				iudicem, qua denique digitum proferat, non habet. <milestone n="72" unit="section"
+					/><reg>illud</reg> enim potest dici iudici ab aliquo non tam verecundo homine
 				quam gratioso: 'iudica hoc factum esse aut numquam esse factum; crede huic testi,
 				has comproba tabulas'; hoc non potest: 'statue cui filius agnatus sit, eius
 				testamentum non esse ruptum; iudica quod mulier sine tutore auctore promiserit,
 				deberi.' <reg>non</reg> est aditus ad huiusce modi res neque potentiae cuiusquam
 				neque gratiae; denique, quo maius hoc sanctiusque videatur, ne pretio quidem
-				corrumpi iudex in eius modi causa potest. <milestone n="73" unit="section"/><reg>iste</reg> vester testis qui ausus est dicere <quote>fecisse
+				corrumpi iudex in eius modi causa potest. <milestone n="73" unit="section"
+					/><reg>iste</reg> vester testis qui ausus est dicere <quote>fecisse
 					videri</quote> eum de quo ne cuius rei argueretur quidem scire potuit, is ipse
 				numquam auderet iudicare deberi viro dotem quam mulier nullo auctore dixisset.
 					<milestone n="26" unit="chapter"/></p>
@@ -794,7 +838,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				ius civile? <reg>quod</reg> neque inflecti gratia neque perfringi potentia neque
 				adulterari pecunia possit; quod si non modo oppressum sed etiam desertum aut
 				neglegentius adservatum erit, nihil est quod quisquam sese habere certum aut a patre
-				accepturum aut relicturum liberis arbitretur. <milestone n="74" unit="section"/><reg>quid</reg> enim refert aedis aut fundum relictum a patre aut aliqua
+				accepturum aut relicturum liberis arbitretur. <milestone n="74" unit="section"
+					/><reg>quid</reg> enim refert aedis aut fundum relictum a patre aut aliqua
 				ratione habere bene partum, si incertum est, quae nunc tua iure mancipi sint, ea
 				possisne retinere, si parum est communitum ius civile ac publica lege contra
 				alicuius gratiam teneri non potest? quid, inquam, prodest fundum habere, si, quae
@@ -814,7 +859,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 			<p><reg>in</reg> hac ipsa causa, recuperatores, si hoc nos non obtinemus, vi armatis
 				hominibus deiectum esse eum quem vi armatis hominibus pulsum fugatumque esse
 				constat, Caecina rem non amittet, quam ipsam animo forti, si tempus ita ferret,
-				amitteret, in possessionem in praesentia non restituetur, nihil amplius; <milestone n="76" unit="section"/>populi Romani causa, civitatis ius, bona, fortunae
+				amitteret, in possessionem in praesentia non restituetur, nihil amplius; <milestone
+					n="76" unit="section"/>populi Romani causa, civitatis ius, bona, fortunae
 				possessionesque omnium in dubium incertumque revocantur. <reg>vestra</reg>
 				auctoritate hoc constituetur, hoc praescribetur: quicum tu posthac de possessione
 				contendes, eum si ingressum modo in praedium deieceris, restituas oportebit; sin
@@ -832,7 +878,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				adficeretur ex sua laude et me similis ratio pudoris a praesentis laude tardaret;
 				cuius auctoritati dictum est ab illa causa concedi nimium non oportere.
 						<add><reg>non</reg></add> vereor de tali viro ne plus dicam quam vos aut
-				sentiatis aut apud vos commemorari velitis. <milestone n="78" unit="section"/><reg>quapropter</reg> hoc dicam, numquam eius auctoritatem nimium valere cuius
+				sentiatis aut apud vos commemorari velitis. <milestone n="78" unit="section"
+					/><reg>quapropter</reg> hoc dicam, numquam eius auctoritatem nimium valere cuius
 				prudentiam populus Romanus in cavendo, non in decipiendo perspexerit, qui iuris
 				civilis rationem numquam ab aequitate seiunxerit, qui tot annos ingenium, laborem,
 				fidem suam populo Romano promptam expositamque praebuerit; qui ita iustus est et
@@ -849,7 +896,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				agere et defensionem causae constituere vos dicitis. <reg>qui</reg> cum istam
 				disputationem mecum ingressus esset, non posse probari quemquam esse deiectum nisi
 				ex eo loco in quo fuisset, rem et sententiam interdicti mecum facere fatebatur,
-				verbo me excludi dicebat, a verbo autem posse recedi non arbitrabatur. <milestone n="80" unit="section"/>Cum exemplis uterer multis ex omni memoria antiquitatis a
+				verbo me excludi dicebat, a verbo autem posse recedi non arbitrabatur. <milestone
+					n="80" unit="section"/>Cum exemplis uterer multis ex omni memoria antiquitatis a
 				verbo et ab scripto plurimis saepe in rebus ius et aequi bonique rationem esse
 				seiunctam, semperque id valuisse plurimum quod in se auctoritatis habuisset
 				aequitatisque plurimum, consolatus est me et ostendit in hac ipsa causa nihil esse
@@ -870,7 +918,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				quam recusaro. <reg>nego</reg> oportere, nego obtineri posse, nego ullam rem esse
 				quae aut comprehendi satis aut caveri aut excipi possit, si aut praeterito aliquo
 				verbo aut ambigue posito re et sententia cognita non id quod intellegitur, sed id
-				quod dicitur valebit. <milestone n="29" unit="chapter"/><milestone n="82" unit="section"/></p>
+				quod dicitur valebit. <milestone n="29" unit="chapter"/><milestone n="82"
+					unit="section"/></p>
 			<p><reg>quoniam</reg> satis recusavi, venio iam quo vocas. <reg>quaero</reg> abs te
 				simne deiectus, non de Fulciniano fundo; neque enim praetor, 'si ex eo fundo essem
 				deiectus,' ita me restitui iussit, sed 'eo unde deiectus essem.' <reg>sum</reg> ex
@@ -878,7 +927,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				alicunde, sive de privato sive de publico; eo restitui sum iussus.
 					<reg>restituisse</reg> te dixti; nego me ex decreto praetoris restitutum esse.
 					<reg>quid</reg> ad haec dicimus? <reg>aut</reg> tuo, quem ad modum dicitur,
-				gladio aut nostro defensio tua conficiatur necesse est. <milestone n="83" unit="section"/><reg>si</reg> ad interdicti sententiam confugis et, de quo fundo
+				gladio aut nostro defensio tua conficiatur necesse est. <milestone n="83"
+					unit="section"/><reg>si</reg> ad interdicti sententiam confugis et, de quo fundo
 				actum sit tum cum Aebutius restituere iubebatur, id quaerendum esse dicis neque
 				aequitatem rei verbi laqueo capi putas oportere, in meis castris praesidiisque
 				versaris; mea, mea est ista defensio, ego hoc vociferor, ego omnis homines deosque
@@ -902,7 +952,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				praetor interdixerit, sed de quo loco sit actum cum interdixit, neque in vi
 				armatorum spectari oportere in quo loco sit facta vis, verum sitne facta; te vero
 				nullo modo posse defendere in qua re tu velis verba spectari oportere, in qua re
-				nolis non oportere. <milestone n="30" unit="chapter"/><milestone n="86" unit="section"/></p>
+				nolis non oportere. <milestone n="30" unit="chapter"/><milestone n="86"
+					unit="section"/></p>
 			<p><reg>verum</reg> tamen ecquid mihi respondetur ad illud quod ego iam antea dixi, non
 				solum re et sententia sed verbis quoque hoc interdictum ita esse compositum ut nihil
 				commutandum videretur? <reg>attendite</reg>, quaeso, diligenter, recuperatores; est
@@ -910,7 +961,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				dicturus quod ego invenerim, sed quod illos non fugerit. Cum de vi interdicitur, duo
 				genera causarum esse intellegebant ad quae interdictum pertineret, unum, si qui ex
 				eo loco ubi fuisset se deiectum diceret, alterum, si qui ab eo loco quo veniret; et
-				horum utrumque neque praeterea quicquam potest accidere, recuperatores. <milestone n="87" unit="section"/><reg>id</reg> adeo sic considerate. <reg>si</reg> qui
+				horum utrumque neque praeterea quicquam potest accidere, recuperatores. <milestone
+					n="87" unit="section"/><reg>id</reg> adeo sic considerate. <reg>si</reg> qui
 				meam familiam de meo fundo deiecerit, <add>ex eo me loco deiecerit</add>; si qui
 				mihi praesto fuerit cum armatis hominibus extra meum fundum et me introire
 				prohibuerit, non ex eo, sed ab eo loco me deiecerit. <reg>ad</reg> haec duo genera
@@ -934,7 +986,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				optaret ut a quo loco depulsus esset, in eum se fortuna restitueret, non in salum,
 				sed in ipsam urbem quam petebat, sic quoniam verborum vim necessario similitudine
 				rerum aucupamur, qui postulat ut a quo loco deiectus est, hoc est unde deiectus est,
-				eo restituatur, hoc postulat ut in eum ipsum locum restituatur. <milestone n="31" unit="chapter"/><milestone n="89" unit="section"/>Cum verba nos eo ducunt, tum
+				eo restituatur, hoc postulat ut in eum ipsum locum restituatur. <milestone n="31"
+					unit="chapter"/><milestone n="89" unit="section"/>Cum verba nos eo ducunt, tum
 				res ipsa hoc sentire atque intellegere cogit. <reg>etenim</reg>, Piso,—redeo nunc ad
 				illa principia defensionis meae—si quis te ex aedibus tuis vi hominibus armatis
 				deiecerit, quid ages? <reg>opinor</reg>, hoc interdicto quo nos usi sumus
@@ -943,7 +996,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				interdixerit, unde deiectus es, ut eo restituaris, tu hoc idem quod ego dico et quod
 				perspicuum est interpretabere, cum illud verbum '<quote>vnde</quote>' in utramque
 				rem valeat, eoque tu restitui sis iussus, tam te in aedis tuas restitui oportere, si
-				e vestibulo, quam si ex interiore aedium parte deiectus sis. <milestone n="90" unit="section"/></p>
+				e vestibulo, quam si ex interiore aedium parte deiectus sis. <milestone n="90"
+					unit="section"/></p>
 			<p>Vt vero iam, recuperatores, nulla dubitatio sit, sive rem sive verba spectare voltis,
 				quin secundum nos iudicetis, exoritur hic iam obrutis rebus omnibus et perditis illa
 				defensio, eum deici posse qui tum possideat; qui non possideat, nullo modo posse;
@@ -951,7 +1005,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				oportere. <reg>numera</reg> quam multa in ista defensione falsa sint, Piso.
 					<reg>ac</reg> primum illud attende, te iam ex illa ratione esse depulsum, quod
 				negabas quemquam deici posse nisi inde ubi tum esset; iam posse concedis; eum qui
-				non possideat negas deici posse. <milestone n="32" unit="chapter"/><milestone n="91" unit="section"/><reg>cur</reg> ergo aut in illud cotidianum interdictum
+				non possideat negas deici posse. <milestone n="32" unit="chapter"/><milestone n="91"
+					unit="section"/><reg>cur</reg> ergo aut in illud cotidianum interdictum
 					'<quote>vnde ille me vi deiecit</quote>' additur '<quote>cvm ego
 					possiderem</quote>,' si deici nemo potest qui non possidet, aut in hoc
 				interdictum <quote>de hominibvs armatis</quote> non additur, si oportet quaeri
@@ -960,7 +1015,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				deiecisse vincere sponsionem, si ostendat eum non possedisse. <reg>negas</reg>
 				deici, nisi qui possideat. <reg>ostendo</reg> ex hoc interdicto <quote>de armatis
 					hominibvs</quote>, qui possit ostendere non possedisse eum qui deiectus sit,
-				condemnari tamen sponsionis necesse esse, si fateatur esse deiectum. <milestone n="92" unit="section"/><reg>dupliciter</reg> homines deiciuntur, aut sine
+				condemnari tamen sponsionis necesse esse, si fateatur esse deiectum. <milestone
+					n="92" unit="section"/><reg>dupliciter</reg> homines deiciuntur, aut sine
 				coactis armatisve hominibus aut per eius modi rationem atque vim. <reg>ad</reg> duas
 				dissimilis res duo diiuncta interdicta sunt. <reg>in</reg> illa vi cotidiana non
 				satis est posse docere se deiectum, nisi ostendere potest, cum possideret, tum
@@ -968,7 +1024,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 					<add>ut</add> nec vi nec clam nec precario possederit. <reg>itaque</reg> is qui
 				se restituisse dixit magna voce saepe confiteri solet se vi deiecisse, verum illud
 				addit: 'non possidebat' vel etiam, cum hoc ipsum concessit, vincit tamen sponsionem,
-				si planum facit ab se illum aut vi aut clam aut precario possedisse. <milestone n="93" unit="section"/><reg>videtisne</reg> quot defensionibus eum qui sine
+				si planum facit ab se illum aut vi aut clam aut precario possedisse. <milestone
+					n="93" unit="section"/><reg>videtisne</reg> quot defensionibus eum qui sine
 				armis ac multitudine vim fecerit uti posse maiores voluerint? <reg>hunc</reg> vero
 				qui ab iure, officio, bonis moribus ad ferrum, ad arma, ad caedem confugerit, nudum
 				in causa destitutum videtis, ut, qui armatus de possessione contendisset, inermis
@@ -1001,7 +1058,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				oportere; deinde nihil rationis adfers quam ob rem, si libertas adimi nullo modo
 				possit, civitas possit. <reg>nam</reg> et eodem modo de utraque re traditum nobis
 				est, et, si semel civitas adimi potest, retineri libertas non potest. <reg>qui</reg>
-				enim potest iure Quiritium liber esse is qui in numero Quiritium non est? <milestone n="97" unit="section"/><reg>atque</reg> ego hanc adulescentulus causam cum
+				enim potest iure Quiritium liber esse is qui in numero Quiritium non est? <milestone
+					n="97" unit="section"/><reg>atque</reg> ego hanc adulescentulus causam cum
 				agerem contra hominem disertissimum nostrae civitatis, <add>C.</add> Cottam,
 				probavi. Cum Arretinae mulieris libertatem defenderem et Cotta <num>x</num>viris
 				religionem iniecisset non posse nostrum sacramentum iustum iudicari, quod Arretinis
@@ -1016,7 +1074,8 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 			<p><reg>quaeri</reg> hoc solere me non praeterit—ut ex me ea quae tibi in mentem non
 				veniunt audias—quem ad modum, si civitas adimi non possit, in colonias Latinas saepe
 				nostri cives profecti sint. <reg>aut</reg> sua voluntate aut legis multa profecti
-				sunt; quam multam si sufferre voluissent, manere in civitate potuissent. <milestone n="34" unit="chapter"/><reg>quid</reg>? quem pater patratus dedidit aut suus
+				sunt; quam multam si sufferre voluissent, manere in civitate potuissent. <milestone
+					n="34" unit="chapter"/><reg>quid</reg>? quem pater patratus dedidit aut suus
 				pater populusve vendidit, quo is iure amittit civitatem? Vt religione civitas
 				solvatur civis Romanus deditur; qui cum est acceptus, est eorum quibus est deditus;
 				si non accipiunt, <add>ut</add> Mancinum Numantini, retinet integram causam et ius
@@ -1082,6 +1141,6 @@ Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-
 				sint, statuite quid vos tempora rei publicae de armatis hominibus, quid illius
 				confessio de vi, quid nostra decisio de aequitate, quid ratio interdicti de iure
 				admoneat ut iudicetis. </p>
-		</div>
-	</body></text>
+		</body>
+	</text>
 </TEI>
