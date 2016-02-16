@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
     <fileDesc>
       <titleStmt>
-        <title>Iphicrates </title>
-        <author>Cornelius Nepos</author>
+        <title type="work">Iphicrates </title>
+        <title type="sub">Machine readable text</title><author n="Cornelius Nepos">Cornelius Nepos</author>
         <sponsor>Perseus Project, Tufts University</sponsor>
         <principal>Gregory Crane</principal>
         <respStmt>
@@ -43,23 +43,34 @@
     <encodingDesc>
       <editorialDecl>
         <correction method="silent" status="high">
-          <p><!--&Perseus.OCR;-->Perseus</p>
+          <p><!--This text was converted to electronic form by optical character recognition and has been proofread to a medium level of accuracy.-->Perseus</p>
         </correction>
       </editorialDecl>
+       <refsDecl n="CTS">
+        <cRefPattern n="section"
+          matchPattern="(\w+).(\w+)"
+          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+          <p>This pointer pattern extracts chapter and section</p>
+        </cRefPattern>
+        <cRefPattern n="chapter"
+          matchPattern="(\w+)"
+          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+          <p>This pointer pattern extracts chapter</p>
+        </cRefPattern>
+      </refsDecl>
       <refsDecl>
-        <refState unit="life"/>
-        <refState n="chunk" unit="chapter"/>
+        <refState unit="chapter" delim="."/>
         <refState unit="section"/>
       </refsDecl>
     </encodingDesc>
 
     <profileDesc>
       <langUsage>
-        <language ident="la">Latin</language>
-        <language ident="en">English</language>
-        <language ident="greek">Greek</language>
+        <language ident="lat">Latin</language>
+        <language ident="eng">English</language>
+        <language ident="grc">Greek</language>
         <language ident="de">German</language>
-        <language ident="fr">French</language>
+        <language ident="fre">French</language>
         <language ident="it">Italian</language>
       </langUsage>
     </profileDesc>
@@ -76,11 +87,11 @@
     <item>split composite text and converted to unicode</item>
       </change>-->
       <change when="2014-08-01" who="Stella Dee">edited markup</change>
-    </revisionDesc>
+    <change when="2015-12-11" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change></revisionDesc>
 
   </teiHeader>
-  <text xml:lang="la">
-    <body>
+  <text>
+    <body><div type="edition" subtype="edition" xml:lang="lat" n="urn:cts:latinLit:phi0588.abo011.perseus-lat1">
       <milestone n="1" unit="chapter"/>
       <milestone n="1" unit="section"/>
       <p>Iphicrates Atheniensis non tam magnitudine rerum gestarum quam disciplina militari
@@ -99,13 +110,11 @@
         <milestone n="1" unit="section"/></p>
       <p>Bellum cum Thraecibus gessit, Seuthem, socium Atheniensium, in regnum restituit. apud
         Corinthum tanta severitate exercitui praefuit, ut nullae umquam in Graecia neque
-        exercitatiores copiae neque magis dicto audientes fuerint duci, <milestone n="2"
-          unit="section"/> in eamque consuetudinem adduxit, ut, cum proelii signum ab imperatore
+        exercitatiores copiae neque magis dicto audientes fuerint duci, <milestone n="2" unit="section"/> in eamque consuetudinem adduxit, ut, cum proelii signum ab imperatore
         esset datum, sine ducis opera sic ordinatae consisterent, ut singuli a peritissimo
         imperatore dispositi viderentur. <milestone n="3" unit="section"/> hoc exercitu moram
         Lacedaemoniorum interfecit, quod maxime tota celebratum est Graecia. iterum eodem bello
-        omnes copias eorum fugavit, quo facto magnam adeptus est gloriam. <milestone n="4"
-          unit="section"/> cum Artaxerxes Aegyptio regi bellum inferre voluit, Iphicraten ab
+        omnes copias eorum fugavit, quo facto magnam adeptus est gloriam. <milestone n="4" unit="section"/> cum Artaxerxes Aegyptio regi bellum inferre voluit, Iphicraten ab
         Atheniensibus ducem petivit, quem praeficeret exercitui conducticio, cuius numerus duodecim
         milium fuit. quem quidem sic omni disciplina militari erudivit, ut, quem ad modum quondam
         Fabiani milites Romae <del>appellati sunt</del>, sic Iphicratenses apud Graecos in summa
@@ -124,6 +133,6 @@
         Thraessa natum, Coti regis filia, is cum interrogaretur, utrum pluris, patrem matremne,
         faceret, 'matrem' inquit. id cum omnibus mirum videretur, at ille 'merito' inquit 'facio:
         nam pater, quantum in se fuit, Thraecem me genuit, contra ea mater Atheniensem. ' </p>
-    </body>
-  </text>
+    </div>
+  </body></text>
 </TEI>

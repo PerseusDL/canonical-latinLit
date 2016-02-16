@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?> <TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader type="text">
         <fileDesc>
             <titleStmt>
-                <title>History of Rome, books 21-45 - 32</title>
+                <title type="work">History of Rome, books 21-45 - 32</title>
                 <title type="sub">Machine readable text</title>
-                <author>Titus Livius (Livy)</author>
+                <author n="Titus Livius (Livy)">Titus Livius (Livy)</author>
                 <editor role="translator">Rev. Canon Roberts</editor>
                 <sponsor>Perseus Project, Tufts University</sponsor>
                 <principal>Gregory Crane</principal>
@@ -17,7 +18,6 @@
                 </respStmt>
                 <funder n="org:NEH">The National Endowment for the Humanities</funder>
             </titleStmt>
-            <extent>about 1.7 Mb</extent>
             <publicationStmt>
                 <publisher>Trustees of Tufts University</publisher>
                 <pubPlace>Medford, MA</pubPlace>
@@ -38,7 +38,7 @@
                                 <publisher>E. P. Dutton and Co.</publisher>
                                 <date>1912</date>
                             </imprint>
-                            <biblScope type="volume">1</biblScope>
+                            <biblScope unit="volume">1</biblScope>
                         </monogr>
                     </biblStruct>
                     <biblStruct default="false">
@@ -54,16 +54,34 @@
                                 <publisher>E. P. Dutton and Co.</publisher>
                                 <date>1912</date>
                             </imprint>
-                            <biblScope type="volume">2</biblScope>
+                            <biblScope unit="volume">2</biblScope>
                         </monogr>
                     </biblStruct>
                 </listBibl>
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="Section"
+                    matchPattern="(\\w+).(\\w+).(\\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:milestone[@n=\'$2\']/tei:milestone[@n=\'$3\'])">
+                    <p>This pointer pattern extracts Book and Chapter and Section</p>
+                </cRefPattern>
+                <cRefPattern n="Chapter"
+                    matchPattern="(\\w+).(\\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\']/tei:milestone[@n=\'$2\'])">
+                    <p>This pointer pattern extracts Book and Chapter</p>
+                </cRefPattern>
+                <cRefPattern n="Book"
+                    matchPattern="(\\w+)"
+                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n=\'$1\'])">
+                    <p>This pointer pattern extracts Book</p>
+                </cRefPattern>
+            </refsDecl>
             <refsDecl>
-                <refState unit="book"/>
-                <refState unit="chapter" n="chunk"/>
+                <refState unit="book" delim="."/>
+                <refState unit="chapter" delim="."/>
+                <refState unit="section"/>
             </refsDecl>
         </encodingDesc>
         <profileDesc>
@@ -113,13 +131,14 @@ Revision 1.1  2005/07/25 14:55:30  packel
 Added to repository. Passed SGML parse.
                 </item>
             </change>
-        --><change when="2014-10-09" who="Stella Dee">edited markup</change> </revisionDesc>
+        --><change when="2014-10-09" who="Stella Dee">edited markup</change> <change when="2015-12-03" who="Zach Himes"/><change when="2006-04-26" who="Jason Bates">ed.</change>
+<change who="balmas01" when="2013-09-13T11:20:31">Revision 1.3  reverting texts back to pre_cts_reorg tagged version</change><change who="rsingh04" when="2009-12-01T18:17:55">Revision 1.1  moved more xml files around based on copyright status</change><change who="rsingh04" when="2009-07-17T16:01:55">Revision 1.6  major fixes to Livy texts. separated english from latin in loeb texts, added separate abbs for each book since texts do not have all the books.  got rid of views because they didn't work well and were a pain.  things should not link up between different texts much better</change><change who="lcerrato" when="2008-11-14T22:05:52">Revision 1.5  fixing author names for consistent sorting</change><change who="rsingh04" when="2008-11-14T20:52:40">Revision 1.4  updated titles</change><change who="lcerrato" when="2008-11-14T18:45:59">Revision 1.3  fixed dup books 27, added header for book 28 and book 21 (found online)</change><change who="gcrane" when="2006-10-04T13:29:19">Revision 1.2  small mods</change><change who="gcrane" when="2006-09-02T14:04:03">Revision 1.1  copies of the xlation without any automagically added sections</change><change who="gcrane" when="2006-04-28T02:13:21">Revision 1.1  added HEADs for individual books</change><change who="packel" when="2005-07-25T14:55:30">Revision 1.1  Added to repository. Passed SGML parse.</change></revisionDesc>
     </teiHeader>
-    <text xml:lang="en">
-        <body>
-            <div part="N" sample="complete" org="uniform" n="32" type="book">
+    <text>
+        <body><div type="translation" xml:lang="eng" n="urn:cts:canonical-latinLit:phi0914.phi00132.perseus-eng3">
+            <div part="N" sample="complete" org="uniform" n="32" type="textpart" subtype="book">
                 <head>The Second Macedonian War</head>
-                <div part="N" sample="complete" org="uniform" n="1" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="1" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The consuls and praetors went into office on March 15 and at once balloted for their commands.
@@ -151,7 +170,7 @@ Added to repository. Passed SGML parse.
                         In accordance with their directions a day of special intercessions was ordered and prayers and sacrifices were offered at all the shrines.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="2" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="2" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         This year the Carthaginians conveyed to Rome the first instalment of the war indemnity.
@@ -169,7 +188,7 @@ Added to repository. Passed SGML parse.
                         Those appointed were the two Aelii-Publius and Sextus, both of whom had the cognomen of Paetus-and Cn. Cornelius Lentulus. The colonists at Cosa also requested an augmentation of their number, but their request was refused.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="3" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="3" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         After despatching the necessary business in Rome the consuls left for their respective provinces.
@@ -187,7 +206,7 @@ Added to repository. Passed SGML parse.
                         If therefore they were willing to remain with the standards and obey orders he would write to the senate about disbanding them. They would be much more likely to attain their object by moderation than by contumacy.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="4" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="4" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         At this time Philip was pressing the siege of Thaumaci with the utmost energy.
@@ -205,7 +224,7 @@ Added to repository. Passed SGML parse.
                         The winter had already begun when he withdrew from the place and returned to his winter quarters.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="5" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="5" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Everybody else made the most of the short rest allowed in seeking relaxation for mind
@@ -235,7 +254,7 @@ Added to repository. Passed SGML parse.
                         A large quantity of artillery was disposed in suitable places to keep the enemy at a distance by missiles. The king's tent was pitched on a most conspicuous height in front of the lines to overawe the enemy and to give his own men confidence.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="6" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="6" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         .The consul had wintered in Corcyra, and on receiving intelligence through Charops, an Epirote, as to the pass which the king and his army had occupied, he sailed across to the mainland at the opening of the spring and at once marched towards the enemy.
@@ -255,7 +274,7 @@ Added to repository. Passed SGML parse.
                         All the Greek and Latin writers, so far as I have consulted them, say that nothing noteworthy was done by Villius and that the consul who succeeded him took over the whole war from the outset.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="7" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="7" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         .During these occurrences in Macedonia the other consul, L. Lentulus, who had remained in Rome, conducted the election of censors.
@@ -289,7 +308,7 @@ Added to repository. Passed SGML parse.
                         Two pontiffs-both members of the house of the Sulpicii, Servius and Caius-died this year. Their places were filled up by M. Aemilius Lepidus and Cnaeus Cornelius Scipio.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="8" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="8" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         .On assuming office the new consuls convened the senate in the Capitol, and it was decreed that the consuls might either arrange between themselves about the two provinces of Macedonia and Italy, or they might ballot for them.
@@ -325,7 +344,7 @@ Added to repository. Passed SGML parse.
                         It is only just and right that monarchs who are allies and friends of Rome should also keep the peace towards each other."
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="9" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="9" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The consul T. Quinctius, in raising troops, took care to choose mainly those who had done good service in Spain or in Africa and who were men of tried courage. Anxious as he was to go to his province, he was delayed in Rome by the announcement of portents and the necessity of expiating them.
@@ -351,7 +370,7 @@ Added to repository. Passed SGML parse.
                         But it was easier to decide that an attack should be made than to form a clear idea of how it should be made. For forty days they remained inactive in full view of the enemy.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="10" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="10" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         This led Philip to hope that he might arrange a peace through the mediation of the Epirotes.
@@ -379,7 +398,7 @@ Added to repository. Passed SGML parse.
                         After many on both sides had been wounded and some had even fallen as in a regular battle, night put an end to the fighting.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="11" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="11" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         At this juncture a shepherd was brought to the consul who had been sent by Charopus, the leading man in Epirus.
@@ -403,7 +422,7 @@ Added to repository. Passed SGML parse.
                         After despatching this force the Roman commander subjected the Macedonian outposts to more vigorous pressure on all sides.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="12" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="12" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The detached force reached the height which was their objective on the third day, and signalled by a column of smoke that they had seized and were holding it. Thereupon the consul, having formed his army into three divisions, advanced up the bottom of the ravine with his main strength and sent his right and left wings against the camp.
@@ -427,7 +446,7 @@ Added to repository. Passed SGML parse.
                         During the night they remained in camp, and the next day the consul followed the enemy through the gorge at the bottom of which the river wound its way.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="13" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="13" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         On the first day of his retreat the king reached a place called Pyrrhus' Camp in Molossian Triphylia.
@@ -463,7 +482,7 @@ Added to repository. Passed SGML parse.
                         These successful operations were rapidly carried out in a few days.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="14" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="14" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Amynander and the Athamanians, on hearing of the Roman victory, did not remain inactive. As he felt little confidence in his soldiers Amynander begged the consul to lend him a small detachment with which to attack Gomphi. He began by seizing Phaeca, a place lying between Gomphi and the pass over Pindus which divides Athamania from Thessaly.
@@ -483,7 +502,7 @@ Added to repository. Passed SGML parse.
                         Amynander was requested to bring up his troops to the same place, not so much because his assistance was required as because the consul wished to have them as his guides into Thessaly. Most of the Epirotes were allowed to volunteer for service also.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="15" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="15" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The first Thessalian city to be attacked was Phalorium. It was garrisoned by 2000 Macedonians, and as far as arms and fortifications could protect them they offered a most determined resistance.
@@ -505,7 +524,7 @@ Added to repository. Passed SGML parse.
                         The Thessalians felt no alarm at the appearance of the Romans, and Philip himself did not venture to advance into Thessaly but remained encamped in Tempe, so that he could send help as occasion required to any place attempted by the Romans.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="16" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="16" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Just about the time when the consul began his campaign against Philip by fixing his camp in the pass leading from
@@ -545,7 +564,7 @@ Added to repository. Passed SGML parse.
                         expected from the size and wealth of the city.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="17" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="17" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Carystus was the next place to be attacked. Here before the troops were landed the entire population abandoned the city and took refuge in the citadel.
@@ -585,7 +604,7 @@ Added to repository. Passed SGML parse.
                         that it seemed to the enemy to be falling over.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="18" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="18" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Though he was making no progress, what vexed the consul most was that he was allowing a comparison to be made between the tactics and weapons of the contending armies;
@@ -607,7 +626,7 @@ Added to repository. Passed SGML parse.
                         Elatea closed its gates against him and there seemed little probability of its admitting either a Roman general or a Roman army unless it were compelled to do so by force.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="19" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="19" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         While the consul was engaged in the siege of Elatea, the hope of achieving a greater success brightened before him, namely, of inducing the Achaeans to abandon their alliance with Philip and enter into friendly relations with Rome.
@@ -637,7 +656,7 @@ Added to repository. Passed SGML parse.
                         The whole day was taken up with the continuous speeches of all these deputations, and at sunset the council broke up.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="20" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="20" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The next day they were called together again. When, in accordance with Greek usage, the usher announced that the magistrates gave permission to speak to any one who wished to lay his views before the council, there was a long silence, each looking for some one else to speak.
@@ -655,7 +674,7 @@ Added to repository. Passed SGML parse.
                         This appeal from the president not only failed to induce a single speaker to come forward, it did not even call forth a single cheer or murmur in that great assembly, where so many States were represented.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="21" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="21" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Then Aristaenus resumed: "Leaders of the Achaeans, you are not lacking in counsel any more than you are in the power of speech, but each of you is unwilling to endanger his own safety in consulting for the safety of all.
@@ -737,7 +756,7 @@ Added to repository. Passed SGML parse.
                         If you reject their alliance you are hardly in your right senses, but you will be compelled to have them as either friends or enemies."
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="22" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="22" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         At the close of the president's speech a hum of voices ran through the assembly, some approving, others fiercely attacking those who approved.
@@ -765,7 +784,7 @@ Added to repository. Passed SGML parse.
                         and their secession was considered excusable in view of the great obligations they were under for the kindness recently shown to them.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="23" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="23" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         On being called upon to vote, the remaining Achaean States desired the immediate conclusion of an alliance with Attalus and the Rhodians.
@@ -795,7 +814,7 @@ Added to repository. Passed SGML parse.
                         The rest of the troops re-embarked, Attalus sailed for the Piraeus and the Romans for Corcyra.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="24" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="24" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         While the naval forces were thus engaged, the consul encamped before Elatea in Phocis. He began by inviting the leading citizens to a conference and tried to induce them to
@@ -813,7 +832,7 @@ Added to repository. Passed SGML parse.
                         He then sent a message to those in the citadel promising to spare the lives of Philip's troops if they gave up their arms, and also to restore to the Elateans their freedom. When the necessary guarantees had been given, he secured the citadel after a few days.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="25" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="25" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The appearance of Philocles in Achaia not only raised the siege of Corinth but brought about the loss of Argos, which was betrayed by the leaders of the city acting with the full concurrence of the population.
@@ -841,7 +860,7 @@ Added to repository. Passed SGML parse.
                         Such were the operations of the naval and military forces of Rome, during this summer, in Greece.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="26" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="26" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         In Gaul nothing of any importance was accomplished by the consul Sex.
@@ -884,7 +903,7 @@ Added to repository. Passed SGML parse.
                         Instructions were also sent by the praetor to the Latin communities for the hostages to be kept in privacy and not allowed to appear in public; the prisoners were to be manacled with fetters not less than ten pounds in weight, and not to be confined in custody anywhere but in the State prisons.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="27" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="27" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         During the year a delegation from King Attalus deposited in the Capitol a golden crown weighing 246 pounds. They also tendered his thanks to the senate for the intervention of the Roman envoys, as owing to their representations Antiochus had withdrawn his army from Attalus' territories.
@@ -904,7 +923,7 @@ Added to repository. Passed SGML parse.
                         The Roman Games were celebrated four times during the year.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="28" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="28" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The first business before the new consuls was the settlement of the provinces both praetorian and consular.
@@ -932,7 +951,7 @@ Added to repository. Passed SGML parse.
                         P. Sulpicius and P. Villius who had formerly been in Macedonia as consuls were appointed to Quinctius' staff.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="29" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="29" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Before the consuls and praetors left for their respective provinces steps were taken to expiate various portents which had been announced.
@@ -952,7 +971,7 @@ Added to repository. Passed SGML parse.
                         It was stated that 15 fortified towns and 20,000 men surrendered.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="30" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="30" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         From there he led his legions into the country of the Boii, whose army had not long before crossed
@@ -982,7 +1001,7 @@ Added to repository. Passed SGML parse.
                         Those of the Gauls who had followed the Insubres in their revolt surrendered to the Romans.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="31" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="31" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The consul Minucius had carried his plundering expeditions throughout the country of the Boii, but when he heard that they had deserted the Insubres and returned to defend their country, he kept within his camp, intending to meet them in a general engagement.
@@ -998,7 +1017,7 @@ Added to repository. Passed SGML parse.
                         The despatches from the two consuls announcing their successes reached Rome about the same time. The City praetor, M. Sergius, read them in the senate and was authorised by that body to read them in the Assembly. A four days' thanksgiving was ordered.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="32" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="32" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Winter had now set in and T. Quinctius, after the capture of Elatea, had quartered his troops in Phocis and Locris.
@@ -1036,7 +1055,7 @@ Added to repository. Passed SGML parse.
                         The Aetolians would not find it so difficult to substitute another magistrate, as the Macedonians would to replace their king." After this no more was said.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="33" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="33" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The Roman commander thought it only right that the one who had asked for the conference should begin the conversation, the king considered that the discussion should be opened by the men who proposed terms of peace, not by the one who was to accept them.
@@ -1074,7 +1093,7 @@ Added to repository. Passed SGML parse.
                         By similar treachery he is now master of Thebes, Phthiae, Echinus. Larisa and Pharsalus."
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="34" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="34" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Stung by Alexander's speech, Philip moved his ship nearer to the land in order that he might be better heard, and commenced a speech mainly directed against the Aetolians.
@@ -1106,7 +1125,7 @@ Added to repository. Passed SGML parse.
                         the same time ask him whether he thought it fair that he should renounce all claim to the cities which he had himself captured and held by the rights of war, and even to those which he had inherited from his ancestors.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="35" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="35" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         The Achaeans and the Aetolians were preparing to reply, but as it was almost sunset the conference was adjourned to the morrow. Philip returned to his anchorage and the Romans and allies to their camps.
@@ -1134,7 +1153,7 @@ Added to repository. Passed SGML parse.
                         Not one of the parties concerned was satisfied with these proposals, for they said that they were losing more than they were gaining, and unless Philip withdrew his garrisons from the whole of Greece, grounds of quarrel would never be wanting.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="36" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="36" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         All the members of the council were loud in their protests and remonstrances, and the noise reached Philip who was standing at some distance.
@@ -1158,7 +1177,7 @@ Added to repository. Passed SGML parse.
                         To give greater importance to the mission Quinctius sent in company with them Amynander, king of the Athamanians, Q. Fabius, his sister-in-law's son, Q. Fulvius and Appius Claudius.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="37" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="37" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         On their arrival in Rome the delegates of the allies were received in audience before those from Philip.
@@ -1174,7 +1193,7 @@ Added to repository. Passed SGML parse.
                         As it was quite evident that the senate were not averse from war, and as Quinctius himself was more anxious for victory than for peace, he refused any further interview with Philip, and said that he would not admit any envoys from him unless they came to announce that he was withdrawing entirely from Greece.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="38" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="38" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         When Philip saw that matters must be decided on the battlefield, he called in his forces from all quarters.
@@ -1196,7 +1215,7 @@ Added to repository. Passed SGML parse.
                         A meeting of their Assembly was then summoned in which he promulgated two measures, one for the cancelling of debts and another for the division of land-two firebrands with which the revolutionaries were to inflame the lower classes against the aristocracy.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="39" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="39" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         When the city of the Argives was once in his power, the tyrant no longer troubled himself about the man who had made it over to him or the conditions on which he had accepted it.
@@ -1220,7 +1239,7 @@ Added to repository. Passed SGML parse.
                         Then they began to discuss the terms on which friendly relations might be established. The Romans made two demands: first, that Nabis should put a stop to hostilities against the Achaeans and, secondly, that he should furnish assistance against Philip. This he promised to furnish; instead of a definite peace, an armistice was arranged with the Achaeans, to remain in force until the war with Philip was over.
                     </p>
                 </div>
-                <div part="N" sample="complete" org="uniform" n="40" type="chapter">
+                <div part="N" sample="complete" org="uniform" n="40" type="textpart" subtype="chapter">
                     <p>
                         <milestone n="1" unit="section"/>
                         Attalus then opened a discussion on the question of Argos, which he contended had been treacherously betrayed by Philocles and was now forcibly retained by Nabis. Nabis replied that he had been invited by the Argives to go to their defence.
@@ -1247,6 +1266,6 @@ Added to repository. Passed SGML parse.
                     </p>
                 </div>
             </div>
-        </body>
-    </text>
+        </div>
+    </body></text>
 </TEI>

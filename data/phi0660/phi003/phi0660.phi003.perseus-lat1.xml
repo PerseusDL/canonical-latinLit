@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0"><teiHeader type="text" status="new">
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"\?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader type="text">
     <fileDesc>
         <titleStmt>
-            <title>Carmina Omnia</title>
-            <author>Sulpicia</author>
+            <title type="work">Carmina Omnia</title>
+            <title type="sub">Machine readable text</title><author n="Sulpicia">Sulpicia</author>
             <editor role="commentator">Anne Mahoney</editor>
             <sponsor>Perseus Project, Tufts University</sponsor>
             <principal>Gregory Crane</principal>
@@ -29,11 +31,22 @@
     </fileDesc>
     
     <encodingDesc>
-        <refsDecl> n="text=orig" doctype="TEI.2">
-            <refState unit="text"/>
-            <state n="chunk" unit="poem"/>
-            <refState unit="line"/>
-        </refsDecl>
+        <refsDecl n="CTS">
+                <cRefPattern n="line"
+                         matchPattern="(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+                    <p>This pointer pattern extracts poem and line</p>
+                </cRefPattern>
+                <cRefPattern n="poem"
+                         matchPattern="(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts poem</p>
+                </cRefPattern>
+            </refsDecl>
+            <refsDecl>
+                <refState unit="poem" delim="."/>
+                <refState unit="line"/>
+            </refsDecl>
         <!--
 <refsDecl> n="text=transl" doctype="TEI.2">
   <refState unit="text"/>
@@ -41,22 +54,22 @@
   <refState unit="line"/>
 </refsDecl>
 -->
-        <refsDecl> n="text=commintro" doctype="TEI.2">
+    <!--    <refsDecl> n="text=commintro" doctype="TEI.2"&gt;
             <refState unit="text"/>
             <state n="chunk" unit="section"/>
         </refsDecl>
-        <refsDecl> n="text=comm" doctype="TEI.2">
+        <refsDecl> n="text=comm" doctype="TEI.2"&gt;
             <refState unit="text"/>
             <refState unit="poem"/>
             <state n="chunk" unit="commline"/>
-        </refsDecl>
+        </refsDecl>-->
     </encodingDesc>
     
     <profileDesc>
         <langUsage>
-            <language ident="la">Latin</language>
-            <language ident="en">English</language>
-            <language ident="greek">Greek</language>
+            <language ident="lat">Latin</language>
+            <language ident="eng">English</language>
+            <language ident="grc">Greek</language>
         </langUsage>
     </profileDesc>
     
@@ -120,63 +133,64 @@
             <respStmt><name>Stella Dee</name><resp>ed.</resp></respStmt>
             <item>split composite text and converted to unicode</item>
         </change>
-    --><change when="2014-08-01" who="Stella Dee">edited markup</change></revisionDesc>
+    --><change when="2014-08-01" who="Stella Dee">edited markup</change><change when="2015-12-10" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change><change who="rsingh04" when="2009-12-09T18:06:59">Revision 1.1  moved more xml files around based on copyright status</change><change who="student" when="2009-06-25T22:38:41">Revision 1.7  fixed bibl errors - zr</change><change who="lcerrato" when="2009-06-05T21:51:31">Revision 1.6  fixed bad bibls</change><change who="lcerrato" when="2009-04-17T20:02:30">Revision 1.5  fixing bad bibls</change><change who="packel" when="2006-09-14T20:20:34">Revision 1.4  fixed refsDecl for original text; commented out translation refsDecl</change><change who="packel" when="2006-02-10T20:50:39">Revision 1.3  places/dates now actually tagged</change><change who="packel" when="2005-08-01T16:30:52">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25T15:04:00">Revision 1.1  Converted to XML</change><change who="yorkc" when="2003-07-01T22:18:11">Revision 1.8  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2002-05-20T20:28:29">Revision 1.7  mark language of header</change><change who="amahoney" when="2000-07-24T20:43:46">Revision 1.6  final fixes to internal citations</change><change who="amahoney" when="2000-07-23T21:08:49">Revision 1.5  add some more refs to the commentary, tidy up title statements</change><change who="amahoney" when="2000-07-23T19:03:20">Revision 1.4  split out the translation into a separate file:  it's not worth figuring
+                out how to handle two versions of the ABO in the same document right now</change><change who="amahoney" when="2000-07-20T19:29:38">Revision 1.3  fix refsdecl so can chunk commentary intro correctly</change><change who="amahoney" when="2000-07-16T21:06:40">Revision 1.2  all of  my original commentary is now in;  next, more parallels</change><change who="amahoney" when="2000-07-15T18:55:03">Revision 1.1  initial coding</change></revisionDesc>
 </teiHeader>
-<text lang="la" n="orig">
-    <body>
-        <head lang="en">Latin Text</head>
-        <div type="poem" n="1">
-            <l>Tandem venit amor, qualem texisse pudori</l>
+<text>
+    <body><div type="edition" xml:lang="lat" n="urn:cts:canonical-latinLit:phi0660.phi003.perseus-lat1"  subtype="edition">
+        <head xml:lang="eng">Latin Text</head>
+        <div type="textpart" n="1" subtype="poem">
+            <l n="1">Tandem venit amor, qualem texisse pudori</l>
             <l rend="indent">quam nudasse alicui sit mihi fama magis.</l>
-            <l>Exorata meis illum Cytherea Camenis</l>
+            <l n="2">Exorata meis illum Cytherea Camenis</l>
             <l rend="indent">attulit in nostrum deposuitque sinum.</l>
             <l n="5">Exsolvit promissa Venus: mea gaudia narret,</l>
             <l rend="indent">dicetur si quis non habuisse sua.</l>
-            <l>Non ego signatis quicquam mandare tabellis,</l>
+            <l n="6">Non ego signatis quicquam mandare tabellis,</l>
             <l rend="indent">ne legat id nemo quam meus ante, velim.</l>
-            <l>Sed peccasse iuvat, vultus componere famae</l>
+            <l n="7">Sed peccasse iuvat, vultus componere famae</l>
             <l rend="indent">taedet: cum digno digna fuisse ferar.
             </l></div>
-        <div type="poem" n="2">
-            <l>Invisus natalis adest, qui rure molesto</l>
+        <div type="textpart" n="2" subtype="poem">
+            <l n="1">Invisus natalis adest, qui rure molesto</l>
             <l rend="indent">et sine Cerintho tristis agendus erit.</l>
-            <l>Dulcius urbe quid est? an villa sit apta puellae</l>
+            <l n="2">Dulcius urbe quid est? an villa sit apta puellae</l>
             <l rend="indent">atque Arretino frigidus amnis agro?</l>
             <l n="5">Iam nimium Messalla mei studiose, quiescas,</l>
             <l rend="indent">non tempestivae, saeve propinque, viae!</l>
-            <l>Hic animum sensusque meos abducta relinquo,</l>
+            <l n="6">Hic animum sensusque meos abducta relinquo,</l>
             <l rend="indent">arbitrio quamvis non sinis esse meo.
             </l></div>
-        <div type="poem" n="3">
-            <l>Scis iter ex animo sublatum triste puellae?</l>
+        <div type="textpart" n="3" subtype="poem">
+            <l n="1">Scis iter ex animo sublatum triste puellae?</l>
             <l rend="indent">natali Romae iam licet esse suo.</l>
-            <l>Omnibus ille dies nobis natalis agatur,</l>
+            <l n="2">Omnibus ille dies nobis natalis agatur,</l>
             <l rend="indent">qui nec opinanti nunc tibi forte venit.
             </l></div>
-        <div type="poem" n="4">
-            <l>Gratum est, securus multum quod iam tibi de me</l>
+        <div type="textpart" n="4" subtype="poem">
+            <l n="1">Gratum est, securus multum quod iam tibi de me</l>
             <l rend="indent">permittis, subito ne male inepta cadam.</l>
-            <l>Sit tibi cura togae potior pressumque quasillo</l>
+            <l n="2">Sit tibi cura togae potior pressumque quasillo</l>
             <l rend="indent">scortum quam Servi filia Sulpicia:</l>
-            <l>Solliciti sunt pro nobis, quibus illa dolori est,</l>
+            <l n="3">Solliciti sunt pro nobis, quibus illa dolori est,</l>
             <l rend="indent">ne cedam ignoto, maxima causa, toro.
             </l></div>
-        <div type="poem" n="5">
-            <l>Estne tibi, Cerinthe, tuae pia cura puellae,</l>
+        <div type="textpart" n="5" subtype="poem">
+            <l n="1">Estne tibi, Cerinthe, tuae pia cura puellae,</l>
             <l rend="indent">quod mea nunc vexat corpora fessa calor?</l>
-            <l>A!  ego non aliter tristes evincere morbos</l>
+            <l n="2">A!  ego non aliter tristes evincere morbos</l>
             <l rend="indent">optarim, quam te si quoque velle putem.</l>
             <l n="5">At mihi quid prosit morbos evincere, si tu</l>
             <l rend="indent">nostra potes lento pectore ferre mala?
             </l></div>
-        <div type="poem" n="6">
-            <l>Ne tibi sim, mea lux, aeque iam fervida cura</l>
+        <div type="textpart" n="6" subtype="poem">
+            <l n="1">Ne tibi sim, mea lux, aeque iam fervida cura</l>
             <l rend="indent">ac videor paucos ante fuisse dies,</l>
-            <l>si quicquam tota commisi stulta iuventa,</l>
+            <l n="2">si quicquam tota commisi stulta iuventa,</l>
             <l rend="indent">cuius me fatear paenituisse magis,</l>
             <l n="5">hesterna quam te solum quod nocte reliqui,</l>
             <l rend="indent">ardorem cupiens dissimulare meum.
             </l></div>
-    </body>
-</text>
+    </div>
+</body></text>
 </TEI>

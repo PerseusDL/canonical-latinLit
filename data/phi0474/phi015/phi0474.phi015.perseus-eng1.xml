@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
  <teiHeader type="text">
   <fileDesc>
    <titleStmt>
-    <title>In Defense of Publius Sulla </title>
+    <title type="work">In Defense of Publius Sulla </title>
     <title>Three orations on the Agrarian law, the four against Catiline, the orations for Rabirius,
      Murena, Sylla, Archias, Flaccus, Scaurus, etc.</title>
     <title type="sub">Machine readable text</title>
-    <author n="Cic.">M. Tullius Cicero</author>
+    <author n="M. Tullius Cicero">M. Tullius Cicero</author>
     <editor role="editor" n="Yonge">C. D. Yonge</editor>
     <sponsor>Perseus Project, Tufts University</sponsor>
     <principal>Gregory Crane</principal>
@@ -42,16 +43,19 @@
   </fileDesc>
 
   <encodingDesc>
-   <refsDecl>
-    <refState delim=" " unit="text"/>
-    <refState unit="section"/>
+   <refsDecl n="CTS">
+    <cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+     <p>This pointer pattern extracts chapter and section</p>
+    </cRefPattern>
+    <cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+     <p>This pointer pattern extracts chapter</p>
+    </cRefPattern>
    </refsDecl>
    <refsDecl>
-    <refState delim=" " unit="text"/>
-    <refState delim="." unit="chapter"/>
+    <refState unit="chapter" delim="."/>
     <refState unit="section"/>
    </refsDecl>
-   <refsDecl n="text=Catil.;text=Agr.">
+   <!--<refsDecl n="text=Catil.;text=Agr.">
     <refState delim=" " unit="text"/>
     <refState delim="." unit="speech"/>
     <refState unit="section"/>
@@ -65,14 +69,14 @@
    <refsDecl n="text=Corn.">
     <refState delim=" " unit="text"/>
     <refState unit="speech"/>
-   </refsDecl>
+   </refsDecl>-->
   </encodingDesc>
 
   <profileDesc>
    <langUsage>
-    <language ident="en">English</language>
-    <language ident="la">Latin</language>
-    <language ident="greek">Greek</language>
+    <language ident="eng">English</language>
+    <language ident="lat">Latin</language>
+    <language ident="grc">Greek</language>
    </langUsage>
   </profileDesc>
 
@@ -197,13 +201,18 @@ Added to repository.
     <item>split composite text and converted to unicode</item>
       </change>-->
    <change when="2014-08-01" who="Stella Dee">edited markup</change>
-  </revisionDesc>
+  <change when="2015-12-13" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change>
+   <change when="1997-07-14" who="DAS">ed.
+			</change><change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change><change who="balmas01" when="2013-09-13T11:20:04">Revision 1.9  reverting texts back to pre_cts_reorg tagged version</change><change who="lcerrato" when="2011-03-21T16:06:41">Revision 1.7  fixed typo in while to in which</change><change who="lcerrato" when="2011-03-17T14:59:55">Revision 1.6  fixing gap tags against source</change><change who="rsingh04" when="2010-08-31T18:43:06">Revision 1.5  cleaned up log keyword</change><change who="rsingh04" when="2010-08-31T18:30:20">Revision 1.4  cleaned up log keyword</change><change who="student" when="2010-07-08T22:49:11">Revision 1.2  fixing place tags - AD</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1 more reorganizing of texts module by collection</change><change who="rsingh04" when="2009-09-22T16:21:37">Revision 1.8 fixed references to Cic. Ver.</change><change who="packel" when="2007-01-04T20:06:59">Revision 1.7 fixed the refsDecls for Cornelius</change><change who="packel" when="2006-05-05T17:38:06">Revision 1.6 fixed date tags</change><change who="packel" when="2006-02-10T20:50:18">Revision 1.5 places/dates now actually tagged</change><change who="lcerrato" when="2005-11-21T16:51:16">Revision 1.4 changed thought you shall not perceive them to though...</change><change who="lcerrato" when="2005-11-21T16:49:41">Revision 1.3 changed: does not the precaution taken of assembling the senate in thus most defensible place thus to this</change><change who="packel" when="2005-08-01T15:59:24">Revision 1.2 removed stray item tags</change><change who="packel" when="2005-07-25T14:31:53">Revision 1.1 Converted to XML</change><change who="lcerrato" when="2005-03-24T19:34:54">Revision 1.19 Marcus Aquillius changed to Manius Aquilius Agrarian 2.83</change><change who="lcerrato" when="2005-03-23T18:13:06">Revision 1.18 changed Pro Font. 38 Marcus Aquillius to Manius Aquilius based on Latin and user report</change><change who="mimno" when="2005-01-19T18:03:37">Revision 1.17 div1s missing type attributes</change><change who="lcerrato" when="2004-06-14T17:34:00">Revision 1.16 changed Rob. Perd. 31 "heave" to "leave"</change><change who="yorkc" when="2003-07-01T22:15:02">Revision 1.15 Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and
+     typos.)</change><change who="lcerrato" when="2001-03-14T19:13:33">Revision 1.14 changed ought to he to ought to be in first
+     oration against Cataline</change><change who="amahoney" when="2000-05-04T16:23:18">Revision 1.13 really fix language ids</change><change who="amahoney" when="2000-05-04T16:21:33">Revision 1.12 fix language codes</change><change who="dasmith" when="2000-03-04T20:34:16">Revision 1.11 Added separate funder entity to TEI header.</change><change who="amahoney" when="2000-02-22T18:11:54">Revision 1.10 fix a couple of broken bibl refs</change><change who="amahoney" when="1996-12-02T21:58:39">Revision 1.9 replace the
+     refsdecl, which disappeared somehow, and fix a couple of funny syntax errors</change><change who="lcerrato" when="1996-11-30T20:38:39">Revision 1.8 revised and proofread again</change><change who="dasmith" when="1999-10-14T21:36:04">Revision 1.7 Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-09-01T20:30:38">Revision 1.6 Removed tag from attribute value.</change><change who="dasmith" when="1999-08-12T17:17:35">Revision 1.5 Fixed refsDecl</change><change who="textgod" when="1997-11-07T18:45:17">Revision 1.4 Fixed typo.</change><change who="textgod" when="1997-10-31T18:58:38">Revision 1.3 Fixed typo.</change><change who="textgod" when="1997-09-01T19:53:11">Revision 1.2 Added sections.</change><change who="textgod" when="1997-08-18T14:51:46">Revision 1.1 Added to repository.</change></revisionDesc>
  </teiHeader>
  <text xml:lang="en">
   <front>
    <head>THE ORATION OF M. T. CICERO IN DEFENCE OF PUBLIUS SULLA.</head>
    <head/>
-   <argument>
+   
     <head>THE ARGUMENT.</head>
     <p>Publius Sulla, having been elected consul with Publius Autronius four years before, had been
      impeached for bribery, convicted, and deprived of his consulship. He had then been prosecuted
@@ -217,9 +226,9 @@ Added to repository.
      assumed a power to save or to destroy just as he thought fit; and saying that he was the third
      foreign king that had reigned in Rome; Numa and Tarquin being the two former. Sulla was
      acquitted.</p>
-   </argument>
+   
   </front>
-  <body>
+  <body><div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0474.phi015.perseus-eng1" subtype="translation">
    <milestone n="1" unit="chapter"/>
    <milestone n="1" unit="section"/>
    <p>I should have been very glad, O judges, if Publius Sulla had been able formerly to retain the
@@ -255,8 +264,7 @@ Added to repository.
     indignation and greater hatred against their authors in me than in Quintus Hortensius? Ought not
     my opinion to be more severe in such a matter, as to whom I should think fit to assist in these
     causes, whom to oppose, whom to defend, and whom to abandon? No doubt, says he, for it was you
-    who investigated, you who laid open the whole conspiracy. <milestone n="2" unit="chapter"
-     /><milestone n="4" unit="section"/></p>
+    who investigated, you who laid open the whole conspiracy. <milestone n="2" unit="chapter"/><milestone n="4" unit="section"/></p>
    <p>And when he says this, he does not perceive that the man who laid it open took care that all
     men should see that which had previously been hidden. Wherefore that conspiracy, if it was laid
     open by me, is now as evident in all its particulars to Hortensius as it is to me. And when you
@@ -268,8 +276,7 @@ Added to repository.
     the cause of my client is honoured, by whom his innocence is upheld? For that is not the only
     method of defending a man's cause which consists in speaking for him. All who countenance him
     with their presence, who show anxiety in his behalf, who desire his safety, all, as far as their
-    opportunities allow or their authority extends, are defending him. <milestone n="5"
-     unit="section"/> Ought I to be unwilling to appear on these benches on which I see these lights
+    opportunities allow or their authority extends, are defending him. <milestone n="5" unit="section"/> Ought I to be unwilling to appear on these benches on which I see these lights
     and ornaments of the republic, when it is only by my own numerous and great labours and dangers
     that I have mounted into their rank, and into this lofty position and dignity which I now enjoy?
     And that you may understand, O Torquatus, whom you are accusing, if you are offended that I, who
@@ -280,7 +287,7 @@ Added to repository.
     formerly been his only defender when prosecuted for corruption. For he did not think himself
     connected by any bond of duty with that man, when he, by the commission of such enormous
     wickedness, had broken asunder the ties of all duties whatever. Who of us countenanced Servius
-    Sulla? who <gap reason="***"/>? who of us thought Marcus Laeca or Caius Cornelius fit to be
+    Sulla? who <gap reason="lost"/>? who of us thought Marcus Laeca or Caius Cornelius fit to be
     defended? who of all the men whom you see here gave the countenance of his presence to any one
     of those criminals? <milestone n="6" unit="section"/> No one. Why was that? Because in other
     causes good men think that they ought not to refuse to defend even guilty men, if they are their
@@ -325,8 +332,7 @@ Added to repository.
     that Sulla is defended by me, but that Autronius was injured by my evidence against him. For I
     think that I not only carry with me zeal in defending causes, but also that my deliberate
     opinion has some weight; which, however, I will use with moderation, O judges, and I would not
-    have used it at all if he had not compelled me. <milestone n="4" unit="chapter"/><milestone
-     n="11" unit="section"/></p>
+    have used it at all if he had not compelled me. <milestone n="4" unit="chapter"/><milestone n="11" unit="section"/></p>
    <p>Two conspiracies are spoken of by you, O Torquatus; one, which is said to have been formed in
     the consulship of Lepidus and Volcatius, when your own father was consul elect; the other, that
     which broke out in my consulship. In each of these you say that Sulla was implicated. You know
@@ -358,8 +364,7 @@ Added to repository.
     chance, or at random, O judges, but as we saw that we were employed as defenders of a man
     against those accusations in which we might have been witnesses, each of us thought that it
     would be best for him to undertake that part of the case, concerning which he himself had been
-    able to acquire some knowledge, and to form some opinions with certainty. <milestone n="5"
-     unit="chapter"/><milestone n="14" unit="section"/></p>
+    able to acquire some knowledge, and to form some opinions with certainty. <milestone n="5" unit="chapter"/><milestone n="14" unit="section"/></p>
    <p>And since you have listened attentively to Hortensius, while speaking on the charge respecting
     the former conspiracy, now, I beg you, listen to this first statement of mine respecting the
     conspiracy which was formed in my consulship. </p>
@@ -388,20 +393,17 @@ Added to repository.
     audacity?—what crime is there which Lentulus did not plot with Autronius?—what atrocity did
     Catiline ever commit without his assistance? while, in the meantime, Sulla not only abstained
     from seeking the concealment of night and solitude in their company, but he had never the very
-    slightest intercourse with them, either in conversation or in casual meetings. <milestone n="17"
-     unit="section"/> The Allobroges, those who gave us the truest information on the most important
+    slightest intercourse with them, either in conversation or in casual meetings. <milestone n="17" unit="section"/> The Allobroges, those who gave us the truest information on the most important
     matters, accused Autronius, and so did the letters of many men, and many private witnesses. All
     that time no one ever accused Sulla; no one ever mentioned his name. Lastly, after Catiline had
     been driven out or allowed to depart out of the city, Autronius sent him arms, trumpets, bugles,
-    scythes, <note anchored="true"> Some commentators propose <foreign xml:lang="la"
-      >fasces</foreign> instead of <foreign xml:lang="la">falces</foreign> here, and it would
+    scythes, <note anchored="true"> Some commentators propose <foreign xml:lang="la">fasces</foreign> instead of <foreign xml:lang="la">falces</foreign> here, and it would
      certainly make much better sense.</note> standards, legions. He who was left in the city, but
     expected out of it though checked by the punishment of Lentulus, gave way at times to feelings
     of fear, but never to any right feelings or good sense. Sulla, on the other hand, was so quiet,
     that all that time he was at Naples, where it is not supposed that there were any men who were
     implicated in or suspected of this crime; and the place itself is one not so well calculated to
-    excite the feelings of men in distress, as to console them. <milestone n="6" unit="chapter"
-     /><milestone n="18" unit="section"/></p>
+    excite the feelings of men in distress, as to console them. <milestone n="6" unit="chapter"/><milestone n="18" unit="section"/></p>
    <p>On account, therefore, of this great dissimilarity between the men and the cases, I also
     behaved in a different manner to them both. For Autronius came to me, and he was constantly
     coming to me, with many tears, as a suppliant, to beg me to defend him, and he used to remind me
@@ -431,8 +433,7 @@ Added to repository.
     mentioned, there was no trace whatever of him in the conspiracy; no information had touched him,
     no suspicion had been breathed of him. I undertook his cause, O Torquatus; I undertook it, and I
     did so <pb n="382"/> willingly, in order that, while good men had always, as I hope, thought me
-    virtuous and firm, not even bad men might he able to call me cruel. <milestone n="7"
-     unit="chapter"/><milestone n="21" unit="section"/></p>
+    virtuous and firm, not even bad men might he able to call me cruel. <milestone n="7" unit="chapter"/><milestone n="21" unit="section"/></p>
    <p>This Torquatus then, O judges, says that he cannot endure my kingly power. What is the meaning
     of my kingly power, O Torquatus? I suppose you mean the power I exerted in my consulship; in
     which I did not command at all, but on the contrary, I obeyed the conscript fathers, and all
@@ -457,9 +458,7 @@ Added to repository.
     called me Tarquin, and Numa, and the third foreign king of Rome. I won't say any more about the
     word king; but I should like to know why you called me a foreigner. For, if I am such, then it
     is not so marvellous that I should be a king,—because, as you say yourself, foreigners have
-    before now been kings at Rome,—as that a foreigner should be a consul at Rome. “This is what <pb
-     n="383"/> I mean,” says he, “that you come from a municipal town.” <milestone n="23"
-     unit="section"/> I confess that I do, and I add, that I come from that municipal town from
+    before now been kings at Rome,—as that a foreigner should be a consul at Rome. “This is what <pb n="383"/> I mean,” says he, “that you come from a municipal town.” <milestone n="23" unit="section"/> I confess that I do, and I add, that I come from that municipal town from
     which salvation to this city and empire has more than once proceeded. But I should like
     exceedingly to know from you, how it is that those men who come from the municipal towns appear
     to you to be foreigners. For no one ever made that objection to that great man, Marcus Cato the
@@ -508,8 +507,7 @@ Added to repository.
     trouble; if my good-will—my industry, my house, my attention, and my ears are always open to all
     men; if I have not even any time left to recollect and think over those things which I have done
     for the safety of the whole body of citizens; shall this still be called kingly power, when no
-    one can possibly be found who would act as my substitute in it? <milestone n="27" unit="section"
-    /> All suspicion of aiming at kingly power is very far removed from me. If you ask who they are
+    one can possibly be found who would act as my substitute in it? <milestone n="27" unit="section"/> All suspicion of aiming at kingly power is very far removed from me. If you ask who they are
     who have endeavoured to assume kingly power in Rome, without unfolding the records of the public
     annals, you may find them among the images in your own house. I suppose it is my achievements
     which have unduly elated me, and have inspired me with I know not how much pride. Concerning
@@ -524,15 +522,13 @@ Added to repository.
     to take away their firebrands, to wrest their torches from their hands, as I did; but their
     wicked and impious inclinations I could neither cure nor eradicate. Therefore I am not ignorant
     in what danger I am living among such a multitude of wicked men, since I see that I have
-    undertaken single-handed an eternal war against all wicked men. <milestone n="10" unit="chapter"
-     /><milestone n="29" unit="section"/></p>
+    undertaken single-handed an eternal war against all wicked men. <milestone n="10" unit="chapter"/><milestone n="29" unit="section"/></p>
    <p>But if perchance, you envy that means of protection which I have, and if it seems to you to be
     of a kingly sort,—namely, the fact that all good men of all ranks and classes consider their
     safety as bound up with mine,—comfort yourself with the reflection that the dispositions of all
     wicked men are especially hostile to and furious against me alone; and they hate me, not only
     because I repressed their profligate attempts and impious madness, but still more because they
-    think, that, as long as I am alive, they can attempt nothing more of the same sort. <milestone
-     n="30" unit="section"/> But why do I wonder if any wicked thing is said of me by wicked men,
+    think, that, as long as I am alive, they can attempt nothing more of the same sort. <milestone n="30" unit="section"/> But why do I wonder if any wicked thing is said of me by wicked men,
     where Lucius Torquatus himself, after having in the first place laid such a foundation of virtue
     as he did in his youth, after having proposed to himself the hope of the most honourable dignity
     in the state, and, in the second place, being the son of Lucius Torquatus, a most intrepid
@@ -566,8 +562,7 @@ Added to repository.
      (in forgetfulness of a general order issued by his father the consul) to fight Geminius Metius,
      whom he slew. The story is told by <bibl n="Liv. 3.7.1">Livy, lib. iii. c. 7.</bibl></note> of
     life in order to strengthen his power over the rest of his army; and do you blame the republic,
-    for destroying domestic enemies in order to avoid being herself destroyed by them? <milestone
-     n="33" unit="section"/> Take notice then, O Torquatus, to what extent I shirk the avowal of the
+    for destroying domestic enemies in order to avoid being herself destroyed by them? <milestone n="33" unit="section"/> Take notice then, O Torquatus, to what extent I shirk the avowal of the
     actions of my consulship. I speak, and I always will speak, with my loudest voice, in order that
     all men may be able to hear me: be present all of you with your minds, ye who are present with
     your bodies, ye in whose numerous attendance I take great pleasure; give me your attention and
@@ -581,16 +576,13 @@ Added to repository.
     citizens from massacre Italy from devastation, the republic from destruction. I at the price of
     the punishment of five frantic and ruined men ransomed the lives of all the citizens, the
     constitution of the whole world, this city the home of all of us, the citadel of foreign kings
-    and foreign nations the light of all people the abode of empire. <milestone n="34"
-     unit="section"/> Did you think that I would not say this in a court of justice when I was not
-    on my oath, which I had said before now in a most numerous assembly when speaking <note
-     anchored="true">This refers to Cicero's conduct when resigning his consulship. Metellus, as has
+    and foreign nations the light of all people the abode of empire. <milestone n="34" unit="section"/> Did you think that I would not say this in a court of justice when I was not
+    on my oath, which I had said before now in a most numerous assembly when speaking <note anchored="true">This refers to Cicero's conduct when resigning his consulship. Metellus, as has
      been said before, refused to allow him to make a speech to the people, because, as he said, he
      had put Roman citizens to death without a trial; on which Cicero instead of making oath in the
      ordinary formula, that he had discharged his duty with fidelity swore with a loud voice “that
      the republic and the city had been saved by his unassisted labour;” and all the Roman people
-     cried out with one voice that that statement was true to its fullest extent. See <bibl
-      n="Cic. Pis. 3">Cic. in Pis. 3</bibl>.</note> on oath? <milestone n="12" unit="chapter"/></p>
+     cried out with one voice that that statement was true to its fullest extent. See <bibl n="Cic. Pis. 3">Cic. in Pis. 3</bibl>.</note> on oath? <milestone n="12" unit="chapter"/></p>
    <p>And I will say this further, O Torquatus, to prevent any wicked man from conceiving any sudden
     attachment to, or any sudden hopes of you; and, in order that every one may hear it, I will say
     it as loudly as I can:—Of all those things which I undertook and did during my consulship in
@@ -612,8 +604,7 @@ Added to repository.
     been accused; but when he, in his whole speech, inveighed against me, and when, in the very
     beginning, as I said, he sought to deprive my defence of all authority, even if my indignation
     had not compelled me to speak, still the necessity of doing justice to my cause would have
-    demanded this speech from me. <milestone n="13" unit="chapter"/><milestone n="36" unit="section"
-    /></p>
+    demanded this speech from me. <milestone n="13" unit="chapter"/><milestone n="36" unit="section"/></p>
    <p>You say that Sulla was named by the Allobroges.—Who denies it? but read the information, and
     see how he was named. They said that Lucius Cassius had said that, among other men, Autronius
     was favourable to their designs. I ask, did Cassius say that Sulla was? Never. They say that
@@ -641,8 +632,7 @@ Added to repository.
     recollected Sulla, even after he had named Autronius. However, what was the reply which Cassius
     made about Sulla? He said that he was not sure. “He does not acquit him,” says Torquatus. I have
     said before, that, even if he had accused him, when he was interrogated in this manner, his
-    reply ought not to have been made matter of accusation against Sulla. <milestone n="39"
-     unit="section"/> But I think that, in judicial proceedings and examinations, the thing to be
+    reply ought not to have been made matter of accusation against Sulla. <milestone n="39" unit="section"/> But I think that, in judicial proceedings and examinations, the thing to be
     inquired is, not whether any one is exculpated, but whether any one is inculpated. And in truth,
     when Cassius says that he does not know, is he seeking to exculpate Sulla, or proving clearly
     enough that he really does not know? He is unwilling to compromise him with the Gauls. Why so?
@@ -659,8 +649,7 @@ Added to repository.
     is perfectly certain that a man is acquainted with all the conspirators, his ignorance of any
     one ought to be considered an acquittal of him. But I am not asking now whether Cassius acquits
     Sulla; this is quite sufficient for me, that there is not one word to implicate Sulla in the
-    whole information of the Allobroges. <milestone n="14" unit="chapter"/><milestone n="40"
-     unit="section"/></p>
+    whole information of the Allobroges. <milestone n="14" unit="chapter"/><milestone n="40" unit="section"/></p>
    <p>Torquatus being cut off from this article of his accusation, again turns against me, and
     accuses me. He says that I have made an entry in the public registers of a different statement
     from that which was really made. O ye immortal gods! (for I will give you what belongs to you;
@@ -669,8 +658,7 @@ Added to repository.
     such important affairs,—affairs arising so unexpectedly, and of such various characters,) it was
     you, in truth, who then inflamed my mind with the desire of saving my country; it was you who
     turned me from all other thoughts to the one idea of preserving the republic; it was you who,
-    amid all that darkness of error and ignorance, held a bright light before my mind! <milestone
-     n="41" unit="section"/> I saw this, O judges, that unless, while the recollection of the senate
+    amid all that darkness of error and ignorance, held a bright light before my mind! <milestone n="41" unit="section"/> I saw this, O judges, that unless, while the recollection of the senate
     on the subject was still fresh, I bore evidence to the authority and to the particulars of this
     information by public records, hereafter some one, not Torquatus, nor any one like Torquatus,
     (for in that indeed I have been much deceived,) but some one who had lost his patrimony, some
@@ -702,8 +690,7 @@ Added to repository.
     that information, or to accuse us of having given credit to it rashly; and lastly, that no one
     should ever put any questions to me, or seek to learn anything from my private journals, lest I
     might be accused of either forgetting or remembering too much, and lest any negligence of mine
-    should be thought discreditable, or lest any eagerness on my part might seem cruel. <milestone
-     n="44" unit="section"/></p>
+    should be thought discreditable, or lest any eagerness on my part might seem cruel. <milestone n="44" unit="section"/></p>
    <p>But still, O Torquatus, I ask you, as your enemy was mentioned in the information, and as a
     full senate and the memory of all men as to so recent an affair was a witness of that fact; as
     my clerks would have communicated the information to you, my intimate friend and companion, if
@@ -723,8 +710,7 @@ Added to repository.
     especially against me the consul? But if I had been forgetful of my own severity and of my own
     virtue, was I so mad, as, when letters are things which have been devised for the sake of
     posterity, in order to be a protection against forgetfulness, to think that the fresh
-    recollection of the whole senate could be beaten down by my journal? <milestone n="46"
-     unit="section"/> I have been bearing with you, O Torquatus, for a long time. I have been
+    recollection of the whole senate could be beaten down by my journal? <milestone n="46" unit="section"/> I have been bearing with you, O Torquatus, for a long time. I have been
     bearing with you; and sometimes I, of my own accord, call back and check my inclination, when it
     has been provoked to chastise your speech. I make some allowance for your violent temper; I have
     some indulgence for your youth, I yield somewhat to our own friendship, I have some regard to
@@ -741,8 +727,7 @@ Added to repository.
     yet consider you a person of sufficient power to make it worth my while to contend and argue
     with you. But if you were more capable through age and experience, I should pursue the conduct
     which is habitual to me when I have been provoked; at present I will deal with you in such away
-    that I shall seem to have received an injury rather than to have requited one. <milestone n="17"
-     unit="chapter"/><milestone n="48" unit="section"/></p>
+    that I shall seem to have received an injury rather than to have requited one. <milestone n="17" unit="chapter"/><milestone n="48" unit="section"/></p>
    <p>Nor, indeed, can I make out why you are angry with me. If it is because I am defending a man
     whom you accusing, why should not I also be angry with you, who are accusing a man whom I am
     defending? “I,” say you, “am accusing my enemy.” And I am defending my friend. “But you ought
@@ -767,8 +752,7 @@ Added to repository.
     those who were contending against you for Sulla's safety your greatest friends, with whom you
     were not angry. On, that account, deprived you of the consulship, resisted your acquisition of
     honour; and yet they did so without any rupture of your mutual friendship, without violating any
-    duty according to ancient precedent and the established principles of every good man. <pb
-     n="394"/>
+    duty according to ancient precedent and the established principles of every good man. <pb n="394"/>
     <milestone n="18" unit="chapter"/><milestone n="50" unit="section"/></p>
    <p>But now what promotion of yours am I opposing? or what dignity of yours am I throwing
     obstacles in the way of? what is there which you can at present seek from this proceeding?
@@ -785,8 +769,7 @@ Added to repository.
     his son! However; what is it that Cornelius gives information of by the mouth of that boy? If it
     is a part of the business which is unknown to me, but which has been communicated to Hortensius,
     let Hortensius reply. If as you say, his statement concerns that crew of Autronius and Catiline,
-    when they intended to commit a massacre in the Campus Martius, at the consular <foreign
-     xml:lang="la">comitia</foreign>, which were held by me; we saw Autronius that day in the
+    when they intended to commit a massacre in the Campus Martius, at the consular <foreign xml:lang="la">comitia</foreign>, which were held by me; we saw Autronius that day in the
     Campus. And why do I say we saw? I myself saw him (for you at that time, O judges, had no
     anxiety, no suspicions; I, protected by a firm guard of friends at that time, checked the forces
     and the endeavours of Catiline and Autronius). <milestone n="52" unit="section"/> Is there,
@@ -829,14 +812,12 @@ Added to repository.
      <milestone n="55" unit="section"/> But there are letters of Faustus's extant, in which he begs
     and prays Publius Sulla to buy gladiators, and to buy this very troop: and not only were such
     letters sent to Publius Sulla, but they were sent also to Lucius Caesar, to Quintus Pompeius,
-    and to Gains Memmius, by whose advice the whole business was managed. But Cornelius <note
-     anchored="true">This Cornelius is not the Roman knight mentioned before; but some freedman of
+    and to Gains Memmius, by whose advice the whole business was managed. But Cornelius <note anchored="true">This Cornelius is not the Roman knight mentioned before; but some freedman of
      Publius Sulla.</note> was appointed to manage the troop. If in the respect of the purchase of
     this household of gladiators no suspicion attaches to the circumstances, it certainly can make
     no difference that he was appointed to manage them afterwards. But still, he in reality only
     discharged the servile duty of providing them with arms; but he never did superintend the men
-    themselves; that duty was always discharged by Balbus, a freedman of Faustus. <milestone n="20"
-     unit="chapter"/><milestone n="56" unit="section"/></p>
+    themselves; that duty was always discharged by Balbus, a freedman of Faustus. <milestone n="20" unit="chapter"/><milestone n="56" unit="section"/></p>
    <p>But Sittius was sent by him into further Spain; in order to excite sedition in that province.
     In the first place, O judges, Sittius departed, in the consulship of Lucius Julius and Caius
     Figulus, some time before this mad business of Catiline's, and before there was any suspicion of
@@ -875,8 +856,7 @@ Added to repository.
     you would say it was easier to tear their limbs from them than their lands but Sittius never
     thought that there was such a relationship between him and his estates, and therefore he cleared
     himself, not only from all suspicion of such wickedness as theirs, but even from being talked
-    about not by arms, but at the expense of his patrimony. <milestone n="21" unit="chapter"
-     /><milestone n="60" unit="section"/></p>
+    about not by arms, but at the expense of his patrimony. <milestone n="21" unit="chapter"/><milestone n="60" unit="section"/></p>
    <p>But now, as to what he adds, that the inhabitants of Pompeii were excited by Sulla to join
     that conspiracy and that abominable wickedness, what sort of statement that I am quite unable to
     understand. Do the people of Pompeii appear to have joined the conspiracy? Who has ever said so?
@@ -901,8 +881,7 @@ Added to repository.
     settled by him, and though the fortune of the Roman people has separated the interests of the
     settlers from the fortunes of the native citizens of Pompeii, he is still so popular among, and
     so much beloved by both parties, that he seems not so much to have dispossessed the one party of
-    their lands as to have settled both of them in that country. <milestone n="22" unit="chapter"
-    /></p>
+    their lands as to have settled both of them in that country. <milestone n="22" unit="chapter"/></p>
    <p>“But the gladiators, and all those preparations for violence, were got together because of the
     motion of Caecilius.” And then he inveighed bitterly against Caecilius, a most virtuous and most
     accomplished man, of whose virtue and constancy, O judges, I will only say thus much,—that he
@@ -967,8 +946,7 @@ Added to repository.
     order to make Catiline consul. And if I grant you this, then you must grant to me that Sulla,
     when he was voting for Catiline, had no thoughts of recovering by violence his own consulship,
     which he had lost by a judicial decision. For his character is not one, O judges, which is at
-    all liable to the imputation of such enormous, of such atrocious crimes. <milestone n="69"
-     unit="section"/>
+    all liable to the imputation of such enormous, of such atrocious crimes. <milestone n="69" unit="section"/>
    </p>
    <p>For I will now proceed, after I have refuted all the charges against him, by an arrangement
     contrary to that which is usually adopted, to speak of the general course of life and habits of
@@ -1004,8 +982,7 @@ Added to repository.
     disturb the courts of justice by violence and arms; in prosperity to despise every body, in
     adversity to fight against all good men; never to regard the interests of the republic, and not
     to yield even to fortune herself. Even if he were not convicted by the most irresistible
-    evidence, still his own habits and his past life would convict him. <milestone n="26"
-     unit="chapter"/><milestone n="72" unit="section"/></p>
+    evidence, still his own habits and his past life would convict him. <milestone n="26" unit="chapter"/><milestone n="72" unit="section"/></p>
    <p>Come now, compare with those men the life of Publius Sulla, well known as it is to you and to
     all the Roman people; and place it, O judges, as it were before your eyes. Has there ever been
     any act or exploit of his which has seemed to any one, I will not say audacious, but even rather
@@ -1030,8 +1007,7 @@ Added to repository.
     be exposed to. He was judged to have too great a desire for honour and dignity. If no one else
     was supposed to have such desires in standing for the consulship, then he was judged to be more
     covetous than the rest. But if this desire for the consulship has existed in some other men
-    also, then, perhaps, fortune was a little more unfavourable to him than to others. <milestone
-     n="74" unit="section"/> But, after this misfortune, who ever saw Publius Sulla otherwise than
+    also, then, perhaps, fortune was a little more unfavourable to him than to others. <milestone n="74" unit="section"/> But, after this misfortune, who ever saw Publius Sulla otherwise than
     grieving, dejected, and out of spirits? Who ever suspected that he was avoiding the sight of men
     and the light of day, out of hatred, and not rather out of shame? For though he had many
     temptations to frequent this city and the forum, by reason of the great attachment of his
@@ -1041,8 +1017,7 @@ Added to repository.
    <p>In such modest conduct as this, O judges, and in such a life as this, will you believe that
     there was any room left for such enormous wickedness? Look at the man himself; behold his
     countenance. Compare the accusation with his course of life. Compare his life, which has been
-    laid open before you from his birth up to this day, with this accusation. <milestone n="75"
-     unit="section"/> I say nothing of the republic, to which Sulla has always been most devoted.
+    laid open before you from his birth up to this day, with this accusation. <milestone n="75" unit="section"/> I say nothing of the republic, to which Sulla has always been most devoted.
     Did he wish these friends of his, being such men as they are, so attached to him, by whom his
     prosperity had been formerly adorned, by whom his adversity is now comforted and relieved, to
     perish miserably, in order that he himself might be at liberty to pass a most miserable and
@@ -1067,8 +1042,7 @@ Added to repository.
     convalescent and to be cured; for there is no one who thinks that if those pests remained in the
     republic, the Constitution could continue to exist any longer. Therefore they were some Furies
     who urged them on, not to complete their wickedness, but to atone to the republic for their
-    guilt by their punishment. <milestone n="28" unit="chapter"/><milestone n="77" unit="section"
-    /></p>
+    guilt by their punishment. <milestone n="28" unit="chapter"/><milestone n="77" unit="section"/></p>
    <p>Will you then, O judges, now turn back Publius Sulla into this band of rascals, out of that
     band of honourable men who are living and have lived as his associates? Will you transfer him
     from this body of citizens, and from the familiar dignity in which he lives with them, to the
@@ -1086,8 +1060,7 @@ Added to repository.
    <p>Is the life of Publius Sulla, then, to be put to the torture? is it to be examined to see what
     lust is concealed beneath it? whether any crime is lurking under it, or any cruelty, or any
     audacity? There will be no mistake in our cause, O judges, no obscurity, if the voice of his
-    whole life, which ought to be of the very greatest weight, is listened to by you. <milestone
-     n="79" unit="section"/> In this cause we fear no witness; we feel sure that no one knows, or
+    whole life, which ought to be of the very greatest weight, is listened to by you. <milestone n="79" unit="section"/> In this cause we fear no witness; we feel sure that no one knows, or
     has ever seen, or has ever heard anything against us. But still, if the consideration of the
     fortune of Publius Sulla has no effect on you, O judges, let a regard for your own fortune weigh
     with you. For this is of the greatest importance to you who have lived in the greatest elegance
@@ -1098,8 +1071,7 @@ Added to repository.
     common citadel of all good men, block up the ways of escape resorted to by the wicked. Let that
     witness be of the greatest weight in procuring either safety or punishment for a man, which is
     the only one that, from its own intrinsic nature, can with ease be thoroughly examined, and
-    which cannot be suddenly altered and remodelled. <milestone n="29" unit="chapter"/><milestone
-     n="80" unit="section"/>
+    which cannot be suddenly altered and remodelled. <milestone n="29" unit="chapter"/><milestone n="80" unit="section"/>
    </p>
    <p>What? Shall this authority, (for I must continually speak of that though I will speak of it
     with timidity and moderation,)—shall, I say, this authority of mine, when I have kept aloof from
@@ -1118,8 +1090,7 @@ Added to repository.
     of Catiline when he was prosecuted on a charge of extortion: he knew he was a bad man, but he
     was a suppliant; perhaps he was an audacious man, but he had once been his friend. And, as he
     stood by him after information of that first conspiracy had been laid before him, he showed that
-    he had heard something about him, but that he had not believed it. <milestone n="82"
-     unit="section"/> “But he did not countenance him by his presence at the other trial, when the
+    he had heard something about him, but that he had not believed it. <milestone n="82" unit="section"/> “But he did not countenance him by his presence at the other trial, when the
     rest did.” If he himself had afterwards learnt something, of which he had been ignorant when
     consul, still we must pardon those men who had heard nothing since that time. But if the first
     accusation had weight, it ought not to have had more weight when it was old than when it was
@@ -1142,8 +1113,7 @@ Added to repository.
     the men of consular rank were especially mentioned, I thought I ought to say thus much in their
     behalf; and that that would be enough, as the recollection of all men would join me in bearing
     witness, that there was not one man of that rank who did not labour with all his virtue, and
-    energy, and influence, to preserve the republic. <milestone n="30" unit="chapter"/><milestone
-     n="83" unit="section"/></p>
+    energy, and influence, to preserve the republic. <milestone n="30" unit="chapter"/><milestone n="83" unit="section"/></p>
    <p>But what comes next? Do I, who never praised Catiline, who never as consul countenanced
     Catiline when he was on his trial, who have given evidence respecting the conspiracy against
     others,—do I seem to you so far removed from sanity, so forgetful of my own consistency, so
@@ -1177,8 +1147,7 @@ Added to repository.
     was making a thorough inquiry into those great dangers which were threatening everybody, when I
     was hearing many thing; not believing everything, but guarding against everything, not one word
     was said to me by any one who gave information, nor did any one hint any suspicion, nor was
-    there the slightest mention in any one's letters, of Publius Sulla. <milestone n="31"
-     unit="chapter"/><milestone n="86" unit="section"/></p>
+    there the slightest mention in any one's letters, of Publius Sulla. <milestone n="31" unit="chapter"/><milestone n="86" unit="section"/></p>
    <p>Wherefore I call you, O gods of my country and of my household, to witness,—you who preside
     over this city and this empire,—you who have preserved this empire, and these our liberties, and
     the Roman people,—you who by your divine assistance protected these houses and temples when I
@@ -1212,8 +1181,7 @@ Added to repository.
     disgrace to a family of such renown; he is anxious that this unhappy child may not be called the
     son of a conspirator, a criminal and a traitor. He fears for this boy, who is much dearer to him
     than his own life, anxious, though he cannot leave him the undiminished inheritance of his
-    honours, at all events not to leave him the undying recollection of his infamy. <milestone
-     n="89" unit="section"/> This little child entreats you, O judges, to allow him occasionally to
+    honours, at all events not to leave him the undying recollection of his infamy. <milestone n="89" unit="section"/> This little child entreats you, O judges, to allow him occasionally to
     congratulate his father, if not with his fortunes unimpaired, at least to congratulate him in
     his affliction. The roads to the courts of justice and to the forum are better known to that
     unhappy boy, than the roads to his playground or to his school. I am contending now, O judges,
@@ -1263,7 +1231,7 @@ Added to repository.
     warrants me in using, so to act that we, by our common zeal, (since we are united in the service
     of the republic,) and you, by your humanity and mercy, may repel from us both the false charge
     of cruelty. </p>
-  </body>
- </text>
+  </div>
+ </body></text>
 
 </TEI>

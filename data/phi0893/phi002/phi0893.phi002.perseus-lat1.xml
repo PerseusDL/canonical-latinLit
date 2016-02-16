@@ -1,22 +1,23 @@
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Prose//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" >
-%PersProse;
-]>
-<TEI.2>
-  <teiHeader>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader type="text">
     <fileDesc>
       <titleStmt>
-        <title>Carmen Saeculare</title>
-        <author>Q. Horatius Flaccus (Horace)</author>
+        <title type="work">Carmen Saeculare</title>
+        <title type="sub">Machine readable text</title><author n="Q. Horatius Flaccus (Horace)">Q. Horatius Flaccus (Horace)</author>
         <editor role="editor">Paul Shorey</editor>
-        &fund.Mellon;
-      </titleStmt>
-      &Perseus.publish;
+        <funder n="org:Mellon">The Mellon Foundation</funder>
+      <sponsor>Perseus Project, Tufts University</sponsor><principal>Gregory Crane</principal><respStmt><resp>Prepared under the supervision of</resp><name>Bridget Almas</name><name>Lisa Cerrato</name><name>William Merrill</name><name>Elli Mylonas</name><name>David Smith</name></respStmt></titleStmt>
+      <publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+
       <sourceDesc>
         <biblStruct>
           <monogr>
-            <author>Q. Horatius Flaccus (Horace)</author>
+            <author n="Q. Horatius Flaccus (Horace)">Q. Horatius Flaccus (Horace)</author>
             <title>Horace Odes and Epodes</title>
             <editor role="editor">Paul Shorey</editor>
             <imprint>
@@ -25,29 +26,43 @@
               <date>1898</date>
             </imprint>
           </monogr>
-        </biblStruct><p>Keyboarding</p></sourceDesc>
+        </biblStruct><list><item>Keyboarding</item></list></sourceDesc>
     </fileDesc>
 
-    <encodingDesc>
-<refsDecl doctype="TEI.2">
-<state unit="poem"/>
-<state unit="line"/>
-</refsDecl>
-
-    </encodingDesc>
+<encodingDesc>
+            <refsDecl n="CTS">
+                <cRefPattern n="line"
+                         matchPattern="(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:l[@n='$2'])">
+                    <p>This pointer pattern extracts Poem and Line</p>
+                </cRefPattern>
+                <cRefPattern n="poem"
+                         matchPattern="(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+                    <p>This pointer pattern extracts Poem</p>
+                </cRefPattern>
+            </refsDecl>
+            <refsDecl>
+                <refState unit="poem" delim="."/>
+                <refState unit="line"/>
+            </refsDecl>
+        </encodingDesc>
 
     <profileDesc>
       <langUsage>
-	<language id="la">Latin</language>
-	<language id="greek">Greek</language>
+	<language ident="la">Latin</language>
+	<language ident="grc">Greek</language>
       </langUsage>
     </profileDesc>
+    <revisionDesc>
+	<change who="Zach Himes" when="2015-12-07">Converted to TEI P5 and EpiDoc.</change>
+    </revisionDesc>
+
   </teiHeader>
 
-
-<text id="stoa0045.stoa0"><body>
-<pb id="p.116"/>
-<div1 type="poem" n="1">
+<text xml:id="stoa0045.stoa0"><body><div type="textpart" xml:lang="lat" n="urn:cts:canonical-latinLit:phi0893.phi002.perseus-lat1" subtype="edition">
+<pb n="p.116"/>
+<div type="textpart" n="1" subtype="poem">
 
 <l n="1">Phoebe silvarumque potens Diana, </l>
 <l n="2">Lucidiim caeli decus, o colendi </l>
@@ -81,7 +96,7 @@
 <l n="21">Certus undenos deciens per annos </l>
 <l n="22">Orbis ut cantus ref eratque ludos </l>
 
-<pb id="p.117"/>
+<pb n="p.117"/>
 
 <l n="23">Ter die claro totiensque grata </l>
 <l n="24">Nocte frequentes. </l>
@@ -126,7 +141,7 @@
 <l n="51">Impetret, bellante prior, iacentem </l>
 <l n="52">Lenis in hostem. </l>
 
-<pb id="p.118"/>
+<pb n="p.118"/>
 
 
 <l n="53">iam mari terraque manus potentes </l>
@@ -163,4 +178,4 @@
 <l n="75">Doctus et Phoebi chorus et Dianae</l>
 
 <l n="76">Dicere laudes. </l>
-</div1></body></text></TEI.2>
+</div></div></body></text></TEI>

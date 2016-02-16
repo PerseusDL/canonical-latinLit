@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
     <fileDesc>
       <titleStmt>
-        <title>Hamilcar </title>
-        <author>Cornelius Nepos</author>
+        <title type="work">Hamilcar </title>
+        <title type="sub">Machine readable text</title><author n="Cornelius Nepos">Cornelius Nepos</author>
         <sponsor>Perseus Project, Tufts University</sponsor>
         <principal>Gregory Crane</principal>
         <respStmt>
@@ -43,23 +43,34 @@
     <encodingDesc>
       <editorialDecl>
         <correction method="silent" status="high">
-          <p><!--&Perseus.OCR;-->Perseus</p>
+          <p><!--This text was converted to electronic form by optical character recognition and has been proofread to a medium level of accuracy.-->Perseus</p>
         </correction>
       </editorialDecl>
+      <refsDecl n="CTS">
+        <cRefPattern n="section"
+          matchPattern="(\w+).(\w+)"
+          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+          <p>This pointer pattern extracts chapter and section</p>
+        </cRefPattern>
+        <cRefPattern n="chapter"
+          matchPattern="(\w+)"
+          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+          <p>This pointer pattern extracts chapter</p>
+        </cRefPattern>
+      </refsDecl>
       <refsDecl>
-        <refState unit="life"/>
-        <refState n="chunk" unit="chapter"/>
+        <refState unit="chapter" delim="."/>
         <refState unit="section"/>
       </refsDecl>
     </encodingDesc>
 
     <profileDesc>
       <langUsage>
-        <language ident="la">Latin</language>
-        <language ident="en">English</language>
-        <language ident="greek">Greek</language>
+        <language ident="lat">Latin</language>
+        <language ident="eng">English</language>
+        <language ident="grc">Greek</language>
         <language ident="de">German</language>
-        <language ident="fr">French</language>
+        <language ident="fre">French</language>
         <language ident="it">Italian</language>
       </langUsage>
     </profileDesc>
@@ -76,27 +87,25 @@
     <item>split composite text and converted to unicode</item>
       </change>-->
       <change when="2014-08-01" who="Stella Dee">edited markup</change>
-    </revisionDesc>
+    <change when="2015-12-11" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change></revisionDesc>
 
   </teiHeader>
-  <text xml:lang="la">
-    <body>
+  <text>
+    <body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0588.abo022.perseus-lat1" subtype="edition">
       <milestone n="1" unit="chapter"/>
       <milestone n="1" unit="section"/>
       <p>Hamilcar, Hannibalis filius, cognomine Barca, Karthaginiensis, primo Poenico bello, sed
-        temporibus extremis, admodum adulescentulus in Sicilia praeesse coepit exercitui. <milestone
-          n="2" unit="section"/> cum ante eius adventum et mari et terra male res gererentur
+        temporibus extremis, admodum adulescentulus in Sicilia praeesse coepit exercitui. <milestone n="2" unit="section"/> cum ante eius adventum et mari et terra male res gererentur
         Karthaginiensium, ipse ubi affuit, numquam hosti cessit neque locum nocendi dedit, saepeque
         e contrario occasione data lacessivit semperque superior discessit. quo facto, cum paene
         omnia in Sicilia Poeni amisissent, ille Erycem sic defendit, ut bellum eo loco gestum non
         videretur. <milestone n="3" unit="section"/> interim Karthaginienses classe apud insulas
-        Aegates a <abbr expan="Gaio">C.</abbr> Lutatio, consule Romanorum, superati statuerunt belli
+        Aegates a <expan><abbr>C.</abbr><ex>Gaio</ex></expan> Lutatio, consule Romanorum, superati statuerunt belli
         facere finem eamque rem arbitrio permiserunt Hamilcaris. ille etsi flagrabat bellandi
         cupiditate, tamen paci serviundum putavit, quod patriam exhaustam sumptibus diutius
         calamitates belli ferre non <milestone n="4" unit="section"/> posse intellegebat, sed ita ut
         statim mente agitaret, si paulum modo res essent refectae, bellum renovare Romanosque armis
-        persequi, donicum aut virtute vicissent aut victi manus dedissent. <milestone n="5"
-          unit="section"/> hoc consilio pacem conciliavit, in quo tanta fuit ferocia, cum Catulus
+        persequi, donicum aut virtute vicissent aut victi manus dedissent. <milestone n="5" unit="section"/> hoc consilio pacem conciliavit, in quo tanta fuit ferocia, cum Catulus
         negaret bellum compositurum, nisi ille cum suis, qui Erycem tenerent, armis relictis Sicilia
         decederent, ut succumbente patria ipse periturum se potius dixerit, quam cum tanto flagitio
         domum rediret: non enim suae esse virtutis arma a patria accepta adversus hostes adversariis
@@ -106,8 +115,7 @@
         namque diuturnitate externi mali tantum exarsit intestinum bellum, ut numquam in pari
         periculo fuerit Karthago nisi cum deleta est. <milestone n="2" unit="section"/> primo
         mercennarii milites, quibus adversus Romanos usi erant, desciverunt, quorum numerus erat
-        viginti milium. ii totam abalienarunt Africam, ipsam Karthaginem oppugnarunt. <milestone
-          n="3" unit="section"/> quibus malis adeo sunt Poeni perterriti, ut etiam auxilia ab
+        viginti milium. ii totam abalienarunt Africam, ipsam Karthaginem oppugnarunt. <milestone n="3" unit="section"/> quibus malis adeo sunt Poeni perterriti, ut etiam auxilia ab
         Romanis petierint; eaque impetrarunt. sed extremo, cum prope iam ad desperationem
         pervenissent, Hamilcarem imperatorem fecerunt. <milestone n="4" unit="section"/> is non
         solum hostes a muris Karthaginis removit, cum amplius centum milia facta essent armatorum,
@@ -135,6 +143,6 @@
         occisus est. <milestone n="3" unit="section"/> huius perpetuum odium erga Romanos maxime
         concitasse videtur secundum bellum Poenicum. namque Hannibal, filius eius, assiduis patris
         obtestationibus eo est perductus, ut interire quam Romanos non experiri mallet. </p>
-    </body>
-  </text>
+    </div>
+  </body></text>
 </TEI>

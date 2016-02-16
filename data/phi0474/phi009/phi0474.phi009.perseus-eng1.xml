@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
  <teiHeader type="text">
   <fileDesc>
    <titleStmt>
-    <title>In Defense of the Proposed Manilian Law </title>
+    <title type="work">In Defense of the Proposed Manilian Law </title>
     <title>Three orations on the Agrarian law, the four against Catiline, the orations for Rabirius,
      Murena, Sylla, Archias, Flaccus, Scaurus, etc.</title>
     <title type="sub">Machine readable text</title>
-    <author n="Cic.">M. Tullius Cicero</author>
+    <author n="M. Tullius Cicero">M. Tullius Cicero</author>
     <editor role="editor" n="Yonge">C. D. Yonge</editor>
     <sponsor>Perseus Project, Tufts University</sponsor>
     <principal>Gregory Crane</principal>
@@ -42,16 +43,19 @@
   </fileDesc>
 
   <encodingDesc>
-   <refsDecl>
-    <refState delim=" " unit="text"/>
-    <refState unit="section"/>
+   <refsDecl n="CTS">
+    <cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+     <p>This pointer pattern extracts chapter and section</p>
+    </cRefPattern>
+    <cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+     <p>This pointer pattern extracts chapter</p>
+    </cRefPattern>
    </refsDecl>
    <refsDecl>
-    <refState delim=" " unit="text"/>
-    <refState delim="." unit="chapter"/>
+    <refState unit="chapter" delim="."/>
     <refState unit="section"/>
    </refsDecl>
-   <refsDecl n="text=Catil.;text=Agr.">
+   <!--<refsDecl n="text=Catil.;text=Agr.">
     <refState delim=" " unit="text"/>
     <refState delim="." unit="speech"/>
     <refState unit="section"/>
@@ -65,14 +69,14 @@
    <refsDecl n="text=Corn.">
     <refState delim=" " unit="text"/>
     <refState unit="speech"/>
-   </refsDecl>
+   </refsDecl>-->
   </encodingDesc>
 
   <profileDesc>
    <langUsage>
-    <language ident="en">English</language>
-    <language ident="la">Latin</language>
-    <language ident="greek">Greek</language>
+    <language ident="eng">English</language>
+    <language ident="lat">Latin</language>
+    <language ident="grc">Greek</language>
    </langUsage>
   </profileDesc>
 
@@ -197,22 +201,24 @@ Added to repository.
     <item>split composite text and converted to unicode</item>
       </change>-->
    <change when="2014-08-01" who="Stella Dee">edited markup</change>
-  </revisionDesc>
+  <change when="2015-12-13" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change><change when="1997-07-14" who="DAS">ed.</change>
+   <change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change>
+   <change who="balmas01" when="2013-09-13T11:20:04">Revision 1.9  reverting texts back to pre_cts_reorg tagged version</change><change who="lcerrato" when="2011-03-21T16:06:41">Revision 1.7  fixed typo in while to in which</change><change who="lcerrato" when="2011-03-17T14:59:55">Revision 1.6  fixing gap tags against source</change><change who="rsingh04" when="2010-08-31T18:43:06">Revision 1.5  cleaned up log keyword</change><change who="rsingh04" when="2010-08-31T18:30:20">Revision 1.4  cleaned up log keyword</change><change who="student" when="2010-07-08T22:49:11">Revision 1.2  fixing place tags - AD</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1 more reorganizing of texts module by collection</change><change who="rsingh04" when="2009-09-22T16:21:37">Revision 1.8 fixed references to Cic. Ver.</change><change who="packel" when="2007-01-04T20:06:59">Revision 1.7 fixed the refsDecls for Cornelius</change><change who="packel" when="2006-05-05T17:38:06">Revision 1.6 fixed date tags</change><change who="packel" when="2006-02-10T20:50:18">Revision 1.5 places/dates now actually tagged</change><change who="lcerrato" when="2005-11-21T16:51:16">Revision 1.4 changed thought you shall not perceive them to though...</change><change who="lcerrato" when="2005-11-21T16:49:41">Revision 1.3 changed: does not the precaution taken of assembling the senate in thus most defensible place thus to this</change><change who="packel" when="2005-08-01T15:59:24">Revision 1.2 removed stray item tags</change><change who="packel" when="2005-07-25T14:31:53">Revision 1.1 Converted to XML</change><change who="lcerrato" when="2005-03-24T19:34:54">Revision 1.19 Marcus Aquillius changed to Manius Aquilius Agrarian 2.83</change><change who="lcerrato" when="2005-03-23T18:13:06">Revision 1.18 changed Pro Font. 38 Marcus Aquillius to Manius Aquilius based on Latin and user report</change><change who="mimno" when="2005-01-19T18:03:37">Revision 1.17 div1s missing type attributes</change><change who="lcerrato" when="2004-06-14T17:34:00">Revision 1.16 changed Rob. Perd. 31 "heave" to "leave"</change><change who="yorkc" when="2003-07-01T22:15:02">Revision 1.15 Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and
+     typos.)</change><change who="lcerrato" when="2001-03-14T19:13:33">Revision 1.14 changed ought to he to ought to be in first
+     oration against Cataline</change><change who="amahoney" when="2000-05-04T16:23:18">Revision 1.13 really fix language ids</change><change who="amahoney" when="2000-05-04T16:21:33">Revision 1.12 fix language codes</change><change who="dasmith" when="2000-03-04T20:34:16">Revision 1.11 Added separate funder entity to TEI header.</change><change who="amahoney" when="2000-02-22T18:11:54">Revision 1.10 fix a couple of broken bibl refs</change><change who="amahoney" when="1996-12-02T21:58:39">Revision 1.9 replace the
+     refsdecl, which disappeared somehow, and fix a couple of funny syntax errors</change><change who="lcerrato" when="1996-11-30T20:38:39">Revision 1.8 revised and proofread again</change><change who="dasmith" when="1999-10-14T21:36:04">Revision 1.7 Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-09-01T20:30:38">Revision 1.6 Removed tag from attribute value.</change><change who="dasmith" when="1999-08-12T17:17:35">Revision 1.5 Fixed refsDecl</change><change who="textgod" when="1997-11-07T18:45:17">Revision 1.4 Fixed typo.</change><change who="textgod" when="1997-10-31T18:58:38">Revision 1.3 Fixed typo.</change><change who="textgod" when="1997-09-01T19:53:11">Revision 1.2 Added sections.</change><change who="textgod" when="1997-08-18T14:51:46">Revision 1.1 Added to repository.</change></revisionDesc>
  </teiHeader>
- <text xml:lang="en">
+ <text xml:lang="eng">
   <front>
    <head>THE SPEECH OF M. T. CICERO IN DEFENCE OF THE PROPOSED MANILIAN LAW.</head>
-   <argument>
+   
     <head>THE ARGUMENT.</head>
     <p>In the year B.C. <date when="-0067">67</date>, Aulus Gabinius had obtained the passing of a
      decree by which Pompey was invested for three years with the supreme command over all the
      Mediterranean, and over all the coasts of that sea, to a distance of four hundred furlongs from
      the sea. And in this command he had acted with great vigour and with complete success;
      destroying all the pirates' strongholds, and distributing the men themselves as colonists among
-     the inland towns of <placeName key="tgn,7002294">Asia Minor</placeName> and <placeName
-      key="tgn,1000074">Greece</placeName>. After this achievement he did not return to <placeName
-      key="perseus,Rome">Rome</placeName>, but remained in <placeName key="tgn,1000004"
-      >Asia</placeName>, making various regulations for the towns which he had conquered. </p>
+     the inland towns of <placeName key="tgn,7002294">Asia Minor</placeName> and <placeName key="tgn,1000074">Greece</placeName>. After this achievement he did not return to <placeName key="perseus,Rome">Rome</placeName>, but remained in <placeName key="tgn,1000004">Asia</placeName>, making various regulations for the towns which he had conquered. </p>
     <p>During this period Lucullus had been prosecuting the war against Mithridates, and proceeding
      gradually in the reduction of <placeName key="tgn,7016619">Pontus</placeName>; he had
      penetrated also into <placeName key="tgn,7001554">Mesopotamia</placeName>, but had subsequently
@@ -222,19 +228,17 @@ Added to repository.
      campaign against the pirates, the consul Marcus Aquillius Glabrio was sent to supersede
      Lucullus in his command, but he was perfectly incompetent to oppose Mithridates, who seemed
      likely with such an enemy to recover all the power of which Lucullus had deprived him. So in
-     the year B.C. <date when="-0066">66</date>, while Glabrio was still in <placeName
-      key="tgn,7016608">Bithynia</placeName>, and Pompey in <placeName key="tgn,7002294">Asia
+     the year B.C. <date when="-0066">66</date>, while Glabrio was still in <placeName key="tgn,7016608">Bithynia</placeName>, and Pompey in <placeName key="tgn,7002294">Asia
       Minor</placeName>, Caius Manilius, a tribune of the people, brought forward a proposition,
      that, in addition to the command which Pompey already possessed, he should be invested with
-     unlimited power in <placeName key="tgn,7016608">Bithynia</placeName>, <placeName
-      key="tgn,7016619">Pontus</placeName>, and <placeName key="tgn,7006651">Armenia</placeName>,
+     unlimited power in <placeName key="tgn,7016608">Bithynia</placeName>, <placeName key="tgn,7016619">Pontus</placeName>, and <placeName key="tgn,7006651">Armenia</placeName>,
      for the purpose of conducting the war against Mithridates. The measure was strongly opposed by
      Catulus and by Hortensius, but it was supported by Caesar, and by Cicero in the following
      speech, which is the first which he ever addressed to the people; and the proposition was
      carried.</p>
-   </argument>
+   
   </front>
-  <body>
+  <body><div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0474.phi009.perseus-eng1" subtype="translation">
    <milestone n="1" unit="chapter"/>
    <milestone n="1" unit="section"/>
    <p>Although, O Romans, your numerous assembly has always seemed to me the most agreeable body
@@ -245,8 +249,7 @@ Added to repository.
     years. For as hitherto I have not dared, on account of my youth, to intrude upon the authority
     of this place, and as I considered that no arguments ought to be brought to this place except
     such as were the fruit of great ability, and worked up with the greatest industry, I have
-    thought it fit to devote all my time to the necessities of my friends. <milestone n="2"
-     unit="section"/> And accordingly, this place has never been unoccupied by men who were
+    thought it fit to devote all my time to the necessities of my friends. <milestone n="2" unit="section"/> And accordingly, this place has never been unoccupied by men who were
     defending your cause, and my industry, which has been virtuously and honestly employed about the
     dangers of private individuals, has received its most honourable reward in your approbation. For
     when, on account of the adjournment of the comitia, I was three times elected the first praetor
@@ -256,14 +259,12 @@ Added to repository.
     daily practice in speaking can give a vigilant man who has habituated himself to the forum, at
     all events, if I have any authority, I will employ it before those who have given it to me; and
     if I can accomplish anything by speaking, I will display it to those men above all others, who
-    have thought fit, by their decision, to confer honours on that qualification. <milestone n="3"
-     unit="section"/> And, above all things, I see that I have reason to rejoice on this account,
+    have thought fit, by their decision, to confer honours on that qualification. <milestone n="3" unit="section"/> And, above all things, I see that I have reason to rejoice on this account,
     that, since I am speaking in this place, to which I am so entirely unaccustomed, I have a cause
     to advocate in which eloquence can hardly fail any one; for I have to speak of the eminent and
     extraordinary virtue of Cnaeus Pompey; and it is harder for me to find out how to end a
     discourse on such a subject, than how to begin one. So that what I have to seek for is not so
-    much a variety of arguments, as moderation in employing them. <milestone n="2" unit="chapter"
-     /><milestone n="4" unit="section"/></p>
+    much a variety of arguments, as moderation in employing them. <milestone n="2" unit="chapter"/><milestone n="4" unit="section"/></p>
    <p>And, that my oration may take its origin from the same source from which all this cause is to
     be maintained; an important war, and one perilous to your revenues and to your allies, is being
     waged against you by two most powerful kings, Mithridates and Tigranes. One of these having been
@@ -292,8 +293,7 @@ Added to repository.
     important wars. The most certain and the largest revenues of the Roman people are at stake; and
     if they be lost, you will be at a loss for the luxuries of peace, and the sinews of war. The
     property of many citizens is at stake, which you ought greatly to regard, both for your own
-    sake, and for that of the republic. <milestone n="3" unit="chapter"/><milestone n="7"
-     unit="section"/></p>
+    sake, and for that of the republic. <milestone n="3" unit="chapter"/><milestone n="7" unit="section"/></p>
    <p>And since you have at all times been covetous of glory and greedy of praise beyond all other
     nations, you have to wipe out that stain, received in the former Mithridates War, which has now
     fixed itself deeply and eaten its way into the Roman name, the stain arising from the fact that
@@ -310,9 +310,7 @@ Added to repository.
     Mithridates, two most gallant men, and most consummate generals; but yet they have triumphed in
     such a way that he, though routed and defeated, was still king. Not but what praise is to be
     given to those generals for what they did. Pardon must be conceded to them for what they left
-    undone; because the republic recalled Sulla from that war into <placeName key="tgn,1000080"
-     >Italy</placeName>, and Sulla recalled Murena. <milestone n="4" unit="chapter"/><milestone
-     n="9" unit="section"/></p>
+    undone; because the republic recalled Sulla from that war into <placeName key="tgn,1000080">Italy</placeName>, and Sulla recalled Murena. <milestone n="4" unit="chapter"/><milestone n="9" unit="section"/></p>
    <p>But Mithridates employed all the time which he had left to him, not in forgetting the old war,
     but in preparing for a new one; and, after he had built and equipped very large fleets, and had
     got together mighty armies from every nation he could, and had pretended to be preparing war
@@ -322,8 +320,7 @@ Added to repository.
     the world the furthest separated and most remote of all from one another, by two separate
     enemies warring against you with one uniform plan, you, hampered by the double enmity, might
     find that you were fighting for the empire itself. However; <milestone n="10" unit="section"/>
-    the danger on one side, the danger from Sertorius and from <placeName key="tgn,1000095"
-     >Spain</placeName>, which had much the most solid foundation and the most formidable strength,
+    the danger on one side, the danger from Sertorius and from <placeName key="tgn,1000095">Spain</placeName>, which had much the most solid foundation and the most formidable strength,
     was warded off by the divine wisdom and extraordinary valour of Cnaeus Pompeius. And on the
     other side of the empire, affairs were so managed by Lucilius Lucullus, that most illustrious of
     men, that the beginning, of all those achievements in those countries, great and eminent as they
@@ -333,13 +330,11 @@ Added to repository.
     his true glory shall not appear to be at all disparaged by my pleading, nor, on the other hand,
     shall any undeserved credit seem to be given to him. <milestone n="11" unit="section"/> At
     present, when we are speaking of the dignity and glory of your empire, since that is the
-    beginning of my oration, consider what feelings you think you ought to entertain. <milestone
-     n="5" unit="chapter"/></p>
+    beginning of my oration, consider what feelings you think you ought to entertain. <milestone n="5" unit="chapter"/></p>
    <p>Your ancestors have often waged war on account of their merchants and seafaring men having
     been injuriously treated. What ought to be your feelings when so many thousand Roman citizens
     have been put to death by one order and at one time? Because their ambassadors had been spoken
-    to with insolence, your ancestors determined that <placeName key="perseus,Corinth"
-     >Corinth</placeName>, the light of all <placeName key="tgn,1000074">Greece</placeName>, should
+    to with insolence, your ancestors determined that <placeName key="perseus,Corinth">Corinth</placeName>, the light of all <placeName key="tgn,1000074">Greece</placeName>, should
     be destroyed. Will you allow that king to remain unpunished, who has murdered a lieutenant of
     the Roman people of consular rank, having tortured him with chains and scourging, and every sort
     of punishment? They would not allow the freedom of Roman citizens to be diminished; will you be
@@ -355,8 +350,7 @@ Added to repository.
     all Asia, and throughout all <placeName key="tgn,1000074">Greece</placeName>, is compelled by
     the magnitude of the danger to put its whole trust in the expectation of your assistance. They
     do not dare to beg of you any particular general, especially since you have sent them another,
-    nor do they think that they can do this without extreme danger. <milestone n="13" unit="section"
-    /> They see and feel this, the same thing which you too see and feel,—that there is one man in
+    nor do they think that they can do this without extreme danger. <milestone n="13" unit="section"/> They see and feel this, the same thing which you too see and feel,—that there is one man in
     whom all qualities are in the highest perfection, and that he is near, (which circumstance makes
     it seem harder to be deprived of him,) by whose mere arrival and name, although it was a
     maritime war for which he came, they are nevertheless aware that the attacks of the enemy were
@@ -367,8 +361,7 @@ Added to repository.
     they protect them from the enemy, still their arrival among the cities of the allies is not very
     different from an invasion of the enemy. They used to hear of him before, now they see him among
     them; a man of such moderation, such mildness, such humanity, that those seem to be the happiest
-    people among whom he remains for the longest time. <milestone n="6" unit="chapter"/><milestone
-     n="14" unit="section"/></p>
+    people among whom he remains for the longest time. <milestone n="6" unit="chapter"/><milestone n="14" unit="section"/></p>
    <p>Wherefore, if on account of their allies, though they themselves had not been roused by any
     injuries, your ancestors waged war against Antiochus, against Philip, against the Aetolians, and
     against the Carthaginians; with how much earnestness ought you, when you yourselves have been
@@ -406,45 +399,35 @@ Added to repository.
     always considered the revenues as the sinews of the republic, certainly we shall be right if we
     call that order of men which collects them, the prop and support of all the other orders.
      <milestone n="18" unit="section"/> In the next place, clever and industrious men, of all the
-    other orders of the state, are some of them actually trading themselves in <placeName
-     key="tgn,1000004">Asia</placeName>, and you ought to show a regard for their interests in their
+    other orders of the state, are some of them actually trading themselves in <placeName key="tgn,1000004">Asia</placeName>, and you ought to show a regard for their interests in their
     absence; and others of them have large sums invested in that province. It will, therefore become
     your humanity to protect a large number of those citizens from misfortune; it will become your
     wisdom to perceive that the misfortune of many citizens cannot be separated from the misfortune
     of the republic. In truth, firstly, it is of but little consequence for you afterwards to
     recover for the publicans revenues which have been once lost; for the same men have not
     afterwards the same power of contracting for them, and others have not the inclination, through
-    fear. <milestone n="19" unit="section"/> In the next place, that which the same <placeName
-     key="tgn,1000004">Asia</placeName>, and that same Mithridates taught us, at the beginning of
+    fear. <milestone n="19" unit="section"/> In the next place, that which the same <placeName key="tgn,1000004">Asia</placeName>, and that same Mithridates taught us, at the beginning of
     the Asiatic war that, at all events, we, having learnt by disaster, ought to keep in our
-    recollection. For we know that then, when many had lost large fortunes in <placeName
-     key="tgn,1000004">Asia</placeName>, all credit failed at <placeName key="perseus,Rome"
-     >Rome</placeName>, from payments being hindered. For it is not possible for many men to lose
+    recollection. For we know that then, when many had lost large fortunes in <placeName key="tgn,1000004">Asia</placeName>, all credit failed at <placeName key="perseus,Rome">Rome</placeName>, from payments being hindered. For it is not possible for many men to lose
     their property and fortunes in one city, without drawing many along with them into the same
     vortex of disaster. But do you now preserve the republic from this misfortune; and believe me,
     (you yourselves see that it is the case,) this credit, and this state of the money-market which
     exists at <placeName key="perseus,Rome">Rome</placeName> and in the forum, is bound up with, and
-    is inseparable from, those fortunes which are invested in <placeName key="tgn,1000004"
-     >Asia</placeName>. Those fortunes cannot fall without credit here being undermined by the came
+    is inseparable from, those fortunes which are invested in <placeName key="tgn,1000004">Asia</placeName>. Those fortunes cannot fall without credit here being undermined by the came
     blow, and perishing along with them. Consider, then, whether you ought to hesitate to apply
     yourselves with all zeal to that war, in which the glory of your name, the safety of your
     allies, your greatest revenues, and the fortunes of numbers of your citizens, will be protected
-    at the same time as the republic. <milestone n="8" unit="chapter"/><milestone n="20"
-     unit="section"/></p>
+    at the same time as the republic. <milestone n="8" unit="chapter"/><milestone n="20" unit="section"/></p>
    <p>Since I have spoken of the description of war, I will now say a few words about its magnitude.
     For this may be said of it,—that it is a kind of war so necessary, that it must absolutely be
     waged, and yet not one of such magnitude as to be formidable. And in this we must take the
     greatest care that those things do not appear to you contemptible which require to be most
     diligently guarded against. And that all men may understand that I give Lucius Lucullus all the
-    praise that is due to a gallant man, and most wise <note anchored="true">The Latin is, “<foreign
-      xml:lang="la">forti <emph>viro</emph>, et sapientissimo <emph>homini</emph></foreign>,” and
-     this opposition of <foreign xml:lang="la">vir</foreign> and <foreign xml:lang="la"
-      >homo</foreign> is not uncommon in Cicero's orations. “<foreign xml:lang="la">Homo</foreign>
+    praise that is due to a gallant man, and most wise <note anchored="true">The Latin is, “<foreign xml:lang="la">forti <emph>viro</emph>, et sapientissimo <emph>homini</emph></foreign>,” and
+     this opposition of <foreign xml:lang="la">vir</foreign> and <foreign xml:lang="la">homo</foreign> is not uncommon in Cicero's orations. “<foreign xml:lang="la">Homo</foreign>
      is nearly synonymous with <foreign xml:lang="la">vir</foreign>, but with this distinction, that
       <foreign xml:lang="la">homo</foreign> is used of a man considered as an intellectual and moral
-     being.—namely, where personal qualities are to be denoted; whereas <foreign xml:lang="la"
-      >vir</foreign> signifies a man his relations to the state.”—Riddle, Lat. Dict. v. <foreign
-      xml:lang="la">Homo</foreign>.</note> man, and to a most consummate general, I say that when he
+     being.—namely, where personal qualities are to be denoted; whereas <foreign xml:lang="la">vir</foreign> signifies a man his relations to the state.”—Riddle, Lat. Dict. v. <foreign xml:lang="la">Homo</foreign>.</note> man, and to a most consummate general, I say that when he
     first arrived in <placeName key="tgn,1000004">Asia</placeName>, the forces of Mithridates were
     most numerous, well appointed, and provided with every requisite; and that the finest city in
      <placeName key="tgn,1000004">Asia</placeName>, and the one, too, that was most friendly to us,
@@ -454,10 +437,8 @@ Added to repository.
      <milestone n="21" unit="section"/> I say that he also, when general, defeated and destroyed
     that great and well-appointed fleet, which the chiefs of Sertorius's party were leading against
      <placeName key="tgn,1000080">Italy</placeName> with furious zeal; I say besides, that by him
-    numerous armies of the enemy were destroyed in several battles, and that <placeName
-     key="tgn,7016619">Pontus</placeName> was opened to our legions, which before his time had been
-    closed against the Roman people on every side; and that Sinope and <placeName key="tgn,7002339"
-     >Amisus</placeName>, towns in which the king had palaces, adorned and furnished with every kind
+    numerous armies of the enemy were destroyed in several battles, and that <placeName key="tgn,7016619">Pontus</placeName> was opened to our legions, which before his time had been
+    closed against the Roman people on every side; and that Sinope and <placeName key="tgn,7002339">Amisus</placeName>, towns in which the king had palaces, adorned and furnished with every kind
     of magnificence, and many other cities of <placeName key="tgn,7016619">Pontus</placeName> and
      <placeName key="tgn,6003016">Cappadocia</placeName>, were taken by his mere approach and
     arrival near them; that the king himself was stripped of the kingdom possessed by his father and
@@ -465,8 +446,7 @@ Added to repository.
     and that all these great deeds were achieved without any injury to the allies of the Roman
     people, or any diminution of its revenues. I think that this is praise enough;—such praise that
     you must see, O Romans, that Lucius Lucullus has not been praised as much from this rostrum by
-    any one of these men who are objecting to this law and arguing against our cause. <milestone
-     n="9" unit="chapter"/><milestone n="22" unit="section"/></p>
+    any one of these men who are objecting to this law and arguing against our cause. <milestone n="9" unit="chapter"/><milestone n="22" unit="section"/></p>
    <p>Perhaps now it will be asked, how, when all this has been already done, there can be any great
     war left behind. I will explain this, O Romans; for this does not seem an unreasonable question.
     At first Mithridates fled from his kingdom, as Medea is formerly said to have fled from the same
@@ -480,8 +460,7 @@ Added to repository.
     plunder in the former war from all <placeName key="tgn,1000004">Asia</placeName>. While our men
     were diligently occupied in collecting all this, the king himself escaped out of their hands.
      <milestone n="23" unit="section"/> And so grief retarded the father of Medea in his pursuit,
-    but delight delayed our men. In this alarm and flight of his, Tigranes, the king of <placeName
-     key="tgn,7006651">Armenia</placeName>, received him, encouraged him while despairing of his
+    but delight delayed our men. In this alarm and flight of his, Tigranes, the king of <placeName key="tgn,7006651">Armenia</placeName>, received him, encouraged him while despairing of his
     fortunes, gave him new spirit in his depression, and recruited with new strength his powerless
     condition. And after Lucius Lucullus arrived in his kingdom, very many tribes were excited to
     hostilities against our general. For those nations which the Roman people never had thought
@@ -499,16 +478,14 @@ Added to repository.
     and by large promiscuous forces belonging to many other kings and tribes. And we see that this
     is almost invariably the case, that kings when in misfortune easily induce many to pity and
     assist them, especially such as are either kings themselves, or who live under kingly power,
-    because to them the name of king appears something great and sacred. <milestone n="25"
-     unit="section"/> And accordingly he, when conquered, was able to accomplish what, when he was
+    because to them the name of king appears something great and sacred. <milestone n="25" unit="section"/> And accordingly he, when conquered, was able to accomplish what, when he was
     in the full enjoyment of his powers, he never dared even to wish for. For when he had returned
     to his kingdom, he was not content (though that had happened to him beyond all his hopes) with
     again setting his foot on that land after he had been expelled from it; but he even volunteered
     an attack on your army, flushed as it was with glory and victory. Allow me, in this place, O
     Romans, (just as poets do who write of Roman affairs,) to pass over our disaster, which was so
     great that it came to Lucius Lucullus's ears, not by means of a messenger despatched from the
-    scene of action, but through the report of common conversation. <milestone n="26" unit="section"
-    /> At the very time of this misfortune,—of this most terrible disaster in the whole war, Lucius
+    scene of action, but through the report of common conversation. <milestone n="26" unit="section"/> At the very time of this misfortune,—of this most terrible disaster in the whole war, Lucius
     Lucullus, who might have been able, to a great extent, to remedy the calamity, being compelled
     by your orders, because you thought, according to the old principle of your ancestors, that
     limits ought to be put to length of command, discharged a part of his soldiers who had served
@@ -516,8 +493,7 @@ Added to repository.
     but you yourselves can easily conjecture how important you ought to consider that war which most
     powerful kings are uniting in,—which disturbed nations are renewing,—which nations, whose
     strength is unimpaired, are undertaking, and which anew general of yours has to encounter after
-    a veteran army has been defeated. <milestone n="10" unit="chapter"/><milestone n="27"
-     unit="section"/></p>
+    a veteran army has been defeated. <milestone n="10" unit="chapter"/><milestone n="27" unit="section"/></p>
    <p>I appear to have said enough to make you see why this war is in its very nature unavoidable,
     in its magnitude dangerous. It remains for me to speak of the general who ought to be selected
     for that war, and appointed to the management of such important affairs.</p>
@@ -559,8 +535,7 @@ Added to repository.
      <placeName key="tgn,1000070">Gaul</placeName> is my witness, through which a road into
      <placeName key="tgn,1000095">Spain</placeName> was laid open to our legions by the destruction
     of the Gauls. <placeName key="tgn,1000095">Spain</placeName> is my witness, which has repeatedly
-    seen our many enemies there defeated and subdued by this man. Again and again, <placeName
-     key="tgn,1000080">Italy</placeName> is my witness, which, when it was weighed down by the
+    seen our many enemies there defeated and subdued by this man. Again and again, <placeName key="tgn,1000080">Italy</placeName> is my witness, which, when it was weighed down by the
     disgraceful and perilous servile war, entreated aid from this man, though he, was at a distance;
     and that war, having dwindled down and wasted away at the expectation of Pompeius, was destroyed
     and buried by his arrival. <milestone n="31" unit="section"/> But now, also every coast, all
@@ -575,8 +550,7 @@ Added to repository.
     all these later years what province have you had free from pirates? what revenue has been safe?
     what ally have you been able to protect? to whom have your fleets been any defence? How many
     islands do you suppose have been deserted? how many cities of the allies do you think have been
-    either abandoned out of fear of the pirates, or have been taken by them? <milestone n="12"
-     unit="chapter"/></p>
+    either abandoned out of fear of the pirates, or have been taken by them? <milestone n="12" unit="chapter"/></p>
    <p>But why do I speak of distant events? It was—it was, indeed, formerly—a characteristic of the
     Roman people to carry on its wars at a distance from home, and to defend by the bulwarks of its
     power not its own homes, but the fortunes of its allies. Need I say, that the sea has during all
@@ -586,23 +560,18 @@ Added to repository.
     prisoners, when even the ambassadors of the Roman people were forced to be ransomed? Need I say,
     that the sea was not safe for merchants, when twelve axes <note anchored="true">The Scholiast
      says that a consul named Milienus (whose name, however, does not appear in the Fasti) was taken
-     prisoner by the pirates, and sold with his ensigns of office. The axes mean his <foreign
-      xml:lang="la">faces</foreign>.</note> came into the power of the pirates? <milestone n="33"
-     unit="section"/> Need I mention, how <placeName key="tgn,5003757">Cnidus</placeName>, and
-     <placeName key="perseus,Colophon">Colophon</placeName>, and <placeName key="tgn,7002673"
-     >Samos</placeName>, most noble cities, and others too in countless numbers, were taken by them,
+     prisoner by the pirates, and sold with his ensigns of office. The axes mean his <foreign xml:lang="la">faces</foreign>.</note> came into the power of the pirates? <milestone n="33" unit="section"/> Need I mention, how <placeName key="tgn,5003757">Cnidus</placeName>, and
+     <placeName key="perseus,Colophon">Colophon</placeName>, and <placeName key="tgn,7002673">Samos</placeName>, most noble cities, and others too in countless numbers, were taken by them,
     when you know that your own harbours, and those harbours too from which you derive, as it were,
     your very life and breath, were in the power of the pirates? Are you ignorant that the harbour
     of <placeName key="perseus,Caieta">Caieta</placeName>, that illustrious harbour, when full of
-    ships, was plundered by the pirates under the very eyes of the praetor? and that from <placeName
-     key="perseus,Misenum">Misenum</placeName>, the children of the very man who had before that
+    ships, was plundered by the pirates under the very eyes of the praetor? and that from <placeName key="perseus,Misenum">Misenum</placeName>, the children of the very man who had before that
     waged war against the pirates in that place, were carried off by the pirates? For why should I
     complain of the disaster of <placeName key="perseus,Ostia">Ostia</placeName>, and of that stain
     and blot on the republic, when almost under your very eyes, that fleet which was under the
     command of a Roman consul was taken and destroyed by the pirates? O ye immortal gods! could the
     incredible and godlike virtue of one man in so short a time bring so much light to the republic,
-    that you who had lately been used to see a fleet of the enemy before the mouth of the <placeName
-     key="tgn,1130786">Tiber</placeName>, should now hear that there is not one ship belonging to
+    that you who had lately been used to see a fleet of the enemy before the mouth of the <placeName key="tgn,1130786">Tiber</placeName>, should now hear that there is not one ship belonging to
     the pirates on this side of the Atlantic? <milestone n="34" unit="section"/> And although you
     have seen with what rapidity these things were done, still that rapidity ought not to be passed
     over by me in speaking of them.—For who ever, even if he were only going for the purpose of
@@ -613,15 +582,11 @@ Added to repository.
     coasts of <placeName key="tgn,7001242">Africa</placeName>; from thence he came with his fleet to
      <placeName key="tgn,7003121">Sardinia</placeName>, and these three great granaries of the
     republic he fortified with powerful garrisons and fleets; <milestone n="35" unit="section"/>
-    when, leaving <placeName key="tgn,7003121">Sardinia</placeName>, he came to <placeName
-     key="tgn,1000080">Italy</placeName>, having secured the two Spains and Cisalpine Gaul with
-    garrisons and ships. Having sent vessels also to the coast of <placeName key="tgn,7016683"
-     >Illyricum</placeName>, and to every part of <placeName key="tgn,7002733">Achaia</placeName>
-    and <placeName key="tgn,1000074">Greece</placeName>, he also adorned the two seas of <placeName
-     key="tgn,1000080">Italy</placeName> with very large fleets, and very sufficient garrisons; and
+    when, leaving <placeName key="tgn,7003121">Sardinia</placeName>, he came to <placeName key="tgn,1000080">Italy</placeName>, having secured the two Spains and Cisalpine Gaul with
+    garrisons and ships. Having sent vessels also to the coast of <placeName key="tgn,7016683">Illyricum</placeName>, and to every part of <placeName key="tgn,7002733">Achaia</placeName>
+    and <placeName key="tgn,1000074">Greece</placeName>, he also adorned the two seas of <placeName key="tgn,1000080">Italy</placeName> with very large fleets, and very sufficient garrisons; and
     he himself going in person, added all <placeName key="tgn,7002470">Cilicia</placeName> to the
-    dominions of the Roman people, on the forty-ninth day after he set out from <placeName
-     key="perseus,Brundusium">Brundusium</placeName>. Will the pirates who were anywhere to be
+    dominions of the Roman people, on the forty-ninth day after he set out from <placeName key="perseus,Brundusium">Brundusium</placeName>. Will the pirates who were anywhere to be
     found, were either taken prisoners and put to death, or else had surrendered themselves
     voluntarily to the power and authority of this one man. Also, when the Cretans had sent
     ambassadors to implore his mercy even into <placeName key="tgn,7002611">Pamphylia</placeName> to
@@ -629,8 +594,7 @@ Added to repository.
     them. And thus Cnaeus Pompeius at the end of winter prepared, at the beginning of spring
     undertook, and by the middle of summer terminated, this most important war, which had lasted so
     long, which was scattered in such distant and such various places, and by which every nation and
-    country was incessantly distressed. <milestone n="13" unit="chapter"/><milestone n="36"
-     unit="section"/></p>
+    country was incessantly distressed. <milestone n="13" unit="chapter"/><milestone n="36" unit="section"/></p>
    <p>This is the godlike and incredible virtue of that general. What more shall I say? How many and
     how great are his other exploits which I began to mention a short time back; for we are not only
     to seek for skill in war in a consummate and perfect general, but there are many other eminent
@@ -645,33 +609,27 @@ Added to repository.
      that Cicero is here hinting at Glabrio the consul, or at the younger Marius.</note> are sold,
     and have been constantly sold in his army? What great or honourable thoughts can we suppose that
     that man cherishes concerning the republic, who has either distributed the money which was taken
-    from the treasury for the conduct of the war among the magistrates, out of ambition <note
-     anchored="true">Lucullus is supposed to be meant here as it is said that he had employed large
+    from the treasury for the conduct of the war among the magistrates, out of ambition <note anchored="true">Lucullus is supposed to be meant here as it is said that he had employed large
      sums in soliciting the votes of influential men, so as to be left in command of the province of
       <placeName key="tgn,1000004">Asia</placeName>, in which he had amassed enormous riches.</note>
-    to keep his province, or, out of avarice, has left it behind him at <placeName
-     key="perseus,Rome">Rome</placeName>, invested for his own advantage? Your murmurs show, O
+    to keep his province, or, out of avarice, has left it behind him at <placeName key="perseus,Rome">Rome</placeName>, invested for his own advantage? Your murmurs show, O
     Romans, that you recognise, in my description, men who have done these things. But I name no
     one, so that no one can be angry with me, without making confession beforehand of his own
     malpractices. But who is there who is ignorant what terrible distresses our armies suffer
     wherever they go, through this covetousness of our generals? <milestone n="38" unit="section"/>
-    Recollect the marches which, during these latter years, our generals have made in <placeName
-     key="tgn,1000080">Italy</placeName>, through the lands and towns of the Roman citizens; then
+    Recollect the marches which, during these latter years, our generals have made in <placeName key="tgn,1000080">Italy</placeName>, through the lands and towns of the Roman citizens; then
     you will more easily imagine what is the course pursued among foreign nations. Do you think that
     of late years more cities of the enemy have been destroyed by the arms of your soldiers, or more
     cities of your own allies by their winter campaigns? For that general who does not restrain
     himself can never restrain his army; nor can he be strict in judging others who is unwilling for
     others to be strict in judging him. <milestone n="39" unit="section"/> Do we wonder now that
-    this man should be so far superior to all others, when his legions arrived in <placeName
-     key="tgn,1000004">Asia</placeName> in such order that not only no man's hand in so numerous an
+    this man should be so far superior to all others, when his legions arrived in <placeName key="tgn,1000004">Asia</placeName> in such order that not only no man's hand in so numerous an
     army, but not even any man's footstep was said to have done the least injury to any peaceful
-    inhabitant? But now we have daily rumours—yes, and letters too—brought to <placeName
-     key="perseus,Rome">Rome</placeName> about the way in which the soldiers are behaving in their
+    inhabitant? But now we have daily rumours—yes, and letters too—brought to <placeName key="perseus,Rome">Rome</placeName> about the way in which the soldiers are behaving in their
     winter quarters; not only is no one compelled to spend money on the entertainment of the troops,
     but he is not permitted to do so, even if he wish. For our ancestors thought fit that the houses
     of our allies and friends should be a shelter to our soldiers from the winter, not a theatre for
-    the exercise of their avarice. <milestone n="14" unit="chapter"/><milestone n="40"
-     unit="section"/></p>
+    the exercise of their avarice. <milestone n="14" unit="chapter"/><milestone n="40" unit="section"/></p>
    <p>Come now, consider also what moderation he has displayed in other matters also. How was it, do
     you suppose, that he was able to display that excessive rapidity, and to perform that incredible
     voyage? For it was no unexampled number of rowers, no hitherto unknown skill in navigation, no
@@ -725,20 +683,17 @@ Added to repository.
     too, after the disaster which befell us in <placeName key="tgn,7016619">Pontus</placeName>, from
     the result of that battle, of which, sorely against my will, I just now reminded you, when our
     allies were in a state of alarm, when the power and spirits of our enemies had risen, and the
-    province was in a very insufficient state of defence, you would have entirely lost <placeName
-     key="tgn,1000004">Asia</placeName>, O Romans, if the fortune of the Roman people had not, by
+    province was in a very insufficient state of defence, you would have entirely lost <placeName key="tgn,1000004">Asia</placeName>, O Romans, if the fortune of the Roman people had not, by
     some divine interposition, brought Cnaeus Pompeius at that particular moment into those regions.
     His arrival both checked Mithridates, elated with his unusual victory, and delayed Tigranes, who
     was threatening <placeName key="tgn,1000004">Asia</placeName> with a formidable army. And can
     any one doubt what he will accomplish by his valour, when he did so much by his authority and
     reputation? or how easily he will preserve our allies and our revenues by his power and his
-    army, when he defended them by the mere, terror of his name? <milestone n="16" unit="chapter"
-     /><milestone n="46" unit="section"/></p>
+    army, when he defended them by the mere, terror of his name? <milestone n="16" unit="chapter"/><milestone n="46" unit="section"/></p>
    <p>Come, now; what a great proof does this circumstance afford us of the influence of the same
     man on the enemies of the Roman people, that all of them, living in countries so far distant
     from us and from each other, surrendered themselves to him alone in so short a time? that the
-    ambassadors of the Cretans, though there was at the time a general <note anchored="true"
-     >Metellus, afterwards called Creticus, from his victory over the Cretans.</note> and an army of
+    ambassadors of the Cretans, though there was at the time a general <note anchored="true">Metellus, afterwards called Creticus, from his victory over the Cretans.</note> and an army of
     ours in their island came almost to the end of the world to Cnaeus Pompeius, and said, all the
     cities of the Cretans were willing to surrender themselves to him? What did Mithridates himself
     do? Did he not send an ambassador into <placeName key="tgn,1000095">Spain</placeName> to the
@@ -747,8 +702,7 @@ Added to repository.
     have contended was sent as a spy rather than as an ambassador. You can now, then, O Romans, form
     an accurate judgment how much weight you must suppose that this authority of his—now, too, that
     it has been further increased by many subsequent exploits, and by many commendatory resolutions
-    of your own—will have with those kings and among foreign nations. <milestone n="47"
-     unit="section"/>
+    of your own—will have with those kings and among foreign nations. <milestone n="47" unit="section"/>
    </p>
    <p>It remains for me timidly and briefly to speak of his good fortune, a quality which no man
     ought to boast of in his own case, but which we may remember and commemorate an happening to
@@ -761,8 +715,7 @@ Added to repository.
     whom we are now speaking, I will use so much moderation as not to say that good fortune was
     actually placed in his power, but I will so speak as to appear to remember what is past, to have
     good hope of what is to come; so that my speech may, on the one hand, not appear to the immortal
-    gods to be arrogant, nor, on the other hand, to be ungrateful. <milestone n="48" unit="section"
-    /> Accordingly, I do not intend to mention, O Romans, what great exploits he has achieved both
+    gods to be arrogant, nor, on the other hand, to be ungrateful. <milestone n="48" unit="section"/> Accordingly, I do not intend to mention, O Romans, what great exploits he has achieved both
     at home and in war, by land and by sea, and with what invariable felicity he has achieved them;
     how, not only the citizens have always consented to his wishes,—the allies complied with
     them,—the enemy obeyed them, but how even the winds and weather have seconded them. I will only
@@ -813,8 +766,7 @@ Added to repository.
     it was a common thing for the ambassadors, and praetors, and quaestors of the Roman people to be
     taken prisoners? when we were cut off from all supplies, both public and private, from all our
     provinces? when all the seas were so closed against us, that we could neither visit any private
-    estate of our own, nor any public domain beyond the sea? <milestone n="18" unit="chapter"
-     /><milestone n="54" unit="section"/></p>
+    estate of our own, nor any public domain beyond the sea? <milestone n="18" unit="chapter"/><milestone n="54" unit="section"/></p>
    <p>What city ever was there before this time,—I speak not of the city of the Athenians, which is
     said formerly to have had a sufficiently extensive naval dominion; nor of that of the
     Carthaginians, who had great power with their fleet and maritime resources; nor of those of the
@@ -827,18 +779,15 @@ Added to repository.
     dignity and dominion. <milestone n="55" unit="section"/> We, whose ancestors conquered with our
     fleets Antiochus the king, and Perses, and in every naval engagement defeated the Carthaginians,
     the best practiced and best equipped of all men in maritime affairs; we could now in no place
-    prove ourselves equal to the pirates. We, who formerly had not only all <placeName
-     key="tgn,1000080">Italy</placeName> in safety, but who were able by the authority of our empire
+    prove ourselves equal to the pirates. We, who formerly had not only all <placeName key="tgn,1000080">Italy</placeName> in safety, but who were able by the authority of our empire
     to secure the safety of all our allies in the most distant countries, so that even the island of
-     <placeName key="perseus,Delos">Delos</placeName>, situated so far from us in the <placeName
-     key="tgn,7002675">Aegean</placeName> sea, at which all men were in the habit of touching with
+     <placeName key="perseus,Delos">Delos</placeName>, situated so far from us in the <placeName key="tgn,7002675">Aegean</placeName> sea, at which all men were in the habit of touching with
     their merchandise and their freights, full of riches as it was, little and unwalled as it was,
     still was in no alarm; we, I say, were cut off, not only from our provinces, and from the
     sea-coast of <placeName key="tgn,1000080">Italy</placeName>, and from our harbours, but even
     from the Appian road; and at this time, the magistrates of the Roman people were not ashamed to
     come up into this very rostrum where I am standing, which your ancestors had bequeathed to you
-    adorned with nautical trophies, and the spoils of the enemy's fleet. <milestone n="19"
-     unit="chapter"/><milestone n="56" unit="section"/></p>
+    adorned with nautical trophies, and the spoils of the enemy's fleet. <milestone n="19" unit="chapter"/><milestone n="56" unit="section"/></p>
    <p>When you opposed that law, the Roman people, O Quintus Hortensius, thought that you, and the
     others who held the same opinion with you, delivered your sentiments in a bold and gallant
     spirit. But still, in a matter affecting the safety of the commonwealth, the Roman people
@@ -853,8 +802,7 @@ Added to repository.
     generals have taken whatever lieutenants they chose, to assist them in pillaging the allies and
     plundering the provinces? or ought he, by whose law safety and dignity has been given to the
     Roman people, and to all nations, to be prevented from sharing in the glory of that commander
-    and that army, which exists through his wisdom and was appointed at his risk? <milestone n="58"
-     unit="section"/> Was it allowed to Caius Falcidius, to Quintus Metellus, to Quintus Caelius
+    and that army, which exists through his wisdom and was appointed at his risk? <milestone n="58" unit="section"/> Was it allowed to Caius Falcidius, to Quintus Metellus, to Quintus Caelius
     Laterensis, and to Cnaeus Lentulus, all of whom I name to do them honour, to be lieutenants the
     year after they had been tribunes of the people; and shall men be so exact in the case of
     Gabinius alone, who, in this war which is carried on under the provisions of the Gabinian law,
@@ -868,8 +816,7 @@ Added to repository.
     to do. In my own opinion, O Romans, Aulus Gabinius alone has a right to be put by the side of
     Cnaeus Pompeius as a partner of the glory of his exploits in the maritime war; because the one,
     with the assistance of your votes, gave to that man alone the task of undertaking that war, and
-    the other, when it entrusted to him, undertook it and terminated it. <milestone n="20"
-     unit="chapter"/><milestone n="59" unit="section"/></p>
+    the other, when it entrusted to him, undertook it and terminated it. <milestone n="20" unit="chapter"/><milestone n="59" unit="section"/></p>
    <p>It remains for me to speak of the authority and opinion of Quintus Catulus; who, when he asked
     of you, if you thus placed all your dependence on Cnaeus Pompeius, in whom you would have any
     hope, if anything were to happen to him, received a splendid reward for his own virtue and
@@ -878,14 +825,12 @@ Added to repository.
     that, he cannot manage it by his wisdom, or defend it by his integrity, or terminate it by his
     valour. But, in this case, I entirely differ from him; because, the less certain and the less
     lasting the life of man is, the more ought the republic to avail itself of the life and valour
-    of any admirable man, as long as the immortal gods allow it to do so. <milestone n="60"
-     unit="section"/> But let no innovation be established contrary to the precedents and principles
+    of any admirable man, as long as the immortal gods allow it to do so. <milestone n="60" unit="section"/> But let no innovation be established contrary to the precedents and principles
     of our ancestors.— I will not say, at this moment, that our ancestors in peace always obeyed
     usage, but in war were always guided by expediency, and always accommodated themselves with new
     plans to the new emergencies of the times. I will not say that two most important wars, the
     Punic war and the Spanish war, were put an end to by one general; that two most powerful cities,
-    which threatened the greatest danger to this empire— <placeName key="perseus,Carthage"
-     >Carthage</placeName> and <placeName key="tgn,7017511">Numantia</placeName>, were destroyed by
+    which threatened the greatest danger to this empire— <placeName key="perseus,Carthage">Carthage</placeName> and <placeName key="tgn,7017511">Numantia</placeName>, were destroyed by
     the same Scipio. I will not remind you that it was but lately determined by you and by your
     ancestors, to rest all the hopes of the empire on Caius Marius, so that the same man conducted
     the war against Jugurtha, and against the Cimbri, and against the Teutones. But recollect, in
@@ -904,13 +849,10 @@ Added to repository.
      happen that a quaestor was made the senator immediately after the expiration of his office, we
      may presume that the earliest age at which a man could become a senator was thirty-two.
      Augustus at last fixed the senatorial age at twenty-five, which appears to have remained
-     unaltered throughout the time of the empire.”—Smith, Dict. Ant. p. 851, v. <foreign
-      xml:lang="la">Senatus</foreign>.</note> fell far short of that required for the rank of a
-    senator, to have a command and an army entrusted to him? to have <placeName key="tgn,7003122"
-     >Sicily</placeName> committed to his care, and <placeName key="tgn,7001242">Africa</placeName>,
+     unaltered throughout the time of the empire.”—Smith, Dict. Ant. p. 851, v. <foreign xml:lang="la">Senatus</foreign>.</note> fell far short of that required for the rank of a
+    senator, to have a command and an army entrusted to him? to have <placeName key="tgn,7003122">Sicily</placeName> committed to his care, and <placeName key="tgn,7001242">Africa</placeName>,
     and the war which was to be carried on there? He conducted himself in these provinces with
-    singular blamelessness, dignity, and valour; he terminated a most serious war in <placeName
-     key="tgn,7001242">Africa</placeName>, and brought away his army victorious. But what was ever
+    singular blamelessness, dignity, and valour; he terminated a most serious war in <placeName key="tgn,7001242">Africa</placeName>, and brought away his army victorious. But what was ever
     so unheard of as for a Roman knight to have a triumph? But even that circumstance the Roman
     people not only say, but they thought that it deserved to be thronged to and honoured with all
     possible zeal. <milestone n="62" unit="section"/> What was ever so unusual, as, when there were
@@ -928,8 +870,7 @@ Added to repository.
     together, are not so many as these which we see have occurred in the history of this one man.
      <milestone n="63" unit="section"/> And all these instances, numerous, important and novel as
     they are, have all occurred in the case of the same man, taking their rise in the authority of
-    Quintus Catulus himself and by that of other most honourable men of the same rank. <milestone
-     n="22" unit="chapter"/></p>
+    Quintus Catulus himself and by that of other most honourable men of the same rank. <milestone n="22" unit="chapter"/></p>
    <p>Wherefore, let them take care that it is not considered a most unjust and intolerable thing,
     that their authority in matters affecting the dignity of Cnaeus Pompeius should hitherto have
     been constantly approved of by you, but that your judgment, and the authority of the Roman
@@ -944,8 +885,7 @@ Added to repository.
     last let those noble men confess that both they and all other men must obey the authority of the
     universal Roman people. And in this Asiatic and royal war, not only is that military valour
     required, which exists in a singular degree in Cnaeus Pompeius, but many other great virtues of
-    mind are also demanded. It is difficult for your commander-in-chief in <placeName
-     key="tgn,1000004">Asia</placeName>, <placeName key="tgn,7002470">Cilicia</placeName>,
+    mind are also demanded. It is difficult for your commander-in-chief in <placeName key="tgn,1000004">Asia</placeName>, <placeName key="tgn,7002470">Cilicia</placeName>,
      <placeName key="tgn,1000140">Syria</placeName>, and all the kingdoms of the inland nations, to
     behave in such a manner as to think of nothing else but the enemy and glory. Then, even if there
     be some men moderate and addicted to the practice of modesty and self-government, still, such is
@@ -963,8 +903,7 @@ Added to repository.
     their enemies, or rather, under presence of the existence of enemies, against your allies and
     friends themselves? What city is there in <placeName key="tgn,1000004">Asia</placeName> which
     can stand the ferocity and arrogance, I will not say of the, army, of a commander-in-chief, or
-    of a lieutenant, but of even the brigade of one single military tribune? <milestone n="23"
-     unit="chapter"/></p>
+    of a lieutenant, but of even the brigade of one single military tribune? <milestone n="23" unit="chapter"/></p>
    <p>So that even if you have any one who may appear able to cope in terms of advantage with the
     king's armies, still, unless he be also a man who can keep his hands, and eyes, and desires from
     the treasures of the allies, from their wives and children, from the ornaments of their temples
@@ -993,8 +932,7 @@ Added to repository.
     have heaped upon him) the most eminent wisdom, and the greatest dignity of character; and of
     Caius Cassius, a man of extraordinary integrity, and valour, and virtue. Consider, therefore,
     whether we do not seem by the authority of these men to give a sufficient answer to the speeches
-    of those men who differ from us. <milestone n="24" unit="chapter"/><milestone n="69"
-     unit="section"/></p>
+    of those men who differ from us. <milestone n="24" unit="chapter"/><milestone n="69" unit="section"/></p>
    <p>And as this is the case, O Caius Manilius, in the first place, I exceedingly praise and
     approve of that law of yours, and of your purpose, and of your sentiments. And in the second
     place, I exhort you, having the approbation of the Roman people, to persevere in those
@@ -1014,8 +952,7 @@ Added to repository.
     the acquirement of honours; because, as for dangers, we shall easily repel them, as a man ought
     to do, protected by our own innocence; and as for honours, we shall not gain them by the favour
     of any men, nor by anything that happens in this place, but by the same laborious course of life
-    which I have hitherto adopted, if your favourable inclination assists me. <milestone n="71"
-     unit="section"/> Wherefore, whatever I have undertaken in this cause, O Romans, I assure you
+    which I have hitherto adopted, if your favourable inclination assists me. <milestone n="71" unit="section"/> Wherefore, whatever I have undertaken in this cause, O Romans, I assure you
     that I have undertaken wholly for the sake of the republic; and I am so far from thinking that I
     have gained by it the favour of any influential man, that I know, on the other hand, that I have
     brought on myself many enmities, some secret, some undisguised, which I never need have
@@ -1023,7 +960,7 @@ Added to repository.
     with my present honours, and loaded with so many kindnesses from you, ought to prefer your
     inclination, and the dignity of the republic, and the safety of our provinces and allies, to all
     considerations of my own private interest. </p>
-  </body>
- </text>
+  </div>
+ </body></text>
 
 </TEI>

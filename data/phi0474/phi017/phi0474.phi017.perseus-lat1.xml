@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader type="text">
 		<fileDesc>
 			<titleStmt>
-				<title>In Defense of Lucius Flaccus </title>
+				<title type="work">In Defense of Lucius Flaccus </title>
 				<title>Pro P. Quinctio, Pro Q. Roscio comoedo, Pro A. Caecina, De lege agraria
 					contra Rullum, Pro C. Rabiro perduellionis reo, Pro L. Flacco, In L. Pisonem,
 					Pro C. Rabiro Postumo</title>
 				<title type="sub">Machine readable text</title>
-				<author n="Cic.">M. Tullius Cicero</author>
+				<author n="M. Tullius Cicero">M. Tullius Cicero</author>
 				<editor role="editor" n="OCT">Albert Clark</editor>
 				<sponsor>Perseus Project, Tufts University</sponsor>
 				<principal>Gregory Crane</principal>
@@ -49,32 +50,39 @@
 		</fileDesc>
 
 		<encodingDesc>
-			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState unit="section"/>
+			<refsDecl n="CTS">
+				<cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1']/tei:milestone[@n='$2'])">
+					<p>This pointer pattern extracts chapter and section</p>
+				</cRefPattern>
+				<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:milestone[@n='$1'])">
+					<p>This pointer pattern extracts chapter</p>
+				</cRefPattern>
 			</refsDecl>
 			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState delim="." n="chunk" unit="chapter"/>
+				<refState unit="chapter" delim="."/>
 				<refState unit="section"/>
 			</refsDecl>
-			<refsDecl n="text=Agr.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Agr.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState delim="." n="chunk" unit="chapter"/>
-				<refState unit="section"/>
-			</refsDecl>
+			<!--<refsDecl n="text=Catil.;text=Agr.">
+    <refState delim=" " unit="text"/>
+    <refState delim="." unit="speech"/>
+    <refState unit="section"/>
+   </refsDecl>
+   <refsDecl n="text=Catil.;text=Agr.">
+    <refState delim=" " unit="text"/>
+    <refState delim="." unit="speech"/>
+    <refState delim="." unit="chapter"/>
+    <refState unit="section"/>
+   </refsDecl>
+   <refsDecl n="text=Corn.">
+    <refState delim=" " unit="text"/>
+    <refState unit="speech"/>
+   </refsDecl>-->
 		</encodingDesc>
 
 		<profileDesc>
 			<langUsage>
-				<language ident="la">Latin</language>
-				<language ident="greek">Greek</language>
+				<language ident="lat">Latin</language>
+				<language ident="grc">Greek</language>
 			</langUsage>
 		</profileDesc>
 
@@ -158,11 +166,14 @@ Added to repository. Passes TEI parse.
     <item>split composite text and converted to unicode</item>
       </change>-->
 			<change when="2014-08-01" who="Stella Dee">edited markup</change>
-		</revisionDesc>
+		<change when="2015-12-17" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change>
+			<change when="1997-03-26" who="DAS">ed.</change><change when="2014-07" who="Stella Dee">split composite text and converted to unicode</change><change who="balmas01" when="2013-09-13T11:21:41">Revision 1.5  reverting texts back to pre_cts_reorg tagged version</change><change who="gcrane" when="2011-07-19T22:30:38">Revision 1.3  removed the earlier persName/placeName tags</change><change who="gcrane" when="2011-07-09T20:25:36">Revision 1.2  fixed problems with capitalization</change><change who="gcrane" when="2011-01-15T23:14:25">Revision 1.1  base SDL file</change><change who="rsingh04" when="2009-10-09T19:49:15">Revision 1.1  more reorganizing of texts module by collection</change><change who="packel" when="2005-08-01T15:59:20">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25T14:31:17">Revision 1.1  Converted to XML</change><change who="mimno" when="2005-04-08T17:56:08">Revision 1.15  added default chunks</change><change who="yorkc" when="2003-07-01T22:14:58">Revision 1.14  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2002-12-02T18:41:45">Revision 1.13  correct spelling of Quirites, improperly 'regularized'</change><change who="amahoney" when="2000-03-13T17:37:07">Revision 1.12  don't put header for fragments next to header for speech:  gets into
+short toc</change><change who="amahoney" when="2000-03-06T22:21:49">Revision 1.11  add headers for groups of speeches, so they show up in the toc:  Catilines,
+Verrines, Philippics, and Agrarian Law</change><change who="dasmith" when="2000-03-04T20:34:11">Revision 1.10  Added separate funder entity to TEI header.</change><change who="dasmith" when="1999-10-14T21:36:02">Revision 1.9  Added explanatory subtitles to titleStmt</change><change who="dasmith" when="1999-08-12T17:17:19">Revision 1.8  Fixed refsDecl</change><change who="textgod" when="1999-08-04T18:12:10">Revision 1.7  Random changes over a period of months.</change><change who="textgod" when="1997-10-17T14:07:07">Revision 1.6  Tagged Greek.</change><change who="textgod" when="1997-08-18T14:54:35">Revision 1.5  ???</change><change who="cjsu" when="1997-05-12T22:19:56">Revision 1.4  making sure that the file passed the parcer</change><change who="cjsu" when="1997-05-12T22:04:50">Revision 1.3  Added seven works... SGML varified</change><change who="textgod" when="1997-04-03T20:58:14">Revision 1.2  Changed ADD tags to CORR.</change><change who="textgod" when="1997-03-26T17:34:24">Revision 1.1  Added to repository. Passes TEI parse.</change></revisionDesc>
 	</teiHeader>
-	<text xml:lang="la">
-		<body>
-			<div>
+	<text>
+		<body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi017.perseus-lat1" subtype="edition">
+			<div type="textpart">
 				<head>PRO L. FLACCO ORATIO</head>
 
 				<milestone n="1" unit="chapter"/>
@@ -174,8 +185,7 @@ Added to repository. Passes TEI parse.
 					me adiutorem futurum quam miseriarum deprecatorem. <reg>quod</reg> enim esset
 					praemium dignitatis quod populus Romanus, cum huius maioribus semper detulisset,
 					huic denegaret, cum L. Flaccus veterem Valeriae gentis in liberanda patria
-					laudem prope quingentesimo anno rei publicae rettulisset? <milestone n="2"
-						unit="section"/><reg>sed</reg> si forte aliquando aut benefici huius
+					laudem prope quingentesimo anno rei publicae rettulisset? <milestone n="2" unit="section"/><reg>sed</reg> si forte aliquando aut benefici huius
 					obtrectator aut virtutis hostis aut laudis invidus exstitisset, existimabam L.
 					Flacco multitudinis potius imperitae, nullo tamen cum periculo, quam
 					sapientissimorum et lectissimorum virorum iudicium esse subeundum.
@@ -202,8 +212,7 @@ Added to repository. Passes TEI parse.
 					iudicaturi, de civitatis statu, de communi salute, de spe bonorum omnium, si qua
 					reliqua est etiam nunc quae fortium civium mentis cogitationesque sustentet;
 					omnia alia perfugia bonorum, praesidia innocentium, subsidia rei publicae,
-					consilia, auxilia, iura ceciderunt. <milestone n="4" unit="section"
-						/><reg>quem</reg> enim appellem, quem obtester, quem implorem?
+					consilia, auxilia, iura ceciderunt. <milestone n="4" unit="section"/><reg>quem</reg> enim appellem, quem obtester, quem implorem?
 						<reg>senatumne</reg>? <reg>at</reg> is ipse auxilium petit a vobis et
 					confirmationem auctoritatis suae vestrae potestati permissam esse sentit.
 						<reg>an</reg> equites Romanos? <reg>indicabitis</reg> principes eius ordinis
@@ -213,24 +222,20 @@ Added to repository. Passes TEI parse.
 					non auctoritatem, quae amissa est, sed salutem nostram, quae spe exigua
 					extremaque pendet, tenuerimus, nihil est praeterea quo confugere possimus; nisi
 					forte quae res hoc iudicio temptetur, quid agatur, cui causae fundamenta
-					iaciantur, iudices, non videtis. <milestone n="5" unit="section"
-						/><reg>condemnatus</reg> est is qui Catilinam signa patriae inferentem
+					iaciantur, iudices, non videtis. <milestone n="5" unit="section"/><reg>condemnatus</reg> est is qui Catilinam signa patriae inferentem
 					interemit; quid est causae cur non is qui Catilinam ex urbe expulit pertimescat?
 						<reg>rapitur</reg> ad poenam qui indicia communis exiti cepit; cur sibi
 					confidat is qui ea proferenda et patefacienda curavit? <reg>socii</reg>
 					consiliorum, ministri comitesque vexantur; quid auctores, quid duces, quid
 					principes sibi exspectent? <reg>atque</reg> utinam inimici nostri ac bonorum
 					omnium mecum potius aestiment, utrum tum omnes boni duces nostri an comites
-					fuerint ad communem conservandam salutem * * * <milestone n="frBob1"
-						unit="section"/></p>
+					fuerint ad communem conservandam salutem * * * <milestone n="frBob1" unit="section"/></p>
 				<p><reg>strangulatos</reg> maluit dicere. <milestone n="frBob2" unit="section"/></p>
-				<p><reg>quid</reg> sibi meus necessarius <reg>caetra</reg> voluit? <milestone
-						n="frBob3" unit="section"/></p>
+				<p><reg>quid</reg> sibi meus necessarius <reg>caetra</reg> voluit? <milestone n="frBob3" unit="section"/></p>
 				<p><reg>quid</reg> vero Decianus? <milestone n="frBob4" unit="section"/></p>
 				<p>Vtinam esset proprie mea! <reg>senatus</reg> igitur magna ex parte * * *
 						<milestone n="frBob5" unit="section"/></p>
-				<p><reg>di</reg>, inquam, immortales Lentulum * * * <milestone n="frMed"
-						unit="section"/></p>
+				<p><reg>di</reg>, inquam, immortales Lentulum * * * <milestone n="frMed" unit="section"/></p>
 				<p>* * * externum cum domestica vita naturaque constaret. <reg>itaque</reg> non
 					patiar, D. Laeli, te tibi hoc sumere atque hanc ceteris in posterum, nobis in
 					praesens tempus legem condicionemque * * * </p>
@@ -251,7 +256,7 @@ Added to repository. Passes TEI parse.
 					rerum fidem derogabunt? <reg>tenebo</reg> igitur hunc ordinem defensor quem
 					fugit inimicus, et accusatorem urgebo atque insequar et ultro crimen ab
 					adversario flagitabo. <reg>quid</reg> est, Laeli? num quid ea d . . d . . ea . .
-					f <gap/> no qui quidem non in umbra neque in illius aetatis disciplinis
+					f <gap reason="lost"/> no qui quidem non in umbra neque in illius aetatis disciplinis
 					artibusque versatus est? <reg>etenim</reg> puer cum patre consule ad bellum est
 					profectus. <reg>nimirum</reg> etiam hoc ipso nomine aliquid . . ia sus * * *
 						<milestone n="frBob6" unit="section"/></p>
@@ -261,12 +266,10 @@ Added to repository. Passes TEI parse.
 						<milestone n="frBob8" unit="section"/></p>
 				<p><reg>tribunus</reg> militaris cum P. Servilio, gravissimo et sanctissimo cive,
 					profectus. <milestone n="frBob9" unit="section"/></p>
-				<p><reg>quorum</reg> amplissimis iudiciis ornatus quaestor factus est. <milestone
-						n="frBob10" unit="section"/></p>
+				<p><reg>quorum</reg> amplissimis iudiciis ornatus quaestor factus est. <milestone n="frBob10" unit="section"/></p>
 				<p>M. Pisone, qui cognomen frugalitatis, nisi accepisset, ipse peperisset.
 						<milestone n="frBob11" unit="section"/></p>
-				<p><reg>idem</reg> novum bellum suscepit atque confecit. <milestone n="frBob12"
-						unit="section"/></p>
+				<p><reg>idem</reg> novum bellum suscepit atque confecit. <milestone n="frBob12" unit="section"/></p>
 				<p><reg>non</reg> Asiae testibus, sed accusatoribus contubernalibus traditus.
 						<milestone n="3" unit="chapter"/><milestone n="6" unit="section"/></p>
 				<p><reg>hunc</reg> igitur virum, Laeli, quibus tandem rebus oppugnas?
@@ -290,15 +293,13 @@ Added to repository. Passes TEI parse.
 					modo crimen effugit? <reg>praetereo</reg> illa quae praetereunda non sunt,
 					nullum huius in privatis rebus factum avarum, nullam in re pecuniaria
 					contentionem, nullam in re familiari sordem posse proferri. <reg>quibus</reg>
-					igitur testibus ego hosce possum refutare nisi vobis? <milestone n="8"
-						unit="section"/>Tmolites ille vicanus, homo non modo nobis sed ne inter suos
+					igitur testibus ego hosce possum refutare nisi vobis? <milestone n="8" unit="section"/>Tmolites ille vicanus, homo non modo nobis sed ne inter suos
 					quidem notus, vos docebit qualis sit L. Flaccus? quem vos modestissimum
 					adulescentem, provinciae maximae sanctissimum virum, vestri exercitus
 					fortissimum militem, diligentissimum ducem, temperatissimum legatum
 					quaestoremque cognoverunt, quem vos praesentes constantissimum senatorem,
 					iustissimum praetorem atque amantissimum rei publicae civem iudicastis.
-						<milestone n="4" unit="chapter"/><milestone n="9" unit="section"
-						/><reg>de</reg> quibus vos aliis testes esse debetis, de eis ipsi alios
+						<milestone n="4" unit="chapter"/><milestone n="9" unit="section"/><reg>de</reg> quibus vos aliis testes esse debetis, de eis ipsi alios
 					testis audietis? <reg>at</reg> quos testis? <reg>primum</reg> dicam, id quod est
 					commune, Graecos; non quo nationi huic ego unus maxime fidem derogem.
 						<reg>nam</reg> si quis umquam de nostris hominibus a genere isto studio ac
@@ -355,8 +356,7 @@ Added to repository. Passes TEI parse.
 						<reg>itaque</reg> hanc partem totam relinquam; tantum a vobis petam,
 					iudices, ut, si quid ipsi audistis communi fama atque sermone de vi, de manu, de
 					armis, de copiis, memineritis; quarum rerum invidia lege hac recenti ac nova
-					certus est inquisitioni comitum numerus constitutus. <milestone n="14"
-						unit="section"/><reg>sed</reg> ut hanc vim omittam, quanta illa sunt quae,
+					certus est inquisitioni comitum numerus constitutus. <milestone n="14" unit="section"/><reg>sed</reg> ut hanc vim omittam, quanta illa sunt quae,
 					quoniam accusatorio iure et more sunt facta, reprehendere non possumus, queri
 					tamen cogimur! primum quod sermo est tota Asia dissipatus Cn. Pompeium, quod L.
 					Flacco esset vehementer inimicus, contendisse a Laelio, paterno amico ac
@@ -371,8 +371,7 @@ Added to repository. Passes TEI parse.
 					ingeni plenus locupletis metu, tenuis praemio, stultos errore permovit; sic sunt
 					expressa ista praeclara quae recitantur psephismata non sententiis neque
 					auctoritatibus declarata, non iure iurando constricta, sed porrigenda manu
-					profundendoque clamore multitudinis concitatae. <milestone n="7" unit="chapter"
-					/></p>
+					profundendoque clamore multitudinis concitatae. <milestone n="7" unit="chapter"/></p>
 				<p>O morem praeclarum disciplinamque quam a maioribus accepimus, si quidem
 					teneremus! sed nescio quo pacto iam de manibus elabitur. <reg>nullam</reg> enim
 					illi nostri sapientissimi et sanctissimi viri vim contionis esse voluerunt; quae
@@ -399,10 +398,8 @@ Added to repository. Passes TEI parse.
 					multitudinem illam non auctoritate sua, sed sagina tenebat se velle dixit, id
 					sutores et zonarii conclamarunt. <reg>hoc</reg> testimonium est civitatis?
 						<reg>ego</reg> testis a Sicilia publice deduxi; verum erant ea testimonia
-					non concitatae contionis, sed iurati senatus. <milestone n="18" unit="section"
-						/><reg>qua</reg> re iam non est mihi contentio cum teste, vobis, iudices,
-					videndum est, sintne haec testimonia putanda. <milestone n="8" unit="chapter"
-					/></p>
+					non concitatae contionis, sed iurati senatus. <milestone n="18" unit="section"/><reg>qua</reg> re iam non est mihi contentio cum teste, vobis, iudices,
+					videndum est, sintne haec testimonia putanda. <milestone n="8" unit="chapter"/></p>
 				<p><reg>adulescens</reg> bonus, honesto loco natus, disertus cum maximo
 					ornatissimoque comitatu venit in oppidum Graecorum, postulat contionem,
 					locupletis homines et gravis ne sibi adversentur testimoni denuntiatione
@@ -417,8 +414,7 @@ Added to repository. Passes TEI parse.
 					temeritatem volgi, audire vocem levissimi cuiusque, audire strepitum
 					imperitorum, audire contionem concitatam levissimae nationis. <reg>itaque</reg>
 					perscrutamini penitus naturam rationemque criminum; iam nihil praeter spem,
-					nihil praeter terrorem ac minas reperietis. <milestone n="9" unit="chapter"
-						/><milestone n="20" unit="section"/></p>
+					nihil praeter terrorem ac minas reperietis. <milestone n="9" unit="chapter"/><milestone n="20" unit="section"/></p>
 				<p>* * * <reg>in</reg> aerario nihil habent civitates, nihil in vectigalibus.
 						<reg>duae</reg> rationes conficiendae pecuniae, aut versura aut tributo; nec
 					tabulae creditoris proferuntur nec tributi confectio ulla recitatur.
@@ -428,14 +424,12 @@ Added to repository. Passes TEI parse.
 					<reg>satisne</reg> vobis coarguere his auctoribus dissolutam Graecorum
 					consuetudinem licentiamque impudentem videmur? Nisi forte qui Cn. Pompeium, qui
 					praesentem, qui nullo impellente fallebant, eos urgente Laelio in absentem et in
-					L. Flaccum aut timidos fuisse aut religiosos putamus. <milestone n="21"
-						unit="section"/><reg>sed</reg> fuerint incorruptae litterae domi; nunc vero
+					L. Flaccum aut timidos fuisse aut religiosos putamus. <milestone n="21" unit="section"/><reg>sed</reg> fuerint incorruptae litterae domi; nunc vero
 					quam habere auctoritatem aut quam fidem possunt? <reg>triduo</reg> lex ad
 					praetorem deferri, iudicum signis obsignari iubet; tricesimo die vix deferuntur.
 						<reg>ne</reg> corrumpi tabulae facile possint, idcirco lex obsignatas in
 					publico poni voluit; at obsignantur corruptae. <reg>quid</reg> refert igitur
-					tanto post ad iudices deferantur, an omnino non deferantur? <milestone n="10"
-						unit="chapter"/></p>
+					tanto post ad iudices deferantur, an omnino non deferantur? <milestone n="10" unit="chapter"/></p>
 				<p><reg>quid</reg>? si testium studium cum accusatore sociatum est, tamenne isti
 					testes habebuntur? Vbi est igitur illa exspectatio quae versari in iudiciis
 					solet? <reg>nam</reg> antea, cum dixerat accusator acriter et vehementer, cumque
@@ -448,8 +442,7 @@ Added to repository. Passes TEI parse.
 					potest quem accusator sine cura interroget nec metuat ne sibi aliquid quod ipse
 					nolit respondeat? Vbi est igitur illa laus oratoris quae vel in accusatore antea
 					vel in patrono spectari solebat: 'bene testem interrogavit; callide accessit,
-					reprehendit; quo voluit adduxit; convicit et elinguem reddidit?' <milestone
-						n="23" unit="section"/><reg>quid</reg> tu istum roges, Laeli, qui, prius
+					reprehendit; quo voluit adduxit; convicit et elinguem reddidit?' <milestone n="23" unit="section"/><reg>quid</reg> tu istum roges, Laeli, qui, prius
 					quam hoc '<quote><reg>te</reg> rogo</quote>' dixeris, plura etiam effundet quam
 					tu ei domi ante praescripseris? <reg>quid</reg> ego autem defensor rogem?
 						<reg>nam</reg> aut oratio testium refelli solet aut vita laedi.
@@ -468,14 +461,12 @@ Added to repository. Passes TEI parse.
 					hic tandem disceptationem et cognitionem veritatis, an innocentiae labem aliquam
 					aut ruinam fore putatis? <reg>multa</reg> enim sunt eius modi, iudices, ut,
 					etiam si in homine ipso de quo agitur neglegenda sint, tamen in condicione atque
-					in exemplo pertimescenda videantur. <milestone n="11" unit="chapter"
-						/><reg>si</reg> quem infimo loco natum, nullo splendore vitae, nulla
+					in exemplo pertimescenda videantur. <milestone n="11" unit="chapter"/><reg>si</reg> quem infimo loco natum, nullo splendore vitae, nulla
 					commendatione famae defenderem, tamen civem a civibus communis humanitatis iure
 					ac misericordia deprecarer, ne ignotis testibus, ne incitatis, ne accusatoris
 					consessoribus, convivis, contubernalibus, ne hominibus levitate Graecis,
 					crudelitate barbaris civem ac supplicem vestrum dederetis, ne periculosam
-					imitationem exempli reliquis in posterum proderetis. <milestone n="25"
-						unit="section"/><reg>sed</reg> cum L. Flacci res agatur, qua ex familia qui
+					imitationem exempli reliquis in posterum proderetis. <milestone n="25" unit="section"/><reg>sed</reg> cum L. Flacci res agatur, qua ex familia qui
 					primus consul factus est primus in hac civitate consul fuit, cuius virtute
 					regibus exterminatis libertas in re publica constituta est, quae usque ad hoc
 					tempus honoribus, imperiis, rerum gestarum gloria continuata permansit, cumque
@@ -488,8 +479,7 @@ Added to repository. Passes TEI parse.
 					totam causam quam maxime intentis oculis, ut aiunt, acerrime contemplemini.
 						<reg>nihil</reg> religione testatum, nihil veritate fundatum, nihil dolore
 					expressum, contraque omnia corrupta libidine, iracundia, studio, pretio,
-					periurio reperientur. <milestone n="12" unit="chapter"/><milestone n="27"
-						unit="section"/></p>
+					periurio reperientur. <milestone n="12" unit="chapter"/><milestone n="27" unit="section"/></p>
 				<p><reg>etenim</reg> iam universa istorum cognita cupiditate accedam ad singulas
 					querelas criminationesque Graecorum. <reg>classis</reg> nomine pecuniam
 					civitatibus imperatam queruntur. <reg>quod</reg> nos factum, iudices,
@@ -502,8 +492,7 @@ Added to repository. Passes TEI parse.
 					hoc Graeci statuent aut ullae exterae nationes, an nostri praetores, nostri
 					duces, nostri imperatores? <reg>equidem</reg> existimo in eius modi regione
 					atque provincia quae mari cincta, portibus distincta, insulis circumdata esset,
-					non solum praesidi sed etiam ornandi imperi causa navigandum fuisse. <milestone
-						n="28" unit="section"/><reg>haec</reg> enim ratio ac magnitudo animorum in
+					non solum praesidi sed etiam ornandi imperi causa navigandum fuisse. <milestone n="28" unit="section"/><reg>haec</reg> enim ratio ac magnitudo animorum in
 					maioribus nostris fuit ut, cum in privatis rebus suisque sumptibus minimo
 					contenti tenuissimo cultu viverent, in imperio atque in publica dignitate omnia
 					ad gloriam splendoremque revocarent. <reg>quaeritur</reg> enim in re domestica
@@ -519,8 +508,7 @@ Added to repository. Passes TEI parse.
 					confecisset, classem tamen isdem istis civitatibus imperavit. <reg>quod</reg> si
 					tum statuit opus esse cum ipsius praesentis nomine tuta omnia et pacata esse
 					poterant, quid, cum ille decessisset, Flacco existimatis statuendum et faciendum
-					fuisse? <milestone n="13" unit="chapter"/><milestone n="30" unit="section"
-						/><reg>quid</reg>? nos hic nonne ipso Pompeio auctore Silano et Murena
+					fuisse? <milestone n="13" unit="chapter"/><milestone n="30" unit="section"/><reg>quid</reg>? nos hic nonne ipso Pompeio auctore Silano et Murena
 					consulibus decrevimus ut classis in Italia navigaret? nonne eo ipso tempore cum
 					L. Flaccus in Asia remiges imperabat, nos hic in mare superum et inferum
 					sestertium ter et quadragiens erogabamus? <reg>quid</reg>? postero anno nonne M.
@@ -532,8 +520,7 @@ Added to repository. Passes TEI parse.
 					nostram, Ciliciam teneri, Cyprum per Ptolomaeum regem nihil audere, praeterea
 					Cretam Metelli virtute esse nostram, nihil esse unde proficiscantur, nihil quo
 					revertantur, omnis sinus, promunturia, litora, insulas, urbis maritimas
-					claustris imperi nostri contineri. <milestone n="31" unit="section"
-						/><reg>quod</reg> si Flacco praetore nemo in mari praedo fuisset, tamen
+					claustris imperi nostri contineri. <milestone n="31" unit="section"/><reg>quod</reg> si Flacco praetore nemo in mari praedo fuisset, tamen
 					huius diligentia reprehendenda non esset. <reg>idcirco</reg> enim quod hic
 					classem habuisset, existimarem non fuisse. <reg>quid</reg>? si L. Eppi, L. Agri,
 					C. Cesti, equitum Romanorum, huius etiam clarissimi viri, Cn. Domiti, qui in
@@ -547,8 +534,7 @@ Added to repository. Passes TEI parse.
 					praefuerunt qui, cum praedonem nullum cepissent, mare tamen tutum praestiterunt!
 					Casus est enim in capiendo, locus, ventus, occasio; defendendi facilis est
 					cautio, non solum latibulis occultorum locorum sed etiam tempestatum moderatione
-					et conversione. <milestone n="14" unit="chapter"/><milestone n="32"
-						unit="section"/><reg>reliquum</reg> est ut quaeratur utrum ista classis
+					et conversione. <milestone n="14" unit="chapter"/><milestone n="32" unit="section"/><reg>reliquum</reg> est ut quaeratur utrum ista classis
 					cursu et remis, an sumptu tantum et litteris navigarit. <reg>num</reg> id igitur
 					negari potest, cuius rei cuncta testis est Asia, bipertito classem distributam
 					fuisse, ut una pars supra Ephesum, altera infra Ephesum navigaret?
@@ -573,8 +559,7 @@ Added to repository. Passes TEI parse.
 					sumptu remigum civitates levaret; crimen autem tum videri solet cum aliquis
 					sumptus instituit eos qui antea non erant instituti, non cum successor aliquid
 					immutat de institutis priorum. Flaccus quid alii postea facturi essent scire non
-					poterat, quid fecissent videbat. <milestone n="15" unit="chapter"/><milestone
-						n="34" unit="section"/></p>
+					poterat, quid fecissent videbat. <milestone n="15" unit="chapter"/><milestone n="34" unit="section"/></p>
 				<p><reg>sed</reg>, quoniam de communi totius Asiae crimine est dictum, adgrediar iam
 					ad singulas civitates; ex quibus sit sane nobis prima civitas Acmonensis.
 						<reg>citat</reg> praeco voce maxima legatos Acmonensis. <reg>procedit</reg>
@@ -586,8 +571,7 @@ Added to repository. Passes TEI parse.
 					obscenitatem verborum praetereundas puto. <reg>dixit</reg> publice data
 					drachmarum <num n="260,000"><hi rend="overline">ccvi</hi></num>.
 						<reg>dixit</reg> tantum, nihil ostendit, nihil protulit; sed adiunxit, id
-					quod certe, quoniam erat domesticum, docere debuit, se privatim drachmarum <num
-						n="260,000"><hi rend="overline">ccvi</hi></num> dedisse. <reg>quantum</reg>
+					quod certe, quoniam erat domesticum, docere debuit, se privatim drachmarum <num n="260,000"><hi rend="overline">ccvi</hi></num> dedisse. <reg>quantum</reg>
 					sibi ablatum homo impudentissimus dicit, tantum numquam est ausus ut haberet
 					optare. <milestone n="35" unit="section"/><reg>ab</reg> A. Sextilio dicit se
 					dedisse et a suis fratribus. <reg>potuit</reg> dare Sextilius; nam fratres
@@ -611,8 +595,7 @@ Added to repository. Passes TEI parse.
 					vero hactenus ista formula testimoni atque orationis tuae describi ac distingui
 					potest ut Flacco absenti aliquid civitates tribuisse dicantur, Laelio praesenti
 					per se agenti vi legis, iure accusationis, opibus praeterea suis terrenti ac
-					minanti nihil temporis causa scripsisse aut obsignasse videantur. <milestone
-						n="16" unit="chapter"/><milestone n="37" unit="section"/><reg>equidem</reg>
+					minanti nihil temporis causa scripsisse aut obsignasse videantur. <milestone n="16" unit="chapter"/><milestone n="37" unit="section"/><reg>equidem</reg>
 					in minimis rebus saepe res magnas vidi, iudices, deprehendi ac teneri, ut in hoc
 					Asclepiade. <reg>haec</reg> quae est a nobis prolata laudatio obsignata erat
 					creta illa Asiatica quae fere est omnibus nota nobis, qua utuntur omnes non modo
@@ -632,8 +615,7 @@ Added to repository. Passes TEI parse.
 					toto Acmonensium testimonio, sive hic confictum est, ut apparet, sive missum
 					domo est, ut dicitur, commorabor. <reg>etenim</reg> quibus ego laudationem istam
 					remittam, quoniam sunt, ut Asclepiades dicit, leves, horum testimonium non
-					pertimescam. <milestone n="17" unit="chapter"/><milestone n="39" unit="section"
-					/></p>
+					pertimescam. <milestone n="17" unit="chapter"/><milestone n="39" unit="section"/></p>
 				<p><reg>venio</reg> nunc ad Dorylensium testimonium; qui producti tabulas se
 					publicas ad <reg>speluncas</reg> perdidisse dixerunt. O pastores nescio quos
 					cupidos litterarum, si quidem nihil istis praeter litteras abstulerunt!
@@ -653,8 +635,7 @@ Added to repository. Passes TEI parse.
 					eidem nuper tres equites Romani honesti et graves, cum in causa liberali eum qui
 					adserebatur cognatum suum esse diceret, non crediderunt. <reg>qui</reg> hoc
 					evenit ut, qui locuples testis doloris et sanguinis sui non fuerit, idem sit
-					gravis auctor iniuriae publicae? <milestone n="41" unit="section"
-						/><reg>atque</reg> hic Dorylensis nuper cum efferretur magna frequentia
+					gravis auctor iniuriae publicae? <milestone n="41" unit="section"/><reg>atque</reg> hic Dorylensis nuper cum efferretur magna frequentia
 					conventuque vestro, mortis illius invidiam in L. Flaccum Laelius conferebat.
 						<reg>facis</reg> iniuste, Laeli, si putas nostro periculo vivere tuos
 					contubernalis, praesertim cum tua neglegentia factum arbitremur.
@@ -676,8 +657,7 @@ Added to repository. Passes TEI parse.
 					doctus ut etiam magistrum illorum se esse dicat. <reg>at</reg>, qui ita sit
 					ambitiosus ut omnis vos nosque cotidie persalutet, Temni usque ad illam aetatem
 					in senatum venire non potuit et, qui se artem dicendi traditurum etiam ceteris
-					profiteatur, ipse omnibus turpissimis iudiciis victus est. <milestone n="43"
-						unit="section"/>Pari felicitate legatus una venit Nicomedes, qui nec in
+					profiteatur, ipse omnibus turpissimis iudiciis victus est. <milestone n="43" unit="section"/>Pari felicitate legatus una venit Nicomedes, qui nec in
 					senatum ulla condicione pervenire potuit et furti et pro socio damnatus est.
 						<reg>nam</reg> princeps legationis, Lysania, adeptus est ordinem senatorium,
 					sed cum rem publicam nimium amplecteretur, peculatus damnatus et bona et
@@ -700,8 +680,7 @@ Added to repository. Passes TEI parse.
 					quem contempserant pertimescunt. <reg>si</reg> praetor dedit, ut est scriptum, a
 					quaestore numeravit, quaestor a mensa publica, mensa aut ex vectigali aut ex
 					tributo. <reg>numquam</reg> erit istuc simile criminis, nisi hanc mihi totam
-					rationem omni et personarum genere et litterarum explicaris. <milestone n="45"
-						unit="section"/></p>
+					rationem omni et personarum genere et litterarum explicaris. <milestone n="45" unit="section"/></p>
 				<p><reg>vel</reg> quod est in eodem decreto scriptum, homines clarissimos civitatis
 					amplissimis usos honoribus hoc praetore circumventos, cur hi neque in iudicio
 					adsunt neque in decreto nominantur? <reg>non</reg> enim credo significari isto
@@ -714,8 +693,7 @@ Added to repository. Passes TEI parse.
 					celavit suos civis ultroque eis sumptum intulit. <reg>quod</reg> postea quam
 					Temni litteris a P. Varinio missis cognitum atque patefactum est, cumque eadem
 					de re Cn. Lentulus, qui censor fuit, Temnitarum patronus, litteras misisset,
-					Heraclidam istum Temni postea nemo vidit. <milestone n="46" unit="section"
-						/><reg>atque</reg> ut eius impudentiam perspicere possitis, causam ipsam
+					Heraclidam istum Temni postea nemo vidit. <milestone n="46" unit="section"/><reg>atque</reg> ut eius impudentiam perspicere possitis, causam ipsam
 					quae levissimi hominis animum in Flaccum incitavit, quaeso, cognoscite.
 						<milestone n="20" unit="chapter"/><reg>fundum</reg> Cymaeum Romae mercatus
 					est de pupillo Meculonio. Cum verbis se locupletem faceret, haberet nihil
@@ -748,8 +726,7 @@ Added to repository. Passes TEI parse.
 					Fufiorum nominibusque recitatis homo audacissimus pertimuit, loquacissimus
 					obmutuit. <reg>itaque</reg> recuperatores contra istum rem minime dubiam prima
 					actione iudicaverunt. Cum iudicatum non faceret, addictus Hermippo et ab hoc
-					ductus est. <milestone n="21" unit="chapter"/><milestone n="49" unit="section"
-						/><reg>habetis</reg> et honestatem hominis et auctoritatem testimoni et
+					ductus est. <milestone n="21" unit="chapter"/><milestone n="49" unit="section"/><reg>habetis</reg> et honestatem hominis et auctoritatem testimoni et
 					causam omnem simultatis. <reg>atque</reg> is ab Hermippo missus, cum ei pauca
 					mancipia vendidisset, Romam se contulit, deinde in Asiam rediit, cum iam frater
 					meus Flacco successisset. <reg>ad</reg> quem adiit causamque ita detulit,
@@ -804,16 +781,14 @@ Added to repository. Passes TEI parse.
 					conculcandum putaverunt, desinant putare auctoritatem esse in eo testimonio
 					cuius auctor inventus est nemo. <milestone n="23" unit="chapter"/><reg>sed</reg>
 					exponam quid in re <add>sit</add> ut quam ob rem ista civitas neque severe
-					Flaccum oppugnarit neque benigne defenderit scire possitis. <milestone n="54"
-						unit="section"/><reg>erat</reg> ei Castriciano nomine irata, de quo toto
+					Flaccum oppugnarit neque benigne defenderit scire possitis. <milestone n="54" unit="section"/><reg>erat</reg> ei Castriciano nomine irata, de quo toto
 					respondit Hortensius; invita solverat Castricio pecuniam iam diu debitam.
 						<reg>hinc</reg> totum odium, hinc omnis offensio. <reg>quo</reg> cum
 					venisset Laelius ad iratos et illud Castricianum volnus dicendo refricuisset,
 					siluerunt principes neque in illa contione adfuerunt neque istius decreti ac
 					testimoni auctores esse voluerunt. Vsque adeo orba fuit ab optimatibus illa
 					contio ut princeps principum esset Maeandrius; cuius lingua quasi flabello
-					seditionis illa tum est egentium contio ventilata. <milestone n="55"
-						unit="section"/><reg>itaque</reg> civitatis pudentis, ut ego semper
+					seditionis illa tum est egentium contio ventilata. <milestone n="55" unit="section"/><reg>itaque</reg> civitatis pudentis, ut ego semper
 					existimavi, et gravis, ut ipsi existimari volunt, iustum dolorem querelasque
 					cognoscite. <reg>quae</reg> pecunia fuerit apud se Flacci patris nomine a
 					civitatibus, hanc a se esse ablatam queruntur. Alio loco quaeram quid licuerit
@@ -821,16 +796,14 @@ Added to repository. Passes TEI parse.
 					suamne dicant, sibi a civitatibus conlatam in usum suum. <reg>cupio</reg>
 					audire. '<reg>non</reg>,' inquit, 'dicimus.' <reg>quid</reg> igitur?
 						'<reg>delatam</reg> ad nos, creditam nobis L. Flacci patris nomine ad eius
-					dies festos atque ludos.' <reg>quid</reg> tum? <milestone n="56" unit="section"
-						/>'<reg>hanc</reg> te,' inquit, 'capere non licuit.' <reg>iam</reg> id
+					dies festos atque ludos.' <reg>quid</reg> tum? <milestone n="56" unit="section"/>'<reg>hanc</reg> te,' inquit, 'capere non licuit.' <reg>iam</reg> id
 					videro, sed primum illud tenebo. <reg>queritur</reg> gravis, locuples, ornata
 					civitas, quod non retinet alienum; spoliatam se dicit, quod id non habet quod
 					eius non fuit. <reg>quid</reg> hoc impudentius dici aut fingi potest?
 						<reg>delectum</reg> est oppidum, quo in oppido universa pecunia a tota Asia
 					ad honores L. Flacci poneretur. <reg>haec</reg> pecunia tota ab honoribus
 					translata est in quaestum et faenerationem; recuperata est multis post annis.
-						<milestone n="24" unit="chapter"/><milestone n="57" unit="section"
-						/><reg>quae</reg> civitati facta est iniuria? <reg>at</reg> moleste fert
+						<milestone n="24" unit="chapter"/><milestone n="57" unit="section"/><reg>quae</reg> civitati facta est iniuria? <reg>at</reg> moleste fert
 					civitas. <reg>credo</reg>; avolsum est enim praeter spem quod erat spe devoratum
 					lucrum. <reg>at</reg> queritur. <reg>impudenter</reg> facit; non enim omnia quae
 					dolemus, eadem queri iure possumus. <reg>at</reg> accusat verbis gravissimis.
@@ -845,15 +818,13 @@ Added to repository. Passes TEI parse.
 					hae civitates existimari volunt facilius una se epistula Mithridatis moveri
 					impellique potuisse ut amicitiam populi Romani, fidem suam, iura omnia offici
 					humanitatisque violarent, quam ut filium testimonio laederent cuius patrem armis
-					pellendum a suis moenibus censuissent. <milestone n="58" unit="section"
-						/><reg>qua</reg> re nolite mihi ista nomina civitatum nobilium opponere;
+					pellendum a suis moenibus censuissent. <milestone n="58" unit="section"/><reg>qua</reg> re nolite mihi ista nomina civitatum nobilium opponere;
 					quos enim hostis haec familia contempsit, numquam eosdem testis pertimescet.
 						<reg>vobis</reg> autem est confitendum, si consiliis principum vestrae
 					civitates reguntur, non multitudinis temeritate, sed optimatium consilio bellum
 					ab istis civitatibus cum populo Romano esse susceptum; sin ille tum motus est
 					temeritate imperitorum excitatus, patimini me delicta volgi a publica causa
-					separare. <milestone n="25" unit="chapter"/><milestone n="59" unit="section"
-						/><reg>at</reg> enim istam pecuniam huic capere non licuit. Vtrum voltis
+					separare. <milestone n="25" unit="chapter"/><milestone n="59" unit="section"/><reg>at</reg> enim istam pecuniam huic capere non licuit. Vtrum voltis
 					patri Flacco licuisse necne? <reg>si</reg> licuit <add>uti</add>, sicuti certe
 					licuit, ad eius honores conlata, ex quibus nihil ipse capiebat, patris pecuniam
 					recte abstulit filius; si non licuit, tamen illo mortuo non modo filius sed
@@ -862,8 +833,7 @@ Added to repository. Passes TEI parse.
 					omnia quae voluerunt impetraverunt, neque tam fuerunt impudentes ut id quod
 					Laelius dixit dicere auderent, hanc ab se pecuniam abstulisse Mithridatem.
 						<reg>quis</reg> enim erat qui non sciret in ornandis studiosiorem
-					Mithridatem quam in spoliandis Trallianis fuisse? <milestone n="60"
-						unit="section"/><reg>quae</reg> quidem a me si, ut dicenda sunt, dicerentur,
+					Mithridatem quam in spoliandis Trallianis fuisse? <milestone n="60" unit="section"/><reg>quae</reg> quidem a me si, ut dicenda sunt, dicerentur,
 					gravius agerem, iudices, quam adhuc egi, quantam Asiaticis testibus fidem habere
 					vos conveniret; revocarem animos vestros ad Mithridatici belli memoriam, ad
 					illam universorum civium Romanorum per tot urbis uno puncto temporis miseram
@@ -925,12 +895,10 @@ Added to repository. Passes TEI parse.
 						<reg>nam</reg> quid ego dicam de Lydia? <reg>quis</reg> umquam Graecus
 					comoediam scripsit in qua servus primarum partium non Lydus esset?
 						<reg>quam</reg> ob rem quae vobis fit iniuria, si statuimus vestro nobis
-					iudicio standum esse de vobis? <milestone n="66" unit="section"
-						/><reg>equidem</reg> mihi iam satis superque dixisse videor de Asiatico
+					iudicio standum esse de vobis? <milestone n="66" unit="section"/><reg>equidem</reg> mihi iam satis superque dixisse videor de Asiatico
 					genere testium; sed tamen vestrum est, iudices, omnia quae dici possunt in
 					hominum levitatem, inconstantiam, cupiditatem, etiam si a me minus dicuntur,
-					vestris animis et cogitatione comprendere. <milestone n="28" unit="chapter"
-					/></p>
+					vestris animis et cogitatione comprendere. <milestone n="28" unit="chapter"/></p>
 				<p><reg>sequitur</reg> auri illa invidia Iudaici. <reg>hoc</reg> nimirum est illud
 					quod non longe a gradibus Aureliis haec causa dicitur. <reg>ob</reg> hoc crimen
 					hic locus abs te, Laeli, atque illa turba quaesita est; scis quanta sit manus,
@@ -973,8 +941,7 @@ Added to repository. Passes TEI parse.
 						<reg>annos</reg> iam <num>xxx</num> in foro versaris, sed tamen in
 					Pergameno. <reg>longo</reg> intervallo, si quando tibi peregrinari commodum est,
 					Romam venis, adfers faciem novam, nomen vetus, purpuram Tyriam, in qua tibi
-					invideo, quod unis vestimentis tam diu lautus es. <milestone n="71"
-						unit="section"/><reg>verum</reg> esto, negotiari libet; cur non Pergami,
+					invideo, quod unis vestimentis tam diu lautus es. <milestone n="71" unit="section"/><reg>verum</reg> esto, negotiari libet; cur non Pergami,
 					Smyrnae, Trallibus, ubi et multi cives Romani sunt et ius a nostro magistratu
 					dicitur? <reg>otium</reg> te delectat, lites, turbae, praetor odio est,
 					Graecorum libertate gaudes. <reg>cur</reg> ergo unus tu Apollonidensis
@@ -995,16 +962,14 @@ Added to repository. Passes TEI parse.
 					socrum, mulierem imbecilli consili, satis locupletem, pellexit Decianus ad sese
 					et, cum illa quid ageretur nesciret, in possessione praediorum eius familiam
 					suam conlocavit; uxorem abduxit ab Amynta praegnantem, quae peperit apud
-					Decianum filiam, hodieque apud Decianum est et uxor Amyntae et filia. <milestone
-						n="73" unit="section"/><reg>num</reg> quid harum rerum a me fingitur,
+					Decianum filiam, hodieque apud Decianum est et uxor Amyntae et filia. <milestone n="73" unit="section"/><reg>num</reg> quid harum rerum a me fingitur,
 					Deciane? <reg>sciunt</reg> haec omnes nobiles, sciunt boni viri, sciunt denique
 					noti homines, sciunt mediocres negotiatores. <reg>exsurge</reg>, Amynta, repete
 					a Deciano non pecuniam, non praedia, socrum denique sibi habeat; restituat
 					uxorem, reddat misero patri filiam. <reg>membra</reg>
 					<add>quidem</add>, quae debilitavit lapidibus, fustibus, ferro, manus quas
 					contudit, digitos quos confregit, nervos quos concidit, restituere non potest;
-					filiam, filiam inquam, aerumnoso patri, Deciane, redde. <milestone n="74"
-						unit="section"/><reg>haec</reg> Flacco non probasse te miraris?
+					filiam, filiam inquam, aerumnoso patri, Deciane, redde. <milestone n="74" unit="section"/><reg>haec</reg> Flacco non probasse te miraris?
 						<reg>cui</reg>, quaeso, tandem probasti? <reg>emptiones</reg> falsas,
 					praediorum proscriptiones cum aperta circumscriptione fecisti. <reg>tutor</reg>
 					his mulieribus Graecorum legibus ascribendus fuit; Polemocratem scripsisti,
@@ -1019,8 +984,7 @@ Added to repository. Passes TEI parse.
 					mihi gloriari visus es laudatione Pergamenorum quasi honorem maiorum tuorum
 					consecutus esses, et hoc te superiorem esse putabas quam Laelium, quod te
 					civitas Pergamena laudaret. <reg>num</reg> honestior est civitas Pergamena quam
-					Smyrnaea? <milestone n="31" unit="chapter"/><milestone n="75" unit="section"
-						/><reg>at</reg> ne ipsi quidem dicunt. <reg>vellem</reg> tantum habere me
+					Smyrnaea? <milestone n="31" unit="chapter"/><milestone n="75" unit="section"/><reg>at</reg> ne ipsi quidem dicunt. <reg>vellem</reg> tantum habere me
 					oti, ut possem recitare psephisma Smyrnaeorum quod fecerunt in Castricium
 					mortuum, primum ut in oppidum introferretur, quod aliis non conceditur, deinde
 					ut ferrent ephebi, postremo ut imponeretur aurea corona mortuo. <reg>haec</reg>
@@ -1046,8 +1010,7 @@ Added to repository. Passes TEI parse.
 					tribunus militum Flaccus esset, in illius legione miles fuisti, cum per leges
 					militaris effugere liceret iniquitatem tribuni? <reg>cur</reg> autem praetor te,
 					inimicum paternum, in consilium vocavit? <reg>quae</reg> quidem quam sancte
-					solita sint observari scitis omnes. <milestone n="78" unit="section"
-						/><reg>nunc</reg> accusamur ab eis qui in consilio nobis fuerunt.
+					solita sint observari scitis omnes. <milestone n="78" unit="section"/><reg>nunc</reg> accusamur ab eis qui in consilio nobis fuerunt.
 						'<reg>decrevit</reg> Flaccus.' <reg>num</reg> aliud atque oportuit?
 						'<reg>in</reg> liberos.' <reg>num</reg> aliter censuit senatus?
 						'<reg>in</reg> absentem.' <reg>decrevit</reg>, cum ibidem esses, cum prodire
@@ -1073,15 +1036,13 @@ Added to repository. Passes TEI parse.
 					gravius accidisset, ut ex isdem praediis et Apollonide et Romae imperatum esset
 					tributum. <reg>verum</reg> esto, gloriosus fuisti, voluisti magnum agri modum
 					censeri, et eius agri qui dividi plebi Romanae non potest. <reg>census</reg> es
-					praeterea numeratae pecuniae <num n="130,000"><hi rend="overline"
-						>cxxx</hi></num>. <reg>eam</reg> opinor tibi numeratam non esse abs te.
+					praeterea numeratae pecuniae <num n="130,000"><hi rend="overline">cxxx</hi></num>. <reg>eam</reg> opinor tibi numeratam non esse abs te.
 						<reg>sed</reg> haec omitto. <reg>census</reg> es mancipia Amyntae neque huic
 					ullam in eo fecisti iniuriam. <reg>possidet</reg> enim ea mancipia Amyntas.
 						<reg>ac</reg> primo quidem pertimuit, cum te audisset servos suos esse
 					censum; rettulit ad iuris consultos. <reg>constabat</reg> inter omnis, si aliena
-					censendo Decianus sua facere posset, eum maxima habiturum esse. <milestone
-						n="33" unit="chapter"/><milestone n="81" unit="section"/>
-					<gap/>
+					censendo Decianus sua facere posset, eum maxima habiturum esse. <milestone n="33" unit="chapter"/><milestone n="81" unit="section"/>
+					<gap reason="lost"/>
 					<reg>habetis</reg> causam inimicitiarum, qua causa inflammatus Decianus ad
 					Laelium detulerit hanc opimam accusationem. <reg>nam</reg> ita questus est
 					Laelius, cum de perfidia Deciani diceret: 'qui mihi auctor fuit, qui causam ad
@@ -1090,16 +1051,14 @@ Added to repository. Passes TEI parse.
 					apud quem omnis gradus dignitatis tuae retinuisses, pudentissimum hominem,
 					nobilissima familia natum, optime de re publica meritum in discrimen omnium
 					fortunarum vocavisti? <reg>si</reg> licet, defendam Decianum, qui tibi in
-					suspicionem nullo suo delicto venit. <milestone n="82" unit="section"
-						/><reg>non</reg> est, mihi crede, corruptus. <reg>quid</reg> enim fuit quod
+					suspicionem nullo suo delicto venit. <milestone n="82" unit="section"/><reg>non</reg> est, mihi crede, corruptus. <reg>quid</reg> enim fuit quod
 					ab eo redimeretur? ut duceret iudicium? <reg>cui</reg> sex horas omnino lex
 					dedit, quantum tandem ex his horis detraheret, si tibi morem gerere voluisset?
 						<reg>nimirum</reg> illud est quod ipse suspicatur. <reg>invidisti</reg>
 					ingenio subscriptoris tui; quod ornabat facile locum quem prehenderat, et acute
-					testis interrogabat aut <gap/> fortasse fecisset ut tu ex populi sermone
+					testis interrogabat aut <gap reason="lost"/> fortasse fecisset ut tu ex populi sermone
 					excideres, idcirco Decianum usque ad coronam applicavisti. <reg>sed</reg>, ut
-					hoc haud veri simile est Decianum a Flacco esse corruptum, <milestone n="83"
-						unit="section"/>ita scitote esse cetera, velut quod ait Lucceius, L. Flaccum
+					hoc haud veri simile est Decianum a Flacco esse corruptum, <milestone n="83" unit="section"/>ita scitote esse cetera, velut quod ait Lucceius, L. Flaccum
 					sibi dare cupisse, ut a fide se abduceret, sestertium viciens. <reg>et</reg> eum
 					tu accusas avaritiae quem dicis sestertium viciens voluisse perdere?
 						<reg>nam</reg> quid emebat, cum te emebat? ut ad se transires?
@@ -1108,8 +1067,7 @@ Added to repository. Passes TEI parse.
 						<reg>habitare</reg> una? <reg>quis</reg> hoc nescit? <reg>tabulas</reg> in
 					Laeli potestate fuisse? <reg>num</reg> dubium est? <reg>an</reg> ne vehementer,
 					ne copiose accusares? <reg>nunc</reg> facis suspicionem; ita enim dixisti ut
-					nescio quid a te impetratum esse videatur. <milestone n="34" unit="chapter"
-						/><milestone n="84" unit="section"/></p>
+					nescio quid a te impetratum esse videatur. <milestone n="34" unit="chapter"/><milestone n="84" unit="section"/></p>
 				<p><reg>at</reg> enim <reg>androni</reg> Sextilio gravis iniuria facta est et non
 					ferenda, quod, cum esset eius uxor Valeria intestato mortua, sic egit eam rem
 					Flaccus quasi ad ipsum hereditas pertineret. <reg>in</reg> quo quid reprehendas
@@ -1130,8 +1088,7 @@ Added to repository. Passes TEI parse.
 					amittes, an tuum nulla avaritia salva dignitate retinebis? <reg>at</reg> istius
 					hereditatis iam <reg>globulo</reg> praetore Flacci nomine petita possessio est.
 						<reg>non</reg> igitur impressio, non vis, non occasio, non tempus, non
-					imperium, non secures ad iniuriam faciendam Flacci animum impulerunt. <milestone
-						n="86" unit="section"/><reg>atque</reg> eodem etiam M. Lurco, vir optimus,
+					imperium, non secures ad iniuriam faciendam Flacci animum impulerunt. <milestone n="86" unit="section"/><reg>atque</reg> eodem etiam M. Lurco, vir optimus,
 					meus familiaris, convertit aculeum testimoni sui; negavit a privato pecuniam in
 					provincia praetorem petere oportere. <reg>cur</reg> tandem, M. Lurco, non
 					oportet? <reg>extorquere</reg>, accipere contra leges non oportet, petere non
@@ -1142,8 +1099,7 @@ Added to repository. Passes TEI parse.
 					condemnandum putas? <milestone n="35" unit="chapter"/>'<reg>doti</reg>,' inquit,
 					'Valeria pecuniam omnem suam dixerat.' <reg>nihil</reg> istorum explicari
 					potest, nisi ostenderis illam in tutela Flacci non fuisse. <reg>si</reg> fuit,
-					quaecumque sine hoc auctore est dicta dos, nulla est. <milestone n="87"
-						unit="section"/><reg>sed</reg> tamen Lurconem, quamquam pro sua dignitate
+					quaecumque sine hoc auctore est dicta dos, nulla est. <milestone n="87" unit="section"/><reg>sed</reg> tamen Lurconem, quamquam pro sua dignitate
 					moderatus est in testimonio dicendo orationi suae, tamen iratum Flacco esse
 					vidistis. <reg>neque</reg> enim occultavit causam iracundiae suae neque
 					reticendam putavit; questus est libertum suum Flacco praetore esse damnatum. O
@@ -1159,10 +1115,8 @@ Added to repository. Passes TEI parse.
 					edicto dedit; hostis est Lurco. <reg>quid</reg> igitur? hominum gratiosorum
 					splendidorumque libertis fuit Asia tradenda? an simultates nescio quas cum
 					libertis vestris Flaccus exercet? an vobis in vestris vestrorumque causis
-					severitas odio est, eandem laudatis, cum de nobis iudicatis? <milestone n="36"
-						unit="chapter"/><reg>at</reg> iste Andro spoliatus bonis, ut dicitis, ad
-					dicendum testimonium non venit. <reg>quid</reg> si veniat? <milestone n="89"
-						unit="section"/><reg>decisionis</reg> arbiter C. Caecilius fuit, quo
+					severitas odio est, eandem laudatis, cum de nobis iudicatis? <milestone n="36" unit="chapter"/><reg>at</reg> iste Andro spoliatus bonis, ut dicitis, ad
+					dicendum testimonium non venit. <reg>quid</reg> si veniat? <milestone n="89" unit="section"/><reg>decisionis</reg> arbiter C. Caecilius fuit, quo
 					splendore vir, qua fide, qua religione! obsignator C. Sextilius, Lurconis
 					sororis filius, homo et pudens et constans et gravis. <reg>si</reg> vis erat, si
 					fraus, si metus, si circumscriptio, quis pactionem fieri, quis adesse istos
@@ -1175,8 +1129,7 @@ Added to repository. Passes TEI parse.
 					bonis. <reg>quod</reg> statuerat facere adductus huius pudore et non amplissimis
 					patrimoni copiis, id non solum fecit sed etiam prolixe cumulateque fecit.
 						<reg>ex</reg> quo intellegi debet eum contra leges pecunias non cepisse qui
-					tam fuerit in hereditate concedenda liberalis. <milestone n="90" unit="section"
-					/></p>
+					tam fuerit in hereditate concedenda liberalis. <milestone n="90" unit="section"/></p>
 				<p><reg>at</reg> Falcidianum crimen est ingens; talenta quinquaginta se Flacco dicit
 					dedisse. <reg>audiamus</reg> hominem. <reg>non</reg> adest. <reg>quo</reg> modo
 					igitur dicit? <reg>epistulam</reg> mater eius profert et alteram soror; scriptum
@@ -1188,13 +1141,11 @@ Added to repository. Passes TEI parse.
 					hanc urbem, libertate tam praeclara carere, adire periculum navigandi? quasi
 					bona comesse Romae non liceret. <reg>nunc</reg> denique materculae suae festivus
 					filius, aniculae minime suspiciosae, purgat se per epistulam, ut eam pecuniam
-					quacum traiecerat non consumpsisse, sed Flacco dedisse videatur. <milestone
-						n="37" unit="chapter"/><reg>at</reg> fructus isti Trallianorum
+					quacum traiecerat non consumpsisse, sed Flacco dedisse videatur. <milestone n="37" unit="chapter"/><reg>at</reg> fructus isti Trallianorum
 						<reg>globulo</reg> praetore venierant; Falcidius emerat HS nongentis
 					milibus. <reg>si</reg> dat tantam pecuniam Flacco, nempe idcirco dat ut rata sit
 					emptio. <reg>emit</reg> igitur aliquid quod certe multo pluris esset; dat de
-					lucro, nihil detrahit de vivo. <reg>cur</reg> Albanum venire iubet, <milestone
-						n="92" unit="section"/>cur matri praeterea blanditur, cur epistulis et
+					lucro, nihil detrahit de vivo. <reg>cur</reg> Albanum venire iubet, <milestone n="92" unit="section"/>cur matri praeterea blanditur, cur epistulis et
 					sororis et matris imbecillitatem aucupatur, postremo cur non audimus ipsum?
 						<reg>retinetur</reg>, credo, in provincia. <reg>mater</reg> negat.
 						'<reg>venisset</reg>,' inquit, 'si esset denuntiatum.' <reg>tu</reg> certe
@@ -1223,8 +1174,7 @@ Added to repository. Passes TEI parse.
 					optimo cuique infestissimae atque inimicissimae reperiantur. <reg>gravia</reg>
 					iudicia pro rei publicae dignitate multa de coniuratorum scelere fecistis.
 						<reg>non</reg> putant satis conversam rem publicam, nisi in eandem impiorum
-					poenam optime meritos civis detruserint. <milestone n="95" unit="section"
-						/><reg>oppressus</reg> est C. Antonius. <reg>esto</reg>; habuit quandam ille
+					poenam optime meritos civis detruserint. <milestone n="95" unit="section"/><reg>oppressus</reg> est C. Antonius. <reg>esto</reg>; habuit quandam ille
 					infamiam suam; neque tamen ille ipse, pro meo iure dico, vobis iudicibus
 					damnatus esset, cuius damnatione sepulcrum L. Catilinae floribus ornatum hominum
 					audacissimorum ac domesticorum hostium conventu epulisque celebratum est.
@@ -1232,8 +1182,7 @@ Added to repository. Passes TEI parse.
 					expetuntur. <reg>quam</reg> potestis P. Lentulo, qui vos in complexu liberorum
 					coniugumque vestrarum trucidatos incendio patriae sepelire conatus est, mactare
 					victimam gratiorem quam si L. Flacci sanguine illius nefarium in vos omnis odium
-					saturaveritis? <reg>litemus</reg> igitur Lentulo, <milestone n="96"
-						unit="section"/>parentemus Cethego, revocemus eiectos; nimiae pietatis et
+					saturaveritis? <reg>litemus</reg> igitur Lentulo, <milestone n="96" unit="section"/>parentemus Cethego, revocemus eiectos; nimiae pietatis et
 					summi amoris in patriam vicissim nos poenas, si ita placet, sufferamus.
 						<reg>nos</reg> iam ab indicibus nominamur, in nos crimina finguntur, nobis
 					pericula comparantur. <reg>quae</reg> si per alios agerent, si denique per
@@ -1264,14 +1213,12 @@ Added to repository. Passes TEI parse.
 					defendente absolutus est, A. Thermus. <reg>quanta</reg> rei publicae causa
 					laetitia populi Romani, quanta gratulatio consecuta est! <reg>semper</reg>
 					graves et sapientes iudices in rebus iudicandis quid utilitas civitatis, quid
-					communis salus, quid rei publicae tempora poscerent, cogitaverunt. <milestone
-						n="99" unit="section"/>Cum tabella vobis dabitur, iudices, non de Flacco
+					communis salus, quid rei publicae tempora poscerent, cogitaverunt. <milestone n="99" unit="section"/>Cum tabella vobis dabitur, iudices, non de Flacco
 					dabitur solum, dabitur de ducibus auctoribusque conservandae civitatis, dabitur
 					de omnibus bonis civibus, dabitur de vobismet ipsis, dabitur de liberis vestris,
 					de vita, de patria, de salute communi. <reg>non</reg> iudicatis in hac causa de
 					exteris nationibus, non de sociis; de vobis atque de vestra re publica
-					iudicatis. <milestone n="40" unit="chapter"/><milestone n="100" unit="section"
-						/><reg>quod</reg> si provinciarum vos ratio magis movet quam vestra, ego
+					iudicatis. <milestone n="40" unit="chapter"/><milestone n="100" unit="section"/><reg>quod</reg> si provinciarum vos ratio magis movet quam vestra, ego
 					vero non modo non recuso sed etiam postulo ut provinciarum auctoritate
 					moveamini. <reg>etenim</reg> opponemus Asiae provinciae primum magnam partem
 					eiusdem provinciae quae pro huius periculis legatos laudatoresque misit, deinde
@@ -1280,15 +1227,13 @@ Added to repository. Passes TEI parse.
 					Massilienses, Rhodii, Lacedaemonii, Athenienses, cuncta Achaia, Thessalia,
 					Boeotia; Septimio et Caelio testibus P. Servilius et Q. Metellus huius pudoris
 					integritatisque testes repugnabunt; Asiaticae iuris dictioni urbana iuris dictio
-					respondebit; annui temporis criminationem omnis aetas L. <milestone n="101"
-						unit="section"/>Flacci et perpetua vita defendet. <reg>et</reg>, si prodesse
+					respondebit; annui temporis criminationem omnis aetas L. <milestone n="101" unit="section"/>Flacci et perpetua vita defendet. <reg>et</reg>, si prodesse
 					L. Flacco, iudices, debet, quod se tribunum militum, quod quaestorem, quod
 					legatum imperatoribus clarissimis, exercitibus ornatissimis, provinciis
 					gravissimis dignum suis maioribus praestitit, prosit quod hic vobis videntibus
 					in periculis communibus omnium nostrum sua pericula cum meis coniunxit, prosint
 					honestissimorum municipiorum coloniarumque laudationes, prosit etiam senatus
-					populique Romani praeclara et vera laudatio. <milestone n="102" unit="section"
-					/>O nox illa quae paene aeternas huic urbi tenebras attulisti, cum Galli ad
+					populique Romani praeclara et vera laudatio. <milestone n="102" unit="section"/>O nox illa quae paene aeternas huic urbi tenebras attulisti, cum Galli ad
 					bellum, Catilina ad urbem, coniurati ad ferrum et flammam vocabantur, cum ego
 					te, Flacce, caelum noctemque contestans flens flentem obtestabar, cum tuae fidei
 					optimae et spectatissimae salutem urbis et civium commendabam! <reg>tu</reg>
@@ -1298,8 +1243,7 @@ Added to repository. Passes TEI parse.
 					ab senatu, quae a bonis omnibus! <reg>quis</reg> tibi, quis C. Pomptino,
 					fortissimo viro, quemquam bonum putaret umquam non salutem verum honorem ullum
 					denegaturum? O Nonae illae Decembres quae me consule fuistis! quem ego diem vere
-					natalem huius urbis aut certe salutarem appellare possum. <milestone n="41"
-						unit="chapter"/><milestone n="103" unit="section"/>O nox illa quam iste est
+					natalem huius urbis aut certe salutarem appellare possum. <milestone n="41" unit="chapter"/><milestone n="103" unit="section"/>O nox illa quam iste est
 					dies consecutus, fausta huic urbi, miserum me, metuo ne funesta nobis!
 						<reg>qui</reg> tum animus L. Flacci—nihil dicam enim de me—qui amor in
 					patriam, quae virtus, quae gravitas exstitit! <reg>sed</reg> quid ea commemoro
@@ -1323,8 +1267,7 @@ Added to repository. Passes TEI parse.
 					viam sibi videant expeditiorem ad honores et ad omnia quae concupiverunt?
 						<milestone n="42" unit="chapter"/><reg>sed</reg> cetera sint eorum; sibi
 					habeant potentiam, sibi honores, sibi ceterorum commodorum summas facultates;
-					liceat eis qui haec salva esse voluerunt ipsis esse salvis. <milestone n="105"
-						unit="section"/><reg>nolite</reg>, iudices, existimare eos quibus integrum
+					liceat eis qui haec salva esse voluerunt ipsis esse salvis. <milestone n="105" unit="section"/><reg>nolite</reg>, iudices, existimare eos quibus integrum
 					est, qui nondum ad honores accesserunt, non exspectare huius exitum iudici.
 						<reg>si</reg> L. Flacco tantus amor in bonos omnis, tantum in rem publicam
 					studium calamitati fuerit, quem posthac tam amentem fore putatis qui non illam
@@ -1346,12 +1289,11 @@ Added to repository. Passes TEI parse.
 					miseremini fortissimi patris, miseremini fili; nomen clarissimum et fortissimum
 					vel generis vel vetustatis vel hominis causa rei publicae reservate.</p>
 			</div>
-			<div type="fragments">
+			<div type="textpart" subtype="fragments">
 				<head>FRAGMENTA</head>
-				<p>quam benivolum hunc populo Romano, quam fidelem putatis? <milestone n="fr2"
-						unit="section"/></p>
+				<p>quam benivolum hunc populo Romano, quam fidelem putatis? <milestone n="fr2" unit="section"/></p>
 				<p>ingenita levitas et erudita vanitas. </p>
 			</div>
-		</body>
-	</text>
+		</div>
+	</body></text>
 </TEI>

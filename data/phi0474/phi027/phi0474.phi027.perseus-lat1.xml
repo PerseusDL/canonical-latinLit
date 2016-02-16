@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader type="text">
 		<fileDesc>
 			<titleStmt>
@@ -50,31 +51,22 @@
 
 		<encodingDesc>
 			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState unit="section"/>
+				<cRefPattern n="section"
+					matchPattern="(\w+)"
+					replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div/tei:milestone[@n='$1'])">
+					<p>This pointer pattern extracts chapter</p>
+				</cRefPattern>
 			</refsDecl>
 			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState delim="." n="chunk" unit="chapter"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Agr.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Agr.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState delim="." n="chunk" unit="chapter"/>
 				<refState unit="section"/>
 			</refsDecl>
 		</encodingDesc>
+		
 
 		<profileDesc>
 			<langUsage>
-				<language ident="la">Latin</language>
-				<language ident="greek">Greek</language>
+				<language ident="lat">Latin</language>
+				<language ident="grc">Greek</language>
 			</langUsage>
 		</profileDesc>
 
@@ -160,10 +152,10 @@ Added to repository. Passes TEI parse.
 			<change when="2014-08-01" who="Stella Dee">edited markup</change>
 		</revisionDesc>
 	</teiHeader>
-	<text xml:lang="la">
-		<body>
+	<text>
+		<body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi027.perseus-lat1" subtype="edition">
 			<head>IN L. CALPVRNIVM PISONEM ORATIO</head>
-			<div type="fragments">
+			<div type="textpart" subtype="fragments">
 				<head>FRAGMENTA</head>
 				<milestone n="fr1" unit="section"/>
 				<p><reg>pro</reg> di inmortales! qui hic inluxit dies mihi quidem, patres
@@ -189,7 +181,7 @@ Added to repository. Passes TEI parse.
 					solet; neque enim hoc mea natura fert nec municipi, praesertim de me optime
 					meriti, dignitas patitur. <milestone n="fr10" unit="section"/></p>
 				<p><reg>hic</reg> cum a domo <add>profectus</add> Placentiae forte consedisset,
-						pauci<add>s post annis</add> in eam civitatem—nam tum erat <gap/> —ascendit.
+						pauci<add>s post annis</add> in eam civitatem—nam tum erat <gap reason="lost"/> —ascendit.
 						<reg>prius</reg> enim Gallus, dein Gallica<add>nus</add>, extremo
 					Placentinus haberi <add>coeptus</add> est. <milestone n="fr11a" unit="section"
 					/></p>
@@ -202,7 +194,7 @@ Added to repository. Passes TEI parse.
 				<p><reg>maiorem</reg> sibi Insuber ille avus adoptavit. <milestone n="fr13"
 						unit="section"/></p>
 				<p><reg>lautiorem</reg>
-					<gap/> pater tuus socerum quam C. Piso <gap/> in illo luctu meo. <reg>ei</reg>
+					<gap reason="lost"/> pater tuus socerum quam C. Piso <gap reason="lost"/> in illo luctu meo. <reg>ei</reg>
 					enim filiam meam conlocavi quem ego, <add>si mihi</add> potestas tum omnium
 					fuisset, unum potissimum delegissem. <milestone n="fr14a" unit="section"/></p>
 				<p><reg>te</reg> tua illa nescio quibus a terris apportata mater pecudem ex alvo,
@@ -224,7 +216,7 @@ Added to repository. Passes TEI parse.
 				<p><del><reg>quid</reg> quod miser, cum loqui non posset, tacere non poterat?</del>
 				</p>
 			</div>
-			<div type="speech">
+			<div type="textpart" subtype="speech">
 				<milestone n="1" unit="chapter"/>
 				<milestone n="1" unit="section"/>
 				<p><reg>iamne</reg> vides, belua, iamne sentis quae sit hominum querela frontis
@@ -1318,6 +1310,7 @@ Added to repository. Passes TEI parse.
 					minus laetabor cum te semper sordidum, quam si paulisper sordidatum viderem.
 				</p>
 			</div>
+		</div>
 		</body>
 	</text>
 </TEI>
