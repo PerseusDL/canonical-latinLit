@@ -1,21 +1,31 @@
-<?xml version="1.0"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersDrama PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersDrama.dtd" >
-%PersDrama;
-]>
-<TEI.2>
-<teiHeader type="text" status="new">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"\?><?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader type="text">
 <fileDesc>
 <titleStmt>
-<title>Eunuchus</title>
-<author>P. Terentius Afer (Terence)</author>
+<title type="work">Eunuchus</title>
+<title type="sub">Machine readable text</title><author n="P. Terentius Afer (Terence)">P. Terentius Afer (Terence)</author>
 <editor role="editor">Edward St. John Parry</editor>
-&responsibility;
-&fund.DLI2;
+<sponsor>Perseus Project, Tufts University</sponsor>
+<principal>Gregory Crane</principal>
+<respStmt>
+<resp>Prepared under the supervision of</resp>
+<name>Bridget Almas</name>
+<name>Lisa Cerrato</name>
+<name>William Merrill</name>
+<name>Elli Mylonas</name>
+<name>David Smith</name>
+</respStmt>
+<funder n="org:DLI2">NSF, NEH: Digital Libraries Initiative, Phase 2</funder>
 </titleStmt>
-<extent></extent>
-&Perseus.publish;
+<publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+
 
 <sourceDesc>
 <biblStruct>
@@ -35,119 +45,52 @@
 
 <encodingDesc>
 <editorialDecl>
-<correction method="silent" status="medium">&Perseus.DE;</correction>
+<correction method="silent" status="medium"><p>professional data entry</p></correction>
 </editorialDecl>
-<refsDecl doctype="TEI.2">
-<state unit="TLN line"/>
-</refsDecl>
-<refsDecl doctype="TEI.2">
-<state unit="act"/>
-<state n="chunk" unit="scene"/>
-<state unit="line"/>
-</refsDecl>
+   <!--<refsDecl doctype="TEI.2">
+            <state unit="TLN line"/>
+         </refsDecl>-->
+   <refsDecl n="CTS">
+      <cRefPattern n="line" matchPattern="(\w+).(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:l[@n='$3'])">
+         <p>This pointer pattern extracts act and scene and line</p>
+      </cRefPattern>
+      <cRefPattern n="scene" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+         <p>This pointer pattern extracts act and scene</p>
+      </cRefPattern>
+      <cRefPattern n="act" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+         <p>This pointer pattern extracts act</p>
+      </cRefPattern>
+   </refsDecl>
+   <refsDecl>
+      <refState unit="act" delim="."/>
+      <refState unit="scene" delim="."/>
+      <refState unit="line"/>
+   </refsDecl>
 </encodingDesc>
 
 <profileDesc>
 <langUsage>
-<language id="la">Latin</language>
-<language id="greek">Greek</language>
-<language id="en">English</language>
-<language id="de">German</language>
-<language id="fr">French</language>
-<language id="it">Italian</language>
+<language ident="la">Latin</language>
+<language ident="grc">Greek</language>
+<language ident="en">English</language>
+<language ident="de">German</language>
+<language ident="fr">French</language>
+<language ident="it">Italian</language>
 </langUsage>
 </profileDesc>
 
 <revisionDesc>
-<change><date> 2-Jul-01</date>
-<respStmt><name>AEM</name><resp>markup</resp></respStmt>
-<item>
-$Log: eu_lat.xml,v $
-Revision 1.1  2013-09-13 11:17:46  balmas01
-moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory
-
-Revision 1.2  2013-06-08 12:13:48  gcrane
-TEI XML converted to facilitate CTS compatibility
-
-Revision 1.1  2011-01-17 00:34:55  gcrane
-base SDL files
-
-Revision 1.2  2010/07/09 13:47:26  student
-fixed place tags - zr
-
-Revision 1.1  2009/12/08 20:46:27  rsingh04
-moved more xml files around based on copyright status.  renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files
-
-Revision 1.4  2008/11/14 21:28:08  lcerrato
-fixed author names for consistent sorting
-
-Revision 1.3  2006/02/10 20:50:41  packel
-places/dates now actually tagged
-
-Revision 1.2  2005/08/01 16:31:41  packel
-removed stray item tags
-
-Revision 1.1  2005/07/25 15:04:53  packel
-Converted to XML
-
-Revision 1.9  2003/07/01 22:18:13  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.8  2002/11/19 20:38:51  amahoney
-some basic proofreading
-
-Revision 1.7  2001/12/21 17:34:27  amahoney
-fix the 'j's in the English section
-
-Revision 1.6  2001/12/19 21:58:41  amahoney
-fix some OCR errors and modernize aedepol to edepol
-
-Revision 1.5  2001/08/21 21:39:20  dasmith
-Fixed some egregious typos.
-
-Revision 1.4  2001/08/21 18:54:24  amahoney
-get the editor's name into the meta-data
-
-Revision 1.3  2001/08/17 15:32:09  amahoney
-fix line numbers in the English, pick up a few typos in Latin
-
-Revision 1.2  2001/07/02 21:01:51  amahoney
-add through lines, drop the headers, generally tidy up for release
-
-Revision 1.1  2001/07/02 19:27:22  amahoney
-new additions
-
-</item>
-</change>
-</revisionDesc>
+<change when="2016-02-09" who="Zach Himes">Cleaned up teiHeader.</change><change who="balmas01" when="2013-09-13">Revision 1.1  moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change><change who="gcrane" when="2013-06-08">Revision 1.2  TEI XML converted to facilitate CTS compatibility</change><change who="gcrane" when="2011-01-17">Revision 1.1  base SDL files</change><change who="student" when="2010-07-09">Revision 1.2  fixed place tags - zr</change><change who="rsingh04" when="2009-12-08">Revision 1.1  moved more xml files around based on copyright status.  renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files</change><change who="lcerrato" when="2008-11-14">Revision 1.4  fixed author names for consistent sorting</change><change who="packel" when="2006-02-10">Revision 1.3  places/dates now actually tagged</change><change who="packel" when="2005-08-01">Revision 1.2  removed stray item tags</change><change who="packel" when="2005-07-25">Revision 1.1  Converted to XML</change><change who="yorkc" when="2003-07-01">Revision 1.9  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change><change who="amahoney" when="2002-11-19">Revision 1.8  some basic proofreading</change><change who="amahoney" when="2001-12-21">Revision 1.7  fix the 'j's in the English section</change><change who="amahoney" when="2001-12-19">Revision 1.6  fix some OCR errors and modernize aedepol to edepol</change><change who="dasmith" when="2001-08-21">Revision 1.5  Fixed some egregious typos.</change><change who="amahoney" when="2001-08-21">Revision 1.4  get the editor's name into the meta-data</change><change who="amahoney" when="2001-08-17">Revision 1.3  fix line numbers in the English, pick up a few typos in Latin</change><change who="amahoney" when="2001-07-02">Revision 1.2  add through lines, drop the headers, generally tidy up for release</change><change who="amahoney" when="2001-07-02">Revision 1.1  new additions</change></revisionDesc>
 
 </teiHeader>
 
-<text lang="la"><body>
+<text><body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0134.phi003.perseus-lat1" subtype="edition">
 
-<castList>
-<head>FABULAE INTERLOCUTORES.</head>
-<castItem type="role"><role>ANTIPHO</role><roleDesc>adolescens.</roleDesc></castItem>
-<castItem type="role"><role>CHAEREA</role><roleDesc>adolescens.</roleDesc></castItem>
-<castItem type="role"><role>CHREMES adolescens</role><roleDesc>rusticus.</roleDesc></castItem>
-<castItem type="role"><role>DORIAS</role><roleDesc>ancilla.</roleDesc></castItem>
-<castItem type="role"><role>DORUS</role><roleDesc>eunuchus.</roleDesc></castItem>
-<castItem type="role"><role>GNATHO</role><roleDesc>parasitus.</roleDesc></castItem>
-<castItem type="role"><role>LACHES</role><roleDesc>senex.</roleDesc></castItem>
-<castItem type="role"><role>PARMENO</role><roleDesc>servus.</roleDesc></castItem>
-<castItem type="role"><role>PHAEDRIA</role><roleDesc>adolescens.</roleDesc></castItem>
-<castItem type="role"><role>PYTHIAS</role><roleDesc>ancilla.</roleDesc></castItem>
-<castItem type="role"><role>SANGA</role><roleDesc>lixa.</roleDesc></castItem>
-<castItem type="role"><role>SOPHRONA</role><roleDesc>nutrix.</roleDesc></castItem>
-<castItem type="role"><role>THAIS</role><roleDesc>meretrix.</roleDesc></castItem>
-<castItem type="role"><role>THRASO</role><roleDesc>miles.</roleDesc></castItem>
-</castList>
-
-<div1 type="act" n="introduction">
-<div2 type="scene" n="summary">
+<div type="textpart" n="introduction" subtype="act">
+<div type="textpart" n="summary" subtype="scene">
 <head>INTRODUCTION.</head>
 
-<p lang="en">PAMPHILA and Chremes were the children of an Athenian
+<p xml:lang="eng">PAMPHILA and Chremes were the children of an Athenian
 citizen. Pamphila, while an infant, was carried off from her home at
 Sunium by robbers, and by them sold to a merchant of <placeName key="tgn,7011266">Rhodes</placeName>. He
 presented her to a courtesan of that place, who had her brought up
@@ -156,7 +99,7 @@ she removed to <placeName key="perseus,Athens">Athens</placeName> with a lover o
 all his property. She then kept company with a soldier named Thraso,
 who went to <placeName key="tgn,7002358">Caria</placeName> after living with her a short time.
 </p>
-<p lang="en">Meanwhile her mother had died, and her uncle wishing to realize
+<p xml:lang="eng">Meanwhile her mother had died, and her uncle wishing to realize
 money by Pamphila, who was beautiful and accomplished, sold her to
 Thraso, who happened to be at <placeName key="tgn,7011266">Rhodes</placeName> on his return to <placeName key="perseus,Athens">Athens</placeName>, and
 carried her with him intending to make a present of her to
@@ -170,7 +113,7 @@ to restore to her Athenian family, intending by so doing to make
 herself friends in <placeName key="perseus,Athens">Athens</placeName>. Accordingly she shuts her door against
 Phaedria.
 </p>
-<p lang="en">He is at first highly incensed at her conduct; but after an
+<p xml:lang="eng">He is at first highly incensed at her conduct; but after an
 interview with her, consents to absent himself from Athens for a day
 or two, that she may have time to obtain Pamphila from Thraso. Before
 he goes he gives orders that an Ethiopian slave, and an eunuch whom he
@@ -199,7 +142,7 @@ marry her. Pythias meanwhile, Thais' maid, pays off old scores by
 driving Parmeno to divulge the whole matter to Laches, father of
 Chaerea and Phaedria.
 </p>
-<p lang="en">The result is of course a happy explanation on all sides. Thais is
+<p xml:lang="eng">The result is of course a happy explanation on all sides. Thais is
 taken under Laches' protection, and continues her intimacy with
 Phaedria. Chaerea and Pampphila marry. Parmeno is forgiven by his
 grateful young master: and the only person who suffers is the
@@ -208,7 +151,7 @@ glad to submit to be the perpetual butt of these young sparks, on
 condition that he shall be allowed to be one in their parties, and
 thus still enioy the society of Thais.
 </p>
-<p lang="en">This is the outline of the play, which gives a very lively
+<p xml:lang="eng">This is the outline of the play, which gives a very lively
 and amusing action. But the most admirable feature is the manner in
 which some of the subordinate parts are worked out. The bye-play
 between Pythias and Parmeno is admirable. The character of the
@@ -223,9 +166,9 @@ attacking Thais in her house (Act IV. scene vii.) is highly
 ridiculous, and reminds one more strongly than any passage of Terence
 of the free humour of Aristophanes. We cannot wonder that the Eunuchus
 should have been the most popular of all Terence's plays: for here
-there is the nearest approach to the <foreign lang="la">"Plautini sales,"</foreign> which were the
+there is the nearest approach to the <foreign xml:lang="lat">"Plautini sales,"</foreign> which were the
 true Roman comedy. It is said to have been purchased by the Aediles
-for the sum of 8000 sesterces (above 64 &pound; 10 s. sterling), the
+for the sum of 8000 sesterces (above 64 £ 10 s. sterling), the
 largest sum which had been given for any play. The leading incident of
 the plot makes it unfit for the modern stage: but when we say this we
 say all that can be said against the play. The execution is highly
@@ -233,13 +176,13 @@ delicate, even in the famous scene which describes the successful
 issue of Chaerea's scheme. The play is said by the author of the Life
 of Terence to have been acted twice in one day: and no doubt it was
 acted on more than one occasion.
-</p></div2>
-<div2 type="scene" n="production">
+</p></div>
+<div type="textpart" n="production" subtype="scene">
 <p>EUNUCHUS.  ACTA LUDIS MEGALENSIBUS, L. POSTUMIO ALBINO L. CORNELIO MERULA AEDILIBUS CURULIBUS. EGERE L. AMBIVIUS TURPIO L. ATILIUS PRAENESTINUS TIBIIS DUABUS DEXTRIS. GRAECA MENANDRU. ACTA II. MODOS FECIT FLACCUS CLAUDII, M. VALERIO C. FANNIO COSS.
 
-</p></div2></div1>
-<div1 type="act" n="prologue">
-<div2 type="scene" n="0">
+</p></div></div>
+<div type="textpart" n="prologue" subtype="act">
+<div type="textpart" n="0" subtype="scene">
 <sp><speaker>Prologus</speaker>
 
 <l n="1">Si quisquam est qui placere se studeat bonis</l>
@@ -287,10 +230,10 @@ acted on more than one occasion.
 <l n="43">Quae veteres factitarunt si faciunt novi.</l>
 <l n="44">Date operam, et cum silentio animadvertite,</l>
 <lb ed="actscene" n="45"/><l n="45">Ut pernoscatis quid sibi Eunuchus velit.
-</l></sp></div2></div1>
-<div1 type="act" n="1">
+</l></sp></div></div>
+<div type="textpart" n="1" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>PHAEDRIA. PARMENO.</stage>
 <sp><speaker>Ph.</speaker> <l n="46">Quid igitur faciam? non eam? ne nunc quidem</l>
 <l n="47">Cum arcessor ultro? an potius ita me comparem</l>
@@ -331,8 +274,8 @@ acted on more than one occasion.
 <l n="79">Sed ecca ipsa egreditur nostri fundi calamitas;</l>
 <lb ed="actscene" n="35"/><l n="80">Nam quod nos capere oportet haec intercipit.
 
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>THAIS. PHAEDRIA. PARMENO.</stage>
 <sp><speaker>Th.</speaker> <l n="81">Miseram me! vereor ne illud gravius Phaedria</l>
 <l n="82">Tulerit, neve aliorsum atque ego feci acceperit,</l>
@@ -489,10 +432,10 @@ acted on more than one occasion.
 <l n="204">Iam repperisse, adolescentem adeo nobilem:</l>
 <lb ed="actscene" n="125"/><l n="205">Et is hodie venturum ad me constituit domum.</l>
 <l n="206">Concedam hinc intro atque expectabo dum venit.
-</l></sp></div2></div1>
-<div1 type="act" n="2">
+</l></sp></div></div>
+<div type="textpart" n="2" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>PHAEDRIA. PARMENO.</stage>
 <sp><speaker>Ph.</speaker> <l part="I" n="207">Fac ita ut iussi deducantur isti. 
    </l></sp><sp><speaker>Pa.</speaker> <l part="M" n="207.1"> Faciam. 
@@ -536,8 +479,8 @@ acted on more than one occasion.
 <l n="229">Militis: ducit secum una virginem dono huic. Papae!</l>
 <l n="230">Facie honesta: mirum ni ego me turpiter hodie hic dabo</l>
 <lb ed="actscene" n="25"/><l n="231">Cum meo decrepito hoc eunucho. Haec superat ipsam Thaidem.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>GNATHO. PARMENO.</stage>
 <sp><speaker>Gn.</speaker> <l n="232">Di immortales! homini homo quid praestat, stulto intelligens</l>
 <l n="233">Quid interest! hoc adeo ex hac re venit in mentem mihi.</l>
@@ -620,8 +563,8 @@ acted on more than one occasion.
 <l n="289">Sed video herilem filium minorem huc advenire.</l>
 <l n="290">Miror quid ex Piraeeo abierit; nam ibi custos publice est nunc.</l>
 <lb ed="actscene" n="60"/><l n="291">Non temere est; et properans venit: nescio quid circumspectat.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>CHAEREA. PARMENO.</stage>
 <sp><speaker>Ch.</speaker> <l n="292">Occidi.</l>
 <l n="293">Neque virgo est usquam; neque ego, qui illam e conspectu amisi meo.</l>
@@ -791,10 +734,10 @@ acted on more than one occasion.
 <l n="389">Numquam defugiam auctoritatem: sequere. 
    </l></sp><sp><speaker>Pa.</speaker> <l part="Y"> Di vortant bene.
 
-</l></sp></div2></div1>
-<div1 type="act" n="3">
+</l></sp></div></div>
+<div type="textpart" n="3" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>THRASO. GNATHO. PARMENO.</stage>
 <sp><speaker>Th.</speaker> <l n="390">Magnas vero agere gratias Thais mihi?</l></sp>
 <sp><speaker>Gn.</speaker> <l n="391">Ingentes. 
@@ -893,8 +836,8 @@ acted on more than one occasion.
 <sp><speaker>Th.</speaker> <l n="450">Bene dixti: at mihi istuc non in mentem venerat.</l></sp>
 <sp><speaker>Gn.</speaker> <l n="451">Ridiculum: non enim cogitaras: caeterum</l>
 <l n="452">Idem hoc tute melius quanto invenisses Thraso!
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>THAIS. THRASO. PARMENO. GNATHO. PYTHIAS.</stage>
 <sp><speaker>Th.</speaker> <l n="453">Audire vocem visa sum modo militis.</l>
 <l n="454">Atque eccum. Salve mi Thraso. 
@@ -972,8 +915,8 @@ acted on more than one occasion.
 <l n="505">Domi adsitis facite. 
    </l></sp><sp><speaker>Thr.</speaker> <l part="Y"> Eamus. 
    </l></sp><sp><speaker>Th.</speaker> <l part="Y"> Vos me sequimini.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>CHREMES. PYTHIAS.</stage>
 <sp><speaker>Ch.</speaker> <l n="506">Profecto quanto magis magisque cogito,</l>
 <l n="507">Nimirum dabit haec Thais mihi magnum malum:</l>
@@ -1017,8 +960,8 @@ acted on more than one occasion.
    </l></sp><sp><speaker>Ch.</speaker> <l part="Y"> Eo.</l></sp>
 <sp><speaker>Py.</speaker> <l n="537">Abi Dorias cito hunc deduce ad militem.
 
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>ANTIPHO.</stage>
 <sp><speaker>Antipho</speaker>
 <l n="538">Heri aliquot adolescentuli coimus in Piraeeo,</l>
@@ -1031,8 +974,8 @@ acted on more than one occasion.
 <l n="545">Is est, an non est? ipsus est. Quid hoc hominis? qui hic ornatus est?</l>
 <l n="546">Quid illud mali est? nequeo satis mirari neque coniicere.</l>
 <lb ed="actscene" n="10"/><l n="547">Nisi quicquid est, procul hinc libet prius quid sit sciscitari.
-</l></sp></div2>
-<div2 type="scene" n="5">
+</l></sp></div>
+<div type="textpart" n="5" subtype="scene">
 <stage>CHAEREA. ANTIPHO.</stage>
 <sp><speaker>Ch.</speaker> <l n="548">Numquis hic est? nemo est: numquis hinc me sequitur? nemo homo est.</l>
 <l n="549">Iamne erumpere hoc licet mihi gaudium? pro Iupiter!</l>
@@ -1125,10 +1068,10 @@ acted on more than one occasion.
 <l n="613">Potiri, consilium volo capere una tecum. 
    </l></sp><sp><speaker>An.</speaker> <l part="Y"> Fiat.
 
-</l></sp></div2></div1>
-<div1 type="act" n="4">
+</l></sp></div></div>
+<div type="textpart" n="4" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>DORIAS.</stage>
 <sp><speaker>Dorias</speaker>
 <l n="614">Ita me Di ament, quantum ego illum vidi, nonnihil timeo misera</l>
@@ -1145,8 +1088,8 @@ acted on more than one occasion.
 <l n="625">In convivium illam?" Miles tendere: inde ad iurgium.</l>
 <l n="626">Interea aurum sibi clam mulier demit; dat mihi ut auferam.</l>
 <l n="627">Hoc est signi; ubi primum poterit se illinc subducet, scio.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>PHAEDRIA.</stage>
 <sp><speaker>Phaedria</speaker>
 <l n="628">Dum rus eo coepi egomet mecum inter vias,</l>
@@ -1163,8 +1106,8 @@ acted on more than one occasion.
 <l n="639">Saltem hoc licebit. Certe extrema linea</l>
 <l n="640">Amare haud nihil est." Villam praetereo sciens.</l>
 <l n="641">Sed quid hoc quod timida subito egreditur Pythias?
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>PYTHIAS. PHAEDRIA. DORIAS.</stage>
 <sp><speaker>Py.</speaker> <l n="642">Ubi ego ilium scelerosum misera atque impium inveniam? aut ubi quaeram?</l>
 <l n="643">Hocine tam audax facinus facere esse ausum? 
@@ -1201,8 +1144,8 @@ acted on more than one occasion.
 <sp><speaker>Py.</speaker> <l n="664">At pol ego amatores mulierum esse audieram eos maximos,</l>
 <l n="665">Sed nihil potesse; verum miserae non in mentem venerat;</l>
 <lb ed="actscene" n="25"/><l n="666">Nam illum aliquo conclusissem, neque illi commisissem virginem.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>PHAEDRIA. DORUS. PYTHIAS. DORIAS.</stage>
 <sp><speaker>Ph.</speaker> <l n="667">Exi foras, sceleste: at etiam restitas</l>
 <l n="668">Fugitive? prodi, male conciliate. 
@@ -1313,8 +1256,8 @@ acted on more than one occasion.
    </l></sp><sp><speaker>Dor.</speaker> <l part="Y"> Quia cum inde abeo, iam tum inceperat</l>
 <l n="725">Turba inter eos. 
    </l></sp><sp><speaker>Py.</speaker> <l part="Y"> Aufer aurum hoc: ego scibo ex hoc quid siet.
-</l></sp></div2>
-<div2 type="scene" n="5">
+</l></sp></div>
+<div type="textpart" n="5" subtype="scene">
 <stage>CHREMES. PYTHIAS.</stage>
 <sp><speaker>Ch.</speaker> <l n="726">At at! data hercle verba mihi sunt: vicit vinum quod bibi.</l>
 <l n="727">Ac, dum accubabam, quam videbar mihi esse pulchre sobrius!</l>
@@ -1333,8 +1276,8 @@ acted on more than one occasion.
    </l></sp><sp><speaker>Ch.</speaker> <l part="Y"> At nescibam id dicere illam; nisi quia</l>
 <l n="736">Correxit miles quod intellexi minus: nam me extrusit foras.</l>
 <l n="737">Sed eccam ipsam: miror ubi ego huic anteverterim.
-</l></sp></div2>
-<div2 type="scene" n="6">
+</l></sp></div>
+<div type="textpart" n="6" subtype="scene">
 <stage>THAIS. CHREMES. PYTHIAS.</stage>
 <sp><speaker>Th.</speaker> <l n="738">Credo equidem ilium iam adfuturum esse, ut illam a me eripiat. Sine veniat.</l>
 <l n="739">Atqui si illam digito attigerit uno, oculi ilico effodientur.</l>
@@ -1390,8 +1333,8 @@ acted on more than one occasion.
    </l></sp><sp><speaker>Ch.</speaker> <l part="Y"> Faciam. 
    </l></sp><sp><speaker>Th.</speaker> <l part="Y"> Attolle pallium.</l>
 <l n="769">Perii! huic ipsi est opus patrono quem defensorem paro.
-</l></sp></div2>
-<div2 type="scene" n="7">
+</l></sp></div>
+<div type="textpart" n="7" subtype="scene">
 <stage>THRASO. GNATHO. SANGA. CHREMES. THAIS.</stage>
 <sp><speaker>Thr.</speaker> <l n="770">Hancine ego ut contumeliam tam insignem in me accipiam, Gnatho?</l>
 <l n="771">Mori me satius est. Simalio, Donax, Syrisce, sequimini.</l>
@@ -1481,10 +1424,10 @@ acted on more than one occasion.
    </l></sp><sp><speaker>Gn.</speaker> <l part="Y"> Frugi es. 
    </l></sp><sp><speaker>Thr.</speaker> <l part="Y"> Vos me hac sequimini.
 
-</l></sp></div2></div1>
-<div1 type="act" n="5">
+</l></sp></div></div>
+<div type="textpart" n="5" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>THAIS. PYTHIAS.</stage>
 <sp><speaker>Th.</speaker> <l n="816">Pergin scelesta mecum perplexe loqui?</l>
 <l n="817">"Scio; nescio; abiit; audivi; ego non affui."</l>
@@ -1523,8 +1466,8 @@ acted on more than one occasion.
    </l></sp><sp><speaker>Py.</speaker> <l part="Y"> Quid facias rogas?</l>
 <l n="837">Vide amabo si non, qutun adspicias, os impudens</l>
 <l n="838">Videtur: non est? tum quae eius confidentia est!
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>CHAEREA. THAIS. PYTHIAS.</stage>
 <sp><speaker>Ch.</speaker> <l n="839">Apud Antiphonem uterque, mater et pater,</l>
 <l n="840">Quasi dedita opera domi erant, ut nullo modo</l>
@@ -1624,8 +1567,8 @@ acted on more than one occasion.
    </l></sp><sp><speaker>Py.</speaker> <l part="Y"> Id ipsum? Virgo vero. 
    </l></sp><sp><speaker>Th.</speaker> <l part="Y"> I prae; sequor.</l>
 <lb ed="actscene" n="70"/><l n="908">Tu istic mane, ut Chremem introducas, Pythias.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>PYTHIAS. CHREMES. SOPHRONA.</stage>
 <sp><speaker>Py.</speaker> <l n="909">Quid? quid venire in mentem nunc possit mihi?</l>
 <l n="910">Quidnam qui referam illi sacrilego gratiam</l>
@@ -1645,8 +1588,8 @@ acted on more than one occasion.
 <l n="919">Spero me habere qui hunc meo excruciem modo.</l>
 <l n="920">Ibo intro de cognitione ut certum sciam:</l>
 <l n="921">Post exibo atque hunc perterrebo sacrilegum.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>PARMENO. PYHIAS.</stage>
 <sp><speaker>Pa.</speaker> <l n="922">Reviso quidnam Chaerea hic rerum gerat.</l>
 <l n="923">Quod si astu rem tractavit, Di vestram fidem,</l>
@@ -1716,8 +1659,8 @@ acted on more than one occasion.
    </l></sp><sp><speaker>Py.</speaker> <l part="Y"> Sapis.</l>
 <l n="969">Ego abeo intro: tu isti narra omnem rem ordine ut factum siet.
 
-</l></sp></div2>
-<div2 type="scene" n="5">
+</l></sp></div>
+<div type="textpart" n="5" subtype="scene">
 <stage>LACHES. PARMENO.</stage>
 <sp><speaker>La.</speaker> <l n="970">Ex meo propinquo rure hoc capio commodi,</l>
 <l n="971">Neque agri neque urbis odium me umquam percipit.</l>
@@ -1762,8 +1705,8 @@ acted on more than one occasion.
 <lb ed="actscene" n="30"/><l n="999">Nam iam diu aliquam causam quaerebat senex,</l>
 <l n="1000">Quamobrem insigne aliquid faceret iis. Nunc repperit.
 
-</l></sp></div2>
-<div2 type="scene" n="6">
+</l></sp></div>
+<div type="textpart" n="6" subtype="scene">
 <stage>PYTHIAS. PARMENO.</stage>
 <sp><speaker>Py.</speaker> <l n="1001">Numquam edepol quicquam iam diu quod magis vellem evenire</l>
 <l n="1002">Mihi evenit quam quod modo senex intro ad nos venit errans.</l>
@@ -1799,8 +1742,8 @@ acted on more than one occasion.
 <sp><speaker>Pa.</speaker> <l n="1022">Nullus sum. 
    </l></sp><sp><speaker>Py.</speaker> <l part="Y"> Hic pro illo munere tibi honos est habitus: abeo.</l></sp>
 <sp><speaker>Pa.</speaker> <l n="1023">Egomet meo indicio miser quasi sorex hodie perii.
-</l></sp></div2>
-<div2 type="scene" n="7">
+</l></sp></div>
+<div type="textpart" n="7" subtype="scene">
 <stage>GNATHO. THRASO.</stage>
 <sp><speaker>Gn.</speaker> <l n="1024">Quid nunc? qua spe aut quo consilio huc imus? quid inceptas, Thraso?</l></sp>
 <sp><speaker>Th.</speaker> <l n="1025">Egone? ut Thaidi me dedam, et faciam quod iubeat. 
@@ -1811,8 +1754,8 @@ acted on more than one occasion.
 <lb ed="actscene" n="5"/><l n="1028">Sed fores crepuerunt ab ea. 
    </l></sp><sp><speaker>Th.</speaker> <l part="Y"> Perii. Quid hoc autem est mali?</l>
 <l n="1029">Hunc ego numquam videram etiam: quidnam hic properans prosilit?
-</l></sp></div2>
-<div2 type="scene" n="8">
+</l></sp></div>
+<div type="textpart" n="8" subtype="scene">
 <stage>CHAEREA. PARMENO. PHAEDRIA. GNATHO. THRASO.</stage>
 <sp><speaker>Ch.</speaker> <l n="1030">O populares, ecquis me hodie vivit fortunatior?</l>
 <l n="1031">Nemo hercle quisquam; nam in me plane Di potestatem suam</l>
@@ -1921,6 +1864,6 @@ acted on more than one occasion.
 <l n="1091">Numquam etiam fui usquam quin me omlnes amarent plurimum.</l></sp>
 <sp><speaker>Gn.</speaker> <l n="1092">Dixine ego in hoc inesse vobis Atticam elegantiam?</l></sp>
 <sp><speaker>Ph.</speaker> <l n="1093">Nihil praetermissum est: ite hac. 
-   </l></sp><sp><speaker>Omnes</speaker> <l part="Y">Vol valete, et plaudite.</l></sp></div2></div1>
-</body></text>
-</TEI.2>
+   </l></sp><sp><speaker>Omnes</speaker> <l part="Y">Vol valete, et plaudite.</l></sp></div></div>
+</div></body></text>
+</TEI>

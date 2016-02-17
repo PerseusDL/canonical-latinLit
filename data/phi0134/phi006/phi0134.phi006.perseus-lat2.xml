@@ -1,21 +1,32 @@
-<?xml version="1.0"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersDrama PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersDrama.dtd" >
-%PersDrama;
-]>
-<TEI.2>
-<teiHeader type="text" status="new">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"\?><?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader type="text">
 <fileDesc>
 <titleStmt>
 <title>Adelphi</title>
-<author>P. Terentius Afer (Terence)</author>
+<title type="sub">Machine readable text</title>
+   <author>P. Terentius Afer (Terence)</author>
 <editor role="editor">Edward St. John Parry</editor>
-&responsibility;
-&fund.DLI2;
+<sponsor>Perseus Project, Tufts University</sponsor>
+<principal>Gregory Crane</principal>
+<respStmt>
+<resp>Prepared under the supervision of</resp>
+<name>Bridget Almas</name>
+<name>Lisa Cerrato</name>
+<name>William Merrill</name>
+<name>Elli Mylonas</name>
+<name>David Smith</name>
+</respStmt>
+<funder n="org:DLI2">NSF, NEH: Digital Libraries Initiative, Phase 2</funder>
 </titleStmt>
-<extent></extent>
-&Perseus.publish;
+<publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+
 
 <sourceDesc>
 <biblStruct>
@@ -35,125 +46,80 @@
 
 <encodingDesc>
 <editorialDecl>
-<correction method="silent" status="high">&Perseus.DE;</correction>
+<correction method="silent" status="high"><p>professional data entry</p></correction>
 </editorialDecl>
-<refsDecl doctype="TEI.2">
-<state unit="TLN line"/>
-</refsDecl>
-<refsDecl doctype="TEI.2">
-<state unit="act"/>
-<state n="chunk" unit="scene"/>
-<state unit="line"/>
-</refsDecl>
+   <!--<refsDecl doctype="TEI.2">
+            <state unit="TLN line"/>
+         </refsDecl>-->
+   <refsDecl n="CTS">
+      <cRefPattern n="line" matchPattern="(\w+).(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:l[@n='$3'])">
+         <p>This pointer pattern extracts act and scene and line</p>
+      </cRefPattern>
+      <cRefPattern n="scene" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+         <p>This pointer pattern extracts act and scene</p>
+      </cRefPattern>
+      <cRefPattern n="act" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+         <p>This pointer pattern extracts act</p>
+      </cRefPattern>
+   </refsDecl>
+   <refsDecl>
+      <refState unit="act" delim="."/>
+      <refState unit="scene" delim="."/>
+      <refState unit="line"/>
+   </refsDecl>
 </encodingDesc>
 
 <profileDesc>
 <langUsage>
-<language id="la">Latin</language>
-<language id="greek">Greek</language>
-<language id="en">English</language>
-<language id="de">German</language>
-<language id="fr">French</language>
-<language id="it">Italian</language>
+<language ident="lat">Latin</language>
+<language ident="grc">Greek</language>
+<language ident="eng">English</language>
+<language ident="deu">German</language>
+<language ident="fre">French</language>
+<language ident="ita">Italian</language>
 </langUsage>
 </profileDesc>
 
 <revisionDesc>
-<change><date> 2-Jul-01</date>
-<respStmt><name>AEM</name><resp>markup</resp></respStmt>
-<item>
-$Log: ad_lat.xml,v $
-Revision 1.1  2013-09-13 11:17:46  balmas01
-moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory
-
-Revision 1.3  2013-06-10 05:34:40  gcrane
-practer --> praeter
-
-Revision 1.2  2013-06-08 12:13:48  gcrane
-TEI XML converted to facilitate CTS compatibility
-
-Revision 1.1  2011-01-17 00:34:55  gcrane
-base SDL files
-
-Revision 1.2  2010/07/09 16:09:28  student
-fixed place tags - zr
-
-Revision 1.1  2009/12/08 20:46:27  rsingh04
-moved more xml files around based on copyright status.  renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files
-
-Revision 1.4  2008/11/14 21:28:08  lcerrato
-fixed author names for consistent sorting
-
-Revision 1.3  2006/02/10 20:50:41  packel
-places/dates now actually tagged
-
-Revision 1.2  2005/08/01 16:31:41  packel
-removed stray item tags
-
-Revision 1.1  2005/07/25 15:04:42  packel
-Converted to XML
-
-Revision 1.8  2003/07/01 22:18:12  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.7  2002/06/06 18:36:02  amahoney
-fix an ocr error
-
-Revision 1.6  2001/12/21 17:34:27  amahoney
-fix the 'j's in the English section
-
-Revision 1.5  2001/12/19 21:58:41  amahoney
-fix some OCR errors and modernize aedepol to edepol
-
-Revision 1.4  2001/08/21 18:54:23  amahoney
-get the editor's name into the meta-data
-
-Revision 1.3  2001/08/17 17:32:56  amahoney
-fix headers for TOC
-
-Revision 1.2  2001/07/02 21:01:48  amahoney
-add through lines, drop the headers, generally tidy up for release
-
-Revision 1.1  2001/07/02 19:27:22  amahoney
-new additions
-
-</item>
-</change>
+<change when="2016-02-09" who="Zach Himes">Cleaned up teiHeader.</change>
+<change who="balmas01" when="2013-09-13">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change>
+<change who="gcrane" when="2013-06-10">practer --&gt; praeter</change>
+<change who="gcrane" when="2013-06-08">TEI XML converted to facilitate CTS compatibility</change>
+<change who="gcrane" when="2011-01-17">base SDL files</change>
+<change who="student" when="2010-07-09">fixed place tags - zr</change>
+<change who="rsingh04" when="2009-12-08">moved more xml files around based on copyright status.  renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files</change>
+<change who="lcerrato" when="2008-11-14">fixed author names for consistent sorting</change>
+<change who="packel" when="2006-02-10">places/dates now actually tagged</change>
+<change who="packel" when="2005-08-01">removed stray item tags</change>
+<change who="packel" when="2005-07-25">Converted to XML</change>
+<change who="yorkc" when="2003-07-01">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change>
+<change who="amahoney" when="2002-06-06">fix an ocr error</change>
+<change who="amahoney" when="2001-12-21">fix the 'j's in the English section</change>
+<change who="amahoney" when="2001-12-19">fix some OCR errors and modernize aedepol to edepol</change>
+<change who="amahoney" when="2001-08-21">get the editor's name into the meta-data</change>
+<change who="amahoney" when="2001-08-17">fix headers for TOC</change>
+<change who="amahoney" when="2001-07-02">add through lines, drop the headers, generally tidy up for release</change>
+<change who="amahoney" when="2001-07-02">new additions</change>
+   <change who="amahoney" when="2001-07-02">markup</change>
 </revisionDesc>
 
 </teiHeader>
 
-<text lang="la"><body>
+<text><body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0134.phi006.perseus-lat1" subtype="edition">
 
-<castList>
-<head>FABULAE INTERLOCUTORES.</head>
-<castItem type="role"><role>AESCHINUS,</role><roleDesc>adolescens.</roleDesc></castItem>
-<castItem type="role"><role>CANTHARA, nutrix Pamphilae.</role></castItem>
-<castItem type="role"><role>CTESIPHO, adolescens, frater Aeschini.</role></castItem>
-<castItem type="role"><role>DROMO, servus Micionis.</role></castItem>
-<castItem type="role"><role>DEMEA, senex, frater Micionis, pater Aeschini et Ctesiphonis.</role></castItem>
-<castItem type="role"><role>GETA, servus Sostratae.</role></castItem>
-<castItem type="role"><role>HEGIO, senex, propinquus Pamphilae.</role></castItem>
-<castItem type="role"><role>MICIO, senex, frater Demeae, pater adoptivus Aeschini.</role></castItem>
-<castItem type="role"><role>PAMPHILA, filia Sostratae, amica Aeschini.</role></castItem>
-<castItem type="role"><role>SANNIO,</role><roleDesc>leno.</roleDesc></castItem>
-<castItem type="role"><role>SOSTRATA, mater Pamphilae.</role></castItem>
-<castItem type="role"><role>SYRUS, servus Aeschini.</role></castItem>
-</castList>
-
-<div1 type="act" n="introduction">
-<div2 type="scene" n="summary">
+<div type="textpart" n="introduction" subtype="act">
+<div type="textpart" n="summary" subtype="scene">
 <head>INTRODUCTION.</head>
-<p lang="en">This play derives its name from the two pairs of brothers who are introduced. Demea and Micio, the elders, had always been very dissimilar in character and manner of life. Micio was a pleasant old bachelor, and had always lived in town, and was very lenient and indulgent towards his young relations. Demea on the contrary had kept up the thrifty habits of his early years, residing on his farm and taking a severe view of the conduct of his sons. Ctesipho, the younger of his sons, lived with his father at this farm; but Aeschinus, the elder, had been adopted by his uncle. They had accordingly been very differently brought up. Ctesipho had been kept very strictly at home, and was, to the best of his father's belief, a model of propriety. Aeschinus had been indulged by his uncle in every way, till he was notorious for his dissipation. He went so far at last as to offer violence to a young lady named Pamphila, whom he met one night when he was intoxicated. This was the last of his excesses. He promised to make all amends in his power by marrying Pamphila, and on this condition the matter was kept quiet by Sostrata her mother. Ctesipho in one of his visits to the town had fallen in love with a music girl belonging to a slave-merchant, and was carrying on an intercourse with her under the cover of his brother's name; for Aeschinus had taken the credit of the affair to himself that his father might not hear of Ctesipho's doings. After a time the slave-merchant gave notice to Ctesipho that unless he bought the music girl at his price she should be immediately sold. Ctesipho was in the greatest despair at this announcement, and was half inclined to run away from his troubles and leave the country, when Aeschinus, hearing the state of the case, cut matters short by breaking into the house of Sannio the slave-merchant, maltreating him, and carrying off the girl to his own house, where she was received by Ctesipho.</p>
-<p lang="en">Here the action of the play commences. Demea coming into town hears of this new outrage of Aeschinus', and accuses his brother Micio of being the cause of all this excess. It was his indulgence that had made Aeschinus so dissolute. How different was the conduct of his brother Ctesipho who had been brought up strictly at home in the country! Micio in return justifies his mode of education. Meanwhile Aeschinus is busied, with the assistance of his slave Parmeno, in arranging matters with Sannio, who blusters loudly at first, but finds at last that the best plan is to pocket his affront and trust to the young men to pay him, for he will lose more by waiting to prosecute the affair, as he is on the eve of a voyage to <placeName key="tgn,1000112">Cyprus</placeName>, than if he abandons the slave altogether. The news of Aeschinus' prank had spread over the city, and it was now carried to Sostrata his destined mother-in-law by Geta her slave, who had witnessed the whole affair. Sostrata sends her trusty Geta to Hegio, an old friend of her late husband Simulus, who will stand by her, and see that her daughter has justice done her. Demea in the mean time is in consternation, for he has heard that Ctesipho was with Aeschinus when this music girl was carried off; but Syrus, one of Micio's slaves, contrives, with great skill, to make the fact increase his good opinion of his son; for he represents Ctesipho to have taken part in the affair only to blame his brother's dissolute conduct, and says that as soon as the matter was over he had returned to the country to his usual work. Demea is greatly affected to find that he has one son who is a credit to his family, and sets off for his farm. On his way he meets Hegio, from whom he learns the circumstances of Aeschinus' connexion with Pamphila; and at the same time he finds from one of his farm servants that Ctesipho has never been to the farm at all, as Syrus had pretended. These news send him back to Micio in a rage; but he is again met with a new fiction by Syrus, who revenges himself on him by sending him on a fool's errand over the whole town to look for his brother. Micio meanwhile has been with Hegio to Sostrata and Pamphila, and has comforted them by giving his consent to the marriage of the young lady and Aeschinus. Demea now returns from his fruitless search after his brother, and there is a general disturbance, particularly when one of the slaves accidentally betrays the fact of Ctesipho's being in Micio's house, where his father finds him with the music girl. After some more discussions between Demea and Micio, the former suddenly determines to change his demeanour; and to the surprise of every one whom he meets, and not a little to his own, he acts the courteous and complaisant man. He falls in with all their humours, and promotes the happiness of all parties. Pamphila is married to Aeschinus; Sannio is paid; Micio is made to marry Sostrata; Hegio is provided for; and Syrus and his wife are freed in consideration of the great services which the cunning slave had rendered to morality. The play concludes with a speech in which Demea explains the meaning of his late conduct, and gives his hearers a little wholesome advice for the future.
-</p></div2>
-<div2 type="scene" n="production">
+<p xml:lang="eng">This play derives its name from the two pairs of brothers who are introduced. Demea and Micio, the elders, had always been very dissimilar in character and manner of life. Micio was a pleasant old bachelor, and had always lived in town, and was very lenient and indulgent towards his young relations. Demea on the contrary had kept up the thrifty habits of his early years, residing on his farm and taking a severe view of the conduct of his sons. Ctesipho, the younger of his sons, lived with his father at this farm; but Aeschinus, the elder, had been adopted by his uncle. They had accordingly been very differently brought up. Ctesipho had been kept very strictly at home, and was, to the best of his father's belief, a model of propriety. Aeschinus had been indulged by his uncle in every way, till he was notorious for his dissipation. He went so far at last as to offer violence to a young lady named Pamphila, whom he met one night when he was intoxicated. This was the last of his excesses. He promised to make all amends in his power by marrying Pamphila, and on this condition the matter was kept quiet by Sostrata her mother. Ctesipho in one of his visits to the town had fallen in love with a music girl belonging to a slave-merchant, and was carrying on an intercourse with her under the cover of his brother's name; for Aeschinus had taken the credit of the affair to himself that his father might not hear of Ctesipho's doings. After a time the slave-merchant gave notice to Ctesipho that unless he bought the music girl at his price she should be immediately sold. Ctesipho was in the greatest despair at this announcement, and was half inclined to run away from his troubles and leave the country, when Aeschinus, hearing the state of the case, cut matters short by breaking into the house of Sannio the slave-merchant, maltreating him, and carrying off the girl to his own house, where she was received by Ctesipho.</p>
+<p xml:lang="eng">Here the action of the play commences. Demea coming into town hears of this new outrage of Aeschinus', and accuses his brother Micio of being the cause of all this excess. It was his indulgence that had made Aeschinus so dissolute. How different was the conduct of his brother Ctesipho who had been brought up strictly at home in the country! Micio in return justifies his mode of education. Meanwhile Aeschinus is busied, with the assistance of his slave Parmeno, in arranging matters with Sannio, who blusters loudly at first, but finds at last that the best plan is to pocket his affront and trust to the young men to pay him, for he will lose more by waiting to prosecute the affair, as he is on the eve of a voyage to <placeName key="tgn,1000112">Cyprus</placeName>, than if he abandons the slave altogether. The news of Aeschinus' prank had spread over the city, and it was now carried to Sostrata his destined mother-in-law by Geta her slave, who had witnessed the whole affair. Sostrata sends her trusty Geta to Hegio, an old friend of her late husband Simulus, who will stand by her, and see that her daughter has justice done her. Demea in the mean time is in consternation, for he has heard that Ctesipho was with Aeschinus when this music girl was carried off; but Syrus, one of Micio's slaves, contrives, with great skill, to make the fact increase his good opinion of his son; for he represents Ctesipho to have taken part in the affair only to blame his brother's dissolute conduct, and says that as soon as the matter was over he had returned to the country to his usual work. Demea is greatly affected to find that he has one son who is a credit to his family, and sets off for his farm. On his way he meets Hegio, from whom he learns the circumstances of Aeschinus' connexion with Pamphila; and at the same time he finds from one of his farm servants that Ctesipho has never been to the farm at all, as Syrus had pretended. These news send him back to Micio in a rage; but he is again met with a new fiction by Syrus, who revenges himself on him by sending him on a fool's errand over the whole town to look for his brother. Micio meanwhile has been with Hegio to Sostrata and Pamphila, and has comforted them by giving his consent to the marriage of the young lady and Aeschinus. Demea now returns from his fruitless search after his brother, and there is a general disturbance, particularly when one of the slaves accidentally betrays the fact of Ctesipho's being in Micio's house, where his father finds him with the music girl. After some more discussions between Demea and Micio, the former suddenly determines to change his demeanour; and to the surprise of every one whom he meets, and not a little to his own, he acts the courteous and complaisant man. He falls in with all their humours, and promotes the happiness of all parties. Pamphila is married to Aeschinus; Sannio is paid; Micio is made to marry Sostrata; Hegio is provided for; and Syrus and his wife are freed in consideration of the great services which the cunning slave had rendered to morality. The play concludes with a speech in which Demea explains the meaning of his late conduct, and gives his hearers a little wholesome advice for the future.
+</p></div>
+<div type="textpart" n="production" subtype="scene">
 <p>ADELPHI.  ACTA LUDIS FUNEBRIBUS AEMILII PAULLI QUOS FECERE Q. FABIUS MAXIMUS, P. CORNELIUS AFRICANUS. EGERE L. ATTILIUS PRAENESTINUS, MINUTIUS PROTHIMUS. MODOS FECIT FLACCUS CLAUDII, TIBIIS SARRANIS. FACTA GRAECA MENANDRU L. ANICIO M. CORNELIO COSS.
-</p></div2></div1>
-<div1 type="act" n="prologue">
-<div2 type="scene" n="0">
+</p></div></div>
+<div type="textpart" n="prologue" subtype="act">
+<div type="textpart" n="0" subtype="scene">
 <sp><speaker>Prologus</speaker>
-<l n="1">POSTQUAM Po&euml;ta sensit scripturam suam</l>
+<l n="1">POSTQUAM Poëta sensit scripturam suam</l>
 <l n="2">Ab iniquis observari, et adversaries</l>
 <l n="3">Rapere in peiorem partem quam acturi sumus,</l>
 <l n="4">Indicio de se ipse erit; vos eritis iudices</l>
@@ -177,12 +143,12 @@ new additions
 <l n="22">Dehinc ne exspectetis argumentum fabulae:</l>
 <l n="23">Senes qui primi venient ii partem aperient;</l>
 <l n="24">In agendo partem ostendent. Facite, aequanimitas</l>
-<lb ed="actscene" n="25"/><l n="25">Po&euml;tae ad scribendum augeat industriam.
+<lb ed="actscene" n="25"/><l n="25">Poëtae ad scribendum augeat industriam.
 
-</l></sp></div2></div1>
-<div1 type="act" n="1">
+</l></sp></div></div>
+<div type="textpart" n="1" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>MICIO.</stage>
 <l n="26">Storax--Non rediit hac nocte a coena Aeschinus,</l>
 <l n="27">Neque servulorum quisquam qui adversum ierant.</l>
@@ -241,8 +207,8 @@ new additions
 <lb ed="actscene" n="55"/><l n="80">Iurgabit. Salvum te advenire, Demea,</l>
 <l n="81">Gaudemus.
 
-</l></div2>
-<div2 type="scene" n="2">
+</l></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>DEMEA. MICIO.</stage>
 <sp><speaker>De.</speaker> <l n="82">Ehem, opportune: te ipsum quaerito.</l></sp>
 <sp><speaker>Mi.</speaker> <l n="83">Quid tristis es? 
@@ -333,10 +299,10 @@ new additions
 <l n="153">Sperabam iam defervisse adolescentiam:</l>
 <l n="154">Gaudebam. Ecce autem de integro. Nisi quicquid est</l>
 <l n="155">Volo scire, atque hominem convenire si apud forum est.
-</l></sp></div2></div1>
-<div1 type="act" n="2">
+</l></sp></div></div>
+<div type="textpart" n="2" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>SANNIO. AESCHINUS. PARMENO.</stage>
 <sp><speaker>Sa.</speaker> <l n="156">Obsecro, populares, ferte misero atque innocenti auxilium:</l>
 <l n="157">Subvenite inopi. 
@@ -421,8 +387,8 @@ new additions
 <l n="208">Accipienda et mussitanda iniuria adolescentium est.</l>
 <l n="209">Sed nemo dabit: frustra has egomet mecum rationes puto.
 
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>SYRUS. SANNIO.</stage>
 <sp><speaker>Sy.</speaker> <l n="210">Tace, egomet conveniam iam ipsum: cupide accipiat faxo; atque etiam</l>
 <l n="211">Bene dicat secum esse actum. Quid istuc, Sannio, est quod te audio</l>
@@ -447,7 +413,7 @@ new additions
 <sp><speaker>Sy.</speaker> <lb ed="actscene" n="15"/><l n="224">Age; novi tuum animum; quasi iam usquam tibi sint viginti minae,</l>
 <l n="225">Dum huic obsequare. Praeterea autem te aiunt proficisci Cyprum. 
    </l></sp><sp><speaker>Sa.</speaker> <l part="Y"> Hem!</l></sp>
-<sp><speaker>Sy.</speaker> <l n="226">Co&euml;misse hinc quae illuc veheres multa; navem conductam; hoc, scio,</l>
+<sp><speaker>Sy.</speaker> <l n="226">Coëmisse hinc quae illuc veheres multa; navem conductam; hoc, scio,</l>
 <l n="227">Animus tibi pendet. Ubi illinc, spero, redieris tamen hoc ages.</l></sp>
 <sp><speaker>Sa.</speaker> <l n="228">Nusquam pedem. Perii hercle; hac illi spe hoc inceperunt. 
    </l></sp><sp><speaker>Sy.</speaker> <l part="Y"> Timet:</l>
@@ -485,8 +451,8 @@ new additions
 <lb ed="actscene" n="45"/><l n="254">De amica. 
    </l></sp><sp><speaker>Sa.</speaker> <l part="Y"> Quid quod te oro? 
    </l></sp><sp><speaker>Sy.</speaker> <l part="Y"> Paulisper mane.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>CTESIPHO. SYRUS.</stage>
 <sp><speaker>Ct.</speaker> <l n="255">Abs quivis homine, cum est opus, beneficium accipere gaudeas:</l>
 <l n="256">Verum enimvero id demum iuvat, si, quem aequum est facere, is bene facit.</l>
@@ -504,8 +470,8 @@ new additions
 <l n="264">Maledicta, famam, meum amorem, et peceatum in se transtulit:</l>
 <lb ed="actscene" n="11"/><l n="265">Nihil pote supra. Quidnam foris crepuit? 
    </l></sp><sp><speaker>Sy.</speaker> <l part="Y"> Mane, mane: ipse exit foras.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>AESCHINUS. SANNIO. CTESIPHO. SYRUS.</stage>
 <sp><speaker>Aes.</speaker> <l n="266">Ubi ille est sacrilegus? 
    </l></sp><sp><speaker>Sa.</speaker> <l part="Y"> Men quaerit? numquillnam effert? Occidi:</l>
@@ -542,10 +508,10 @@ new additions
 <l n="286">Et lectulos iube sterni nobis, et parari caetera.</l>
 <l n="287">Ego iam transacta re convertam me domum cum obsonio.</l></sp>
 <sp><speaker>Ct.</speaker> <l n="288">Ita quaeso: quando hoc bene successit, hilarem Inlue sumamus diem.
-</l></sp></div2></div1>
-<div1 type="act" n="3">
+</l></sp></div></div>
+<div type="textpart" n="3" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>SOSTRATA. CANTHARA.</stage>
 <sp><speaker>So.</speaker> <l n="289">Obsecro, mea nutrix, quid nunc fiet? 
    </l></sp><sp><speaker>Ca.</speaker> <l part="Y"> Quid fiat rogas?</l>
@@ -561,8 +527,8 @@ new additions
 <l n="297">Quando vitium oblatum est; quod ad illum attinet potissimum</l>
 <lb ed="actscene" n="10"/><l n="298">Talem, tali genere atque animo, natum ex tanta familia.</l></sp>
 <sp><speaker>So.</speaker> <l n="299">Ita pol est ut dicis: salvus nobis Deos quaeso ut siet.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>GETA. SOSTRATA. CANTHARA.</stage>
 <sp><speaker>Ge.</speaker> <l n="300">Nunc illud est quod si omnes omnia sua consilia conferant,</l>
 <l n="301">Atque huic malo salutem quaerant, auxili nihil afferant,</l>
@@ -653,8 +619,8 @@ new additions
 <sp><speaker>Ge.</speaker> <lb ed="actscene" n="55"/><l n="354">Nam hercle alius nemo respicit nos. 
    </l></sp><sp><speaker>So.</speaker> <l part="Y"> Propera tu, mea Canthara,</l>
 <l n="355">Curre: obstetricem arcesse, ut cum opus sit ne in mora nobis siet.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>DEMIEA. SYRUS.</stage>
 <sp><speaker>De.</speaker> <l n="356">Disperii! Ctesiphonem audivi filium</l>
 <l n="357">Una affuisse in raptione cum Aeschino.</l>
@@ -789,8 +755,8 @@ new additions
 <lb ed="actscene" n="90"/><l n="445">Quam gaudeo ubi etiam huius generis reliquias</l>
 <l n="446">Restare video! Ah, vivere etiam nunc libet.</l>
 <l n="447">Opperiar hominem hic, ut salutem et conloquar.
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>HEGIO. GETA. DEMEA. PAMPHILA.</stage>
 <sp><speaker>He.</speaker> <l n="448">Pro Di immortales, facinus indignum, Geta.</l>
 <l n="449">Quid narras? 
@@ -876,8 +842,8 @@ new additions
 <l n="510">Defunctum: verum nimia illaec licentia</l>
 <l n="511">Profecto evadet in aliquod magnum malum.</l>
 <lb ed="actscene" n="65"/><l n="512">Ibo ac requiram fratrem, ut in eum haec evomam.
-</l></sp></div2>
-<div2 type="scene" n="5">
+</l></sp></div>
+<div type="textpart" n="5" subtype="scene">
 <stage>HEGIO.</stage>
 <l n="513">Bono animo fac sis, Sostrata; et istam, quod potes,</l>
 <l n="514">Fac consolere. Ego Micionem, si apud forum est,</l>
@@ -885,10 +851,10 @@ new additions
 <l n="516">Si est facturus ut sit officium suum,</l>
 <l n="517">Faciat: sill aliter de hac re est eius sententia,</l>
 <l n="518">Respondeat mihi; ut quid agam quamprimum sciam.
-</l></div2></div1>
-<div1 type="act" n="4">
+</l></div></div>
+<div type="textpart" n="4" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>CTESIPHO. SYRUS.</stage>
 <sp><speaker>Ct.</speaker> <l n="519">Ain patrem hinc abisse rus? 
    </l></sp><sp><speaker>Sy.</speaker> <l part="Y"> Iamdudum. 
@@ -935,8 +901,8 @@ new additions
 <sp><speaker>Ct.</speaker> <l n="541">Si quid rogabit, nusquam tu me: audistin? 
    </l></sp><sp><speaker>Sy.</speaker> <l part="Y"> Potin ut desinas?
 
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>DEMEA. CTESIPHO. SYRUS.</stage>
 <sp><speaker>De.</speaker> <l n="542">Nae ego homo sum infelix: primum fratrem nusquam invenio gentium:</l>
 <l n="543">Praeterea autem dum illum quaero a villa mercenarium</l>
@@ -1023,8 +989,8 @@ new additions
 <lb ed="actscene" n="50"/><l n="591">Ctesipho autem in amore est totus. Ego iam prospiciam mihi:</l>
 <l n="592">Nam iam adibo, atque unumquicquid quod quidem erit bellissimum</l>
 <l n="593">Carpam; et cyathos sorbilans paulatim hunc producam diem.
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>MICIO. HEGIO.</stage>
 <sp><speaker>Mi.</speaker> <l n="594">Ego in hac re nihil reperio quamobrem lauder tantopere, Hegio:</l>
 <l n="595">Meum officium facio; quod peccatum a nobis ortum est corrigo:</l>
@@ -1051,8 +1017,8 @@ new additions
    </l></sp><sp><speaker>He.</speaker> <l part="Y"> Sequere me ergo hac intro. 
    </l></sp><sp><speaker>Mi.</speaker> <l part="Y"> Maxime.
 
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>AESCHINUS.</stage>
 <l n="612">Discrucior animi:</l>
 <l n="613">Hocine de improviso mali mihi obiici</l>
@@ -1082,8 +1048,8 @@ new additions
 <l n="637">Heus, heus: Aeschinus ego sum: aperite aliquis actutum ostium.</l>
 <l n="638">Prodit nescio quis: concedam huc.
 
-</l></div2>
-<div2 type="scene" n="5">
+</l></div>
+<div type="textpart" n="5" subtype="scene">
 <stage>MICIO. AESCHINUS.</stage>
 <sp><speaker>Mi.</speaker> <l n="639">Ita uti dixi, Sostrata,</l>
 <l n="640">Facite: ego Aeschinum conveniam, ut quomodo acta haec sint sciat.</l>
@@ -1204,8 +1170,8 @@ new additions
 <l n="714">Itaque adeo magnam mili iniecit sua commoditate curam</l>
 <l n="715">Ne forte imprudens faciam quod nolit: sciens cavebo.</l>
 <l n="716">Sed cesso ire intro ne morae meis nuptiis egomet siem?
-</l></sp></div2>
-<div2 type="scene" n="6">
+</l></sp></div>
+<div type="textpart" n="6" subtype="scene">
 <stage>DEMEA.</stage>
 <l n="717">Defessus sum ambulando. Ut, Syre, te cum tua</l>
 <l n="718">Monstratione magnus perdat Iupiter!</l>
@@ -1213,8 +1179,8 @@ new additions
 <l n="720">Quo non? neque illic fabrica ulla erat, neque fratremn holmo</l>
 <lb ed="actscene" n="5"/><l n="721">Vidisse se aibat quisquami: nunc vero domi</l>
 <l n="722">Certum obsidere est usque donec redierit.
-</l></div2>
-<div2 type="scene" n="7">
+</l></div>
+<div type="textpart" n="7" subtype="scene">
 <stage>MICIO. DEMEA.</stage>
 <sp><speaker>Mi.</speaker> <l n="723">Ibo, illis dicaam nlullan esse in nobis moram.</l></sp>
 <sp><speaker>De.</speaker> <l n="724">Sed eccuni ipsum: te iamluddum quacro, Micio.</l></sp>
@@ -1293,10 +1259,10 @@ new additions
 <l n="765">Senex delirans. Ipsa si cupiat Salus</l>
 <l n="766">Servare prorsus non potest hanc familiam.
 
-</l></sp></div2></div1>
-<div1 type="act" n="5">
+</l></sp></div></div>
+<div type="textpart" n="5" subtype="act">
 
-<div2 type="scene" n="1">
+<div type="textpart" n="1" subtype="scene">
 <stage>SYRUS. DEMEA.</stage>
 <sp><speaker>Sy.</speaker> <l n="767">Edepol, Syrisce, to curasti molliter,</l>
 <l n="768">Lauteque munus administrasti tuum.</l>
@@ -1319,8 +1285,8 @@ new additions
 <l n="778">Quod vix sedatum satis est, potasti scelus,</l>
 <l n="779">Quasi re bene gesta. 
    </l></sp><sp><speaker>Sy.</speaker> <l part="Y"> Sane nollem huc exitum.
-</l></sp></div2>
-<div2 type="scene" n="2">
+</l></sp></div>
+<div type="textpart" n="2" subtype="scene">
 <stage>DROMO. SYRUS. DEMEA.</stage>
 <sp><speaker>Dr.</speaker> <l n="780">Heus, Syre; rogat te Ctesipho ut redeas. 
    </l></sp><sp><speaker>Sy.</speaker> <l part="Y"> Abi.</l></sp>
@@ -1344,8 +1310,8 @@ new additions
 <lb ed="actscene" n="10"/><l n="789">Nisi, dum hae silescunt turbae, interea in angulum</l>
 <l n="790">Aliquo abeam, atque edornmiscam hoc villi? Sic agam.
 
-</l></sp></div2>
-<div2 type="scene" n="3">
+</l></sp></div>
+<div type="textpart" n="3" subtype="scene">
 <stage>MICIO. DEMEA.</stage>
 <sp><speaker>Mi.</speaker> <l n="791">Parata a nobis sunt, ut dixi, Sostrata,</l>
 <l n="792">Ubi vis. Quisnam a me pepulit tam graviter fores?</l></sp>
@@ -1430,8 +1396,8 @@ new additions
    </l></sp><sp><speaker>De.</speaker> <l part="Y"> Iam iam desino.</l></sp>
 <sp><speaker>Mi.</speaker> <l n="858">I ergo intro, et cui rei est ei rei hunc sumamus diem.
 
-</l></sp></div2>
-<div2 type="scene" n="4">
+</l></sp></div>
+<div type="textpart" n="4" subtype="scene">
 <stage>DEMEA.</stage>
 <l n="859">Nunquam ita quisquam bene subducta ratione ad vitam fruit</l>
 <l n="860">Quill res, aetas, usus semper liquid apportet novi,</l>
@@ -1460,8 +1426,8 @@ new additions
 <lb ed="actscene" n="25"/><l n="883">Ego quoque a meis me amari et magni pendi postulo:</l>
 <l n="884">Si id fit dando atque obsequendo, non posteriores feram.</l>
 <l n="885">Deerit. Id mea minime refert qui sum natu maximus.
-</l></div2>
-<div2 type="scene" n="5">
+</l></div>
+<div type="textpart" n="5" subtype="scene">
 <stage>SYRUS. DEMEA.</stage>
 <sp><speaker>Sy.</speaker> <l n="886">Heus, Demea, rogat frater ne abeas longius.</l></sp>
 <sp><speaker>De.</speaker> <l n="887">Quis homo? O Syre noster salve: quid fit? quid agitur?</l></sp>
@@ -1473,8 +1439,8 @@ new additions
    </l></sp><sp><speaker>Sy.</speaker> <l part="Y"> Gratiam habeo. 
    </l></sp><sp><speaker>De.</speaker> <l part="Y"> Atqui, Syre,</l>
 <l n="892">Hoc verum est; et ipsa re experiere propediem.
-</l></sp></div2>
-<div2 type="scene" n="6">
+</l></sp></div>
+<div type="textpart" n="6" subtype="scene">
 <stage>GETA. DEMEA.</stage>
 <sp><speaker>Ge.</speaker> <l n="893">Hera, ego huc ad hos provisam quam mox virginem</l>
 <l n="894">Arcessant: sed ecculm Demeam. Salvus sies.</l></sp>
@@ -1489,8 +1455,8 @@ new additions
 <l n="901">Et bene procedit. 
    </l></sp><sp><speaker>Ge.</speaker> <l part="Y"> Bonus es quum hace existimas.</l></sp>
 <sp><speaker>De.</speaker> <lb ed="actscene" n="10"/><l n="902">Paulatim plebem primulum facio meam.
-</l></sp></div2>
-<div2 type="scene" n="7">
+</l></sp></div>
+<div type="textpart" n="7" subtype="scene">
 <stage>AESCHINUS. DEMEA. SYRUS. GETA.</stage>
 <sp><speaker>Aes.</speaker> <l n="903">Occidunt me quidem dum nimis sanctas nuptias</l>
 <l n="904">Student facere: in apparando consumunmt diem.</l></sp>
@@ -1532,8 +1498,8 @@ new additions
    </l></sp><sp><speaker>Aes.</speaker> <l part="Y"> Nihil enim vidi melius, mi pater.</l></sp>
 <sp><speaker>De.</speaker> <lb ed="actscene" n="25"/><l n="927">Sic soleo: sed eccum Micio egreditur foras.
 
-</l></sp></div2>
-<div2 type="scene" n="8">
+</l></sp></div>
+<div type="textpart" n="8" subtype="scene">
 <stage>MICIO. DEMEA. AESCHINUS.</stage>
 <sp><speaker>Mi.</speaker> <l n="928">Iubet frater? ubi is est? Tun iubes hoc, Demea?</l></sp>
 <sp><speaker>De.</speaker> <l n="929">Ego vero iubeo et in hac re et aliis omnibus</l>
@@ -1604,8 +1570,8 @@ new additions
 <sp><speaker>De.</speaker> <l n="961">Nunc tu mihi es germanus pariter corpore et animo. 
    </l></sp><sp><speaker>Mi.</speaker> <l part="Y"> Gaudeo.</l></sp>
 <sp><speaker>De.</speaker> <lb ed="actscene" n="35"/><l n="962">Suo sibi gladio hunc iugulo.
-</l></sp></div2>
-<div2 type="scene" n="9">
+</l></sp></div>
+<div type="textpart" n="9" subtype="scene">
 <stage>SYRUS. DEMEA. MICIO. AESCHINUS.</stage>
 <sp><speaker>Sy.</speaker> <l n="963">Factum est quod iussisti, Demea.</l></sp>
 <sp><speaker>De.</speaker> <l n="964">Frugi homo es. Ego edepol hodie mea quidem sententia</l>
@@ -1671,6 +1637,6 @@ new additions
    </l></sp><sp><speaker>De.</speaker> <l part="Y"> Sino;</l>
 <lb ed="actscene" n="40"/><l n="1002">Habeat; in istac finem faciat. 
    </l></sp><sp><speaker>Mi.</speaker> <l part="Y"> Istue recte. 
-   </l></sp><sp><speaker>Om.</speaker> <l part="Y">Plaudite.</l></sp></div2></div1>
-</body></text>
-</TEI.2>
+   </l></sp><sp><speaker>Om.</speaker> <l part="Y">Plaudite.</l></sp></div></div>
+</div></body></text>
+</TEI>

@@ -1,21 +1,33 @@
-<?xml version="1.0"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersDrama PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersDrama.dtd" >
-%PersDrama;
-]>
-<TEI.2>
-    <teiHeader type="text" status="new">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"\?><?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader type="text">
         <fileDesc>
             <titleStmt>
                 <title>Hecyra: The Mother-In-Law</title>
+                <title type="sub">Machine readable text</title>
                 <author>P. Terentius Afer (Terence)</author>
-                <editor role="transl">Henry Thomas Riley</editor> &responsibility;
-                &fund.DLI2; </titleStmt> &Perseus.publish; <sourceDesc>
+                <editor role="translator">Henry Thomas Riley</editor> <sponsor>Perseus Project, Tufts University</sponsor>
+<principal>Gregory Crane</principal>
+<respStmt>
+<resp>Prepared under the supervision of</resp>
+<name>Bridget Almas</name>
+<name>Lisa Cerrato</name>
+<name>William Merrill</name>
+<name>Elli Mylonas</name>
+<name>David Smith</name>
+</respStmt>
+                <funder n="org:DLI2">NSF, NEH: Digital Libraries Initiative, Phase 2</funder> </titleStmt> <publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+ <sourceDesc>
                 <biblStruct>
                     <monogr>
                         <title>The Comedies of Terence</title>
-                        <editor role="transl">Henry Thomas Riley</editor>
+                        <editor role="translator">Henry Thomas Riley</editor>
                         <imprint>
                             <pubPlace>Ney York</pubPlace>
                             <publisher>Harper and Brothers</publisher>
@@ -28,170 +40,75 @@
 
         <encodingDesc>
             <editorialDecl>
-                <correction method="silent" status="medium">&Perseus.DE;</correction>
+                <correction method="silent" status="medium"><p>professional data entry</p></correction>
             </editorialDecl>
-            <refsDecl doctype="TEI.2">
-                <state unit="TLN line"/>
-            </refsDecl>
-            <refsDecl doctype="TEI.2">
-                <state unit="act"/>
-                <state n="chunk" unit="scene"/>
-                <state unit="line"/>
-            </refsDecl>
+            <!--<refsDecl doctype="TEI.2">
+                <state/>
+            </refsDecl>-->
+            <refsDecl n="CTS">
+				<cRefPattern n="line" matchPattern="(\w+).(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:div/tei:l[@n='$3'])">
+					<p>This pointer pattern extracts act and scene and line</p>
+				</cRefPattern>
+				<cRefPattern n="scene" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+					<p>This pointer pattern extracts act and scene</p>
+				</cRefPattern>
+				<cRefPattern n="act" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+					<p>This pointer pattern extracts act</p>
+				</cRefPattern>
+			</refsDecl>
+			<refsDecl>
+				<refState unit="act" delim="."/>
+				<refState unit="scene" delim="."/>
+				<refState unit="line"/>
+			</refsDecl>
         </encodingDesc>
 
         <profileDesc>
             <langUsage>
-                <language id="en">English</language>
-                <language id="la">Latin</language>
-                <language id="greek">Greek</language>
-                <language id="de">German</language>
-                <language id="fr">French</language>
-                <language id="it">Italian</language>
+                <language ident="eng">English</language>
+                <language ident="lat">Latin</language>
+                <language ident="grc">Greek</language>
+                <language ident="deu">German</language>
+                <language ident="fre">French</language>
+                <language ident="ita">Italian</language>
             </langUsage>
         </profileDesc>
 
         <revisionDesc>
-            <change>
-                <date>14-Aug-01</date>
-                <respStmt>
-                    <name>AEM</name>
-                    <resp>markup</resp>
-                </respStmt>
-                <item> 
-$Log: hec_eng.xml,v $
-Revision 1.1  2013-09-13 11:17:25  balmas01
-moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory
-
-Revision 1.5  2013-06-30 12:34:38  gcrane
-the card divs had had a line range but there was a problem with this, so we just have the start line in the n attribute.
-
-Revision 1.3  2010/07/09 14:48:02  rsingh04
-fixed CVS log keyword
- 
-Revision 1.1 2009/12/08 20:46:27 rsingh04 
-moved more xml files around based on copyright status. renamed terence files to follow the
-abbreviations and split up minora_lat.xml into separate files 
-
-Revision 1.6 2009/06/25 23:13:43 student 
-fixed bibl error - zr 
-
-Revision 1.5 2008/11/14 21:28:07 lcerrato 
-fixed author names for consistent sorting 
-
-Revision 1.4 2006/05/05 17:38:33 packel 
-fixed date tags 
-
-Revision 1.3 2006/02/10 20:50:43 packel 
-places/dates now actually tagged 
-
-Revision 1.2 2005/08/01 16:31:41 packel
-removed stray item tags 
-
-Revision 1.1 2005/07/25 15:05:03 packel 
-Converted to XML                   
-
-Revision 1.8 2003/07/01 22:18:13 yorkc 
-Updated texts to TEI P4 and Perseus P4
-extensions; minor cleanup (esp. character encodings and typos.) 
-
-Revision 1.7 2001/08/29 19:56:38 amahoney 
-make the various Dramatis Personae lists
-independent instead of cross referencing each other 
-
-Revision 1.6 2001/08/29 19:38:17 amahoney 
-fix incorrect speaker attributions, mark Latin 
-
-Revision 1.5 2001/08/21 18:49:51 amahoney 
-get translator's name into proper place in meta-data, use same form of author's name as in Latin 
-
-Revision 1.4 2001/08/17 17:32:56 amahoney 
-fix headers for TOC 
-
-Revision 1.3 2001/08/17 17:24:12 amahoney
-begin marking the Latin 
-
-Revision 1.2 2001/08/17 15:32:10 amahoney 
-fix line numbers in the English, pick up a few typos in Latin 
-
-Revision 1.1 2001/08/16 21:11:14 amahoney 
-new texts 
-                </item>
-            </change>
+            <change when="2016-02-09" who="Zach Himes">Cleaned up teiHeader. Converted milestones to divs.</change>
+<change who="balmas01" when="2013-09-13">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change>
+<change who="gcrane" when="2013-06-30">the card divs had had a line range but there was a problem with this, so we just have the start line in the n attribute.</change>
+<change who="rsingh04" when="2010-07-09">fixed CVS log keyword</change>
+<change who="rsingh04" when="2009-12-08">moved more xml files around based on copyright status. renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files</change>
+<change who="studentZR" when="2009-06-25">fixed bibl error - zr</change>
+<change who="lcerrato" when="2008-11-14">fixed author names for consistent sorting</change>
+<change who="packel" when="2006-05-05">fixed date tags</change>
+<change who="packel" when="2006-02-10">places/dates now actually tagged</change>
+<change who="packel" when="2005-08-01">removed stray item tags</change>
+<change who="packel" when="2005-07-25">Converted to XML</change>
+<change who="yorkc" when="2003-07-01">Updated texts to TEI P4 and Perseus P4
+extensions; minor cleanup (esp. character encodings and typos.)</change>
+<change who="amahoney" when="2001-08-29">make the various Dramatis Personae lists
+independent instead of cross referencing each other</change>
+<change who="amahoney" when="2001-08-29">fix incorrect speaker attributions, mark Latin</change>
+<change who="amahoney" when="2001-08-21">get translator's name into proper place in meta-data, use same form of author's name as in Latin</change>
+<change who="amahoney" when="2001-08-17">fix headers for TOC</change>
+<change who="amahoney" when="2001-08-17">begin marking the Latin</change>
+<change who="amahoney" when="2001-08-17">fix line numbers in the English, pick up a few typos in Latin</change>
+<change who="amahoney" when="2001-08-16">new texts</change>
+            <change who="AEM" when="2001-08-14">markup</change>
         </revisionDesc>
     </teiHeader>
 
-    <text lang="en">
+    <text>
         <body>
+            <div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0134.phi005.perseus-eng1" subtype="translation">
 
-            <castList>
-                <castItem type="role">
-                    <role>LACHES,<note anchored="yes">From <foreign lang="greek">lagxu/nw,</foreign>
-                            "to obtain by lot" or "heirship."</note>, </role>
-                    <roleDesc>an aged Athenian, father of Pamphilus.</roleDesc>
-                </castItem>
-                <castItem type="role">
-                    <role>PHIDIPPUS,<note anchored="yes">From <foreign lang="greek">feidw,</foreign>
-                            "parsimony," and <foreign lang="greek">i(ppo\s,</foreign> "a
-                            horse."</note>
-                    </role>
-                    <roleDesc>an aged Athenian, father of Philumena.</roleDesc>
-                </castItem>
-                <castItem type="role">
-                    <role>PAMPHILUS,<note anchored="yes">From <foreign lang="greek">pa=n,</foreign>
-                            "all," and <foreign lang="greek">filo\s,</foreign> "a friend."</note>
-                    </role>
-                    <roleDesc>son of Laches.</roleDesc>
-                </castItem>
-                <castItem type="role">
-                    <role>SOSIA,<note anchored="yes">From <foreign lang="greek">sw/zw,</foreign> "to
-                            save;" saved in war.</note>
-                    </role>
-                    <roleDesc>servant of Pamphilus.</roleDesc>
-                </castItem>
-                <castItem type="role">
-                    <role>PARMENO,<note anchored="yes">From <foreign lang="greek">para\,</foreign>
-                            "by," and <foreign lang="greek">me/nw,</foreign> "to remain."</note>
-                    </role>
-                    <roleDesc>servant of Sostrata.</roleDesc>
-                </castItem>
-                <castItem type="role">
-                    <role>SOSTRATA,<note anchored="yes">From <foreign lang="greek">swxw\,</foreign>
-                            "to preserve," or "save."</note>
-                    </role>
-                    <roleDesc>wife of Laches.</roleDesc>
-                </castItem>
-                <castItem type="role">
-                    <role>MYRRHINA,<note anchored="yes">From <foreign lang="greek"
-                                >mur(r)inh\,</foreign> "a myrtle."</note>
-                    </role>
-                    <roleDesc>wife of Phidippus.</roleDesc>
-                </castItem>
-                <castItem type="role">
-                    <role>BACCHIS,<note anchored="yes">From <persName
-                                >Bacchus</persName>, the God of Wine.</note>
-                    </role>
-                    <roleDesc>a Courtesan.</roleDesc>
-                </castItem>
-                <castItem type="role">
-                    <role>PHILOTIS,<note anchored="yes">From <foreign lang="greek"
-                                >filoth\s,</foreign> "friendship."</note>
-                    </role>
-                    <roleDesc>a Courtesan.</roleDesc>
-                </castItem>
-                <castItem type="role">
-                    <role>SYRA, <note anchored="yes">From
-                                <placeName key="tgn,1000140">Syria</placeName>, her native
-                            country.</note>
-                    </role>
-                    <roleDesc>a Procuress.</roleDesc>
-                </castItem>
-            </castList>
             <p>Scene.--<placeName key="perseus,Athens">Athens</placeName>; before the houses of LACHES,
                 PHIDIPPUS, and BACCHIS. </p>
-            <div1 type="intro">
+            <div type="textpart" subtype="intro">
                 <head>Introduction</head>
-                <div2 type="scene" n="subject">
+                <div type="textpart" n="subject" subtype="scene">
                     <head>THE SUBJECT.</head>
                     <p>PAMPHILUS, the son of Laches by his wife Sostrata, being at the time enamored
                         of Bacchis, a Courtesan, chances, one night, in a drunken fit, to debauch
@@ -227,30 +144,29 @@ new texts
                         Pamphilus had formerly taken from Philumena. By means of this it is
                         discovered that Pamphilus himself is the person who has ravished Philumena;
                         on which, overjoyed, he immediately takes home his wife and son. </p>
-                </div2>
-                <div2 type="scene" n="production">
+                </div>
+                <div type="textpart" n="production" subtype="scene">
                     <head>THE TITLE OF THE PLAY.</head>
                     <p>PERFORMED at the Megalensian Games; Sextus Julius Caesar and Cneius Cornelius
                         Dolabella being Curule Aediles. The whole was not then acted. Flaccus, the
                         freedman of Claudius, composed the music to a pair of flutes. It was
-                        composed wholly from the Greek of Menander.<note anchored="yes"
-                            >Menander)--According to some, this Play was borrowed from the Greek of
+                        composed wholly from the Greek of Menander.<note anchored="true">Menander)--According to some, this Play was borrowed from the Greek of
                             Apollodorus, a Comic Poet and contemporary of Menander, who wrote
                             forty-seven Plays.</note> It was performed the first time without a
                         Prologue. Represented a second time; Cneius Octavius and T. Manlius being
-                            Consuls.<note anchored="yes">Being Consuls)--Cneius Octavius Nepos and
+                            Consuls.<note anchored="true">Being Consuls)--Cneius Octavius Nepos and
                             T. Manlius Torquatus were Consuls in the year from the building of the
-                            City 587, and B.C. <date value="-166">166</date>.</note> It was then
+                            City 587, and B.C. <date when="-0166">166</date>.</note> It was then
                         brought out in honor of L. Aemilius Paulus, at his Funeral Games, and was
                         not approved of. It was repeated a third time; Q. Fulvius and L. Marcius
                         being Curule Aediles. L. Ambivius Turpio performed it. It was then approved
-                            of.<note anchored="yes">It was then approved of)--" Placuit." This is
+                            of.<note anchored="true">It was then approved of)--" Placuit." This is
                             placed at the end, in consequence of the inauspicious reception which
                             had been given to it on the two first representations. See the account
                             given in the Prologues.</note>
                     </p>
-                </div2>
-                <div2 type="scene" n="summary">
+                </div>
+                <div type="textpart" n="summary" subtype="scene">
                     <head>THE SUMMARY OF C. SULPITIUS APOLLINARIS.</head>
                     <p>PAMPHILUS has married Philumena, to whom, when a virgin, he formerly, not
                         knowing who she was, offered violence; and whose ring, which he took off by
@@ -262,27 +178,23 @@ new texts
                         passion for Bacchis. While Bacchis is exculpating herself, Myrrhina, the
                         mother of the injured girl, by chance recognizes the ring. Pamphilus takes
                         back his wife, together with his son. </p>
-                </div2>
+                </div>
             
-            </div1>
-<milestone unit="act" n="prologue"/>
+            </div>
+<div type="textpart" subtype="act" n="prologue">
 
-<milestone unit="scene" n="0"/>
-<div1 type="card" n="1">
+<div type="textpart" subtype="scene" n="0">
+<div type="textpart" n="1" subtype="card">
                     <stage>THE FIRST PROLOGUE.</stage>
                     <sp>
                         <speaker>Prologue</speaker>
-                        <p>HECYRA<milestone n="1" unit="TLN line"/><note anchored="yes"><lemma
-                                    targOrder="U">Hecyra</lemma>: The Greek word <foreign
-                                    lang="greek">(/*ekura,</foreign> a "step-mother," or
+                        <p>HECYRA<l n="1"/><note anchored="true"><app><lem>Hecyra</lem></app>: The Greek word <foreign xml:lang="grc">(/*ekura,</foreign> a "step-mother," or
                                 "mother-in-law," Latinized.</note> is the name of this Play; when it
                             was represented for the first time, an unusual disaster and
-                                calamity<milestone n="3" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">And calamity</lemma>: "<foreign lang="la"
-                                    >Calamitas</foreign>." This word is used in the same sense in
+                                calamity<l n="3"/><note anchored="true"><app><lem>And calamity</lem></app>: "<foreign xml:lang="lat">Calamitas</foreign>." This word is used in the same sense in
                                 the first line of the Eunuch. This is evidently the Prologue spoken
                                 on the second attempt to bring forward the piece. On the first
-                                occasion it probably had none. "<foreign lang="la">Vitium</foreign>"
+                                occasion it probably had none. "<foreign xml:lang="lat">Vitium</foreign>"
                                 was a word used by the Augurs, with whom it implied an unfavorable
                                 omen, and thence came to be used for any misfortune or disaster. He
                                 seems to mean the depraved taste of the public, that preferred
@@ -292,22 +204,20 @@ new texts
                             admiration, devoted their attention to some rope-dancing. It is now
                             offered as though entirely a new Play; and he who wrote it did not wish
                             to bring it forward then a second time, on purpose that he might be able
-                            again to sell it.<milestone n="7" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Again to sell it</lemma>: See the last
-                                Note to the Second Prologue.</note> Other Plays of his<milestone
-                                n="8" unit="TLN line"/><note anchored="yes"><lemma targOrder="U"
-                                    >Other Plays of his</lemma>: Madame Dacier informs us that
+                            again to sell it.<l n="7"/><note anchored="true"><app><lem>Again to sell it</lem></app>: See the last
+                                Note to the Second Prologue.</note> Other Plays of his<l n="8"/><note anchored="true"><app><lem>Other Plays of his</lem></app>: Madame Dacier informs us that
                                 Vossius was of opinion that the second representation of this Play
                                 did not take place till after that of the Adelphi. In that case, they had
                                 already seen the rest of his Plays.</note> you have seen
                             represented; I beg you now to give your attention to this. </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="9">
+</div>
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="9" subtype="card">
                     <stage>THE SECOND PROLOGUE.</stage>
-                    <note anchored="yes"><lemma targOrder="U">Second Prologue</lemma>: --Eugraphius
+                    <note anchored="true"><app><lem>Second Prologue</lem></app>: --Eugraphius
                         informs us that this Prologue was spoken by Ambivius Turpio, the head of the
                         company of Actors.</note>
                     <sp>
@@ -317,27 +227,24 @@ new texts
                             age I may enjoy the same privilege that I enjoyed when a younger man,
                             when I caused new Plays, that had been once rejected, to come into
                             favor; so that his writings might not die with the Poet. Among them, as
-                            to those of Caecilius,<milestone n="14" unit="TLN line"/><note
-                                anchored="yes"><lemma targOrder="U">Coecilius</lemma>: Colman has
+                            to those of Caecilius,<l n="14"/><note anchored="true"><app><lem>Coecilius</lem></app>: Colman has
                                 the following Note: "A famous Comic Poet among the Romans. His chief
                                 excellences are said to have been, the gravity of his style and the
                                 choice of his subjects. The first quality was attributed to him by
                                 Horace, Tully, etc., and
-                                the last by Varro. '<foreign lang="la">In argumentis Caecilius
+                                the last by Varro. '<foreign xml:lang="lat">In argumentis Caecilius
                                     poscit palmam, in ethesi Terentius</foreign>.' 'In the choice of
                                 subjects, Caecilius demands the preference; in the manners,
-                                Terence.'" Madame Dacier, indeed, renders "<foreign lang="la">in
+                                Terence.'" Madame Dacier, indeed, renders "<foreign xml:lang="lat">in
                                     argumentis</foreign>," "in the disposition of his subjects." But
-                                the words will not bear that construction. "<foreign lang="la"
-                                    >Argumentum</foreign>," I believe, is uniformly used for the
+                                the words will not bear that construction. "<foreign xml:lang="lat">Argumentum</foreign>," I believe, is uniformly used for the
                                 argument itself, and never implies the conduct of it; as in the
-                                Prologue to the Andrian, "<foreign lang="la">non tam dissimili
+                                Prologue to the Andrian, "<foreign xml:lang="lat">non tam dissimili
                                     argumento</foreign>." Besides, the disposition of the subject
                                 was the very art attributed by the critics of those days to Terence,
                                 and which <persName>Horace</persName> mentions
                                 in the very same line with the gravity of Caecilius, distinguishing
-                                them as the several characteristics of each writer, "<foreign
-                                    lang="la">Vincere Caecilius gravitate, Terentius
+                                them as the several characteristics of each writer, "<foreign xml:lang="lat">Vincere Caecilius gravitate, Terentius
                                 arte</foreign>."</note> which I first studied when new; in some of
                             which I was rejected; in some I kept my ground with difficulty. As I
                             knew that the fortune of the stage was varying, where the hopes were
@@ -355,14 +262,12 @@ new texts
                             in silence; such misfortunes have so overwhelmed it. These misfortunes
                             your intelligence will allay, if it is a seconder of our exertions. The
                             first time, when I began to act this Play, the vauntings of
-                                boxers,<milestone n="33" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Vauntings of boxers</lemma>: Horace
+                                boxers,<l n="33"/><note anchored="true"><app><lem>Vauntings of boxers</lem></app>: Horace
                                 probably had this passage in his mind when he penned the First
                                 Epistle in his Second Book, 1. 185 ; where he mentions the populace
                                 leaving a Play in the midst for the sight of a bear, or an
                                 exhibition of boxers.</note> the expectation of a
-                                rope-dancer,<milestone n="34" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Of a rope-dancer</lemma>: The art of
+                                rope-dancer,<l n="34"/><note anchored="true"><app><lem>Of a rope-dancer</lem></app>: The art of
                                 dancing on the tight rope was carried to great perfection among the
                                 ancients. Many paintings have been discovered, which show the
                                 numerous attitudes which the performers assumed. The figures have
@@ -372,26 +277,22 @@ new texts
                                 exhibited elephants dancing on the tight rope.</note> added to
                             which, the throng of followers, the noise, the clamor of the women,
                             caused me to retire from your presence before the time. In this new
-                            Play, I attempted to follow the old custom of mine,<milestone n="38"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">The old
-                                    custom of mine</lemma>: He says that on the second
+                            Play, I attempted to follow the old custom of mine,<l n="38"/><note anchored="true"><app><lem>The old
+                                    custom of mine</lem></app>: He says that on the second
                                 representation he followed the plan which he had formerly adopted in
                                 the Plays of Caecilius, of bringing those forward again which had
                                 not given satisfaction at first.</note> of making a fresh trial; I
                             brought it on again. In the first Act I pleased; when in the mean time a
                             rumor spread that gladiators were about to be exhibited; the populace
                             flock together, make a tumult, clamor aloud, and fight for their
-                                places:<milestone n="41" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Fight for their places</lemma>: This was
+                                places:<l n="41"/><note anchored="true"><app><lem>Fight for their places</lem></app>: This was
                                 in consequence of their sitting indiscriminately at the
                                 Amphitheatre, where the gladiators were exhibited; whereas at the
-                                Theatres there were distinct places appropriated to each "<foreign
-                                    lang="la">ordo</foreign>" or class.</note> meantime, I was
+                                Theatres there were distinct places appropriated to each "<foreign xml:lang="lat">ordo</foreign>" or class.</note> meantime, I was
                             unable to maintain my place. Now there is no confusion: there is
                             attention and silence--an opportunity of acting my Play has been granted
                             me; to yourselves is given the power of gracing the scenic
-                                festival.<milestone n="45" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Gracing the scenic festival</lemma>:
+                                festival.<l n="45"/><note anchored="true"><app><lem>Gracing the scenic festival</lem></app>:
                                 Madame Dacier remarks that there is great force and eloquence in the
                                 Actor's affecting a concern for the sacred festivals, which were in
                                 danger of being deprived of their chief ornaments, if by too great a
@@ -407,9 +308,8 @@ new texts
                             beset by them on every side. For my sake, admit of this plea, and attend
                             in silence, that he may be encouraged to write other Plays, and that it
                             may be for my advantage to study new ones hereafter, purchased at my own
-                                expense.<milestone n="57" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">At my own expense</lemma>: It is generally
-                                supposed that "<foreign lang="la">meo pretio</foreign>" means "a
+                                expense.<l n="57"/><note anchored="true"><app><lem>At my own expense</lem></app>: It is generally
+                                supposed that "<foreign xml:lang="lat">meo pretio</foreign>" means "a
                                 price named as my estimate;" and that it was the custom for the
                                 Aediles to purchase a Play of a Poet at a price fixed by the head of
                                 the company of actors. It is also thought that the money was paid to
@@ -430,12 +330,14 @@ new texts
                     </sp>
                 
             
-            </div1>
-<milestone unit="act" n="1"/>
+            </div>
+</div>
+</div>
+<div type="textpart" subtype="act" n="1">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="58">
-                    <stage>Enter PHILOTIS<note anchored="yes"><lemma targOrder="U">Philotis</lemma>:
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="58" subtype="card">
+                    <stage>Enter PHILOTIS<note anchored="true"><app><lem>Philotis</lem></app>:
                             This is a protatic character, or one that helps to introduce the subject
                             of the Play, and then appears no more.</note> and SYRA.</stage>
                     <sp>
@@ -474,10 +376,11 @@ new texts
                             your age and beauty belong to me, or else these sentiments of mine to
                             you? </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="2"/>
-<div1 type="card" n="76">
+</div>
+<div type="textpart" subtype="scene" n="2">
+<div type="textpart" n="76" subtype="card">
                     <stage>Enter PARMENO from the house of LACHES.</stage>
                     <sp>
                         <speaker>PARMENO</speaker>
@@ -513,8 +416,7 @@ new texts
                     </sp>
                     <sp>
                         <speaker>PARMENO</speaker>
-                        <p> I' troth, I fancy that regret for <placeName key="perseus,Athens"
-                                >Athens</placeName> full oft possessed you, and that you thought but
+                        <p> I' troth, I fancy that regret for <placeName key="perseus,Athens">Athens</placeName> full oft possessed you, and that you thought but
                             poorly of your foresight.</p>
                     </sp>
                     <sp>
@@ -573,8 +475,7 @@ new texts
                     </sp>
                     <sp>
                         <speaker>PHILOTIS</speaker>
-                        <p> Oh, don't say so, Parmeno ;<milestone n="109" unit="TLN line"/><note
-                                anchored="yes"><lemma targOrder="U">Don't say so, Parmeno</lemma>:
+                        <p> Oh, don't say so, Parmeno ;<l n="109"/><note anchored="true"><app><lem>Don't say so, Parmeno</lem></app>:
                                 She says this ironically, at the same time intimating that she knows
                                 Parmeno too well, not to be sure that he is as impatient to impart
                                 the secret to her as she is to know it. Donatus remarks, that she
@@ -696,11 +597,7 @@ new texts
                             mind, partly overcome by compassion for his wife, partly constrained by
                             the insolence of the other, was gradually estranged from Bacchis, and
                             transferred its affections to the other, after having found a congenial
-                            disposition. In the mean time, there dies at Imbros<milestone n="171"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U"
-                                    >Imbros</lemma>: An island in the <placeName key="tgn,7002675"
-                                    >Aegean Sea</placeName>, off the coast of <placeName
-                                    key="tgn,7002756">Thrace</placeName>.</note> an old man, a
+                            disposition. In the mean time, there dies at Imbros<l n="171"/><note anchored="true"><app><lem>Imbros</lem></app>: An island in the <placeName key="tgn,7002675">Aegean Sea</placeName>, off the coast of <placeName key="tgn,7002756">Thrace</placeName>.</note> an old man, a
                             relative of theirs. His property there devolved on them by law. Thither
                             his father drove the love-sick Pamphilus, much against his will. He left
                             his wife here with his mother, for the old man has retired into the
@@ -724,8 +621,7 @@ new texts
                     <sp>
                         <speaker>PARMENO</speaker>
                         <p> If at any time she came to converse with her, she would instantly
-                            withdraw from her presence,<milestone n="182" unit="TLN line"/><note
-                                anchored="yes"><lemma targOrder="U">From her presence</lemma>: For
+                            withdraw from her presence,<l n="182"/><note anchored="true"><app><lem>From her presence</lem></app>: For
                                 the purpose, as will afterward appear, of not letting Sostrata see
                                 that she was pregnant.</note> and refuse to see her; in fine, when
                             she could no longer endure her, she pretended that she was sent for by
@@ -742,9 +638,7 @@ new texts
                     </sp>
                     <sp>
                         <speaker>PHILOTIS</speaker>
-                        <p> And I too, for I made an appointment with a certain stranger<milestone
-                                n="195" unit="TLN line"/><note anchored="yes"><lemma targOrder="U"
-                                    >With a certain stranger</lemma>: Here Philotis gives a reason,
+                        <p> And I too, for I made an appointment with a certain stranger<l n="195"/><note anchored="true"><app><lem>With a certain stranger</lem></app>: Here Philotis gives a reason,
                                 as Donatus observes, why she does not again appear in the Play. The
                                 following is an extract from Colman's remarks on this passage: "It
                                 were to be wished, for the sake of the credit of our author's
@@ -775,11 +669,13 @@ new texts
                     </sp>
                 
             
-            </div1>
-<milestone unit="act" n="2"/>
+            </div>
+</div>
+</div>
+<div type="textpart" subtype="act" n="2">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="199">
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="199" subtype="card">
                     <stage>Enter LACHES and SOSTRATA, from the house of the former.</stage>
                     <sp>
                         <speaker>LACHES</speaker>
@@ -823,9 +719,8 @@ new texts
                             yourself and the family, and are laying up sorrow for your Son. Then
                             besides, you are making our connections become, from friends, enemies to
                             us, who have thought him deserving for them to intrust their
-                                children<milestone n="212" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Intrust their children</lemma>: The plural
-                                    "<foreign lang="la">liberos</foreign>," children, is used where
+                                children<l n="212"/><note anchored="true"><app><lem>Intrust their children</lem></app>: The plural
+                                    "<foreign xml:lang="lat">liberos</foreign>," children, is used where
                                 only one is being spoken of, similarly, in the Heautontimorumenos,
                                 1. 151.</note> to him. You alone have put yourself forward, by your
                             folly, to be causing this disturbance.</p>
@@ -900,10 +795,11 @@ new texts
                             one; when, at your solicitation, they have married, then, at your
                             solicitation, they are to put them away again. </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="2"/>
-<div1 type="card" n="244">
+</div>
+    <div type="textpart" subtype="scene" n="2">
+<div type="textpart" n="244" subtype="card">
                     <stage>Enter PHIDIPPUS from his house.</stage>
                     <sp>
                         <speaker>PHIDIPPUS</speaker>
@@ -940,8 +836,7 @@ new texts
                             father, that you can wish her well more than I do, and that on my son's
                             account, who I know values her not less than his own self. Nor, in fact,
                             is it unknown to you, how much, as I believe, it will vex him, if he
-                            comes to know<milestone n="262" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">If he comes to know</lemma>: Donatus
+                            comes to know<l n="262"/><note anchored="true"><app><lem>If he comes to know</lem></app>: Donatus
                                 observes that the Poet shows his art in here preparing a reason to
                                 be assigned by Pamphilus for his pretended discontent at the
                                 departure of his wife.</note> of this; for this reason, I wish to
@@ -971,8 +866,7 @@ new texts
                         <speaker>LACHES</speaker>
                         <p>
                             <stage>turning to his wife, who stands apart.</stage> Ha!
-                                Sostrata!<milestone n="271" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Ha! Sostrata</lemma>: Colman observes on
+                                Sostrata!<l n="271"/><note anchored="true"><app><lem>Ha! Sostrata</lem></app>: Colman observes on
                                 this passage: "This is extremely artful. The answer of Philumena, as
                                 related by Phidippus, contains an ample vindication of Pamphilus.
                                 What, then, can we suppose could make the house so disagreeable to
@@ -1001,10 +895,11 @@ new texts
                         <speaker>LACHES</speaker>
                         <p> I'll go with you. <stage>(Exeunt.)</stage></p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="3"/>
-<div1 type="card" n="275">
+</div>
+    <div type="textpart" subtype="scene" n="3">
+<div type="textpart" n="275" subtype="card">
                     <stage>SOSTRATA alone.</stage>
                     <sp>
                         <speaker>SOSTRATA</speaker>
@@ -1022,11 +917,12 @@ new texts
                     </sp>
                 
             
-            </div1>
-<milestone unit="act" n="3"/>
+            </div>
+</div></div>
+<div type="textpart" subtype="act" n="3">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="282">
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="282" subtype="card">
                     <stage>Enter PAMPHILUS and PARMENO.</stage>
                     <sp>
                         <speaker>PAMPHILUS</speaker>
@@ -1081,13 +977,10 @@ new texts
                     </sp>
                     <sp>
                         <speaker>PAMPHILUS</speaker>
-                        <p> Go, Parmeno, into the house, and carry word<milestone n="314"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">And carry
-                                    word</lemma>: It was the custom with the Greeks and Romans, when
+                        <p> Go, Parmeno, into the house, and carry word<l n="314"/><note anchored="true"><app><lem>And carry
+                                    word</lem></app>: It was the custom with the Greeks and Romans, when
                                 returning from abroad, to send a messenger before them, to inform
-                                their wives of their arrival. See for example Cicero's last <bibl
-                                    n="Cic. Fam. 14.20">letter</bibl> to his wife, <date value="-47"
-                                    >47</date> BC.</note> that I have arrived. <stage>A noise is
+                                their wives of their arrival. See for example Cicero's last <bibl n="Cic. Fam. 14.20">letter</bibl> to his wife, <date when="-0047">47</date> BC.</note> that I have arrived. <stage>A noise is
                                 heard in the house of PHIDIPPUS.</stage></p>
                     </sp>
                     <sp>
@@ -1142,14 +1035,10 @@ new texts
                     </sp>
                     <sp>
                         <speaker>PARMENO</speaker>
-                        <p> They said that your wife, Philumena, was in alarm about<milestone
-                                n="321" unit="TLN line"/><note anchored="yes"><lemma targOrder="U"
-                                    >Was in alarm about</lemma>: "<foreign lang="la"
-                                    >Pavitare</foreign>." Casaubon has a curious suggestion here; he
+                        <p> They said that your wife, Philumena, was in alarm about<l n="321"/><note anchored="true"><app><lem>Was in alarm about</lem></app>: "<foreign xml:lang="lat">Pavitare</foreign>." Casaubon has a curious suggestion here; he
                                 thinks it not improbable that he had heard the female servants
-                                whispering among themselves that Philumena "<foreign lang="la"
-                                    >paritare</foreign>," "was about to be brought to bed," which he
-                                took for "<foreign lang="la">pavitare</foreign>," "was in fear" of
+                                whispering among themselves that Philumena "<foreign xml:lang="lat">paritare</foreign>," "was about to be brought to bed," which he
+                                took for "<foreign xml:lang="lat">pavitare</foreign>," "was in fear" of
                                 something.</note> something, I know not what; whether that may be
                             it, perchance, I don't know.</p>
                     </sp>
@@ -1195,28 +1084,26 @@ new texts
                             had been in there; they would invent a story that I had brought some
                             mischief against their lives and persons, in consequence of which the
                             malady had been increased. My mistress would be blamed, and I should
-                            incur heavy punishment.<milestone n="335" unit="TLN line"/><note
-                                anchored="yes"><lemma targOrder="U">Heavy punishment</lemma>:
+                            incur heavy punishment.<l n="335"/><note anchored="true"><app><lem>Heavy punishment</lem></app>:
                                 Probably meaning that he will be examined by torture, whether he has
                                 not, by drugs or other means, contributed to Philumena's
                                 illness.</note>
                         </p>
                     </sp>
                 
-                <milestone unit="scene" n="2"/>
+                </div>
+</div>
+<div type="textpart" subtype="scene" n="2">
+    <div type="textpart" n="337" subtype="card">
                     <stage>Enter SOSTRATA.</stage>
-                    <milestone n="1" unit="line"/><milestone n="337" unit="TLN line"/>
                     <sp>
                         <speaker>SOSTRATA</speaker>
                         <p>
                             <stage>to herself.</stage> In dreadful alarm, I have for some time
                             heard, I know not what confusion going on here; I'm sadly afraid
                             Philumena's illness is getting worse. Aesculapius, I do entreat thee,
-                            and thee, Health,<milestone n="338" unit="TLN line"/><note
-                                anchored="yes"><lemma targOrder="U">And thee, Health</lemma>: She
-                                invokes Aesculapius, the God of Medicine, and "<foreign lang="la"
-                                    >Salus</foreign>," or "Health," because, in <placeName
-                                    key="tgn,1000074">Greece</placeName>, their statues were always
+                            and thee, Health,<l n="338"/><note anchored="true"><app><lem>And thee, Health</lem></app>: She
+                                invokes Aesculapius, the God of Medicine, and "<foreign xml:lang="lat">Salus</foreign>," or "Health," because, in <placeName key="tgn,1000074">Greece</placeName>, their statues were always
                                 placed near each other; so that to have offered prayers to one and
                                 not to the other, would have been deemed a high indignity. On the
                                 worship of Aesculapius, see the opening Scene of the Curculio of
@@ -1318,9 +1205,8 @@ new texts
                     </sp>
                     <sp>
                         <speaker>SOSTRATA</speaker>
-                        <p> An intermitting one?<milestone n="357" unit="TLN line"/><note
-                                anchored="yes"><lemma targOrder="U">An intermitting one</lemma>:
-                                    "<foreign lang="la">Quotidiana</foreign>," literally,
+                        <p> An intermitting one?<l n="357"/><note anchored="true"><app><lem>An intermitting one</lem></app>:
+                                    "<foreign xml:lang="lat">Quotidiana</foreign>," literally,
                                 "daily."</note></p>
                     </sp>
                     <sp>
@@ -1347,10 +1233,11 @@ new texts
                             <stage>stamping.</stage> Do you loiter? <stage>(Exit PARMENO.)</stage>
                         </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="3"/>
-<div1 type="card" n="362">
+</div>
+<div type="textpart" subtype="scene" n="3">
+<div type="textpart" n="362" subtype="card">
                     <stage>PAMPHILUS, alone.</stage>
                     <sp>
                         <speaker>PAMPHILUS</speaker>
@@ -1364,8 +1251,7 @@ new texts
                             servant-maids beheld that I had arrived, they all at the same moment
                             joyfully exclaimed, "He is come," from having so suddenly caught sight
                             of me. But I soon perceived the countenances of all of them
-                                change,<milestone n="369" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">All of them change</lemma>: This must have
+                                change,<l n="369"/><note anchored="true"><app><lem>All of them change</lem></app>: This must have
                                 been imaginary, as they were not likely to be acquainted with the
                                 reason of Philumena's apprehensions.</note> because at so
                             unseasonable a juncture chance had brought me there. One of them in the
@@ -1394,10 +1280,8 @@ new texts
                             quite according to your own convenience. You alone are aware of her.
                             lying-in, and that the child is none of yours. For it is said that it
                             was two months after the marriage before she had commerce with you. And
-                            then, this is but the seventh month since she came to you.<milestone
-                                n="394" unit="TLN line"/><note anchored="yes"><lemma targOrder="U"
-                                    >Since she came to you</lemma>: There is great doubt what is the
-                                exact meaning of "<foreign lang="la">postquam ad te
+                            then, this is but the seventh month since she came to you.<l n="394"/><note anchored="true"><app><lem>Since she came to you</lem></app>: There is great doubt what is the
+                                exact meaning of "<foreign xml:lang="lat">postquam ad te
                                 venit</foreign>," here, whether it means, "it is now the seventh
                                 month since she became your wife," or, "it is now the seventh month
                                 since she came to your embraces," which did not happen for two
@@ -1410,9 +1294,8 @@ new texts
                             I am sure no one will suspect otherwise than, what is so likely, the
                             child was by you. It shall be instantly exposed; in that case there is
                             no inconvenience whatever to yourself, and you will be concealing an
-                            outrage so undeservingly committed upon her,<milestone n="401"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Committed
-                                    upon her</lemma>: Colman very justly observes here: "It is rather
+                            outrage so undeservingly committed upon her,<l n="401"/><note anchored="true"><app><lem>Committed
+                                    upon her</lem></app>: Colman very justly observes here: "It is rather
                                 extraordinary that Myrrhina's account of the injury done to her
                                 daughter should not put Pamphilus in mind of his own adventure,
                                 which comes out in the Fifth Act. It is certain that had the Poet
@@ -1439,10 +1322,11 @@ new texts
                             labor. He must be dispatched by me somewhere till Philumena is
                             delivered. </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="4"/>
-<div1 type="card" n="416">
+</div>
+    <div type="textpart" subtype="scene" n="4">
+<div type="textpart" n="416" subtype="card">
                     <stage>Enter at a distance PARMENO and SOSIA, with people carrying
                         baggage.</stage>
                     <sp>
@@ -1464,10 +1348,8 @@ new texts
                         <speaker>SOSIA</speaker>
                         <p> O lucky man! You don't know what evils you have escaped, by never having
                             been at sea. For to say nothing of other hardships, mark this one only;
-                            thirty days or more<milestone n="421" unit="TLN line"/><note
-                                anchored="yes"><lemma targOrder="U">Thirty days or more</lemma>: In
-                                his voyage from Imbros to <placeName key="perseus,Athens"
-                                    >Athens</placeName>, namely, which certainly appears to have
+                            thirty days or more<l n="421"/><note anchored="true"><app><lem>Thirty days or more</lem></app>: In
+                                his voyage from Imbros to <placeName key="perseus,Athens">Athens</placeName>, namely, which certainly appears to have
                                 been unusually long.</note> was I on board that ship, and every
                             moment, to my horror, was in continual expectation of death: such
                             unfavorable weather did we always meet with.</p>
@@ -1500,10 +1382,8 @@ new texts
                     </sp>
                     <sp>
                         <speaker>PAMPHILUS</speaker>
-                        <p> You must run across to the citadel.<milestone n="431" unit="TLN line"
-                                /><note anchored="yes"><lemma targOrder="U">To the citadel</lemma>:
-                                This was the fort or citadel that defended the <placeName
-                                    key="perseus,Piraeus">Piraeus</placeName>, and being three miles
+                        <p> You must run across to the citadel.<l n="431"/><note anchored="true"><app><lem>To the citadel</lem></app>:
+                                This was the fort or citadel that defended the <placeName key="perseus,Piraeus">Piraeus</placeName>, and being three miles
                                 distant from the city, was better suited for the design of
                                 Pamphilus, whose object it was to keep Parmeno for some time at a
                                 distance.</note></p>
@@ -1529,9 +1409,8 @@ new texts
                         <speaker>PARMENO</speaker>
                         <p>
                             <stage>aside.</stage> Confusion! I should say he has made a vow that if
-                            ever he should return home safe, he would rupture me<milestone n="435"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">He would
-                                    rupture me</lemma>: He facetiously pretends to think that
+                            ever he should return home safe, he would rupture me<l n="435"/><note anchored="true"><app><lem>He would
+                                    rupture me</lem></app>: He facetiously pretends to think that
                                 Pamphilus may, during a storm at sea, have vowed to walk him to
                                 death, if he should return home.</note> with walking.</p>
                     </sp>
@@ -1576,8 +1455,7 @@ new texts
                             know in what way I'm to conceal this, as Myrrhina entreated me, her
                             daughter's lying-in; but I do pity the woman. What I can, I'll do; only
                             so long, however, as I observe my duty; for it is proper that I should
-                            be regardful of a parent,<milestone n="448" unit="TLN line"/><note
-                                anchored="yes"><lemma targOrder="U">Regardful of a parent</lemma>:
+                            be regardful of a parent,<l n="448"/><note anchored="true"><app><lem>Regardful of a parent</lem></app>:
                                     Colman observes here:
                                 "This reflection seems to be rather improper in this place, for the
                                 discovery of Philumena's labor betrayed to Pamphilus the real motive
@@ -1589,10 +1467,11 @@ new texts
                                 apart.</stage>
                         </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="5"/>
-<div1 type="card" n="452">
+</div>
+    <div type="textpart" subtype="scene" n="5">
+<div type="textpart" n="452" subtype="card">
                     <stage>Enter, at a distance, LACHES and PHIDIPPUS.</stage>
                     <sp>
                         <speaker>LACHES</speaker>
@@ -1661,16 +1540,14 @@ new texts
                         <p> Why really, i' faith, he was a man very much devoted to pleasure while
                             he lived; and those who are so, don't much benefit their heirs, but for
                             themselves leave this commendation: While he lived, he lived
-                                well.<milestone n="461" unit="TLN line"/><note anchored="yes"><lemma
-                                    targOrder="U">He lived well</lemma>: This is living well in the
+                                well.<l n="461"/><note anchored="true"><app><lem>He lived well</lem></app>: This is living well in the
                                 sense used by the "Friar of orders gray." "Who leads a good life is
                                 sure to live well."</note></p>
                     </sp>
                     <sp>
                         <speaker>LACHES</speaker>
-                        <p> So then, you have brought home nothing more<milestone n="462"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Brought
-                                    home nothing more</lemma>: Colman remarks that this passage is taken notice of
+                        <p> So then, you have brought home nothing more<l n="462"/><note anchored="true"><app><lem>Brought
+                                    home nothing more</lem></app>: Colman remarks that this passage is taken notice of
                                 by Donatus as a particularly happy stroke of character; and indeed
                                 the idea of a covetous old man gaping for a fat legacy, and having
                                 his mouth stopped by a moral precept, is truly comic.</note> than a
@@ -1788,8 +1665,7 @@ new texts
                         <p> Upon my faith, I did not believe he would be so brutish; does he now
                             fancy that I shall come begging to him? If so it is that he chooses to
                             take back his wife, why, let him; if he is of another mind, let him pay
-                            back her portion,<milestone n="502" unit="TLN line"/><note
-                                anchored="yes"><lemma targOrder="U">Pay back her portion</lemma>: As
+                            back her portion,<l n="502"/><note anchored="true"><app><lem>Pay back her portion</lem></app>: As
                                 was universally done on a separation by agreement.</note> and take
                             himself off.</p>
                     </sp>
@@ -1836,11 +1712,13 @@ new texts
                     </sp>
                 
             
-            </div1>
-<milestone unit="act" n="4"/>
+            </div>
+</div>
+</div>
+<div type="textpart" subtype="act" n="4">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="517">
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="517" subtype="card">
                     <stage>Enter MYRRHINA, from her house.</stage>
                     <sp>
                         <speaker>MYRRHINA</speaker>
@@ -1891,9 +1769,8 @@ new texts
                         <p> I believe it; nor indeed is it for a father to think otherwise. But I
                             wonder much what the reason can be for which you so very much wish all
                             of us to be in ignorance of the truth, especially when she has been
-                            delivered properly, and at the right time.<milestone n="531"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">At the
-                                    right time</lemma>: Lemaire observes that, from this passage, it
+                            delivered properly, and at the right time.<l n="531"/><note anchored="true"><app><lem>At the
+                                    right time</lem></app>: Lemaire observes that, from this passage, it
                                 would appear that the Greeks considered seven months sufficient for
                                 gestation. So it would appear, if we are to take the time of the
                                 Play to be seven, and not nine, months after the marriage; and, as
@@ -1983,9 +1860,8 @@ new texts
                             when my daughter was ravished, it was so dark that his person could not
                             be distinguished, nor was any thing taken from him on the occasion by
                             which it could be afterward discovered who he was. He, on leaving her,
-                            took away from the girl, by force, a ring which<milestone n="574"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">A ring
-                                    which</lemma>: Colman
+                            took away from the girl, by force, a ring which<l n="574"/><note anchored="true"><app><lem>A ring
+                                    which</lem></app>: Colman
                                 remarks that this preparation for the catastrophe by the mention of
                                 the ring, is not so artful as might have been expected from Terence;
                                 as in this soliloquy he tells the circumstances directly to the
@@ -1995,10 +1871,11 @@ new texts
                             as his. <stage>Goes into the house.</stage>
                         </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="2"/>
-<div1 type="card" n="578">
+</div>
+<div type="textpart" subtype="scene" n="2">
+<div type="textpart" n="578" subtype="card">
                     <stage>Enter SOSTRATA and PAMPHILUS.</stage>
                     <sp>
                         <speaker>SOSTRATA</speaker>
@@ -2024,9 +1901,8 @@ new texts
                             so; and I will not permit, mother, any one who may wish to censure us,
                             to say that this has been done through my perverseness, and not your
                             inclination. Besides, I do not wish you, for my sake, to forego your
-                            friends and relations, and festive days.<milestone n="592"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">And
-                                    festive days</lemma>: "<foreign lang="la">Festos
+                            friends and relations, and festive days.<l n="592"/><note anchored="true"><app><lem>And
+                                    festive days</lem></app>: "<foreign xml:lang="lat">Festos
                                 dies</foreign>." The days for sacrificing to particular Divinities,
                                 when she would have the opportunity of meeting her friends, and
                                 making herself merry with them.</note></p>
@@ -2037,12 +1913,11 @@ new texts
                             life permitted it, I enjoyed them enough; satiety of that mode of life
                             has now taken possession of me: this is at present my chief concern,
                             that the length of my life may prove an annoyance to no one, or that he
-                            may look forward with impatience to my death.<milestone n="596"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Look
-                                    forward with impatience to my death</lemma>: Colman says: "This idea of the
+                            may look forward with impatience to my death.<l n="596"/><note anchored="true"><app><lem>Look
+                                    forward with impatience to my death</lem></app>: Colman says: "This idea of the
                                 long life of a step-mother being odious to her family, is applied in
                                 a very beautiful and uncommon manner by Shakspeare: <cit>
-                                    <quote lang="en">
+                                    <quote xml:lang="eng">
                                         <l>Now, fair Hippolyta, our nuptial hour</l>
                                         <l>Draws on apace; for happy days bring in</l>
                                         <l>Another morn; but oh, methinks how slow</l>
@@ -2083,10 +1958,11 @@ new texts
                         <p> And me as well; for this affair does not cause me less sorrow than you,
                             my son. </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="3"/>
-<div1 type="card" n="608">
+</div>
+<div type="textpart" subtype="scene" n="3">
+<div type="textpart" n="608" subtype="card">
                     <stage>Enter LACHES.</stage>
                     <sp>
                         <speaker>LACHES</speaker>
@@ -2153,22 +2029,19 @@ new texts
                         <p> You can not tell. But it matters nothing to you which they do when she
                             has gone away. Persons of this age are disliked by young people; it is
                             right for us to withdraw from the world; in fine, we are now a nice
-                            by-word. We are, Pamphilus, "the old man and the old woman."'<milestone
-                                n="621" unit="TLN line"/><note anchored="yes"><lemma targOrder="U"
-                                    >The old man and the old woman</lemma>: "<foreign lang="la"
-                                    >Senex atque anus</foreign>." In these words he probably refers
+                            by-word. We are, Pamphilus, "the old man and the old woman."'<l n="621"/><note anchored="true"><app><lem>The old man and the old woman</lem></app>: "<foreign xml:lang="lat">Senex atque anus</foreign>." In these words he probably refers
                                 to the commencement of many of the stories current in those times,
                                 which began: "There were once upon a time an old man and an-old
                                 woman." Indeed, almost the same words occur in the Stichus of
-                                Plautus, 1. 540, at the commencement of a story: "<foreign lang="la"
-                                    >Fuit olim, quasi ego sum, senex</foreign>," "There was upon a
+                                Plautus, 1. 540, at the commencement of a story: "<foreign xml:lang="lat">Fuit olim, quasi ego sum, senex</foreign>," "There was upon a
                                 time an old man, just like me."</note> But I see Phidippus coming
                             out just at the time; let's accost him. </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="4"/>
-<div1 type="card" n="624">
+</div>
+<div type="textpart" subtype="scene" n="4">
+<div type="textpart" n="624" subtype="card">
                     <stage>Enter PHIDIPPUS, from his house.</stage>
                     <sp>
                         <speaker>PHIDIPPUS</speaker>
@@ -2222,8 +2095,7 @@ new texts
                         <speaker>PHIDIPPUS</speaker>
                         <p> I, Pamphilus, could really wish, if it were possible, this alliance
                             between us to be lasting; but if you are otherwise inclined, still take
-                            the child.<milestone n="638" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Still take the child</lemma>: In cases of
+                            the child.<l n="638"/><note anchored="true"><app><lem>Still take the child</lem></app>: In cases of
                                 separation it was customary for the father to have the care of the
                                 male children.</note></p>
                     </sp>
@@ -2423,8 +2295,7 @@ new texts
                         <p> Well, I have already said, and I now say again to the same effect,
                             Laches, I wish this alliance between us to continue, if by any means it
                             possibly may, which I trust will be the case. But should you
-                                like<milestone n="725" unit="TLN line"/><note anchored="yes"><lemma
-                                    targOrder="U">But should you like</lemma>: Donatus observes that
+                                like<l n="725"/><note anchored="true"><app><lem>But should you like</lem></app>: Donatus observes that
                                 Phidippus utters these words with an air of disinclination to be
                                 present at the conference; and, indeed, the characters are well
                                 sustained, as it would not become him coolly to discourse with a
@@ -2441,11 +2312,13 @@ new texts
                     </sp>
                 
             
-            </div1>
-<milestone unit="act" n="5"/>
+            </div>
+</div>
+</div>
+<div type="textpart" subtype="act" n="5">
 
-<milestone unit="scene" n="1"/>
-<div1 type="card" n="728">
+<div type="textpart" subtype="scene" n="1">
+<div type="textpart" n="728" subtype="card">
                     <stage>Enter BACCHIS attended by her WOMEN.</stage>
                     <sp>
                         <speaker>BACCHIS</speaker>
@@ -2531,9 +2404,8 @@ new texts
                         <speaker>BACCHIS</speaker>
                         <p> Did I know any other means whereby I might be enabled to establish my
                             credit with you, more solemn than an oath, I would, Laches, assure you
-                            of this, that I have kept Pamphilus at a distance<milestone n="752"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Kept
-                                    Pamphilus at a distance</lemma>: Colman observes, how are we to reconcile this with
+                            of this, that I have kept Pamphilus at a distance<l n="752"/><note anchored="true"><app><lem>Kept
+                                    Pamphilus at a distance</lem></app>: Colman observes, how are we to reconcile this with
                                 the words of Parmeno at the beginning of the Play, where he says
                                 that Pamphilus visited Bacchis daily; and he inquires whether we are
                                 to suppose that Bacchis, who behaves so candidly in every other
@@ -2579,10 +2451,11 @@ new texts
                             friend I am, or what I can effect as such, rather than what as an enemy.
                         </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="2"/>
-<div1 type="card" n="769">
+</div>
+<div type="textpart" subtype="scene" n="2">
+<div type="textpart" n="769" subtype="card">
                     <stage>Enter PHIDIPPUS and a NURSE.</stage>
                     <sp>
                         <speaker>PHIDIPPUS</speaker>
@@ -2619,8 +2492,7 @@ new texts
                             please. The business at present is this: I must make his wife return
                             home to Pamphilus; should I effect that, I shall not regret its being
                             reported that I have been the only one to do what other courtesans avoid
-                                doing.<milestone n="777" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Other courtesans avoid doing</lemma>:
+                                doing.<l n="777"/><note anchored="true"><app><lem>Other courtesans avoid doing</lem></app>:
                                 Colman has the following quotation from Donatus: "Terence, by his
                                 uncommon art, has attempted many innovations with great success. In
                                 this Comedy, he introduces, contrary to received prejudices, a good
@@ -2639,8 +2511,7 @@ new texts
                     <sp>
                         <speaker>LACHES</speaker>
                         <p> We find, Phidippus, that our wives have been unjustly
-                                suspected<milestone n="778" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Have been unjustly suspected</lemma>: The
+                                suspected<l n="778"/><note anchored="true"><app><lem>Have been unjustly suspected</lem></app>: The
                                 words here employed are also capable of meaning, if an active sense
                                 is given to "suspectas," "our wives have entertained wrong
                                 suspicions;" but the sense above given seems preferable, as being
@@ -2714,10 +2585,11 @@ new texts
                                 <stage>Goes into the house.</stage>
                         </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="3"/>
-<div1 type="card" n="801">
+</div>
+<div type="textpart" subtype="scene" n="3">
+<div type="textpart" n="801" subtype="card">
                     <stage>Enter PARMENO, moving along with difficulty.</stage>
                     <sp>
                         <speaker>PARMENO</speaker>
@@ -2737,8 +2609,7 @@ new texts
                     <sp>
                         <speaker>BACCHIS</speaker>
                         <p> Parmeno, you make your appearance opportunely; run with all
-                                speed'<milestone n="809" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Run with all speed</lemma>: Donatus
+                                speed'<l n="809"/><note anchored="true"><app><lem>Run with all speed</lem></app>: Donatus
                                 remarks, that Parmeno is drawn as being of a lazy and inquisitive
                                 character; and that Terence, therefore, humorously contrives to keep
                                 him always on the move, and in total ignorance of what is going
@@ -2803,8 +2674,7 @@ new texts
                             fact, was the cause of these discoveries being made. For I remember,
                             that about ten months ago, at an early hour of night, he came running
                             home to my house, out of breath, without a companion, and surcharged
-                            with wine,<milestone n="824" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">Surcharged with wine</lemma>: Cooke has
+                            with wine,<l n="824"/><note anchored="true"><app><lem>Surcharged with wine</lem></app>: Cooke has
                                 this remark here: "I suppose that this is the best excuse the Poet
                                 could make for the young gentleman's being guilty of felony and rape
                                 at the same time. In this speech, the incident is related on which
@@ -2831,10 +2701,11 @@ new texts
                             nothing for it to befall me deservedly. It is but reasonable to endure
                             inconveniences from one from whom I have received so many benefits. </p>
                     </sp>
-                </div1>
+                </div>
 
-<milestone unit="scene" n="4"/>
-<div1 type="card" n="843-">
+</div>
+<div type="textpart" subtype="scene" n="4">
+<div type="textpart" n="843" subtype="card">
                     <stage>Enter PAMPHILUS and PARMENO, from the house of LACHES, on the other side
                         of the stage.</stage>
                     <sp>
@@ -2965,9 +2836,8 @@ new texts
                     <sp>
                         <speaker>PAMPHILUS</speaker>
                         <p> Nor is there need, in fact; therefore keep it a secret: I don't wish it
-                            to be the case here as it is in the Comedies,<milestone n="867"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">In the
-                                    Comedies</lemma>: Madame Dacier observes on this passage:
+                            to be the case here as it is in the Comedies,<l n="867"/><note anchored="true"><app><lem>In the
+                                    Comedies</lem></app>: Madame Dacier observes on this passage:
                                 "Terence here, with reason, endeavors to make the most of a
                                 circumstance peculiar to his Play. In other Comedies, every body,
                                 Actors as well as Spectators, are at last equally acquainted with
@@ -3007,8 +2877,7 @@ new texts
                     <sp>
                         <speaker>PARMENO</speaker>
                         <p> Still I suspect. "I restore him, when dead, from the shades
-                                below."<milestone n="876" unit="TLN line"/><note anchored="yes"
-                                    ><lemma targOrder="U">From the shades below</lemma>: Parmeno
+                                below."<l n="876"/><note anchored="true"><app><lem>From the shades below</lem></app>: Parmeno
                                 says this, while pondering upon the meaning of all that is going on,
                                 and thereby expresses his impatience to become acquainted with it.
                                 He therefore repeats what Pamphilus has before said in the twelfth
@@ -3041,14 +2910,17 @@ new texts
                         <speaker>PARMENO</speaker>
                         <p> Ill follow; for my part, I have done more good to-day, without knowing
                             it, than ever I did, knowingly, in all my life. <stage>Coming
-                                forward.</stage> Grant us your applause.<milestone n="881"
-                                unit="TLN line"/><note anchored="yes"><lemma targOrder="U">Your
-                                    applause</lemma>: We may here remark, that the Hecyra is the
+                                forward.</stage> Grant us your applause.<l n="881"/><note anchored="true"><app><lem>Your
+                                    applause</lem></app>: We may here remark, that the Hecyra is the
                                 only one of the Plays of Terence with a single plot.</note>
                         </p>
                     </sp>
                 
             
-        </div1></body>
+        </div>
+</div>
+</div>
+        </div>
+    </body>
     </text>
-</TEI.2>
+</TEI>

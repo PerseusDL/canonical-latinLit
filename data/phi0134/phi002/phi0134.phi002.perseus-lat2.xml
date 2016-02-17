@@ -1,18 +1,31 @@
-<?xml version="1.0"?>
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersDrama PUBLIC "-//Perseus P4//DTD Perseus Drama//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersDrama.dtd" >
-%PersDrama;
-]>
-<TEI.2>
-   <teiHeader type="text" status="new">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"\?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader type="text">
       <fileDesc>
          <titleStmt>
             <title>Heautontimorumenos</title>
+            <title type="sub">Machine readable text</title>
             <author>P. Terentius Afer (Terence)</author>
-            <editor role="editor">Edward St. John Parry</editor> &responsibility;
-            &fund.DLI2; </titleStmt>
-         <extent/> &Perseus.publish; <sourceDesc>
+            <editor role="editor">Edward St. John Parry</editor> <sponsor>Perseus Project, Tufts University</sponsor>
+<principal>Gregory Crane</principal>
+<respStmt>
+<resp>Prepared under the supervision of</resp>
+<name>Bridget Almas</name>
+<name>Lisa Cerrato</name>
+<name>William Merrill</name>
+<name>Elli Mylonas</name>
+<name>David Smith</name>
+</respStmt>
+            <funder n="org:DLI2">NSF, NEH: Digital Libraries Initiative, Phase 2</funder> </titleStmt>
+         <publicationStmt>
+<publisher>Trustees of Tufts Universities</publisher>
+<pubPlace>Medford, MA</pubPlace>
+<authority>Perseus Project</authority>
+</publicationStmt>
+ <sourceDesc>
             <biblStruct>
                <monogr>
                   <title>Publii Terentii Comoediae VI</title>
@@ -31,112 +44,69 @@
 
       <encodingDesc>
          <editorialDecl>
-            <correction method="silent" status="high">&Perseus.DE;</correction>
+            <correction method="silent" status="high"><p>professional data entry</p></correction>
          </editorialDecl>
-         <refsDecl doctype="TEI.2">
+         <!--<refsDecl doctype="TEI.2">
             <state unit="TLN line"/>
+         </refsDecl>-->
+         <refsDecl n="CTS">
+            <cRefPattern n="line" matchPattern="(\w+).(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:l[@n='$3'])">
+               <p>This pointer pattern extracts act and scene and line</p>
+            </cRefPattern>
+            <cRefPattern n="scene" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+               <p>This pointer pattern extracts act and scene</p>
+            </cRefPattern>
+            <cRefPattern n="act" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+               <p>This pointer pattern extracts act</p>
+            </cRefPattern>
          </refsDecl>
-         <refsDecl doctype="TEI.2">
-            <state unit="act"/>
-            <state n="chunk" unit="scene"/>
-            <state unit="line"/>
+         <refsDecl>
+            <refState unit="act" delim="."/>
+            <refState unit="scene" delim="."/>
+            <refState unit="line"/>
          </refsDecl>
       </encodingDesc>
 
       <profileDesc>
          <langUsage>
-            <language id="la">Latin</language>
-            <language id="greek">Greek</language>
-            <language id="en">English</language>
-            <language id="de">German</language>
-            <language id="fr">French</language>
-            <language id="it">Italian</language>
+            <language ident="la">Latin</language>
+            <language ident="grc">Greek</language>
+            <language ident="en">English</language>
+            <language ident="deu">German</language>
+            <language ident="fre">French</language>
+            <language ident="ita">Italian</language>
          </langUsage>
       </profileDesc>
 
       <revisionDesc>
-         <change>
-            <date> 2-Jul-01</date>
-            <respStmt>
-               <name>AEM</name>
-               <resp>markup</resp>
-            </respStmt>
-            <item> 
-             Revision 1.1  2011-01-17 00:34:55  gcrane
-             base SDL files
-            
-             Revision 1.2  2010/07/08 18:47:39  student
-             fixed place tags - zr
-             Revision 1.1 2009/12/08 20:46:27 rsingh04 moved more xml
-               files around based on copyright status. renamed terence files to follow the
-               abbreviations and split up minora_lat.xml into separate files Revision 1.5 2009/09/10
-               18:30:03 lcerrato fixed minor typos Revision 1.4 2008/11/14 21:28:07 lcerrato fixed
-               author names for consistent sorting Revision 1.3 2006/02/10 20:50:42 packel
-               places/dates now actually tagged Revision 1.2 2005/08/01 16:31:41 packel removed
-               stray item tags Revision 1.1 2005/07/25 15:05:00 packel Converted to XML Revision 1.7
-               2003/07/01 22:18:13 yorkc Updated texts to TEI P4 and Perseus P4 extensions; minor
-               cleanup (esp. character encodings and typos.) Revision 1.6 2001/12/21 17:34:27
-               amahoney fix the 'j's in the English section Revision 1.5 2001/12/19 21:58:41
-               amahoney fix some OCR errors and modernize aedepol to edepol Revision 1.4 2001/08/21
-               18:54:24 amahoney get the editor's name into the meta-data Revision 1.3 2001/08/17
-               15:32:09 amahoney fix line numbers in the English, pick up a few typos in Latin
-               Revision 1.2 2001/07/02 21:01:51 amahoney add through lines, drop the headers,
-               generally tidy up for release Revision 1.1 2001/07/02 19:27:22 amahoney new additions
-            </item>
-         </change>
+         <change when="2016-02-09" who="Zach Himes">Cleaned up teiHeader.</change>
+         <change who="gcrane" when="2011-01-17">base SDL files</change>
+         <change who="studentZR" when="2010-07-08">fixed place tags - zr</change>
+         <change who="rsingh04" when="2009-12-08">moved more xml files around based on copyright status. renamed terence files to follow the abbreviations and split up minora_lat.xml into separate files</change>
+         <change who="lcerrato" when="2009-09-10">fixed minor typos</change>
+         <change who="lcerrato" when="2008-11-14">fixed author names for consistent sorting</change>
+         <change who="packel" when="2006-02-10">places/dates now actually tagged</change>
+         <change who="packel" when="2005-08-01">removed stray item tags</change>
+         <change who="packel" when="2005-07-25">Converted to XML</change>
+         <change who="yorkc" when="2003-07-01">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change>
+         <change who="amahoney" when="2001-12-21">fix the 'j's in the English section</change>
+         <change who="amahoney" when="2001-12-19">fix some OCR errors and modernize aedepol to edepol</change>
+         <change who="amahoney" when="2001-08-21">get the editor's name into the meta-data</change>
+         <change who="amahoney" when="2001-08-17">fix line numbers in the English, pick up a few typos in Latin</change>
+         <change who="amahoney" when="2001-07-02">add through lines, drop the headers, generally tidy up for release</change>
+         <change who="amahoney" when="2001-07-02">new additions</change>
+         <change who="AEM" when="2001-07-02">markup</change>
       </revisionDesc>
 
    </teiHeader>
 
-   <text lang="la">
-      <body>
+   <text>
+      <body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0134.phi002.perseus-lat1" subtype="edition">
 
-         <castList>
-            <head>FABULAE INTERLOCUTORES.</head>
-            <castItem type="role">
-               <role>ANTIPHILA, amica Cliniae.</role>
-            </castItem>
-            <castItem type="role">
-               <role>BACCHIS, amica Clitiphonis.</role>
-            </castItem>
-            <castItem type="role">
-               <role>CHREMES, Clitiphonis</role>
-               <roleDesc>pater.</roleDesc>
-            </castItem>
-            <castItem type="role">
-               <role>CLINIA, Menedemi filius.,</role>
-            </castItem>
-            <castItem type="role">
-               <role>CLITIPHO, Chremetis</role>
-               <roleDesc>filius.</roleDesc>
-            </castItem>
-            <castItem type="role">
-               <role>DROMO, servus Menedemi.</role>
-            </castItem>
-            <castItem type="role">
-               <role>Menedemus, Cliniae</role>
-               <roleDesc>pater.</roleDesc>
-            </castItem>
-            <castItem type="role">
-               <role>NUTRIX.</role>
-            </castItem>
-            <castItem type="role">
-               <role>PHRYGIA,</role>
-               <roleDesc>ancilla.</roleDesc>
-            </castItem>
-            <castItem type="role">
-               <role>SOSTRATA, Chremetis</role>
-               <roleDesc>uxor.</roleDesc>
-            </castItem>
-            <castItem type="role">
-               <role>SYRUS, servus Chremetis.</role>
-            </castItem>
-         </castList>
-
-         <div1 type="act" n="introduction">
-            <div2 type="scene" n="summary">
+         <div type="textpart" n="introduction" subtype="act">
+            <div type="textpart" n="summary" subtype="scene">
                <head>INTRODUCTION.</head>
-               <p lang="en">THE plot of the Heautontimorumenos turns, as is often the case, partly
+               <p xml:lang="eng">THE plot of the Heautontimorumenos turns, as is often the case, partly
                   upon the recognition of a child which had been exposed as an infant. Sostrata the
                   wife of Chremes had an infant daughter, which her husband refused to bring up, and
                   ordered to be exposed. She gave it to an old woman for that purpose, attaching to
@@ -146,8 +116,7 @@
                   the attention of Clinia. son of Menedemus. Their attachment continued for some
                   time before it came to the knowledge of Clinia's father. As soon as he discovered
                   it he began to persecute his son about the affair, till at last the young man, to
-                  put an end to the dispute, went to <placeName key="tgn,1000004"
-                     >Asia</placeName>, and there entered the service of the king. No sooner had he
+                  put an end to the dispute, went to <placeName key="tgn,1000004">Asia</placeName>, and there entered the service of the king. No sooner had he
                   gone than his father repented his severity; and finding that his son was past
                   recall, he determined, as the only amends he could make, to inflict upon himself a
                   continual penance. He sold his house, and all his servants except a few to work
@@ -197,7 +166,7 @@
                   Chremes is persuaded to release his daughter from her pledge to Bacchis; and the
                   money is given to Clitipho to carry to Bacchis for the purpose forsooth of more
                   fully persuading Menedemus that she is his mistress. At this point the
-                  d&eacute;nouement takes place. Clitipho acts his part of Bacchis' lover a
+                  dénouement takes place. Clitipho acts his part of Bacchis' lover a
                   little too well, and all the circumstances are discovered by Menedemus, who
                   proceeds to inform Chremes of the real state of the case. Now the two old men
                   change places, Chremes is enraged beyond measure at having been made the dupe of
@@ -205,7 +174,7 @@
                   forbearance which Chremes had used to him. Clitipho has to undergo a complete
                   humiliation; but is ultimately received into favour by his father upon his
                   promising to settle and lead a respectable life.</p>
-               <p lang="en">This play is remarkable for a supposed irregularity in its construction,
+               <p xml:lang="eng">This play is remarkable for a supposed irregularity in its construction,
                   which has made it the subiect of an animated controversy among advocates of the
                   'Unities.' It is clear that the opening scene of the play is laid at evening, when
                   Menedemus is just finishing his day's work. The Third Act commences with the
@@ -228,16 +197,16 @@
                   next morning? Nothing but a devotion to the 'Unities' could have led to such an
                   idea; and it will be dismissed without any further discussion, now that a more
                   artistic idea of Dramatic Unity is generally recognized. </p>
-            </div2>
-            <div2 type="scene" n="production">
+            </div>
+            <div type="textpart" n="production" subtype="scene">
                <p>HEAUTONTIMORUMENOS. ACTA LUDIS MEGALENSIBUS, L. CORNELIO LENTULO L. VALERIO FLACCO
                   AEDILIBUS CURULIBUS. EGERUNT L. AMBIVIUS TURPIO ET L. ATTILIUS PRAENESTINUS. MODOS
                   FECIT FLACCUS CLAUDII. GRAECA EST MENANDRU. ACTA PRIMUM TIBIIS IMPARIBUS; DEINDE
                   DUABUS DEXTRIS. ACTA III. EDITA M. IUVENTIO ET T. SEMPRONIO COSS. </p>
-            </div2>
-         </div1>
-         <div1 type="act" n="prologue">
-            <div2 type="scene" n="0">
+            </div>
+         </div>
+         <div type="textpart" n="prologue" subtype="act">
+            <div type="textpart" n="0" subtype="scene">
                <sp>
                   <speaker>Prologus</speaker>
 <l n="1">NE cui sit vestrum mirum, cur partes seni</l>
@@ -293,11 +262,11 @@
 <l n="51">Exemplum statuite in me, ut adolescentuli</l>
 <l n="52">Vobis placere studeant potius quam sibi. </l>
                </sp>
-            </div2>
-         </div1>
-         <div1 type="act" n="1">
+            </div>
+         </div>
+         <div type="textpart" n="1" subtype="act">
 
-            <div2 type="scene" n="1">
+            <div type="textpart" n="1" subtype="scene">
                <stage>CHREMES. MENEDEMUS.</stage>
                <sp>
                   <speaker>Ch.</speaker>
@@ -563,8 +532,8 @@
 <l n="173">Ibo adeo hinc intro: sed quid crepuerunt fores</l>
 <l n="174">Hinc a me? quisnam egreditur? huc concessero. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="2">
+            </div>
+            <div type="textpart" n="2" subtype="scene">
                <stage>CLITIPHO. CHREMES.</stage>
                <sp>
                   <speaker>Cl.</speaker>
@@ -696,11 +665,11 @@
                   <l part="Y"> Ego ibo hinc intro, ut videam nobis quid coenae siet.</l>
 <l n="212">Tu, ut tempus est diei, vide sis ne quo hinc abeas longius. </l>
                </sp>
-            </div2>
-         </div1>
-         <div1 type="act" n="2">
+            </div>
+         </div>
+         <div type="textpart" n="2" subtype="act">
 
-            <div2 type="scene" n="1">
+            <div type="textpart" n="1" subtype="scene">
                <stage>CLITIPHO.</stage>
 <l n="213">Quam iniqui sunt patres in omnes adolescentes iudices,</l>
 <l n="214">Qui aequum esse censent nos iam a pueris ilico nasci senes,</l>
@@ -719,8 +688,8 @@
 <lb ed="actscene" n="15"/><l n="227">Mea est potens, procax, magnifica, sumtuosa, nobilis.</l>
 <l n="228">Tum quod dem ei recte est; nam, nihil esse mihi, religio est dicere.</l>
 <l n="229">Hoc ego mali non pridem inveni; neque etiamdum scit pater. </l>
-            </div2>
-            <div2 type="scene" n="2">
+            </div>
+            <div type="textpart" n="2" subtype="scene">
                <stage>CLINIA. CLITIPHO.</stage>
                <sp>
                   <speaker>Clin.</speaker>
@@ -776,8 +745,8 @@
                   <speaker>Clit.</speaker>
                   <l part="Y"> Respira: eccum Dromonem cum Syro: una adsunt tibi. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="3">
+            </div>
+            <div type="textpart" n="3" subtype="scene">
                <stage>SYRUS. DROMO. CLITIPHO. CLINIA.</stage>
                <sp>
                   <speaker>Sy.</speaker>
@@ -1285,8 +1254,8 @@
                   <speaker>Sy.</speaker>
                   <l part="Y"> Ambula. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="4">
+            </div>
+            <div type="textpart" n="4" subtype="scene">
                <stage>BACCHIS. ANTIPHILA. CLINIA. SYRUS.</stage>
                <sp>
                   <speaker>Ba.</speaker>
@@ -1385,11 +1354,11 @@
                   <speaker>Sy.</speaker>
 <l n="409">Ite intro: nam vos iamdudum exspectat senex. </l>
                </sp>
-            </div2>
-         </div1>
-         <div1 type="act" n="3">
+            </div>
+         </div>
+         <div type="textpart" n="3" subtype="act">
 
-            <div2 type="scene" n="1">
+            <div type="textpart" n="1" subtype="scene">
                <stage>CHREMES. MENEDEMUS.</stage>
                <sp>
                   <speaker>Ch.</speaker>
@@ -1624,8 +1593,8 @@
 <l n="510">A me nescio quis exit: concede hinc domum,</l>
 <l n="511">Ne nos inter nos congruere sentiant. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="2">
+            </div>
+            <div type="textpart" n="2" subtype="scene">
                <stage>SYRUS. CHREMES.</stage>
                <sp>
                   <speaker>Sy.</speaker>
@@ -1824,8 +1793,8 @@
 <l n="560">Nec quum male facerem crederem mihi impunius</l>
 <lb ed="actscene" n="50"/><l n="561">Licere. Quisnam a nobis egreditur foras? </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="3">
+            </div>
+            <div type="textpart" n="3" subtype="scene">
                <stage>CHREMES. CLITIPHO. SYRUS.</stage>
                <sp>
                   <speaker>Ch.</speaker>
@@ -2107,11 +2076,11 @@
                   <l part="Y"> Iam scies.</l>
 <l n="613">Mane, mane: quid est quod tam a nobis graviter crepuerunt fores? </l>
                </sp>
-            </div2>
-         </div1>
-         <div1 type="act" n="4">
+            </div>
+         </div>
+         <div type="textpart" n="4" subtype="act">
 
-            <div2 type="scene" n="1">
+            <div type="textpart" n="1" subtype="scene">
                <stage>SOSTRATA. CHREMES. NUTRIX. SYRUS.</stage>
                <sp>
                   <speaker>So.</speaker>
@@ -2342,8 +2311,8 @@
 <l n="666">Non licet hominem esse saepe ita ut volt, si res non sinit.</l>
 <l n="667">Nunc ita tempus est mihi ut cupiam filiam; olim nihil minus. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="2">
+            </div>
+            <div type="textpart" n="2" subtype="scene">
                <stage>SYRUS.</stage>
 <l n="668">Nisi me animus fallit, haud permultum a me aberit infortunium:</l>
 <l n="669">Ita hac re in angustum oppido nunc meae coguntur copiae;</l>
@@ -2356,8 +2325,8 @@
 <l n="676">Quid si hoc nunc sic incipiam? Nihil est. Quid si sic? Tantundem egero.</l>
 <lb ed="actscene" n="10"/><l n="677">At sic opinor. Non potest. Immo optime. Euge, habeo optimam.</l>
 <l n="678">Retraham hercle opinor ad me idem illud fugitivum argentum tamen. </l>
-            </div2>
-            <div2 type="scene" n="3">
+            </div>
+            <div type="textpart" n="3" subtype="scene">
                <stage>CLINIA. SYRUS.</stage>
                <sp>
                   <speaker>Cl.</speaker>
@@ -2535,8 +2504,8 @@
                   <speaker>Sy.</speaker>
                   <l part="Y"> Optime ipsa exit foras. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="4">
+            </div>
+            <div type="textpart" n="4" subtype="scene">
                <stage>BACCHIS. CLINIA. SYRUS. DROMO. PHRYGIA.</stage>
                <sp>
                   <speaker>Ba.</speaker>
@@ -2689,8 +2658,8 @@
                   <speaker>Dr.</speaker>
                   <l part="Y"> Mutum dices. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="5">
+            </div>
+            <div type="textpart" n="5" subtype="scene">
                <stage>CHREMES. SYRUS.</stage>
                <sp>
                   <speaker>Ch.</speaker>
@@ -2926,8 +2895,8 @@
                   <speaker>Ch.</speaker>
                   <l part="Y"> Effero. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="6">
+            </div>
+            <div type="textpart" n="6" subtype="scene">
                <stage>CLITIPHO. SYRUS.</stage>
                <sp>
                   <speaker>Cl.</speaker>
@@ -3017,8 +2986,8 @@
 <l n="827">Qua causa id fiat: obsecundato in loco.</l>
 <l n="828">Quod imperabit facito; loquitor paucula. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="7">
+            </div>
+            <div type="textpart" n="7" subtype="scene">
                <stage>CHREMES. CLITIPHO. SYRUS.</stage>
                <sp>
                   <speaker>Ch.</speaker>
@@ -3069,8 +3038,8 @@
 <l n="840">Mihi nunc, relictis rebus, inveniendus est</l>
 <l n="841">Aliquis labore inventa mea cui dem bona. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="8">
+            </div>
+            <div type="textpart" n="8" subtype="scene">
                <stage>MENEDEMUS. CHREMES.</stage>
                <sp>
                   <speaker>Me.</speaker>
@@ -3210,11 +3179,11 @@
                   <l part="Y"> Sane volo:</l>
 <l n="873">Nam te sciente faciam, quicquid egero. </l>
                </sp>
-            </div2>
-         </div1>
-         <div1 type="act" n="5">
+            </div>
+         </div>
+         <div type="textpart" n="5" subtype="act">
 
-            <div2 type="scene" n="1">
+            <div type="textpart" n="1" subtype="scene">
                <stage>MENEDEMUS. CHREMES.</stage>
                <sp>
                   <speaker>Me.</speaker>
@@ -3605,8 +3574,8 @@
 <lb ed="actscene" n="80"/><l n="953">Non, ita me Di ament, auderet haec facere viduae mulieri,</l>
 <l n="954">Quae in me fecit. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="2">
+            </div>
+            <div type="textpart" n="2" subtype="scene">
                <stage>CLITIPHO. MENEDEMUS. CHREMES. SYRUS.</stage>
                <sp>
                   <speaker>Cl.</speaker>
@@ -3806,8 +3775,8 @@
 <l n="1002">Miror, continuo non iussisse abripi me. Ad Menedemum hunc pergam:</l>
 <l n="1003">Eum mihi precatorem paro: seni nostro fidei nihil habeo. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="3">
+            </div>
+            <div type="textpart" n="3" subtype="scene">
                <stage>SOSTRATA. CHREMES.</stage>
                <sp>
                   <speaker>So.</speaker>
@@ -3885,8 +3854,8 @@
 <lb ed="actscene" n="20"/><l n="1023">Tum praeterea talem nisi tu nulla pareret filium.</l>
 <l n="1024">Sed ipse egreditur: quam severus ! rem cum videas, censeas. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="4">
+            </div>
+            <div type="textpart" n="4" subtype="scene">
                <stage>CLITIPHO. SOSTRATA. CHREMES.</stage>
                <sp>
                   <speaker>Cl.</speaker>
@@ -3951,8 +3920,8 @@
                   <l part="Y"> Eheu, quam ego nunc totus displiceo mihi,</l>
 <l n="1045">Quam pudet! neque quod principium inveniam ad placandum scio. </l>
                </sp>
-            </div2>
-            <div2 type="scene" n="5">
+            </div>
+            <div type="textpart" n="5" subtype="scene">
                <stage>MENEDEMUS. CHREMES. CLITIPHO. SOSTRATA.</stage>
                <sp>
                   <speaker>Me.</speaker>
@@ -4120,8 +4089,8 @@
                   <speaker>Om.</speaker>
                   <l part="Y">Vos valete, et plaudite!</l>
                </sp>
-            </div2>
-         </div1>
-      </body>
-   </text>
-</TEI.2>
+            </div>
+         </div>
+      </div>
+   </body></text>
+</TEI>
