@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader type="text">
 		<fileDesc>
 			<titleStmt>
-				<title>The First Oration on the Agrarian Law </title>
+				<title type="work">The First Oration on the Agrarian Law </title>
 				<title>Pro P. Quinctio, Pro Q. Roscio comoedo, Pro A. Caecina, De lege agraria
 					contra Rullum, Pro C. Rabiro perduellionis reo, Pro L. Flacco, In L. Pisonem,
 					Pro C. Rabiro Postumo</title>
 				<title type="sub">Machine readable text</title>
-				<author n="Cic.">M. Tullius Cicero</author>
+				<author n="M. Tullius Cicero">M. Tullius Cicero</author>
 				<editor role="editor" n="OCT">Albert Clark</editor>
 				<sponsor>Perseus Project, Tufts University</sponsor>
 				<principal>Gregory Crane</principal>
@@ -20,14 +21,14 @@
 					<name>David Smith</name>
 				</respStmt>
 				<funder n="org:NEH">National Endowment For The Humanities (NEH)</funder>
-
+				
 			</titleStmt>
 			<publicationStmt>
 				<publisher>Trustees of Tufts University</publisher>
 				<pubPlace>Medford, MA</pubPlace>
 				<authority>Perseus Project</authority>
 			</publicationStmt>
-
+			
 			<sourceDesc>
 				<biblStruct>
 					<monogr>
@@ -47,145 +48,87 @@
 				</biblStruct>
 			</sourceDesc>
 		</fileDesc>
-
+		
 		<encodingDesc>
-			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState unit="section"/>
+			<refsDecl n="CTS">
+				<cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+					<p>This pointer pattern extracts speech and section</p>
+				</cRefPattern>
+				<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+					<p>This pointer pattern extracts speech</p>
+				</cRefPattern>
 			</refsDecl>
 			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState delim="." n="chunk" unit="chapter"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Agr.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Agr.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState delim="." n="chunk" unit="chapter"/>
+				<refState unit="speech" delim="."/>
 				<refState unit="section"/>
 			</refsDecl>
 		</encodingDesc>
-
+		
 		<profileDesc>
 			<langUsage>
-				<language ident="la">Latin</language>
-				<language ident="greek">Greek</language>
+				<language ident="lat">Latin</language>
+				<language ident="grc">Greek</language>
 			</langUsage>
 		</profileDesc>
-
+		
 		<revisionDesc>
-			<!--
-<change><date>3/26/97</date>
-<respStmt><name>DAS</name><resp>ed.</resp></respStmt>
-<item>
-$Log: cic.oct4_lat.xml,v $
-Revision 1.5  2013-09-13 11:21:41  balmas01
-reverting texts back to pre_cts_reorg tagged version
-
-Revision 1.3  2011-07-19 22:30:38  gcrane
-removed the earlier persName/placeName tags
-
-Revision 1.2  2011-07-09 20:25:36  gcrane
-fixed problems with capitalization
-
-Revision 1.1  2011-01-15 23:14:25  gcrane
-base SDL file
-
-Revision 1.1  2009/10/09 19:49:15  rsingh04
-more reorganizing of texts module by collection
-
-Revision 1.2  2005/08/01 15:59:20  packel
-removed stray item tags
-
-Revision 1.1  2005/07/25 14:31:17  packel
-Converted to XML
-
-Revision 1.15  2005/04/08 17:56:08  mimno
-added default chunks
-
-Revision 1.14  2003/07/01 22:14:58  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.13  2002/12/02 18:41:45  amahoney
-correct spelling of Quirites, improperly 'regularized'
-
-Revision 1.12  2000/03/13 17:37:07  amahoney
-don't put header for fragments next to header for speech:  gets into
-short toc
-
-Revision 1.11  2000/03/06 22:21:49  amahoney
-add headers for groups of speeches, so they show up in the toc:  Catilines,
-Verrines, Philippics, and Agrarian Law
-
-Revision 1.10  2000/03/04 20:34:11  dasmith
-Added separate funder entity to TEI header.
-
-Revision 1.9  1999/10/14 21:36:02  dasmith
-Added explanatory subtitles to titleStmt
-
-Revision 1.8  1999/08/12 17:17:19  dasmith
-Fixed refsDecl
-
-Revision 1.7  1999/08/04 18:12:10  textgod
-Random changes over a period of months.
-
-Revision 1.6  1997/10/17 14:07:07  textgod
-Tagged Greek.
-
-Revision 1.5  1997/08/18 14:54:35  textgod
-???
-
-Revision 1.4  1997/05/12 22:19:56  cjsu
-making sure that the file passed the parcer
-
-Revision 1.3  1997/05/12 22:04:50  cjsu
-Added seven works... SGML varified
-
-Revision 1.2  1997/04/03 20:58:14  textgod
-Changed ADD tags to CORR.
-
-Revision 1.1  1997/03/26 17:34:24  textgod
-Added to repository. Passes TEI parse.
-
-</item></change>
-<change><date>July 2014</date>
-    <respStmt><name>Stella Dee</name><resp>ed.</resp></respStmt>
-    <item>split composite text and converted to unicode</item>
-      </change>-->
+			<change when="2016-03-11" who="Zach Himes">Converted section milestones to divs. Moved some sections that weren't in the correct locations</change>
+			<change when="2015-12-18" who="Zach Himes">Cleaned up teiHeader. Converted to TEI P5 and EpiDoc.</change>
 			<change when="2014-08-01" who="Stella Dee">edited markup</change>
+			<change when="2014-07-01" who="Stella Dee">split composite text and converted to unicode</change>
+			<change when="2013-09-13" who="balmas01">Revision 1.5  reverting texts back to pre_cts_reorg tagged version</change>
+			<change when="2011-07-19" who="gcrane">Revision 1.3  removed the earlier persName/placeName tags</change>
+			<change when="2011-07-09" who="gcrane">Revision 1.2  fixed problems with capitalization</change>
+			<change when="2011-01-15" who="gcrane">Revision 1.1  base SDL file</change>
+			<change when="2009-10-09" who="rsingh04">Revision 1.1  more reorganizing of texts module by collection</change>
+			<change when="2005-08-01" who="packel">Revision 1.2  removed stray item tags</change>
+			<change when="2005-07-25" who="packel">Revision 1.1  Converted to XML</change>
+			<change when="2005-04-08" who="mimno">Revision 1.15  added default chunks</change>
+			<change when="2003-07-01" who="yorkc">Revision 1.14  Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change>
+			<change when="2002-12-02" who="amahoney">Revision 1.13  correct spelling of Quirites, improperly 'regularized'</change>
+			<change when="2000-03-13" who="amahoney">Revision 1.12  don't put header for fragments next to header for speech:  gets into short toc</change>
+			<change when="2000-03-06" who="amahoney">Revision 1.11  add headers for groups of speeches, so they show up in the toc:  Catilines, Verrines, Philippics, and Agrarian Law</change>
+			<change when="2000-03-04" who="dasmith">Revision 1.10  Added separate funder entity to TEI header.</change>
+			<change when="1999-10-14" who="dasmith">Revision 1.9  Added explanatory subtitles to titleStmt</change>
+			<change when="1999-08-12" who="dasmith">Revision 1.8  Fixed refsDecl</change>
+			<change when="1999-08-04" who="textgod">Revision 1.7  Random changes over a period of months.</change>
+			<change when="1997-10-17" who="textgod">Revision 1.6  Tagged Greek.</change>
+			<change when="1997-08-18" who="textgod">Revision 1.5  ???</change>
+			<change when="1997-05-12" who="cjsu">Revision 1.4  making sure that the file passed the parcer</change>
+			<change when="1997-05-12" who="cjsu">Revision 1.3  Added seven works... SGML varified</change>
+			<change when="1997-04-03" who="textgod">Revision 1.2  Changed ADD tags to CORR.</change>
+			<change when="1997-03-26" who="textgod">Revision 1.1  Added to repository. Passes TEI parse.</change>
+			<change when="1997-03-26" who="DAS">ed.</change>
 		</revisionDesc>
 	</teiHeader>
-	<text xml:lang="la">
-		<body>
+	<text>
+		<body><div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi011.perseus-lat1" subtype="edition">
 			<head>Orationes de Lege Agraria</head>
-			<div type="Speech" n="1">
+			<div type="textpart" n="1" subtype="Speech">
 				<head>DE LEGE AGRARIA ORATIO PRIMA CONTRA P. SERVILIVM RVLLVM TR. PLEB. IN
 					SENATV</head>
 
-				<milestone n="fr1" unit="section"/>
-				<p>imberba iuventute <milestone n="fr2" unit="section"/></p>
-				<p>Capuam colonis deductis occupabunt, Atellam praesidio communient, Nuceriam, Cumas
-					multitudine suorum obtinebunt, cetera oppida praesidiis devincient. <milestone
-						n="fr3" unit="section"/></p>
-				<p>Venibit igitur sub praecone tota Propontis atque Hellespontus, addicetur omnis
-					ora Lyciorum atque Cilicum, Mysia et Phrygia eidem condicioni legique parebunt.
-						<milestone n="fr4" unit="section"/></p>
-				<p><reg>praedam</reg>, manubias, sectionem, castra denique Cn. Pompei sedente
-					imperatore <num>x</num>viri vendent. <milestone n="1" unit="chapter"/><milestone
-						n="1" unit="section"/></p>
-				<p>* * * quae res aperte petebatur, ea nunc occulte cuniculis oppugnatur.
+				<div type="textpart" subtype="section" n="fr1"><p>
+					<milestone unit="para"/>imberba iuventute</p></div>
+			    <div type="textpart" subtype="section" n="fr2"><p>
+					<milestone unit="para"/>Capuam colonis deductis occupabunt, Atellam praesidio communient, Nuceriam, Cumas
+					multitudine suorum obtinebunt, cetera oppida praesidiis devincient.</p></div>
+			    <div type="textpart" subtype="section" n="fr3"><p>
+					<milestone unit="para"/>Venibit igitur sub praecone tota Propontis atque Hellespontus, addicetur omnis
+					ora Lyciorum atque Cilicum, Mysia et Phrygia eidem condicioni legique parebunt.</p></div>
+				<div type="textpart" subtype="section" n="fr4"><p>
+					<milestone unit="para"/><reg>praedam</reg>, manubias, sectionem, castra denique Cn. Pompei sedente
+					imperatore <num>x</num>viri vendent.</p></div>
+				
+				<milestone n="1" unit="chapter"/><div type="textpart" subtype="section" n="1"><p>
+				<milestone unit="para"/>* * * quae res aperte petebatur, ea nunc occulte cuniculis oppugnatur.
 						<reg>dicent</reg> enim <num>x</num>viri, id quod et dicitur a multis et
 					saepe dictum est, post eosdem consules regis Alexandri testamento regnum illud
 					populi Romani esse factum. <reg>dabitis</reg> igitur Alexandream clam petentibus
 					eis quibus apertissime pugnantibus restitistis? <reg>haec</reg>, per deos
 					immortalis! utrum esse vobis consilia siccorum an vinolentorum somnia, et utrum
-					cogitata sapientium an optata furiosorum videntur? <milestone n="2"
-						unit="section"/><reg>videte</reg> nunc proximo capite ut impurus helluo
+					cogitata sapientium an optata furiosorum videntur? </p></div>
+					<div type="textpart" subtype="section" n="2"><p><reg>videte</reg> nunc proximo capite ut impurus helluo
 					turbet rem publicam, ut a maioribus nostris possessiones relictas disperdat ac
 					dissipet, ut sit non minus in populi Romani patrimonio nepos quam in suo.
 						<reg>perscribit</reg> in sua lege vectigalia quae <num>x</num>viri vendant,
@@ -194,7 +137,8 @@ Added to repository. Passes TEI parse.
 					adferet. <reg>nam</reg> superioribus capitibus dignitas populi Romani
 					violabatur, nomen imperi in commune odium orbis terrae vocabatur, urbes pacatae,
 					agri sociorum, regum status <num>x</num>viris donabantur; nunc praesens pecunia,
-					certa, numerata quaeritur. <milestone n="3" unit="section"/><reg>exspecto</reg>
+					certa, numerata quaeritur. </p></div>
+					<div type="textpart" subtype="section" n="3"><p><reg>exspecto</reg>
 					quid tribunus plebis vigilans et acutus excogitet. 'Veneat,' inquit, 'silva
 					Scantia.' Vtrum tandem hanc silvam in relictis possessionibus, an in censorum
 					pascuis invenisti? <reg>si</reg> quid est quod indagaris, inveneris, ex tenebris
@@ -204,16 +148,17 @@ Added to repository. Passes TEI parse.
 					ornamenta pacis eripias? <reg>tum</reg> vero hoc me inertiorem consulem iudicabo
 					quam illos fortissimos viros qui apud maiores nostros fuerunt, quod, quae
 					vectigalia illis consulibus populo Romano parta sunt, ea me consule ne retineri
-					quidem potuisse iudicabuntur. <milestone n="2" unit="chapter"/><milestone n="4"
-						unit="section"/>
+					quidem potuisse iudicabuntur.</p></div>
+					<milestone n="2" unit="chapter"/><div type="textpart" subtype="section" n="4"><p>
 					<reg>vendit</reg> Italiae possessiones ex ordine omnis. <reg>sane</reg> est in
 					eo diligens; nullam enim praetermittit. <reg>persequitur</reg> in tabulis
 					censoriis totam Siciliam; nullum aedificium, nullos agros relinquit. Audistis
 					auctionem populi Romani proscriptam a tribuno plebis, constitutam in mensem
 					Ianuarium, et, credo, non dubitatis quin idcirco haec aerari causa non
 					vendiderint ei qui armis et virtute pepererunt, ut esset quod nos largitionis
-					causa venderemus. <milestone n="5" unit="section"/></p>
-				<p><reg>videte</reg> nunc quo adfectent iter apertius quam antea. <reg>nam</reg>
+					causa venderemus. </p></div>
+					<div type="textpart" subtype="section" n="5"><p>
+				<milestone unit="para"/><reg>videte</reg> nunc quo adfectent iter apertius quam antea. <reg>nam</reg>
 					superiore parte legis quem ad modum Pompeium oppugnarent, a me indicati sunt;
 					nunc iam se ipsi indicabunt. <reg>iubent</reg> venire agros Attalensium atque
 					Olympenorum quos populo Romano <add>P.</add> Servili, fortissimi viri, victoria
@@ -224,15 +169,15 @@ Added to repository. Passes TEI parse.
 					duorum Scipionum eximia virtute possessos; tum vero ipsam veterem Carthaginem
 					vendunt quam P. Africanus nudatam tectis ac moenibus sive ad notandam
 					Carthaginiensium calamitatem, sive ad testificandam nostram victoriam, sive
-					oblata aliqua religione ad aeternam hominum memoriam consecravit. <milestone
-						n="6" unit="section"/><reg>his</reg> insignibus atque infulis imperi
+					oblata aliqua religione ad aeternam hominum memoriam consecravit. </p></div>
+					<div type="textpart" subtype="section" n="6"><p><reg>his</reg> insignibus atque infulis imperi
 					venditis quibus ornatam nobis maiores nostri rem publicam tradiderunt, iubent
 					eos agros venire quos rex Mithridates in Paphlagonia, Ponto Cappadociaque
 					possederit. <reg>num</reg> obscure videntur prope hasta praeconis insectari Cn.
 					Pompei exercitum qui venire iubeant eos ipsos agros in quibus ille etiam nunc
-					bellum gerat atque versetur? <milestone n="3" unit="chapter"/><milestone n="7"
-						unit="section"/></p>
-				<p><reg>hoc</reg> vero cuius modi est, quod eius auctionis quam constituunt locum
+					bellum gerat atque versetur?</p></div>
+					<milestone n="3" unit="chapter"/><div type="textpart" subtype="section" n="7"><p>
+				<milestone unit="para"/><reg>hoc</reg> vero cuius modi est, quod eius auctionis quam constituunt locum
 					sibi nullum definiunt? <reg>nam</reg>
 					<num>x</num>viris quibus in locis ipsis videatur vendendi potestas lege
 					permittitur. <reg>censoribus</reg> vectigalia locare nisi in conspectu populi
@@ -240,14 +185,14 @@ Added to repository. Passes TEI parse.
 					etiam nequissimi homines consumptis patrimoniis faciunt ut in atriis
 					auctionariis potius quam in triviis aut in compitis auctionentur; hic permittit
 					sua lege <num>x</num>viris ut in quibus commodum sit tenebris, ut in qua velint
-					solitudine, bona populi Romani possint divendere. <milestone n="8"
-						unit="section"/><reg>iam</reg> illa omnibus in provinciis, regnis, liberis
+					solitudine, bona populi Romani possint divendere. </p></div>
+					<div type="textpart" subtype="section" n="8"><p><reg>iam</reg> illa omnibus in provinciis, regnis, liberis
 					populis quam acerba, quam formidolosa, quam quaestuosa concursatio
 					<num>x</num>viralis futura sit, non videtis? <reg>hereditatum</reg> obeundarum
 					causa quibus vos legationes dedistis, qui et privati et privatum ad negotium
 					exierunt non maximis opibus neque summa auctoritate praediti, tamen auditis
-					profecto quam graves eorum adventus sociis nostris esse soleant. <milestone
-						n="9" unit="section"/><reg>quam</reg> ob rem quid putatis impendere hac lege
+					profecto quam graves eorum adventus sociis nostris esse soleant. </p></div>
+					<div type="textpart" subtype="section" n="9"><p><reg>quam</reg> ob rem quid putatis impendere hac lege
 					omnibus gentibus terroris et mali, cum immittantur in orbem terrarum
 						<num>x</num>viri summo cum imperio, summa cum avaritia infinitaque omnium
 					rerum cupiditate? quorum cum adventus graves, cum fasces formidolosi, tum vero
@@ -255,26 +200,27 @@ Added to repository. Passes TEI parse.
 					iudicare, quod iudicarint vendere. <reg>etiam</reg> illud quod homines sancti
 					non facient, ut pecuniam accipiant ne vendant, tamen id eis ipsum per legem
 					licebit. <reg>hinc</reg> vos quas spoliationes, quas pactiones, quam denique in
-					omnibus locis nundinationem iuris ac fortunarum fore putatis? <milestone n="10"
-						unit="section"/><reg>etenim</reg>, quod superiore parte legis praefinitum
+					omnibus locis nundinationem iuris ac fortunarum fore putatis? </p></div>
+					<div type="textpart" subtype="section" n="10"><p><reg>etenim</reg>, quod superiore parte legis praefinitum
 					fuit, '<quote>Svlla et Pompeio consvlibvs</quote>,' id rursus liberum
 					infinitumque fecerunt. <milestone n="4" unit="chapter"/><reg>iubet</reg> enim
 					eosdem <num>x</num>viros omnibus agris publicis pergrande vectigal imponere, ut
 					idem possint et liberare agros quos commodum sit et quos ipsis libeat publicare.
 						<reg>quo</reg> in iudicio perspici non potest utrum severitas acerbior an
-					benignitas quaestuosior sit futura. </p>
-				<p><reg>sunt</reg> tamen in tota lege exceptiones duae non tam iniquae quam
+					benignitas quaestuosior sit futura. 
+				<milestone unit="para"/><reg>sunt</reg> tamen in tota lege exceptiones duae non tam iniquae quam
 					suspiciosae. <reg>excipit</reg> enim in vectigali imponendo agrum Recentoricum
 					Siciliensem, in vendendis agris eos agros de quibus cautum sit foedere.
-						<reg>hi</reg> sunt in Africa, qui ab Hiempsale possidentur. <milestone
-						n="11" unit="section"/><reg>hic</reg> quaero, si Hiempsali satis est cautum
+						<reg>hi</reg> sunt in Africa, qui ab Hiempsale possidentur. </p></div>
+					<div type="textpart" subtype="section" n="11"><p><reg>hic</reg> quaero, si Hiempsali satis est cautum
 					foedere et Recentoricus ager privatus est, quid attinuerit excipi; sin et foedus
 					illud habet aliquam dubitationem et ager Recentoricus dicitur non numquam esse
 					publicus, quem putet existimaturum duas causas in orbe terrarum repertas quibus
 					gratis parceret. <reg>num</reg> quisnam tam abstrusus usquam nummus videtur quem
 					non architecti huiusce legis olfecerint? <reg>provincias</reg>, civitates
 					liberas, socios, amicos, reges denique exhauriunt, admovent manus vectigalibus
-					populi Romani. <milestone n="12" unit="section"/><reg>non</reg> est satis.
+					populi Romani. </p></div>
+					<div type="textpart" subtype="section" n="12"><p><reg>non</reg> est satis.
 						<reg>audite</reg>, audite vos qui amplissimo populi senatusque iudicio
 					exercitus habuistis et bella gessistis: quod ad quemque pervenerit ex praeda, ex
 					manubiis, ex auro coronario, quod neque consumptum in monumento neque in
@@ -283,8 +229,8 @@ Added to repository. Passes TEI parse.
 					iudicio comparant, sed maximam pecuniam se a Fausto ablaturos arbitrantur.
 						<reg>quam</reg> causam suscipere iurati iudices noluerunt, hanc isti
 						<num>x</num>viri susceperunt: idcirco a iudicibus fortasse praetermissam
-					esse arbitrantur quod sit ipsis reservata. <milestone n="13" unit="section"
-						/><reg>deinde</reg> etiam in reliquum tempus diligentissime sancit ut, quod
+					esse arbitrantur quod sit ipsis reservata. </p></div>
+					<div type="textpart" subtype="section" n="13"><p><reg>deinde</reg> etiam in reliquum tempus diligentissime sancit ut, quod
 					quisque imperator habeat pecuniae, protinus ad <num>x</num>viros deferat.
 						<reg>hic</reg> tamen excipit Pompeium simillime, ut mihi videtur, atque ut
 					illa lege qua peregrini Roma eiciuntur Glaucippus excipitur. <reg>non</reg> enim
@@ -292,9 +238,9 @@ Added to repository. Passes TEI parse.
 						<reg>sed</reg> cui manubias remittit, in huius vectigalia invadit.
 						<reg>iubet</reg> enim pecunia, si qua post nos consules ex novis
 					vectigalibus recipiatur, hac uti <num>x</num>viros. <reg>quasi</reg> vero non
-					intellegamus haec eos vectigalia quae Cn. Pompeius adiunxerit vendere cogitare.
-						<milestone n="5" unit="chapter"/><milestone n="14" unit="section"/></p>
-				<p><reg>videtis</reg> iam, patres conscripti, omnibus rebus et modis constructam et
+					intellegamus haec eos vectigalia quae Cn. Pompeius adiunxerit vendere cogitare.</p></div>
+					<milestone n="5" unit="chapter"/><div type="textpart" subtype="section" n="14"><p>
+				<milestone unit="para"/><reg>videtis</reg> iam, patres conscripti, omnibus rebus et modis constructam et
 					coacervatam pecuniam <num>x</num>viralem. <reg>minuetur</reg> huius pecuniae
 					invidia; consumetur enim in agrorum emptionibus. <reg>optime</reg>.
 						<reg>quis</reg> ergo emet agros istos? <reg>idem</reg>
@@ -305,16 +251,18 @@ Added to repository. Passes TEI parse.
 					vendet, ut alios omittam, socer tuus, et, si ego eius aequitatem animi probe
 					novi, vendet non invitus? <reg>facient</reg> idem ceteri libenter, ut
 					possessionis invidiam pecunia commutent, accipiant quod cupiunt, dent quod
-					retinere vix possunt. <milestone n="15" unit="section"/></p>
-				<p><reg>nunc</reg> perspicite omnium rerum infinitam atque intolerandam licentiam.
+					retinere vix possunt. </p></div>
+					<div type="textpart" subtype="section" n="15"><p>
+				<milestone unit="para"/><reg>nunc</reg> perspicite omnium rerum infinitam atque intolerandam licentiam.
 						<reg>pecunia</reg> coacta est ad agros emendos; ei porro ab invitis non
 					ementur. <reg>si</reg> consenserint possessores non vendere, quid futurum est?
 						<reg>referetur</reg> pecunia? <reg>non</reg> licet. <reg>exigetur</reg>?
 						<reg>vetat</reg>. <reg>verum</reg> esto; nihil est quod non emi possit, si
 					tantum des quantum velit venditor. <reg>spoliemus</reg> orbem terrarum, vendamus
 					vectigalia, effundamus aerarium, ut locupletatis aut invidiae aut pestilentiae
-					possessoribus agri tamen emantur. <milestone n="16" unit="section"/></p>
-				<p><reg>quid</reg> tum? quae erit in istos agros deductio, quae totius rei ratio
+					possessoribus agri tamen emantur. </p></div>
+					<div type="textpart" subtype="section" n="16"><p>
+				<milestone unit="para"/><reg>quid</reg> tum? quae erit in istos agros deductio, quae totius rei ratio
 					atque descriptio? '<reg>deducentur</reg>,' inquit, 'coloniae.' <reg>quot</reg>?
 					quorum hominum? in quae loca? <reg>quis</reg> enim non videt in coloniis esse
 					haec omnia consideranda? <reg>tibi</reg> nos, Rulle, et istis tuis harum omnium
@@ -323,16 +271,16 @@ Added to repository. Passes TEI parse.
 					constrictam teneretis? Vbi enim cavetur ne in Ianiculo coloniam constituatis, ne
 					urbem hanc urbe alia premere atque urgere possitis? '<reg>non</reg> faciemus,'
 					inquit. <reg>primum</reg> nescio, deinde timeo, postremo non committam ut vestro
-					beneficio potius quam nostro consilio salvi esse possimus. <milestone n="6"
-						unit="chapter"/><milestone n="17" unit="section"/><reg>quod</reg> vero totam
+					beneficio potius quam nostro consilio salvi esse possimus.</p></div>
+					<milestone n="6" unit="chapter"/><div type="textpart" subtype="section" n="17"><p><reg>quod</reg> vero totam
 					Italiam vestris coloniis complere voluistis, id cuius modi esset neminemne
 					nostrum intellecturum existimavistis? <reg>scriptum</reg> est enim: '<quote>Qvae
 						in mvnicipia qvasqve in colonias xviri velint, dedvcant colonos qvos velint
 						et eis agros adsignent qvibvs in locis velint</quote>,' ut, cum totam
 					Italiam militibus suis occuparint, nobis non modo dignitatis retinendae, verum
 					ne libertatis quidem recuperandae spes relinquatur. <reg>atque</reg> haec a me
-					suspicionibus et coniectura coarguuntur. <milestone n="18" unit="section"
-						/><reg>iam</reg> omnis omnium tolletur error, iam aperte ostendent sibi
+					suspicionibus et coniectura coarguuntur. </p></div>
+					<div type="textpart" subtype="section" n="18"><p><reg>iam</reg> omnis omnium tolletur error, iam aperte ostendent sibi
 					nomen huius rei publicae, sedem urbis atque imperi, denique hoc templum Iovis
 						<reg>optimi</reg>
 					<reg>maximi</reg> atque hanc arcem omnium gentium displicere. Capuam deduci
@@ -342,16 +290,16 @@ Added to repository. Passes TEI parse.
 					ibi nostri coloni delecti ad omne facinus a <num>x</num>viris conlocabuntur, et,
 					credo, qua in urbe homines in vetere dignitate fortunaque nati copiam rerum
 					moderate ferre non potuerunt, in ea isti vestri satellites modeste insolentiam
-					suam continebunt. <milestone n="19" unit="section"/><reg>maiores</reg> nostri
+					suam continebunt. </p></div>
+					<div type="textpart" subtype="section" n="19"><p><reg>maiores</reg> nostri
 					Capua magistratus, senatum, consilium commune, omnia denique insignia rei
 					publicae sustulerunt, neque aliud quicquam in urbe nisi inane nomen Capuae
 					reliquerunt, non crudelitate—quid enim illis fuit clementius qui etiam externis
 					hostibus victis sua saepissime reddiderunt?—sed consilio, quod videbant, si quod
 					rei publicae vestigium illis moenibus contineretur, urbem ipsam imperio
 					domicilium praebere posse; vos haec, nisi evertere rem publicam cuperetis ac
-					vobis novam dominationem comparare, credo, quam perniciosa essent non videretis.
-						<milestone n="7" unit="chapter"/><milestone n="20" unit="section"
-						/><reg>quid</reg> enim cavendum est in coloniis deducendis? <reg>si</reg>
+					vobis novam dominationem comparare, credo, quam perniciosa essent non videretis.</p></div>
+					<milestone n="7" unit="chapter"/><div type="textpart" subtype="section" n="20"><p><reg>quid</reg> enim cavendum est in coloniis deducendis? <reg>si</reg>
 					luxuries, Hannibalem ipsum Capua corrupit, si superbia, nata inibi esse haec ex
 					Campanorum fastidio videtur, si praesidium, non praeponitur huic urbi ista
 					colonia, sed opponitur. <reg>at</reg> quem ad modum armatur, di immortales!
@@ -359,8 +307,8 @@ Added to repository. Passes TEI parse.
 					nunc omnes urbes quae circum Capuam sunt a colonis per eosdem <num>x</num>viros
 					occupabuntur; hanc enim ob causam permittit ipsa lex, in omnia quae velint
 					oppida colonos ut <num>x</num>viri deducant quos velint. <reg>atque</reg> his
-					colonis agrum Campanum et Stellatem campum dividi iubet. <milestone n="21"
-						unit="section"/><reg>non</reg> queror deminutionem vectigalium, non
+					colonis agrum Campanum et Stellatem campum dividi iubet. </p></div>
+					<div type="textpart" subtype="section" n="21"><p><reg>non</reg> queror deminutionem vectigalium, non
 					flagitium huius iacturae atque damni, praetermitto illa quae nemo est quin
 					gravissime et verissime conqueri possit, nos caput patrimoni publici,
 					pulcherrimam populi Romani possessionem, subsidium annonae, horreum belli, sub
@@ -370,14 +318,16 @@ Added to repository. Passes TEI parse.
 					publica vectigal esse quod amissis aliis remaneat, intermissis non conquiescat,
 					in pace niteat, in bello non obsolescat, militem sustentet, hostem non
 					pertimescat; praetermitto omnem hanc orationem et contioni reservo; de periculo
-					salutis ac libertatis loquor. <milestone n="22" unit="section"/><reg>quid</reg>
+					salutis ac libertatis loquor. </p></div>
+					<div type="textpart" subtype="section" n="22"><p><reg>quid</reg>
 					enim existimatis integrum vobis in re publica fore aut in vestra libertate ac
 					dignitate retinenda, cum Rullus atque ei quos multo magis quam Rullum timetis
 					cum omni egentium atque improborum manu, cum omnibus copiis, cum omni argento et
-					auro Capuam et urbis circa Capuam occuparint? </p>
-				<p><reg>his</reg> ego rebus, patres conscripti, resistam vehementer atque acriter
+					auro Capuam et urbis circa Capuam occuparint? 
+				<milestone unit="para"/><reg>his</reg> ego rebus, patres conscripti, resistam vehementer atque acriter
 					neque patiar homines ea me consule expromere quae contra rem publicam iam diu
-					cogitarunt. Errastis, <milestone n="23" unit="section"/>Rulle, vehementer et tu
+					cogitarunt.</p></div>
+					<div type="textpart" subtype="section" n="23"><p>Errastis, Rulle, vehementer et tu
 					et non nulli conlegae tui qui sperastis vos contra consulem veritate, non
 					ostentatione popularem posse in evertenda re publica populares existimari.
 						<reg>lacesso</reg> vos, in contionem voco, populo Romano disceptatore uti
@@ -386,35 +336,36 @@ Added to repository. Passes TEI parse.
 					concordiam, quam otium reperiemus. <reg>sollicitam</reg> mihi civitatem
 					suspicione, suspensam metu, perturbatam vestris legibus et contionibus et
 					deductionibus tradidistis; spem improbis ostendistis, timorem bonis iniecistis,
-					fidem de foro, dignitatem de re publica sustulistis. <milestone n="24"
-						unit="section"/><reg>hoc</reg> motu atque hac perturbatione animorum atque
+					fidem de foro, dignitatem de re publica sustulistis. </p></div>
+					<div type="textpart" subtype="section" n="24"><p><reg>hoc</reg> motu atque hac perturbatione animorum atque
 					rerum cum populo Romano vox et auctoritas consulis repente in tantis tenebris
 					inluxerit, cum ostenderit nihil esse metuendum, nullum exercitum, nullam manum,
 					nullas colonias, nullam venditionem vectigalium, nullum imperium novum, nullum
 					regnum <num>x</num>virale, nullam alteram Romam neque aliam sedem imperi nobis
 					consulibus futuram summamque tranquillitatem pacis atque oti, verendum, credo,
 					nobis erit ne vestra ista praeclara lex agraria magis popularis esse videatur.
-						<milestone n="25" unit="section"/>Cum vero scelera consiliorum vestrorum
+						</p></div>
+					<div type="textpart" subtype="section" n="25"><p>Cum vero scelera consiliorum vestrorum
 					fraudemque legis et insidias quae ipsi populo Romano a popularibus tribunis
 					plebis fiant ostendero, pertimescam, credo, ne mihi non liceat contra vos in
 					contione consistere, praesertim cum mihi deliberatum et constitutum sit ita
 					gerere consulatum quo uno modo geri graviter et libere potest, ut neque
 					provinciam neque honorem neque ornamentum aliquod aut commodum neque rem ullam
-					quae a tribuno plebis impediri possit appetiturus sim. <milestone n="26"
-						unit="section"/><reg>dicit</reg> frequentissimo senatu consul Kalendis
+					quae a tribuno plebis impediri possit appetiturus sim. </p></div>
+					<div type="textpart" subtype="section" n="26"><p><reg>dicit</reg> frequentissimo senatu consul Kalendis
 					Ianuariis sese, si status hic rei publicae maneat neque aliquod negotium
 					exstiterit quod honeste subterfugere non possit, in provinciam non iturum.
 						<reg>sic</reg> me in hoc magistratu geram, patres conscripti, ut possim
-					tribunum plebis rei publicae iratum coercere, mihi iratum contemnere. <milestone
-						n="9" unit="chapter"/></p>
-				<p><reg>quam</reg> ob rem, per deos immortalis! conligite vos, tribuni plebis,
+					tribunum plebis rei publicae iratum coercere, mihi iratum contemnere. <milestone n="9" unit="chapter"/>
+				<milestone unit="para"/><reg>quam</reg> ob rem, per deos immortalis! conligite vos, tribuni plebis,
 					deserite eos a quibus, nisi prospicitis, brevi tempore deseremini, conspirate
 					nobiscum, consentite cum bonis, communem rem publicam communi studio atque amore
 					defendite. <reg>multa</reg> sunt occulta rei publicae volnera, multa nefariorum
 					civium perniciosa consilia; nullum externum periculum est, non rex, non gens
 					ulla, non natio pertimescenda est; inclusum malum, intestinum ac domesticum est.
 						<reg>huic</reg> pro se quisque nostrum mederi atque hoc omnes sanare velle
-					debemus. <milestone n="27" unit="section"/><reg>erratis</reg>, si senatum
+					debemus. </p></div>
+					<div type="textpart" subtype="section" n="27"><p><reg>erratis</reg>, si senatum
 					probare ea quae dicuntur a me putatis, populum autem esse in alia voluntate.
 						<reg>omnes</reg> qui se incolumis volent sequentur auctoritatem consulis
 					soluti a cupiditatibus, liberi a delictis, cauti in periculis, non timidi in
@@ -425,15 +376,14 @@ Added to repository. Passes TEI parse.
 						<reg>quod</reg> si vos vestrum mihi studium, patres conscripti, ad communem
 					dignitatem defendendam profitemini, perficiam profecto, id quod maxime res
 					publica desiderat, ut huius ordinis auctoritas, quae apud maiores nostros fuit,
-					eadem nunc longo intervallo rei publicae restituta esse videatur. </p>
+					eadem nunc longo intervallo rei publicae restituta esse videatur.</p></div> 
 			</div>
-			<div type="Speech" n="2">
+			<div type="textpart" n="2" subtype="Speech">
 				<head>DE LEGE AGRARIA ORATIO SECVNDA CONTRA P. SERVILIVM RVLLVM TR. PLEB. AD
 					POPVLVM</head>
 
-				<milestone n="1" unit="chapter"/>
-				<milestone n="1" unit="section"/>
-				<p><reg>est</reg> hoc in more positum, Quirites, institutoque maiorum, ut ei qui
+				<milestone n="1" unit="chapter"/><div type="textpart" subtype="section" n="1"><p>
+				<milestone unit="para"/><reg>est</reg> hoc in more positum, Quirites, institutoque maiorum, ut ei qui
 					beneficio vestro imagines familiae suae consecuti sunt eam primam habeant
 					contionem, qua gratiam benefici vestri cum suorum laude coniungant.
 						<reg>qua</reg> in oratione non nulli aliquando digni maiorum loco
@@ -441,22 +391,22 @@ Added to repository. Passes TEI parse.
 					esse videatur, unde etiam quod posteris solveretur redundaret. <reg>mihi</reg>,
 					Quirites, apud vos de meis maioribus dicendi facultas non datur, non quo non
 					tales fuerint qualis nos illorum sanguine creatos disciplinisque institutos
-					videtis, sed quod laude populari atque honoris vestri luce caruerunt. <milestone
-						n="2" unit="section"/><reg>de</reg> me autem ipso vereor ne adrogantis sit
+					videtis, sed quod laude populari atque honoris vestri luce caruerunt. </p></div>
+					<div type="textpart" subtype="section" n="2"><p><reg>de</reg> me autem ipso vereor ne adrogantis sit
 					apud vos dicere, ingrati tacere. <reg>nam</reg> et quibus studiis hanc
 					dignitatem consecutus sim memet ipsum commemorare perquam grave est, et silere
 					de tantis vestris beneficiis nullo modo possum. <reg>qua</reg> re adhibebitur a
 					me certa ratio moderatioque dicendi, ut quid a vobis acceperim commemorem, qua
 					re dignus vestro summo honore singularique iudicio sim, ipse modice dicam, si
-					necesse erit, vos eosdem existimaturos putem qui iudicavistis. <milestone n="3"
-						unit="section"/></p>
-				<p><reg>me</reg> perlongo intervallo prope memoriae temporumque nostrorum primum
+					necesse erit, vos eosdem existimaturos putem qui iudicavistis. </p></div>
+					<div type="textpart" subtype="section" n="3"><p>
+				<milestone unit="para"/><reg>me</reg> perlongo intervallo prope memoriae temporumque nostrorum primum
 					hominem novum consulem fecistis et eum locum quem nobilitas praesidiis firmatum
 					atque omni ratione obvallatum tenebat me duce rescidistis virtutique in posterum
 					patere voluistis. <reg>neque</reg> me tantum modo consulem, quod est ipsum per
 					sese amplissimum, sed ita fecistis quo modo pauci nobiles in hac civitate
-					consules facti sunt, novus ante me nemo. <milestone n="2" unit="chapter"
-						/><reg>nam</reg> profecto, si recordari volueritis de novis hominibus,
+					consules facti sunt, novus ante me nemo.
+					<milestone n="2" unit="chapter"/><reg>nam</reg> profecto, si recordari volueritis de novis hominibus,
 					reperietis eos qui sine repulsa consules facti sunt diuturno labore atque aliqua
 					occasione esse factos, cum multis annis post petissent quam praetores fuissent,
 					aliquanto serius quam per aetatem ac per leges liceret; qui autem anno suo
@@ -464,25 +414,25 @@ Added to repository. Passes TEI parse.
 					de quibus meminisse possimus, qui consulatum petierim cum primum licitum sit,
 					consul factus sim cum primum petierim, ut vester honos ad mei temporis diem
 					petitus, non ad alienae petitionis occasionem interceptus, nec diuturnis
-					precibus efflagitatus, sed dignitate impetratus esse videatur. <reg>est</reg>
-					illud amplissimum quod paulo ante commemoravi, <milestone n="4" unit="section"/>
+					precibus efflagitatus, sed dignitate impetratus esse videatur.</p></div>
+					<div type="textpart" subtype="section" n="4"><p><reg>est</reg>illud amplissimum quod paulo ante commemoravi,
 					Quirites, quod hoc honore ex novis hominibus primum me multis post annis
 					adfecistis, quod prima petitione, quod anno meo, sed tamen magnificentius atque
 					ornatius esse illo nihil potest, quod meis comitiis non tabellam vindicem
 					tacitae libertatis, sed vocem vivam prae vobis indicem vestrarum erga me
 					voluntatum ac studiorum tulistis. <reg>itaque</reg> me non extrema diribitio
 					suffragiorum, sed primi illi vestri concursus, neque singulae voces praeconum,
-					sed una vox universi populi Romani consulem declaravit. <reg>hoc</reg> ego tam
-					insigne, <milestone n="5" unit="section"/>tam singulare vestrum beneficium,
-					Quirites, cum ad animi mei fructum atque laetitiam duco esse permagnum, tum ad
+					sed una vox universi populi Romani consulem declaravit.</p></div>
+					<div type="textpart" subtype="section" n="5"><p><reg>hoc</reg> ego tam insigne, 
+					tam singulare vestrum beneficium,Quirites, cum ad animi mei fructum atque laetitiam duco esse permagnum, tum ad
 					curam sollicitudinemque multo magis. <reg>versantur</reg> enim, Quirites, in
 					animo meo multae et graves cogitationes quae mihi nullam partem neque diurnae
 					neque nocturnae quietis impertiunt, primum tuendi consulatus, quae cum omnibus
 					est difficilis et magna ratio, tum vero mihi praeter ceteros cuius errato nulla
 					venia, recte facto exigua laus et ab invitis expressa proponitur; non dubitanti
-					fidele consilium, non laboranti certum subsidium nobilitatis ostenditur.
-						<milestone n="3" unit="chapter"/><milestone n="6" unit="section"
-						/><reg>quod</reg> si solus in discrimen aliquod adducerer, ferrem, Quirites,
+					fidele consilium, non laboranti certum subsidium nobilitatis ostenditur.</p></div>
+					<milestone n="3" unit="chapter"/><div type="textpart" subtype="section" n="6"><p>
+					<reg>quod</reg> si solus in discrimen aliquod adducerer, ferrem, Quirites,
 					animo aequiore; sed mihi videntur certi homines, si qua in re me non modo
 					consilio verum etiam casu lapsum esse arbitrabuntur, vos universos qui me
 					antetuleritis nobilitati vituperaturi. <reg>mihi</reg> autem, Quirites, omnia
@@ -494,8 +444,8 @@ Added to repository. Passes TEI parse.
 					partim magno opere fugerunt, partim non vehementer secuti sunt. <reg>ego</reg>
 					autem non solum hoc in loco dicam ubi est id dictu facillimum, sed in ipso
 					senatu in quo esse locus huic voci non videbatur popularem me futurum esse
-					consulem prima illa mea oratione Kalendis Ianuariis dixi. <milestone n="7"
-						unit="section"/><reg>neque</reg> enim ullo modo facere possum ut, cum me
+					consulem prima illa mea oratione Kalendis Ianuariis dixi. </p></div>
+					<div type="textpart" subtype="section" n="7"><p><reg>neque</reg> enim ullo modo facere possum ut, cum me
 					intellegam non hominum potentium studio, non excellentibus gratiis paucorum, sed
 					universi populi Romani iudicio consulem ita factum ut nobilissimis hominibus
 					longe praeponerer, non et in hoc magistratu et in omni vita <add>videar</add>
@@ -503,16 +453,18 @@ Added to repository. Passes TEI parse.
 					interpretationem vehementer opus est vestra sapientia. <reg>versatur</reg> enim
 					magnus error propter insidiosas non nullorum simulationes qui, cum populi non
 					solum commoda verum etiam salutem oppugnant et impediunt, oratione adsequi
-					volunt ut populares esse videantur. <milestone n="8" unit="section"
-						/><reg>ego</reg> qualem Kalendis Ianuariis acceperim rem publicam, Quirites,
+					volunt ut populares esse videantur. </p></div>
+					<div type="textpart" subtype="section" n="8"><p>
+					<reg>ego</reg> qualem Kalendis Ianuariis acceperim rem publicam, Quirites,
 					intellego, plenam sollicitudinis, plenam timoris; in qua nihil erat mali, nihil
 					adversi quod non boni metuerent, improbi exspectarent; omnia turbulenta consilia
 					contra hunc rei publicae statum et contra vestrum otium partim iniri, partim
 					nobis consulibus designatis inita esse dicebantur; sublata erat de foro fides
 					non ictu aliquo novae calamitatis, sed suspicione ac perturbatione iudiciorum,
 					infirmatione rerum iudicatarum; novae dominationes, extraordinaria non imperia,
-					sed regna quaeri putabantur. <milestone n="4" unit="chapter"/><milestone n="9"
-						unit="section"/><reg>quae</reg> cum ego non solum suspicarer, sed plane
+					sed regna quaeri putabantur.</p></div>
+					<milestone n="4" unit="chapter"/><div type="textpart" subtype="section" n="9"><p>
+					<reg>quae</reg> cum ego non solum suspicarer, sed plane
 					cernerem—neque enim obscure gerebantur—dixi in senatu in hoc magistratu me
 					popularem consulem futurum. <reg>quid</reg> enim est tam populare quam pax? qua
 					non modo ei quibus natura sensum dedit sed etiam tecta atque agri mihi laetari
@@ -526,28 +478,28 @@ Added to repository. Passes TEI parse.
 						<reg>qua</reg> re qui possum non esse popularis, cum videam haec omnia,
 					Quirites, pacem externam, libertatem propriam generis ac nominis vestri, otium
 					domesticum, denique omnia quae vobis cara atque ampla sunt in fidem et quodam
-					modo in patrocinium mei consulatus esse conlata? <milestone n="10"
-						unit="section"/><reg>neque</reg> enim, Quirites, illud vobis iucundum aut
+					modo in patrocinium mei consulatus esse conlata? </p></div>
+					<div type="textpart" subtype="section" n="10"><p><reg>neque</reg> enim, Quirites, illud vobis iucundum aut
 					populare debet videri, largitio aliqua promulgata, quae verbis ostentari potest,
 					re vera fieri nisi exhausto aerario nullo pacto potest; neque vero illa
 					popularia sunt existimanda, iudiciorum perturbationes, rerum iudicatarum
 					infirmationes, restitutio damnatorum, qui civitatum adflictarum perditis iam
 					rebus extremi exitiorum solent esse exitus; nec, si qui agros populo Romano
 					pollicentur, si aliud quiddam obscure moliuntur, aliud spe ac specie
-					simulationis ostentant, populares existimandi sunt. <milestone n="5"
-						unit="chapter"/></p>
-				<p><reg>nam</reg> vere dicam, Quirites, genus ipsum legis agrariae vituperare non
+					simulationis ostentant, populares existimandi sunt. <milestone n="5" unit="chapter"/>
+				<milestone unit="para"/><reg>nam</reg> vere dicam, Quirites, genus ipsum legis agrariae vituperare non
 					possum. <reg>venit</reg> enim mihi in mentem duos clarissimos, ingeniosissimos,
 					amantissimos plebei Romanae viros, <reg>ti</reg>. et C. Gracchos, plebem in
 					agris publicis constituisse, qui agri a privatis antea possidebantur.
 						<reg>non</reg> sum autem ego is consul qui, ut plerique, nefas esse arbitrer
 					Gracchos laudare, quorum consiliis, sapientia, legibus multas esse video rei
-					publicae partis constitutas. <milestone n="11" unit="section"
-					/><reg>itaque</reg>, ut initio mihi designato consuli nuntiabatur legem agrariam
+					publicae partis constitutas. </p></div>
+					<div type="textpart" subtype="section" n="11"><p><reg>itaque</reg>, ut initio mihi designato consuli nuntiabatur legem agrariam
 					tribunos plebis designatos conscribere, cupiebam quid cogitarent cognoscere;
 					etenim arbitrabar, quoniam eodem anno gerendi nobis essent magistratus, esse
 					aliquam oportere inter nos rei publicae bene administrandae societatem.
-						<milestone n="12" unit="section"/>Cum familiariter me in eorum sermonem
+						</p></div>
+					<div type="textpart" subtype="section" n="12"><p>Cum familiariter me in eorum sermonem
 					insinuarem ac darem, celabar, excludebar, et, cum ostenderem, si lex utilis
 					plebi Romanae mihi videretur, auctorem me atque adiutorem futurum, tamen
 					aspernabantur hanc liberalitatem meam; negabant me adduci posse ut ullam
@@ -556,7 +508,8 @@ Added to repository. Passes TEI parse.
 					inter se convenire, privatos quosdam adhibere, ad suos coetus occultos noctem
 					adiungere et solitudinem. <reg>quibus</reg> rebus quanto in metu fuerimus, ex
 					vestra sollicitudine in qua illis temporibus fuistis facile adsequi coniectura
-					poteritis. <milestone n="13" unit="section"/><reg>ineunt</reg> tandem
+					poteritis. </p></div>
+					<div type="textpart" subtype="section" n="13"><p><reg>ineunt</reg> tandem
 					magistratus tribuni plebis; contio exspectatur P. Rulli, quod et princeps erat
 					agrariae legis et truculentius se gerebat quam ceteri. <reg>iam</reg> designatus
 					alio voltu, alio vocis sono, alio incessu esse meditabatur, vestitu obsoletiore,
@@ -571,8 +524,8 @@ Added to repository. Passes TEI parse.
 						<reg>tametsi</reg>, qui acutiores in contione steterant, de lege agraria
 					nescio quid voluisse eum dicere suspicabantur. <reg>aliquando</reg> tandem me
 					designato lex in publicum proponitur. <reg>concurrunt</reg> iussu meo plures uno
-					tempore librarii, descriptam legem ad me adferunt. <milestone n="6"
-						unit="chapter"/><milestone n="14" unit="section"/><reg>omni</reg> hoc
+					tempore librarii, descriptam legem ad me adferunt.</p></div>
+					<milestone n="6" unit="chapter"/><div type="textpart" subtype="section" n="14"><p><reg>omni</reg> hoc
 					ratione vobis confirmare possum, Quirites, hoc animo me ad legendam legem
 					cognoscendamque venisse ut, si eam vobis accommodatam atque utilem esse
 					intellegerem, auctor eius atque adiutor essem. <reg>non</reg> enim natura neque
@@ -580,8 +533,8 @@ Added to repository. Passes TEI parse.
 					cum tribunatu, quia persaepe seditiosis atque improbis tribunis plebis boni et
 					fortes consules obstiterunt, et quia vis tribunicia non numquam libidini
 					restitit consulari. <reg>non</reg> potestatum dissimilitudo, sed animorum
-					disiunctio dissensionem facit. <milestone n="15" unit="section"
-						/><reg>itaque</reg> hoc animo legem sumpsi in manus ut eam cuperem esse
+					disiunctio dissensionem facit. </p></div>
+					<div type="textpart" subtype="section" n="15"><p><reg>itaque</reg> hoc animo legem sumpsi in manus ut eam cuperem esse
 					aptam vestris commodis et eius modi quam consul re, non oratione popularis et
 					honeste et libenter posset defendere. <reg>atque</reg> ego a primo capite legis
 					usque ad extremum reperio, Quirites, nihil aliud cogitatum, nihil aliud
@@ -592,19 +545,20 @@ Added to repository. Passes TEI parse.
 					dari vobis nihil, condonari certis hominibus omnia, ostentari populo Romano
 					agros, eripi etiam libertatem, privatorum pecunias augeri, publicas exhauriri,
 					denique, quod est indignissimum, per tribunum plebis, quem maiores praesidem
-					libertatis custodemque esse voluerunt, reges in civitate constitui.
-						<reg>quae</reg> cum, <milestone n="16" unit="section"/>Quirites, exposuero,
+					libertatis custodemque esse voluerunt, reges in civitate constitui.</p></div>
+						<div type="textpart" subtype="section" n="16"><p><reg>quae</reg> cum,
+					Quirites, exposuero,
 					si falsa vobis videbuntur esse, sequar auctoritatem vestram, mutabo meam
 					sententiam; sin insidias fieri libertati vestrae simulatione largitionis
 					intellegetis, nolitote dubitare plurimo sudore et sanguine maiorum vestrorum
 					partam vobisque traditam libertatem nullo vestro labore consule adiutore
-					defendere. <milestone n="7" unit="chapter"/></p>
-				<p><reg>primum</reg> caput est legis agrariae quo, ut illi putant, temptamini
+					defendere. <milestone n="7" unit="chapter"/>
+				<milestone unit="para"/><reg>primum</reg> caput est legis agrariae quo, ut illi putant, temptamini
 					leviter quo animo libertatis vestrae deminutionem ferre possitis.
 						<reg>iubet</reg> enim tribunum plebis qui eam legem tulerit creare
 						<num>x</num>viros per tribus <num>xvii</num>, ut, quem <num>viiii</num>
-					tribus fecerint, is <num>x</num>vir sit. <milestone n="17" unit="section"
-						/><reg>hic</reg> quaero quam ob causam initium rerum ac legum suarum hinc
+					tribus fecerint, is <num>x</num>vir sit. </p></div>
+					<div type="textpart" subtype="section" n="17"><p><reg>hic</reg> quaero quam ob causam initium rerum ac legum suarum hinc
 					duxerit ut populus Romanus suffragio privaretur. <reg>totiens</reg> legibus
 					agrariis curatores constituti sunt <num>iii</num>viri, <num>v</num>viri,
 						<num>x</num>viri; quaero a populari tribuno plebis ecquando nisi per
@@ -615,8 +569,8 @@ Added to repository. Passes TEI parse.
 					quisque studio et suffragio suo viam sibi ad beneficium impetrandum munire
 					possit. <reg>hoc</reg> tribuno plebis potissimum venit in mentem, populum
 					Romanum universum privare suffragiis, paucas tribus non certa condicione iuris,
-					sed sortis beneficio fortuito ad usurpandam libertatem vocare. <milestone n="18"
-						unit="section"/>'<quote><reg>item</reg></quote>,' inquit, '<quote>eodemqve
+					sed sortis beneficio fortuito ad usurpandam libertatem vocare. </p></div>
+					<div type="textpart" subtype="section" n="18"><p>'<quote><reg>item</reg></quote>,' inquit, '<quote>eodemqve
 						modo</quote>,' capite altero, '<quote>vt comitiis pontificis
 					maximi.</quote>' <reg>ne</reg> hoc quidem vidit, maiores nostros tam fuisse
 					popularis ut, quem per populum creari fas non erat propter religionem sacrorum,
@@ -624,7 +578,8 @@ Added to repository. Passes TEI parse.
 						<reg>atque</reg> hoc idem de ceteris sacerdotiis Cn. Domitius, tribunus
 					plebis, vir clarissimus, tulit, quod populus per religionem sacerdotia mandare
 					non poterat, ut minor pars populi vocaretur; ab ea parte qui esset factus, is a
-					conlegio cooptaretur. <milestone n="19" unit="section"/><reg>videte</reg> quid
+					conlegio cooptaretur. </p></div>
+					<div type="textpart" subtype="section" n="19"><p><reg>videte</reg> quid
 					intersit inter Cn. Domitium, tribunum plebis, hominem nobilissimum, et P. Rullum
 					qui temptavit, ut opinor, patientiam vestram, cum se nobilem esse diceret.
 					Domitius, quod per caerimonias populi fieri non poterat, ratione adsecutus est,
@@ -633,9 +588,9 @@ Added to repository. Passes TEI parse.
 					qui populo agros essent adsignaturi ante acciperent a populo beneficium quam
 					darent, id totum eripere vobis atque e manibus extorquere conatus est.
 						<reg>ille</reg>, quod dari populo nullo modo poterat, tamen quodam modo
-					dedit; hic, quod adimi nullo pacto potest, tamen quadam ratione eripere conatur.
-						<milestone n="8" unit="chapter"/><milestone n="20" unit="section"/></p>
-				<p><reg>quaeret</reg> quispiam in tanta iniuria tantaque impudentia quid spectarit.
+					dedit; hic, quod adimi nullo pacto potest, tamen quadam ratione eripere conatur.</p></div>
+					<milestone n="8" unit="chapter"/><div type="textpart" subtype="section" n="20"><p>
+				<milestone unit="para"/><reg>quaeret</reg> quispiam in tanta iniuria tantaque impudentia quid spectarit.
 						<reg>non</reg> defuit consilium; fides erga plebem Romanam, Quirites,
 					aequitas in vos libertatemque vestram vehementer defuit. <reg>iubet</reg> enim
 					comitia <num>x</num>viris habere creandis eum qui legem tulerit. <reg>hoc</reg>
@@ -644,7 +599,8 @@ Added to repository. Passes TEI parse.
 					nemo fecit, de minore parte populi, quo pertineat videte. <reg>habebit</reg>
 					comitia, volet eos renuntiare quibus regia potestas hac lege quaeritur; universo
 					populo neque ipse committit neque illi horum consiliorum auctores committi recte
-					putant posse. <milestone n="21" unit="section"/><reg>sortietur</reg> tribus idem
+					putant posse. </p></div>
+					<div type="textpart" subtype="section" n="21"><p><reg>sortietur</reg> tribus idem
 					Rullus. <reg>homo</reg> felix educet quas volet tribus. <reg>quos</reg>
 					<num>viiii</num> tribus <num>x</num>viros fecerint ab eodem Rullo eductae, hos
 					omnium rerum, ut iam ostendam, dominos habebimus. <reg>atque</reg> hi, ut grati
@@ -656,8 +612,8 @@ Added to repository. Passes TEI parse.
 					arbitramini, sed tribuniciae vobis maioribusque vestris vehementer gratae atque
 					iucundae; Licinia est lex et altera Aebutia, quae non modo eum qui tulerit de
 					aliqua curatione ac potestate sed etiam conlegas eius, cognatos, adfinis
-					excipit, ne eis ea potestas curatiove mandetur. <milestone n="22" unit="section"
-						/><reg>etenim</reg> si populo consulis, remove te a suspicione alicuius tui
+					excipit, ne eis ea potestas curatiove mandetur. </p></div>
+					<div type="textpart" subtype="section" n="22"><p><reg>etenim</reg> si populo consulis, remove te a suspicione alicuius tui
 					commodi, fac fidem te nihil nisi populi utilitatem et fructum quaerere, sine ad
 					alios potestatem, ad te gratiam benefici tui pervenire. <reg>nam</reg> hoc
 					quidem vix est liberi populi, vix vestrorum animorum ac magnificentiae.
@@ -673,9 +629,9 @@ Added to repository. Passes TEI parse.
 					renuntiabit, et videlicet conlegas suos ascriptores legis agrariae non
 					repudiabit, a quibus ei locus primus in indice et in praescriptione legis
 					concessus est; ceteri fructus omnium rerum qui in spe legis huius positi sunt
-					communi cautione atque aequa ex parte retinentur. <milestone n="23"
-						unit="section"/></p>
-				<p><reg>at</reg> videte hominis diligentiam, si aut Rullum <add>illud</add>
+					communi cautione atque aequa ex parte retinentur. </p></div>
+					<div type="textpart" subtype="section" n="23"><p>
+				<milestone unit="para"/><reg>at</reg> videte hominis diligentiam, si aut Rullum <add>illud</add>
 					cogitasse aut si Rullo potuisse in mentem venire arbitramini.
 						<reg>viderunt</reg> ei qui haec machinabantur, si vobis ex omni populo
 					deligendi potestas esset data, quaecumque res esset in qua fides, integritas,
@@ -683,8 +639,8 @@ Added to repository. Passes TEI parse.
 					principem delaturos. <reg>etenim</reg> quem unum ex cunctis delegissetis ut eum
 					omnibus omnium gentium bellis terra et mari praeponeretis, certe in
 					<num>x</num>viris faciendis sive fides haberetur sive honos, et committi huic
-					optime et ornari hunc iustissime posse intellegebant. <milestone n="24"
-						unit="section"/><reg>itaque</reg> excipitur hac lege non adulescentia, non
+					optime et ornari hunc iustissime posse intellegebant. </p></div>
+					<div type="textpart" subtype="section" n="24"><p><reg>itaque</reg> excipitur hac lege non adulescentia, non
 					legitimum aliquod impedimentum, non potestas, non magistratus ullus aliis
 					negotiis ac legibus impeditus, reus denique quo minus <num>x</num>vir fieri
 					possit, non excipitur; Cn. Pompeius excipitur, ne cum P. Rullo—taceo de ceteris
@@ -694,7 +650,8 @@ Added to repository. Passes TEI parse.
 					vindicem cupiditatum. <milestone n="10" unit="chapter"/><reg>hic</reg>, quoniam
 					video vos hominis dignitate et contumelia legis esse commotos, renovabo illud
 					quod initio dixi, regnum comparari, libertatem vestram hac lege funditus tolli.
-						<milestone n="25" unit="section"/><reg>an</reg> vos aliter existimabatis?
+						</p></div>
+					<div type="textpart" subtype="section" n="25"><p><reg>an</reg> vos aliter existimabatis?
 					cum ad omnia vestra pauci homines cupiditatis oculos adiecissent, non eos in
 					primis id acturos ut ex omni custodia vestrae libertatis, ex omni potestate,
 					curatione, patrocinio vestrorum commodorum Cn. Pompeius depelleretur?
@@ -704,8 +661,9 @@ Added to repository. Passes TEI parse.
 					praesidium opponendum putetis. <reg>et</reg> hoc parvum argumentum vobis erit, a
 					certis hominibus dominationem potestatemque omnium rerum quaeri, cum videatis
 					eum quem custodem vestrae libertatis fore videant expertem fieri dignitatis?
-						<milestone n="26" unit="section"/></p>
-				<p><reg>cognoscite</reg> nunc quae potestas <num>x</num>viris et quanta detur.
+						</p></div>
+					<div type="textpart" subtype="section" n="26"><p>
+				<milestone unit="para"/><reg>cognoscite</reg> nunc quae potestas <num>x</num>viris et quanta detur.
 						<reg>primum</reg> lege curiata <num>x</num>viros ornat. <reg>iam</reg> hoc
 					inauditum et plane novum, uti curiata lege magistratus detur qui nullis comitiis
 					ante sit datus. <reg>eam</reg> legem ab eo praetore populi Romani qui sit primus
@@ -718,14 +676,15 @@ Added to repository. Passes TEI parse.
 					singulis magistratibus bis vos sententiam ferre voluerunt. <reg>nam</reg> cum
 					centuriata lex censoribus ferebatur, cum curiata ceteris patriciis
 					magistratibus, tum iterum de eisdem iudicabatur, ut esset reprehendendi
-					potestas, si populum benefici sui paeniteret. <reg>nunc</reg>, <milestone n="27"
-						unit="section"/>Quirites, prima illa comitia tenetis, centuriata et tributa,
+					potestas, si populum benefici sui paeniteret. </p></div>
+					<div type="textpart" subtype="section" n="27"><p><reg>nunc</reg>, Quirites, prima illa comitia tenetis, centuriata et tributa,
 					curiata tantum auspiciorum causa remanserunt. <reg>hic</reg> autem tribunus
 					plebis quia videbat potestatem neminem iniussu populi aut plebis posse habere,
 					curiatis eam comitiis quae vos non initis confirmavit, tributa quae vestra erant
 					sustulit. <reg>ita</reg> cum maiores binis comitiis voluerint vos de singulis
 					magistratibus iudicare, hic homo popularis ne unam quidem populo comitiorum
-					potestatem reliquit. <milestone n="28" unit="section"/><reg>sed</reg> videte
+					potestatem reliquit. </p></div>
+					<div type="textpart" subtype="section" n="28"><p><reg>sed</reg> videte
 					hominis religionem et diligentiam. <reg>vidit</reg> et perspexit sine curiata
 					lege <num>x</num>viros potestatem habere non posse, quoniam per <num>viiii</num>
 					tribus essent constituti; iubet ferre de his legem curiatam; praetori imperat.
@@ -735,7 +694,8 @@ Added to repository. Passes TEI parse.
 					quid spectasse videatur. <reg>verum</reg> hoc quod est aut ita perversum ut
 					ridiculum, aut ita malitiosum ut obscurum sit, relinquamus; ad religionem
 					hominis revertamur. <reg>videt</reg> sine lege curiata nihil agi per
-						<num>x</num>viros posse. <milestone n="29" unit="section"/><reg>quid</reg>
+						<num>x</num>viros posse. </p></div>
+					<div type="textpart" subtype="section" n="29"><p><reg>quid</reg>
 					postea, si ea lata non erit? <reg>attendite</reg> ingenium. '<quote>Tvm ei
 						xviri</quote>,' inquit, '<quote>eodem ivre sint qvo qvi optima
 					lege.</quote>' <reg>si</reg> hoc fieri potest ut in hac civitate quae longe iure
@@ -745,8 +705,8 @@ Added to repository. Passes TEI parse.
 					haberent, si optima lege a populo essent creati? <reg>reges</reg> constituuntur,
 					non <num>x</num>viri, Quirites, itaque ab his initiis fundamentisque nascuntur,
 					ut non modo cum <add>magistratum</add> gerere coeperint, sed etiam cum
-					constituentur, omne vestrum ius, potestas libertasque tollatur. <milestone
-						n="12" unit="chapter"/><milestone n="30" unit="section"/><reg>at</reg>
+					constituentur, omne vestrum ius, potestas libertasque tollatur.</p></div>
+					<milestone n="12" unit="chapter"/><div type="textpart" subtype="section" n="30"><p><reg>at</reg>
 					videte quam diligenter retineat ius tribuniciae potestatis.
 						<reg>consulibus</reg> legem curiatam ferentibus a tribunis plebis saepe est
 					intercessum—neque tamen nos id querimur, esse hanc tribunorum plebis potestatem;
@@ -758,9 +718,9 @@ Added to repository. Passes TEI parse.
 					cui vetat intercedi, ei potestatem, etiam si intercessum sit, tamen eandem
 					constituit quam si lata esset lex, ut non intellegam qua re aut hic vetet
 					intercedere aut quemquam intercessurum putet, cum intercessio stultitiam
-					intercessoris significatura sit, non rem impeditura. <milestone n="31"
-						unit="section"/></p>
-				<p><reg>sint</reg> igitur <num>x</num>viri neque veris comitiis, hoc est, populi
+					intercessoris significatura sit, non rem impeditura. </p></div>
+					<div type="textpart" subtype="section" n="31"><p>
+				<milestone unit="para"/><reg>sint</reg> igitur <num>x</num>viri neque veris comitiis, hoc est, populi
 					suffragiis, neque illis ad speciem atque ad usurpationem vetustatis per
 						<num>xxx</num> lictores auspiciorum causa adumbratis constituti.
 						<reg>videte</reg> nunc eos qui a vobis nihil potestatis acceperint quanto
@@ -772,27 +732,28 @@ Added to repository. Passes TEI parse.
 					Semproniae, nec te ea lex ipsa commonet <num>iii</num>viros illos
 						<num>xxxv</num> tribuum suffragio creatos esse? <reg>et</reg> cum tu a Ti.
 					Gracchi aequitate ac pudore longissime remotus sis, id quod dissimillima ratione
-					factum sit eodem iure putas esse oportere? <milestone n="13" unit="chapter"
-						/><milestone n="32" unit="section"/><reg>dat</reg> praeterea potestatem
+					factum sit eodem iure putas esse oportere?</p></div>
+					<milestone n="13" unit="chapter"/><div type="textpart" subtype="section" n="32"><p><reg>dat</reg> praeterea potestatem
 					verbo praetoriam, re vera regiam; definit in quinquennium, facit sempiternam;
 					tantis enim confirmat opibus et copiis ut invitis eripi nullo modo possit.
 						<reg>deinde</reg> ornat apparitoribus, scribis, librariis, praeconibus,
 					architectis, praeterea mulis, tabernaculis, centunculis, supellectili; sumptum
 					haurit ex aerario, suppeditat a sociis; finitores ex equestri loco ducentos,
 					vicenos singulorum stipatores corporis constituit, eosdem ministros et
-					satellites potestatis. </p>
-				<p><reg>formam</reg> adhuc habetis, Quirites, et speciem ipsam tyrannorum; insignia
+					satellites potestatis. 
+				<milestone unit="para"/><reg>formam</reg> adhuc habetis, Quirites, et speciem ipsam tyrannorum; insignia
 					videtis potestatis, nondum ipsam potestatem. <reg>dixerit</reg> enim fortasse
 					quispiam: 'quid me ista laedunt, scriba, lictor, praeco, pullarius?'
 						<reg>omnia</reg> sunt haec huius modi, Quirites, ut, ea qui habeat sine
 					vestris suffragiis, aut rex non ferendus aut privatus furiosus esse videatur.
-						<milestone n="33" unit="section"/><reg>perspicite</reg> quanta potestas
+						</p></div>
+					<div type="textpart" subtype="section" n="33"><p><reg>perspicite</reg> quanta potestas
 					permittatur; non privatorum insaniam, sed intolerantiam regum esse dicetis.
 						<reg>primum</reg> permittitur infinita potestas innumerabilis pecuniae
 					conficiendae vestris vectigalibus non fruendis, sed alienandis; deinde orbis
 					terrarum gentiumque omnium datur cognitio sine consilio, poena sine
-					provocatione, animadversio sine auxilio. <milestone n="34" unit="section"
-						/><reg>iudicare</reg> per quinquennium vel de consulibus vel de ipsis
+					provocatione, animadversio sine auxilio. </p></div>
+					<div type="textpart" subtype="section" n="34"><p><reg>iudicare</reg> per quinquennium vel de consulibus vel de ipsis
 					tribunis plebis poterunt; de illis interea nemo iudicabit; magistratus eis
 					petere licebit, causam dicere non licebit; emere agros a quibus volent et quos
 					volent quam volent magno poterunt; colonias deducere novas, renovare veteres,
@@ -802,17 +763,18 @@ Added to repository. Passes TEI parse.
 					imperio iudicioque rerum omnium vagari ut liceat conceditur; interea dissolvant
 					iudicia publica, e consiliis abducant quos velint, singuli de maximis rebus
 					iudicent, quaestori permittant, finitorem mittant, ratum sit quod finitor uni
-					illi a quo missus erit renuntiaverit. <reg>verbum</reg> mihi deest, <milestone
-						n="14" unit="chapter"/><milestone n="35" unit="section"/>Quirites, cum ego
-					hanc potestatem regiam appello, sed profecto maior est quaedam.
-						<reg>nullum</reg> enim regnum fuit umquam quod non se, <add>si</add> minus
+					illi a quo missus erit renuntiaverit.</p></div>
+					<milestone n="14" unit="chapter"/><div type="textpart" subtype="section" n="35"><p>
+					<reg>verbum</reg> mihi deest, Quirites, cum ego	hanc potestatem regiam appello,
+					sed profecto maior est quaedam.	<reg>nullum</reg> enim regnum fuit umquam quod non se, <add>si</add> minus
 					iure aliquo, at regionibus tamen certis contineret. <reg>hoc</reg> vero
 					infinitum est, quo et regna omnia et vestrum imperium, quod latissime patet, et
 					ea quae partim libera a vobis, partim etiam ignorata vobis sunt, permissu legis
-					continentur. </p>
-				<p><reg>datur</reg> igitur eis primum ut liceat ea vendere omnia de quibus vendendis
+					continentur. 
+				<milestone unit="para"/><reg>datur</reg> igitur eis primum ut liceat ea vendere omnia de quibus vendendis
 					senatus consulta facta sunt M. Tullio Cn. Cornelio consulibus post<add>ve</add>
-					ea. <milestone n="36" unit="section"/><reg>cur</reg> hoc tam est obscurum atque
+					ea. </p></div>
+					<div type="textpart" subtype="section" n="36"><p><reg>cur</reg> hoc tam est obscurum atque
 					caecum? <reg>quid</reg>? ista omnia de quibus senatus censuit nominatim in lege
 					perscribi nonne potuerunt? <reg>duae</reg> sunt huius obscuritatis causae,
 					Quirites, una pudoris, si quis pudor esse potest in tam insigni impudentia,
@@ -823,16 +785,16 @@ Added to repository. Passes TEI parse.
 					tribunicia <num>x</num>viri vendent. <reg>accedet</reg> eo mons Gaurus, accedent
 					salicta ad Minturnas, adiungetur etiam illa via vendibilis Herculanea multarum
 					deliciarum et magnae pecuniae, permulta alia quae senatus propter angustias
-					aerari vendenda censuit, consules propter invidiam non vendiderunt. <milestone
-						n="37" unit="section"/><reg>verum</reg> haec fortasse propter pudorem in
+					aerari vendenda censuit, consules propter invidiam non vendiderunt. </p></div>
+					<div type="textpart" subtype="section" n="37"><p><reg>verum</reg> haec fortasse propter pudorem in
 					lege reticentur. <reg>sed</reg> illud magis est credendum et pertimescendum quod
 					audaciae <num>x</num>virali corrumpendarum tabularum publicarum fingendorumque
 					senatus consultorum, quae facta numquam sint, cum ex eo numero qui per eos annos
 					consules fuerunt multi mortui sint, magna potestas permittitur. Nisi forte nihil
 					est aequum nos de eorum audacia suspicari quorum cupiditati nimium angustus
-					orbis terrarum esse videatur. <milestone n="15" unit="chapter"/><milestone
-						n="38" unit="section"/></p>
-				<p><reg>habetis</reg> unum venditionis genus quod magnum videri vobis intellego; sed
+					orbis terrarum esse videatur.</p></div>
+					<milestone n="15" unit="chapter"/><div type="textpart" subtype="section" n="38"><p>
+				<milestone unit="para"/><reg>habetis</reg> unum venditionis genus quod magnum videri vobis intellego; sed
 					attendite animos ad ea quae consequuntur; hunc quasi gradum quendam atque aditum
 					ad cetera factum intellegetis. '<quote>Qvi agri, qvae loca, aedificia.</quote>'
 						<reg>quid</reg> est praeterea? <reg>multa</reg> in mancipiis, in pecore,
@@ -842,27 +804,28 @@ Added to repository. Passes TEI parse.
 					praeteriret; ascripsit '<quote>alivdve qvid</quote>,' qua brevitate rem nullam
 					esse exceptam videtis. <reg>quicquid</reg> igitur sit extra Italiam quod
 					publicum populi Romani factum sit L. Sulla Q. Pompeio consulibus aut postea, id
-						<num>x</num>viros iubet vendere. <milestone n="39" unit="section"
-						/><reg>hoc</reg> capite, Quirites, omnis gentis, nationes, provincias, regna
+						<num>x</num>viros iubet vendere. </p></div>
+					<div type="textpart" subtype="section" n="39"><p><reg>hoc</reg> capite, Quirites, omnis gentis, nationes, provincias, regna
 						<num>x</num>virum dicioni, iudicio potestatique permissa et condonata esse
 					dico. <reg>primum</reg> hoc quaero, ecqui tandem locus usquam sit quem non
 					possint <num>x</num>viri dicere publicum populi Romani esse factum.
 						<reg>nam</reg> cum idem possit iudicare qui dixerit, quid est quod non
 					liceat ei dicere cui liceat eidem iudicare? Commodum erit Pergamum, Smyrnam,
 					Trallis, Ephesum, Miletum, Cyzicum, totam denique Asiam quae post L. Sullam Q.
-					Pompeium consules recuperata sit populi Romani factam esse dicere; utrum oratio
-					ad eius rei disputationem deerit, <milestone n="40" unit="section"/>an, cum idem
+					Pompeium consules recuperata sit populi Romani factam esse dicere;</p></div> 
+					<div type="textpart" subtype="section" n="40"><p>utrum oratio ad eius rei disputationem deerit, an, cum idem
 					et disseret et iudicabit, impelli non poterit ut falsum iudicet? an, si
 					condemnare Asiam nolet, terrorem damnationis et minas non quanti volet
-					aestimabit? <milestone n="16" unit="chapter"/><reg>quid</reg>? quod disputari
+					aestimabit? <reg>quid</reg>? quod disputari
 					contra nullo pacto potest, quod iam statutum a nobis est et iudicatum, quoniam
 					hereditatem iam crevimus, regnum Bithyniae, quod certe publicum est populi
 					Romani factum, num quid causae est quin omnis agros, urbis, stagna, portus,
-					totam denique Bithyniam <num>x</num>viri vendituri sint? <reg>quid</reg>?
+					totam denique Bithyniam <num>x</num>viri vendituri sint? <milestone n="16" unit="chapter"/><reg>quid</reg>?
 					Mytilenae, quae certe vestrae, Quirites, belli lege ac victoriae iure factae
 					sunt, urbs et natura ac situ et descriptione aedificiorum et pulchritudine in
 					primis nobilis, agri iucundi et fertiles, nempe eodem capite inclusi
-					continentur. <milestone n="41" unit="section"/><reg>quid</reg>? Alexandrea
+					continentur. </p></div>
+					<div type="textpart" subtype="section" n="41"><p><reg>quid</reg>? Alexandrea
 					cunctaque Aegyptus ut occulte latet, ut recondita est, ut furtim tota
 						<num>x</num>viris traditur! <reg>quis</reg> enim vestrum hoc ignorat, dici
 					illud regnum testamento regis Alexae populi Romani esse factum? <reg>hic</reg>
@@ -871,21 +834,22 @@ Added to repository. Passes TEI parse.
 					videtur esse. <reg>video</reg> qui testamentum factum esse confirmet;
 					auctoritatem senatus exstare hereditatis aditae sentio tum cum Alexa mortuo nos
 					tris legatos Tyrum misimus, qui ab illo pecuniam depositam recuperarent.
-						<milestone n="42" unit="section"/><reg>haec</reg> L. Philippum saepe in
+						</p></div>
+					<div type="textpart" subtype="section" n="42"><p><reg>haec</reg> L. Philippum saepe in
 					senatu confirmasse memoria teneo; eum qui regnum illud teneat hoc tempore neque
 					genere neque animo regio esse inter omnis fere video convenire.
 						<reg>dicitur</reg> contra nullum esse testamentum, non oportere populum
 					Romanum omnium regnorum appententem videri, demigraturos in illa loca nostros
-					homines propter agrorum bonitatem et omnium rerum copiam. <milestone n="43"
-						unit="section"/><reg>hac</reg> tanta de re P. Rullus cum ceteris
+					homines propter agrorum bonitatem et omnium rerum copiam. </p></div>
+					<div type="textpart" subtype="section" n="43"><p><reg>hac</reg> tanta de re P. Rullus cum ceteris
 						<num>x</num>viris conlegis suis iudicabit, et utrum iudicabit?
 						<reg>nam</reg> utrumque ita magnum est ut nullo modo neque concedendum neque
 					ferendum sit. <reg>volet</reg> esse popularis; populo Romano adiudicabit.
 						<reg>ergo</reg> idem ex sua lege vendet Alexandream, vendet Aegyptum, urbis
 					copiosissimae pulcherrimorumque agrorum iudex, arbiter, dominus, rex denique
 					opulentissimi regni reperietur. <reg>non</reg> sumet sibi tantum, non appetet;
-					iudicabit Alexandream regis esse, a populo Romano abiudicabit. <milestone n="17"
-						unit="chapter"/><milestone n="44" unit="section"/><reg>primum</reg> cur
+					iudicabit Alexandream regis esse, a populo Romano abiudicabit.</p></div>
+					<milestone n="17" unit="chapter"/><div type="textpart" subtype="section" n="44"><p><reg>primum</reg> cur
 						<add>de</add> populi Romani hereditate <num>x</num>viri iudicent, cum vos
 					volueritis de privatis hereditatibus <num>c</num>viros iudicare?
 						<reg>deinde</reg> quis aget causam populi Romani? ubi res ista agetur? qui
@@ -895,7 +859,8 @@ Added to repository. Passes TEI parse.
 					aperte ut antea, cur non item ut tum, derecto et palam regionem illam
 					petiverunt? an qui etesiis, qui per cursum rectum regnum tenere non potuerunt,
 					nunc caecis tenebris et caligine se Alexandream perventuros arbitrati sunt?
-						<milestone n="45" unit="section"/><reg>atque</reg> illud circumspicite
+						</p></div>
+					<div type="textpart" subtype="section" n="45"><p><reg>atque</reg> illud circumspicite
 					vestris mentibus una, Quirites. <reg>legatos</reg> nostros, homines auctoritate
 					tenui, qui rerum privatarum causa legationes liberas obeunt, tamen exterae
 					nationes ferre vix possunt. <reg>grave</reg> est enim nomen imperi atque id
@@ -903,7 +868,8 @@ Added to repository. Passes TEI parse.
 					hinc egressi sunt, abutuntur. <reg>quid</reg> censetis, cum isti
 					<num>x</num>viri cum imperio, cum fascibus, cum illa delecta finitorum iuventute
 					per totum orbem terrarum vagabuntur, quo tandem animo, quo metu, quo periculo
-					miseras nationes futuras? <milestone n="46" unit="section"/><reg>est</reg> in
+					miseras nationes futuras? </p></div>
+					<div type="textpart" subtype="section" n="46"><p><reg>est</reg> in
 					imperio terror; patientur. <reg>est</reg> in adventu sumptus; ferent.
 						<reg>imperabitur</reg> aliquid muneris; non recusabunt. <reg>illud</reg>
 					vero quantum est, Quirites, cum is <num>x</num>vir qui aliquam in urbem aut
@@ -916,23 +882,25 @@ Added to repository. Passes TEI parse.
 					negotio praeponi an praedae et quaestui, mitti ad socios liberandos an ad
 					opprimendos! <reg>denique</reg>, si qui est honos singularis, nihilne interest,
 					utrum populus Romanus eum cui velit deferat, an is impudenter populo Romano per
-					legis fraudem surripiatur? <milestone n="18" unit="chapter"/><milestone n="47"
-						unit="section"/></p>
-				<p><reg>intellexistis</reg> quot res et quantas <num>x</num>viri legis permissu
+					legis fraudem surripiatur?</p></div>
+					<milestone n="18" unit="chapter"/><div type="textpart" subtype="section" n="47"><p>
+				<milestone unit="para"/><reg>intellexistis</reg> quot res et quantas <num>x</num>viri legis permissu
 					vendituri sint. <reg>non</reg> est satis. Cum se sociorum, cum exterarum
 					nationum, cum regum sanguine implerint, incidant nervos populi Romani, adhibeant
 					manus vectigalibus vestris, inrumpant in aerarium. <reg>sequitur</reg> enim
 					caput, quo capite ne permittit quidem, si forte desit pecunia, quae tanta ex
 					superioribus recipi potest ut deesse non debeat, sed plane, quasi ea res vobis
 					saluti futura sit, ita cogit atque imperat ut <num>x</num>viri vestra vectigalia
-					vendant nominatim, Quirites. <milestone n="48" unit="section"/><reg>eam</reg> tu
+					vendant nominatim, Quirites. </p></div>
+					<div type="textpart" subtype="section" n="48"><p><reg>eam</reg> tu
 					mihi ex ordine recita de legis scripto populi Romani auctionem; quam me hercule
 					ego praeconi huic ipsi luctuosam et acerbam praedicationem futuram
 						puto.—<quote>Avctio</quote>—Vt in suis rebus, ita in re publica luxuriosus
 						<add>est</add> nepos, qui prius silvas vendat quam vineas! Italiam
 					percensuisti; perge in Siciliam.—<reg>nihil</reg> est in hac provincia quod aut
 					in oppidis aut in agris maiores nostri proprium nobis reliquerint quin id venire
-					iubeat. <milestone n="49" unit="section"/><reg>quod</reg> partum recenti
+					iubeat. </p></div>
+					<div type="textpart" subtype="section" n="49"><p><reg>quod</reg> partum recenti
 					victoria maiores vobis in sociorum urbibus ac finibus et vinculum pacis et
 					monumentum belli reliquerunt, id vos ab illis acceptum hoc auctore vendetis?
 						<reg>hic</reg> mihi parumper mentis vestras, Quirites, commovere videor, dum
@@ -942,19 +910,20 @@ Added to repository. Passes TEI parse.
 					eodem in loco personam hanc imposuistis ut, quibuscumque rebus possem, illius
 					absentis dignitatem vobiscum una tuerer. <reg>feci</reg> adhuc quae potui, neque
 					familiaritate illius adductus nec spe honoris atque amplissimae dignitatis, quam
-					ego, etsi libente illo, tamen absente illo per vos consecutus sum. <milestone
-						n="50" unit="section"/><reg>quam</reg> ob rem, cum intellegam totam hanc
+					ego, etsi libente illo, tamen absente illo per vos consecutus sum. </p></div>
+					<div type="textpart" subtype="section" n="50"><p><reg>quam</reg> ob rem, cum intellegam totam hanc
 					fere legem ad illius opes evertendas tamquam machinam comparari, et resistam
 					consiliis hominum et perficiam profecto, quod ego video, ut id vos universi non
-					solum videre verum etiam tenere possitis. <milestone n="19" unit="chapter"
-						/><reg>iubet</reg> venire quae Attalensium, quae Phaselitum, quae
+					solum videre verum etiam tenere possitis. <milestone n="19" unit="chapter"/>
+					<reg>iubet</reg> venire quae Attalensium, quae Phaselitum, quae
 					Olympenorum fuerint, agrumque Aperensem et Oroandicum et Gedusanum.
 						<reg>haec</reg> P. Servili imperio et victoria, clarissimi viri, vestra
 					facta sunt. <reg>adiungit</reg> agros Bithyniae regios quibus nunc publicani
 					fruuntur; deinde Attalicos agros in Cherroneso, in Macedonia qui regis Philippi
 					sive Persae fuerunt, qui item a censoribus locati sunt et certissimum vectigal
-						<add>adferunt</add>. <reg>ascribit</reg> eidem auctioni Corinthios agros
-					opimos et fertilis, <milestone n="51" unit="section"/> et Cyrenensis qui Apionis
+						<add>adferunt</add>.</p></div>
+					<div type="textpart" subtype="section" n="51"><p>
+					<reg>ascribit</reg> eidem auctioni Corinthios agros opimos et fertilis, et Cyrenensis qui Apionis
 					fuerunt, et agros in Hispania propter Carthaginem novam et in Africa ipsam
 					veterem Carthaginem vendit, quam videlicet P. Africanus non propter religionem
 					sedum illarum ac vetustatis de consili sententia consecravit, nec ut ipse locus
@@ -963,17 +932,19 @@ Added to repository. Passes TEI parse.
 					reperire non potuit. <reg>verum</reg> inter hos agros captos veteribus bellis
 					virtute summorum imperatorum adiungit regios agros Mithridatis, qui in
 					Paphlagonia, qui in Ponto, qui in Cappadocia fuerunt, ut eos <num>x</num>viri
-					vendant. <reg>itane</reg> vero? <milestone n="52" unit="section"/>non legibus
+					vendant. <reg>itane</reg> vero? </p></div>
+					<div type="textpart" subtype="section" n="52"><p>non legibus
 					datis, non auditis verbis imperatoris, nondum denique bello confecto, cum rex
 					Mithridates amisso exercitu regno expulsus tamen in ultimis terris aliquid etiam
 					nunc moliatur atque ab invicta Cn. Pompei manu Maeote et illis paludibus et
 					itinerum angustiis atque altitudine montium defendatur, cum imperator in bello
 					versetur, in locis autem illis etiam nunc belli nomen reliquum sit, eos agros
 					quorum adhuc penes Cn. Pompeium omne iudicium et potestas more maiorum debet
-					esse <num>x</num>viri vendent? <milestone n="53" unit="section"/><reg>et</reg>,
+					esse <num>x</num>viri vendent? </p></div>
+					<div type="textpart" subtype="section" n="53"><p><reg>et</reg>,
 					credo, P. Rullus—is enim sic se gerit ut sibi iam <num>x</num>vir designatus
-					esse videatur—ad eam auctionem potissimum proficiscetur! <milestone n="20"
-						unit="chapter"/><reg>is</reg> videlicet, ante quam veniat in Pontum,
+					esse videatur—ad eam auctionem potissimum proficiscetur! <milestone n="20" unit="chapter"/>
+					<reg>is</reg> videlicet, ante quam veniat in Pontum,
 					litteras ad Cn. Pompeium mittet, quarum ego iam exemplum ab istis compositum
 					esse arbitror: '<quote>P. Servilivs Rvllvs tribvnvs plebis xvir s. d.
 							<add>Cn.</add> Pompeio Cn. f.</quote>' <reg>non</reg> credo ascripturum
@@ -983,7 +954,8 @@ Added to repository. Passes TEI parse.
 						mea lege vendam.</quote>' <reg>an</reg> Pompeium non adhibebit? in eius
 					provincia vendet manubias imperatoris? <reg>ponite</reg> ante oculos vobis
 					Rullum in Ponto inter nostra atque hostium castra hasta posita cum suis formosis
-					finitoribus auctionantem. <milestone n="54" unit="section"/><reg>neque</reg> in
+					finitoribus auctionantem. </p></div>
+					<div type="textpart" subtype="section" n="54"><p><reg>neque</reg> in
 					hoc solum inest contumelia, quae vehementer et insignis est et nova, ut ulla res
 					parta bello nondum legibus datis etiam tum imperatore bellum administrante non
 					modo venierit verum locata sit. <reg>plus</reg> spectant homines certe quam
@@ -993,26 +965,28 @@ Added to repository. Passes TEI parse.
 					insidiarum fieri, aliquid de eius exercitu, copiis, gloria detrahi posse.
 						<reg>putant</reg>, si quam spem in Cn. Pompeio exercitus habeat aut agrorum
 					aut aliorum commodorum, hanc non habiturum, cum viderit earum rerum omnium
-					potestatem ad <num>x</num>viros esse translatam. <milestone n="55"
-						unit="section"/><reg>patior</reg> non moleste tam stultos esse qui haec
+					potestatem ad <num>x</num>viros esse translatam. </p></div>
+					<div type="textpart" subtype="section" n="55"><p><reg>patior</reg> non moleste tam stultos esse qui haec
 					sperent, tam impudentis qui conentur; illud queror, tam me ab eis esse
-					contemptum ut haec portenta me consule potissimum cogitarent. </p>
-				<p><reg>atque</reg> in omnibus his agris aedificiisque vendendis permittitur
+					contemptum ut haec portenta me consule potissimum cogitarent. 
+				<milestone unit="para"/><reg>atque</reg> in omnibus his agris aedificiisque vendendis permittitur
 						<num>x</num>viris ut vendant '<quote>qvibvscvmqve in locis.</quote>' O
 					perturbatam rationem, o libidinem effrenatam, o consilia dissoluta atque
 					perdita! <milestone n="21" unit="chapter"/><reg>vectigalia</reg> locare nusquam
 					licet nisi in hac urbe, hoc ex loco, hac vestrum frequentia. <reg>venire</reg>
 					nostras res proprias et in perpetuum a nobis abalienari in Paphlagoniae tenebris
-					atque in Cappadociae solitudine licebit? <milestone n="56" unit="section"/>L.
+					atque in Cappadociae solitudine licebit? </p></div>
+					<div type="textpart" subtype="section" n="56"><p>L.
 					Sulla cum bona indemnatorum civium funesta illa auctione sua venderet et se
 					praedam suam diceret vendere, tamen ex hoc loco vendidit nec, quorum oculos
 					offendebat, eorum ipsorum conspectum fugere ausus est; <num>x</num>viri vestra
 					vectigalia non modo non vobis, Quirites, arbitris sed ne praecone quidem publico
-					teste vendent? </p>
-				<p><reg>sequitur</reg> '<quote>omnis agros extra Italiam</quote>' infinito ex
+					teste vendent? 
+				<milestone unit="para"/><reg>sequitur</reg> '<quote>omnis agros extra Italiam</quote>' infinito ex
 					tempore, non, ut antea, ab Sulla et Pompeio consulibus. <reg>cognitio</reg>
 					<num>x</num>virum, privatus sit an publicus; eique agro pergrande vectigal
-					imponitur. <milestone n="57" unit="section"/><reg>hoc</reg> quantum iudicium,
+					imponitur. </p></div>
+					<div type="textpart" subtype="section" n="57"><p><reg>hoc</reg> quantum iudicium,
 					quam intolerandum, quam regium sit, quem praeterit, posse quibuscumque locis
 					velint nulla disceptatione, nullo consilio privata publicare, publica liberare?
 						<reg>excipitur</reg> hoc capite ager <add>in</add> Sicilia Recentoricus;
@@ -1027,8 +1001,9 @@ Added to repository. Passes TEI parse.
 					excipere nominatim qui publicum se esse fateatur? <reg>ergo</reg> eorum ager
 					excipitur qui apud Rullum aliqua ratione valuerunt, ceteri agri omnes qui ubique
 					sunt sine ullo dilectu, sine populi Romani notione, sine iudicio senatus
-						<num>x</num>viris addicentur? <milestone n="22" unit="chapter"/><milestone
-						n="58" unit="section"/><reg>atque</reg> etiam est alia superiore capite quo
+						<num>x</num>viris addicentur?</p></div>
+					<milestone n="22" unit="chapter"/><div type="textpart" subtype="section" n="58"><p>
+					<reg>atque</reg> etiam est alia superiore capite quo
 					omnia veneunt quaestuosa exceptio, quae teget eos agros de quibus foedere cautum
 					est. <reg>audivit</reg> hanc rem non a me, sed ab aliis agitari saepe in senatu,
 					non numquam ex hoc loco, possidere agros in ora maritima regem Hiempsalem quos
@@ -1037,10 +1012,11 @@ Added to repository. Passes TEI parse.
 					Hiempsal ut satis firmum sit et ratum. <reg>cuicuimodi</reg> est illud, tollitur
 					vestrum iudicium, foedus totum accipitur, comprobatur. <reg>quod</reg> minuit
 					auctionem <num>x</num>viralem laudo, quod regi amico cavet non reprehendo, quod
-					non gratis fit indico. <milestone n="59" unit="section"/><reg>volitat</reg> enim
+					non gratis fit indico. </p></div>
+					<div type="textpart" subtype="section" n="59"><p><reg>volitat</reg> enim
 					ante oculos istorum Iuba, regis filius, adulescens non minus bene nummatus quam
-					bene capillatus. </p>
-				<p><reg>vix</reg> iam videtur locus esse qui tantos acervos pecuniae capiat; auget,
+					bene capillatus. 
+				<milestone unit="para"/><reg>vix</reg> iam videtur locus esse qui tantos acervos pecuniae capiat; auget,
 					addit, accumulat. '<quote>Avrvm, argentvm ex praeda, ex manvbiis, ex coronario
 						ad qvoscvmqve pervenit neqve relatvm est in pvblicvm neqve in monvmento
 						consvmptvm</quote>,' id profiteri apud <num>x</num>viros et ad eos referri
@@ -1050,7 +1026,8 @@ Added to repository. Passes TEI parse.
 					fuerint, quid relatum, quid residuum sit; in posterum vero lex haec
 					imperatoribus vestris constituitur; ut, quicumque de provincia decesserit, apud
 					eosdem <num>x</num>viros quantum habeat praedae, manubiarum, auri coronarii,
-					profiteatur. <milestone n="60" unit="section"/><reg>hic</reg> tamen vir optimus
+					profiteatur. </p></div>
+					<div type="textpart" subtype="section" n="60"><p><reg>hic</reg> tamen vir optimus
 					eum quem amat excipit, Cn. Pompeium. Vnde iste amor tam improvisus ac tam
 					repentinus? <reg>qui</reg> honore <num>x</num>viratus excluditur prope
 					nominatim, cuius iudicium legumque datio, captorum agrorum ipsius virtute
@@ -1058,9 +1035,9 @@ Added to repository. Passes TEI parse.
 					cum imperio, infinita pecunia, maxima potestate et iudicio rerum omnium
 					mittuntur, cui ius imperatorium, quod semper omnibus imperatoribus est
 					conservatum, soli eripitur, is excipitur unus ne manubias referre iubeatur?
-					Vtrum tandem hoc capite honos haberi homini, an invidia quaeri videtur?
-						<milestone n="23" unit="chapter"/><milestone n="61" unit="section"/></p>
-				<p><reg>remittit</reg> hoc Rullo Cn. Pompeius; beneficio isto legis, benignitate
+					Vtrum tandem hoc capite honos haberi homini, an invidia quaeri videtur?</p></div>
+					<milestone n="23" unit="chapter"/><div type="textpart" subtype="section" n="61"><p>
+				<milestone unit="para"/><reg>remittit</reg> hoc Rullo Cn. Pompeius; beneficio isto legis, benignitate
 						<num>x</num>virali nihil utitur. <reg>nam</reg> si est aequum praedam ac
 					manubias suas imperatores non in monumenta deorum immortalium neque in urbis
 					ornamenta conferre, sed ad <num>x</num>viros tamquam ad dominos reportare, nihil
@@ -1069,28 +1046,29 @@ Added to repository. Passes TEI parse.
 					intolerandum hos <num>x</num>viros portitores omnibus omnium pecuniis constitui,
 					qui non modo reges atque exterarum nationum homines sed etiam imperatores
 					vestros excutiant, non mihi videntur honoris causa excipere Pompeium, sed
-					metuere ne ille eandem contumeliam quam ceteri ferre non possit. <milestone
-						n="62" unit="section"/>Pompeius autem <add>cum</add> hoc animo sit ut,
+					metuere ne ille eandem contumeliam quam ceteri ferre non possit. </p></div>
+					<div type="textpart" subtype="section" n="62"><p>Pompeius autem <add>cum</add> hoc animo sit ut,
 					quicquid vobis placeat, sibi ferendum putet, quod vos ferre non poteritis, id
 					profecto perficiet ne diutius inviti ferre cogamini. <reg>verum</reg> tamen
 					cavet ut, si qua pecunia post nos consules ex novis vectigalibus recipiatur, ea
 						<num>x</num>viri utantur. <reg>nova</reg> porro vectigalia videt ea fore
 					quae Pompeius adiunxerit. <reg>ita</reg> remissis manubiis vectigalibus eius
-					virtute partis se frui putat oportere. </p>
-				<p><reg>parta</reg> sit pecunia, Quirites, <num>x</num>viris tanta quanta sit in
+					virtute partis se frui putat oportere. 
+				<milestone unit="para"/><reg>parta</reg> sit pecunia, Quirites, <num>x</num>viris tanta quanta sit in
 					terris, nihil praetermissum sit, omnes urbes, agri, regna denique, postremo
 					etiam vectigalia vestra venierint, accesserint in cumulum manubiae vestrorum
 					imperatorum; quantae et quam immanes divitiae <num>x</num>viris in tantis
 					auctionibus, tot iudiciis, tam infinita potestate rerum omnium quaerantur
-					videtis. <milestone n="24" unit="chapter"/><milestone n="63" unit="section"
-						/><reg>cognoscite</reg> nunc alios immensos atque intolerabilis quaestus, ut
+					videtis.</p></div>
+					<milestone n="24" unit="chapter"/><div type="textpart" subtype="section" n="63"><p>
+					<reg>cognoscite</reg> nunc alios immensos atque intolerabilis quaestus, ut
 					intellegatis ad certorum hominum importunam avaritiam hoc populare legis
 					agrariae nomen esse quaesitum. <reg>hac</reg> pecunia iubet agros emi quo
 					deducamini. <reg>non</reg> consuevi homines appellare asperius, Quirites, nisi
 					lacessitus. <reg>vellem</reg> fieri posset ut a me sine contumelia nominarentur
 					ei qui se <num>x</num>viros sperant futuros; iam videretis quibus hominibus
-					omnium rerum et vendendarum et emendarum potestatem permitteretis. <milestone
-						n="64" unit="section"/><reg>sed</reg> quod ego nondum statuo mihi esse
+					omnium rerum et vendendarum et emendarum potestatem permitteretis. </p></div>
+					<div type="textpart" subtype="section" n="64"><p><reg>sed</reg> quod ego nondum statuo mihi esse
 					dicendum, vos tamen id potestis cum animis vestris cogitare; unum hoc certe
 					videor mihi verissime posse dicere: tum cum haberet haec res publica Luscinos,
 					Calatinos, Acidinos, homines non solum honoribus populi rebusque gestis verum
@@ -1100,8 +1078,8 @@ Added to repository. Passes TEI parse.
 					idem iudicaret et venderet et hoc faceret per quinquennium toto in orbe terrarum
 					idemque agros vectigalis populi Romani abalienaret et, cum summam tantae
 					pecuniae nullo teste sibi ipse ex sua voluntate fecisset, tum denique emeret a
-					quibus vellet quod videretur. <milestone n="65" unit="section"
-						/><reg>committite</reg> vos nunc, Quirites, his hominibus haec omnia quos
+					quibus vellet quod videretur. </p></div>
+					<div type="textpart" subtype="section" n="65"><p><reg>committite</reg> vos nunc, Quirites, his hominibus haec omnia quos
 					odorari hunc <num>x</num>viratum suspicamini; reperietis partem esse eorum
 					quibus ad habendum, partem quibus ad consumendum nihil satis esse videatur.
 						<milestone n="25" unit="chapter"/><reg>hic</reg> ego iam illud quod
@@ -1111,7 +1089,8 @@ Added to repository. Passes TEI parse.
 					me aliquid ab hoc horrido ac truce tribuno plebis exspectasse
 						<add>confiteor</add>; hanc vero emendi et vendendi quaestuosissimam ac
 					turpissimam mercaturam alienam actione tribunicia, alienam dignitate populi
-					Romani semper putavi. <milestone n="66" unit="section"/><reg>iubet</reg> agros
+					Romani semper putavi. </p></div>
+					<div type="textpart" subtype="section" n="66"><p><reg>iubet</reg> agros
 					emi. <reg>primum</reg> quaero quos agros et quibus in locis? <reg>nolo</reg>
 					suspensam et incertam plebem Romanam obscura spe et caeca exspectatione pendere.
 					Albanus ager est, Setinus, Privernas, Fundanus, Vescinus, Falernus, Literninus,
@@ -1123,7 +1102,8 @@ Added to repository. Passes TEI parse.
 					expediat, quantum tibi in emendis et in vendendis rebus committendum putet?
 						'<reg>definio</reg>,' inquit, 'Italiam.' <reg>satis</reg> certa regio.
 						<reg>etenim</reg> quantulum interest utrum in Massici radices, an in Silam
-					silvam deducamini? <milestone n="67" unit="section"/><reg>age</reg>, non definis
+					silvam deducamini? </p></div>
+					<div type="textpart" subtype="section" n="67"><p><reg>age</reg>, non definis
 					locum; quid? naturam agri? '<reg>vero</reg>,' inquit, '<quote>qvi arari avt coli
 						possit.</quote>' '<reg>qui</reg> possit arari,' inquit, 'aut coli,' non qui
 					aratus aut cultus sit. Vtrum haec lex est, an tabula Veratianae auctionis? in
@@ -1135,9 +1115,9 @@ Added to repository. Passes TEI parse.
 					'agros nominare non possum quia tangam nullum ab invito.' <reg>hoc</reg>,
 					Quirites, multo est quaestuosius quam si ab invito sumeret; inibitur enim ratio
 					quaestus de vestra pecunia, et tum denique ager emetur cum idem expediet emptori
-					et venditori. <milestone n="26" unit="chapter"/><milestone n="68" unit="section"
-					/></p>
-				<p><reg>sed</reg> videte vim legis agrariae. <reg>ne</reg> ei quidem qui agros
+					et venditori.</p></div>
+					<milestone n="26" unit="chapter"/><div type="textpart" subtype="section" n="68"><p>
+				<milestone unit="para"/><reg>sed</reg> videte vim legis agrariae. <reg>ne</reg> ei quidem qui agros
 					publicos possident decedent de possessione, nisi erunt deducti optima condicione
 					et pecunia maxima. <reg>conversa</reg> ratio. <reg>antea</reg> cum erat a
 					tribuno plebis mentio legis agrariae facta, continuo qui agros publicos aut qui
@@ -1150,14 +1130,15 @@ Added to repository. Passes TEI parse.
 					pertimescebant, ei nunc etiam ultro rogabuntur atque orabuntur ut agros partim
 					publicos, partim plenos invidiae, plenos periculi quanti ipsi velint
 						<num>x</num>viris tradant. <reg>atque</reg> hoc carmen hic tribunus plebis
-					non vobis, sed sibi intus canit. <milestone n="69" unit="section"
-						/><reg>habet</reg> socerum, virum optimum, qui tantum agri in illis rei
+					non vobis, sed sibi intus canit. </p></div>
+					<div type="textpart" subtype="section" n="69"><p><reg>habet</reg> socerum, virum optimum, qui tantum agri in illis rei
 					publicae tenebris occupavit quantum concupivit. <reg>huic</reg> subvenire volt
 					succumbenti iam et oppresso, Sullanis oneribus gravi, sua lege, ut liceat illi
 					invidiam deponere, pecuniam condere. <reg>et</reg> vos non dubitatis quin
 					vectigalia vestra vendatis plurimo maiorum vestrorum sanguine et sudore
 					quaesita, ut Sullanos possessores divitiis augeatis, periculo liberetis?
-						<milestone n="70" unit="section"/><reg>nam</reg> ad hanc emptionem
+						</p></div>
+					<div type="textpart" subtype="section" n="70"><p><reg>nam</reg> ad hanc emptionem
 						<num>x</num>viralem duo genera agrorum spectant, Quirites. Eorum unum
 					propter invidiam domini fugiunt, alterum propter vastitatem. Sullanus ager a
 					certis hominibus latissime continuatus tantam habet invidiam ut veri ac fortis
@@ -1168,8 +1149,8 @@ Added to repository. Passes TEI parse.
 					non vendiderint, relinquendos. <reg>et</reg> nimirum id est quod ab hoc tribuno
 					plebis dictum est in senatu, urbanam plebem nimium in re publica posse;
 					exhauriendam esse; hoc enim <add>verbo</add> est usus, quasi de aliqua sentina
-					ac non de optimorum civium genere loqueretur. <milestone n="27" unit="chapter"
-						/><milestone n="71" unit="section"/><reg>vos</reg> vero, Quirites, si me
+					ac non de optimorum civium genere loqueretur.</p></div>
+					<milestone n="27" unit="chapter"/><div type="textpart" subtype="section" n="71"><p><reg>vos</reg> vero, Quirites, si me
 					audire voltis, retinete istam possessionem gratiae, libertatis, suffragiorum,
 					dignitatis, urbis, fori, ludorum, festorum dierum, ceterorum omnium commodorum,
 					nisi forte mavoltis relictis his rebus atque hac luce rei publicae in Sipontina
@@ -1179,16 +1160,17 @@ Added to repository. Passes TEI parse.
 					vendiderit, tum harenam aliquam aut paludes emat, id vos potestis, quaeso,
 					concedere? <reg>quamquam</reg> illud est egregium quod hac lege ante omnia
 					veneunt, ante pecuniae coguntur et coacervantur quam gleba una ematur.
-						<reg>deinde</reg> emi iubet, ab invito vetat. <milestone n="72"
-						unit="section"/><reg>quaero</reg>, si qui velint vendere non fuerint, quid
+						<reg>deinde</reg> emi iubet, ab invito vetat. </p></div>
+					<div type="textpart" subtype="section" n="72"><p><reg>quaero</reg>, si qui velint vendere non fuerint, quid
 					pecuniae fiet? <reg>referre</reg> in aerarium lex vetat, exigi prohibet.
 						<reg>igitur</reg> pecuniam omnem <num>x</num>viri tenebunt, vobis ager non
 					emetur; vectigalibus abalienatis, sociis vexatis, regibus atque omnibus gentibus
 					exinanitis illi pecunias habebunt, vos agros non habebitis. '<reg>facile</reg>,'
 					inquit, 'adducentur pecuniae magnitudine ut velint vendere.' <reg>ergo</reg> ea
 					lex est qua nostra vendamus quanti possimus, aliena emamus quanti possessores
-					velint. <milestone n="73" unit="section"/></p>
-				<p><reg>atque</reg> in hos agros qui hac lege empti sint colonias ab his
+					velint. </p></div>
+					<div type="textpart" subtype="section" n="73"><p>
+				<milestone unit="para"/><reg>atque</reg> in hos agros qui hac lege empti sint colonias ab his
 						<num>x</num>viris deduci iubet. <reg>quid</reg>? omnisne locus eius modi est
 					ut nihil intersit rei publicae, colonia deducatur in eum locum necne, an est
 					locus qui coloniam postulet, est <add>qui</add> plane recuset? <reg>quo</reg> in
@@ -1196,7 +1178,8 @@ Added to repository. Passes TEI parse.
 					maiorum recordari, qui colonias sic idoneis in locis contra suspicionem periculi
 					conlocarunt ut esse non oppida Italiae, sed propugnacula imperi viderentur.
 						<reg>hi</reg> deducent colonias in eos agros quos emerint; etiamne si rei
-					publicae non expediat? <milestone n="74" unit="section"/>'<quote><reg>et</reg>
+					publicae non expediat? </p></div>
+					<div type="textpart" subtype="section" n="74"><p>'<quote><reg>et</reg>
 						in qvae loca praeterea</quote>
 					<quote>videbitvr.</quote>' <reg>quid</reg> igitur est causae quin coloniam in
 					Ianiculum possint deducere et suum praesidium in capite atque cervicibus nostris
@@ -1204,8 +1187,8 @@ Added to repository. Passes TEI parse.
 					colonorum deduci velis, tu occupes locum quem idoneum ad vim tuam iudicaris,
 					compleas numero, confirmes praesidio quo velis, populi Romani vectigalibus atque
 					omnibus copiis ipsum populum Romanum coerceas, opprimas, redigas in istam
-						<num>x</num>viralem dicionem ac potestatem? <milestone n="28" unit="chapter"
-						/><milestone n="75" unit="section"/>Vt vero totam Italiam suis praesidiis
+						<num>x</num>viralem dicionem ac potestatem?</p></div>
+					<milestone n="28" unit="chapter"/><div type="textpart" subtype="section" n="75"><p>Vt vero totam Italiam suis praesidiis
 					obsidere atque occupare cogitet, quaeso, Quirites, cognoscite.
 						<reg>permittit</reg>
 					<num>x</num>viris ut in omnia municipia, in omnis colonias totius Italiae
@@ -1215,17 +1198,17 @@ Added to repository. Passes TEI parse.
 					tollitur? <reg>nam</reg> cum idem omnem pecuniam, maximam multitudinem
 						<add>obtinebunt</add>, idem totam Italiam suis opibus obsidebunt, idem
 					vestram libertatem suis praesidiis et coloniis interclusam tenebunt, quae spes
-					tandem, quae facultas recuperandae vestrae libertatis relinquetur? <milestone
-						n="76" unit="section"/></p>
-				<p><reg>at</reg> enim ager Campanus hac lege dividetur orbi terrae pulcherrimus et
+					tandem, quae facultas recuperandae vestrae libertatis relinquetur? </p></div>
+					<div type="textpart" subtype="section" n="76"><p>
+				<milestone unit="para"/><reg>at</reg> enim ager Campanus hac lege dividetur orbi terrae pulcherrimus et
 					Capuam colonia deducetur, urbem amplissimam atque ornatissimam. <reg>quid</reg>
 					ad haec possumus dicere? <reg>de</reg> commodo prius vestro dicam, Quirites;
 					deinde ad amplitudinem et dignitatem revertar, ut, si quis agri aut oppidi
 					bonitate delectatur, ne quid exspectet, si quem rei indignitas commovet, ut huic
 					simulatae largitioni resistat. <reg>ac</reg> primum de oppido dicam, si quis est
 					forte quem Capua magis quam Roma delectet. V milia colonorum Capuam scribi
-					iubet; ad hunc numerum quingenos sibi singuli sumunt. <milestone n="77"
-						unit="section"/><reg>quaeso</reg>, nolite vosmet ipsos consolari; vere et
+					iubet; ad hunc numerum quingenos sibi singuli sumunt. </p></div>
+					<div type="textpart" subtype="section" n="77"><p><reg>quaeso</reg>, nolite vosmet ipsos consolari; vere et
 					diligenter considerate. <reg>num</reg> vobis aut vestri similibus integris,
 					quietis, otiosis hominibus in hoc numero locum fore putatis? <reg>si</reg> est
 					omnibus vobis maiori<add>ve</add> vestrum parti, quamquam me vester honos
@@ -1234,7 +1217,8 @@ Added to repository. Passes TEI parse.
 					si <num>v</num> hominum milibus ad vim, facinus caedemque delectis locus atque
 					urbs quae bellum facere atque instruere possit quaeritur, tamenne patiemini
 					vestro nomine contra vos firmari opes, armari praesidia, urbis, agros, copias
-					comparari? <milestone n="78" unit="section"/><reg>nam</reg> agrum quidem
+					comparari? </p></div>
+					<div type="textpart" subtype="section" n="78"><p><reg>nam</reg> agrum quidem
 					Campanum quem vobis ostentant ipsi concupiverunt; deducent suos, quorum nomine
 					ipsi teneant et fruantur; coement praeterea; ista dena iugera continuabunt.
 						<reg>nam</reg> si dicent per legem id non licere, ne per Corneliam quidem
@@ -1242,8 +1226,8 @@ Added to repository. Passes TEI parse.
 						<reg>neque</reg> istorum pecuniis quicquam aliud deesse video nisi eius modi
 					fundos quorum subsidio familiarum magnitudines et Cumanorum ac Puteolanorum
 					praediorum sumptus sustentare possint. <reg>quod</reg> si vestrum commodum
-					spectat, veniat et coram mecum de agri Campani divisione disputet. <milestone
-						n="29" unit="chapter"/><milestone n="79" unit="section"/><reg>quaesivi</reg>
+					spectat, veniat et coram mecum de agri Campani divisione disputet.</p></div>
+					<milestone n="29" unit="chapter"/><div type="textpart" subtype="section" n="79"><p><reg>quaesivi</reg>
 					ex eo Kalendis Ianuariis quibus hominibus et quem ad modum illum agrum esset
 					distributurus. <reg>respondit</reg> a Romilia tribu se initium esse facturum.
 						<reg>primum</reg> quae est ista superbia et contumelia ut populi pars
@@ -1254,7 +1238,8 @@ Added to repository. Passes TEI parse.
 						<reg>si</reg> non modo dena iugera dari vobis sed ne constipari quidem
 					tantum numerum hominum posse in agrum Campanum intellegetis, tamenne vexari rem
 					publicam, contemni maiestatem populi Romani, deludi vosmet ipsos diutius a
-					tribuno plebis patiemini? <milestone n="80" unit="section"/><reg>quod</reg> si
+					tribuno plebis patiemini? </p></div>
+					<div type="textpart" subtype="section" n="80"><p><reg>quod</reg> si
 					posset ager iste ad vos pervenire, nonne eum tamen in patrimonio vestro remanere
 					malletis? Vnumne fundum pulcherrimum populi Romani, caput vestrae pecuniae,
 					pacis ornamentum, subsidium belli, fundamentum vectigalium, horreum legionum,
@@ -1263,8 +1248,8 @@ Added to repository. Passes TEI parse.
 					an ignoratis cetera illa magnifica populi Romani vectigalia perlevi saepe
 					momento fortunae inclinatione temporis pendere? <reg>quid</reg> nos Asiae
 					portus, quid Syriae ora, quid omnia transmarina vectigalia iuvabunt tenuissima
-					suspicione praedonum aut hostium iniecta? <milestone n="81" unit="section"
-						/><reg>at</reg> vero hoc agri Campani vectigal, Quirites, eius modi est ut
+					suspicione praedonum aut hostium iniecta? </p></div>
+					<div type="textpart" subtype="section" n="81"><p><reg>at</reg> vero hoc agri Campani vectigal, Quirites, eius modi est ut
 					cum domi sit et omnibus praesidiis oppidorum tegatur, tum neque bellis infestum
 					nec fructibus varium nec caelo ac loco calamitosum esse soleat.
 						<reg>maiores</reg> nostri non solum id quod <add>de</add> Campanis ceperant
@@ -1273,11 +1258,12 @@ Added to repository. Passes TEI parse.
 					commodis plurimum cogitaverunt, nec L. Sulla qui omnia sine ulla religione
 					quibus voluit est dilargitus, agrum Campanum attingere ausus est; Rullus
 					exstitit qui ex ea possessione rem publicam demoveret ex qua nec Gracchorum
-					benignitas eam nec Sullae dominatio deiecisset. <milestone n="30" unit="chapter"
-						/><reg>quem</reg> agrum nunc praetereuntes vestrum esse dicitis et quem per
+					benignitas eam nec Sullae dominatio deiecisset. <milestone n="30" unit="chapter"/>
+					<reg>quem</reg> agrum nunc praetereuntes vestrum esse dicitis et quem per
 					iter qui faciunt, externi homines, vestrum esse audiunt, is, cum erit divisus,
 						<add>neque erit vester</add> neque vester esse dicetur. <reg>at</reg> qui
-					homines possidebunt? <milestone n="82" unit="section"/><reg>primo</reg> quidem
+					homines possidebunt? </p></div>
+					<div type="textpart" subtype="section" n="82"><p><reg>primo</reg> quidem
 					acres, ad vim prompti, ad seditionem parati qui, simul ac <num>x</num>viri
 					concrepuerint, armati in civis et expediti ad caedem esse possint; deinde ad
 					paucos opibus et copiis adfluentis totum agrum Campanum perferri videbitis.
@@ -1289,8 +1275,8 @@ Added to repository. Passes TEI parse.
 					qui in publicum Campanum incurrebant pecunia publica coemeret, dicitur
 					renuntiasse nulla se pecunia fundum cuiusdam emere potuisse, eumque qui nollet
 					vendere ideo negasse se adduci posse uti venderet quod, cum pluris fundos
-					haberet, ex illo solo fundo numquam malum nuntium audisset. <milestone n="83"
-						unit="section"/><reg>itane</reg> vero? privatum haec causa commovit; populum
+					haberet, ex illo solo fundo numquam malum nuntium audisset. </p></div>
+					<div type="textpart" subtype="section" n="83"><p><reg>itane</reg> vero? privatum haec causa commovit; populum
 					Romanum ne agrum Campanum privatis gratis Rullo rogante tradat non commovebit?
 						<reg>at</reg> idem populus Romanus de hoc vectigali potest dicere quod ille
 					de suo fundo dixisse dicitur. Asia multos annos vobis fructum Mithridatico bello
@@ -1298,10 +1284,10 @@ Added to repository. Passes TEI parse.
 					civitatibus bello fugitivorum M'. Aquilius etiam mutuum frumentum dedit; at ex
 					hoc vectigali numquam malus nuntius auditus est. <reg>cetera</reg> vectigalia
 					belli difficultatibus adfliguntur; hoc vectigali etiam belli difficultates
-					sustentantur. <milestone n="84" unit="section"/><reg>deinde</reg> in hac
+					sustentantur. </p></div>
+					<div type="textpart" subtype="section" n="84"><p><reg>deinde</reg> in hac
 					adsignatione agrorum ne illud quidem dici potest quod in ceteris, agros desertos
-					a plebe atque a cultura hominum liberorum esse non oportere. <milestone n="31"
-						unit="chapter"/><reg>sic</reg> enim dico, si Campanus ager dividatur,
+					a plebe atque a cultura hominum liberorum esse non oportere. <milestone n="31" unit="chapter"/><reg>sic</reg> enim dico, si Campanus ager dividatur,
 					exturbari et expelli plebem ex agris, non constitui et conlocari.
 						<reg>totus</reg> enim ager Campanus colitur et possidetur a plebe, et a
 					plebe optima et modestissima; quod genus hominum optime moratum, optimorum et
@@ -1311,18 +1297,19 @@ Added to repository. Passes TEI parse.
 					valentibus et audacibus <num>x</num>virum satellitibus agri Campani possessio
 					tota tradetur, et, ut vos nunc de vestris maioribus praedicatis: 'hunc agrum
 					nobis maiores nostri reliquerunt,' sic vestri posteri de vobis praedicabunt:
-					'hunc agrum patres nostri acceptum a patribus suis perdiderunt.'
-						<reg>equidem</reg> existimo: <milestone n="85" unit="section"/>si iam campus
+					'hunc agrum patres nostri acceptum a patribus suis perdiderunt.'</p></div>
+					<div type="textpart" subtype="section" n="85"><p><reg>equidem</reg> existimo: si iam campus
 					Martius dividatur et uni cuique vestrum ubi consistat bini pedes adsignentur,
 					tamen promiscue toto quam proprie parva frui parte malitis. <reg>qua</reg> re
 					etiam si ad vos esset singulos aliquid ex hoc agro perventurum qui vobis
 					ostenditur, aliis comparatur, tamen honestius eum vos universi quam singuli
 					possideretis. <reg>nunc</reg> vero cum ad vos nihil pertineat, sed paretur
 					aliis, eripiatur vobis, nonne acerrime, tamquam armato hosti, sic huic legi pro
-					vestris agris resistetis? </p>
-				<p><reg>adiungit</reg> Stellatem campum agro Campano et in eo duodena discribit in
+					vestris agris resistetis? 
+				<milestone unit="para"/><reg>adiungit</reg> Stellatem campum agro Campano et in eo duodena discribit in
 					singulos homines iugera. <reg>quasi</reg> vero paulum differat ager Campanus a
-						<reg>stellati</reg>; <milestone n="86" unit="section"/>sed multitudo,
+						<reg>stellati</reg>; </p></div>
+					<div type="textpart" subtype="section" n="86"><p>sed multitudo,
 					Quirites, quaeritur qua illa omnia oppida compleantur. <reg>nam</reg> dixi antea
 					lege permitti ut quae velint municipia, quas velint veteres colonias colonis
 					suis occupent. Calenum municipium complebunt, Teanum oppriment, Atellam, Cumas,
@@ -1331,8 +1318,8 @@ Added to repository. Passes TEI parse.
 					adventiciis copiis occupabunt. <milestone n="32" unit="chapter"/><reg>tunc</reg>
 					illud vexillum Campanae coloniae vehementer huic imperio timendum Capuam a
 						<num>x</num>viris inferetur, tunc contra hanc Romam, communem patriam omnium
-					nostrum, illa altera Roma quaeretur. <milestone n="87" unit="section"
-						/><reg>in</reg> id oppidum homines nefarie rem publicam vestram transferre
+					nostrum, illa altera Roma quaeretur. </p></div>
+					<div type="textpart" subtype="section" n="87"><p><reg>in</reg> id oppidum homines nefarie rem publicam vestram transferre
 					conantur, quo in oppido maiores nostri nullam omnino rem publicam esse
 					voluerunt, qui tris solum urbis in terris omnibus, Carthaginem, Corinthum,
 					Capuam, statuerunt posse imperi gravitatem ac nomen sustinere. <reg>deleta</reg>
@@ -1343,8 +1330,8 @@ Added to repository. Passes TEI parse.
 					terra claustra locorum teneret et duo maria maxime navigationi diversa paene
 					coniungeret, cum pertenui discrimine separentur. <reg>haec</reg> quae procul
 					erant a conspectu imperi non solum adflixerunt sed etiam, ne quando recreata
-					exsurgere atque erigere se possent, funditus, ut dixi, sustulerunt. <milestone
-						n="88" unit="section"/><reg>de</reg> Capua multum est et diu consultatum;
+					exsurgere atque erigere se possent, funditus, ut dixi, sustulerunt. </p></div>
+					<div type="textpart" subtype="section" n="88"><p><reg>de</reg> Capua multum est et diu consultatum;
 					exstant litterae, Quirites, publicae, sunt senatus consulta complura.
 						<reg>statuerunt</reg> homines sapientes, si agrum Campanis ademissent,
 					magistratus, senatum, publicum ex illa urbe consilium sustulissent, imaginem rei
@@ -1352,9 +1339,9 @@ Added to repository. Passes TEI parse.
 						<reg>itaque</reg> hoc perscriptum in monumentis veteribus reperietis, ut
 					esset urbs quae res eas quibus ager Campanus coleretur suppeditare posset, ut
 					esset locus comportandis condendisque fructibus, ut aratores cultu agrorum
-					defessi urbis domiciliis uterentur, idcirco illa aedificia non esse deleta.
-						<milestone n="33" unit="chapter"/><milestone n="89" unit="section"
-						/><reg>videte</reg> quantum intervallum sit interiectum inter maiorum
+					defessi urbis domiciliis uterentur, idcirco illa aedificia non esse deleta.</p></div>
+					<milestone n="33" unit="chapter"/><div type="textpart" subtype="section" n="89"><p>
+					<reg>videte</reg> quantum intervallum sit interiectum inter maiorum
 					nostrorum consilia et inter istorum hominum dementiam. <reg>illi</reg> Capuam
 					receptaculum aratorum, nundinas rusticorum, cellam atque horreum Campani agri
 					esse voluerunt, hi expulsis aratoribus, effusis ac dissipatis fructibus vestris
@@ -1363,7 +1350,8 @@ Added to repository. Passes TEI parse.
 					tam inlustri imperio et tam praeclara populi Romani disciplina <add>M.</add>
 					Bruti aut P. Rulli similem futurum —hos enim nos duos adhuc vidimus qui hanc rem
 					publicam Capuam totam transferre vellent—profecto nomen illius urbis non
-					reliquissent. <milestone n="90" unit="section"/><reg>verum</reg> arbitrabantur
+					reliquissent. </p></div>
+					<div type="textpart" subtype="section" n="90"><p><reg>verum</reg> arbitrabantur
 					Corinthi et Carthagini, etiam si senatum et magistratus sustulissent agrumque
 					civibus ademissent, tamen non defore qui illa restituerent atque qui ante omnia
 					commutarent quam nos audire possemus; hic vero in oculis senatus populique
@@ -1378,8 +1366,9 @@ Added to repository. Passes TEI parse.
 					publica seditiones domesticae quas praetermitto; bella cum sociis, Fregellanum,
 					Marsicum; quibus omnibus domesticis externisque bellis Capua non modo non obfuit
 					sed opportunissimam se nobis praebuit et ad bellum instruendum et ad exercitus
-					ornandos et tectis ac sedibus suis recipiendos. <reg>homines</reg> non inerant
-					in urbe qui malis contionibus, <milestone n="91" unit="section"/>turbulentis
+					ornandos et tectis ac sedibus suis recipiendos. </p></div>
+					<div type="textpart" subtype="section" n="91"><p>
+					<reg>homines</reg> non inerant in urbe qui malis contionibus,turbulentis
 					senatus consultis, iniquis imperiis rem publicam miscerent et rerum novarum
 					causam aliquam quaererent. <reg>neque</reg> enim contionandi potestas erat
 					cuiquam nec consili capiendi publici; non gloriae cupiditate efferebantur,
@@ -1390,9 +1379,9 @@ Added to repository. Passes TEI parse.
 					ratione et consilio maiores nostri ad inertissimum ac desidiosissimum otium
 					perduxerunt. <reg>sic</reg> et crudelitatis infamiam effugerunt quod urbem ex
 					Italia pulcherrimam non sustulerunt, et multum in posterum providerunt quod
-					nervis urbis omnibus exsectis urbem ipsam solutam ac debilitatam reliquerunt.
-						<milestone n="34" unit="chapter"/><milestone n="92" unit="section"
-						/><reg>haec</reg> consilia maiorum M. Bruto, ut antea dixi, reprehendenda et
+					nervis urbis omnibus exsectis urbem ipsam solutam ac debilitatam reliquerunt.</p></div>
+					<milestone n="34" unit="chapter"/><div type="textpart" subtype="section" n="92"><p>
+					<reg>haec</reg> consilia maiorum M. Bruto, ut antea dixi, reprehendenda et
 					P. Rullo visa sunt; neque te, P. Rulle, omina illa M. Bruti atque auspicia a
 					simili furore deterrent. <reg>nam</reg> et ipse qui deduxit, et qui magistratum
 					Capuae illo creante ceperunt, et qui aliquam partem illius deductionis, honoris,
@@ -1401,8 +1390,8 @@ Added to repository. Passes TEI parse.
 					mentionem, commemorabo id quod egomet vidi, cum venissem Capuam colonia iam
 					deducta L. Considio et Sex. Saltio, quem ad modum ipsi loquebantur,
 					'praetoribus,' ut intellegatis quantam locus ipse adferat superbiam, quae paucis
-					diebus quibus illo colonia deducta est perspici atque intellegi potuit.
-						<reg>nam</reg> primum, <milestone n="93" unit="section"/>id quod dixi, cum
+					diebus quibus illo colonia deducta est perspici atque intellegi potuit.</p></div>
+					<div type="textpart" subtype="section" n="93"><p><reg>nam</reg> primum, id quod dixi, cum
 					ceteris in coloniis <num>ii</num>viri appellentur, hi se praetores appellari
 					volebant. <reg>quibus</reg> primus annus hanc cupiditatem attulisset, nonne
 					arbitramini paucis annis fuisse consulum nomen appetituros? <reg>deinde</reg>
@@ -1413,12 +1402,12 @@ Added to repository. Passes TEI parse.
 					conscripti vocabantur. <reg>iam</reg> vero voltum Considi videre ferendum vix
 					erat. <reg>quem</reg> hominem 'vegrandi macie torridum' Romae contemptum,
 					abiectum videbamus, hunc Capuae Campano fastidio ac regio spiritu cum videremus,
-					Blossios mihi videbar illos videre ac Vibellios. <milestone n="94"
-						unit="section"/><reg>iam</reg> vero qui metus erat tunicatorum illorum! et
+					Blossios mihi videbar illos videre ac Vibellios. </p></div>
+					<div type="textpart" subtype="section" n="94"><p><reg>iam</reg> vero qui metus erat tunicatorum illorum! et
 					in Albana et Seplasia quae concursatio percontantium quid praetor edixisset, ubi
 					cenaret, quo denuntiasset! <reg>nos</reg> autem, hinc Roma qui veneramus, iam
-					non hospites, sed peregrini atque advenae nominabamur. <milestone n="35"
-						unit="chapter"/><milestone n="95" unit="section"/><reg>haec</reg> qui
+					non hospites, sed peregrini atque advenae nominabamur.</p></div>
+					<milestone n="35" unit="chapter"/><div type="textpart" subtype="section" n="95"><p><reg>haec</reg> qui
 					prospexerint, maiores nostros dico, Quirites, non eos in deorum immortalium
 					numero venerandos a nobis et colendos putatis? <reg>quid</reg> enim viderunt?
 						<reg>hoc</reg> quod nunc vos, quaeso, perspicite atque cognoscite.
@@ -1433,7 +1422,8 @@ Added to repository. Passes TEI parse.
 						<reg>ex</reg> hac copia atque omnium rerum adfluentia primum illa nata est
 					adrogantia qua a maioribus nostris alterum Capua consulem postularunt, deinde ea
 					luxuries quae ipsum Hannibalem armis etiam tum invictum voluptate vicit.
-						<milestone n="96" unit="section"/><reg>huc</reg> isti <num>x</num>viri cum
+						</p></div>
+					<div type="textpart" subtype="section" n="96"><p><reg>huc</reg> isti <num>x</num>viri cum
 						<num>i</num>ↄↄ colonorum ex lege Rulli deduxerint, <num>c</num> decuriones,
 						<num>x</num> augures, <num>vi</num> pontifices constituerint, quos illorum
 					animos, quos impetus, quam ferociam fore putatis? Romam in montibus positam et
@@ -1443,8 +1433,8 @@ Added to repository. Passes TEI parse.
 					atque uberibus campis conferendos scilicet non putabunt. <reg>oppidorum</reg>
 					autem finitimorum illam copiam cum hac per risum ac iocum contendent; Veios,
 					Fidenas, Collatiam, ipsum hercle Lanuvium, Ariciam, Tusculum cum Calibus, Teano,
-					Neapoli, Puteolis, Cumis, Pompeiis, Nuceria comparabunt. <milestone n="97"
-						unit="section"/><reg>quibus</reg> illi rebus elati et inflati fortasse non
+					Neapoli, Puteolis, Cumis, Pompeiis, Nuceria comparabunt. </p></div>
+					<div type="textpart" subtype="section" n="97"><p><reg>quibus</reg> illi rebus elati et inflati fortasse non
 					continuo, sed certe, si paulum adsumpserint vetustatis ac roboris, non
 					continebuntur; progredientur, cuncta secum ferent. <reg>singularis</reg> homo
 					privatus, nisi magna sapientia praeditus, vix cancellis et regionibus offici
@@ -1454,9 +1444,9 @@ Added to repository. Passes TEI parse.
 					immo vero etiam hoc magis quam illi veteres germanique Campani, quod in vetere
 					fortuna illos natos et educatos nimiae tamen rerum omnium copiae depravabant, hi
 					ex summa egestate in eandem rerum abundantiam traducti non solum copia verum
-					etiam insolentia commovebuntur. <milestone n="36" unit="chapter"/><milestone
-						n="98" unit="section"/></p>
-				<p><reg>haec</reg> tu, P. Rulle, M. Bruti sceleris vestigia quam monumenta maiorum
+					etiam insolentia commovebuntur.</p></div>
+					<milestone n="36" unit="chapter"/><div type="textpart" subtype="section" n="98"><p>
+				<milestone unit="para"/><reg>haec</reg> tu, P. Rulle, M. Bruti sceleris vestigia quam monumenta maiorum
 					sapientiae sequi maluisti, haec tu cum istis tuis auctoribus excogitasti, ut
 					vetera vectigalia nostra <add>expilaretis,</add> exploraretis nova, <add>urbem
 						novam huic</add> urbi ad certamen dignitatis opponeretis; ut sub vestrum
@@ -1468,7 +1458,8 @@ Added to repository. Passes TEI parse.
 					desertos ac pestilentis a vestris necessariis et a vobismet ipsis emptos quanti
 					velletis populo Romano induceretis; ut omnia municipia coloniasque Italiae novis
 					colonis occuparetis; ut quibuscumque in locis vobis videretur ac quam multis
-					videretur colonias conlocaretis; <milestone n="99" unit="section"/>ut omnem rem
+					videretur colonias conlocaretis; </p></div>
+					<div type="textpart" subtype="section" n="99"><p>ut omnem rem
 					publicam vestris militibus, vestris urbibus, vestris praesidiis cingeretis atque
 					oppressam teneretis; ut ipsum Cn. Pompeium, cuius praesidio saepissime res
 					publica contra acerrimos hostis et contra improbissimos civis <add>munita est,
@@ -1480,8 +1471,9 @@ Added to repository. Passes TEI parse.
 					vobis esset, venderetis; ut interea magistratus reliquos legibus omnibus soluti
 					sine metu iudiciorum, sine periculo petere possetis; ut nemo ad populum Romanum
 					vos adducere, nemo producere, nemo in senatum cogere, non consul coercere, non
-					tribunus plebis retinere posset. <milestone n="100" unit="section"/></p>
-				<p><reg>haec</reg> ego vos concupisse pro vestra stultitia atque intemperantia non
+					tribunus plebis retinere posset. </p></div>
+					<div type="textpart" subtype="section" n="100"><p>
+				<milestone unit="para"/><reg>haec</reg> ego vos concupisse pro vestra stultitia atque intemperantia non
 					miror, sperasse me consule adsequi posse demiror. <reg>nam</reg> cum omnium
 					consulum gravis in re <add>publica</add> custodienda cura ac diligentia debet
 					esse, tum eorum maxime qui non in cunabulis, sed in campo sunt consules facti.
@@ -1492,8 +1484,8 @@ Added to repository. Passes TEI parse.
 					deprecentur. <milestone n="37" unit="chapter"/><reg>qua</reg> re, modo mihi vita
 					suppetat, quam ego <add>conabor</add> ab istorum scelere insidiisque defendere,
 					polliceor hoc vobis, Quirites, bona fide: rem publicam vigilanti homini, non
-					timido, diligenti, <add>non ignavo,</add> commisistis. <milestone n="101"
-						unit="section"/><reg>ego</reg>
+					timido, diligenti, <add>non ignavo,</add> commisistis. </p></div>
+					<div type="textpart" subtype="section" n="101"><p><reg>ego</reg>
 					<add>sum</add> is consul qui contionem metuam, qui tribunum plebis perhorrescam,
 					qui saepe et sine causa tumultuer, qui timeam ne mihi in carcere habitandum sit,
 					si tribunus plebis duci iusserit? <reg>ego</reg> cum vestris armis armatus
@@ -1503,8 +1495,8 @@ Added to repository. Passes TEI parse.
 					praesidiis ab istis vinci aut opprimi possit. <reg>si</reg> antea timuissem,
 					tamen hac contione, hoc populo certe non vererer. <reg>quis</reg> enim umquam
 					tam secunda contione legem agrariam suasit quam ego dissuasi? si hoc dissuadere
-					est ac non disturbare atque pervertere. <milestone n="102" unit="section"
-						/><reg>ex</reg> quo intellegi, Quirites, potest nihil esse tam populare quam
+					est ac non disturbare atque pervertere. </p></div>
+					<div type="textpart" subtype="section" n="102"><p><reg>ex</reg> quo intellegi, Quirites, potest nihil esse tam populare quam
 					id quod ego vobis in hunc annum consul popularis adfero, pacem, tranquillitatem,
 					otium. <reg>quae</reg> nobis designatis timebatis, ea ne accidere possent
 					consilio meo ac ratione provisa sunt. <reg>non</reg> modo vos eritis in otio qui
@@ -1513,7 +1505,8 @@ Added to repository. Passes TEI parse.
 					ex tumultu atque ex dissensionibus civium comparari solent; vos, quorum gratia
 					in suffragiis consistit, libertas in legibus, ius in iudiciis et aequitate
 					magistratuum, res familiaris in pace, omni ratione otium retinere debetis.
-						<milestone n="103" unit="section"/><reg>nam</reg> si ei qui propter desidiam
+						</p></div>
+					<div type="textpart" subtype="section" n="103"><p><reg>nam</reg> si ei qui propter desidiam
 					in otio vivunt, tamen in sua turpi inertia capiunt voluptatem ex ipso otio, quam
 					vos fortunati eritis, si <add>in</add> hoc statu quem habetis vestra non ignavia
 					quaesitum, sed virtute partum, otium tenueritis, Quirites! <reg>ego</reg> ex
@@ -1525,27 +1518,28 @@ Added to repository. Passes TEI parse.
 					pro salute vestra praebuistis, talis reliquis temporibus rei publicae
 					praebeatis. <reg>promitto</reg>, recipio, polliceor hoc vobis atque confirmo, me
 					esse perfecturum ut iam tandem illi qui honori inviderunt meo tamen vos
-					universos in consule deligendo plurimum vidisse fateantur. </p>
+					universos in consule deligendo plurimum vidisse fateantur.</p></div>
 			</div>
-			<div type="Speech" n="3">
+			<div type="textpart" n="3" subtype="Speech">
 				<head>DE LEGE AGRARIA ORATIO TERTIA CONTRA P. SERVILIVM RVLLVM TR. PLEB. AD
 					POPVLVM</head>
 
-				<milestone n="1" unit="chapter"/>
-				<milestone n="1" unit="section"/>
-				<p>Commodius fecissent tribuni plebis, Quirites, si, quae apud vos de me deferunt,
+				<milestone n="1" unit="chapter"/><div type="textpart" subtype="section" n="1"><p>
+				<milestone unit="para"/>Commodius fecissent tribuni plebis, Quirites, si, quae apud vos de me deferunt,
 					ea coram potius me praesente dixissent; nam et aequitatem vestrae disceptationis
 					et consuetudinem superiorum et ius suae potestatis retinuissent. <reg>sed</reg>
 					quoniam adhuc praesens certamen contentionemque fugerunt, nunc, si videtur eis,
 					in meam contionem prodeant et, quo provocati a me venire noluerunt, revocati
-					saltem revertantur. <milestone n="2" unit="section"/><reg>video</reg> quosdam,
+					saltem revertantur. </p></div>
+					<div type="textpart" subtype="section" n="2"><p><reg>video</reg> quosdam,
 					Quirites, strepitu significare nescio quid et non eosdem voltus quos proxima mea
 					contione praebuerunt in hanc contionem mihi rettulisse. <reg>qua</reg> re a
 					vobis qui nihil de me credidistis ut eam voluntatem quam semper habuistis erga
 					me retineatis peto; a vobis autem quos leviter immutatos esse sentio parvam
 					exigui temporis usuram bonae de me opinionis postulo, ut eam, si quae dixero
 					vobis probabo, perpetuo retineatis; sin aliter, hoc ipso in loco depositam atque
-					abiectam relinquatis. <milestone n="3" unit="section"/><reg>completi</reg> sunt
+					abiectam relinquatis. </p></div>
+					<div type="textpart" subtype="section" n="3"><p><reg>completi</reg> sunt
 					animi auresque vestrae, Quirites, me gratificantem Septimiis, Turraniis
 					ceterisque Sullanarum adsignationum possessoribus agrariae legi et commodis
 					vestris obsistere. <reg>hoc</reg> si qui crediderunt, illud prius crediderint
@@ -1557,22 +1551,22 @@ Added to repository. Passes TEI parse.
 					consulere ut facile appareat eam legem non a vestrorum commodorum patrono, sed a
 					Valgi genero esse conscriptam, num quid est causae, Quirites, quin illa
 					criminatione qua in me absentem usus est non solum meam sed etiam vestram
-					diligentiam prudentiamque despexerit? <milestone n="2" unit="chapter"
-						/><milestone n="4" unit="section"/></p>
-				<p><reg>caput</reg> est legis <num>xl</num> de quo ego consulto, Quirites, neque
+					diligentiam prudentiamque despexerit?</p></div>
+					<milestone n="2" unit="chapter"/><div type="textpart" subtype="section" n="4"><p>
+				<milestone unit="para"/><reg>caput</reg> est legis <num>xl</num> de quo ego consulto, Quirites, neque
 					apud vos ante feci mentionem, ne aut refricare obductam iam rei publicae
 					cicatricem viderer aut aliquid alienissimo tempore novae dissensionis commovere,
 					neque vero nunc ideo disputabo quod hunc statum rei publicae non magno opere
 					defendendum putem, praesertim qui oti et concordiae patronum me in hunc annum
 					populo Romano professus sim, sed ut doceam Rullum posthac in eis saltem tacere
-					rebus in quibus de se et de suis factis taceri velit. <milestone n="5"
-						unit="section"/><reg>omnium</reg> legum iniquissimam dissimillimamque legis
+					rebus in quibus de se et de suis factis taceri velit. </p></div>
+					<div type="textpart" subtype="section" n="5"><p><reg>omnium</reg> legum iniquissimam dissimillimamque legis
 					esse arbitror eam quam L. Flaccus interrex de Sulla tulit, ut omnia quaecumque
 					ille fecisset essent rata. <reg>nam</reg> cum ceteris in civitatibus tyrannis
 					institutis leges omnes exstinguantur atque tollantur, hic rei publicae tyrannum
 					lege constituit. <reg>est</reg> invidiosa lex, sicuti dixi, verum tamen habet
-					excusationem; non enim videtur hominis lex esse, sed temporis. <milestone n="6"
-						unit="section"/><reg>quid</reg> si est haec multo impudentior?
+					excusationem; non enim videtur hominis lex esse, sed temporis. </p></div>
+					<div type="textpart" subtype="section" n="6"><p><reg>quid</reg> si est haec multo impudentior?
 						<reg>nam</reg> Valeria lege Corneliisque legibus eripitur civi,
 						<add>civi</add> datur, coniungitur impudens gratificatio cum acerba iniuria;
 					sed tamen imbibit illis legibus spem non nullam cui ademptum est, aliquem
@@ -1582,7 +1576,8 @@ Added to repository. Passes TEI parse.
 						<reg>si</reg> enim Sullam dictatorem nominasset, perspicuum fore et
 					invidiosum arbitratus est. <reg>sed</reg> quem vestrum tam tardo ingenio fore
 					putavit cui post eos consules Sullam dictatorem fuisse in mentem venire non
-					posset? <milestone n="7" unit="section"/><reg>quid</reg> ergo ait Marianus
+					posset? </p></div>
+					<div type="textpart" subtype="section" n="7"><p><reg>quid</reg> ergo ait Marianus
 					tribunus plebis, qui nos Sullanos in invidiam rapit? <quote>Qvi post Marivm et
 						Carbonem consvles agri, aedificia, lacvs, stagna, loca,
 					possessiones</quote>—caelum et mare praetermisit, cetera complexus
@@ -1591,8 +1586,8 @@ Added to repository. Passes TEI parse.
 					concessit praeter Sullam?—'<quote>ea omnia eo ivre sint</quote>'—quo iure?
 					labefactat videlicet nescio quid. <reg>nimium</reg> acer, nimium vehemens
 					tribunus plebis Sullana rescindit—'<quote>vt qvae optimo ivre privata
-						svnt.</quote>' <reg>etiamne</reg> meliore quam paterna et avita? <milestone
-						n="8" unit="section"/><reg>meliore</reg>. <reg>at</reg> hoc Valeria lex non
+						svnt.</quote>' <reg>etiamne</reg> meliore quam paterna et avita? </p></div>
+					<div type="textpart" subtype="section" n="8"><p><reg>meliore</reg>. <reg>at</reg> hoc Valeria lex non
 					dicit, Corneliae leges non sanciunt, Sulla ipse non postulat. <reg>si</reg> isti
 					agri partem aliquam iuris, aliquam similitudinem propriae possessionis, aliquam
 					spem diuturnitatis attingunt, nemo est tam impudens istorum quin agi secum
@@ -1600,24 +1595,25 @@ Added to repository. Passes TEI parse.
 					habent ut habeant? <reg>quis</reg> vetat? Vt privatum sit? <reg>ita</reg> latum
 					est. Vt meliore <add>iure</add> tui soceri fundus Hirpinus sit sive ager
 					Hirpinus—totum enim possidet—quam meus paternus avitusque fundus Arpinas?
-						<milestone n="9" unit="section"/><reg>id</reg> enim caves. <reg>optimo</reg>
+						</p></div>
+					<div type="textpart" subtype="section" n="9"><p><reg>id</reg> enim caves. <reg>optimo</reg>
 					enim iure ea sunt profecto praedia quae optima condicione sunt. Libera meliore
 					iure sunt quam serva; capite hoc omnia quae serviebant non servient.
 						<reg>soluta</reg> meliore in causa sunt quam obligata; eodem capite
 					subsignata omnia, si modo Sullana sunt, liberantur. <reg>immunia</reg>
 					commodiore condicione sunt quam illa quae pensitant; ego Tusculanis pro aqua
 					Crabra vectigal pendam, quia mancipio fundum accepi; si a Sulla mihi datus
-					esset, Rulli lege non penderem. <milestone n="3" unit="chapter"/><milestone
-						n="10" unit="section"/><reg>video</reg> vos, Quirites, sicuti res ipsa
-					cogit, commoveri vel legis vel orationis impudentia, legis quae ius melius
-					Sullanis praediis constituat quam paternis, orationis quae eius modi
+					esset, Rulli lege non penderem.</p></div>
+					<milestone n="3" unit="chapter"/><div type="textpart" subtype="section" n="10"><p>
+					<reg>video</reg> vos, Quirites, sicuti res ipsa	cogit, commoveri vel legis vel orationis impudentia, 
+					legis quae ius melius Sullanis praediis constituat quam paternis, orationis quae eius modi
 						<add>in</add> causa insimulare quemquam audeat rationes Sullae nimium
 					vehementer defendere. <reg>at</reg> si illa solum sanciret quae a Sulla essent
 					data, tacerem, modo ipse se Sullanum esse confiteretur. <reg>sed</reg> non modo
 					illis cavet verum etiam aliud quoddam genus donationis inducit; et is qui a me
 					Sullanas possessiones defendi criminatur non eas solum sancit verum ipse novas
-					adsignationes instituit et repentinus Sulla nobis exoritur. <milestone n="11"
-						unit="section"/><reg>nam</reg> attendite quantas concessiones agrorum hic
+					adsignationes instituit et repentinus Sulla nobis exoritur. </p></div>
+					<div type="textpart" subtype="section" n="11"><p><reg>nam</reg> attendite quantas concessiones agrorum hic
 					noster obiurgator uno verbo facere conetur: '<quote>Qvae data, donata, concessa,
 						vendita.</quote>' <reg>patior</reg>, audio. <reg>quid</reg> deinde?
 						'<quote>possessa.</quote>' <reg>hoc</reg> tribunus plebis promulgare ausus
@@ -1625,7 +1621,8 @@ Added to repository. Passes TEI parse.
 					teneret <add>quo</add> quod optimo privatum <add>est</add>? <reg>etiamne</reg>
 					si vi deiecit, etiamne si clam, si precario venit in possessionem?
 						<reg>ergo</reg> hac lege ius civile, causae possessionum, praetorum
-					interdicta tollentur. <milestone n="12" unit="section"/><reg>non</reg> mediocris
+					interdicta tollentur. </p></div>
+					<div type="textpart" subtype="section" n="12"><p><reg>non</reg> mediocris
 					res neque parvum sub hoc verbo furtum, Quirites, latet. <reg>sunt</reg> enim
 					multi agri lege Cornelia publicati nec cuiquam adsignati neque venditi qui a
 					paucis hominibus impudentissime possidentur. <reg>his</reg> cavet, hos defendit,
@@ -1633,7 +1630,8 @@ Added to repository. Passes TEI parse.
 					adsignare volt, sed eis condonare qui possident. <reg>causam</reg> quaero cur ea
 					quae maiores vobis in Italia, Sicilia, Africa, duabus Hispaniis, Macedonia, Asia
 					reliquerunt venire patiamini, cum ea quae vestra sunt condonari possessoribus
-					eadem lege videatis. <milestone n="13" unit="section"/><reg>iam</reg> totam
+					eadem lege videatis. </p></div>
+					<div type="textpart" subtype="section" n="13"><p><reg>iam</reg> totam
 					legem intellegetis, cum ad paucorum dominationem scripta sit, tum ad Sullanae
 					adsignationis rationes esse accommodatissimam. <reg>nam</reg> socer huius vir
 					multum bonus est; neque ego nunc de illius bonitate, sed de generi impudentia
@@ -1641,31 +1639,33 @@ Added to repository. Passes TEI parse.
 					retinere volt neque se Sullanum esse dissimulat; hic, ut ipse habeat quod non
 					habet, quae dubia sunt per vos sancire volt et, cum plus appetat quam ipse
 					Sulla, quibus rebus resisto, Sullanas res defendere <add>me</add> criminatur.
-						<milestone n="14" unit="section"/>'<reg>habet</reg> agros non nullos,'
+						</p></div>
+					<div type="textpart" subtype="section" n="14"><p>'<reg>habet</reg> agros non nullos,'
 					inquit, 'socer meus desertos atque longinquos; vendet eos mea lege quanti volet.
 						<reg>habet</reg> incertos ac nullo iure possessos; confirmabuntur optimo
 					iure. <reg>habet</reg> publicos; reddam privatos. <reg>denique</reg> eos fundos
 					quos in agro Casinati optimos fructuosissimosque continuavit, cum usque eo
 					vicinos proscriberet quoad angulos conformando ex multis praediis unam fundi
 					regionem normamque perfecerit, quos nunc cum aliquo metu tenet, sine ulla cura
-					possidebit.' <milestone n="15" unit="section"/></p>
-				<p><reg>et</reg> quoniam qua de causa et quorum causa ille hoc promulgarit ostendi,
+					possidebit.' </p></div>
+					<div type="textpart" subtype="section" n="15"><p>
+				<milestone unit="para"/><reg>et</reg> quoniam qua de causa et quorum causa ille hoc promulgarit ostendi,
 					doceat ipse nunc ego quem possessorem defendam, cum agrariae legi resisto.
 						<reg>silvam</reg> Scantiam vendis; populus Romanus possidet; defendo.
 					Campanum agrum dividis; vos estis in possessione; non cedo. <reg>deinde</reg>
 					Italiae, Siciliae ceterarumque provinciarum possessiones venalis ac proscriptas
 					hac lege video; vestra sunt praedia, vestrae possessiones; resistam atque
 					repugnabo neque patiar a quoquam populum Romanum de suis possessionibus me
-					consule demoveri, praesertim, Quirites, cum vobis nihil quaeratur. <milestone
-						n="16" unit="section"/><reg>hoc</reg> enim vos <add>in</add> errore versari
+					consule demoveri, praesertim, Quirites, cum vobis nihil quaeratur. </p></div>
+					<div type="textpart" subtype="section" n="16"><p><reg>hoc</reg> enim vos <add>in</add> errore versari
 					diutius non oportet. <reg>num</reg> quis vestrum ad vim, ad facinus, ad caedem
 					accommodatus est? <reg>nemo</reg>. <reg>atqui</reg> ei generi hominum, mihi
 					credite, Campanus ager et praeclara illa Capua servatur; exercitus contra vos,
 					contra libertatem vestram, contra Cn. Pompeium constituitur; contra hanc urbem
 					Capua, contra vos manus hominum audacissimorum, contra Cn. Pompeium <num>x</num>
 					duces comparantur. <reg>veniant</reg> et coram, quoniam me in vestram contionem
-					vobis flagitantibus evocaverunt, disserant. </p>
+					vobis flagitantibus evocaverunt, disserant.</p></div>
 			</div>
-		</body>
-	</text>
+		</div>
+	</body></text>
 </TEI>
