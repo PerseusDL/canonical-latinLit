@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
     <fileDesc>
@@ -21,8 +25,6 @@
         <pubPlace>Medford, MA</pubPlace>
         <authority>Perseus Project</authority>
       </publicationStmt>
-
-
 
       <sourceDesc>
         <biblStruct>
@@ -51,82 +53,78 @@
         <refState n="chunk" unit="chapter"/>
         <refState unit="section"/>
       </refsDecl>
+      <refsDecl n="CTS">
+        <cRefPattern n="section" matchPattern="(\d+).(\d+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']//tei:seg[@n='$2'])">
+          <p>Extracts section and chapter from the text</p>
+        </cRefPattern>
+        <cRefPattern n="chapter" matchPattern="(\d+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+          <p>Extracts chapter from the text</p>
+        </cRefPattern>
+      </refsDecl>
     </encodingDesc>
-
+    
     <profileDesc>
       <langUsage>
-        <language ident="la">Latin</language>
-        <language ident="en">English</language>
-        <language ident="greek">Greek</language>
-        <language ident="de">German</language>
-        <language ident="fr">French</language>
-        <language ident="it">Italian</language>
+        <language ident="lat">Latin</language>
       </langUsage>
     </profileDesc>
-
+    
     <revisionDesc>
-      <!--
-<change><date>10-Jun-04</date>
-<respStmt><name>AEM</name><resp>markup</resp></respStmt>
-<item>initial markup
-</item>
-</change>
-<change><date>July 2014</date>
-    <respStmt><name>Stella Dee</name><resp>ed.</resp></respStmt>
-    <item>split composite text and converted to unicode</item>
-      </change>-->
+      <change when="2004-06-01" who="AEM">Initial markup</change>
       <change when="2014-08-01" who="Stella Dee">edited markup</change>
+      <change when="2014-07-01" who="Stella Dee">split composite text and converted to unicode</change>
+      <change when="2016-11-10" who="Thibault Clérice">CapiTainS Guidelines</change>
     </revisionDesc>
-
+    
   </teiHeader>
-  <text xml:lang="la">
+  <text xml:lang="lat">
     <body>
-      <milestone n="1" unit="chapter"/>
-      <milestone n="1" unit="section"/>
-      <p>Hi fere fuerunt Graecae gentis duces, qui memoria digni videantur, praeter reges: namque
-        eos attingere noluimus, quod omnium res gestae separatim sunt relatae. <milestone n="2"
-          unit="section"/> neque tamen ii admodum sunt multi. Lacedaemonius autem Agesilaus nomine,
+      <div type="edition" n="urn:cts:latinLit:phi0588.abo021.perseus-lat1" xml:lang="lat">
+      <div type="textpart" subtype="chapter" n="1">
+      <p>
+      <seg type="section" n="1">Hi fere fuerunt Graecae gentis duces, qui memoria digni videantur, praeter reges: namque
+        eos attingere noluimus, quod omnium res gestae separatim sunt relatae. </seg> 
+          <seg type="section" n="2"> neque tamen ii admodum sunt multi. Lacedaemonius autem Agesilaus nomine,
         non potestate fuit rex, sicut ceteri Spartani. ex iis vero, qui dominatum imperio tenuerunt,
         excellentissimi fuerunt, ut nos iudicamus, Persarum Cyrus et Darius, Hystaspi filius, quorum
         uterque privatus virtute regnum est adeptus. prior horum apud Massagetas in proelio cecidit,
-        Darius senectute diem obiit supremum. <milestone n="3" unit="section"/> tres sunt praeterea
+        Darius senectute diem obiit supremum. </seg>  <seg type="section" n="3"> tres sunt praeterea
         eiusdem gentis: Xerxes et duo Artaxerxae, Macrochir cognomine et Mnemon. Xerxi maxime est
         illustre, quod maximis post hominum memoriam exercitibus terra marique bellum intulit
-        Graeciae. <milestone n="4" unit="section"/> at Macrochir praecipuam habet laudem amplissimae
+        Graeciae. </seg>  <seg type="section" n="4"> at Macrochir praecipuam habet laudem amplissimae
         pulcherrimaeque corporis formae, quam incredibili ornavit virtute belli: namque illo Perses
         nemo manu fuit fortior. Mnemon autem iustitiae fama floruit. nam cum matris suae scelere
-        amisisset uxorem, tantum indulsit dolori, ut eum pietas vinceret. <milestone n="5"
-          unit="section"/> ex his duo eodem nomine morbo naturae debitum reddiderunt, tertius ab
-        Artabano praefecto ferro interemptus est. <milestone n="2" unit="chapter"/>
-        <milestone n="1" unit="section"/></p>
-      <p>Ex Macedonum autem gente duo multo ceteros antecesserunt rerum gestarum gloria: Philippus,
+        amisisset uxorem, tantum indulsit dolori, ut eum pietas vinceret. </seg> 
+          <seg type="section" n="5"> ex his duo eodem nomine morbo naturae debitum reddiderunt, tertius ab
+        Artabano praefecto ferro interemptus est. </seg></p></div>
+        <div type="textpart" subtype="chapter" n="2"><p><seg type="section" n="1">Ex Macedonum autem gente duo multo ceteros antecesserunt rerum gestarum gloria: Philippus,
         Amyntae filius, et Alexander Magnus. horum alter Babylone morbo consumptus est, Philippus
-        Aegiis a Pausania, cum spectatum ludos iret, iuxta theatrum occisus est. <milestone n="2"
-          unit="section"/> unus Epirotes, Pyrrhus, qui cum populo Romano bellavit. is cum Argos
+        Aegiis a Pausania, cum spectatum ludos iret, iuxta theatrum occisus est. </seg> 
+          <seg type="section" n="2"> unus Epirotes, Pyrrhus, qui cum populo Romano bellavit. is cum Argos
         oppidum oppugnaret in Peloponneso, lapide ictus interiit. unus item Siculus, Dionysius
         prior. nam et manu fortis et belli peritus fuit et, id quod in tyranno non facile reperitur,
         minime libidinosus, non luxuriosus, non avarus, nullius denique rei cupidus nisi singularis
         perpetuique imperii ob eamque rem crudelis: nam dum id studuit munire, nullius pepercit
-        vitae, quem eius insidiatorem putaret. <milestone n="3" unit="section"/> hic cum virtute
+        vitae, quem eius insidiatorem putaret. </seg>  <seg type="section" n="3"> hic cum virtute
         tyrannidem sibi peperisset, magna retinuit felicitate: maior enim annos sexaginta natus
         decessit florente regno. neque in tam multis annis cuiusquam ex sua stirpe funus vidit, cum
-        ex tribus uxoribus liberos procreasset multique ei nati essent nepotes. <milestone n="3"
-          unit="chapter"/>
-        <milestone n="1" unit="section"/></p>
-      <p>Fuerunt praeterea magni reges ex amicis Alexandri Magni, qui post obitum eius imperia
+        ex tribus uxoribus liberos procreasset multique ei nati essent nepotes. </seg></p></div>
+        <div type="textpart" subtype="chapter" n="3"><p><seg type="section" n="1">Fuerunt praeterea magni reges ex amicis Alexandri Magni, qui post obitum eius imperia
         ceperunt, in eis Antigonus et huius filius Demetrius, Lysimachus, Seleucus, Ptolemaeus.
-          <milestone n="2" unit="section"/> ex his Antigonus in proelio, cum adversus Seleucum et
+          </seg>  <seg type="section" n="2"> ex his Antigonus in proelio, cum adversus Seleucum et
         Lysimachum dimicaret, occisus est. pari leto affectus est Lysimachus ab Seleuco: namque
-        societate dissoluta bellum inter se gesserunt. <milestone n="3" unit="section"/> at
+        societate dissoluta bellum inter se gesserunt. </seg>  <seg type="section" n="3"> at
         Demetrius, cum filiam suam Seleuco in matrimonium dedisset neque eo magis fida inter eos
-        amicitia manere potuisset, captus bello in custodia socer generi periit a morbo. <milestone
-          n="4" unit="section"/> neque ita multo post Seleucus a Ptolemaeo Cerauno dolo interfectus
+        amicitia manere potuisset, captus bello in custodia socer generi periit a morbo. </seg>
+           <seg type="section" n="4"> neque ita multo post Seleucus a Ptolemaeo Cerauno dolo interfectus
         est, quem ille a patre expulsum Alexandrea alienarum opum indigentem receperat. ipse autem
         Ptolemaeus, cum vivus filio regnum tradidisset, ab illo eodem vita privatus dicitur.
-          <milestone n="5" unit="section"/></p>
-      <p>De quibus quoniam satis dictum putamus, non incommodum videtur non praeterire Hamilcarem et
+          </seg>  </p>
+      <p><seg type="section" n="5">De quibus quoniam satis dictum putamus, non incommodum videtur non praeterire Hamilcarem et
         Hannibalem, quos et animi magnitudine et calliditate omnes in Africa natos praestitisse
-        constat. </p>
+        constat. </seg></p>
+      </div>
+    </div>
     </body>
   </text>
 </TEI>
