@@ -1,6 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
-  schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
-  schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.19/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
     <fileDesc>
       <titleStmt>
@@ -47,35 +50,37 @@
     </fileDesc>
 
     <encodingDesc>
-      <refsDecl doctype="TEI.2">
-        <step delim="." refunit="book" from="DESCENDANT (1 DIV1 N %1)"/>
-        <step delim="." refunit="poem" from="DESCENDANT (1 DIV2 N %2)" n="chunk"/>
-        <step refunit="line" from="DESCENDANT (1 L N %3)"/>
+      <refsDecl n="CTS">
+        <cRefPattern n="line" matchPattern="(\d+).(\d+).(\d+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']//tei:l[@n='$3'])">
+          <p>This pattern extracts book</p>
+        </cRefPattern>
+        <cRefPattern n="poem" matchPattern="(\d+).(\d+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+          <p>This pattern extracts book</p>
+        </cRefPattern>
+        <cRefPattern n="book" matchPattern="(\d+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+          <p>This pattern extracts book</p>
+        </cRefPattern>
       </refsDecl>
     </encodingDesc>
 
     <profileDesc>
       <langUsage>
-        <language id="la">Latin
-      </language></langUsage>
+        <language ident="lat">Latin</language>
+      </langUsage>
     </profileDesc>
     <revisionDesc>
-      <change><date>12/02/98</date>
-        <respStmt><name>SI</name><resp>ed.</resp></respStmt>
-        <item>Text scanned, proofread and tagged by SI. </item></change>
-      <change><date>12/08/98</date><respStmt><name>wm</name><resp>ed.</resp></respStmt>
-      <item>Text of Prop. 1 proofread and tagged, added tei header which
-      needs revision; changed landando 1.4.1 to laudando</item></change>
-      <change><date>19-Jun-00</date><respStmt><name>AEM</name><resp>ed.</resp></respStmt>
-      <item>
-
-</item></change>
+      <change who="SI" when="1998-12-02">Text scanned, proofread and tagged by SI.</change>
+      <change who="SI" when="1998-12-08">Text of Prop. 1 proofread and tagged, added tei header which
+        needs revision; changed landando 1.4.1 to laudando</change>
+      <change who="AEM" when="2000-06-19">Unknown</change>
+      <change who="Thibault Clérice" when="2016-11-14">Epidoc, CapiTainS and line numbering</change>
     </revisionDesc>
   </teiHeader>
-<text lang="la">
+<text>
 <body>
-<div1 type="book" n="1">
-<div2 type="poem" n="1">
+  <div type="edition" n="urn:cts:latinLit:phi0620.phi001.perseus-lat2" xml:lang="lat">
+<div type="textpart" subtype="book" n="1">
+<div type="textpart" subtype="poem" n="1">
 <l n="1">Cynthia prima suis miserum me cepit ocellis,</l>
 <l n="2">contactum nullis ante cupidinibus.</l>
 <l n="3">tum mihi constantis deiecit lumina fastus</l>
@@ -114,9 +119,9 @@
 <l n="36">cura, neque assueto mutet amore torum.</l>
 <l n="37">quod si quis monitis tardas adverterit aures,</l>
 <l n="38">heu referet quanto verba dolore mea!</l>
-</div2>
+</div>
 
-<div2 type="poem" n="2">
+<div type="textpart" subtype="poem" n="2">
 <l n="1">Quid iuvat ornato procedere, vita, capillo</l>
 <l n="2">et tenuis Coa veste movere sinus,</l>
 <l n="3">aut quid Orontea crines perfundere murra,</l>
@@ -148,9 +153,9 @@
 <l n="29">unica nec desit iucundis gratia verbis,</l>
 <l n="30">omnia  quaeque Venus, quaeque Minerva probat.</l>
 <l n="31">his tu semper eris nostrae gratissima vitae,</l>
-</div2>
+</div>
 
-<div2 type="poem" n="3">
+<div type="textpart" subtype="poem" n="3">
 <l n="1">Qualis Thesea iacuit cedente carina</l>
 <l n="2">languida desertis Cnosia litoribus;</l>
 <l n="3">qualis et accubuit primo Cepheia somno</l>
@@ -197,9 +202,9 @@
 <l n="44">externo longas saepe in amore moras:</l>
 <l n="45">dum  me iucundis lassam Sopor impulit alis.</l>
 <l n="46">illa fuit lacrimis ultima cura meis.'</l>
-</div2>
+</div>
 
-<div2 type="poem" n="4">
+<div type="textpart" subtype="poem" n="4">
 <l n="1">Quid mihi tam multas laudando, Basse, puellas</l>
 <l n="2">mutatum domina cogis abire mea?</l>
 <l n="3">quid me non pateris vitae quodcumque sequetur</l>
@@ -228,9 +233,9 @@
 <l n="26">quam sibi cum rapto cessat amore decus,</l>
 <l n="27">praecipue nostro. maneat sic semper, adoro,</l>
 <l n="28">nec quicquam ex illa quod querar inveniam!</l>
-</div2>
+</div>
 
-<div2 type="poem" n="5">
+<div type="textpart" subtype="poem" n="5">
 <l n="1">invide,  tu tandem voces compesce molestas</l>
 <l n="2">et  sine nos cursu, quo sumus, ire pares!</l>
 <l n="3">Quid tibi vis, insane? meae sentire furores?</l>
@@ -263,9 +268,9 @@
 <l n="30">alter  in alterius mutua flere sinu.</l>
 <l n="31">quare, quid possit mea Cynthia, desine, Galle,</l>
 <l n="32">quaerere: non impune illa rogata venit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="6">
+<div type="textpart" subtype="poem" n="6">
 <l n="1">Non ego nunc Hadriae vereor mare noscere tecum,</l>
 <l n="2">Tulle, neque Aegaeo ducere vela salo,</l>
 <l n="3">cum quo Rhipaeos possim conscendere montes</l>
@@ -302,9 +307,9 @@
 <l n="34">ibis et accepti pars eris imperii:</l>
 <l n="35">tum  tibi si qua mei veniet non immemor hora,</l>
 <l n="36">vivere me duro sidere certus eris.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="7">
+<div type="textpart" subtype="poem" n="7">
 <l n="1">Dum tibi Cadmeae dicuntur, Pontice, Thebae</l>
 <l n="2">armaque fraternae tristia militiae,</l>
 <l n="3">atque, ita sim felix, primo contendis Homero</l>
@@ -331,9 +336,9 @@
 <l n="24"><del>'ardoris nostri magne poeta iaces.'</del></l>
 <l n="25">tu  cave nostra tuo contemnas carmina fastu:</l>
 <l n="26">saepe venit magno faenore tardus Amor.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="8a">
+<div type="textpart" subtype="poem" n="8a">
 <l n="1">Tune igitur demens, nec te mea cura moratur?</l>
 <l n="2">an tibi sum gelida vilior Illyria?</l>
 <l n="3">et tibi iam tanti, quicumquest, iste videtur,</l>
@@ -360,9 +365,9 @@
 <l n="24">'dicite, quo portu clausa puella meast?',</l>
 <l n="25">et  dicam 'licet Artaciis considat in oris,</l>
 <l n="26">et licet Hylaeis, illa futura meast.'</l>
-</div2>
+</div>
 
-<div2 type="poem" n="8b">
+<div type="textpart" subtype="poem" n="8b">
 <l n="27">Hic erit! hic iurata manet! rumpantur iniqui!</l>
 <l n="28">vicimus: assiduas non tulit illa preces.</l>
 <l n="29">falsa licet cupidus deponat gaudia livor:</l>
@@ -383,9 +388,9 @@
 <l n="44">sive dies seu nox venerit, illa meast!</l>
 <l n="45">nec  mihi rivalis certos subducet amores:</l>
 <l n="46">ista meam norit gloria canitiem.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="9">
+<div type="textpart" subtype="poem" n="9">
 <l n="1">Dicebam tibi venturos, irrisor, amores,</l>
 <l n="2">nec tibi perpetuo libera verba fore:</l>
 <l n="3">ecce iaces supplexque venis ad iura puellae,</l>
@@ -420,9 +425,9 @@
 <l n="32">nedum tu possis, spiritus iste levis.</l>
 <l n="33">quare, si pudor est, quam primum errata fatere:</l>
 <l n="34">dicere quo pereas saepe in amore levat.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="10">
+<div type="textpart" subtype="poem" n="10">
 <l n="1">O iucunda quies, primo cum testis amori</l>
 <l n="2">affueram vestris conscius in lacrimis!</l>
 <l n="3">o noctem meminisse mihi iucunda voluptas,</l>
@@ -453,9 +458,9 @@
 <l n="28">hoc magis effectu saepe fruare bono.</l>
 <l n="29">is poterit felix una remanere puella,</l>
 <l n="30">qui numquam vacuo pectore liber erit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="11">
+<div type="textpart" subtype="poem" n="11">
 <l n="1">Ecquid te mediis cessantem, Cynthia, Baiis,</l>
 <l n="2">qua iacet Herculeis semita litoribus,</l>
 <l n="3">et modo Thesproti mirantem subdita regno</l>
@@ -486,9 +491,9 @@
 <l n="28">multis ista dabunt litora discidium,</l>
 <l n="29">litora quae fuerunt castis inimica puellis:</l>
 <l n="30">ah pereant Baiae, crimen amoris, aquae!</l>
-</div2>
+</div>
 
-<div2 type="poem" n="12">
+<div type="textpart" subtype="poem" n="12">
 <l n="1">Quid mihi desidiae non cessas fingere crimen,</l>
 <l n="2">quod faciat nobis Cynthia, Roma, moram?</l>
 <l n="3">tam multa illa meo divisast milia lecto,</l>
@@ -509,9 +514,9 @@
 <l n="18">(sunt quoque translato gaudia servitio).</l>
 <l n="19">mi neque amare aliam neque ab hac desistere fas est:</l>
 <l n="20">Cynthia prima fuit, Cynthia finis erit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="13">
+<div type="textpart" subtype="poem" n="13">
 <l n="1">Tu, quod saepe soles, nostro laetabere casu,</l>
 <l n="2">Galle, quod abrepto s amore vacem.</l>
 <l n="3">at non ipse tuas imitabor, perfide, voces:</l>
@@ -548,9 +553,9 @@
 <l n="34">utere: non alio limine dignus eras.</l>
 <l n="35">qui  tibi sit felix, quoniam novus incidit, error;</l>
 <l n="36">et quotcumque voles, una sit ista tibi.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="14">
+<div type="textpart" subtype="poem" n="14">
 <l n="1">Tu licet abiectus Tiberina molliter unda</l>
 <l n="2">Lesbia Mentoreo vina bibas opere,</l>
 <l n="3">et modo tam celeris mireris currere lintres</l>
@@ -575,9 +580,9 @@
 <l n="22">quid relevant variis serica textilibus?</l>
 <l n="23">quae mihi dum placata aderit, non ulla verebor</l>
 <l n="24">regna vel Alcinoi munera despicere.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="15">
+<div type="textpart" subtype="poem" n="15">
 <l n="1">Saepe ego multa tuae levitatis dura timebam,</l>
 <l n="2">hac tamen excepta, Cynthia, perfidia.</l>
 <l n="3">aspice me quanto rapiat fortuna periclo!</l>
@@ -620,9 +625,9 @@
 <l n="40">et  fletum invitis ducere luminibus?</l>
 <l n="41">quis ego nunc pereo, similis moniturus amantes</l>
 <l n="42">non ullis tutum credere blanditiis.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="16">
+<div type="textpart" subtype="poem" n="16">
 <l n="1">Quae fueram magnis olim patefacta triumphis,</l>
 <l n="2">ianua Patriciae vota Pudicitiae,</l>
 <l n="3">cuius inaurati celebrarunt limina currus,</l>
@@ -671,9 +676,9 @@
 <l n="46">et matutinis obstrepit alitibus.</l>
 <l n="47">sic ego nunc dominae vitiis et semper amantis</l>
 <l n="48">fletibus alterna differor invidia.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="17">
+<div type="textpart" subtype="poem" n="17">
 <l n="1">Et merito, quoniam potui fugisse puellam,</l>
 <l n="2">nunc ego desertas alloquor alcyonas.</l>
 <l n="3">nec mihi Cassiope salvo visura carinam,</l>
@@ -702,9 +707,9 @@
 <l n="26">candida felici solvite vela choro:</l>
 <l n="27">si quando vestras labens Amor attigit undas,</l>
 <l n="28">mansuetis socio parcite litoribus.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="18">
+<div type="textpart" subtype="poem" n="18">
 <l n="1">Haec certe deserta loca et taciturna querenti,</l>
 <l n="2">et vacuum Zephyri possidet aura nemus.</l>
 <l n="3">hic licet occultos proferre impune dolores,</l>
@@ -737,9 +742,9 @@
 <l n="30">cogor  ad argutas dicere s aves.</l>
 <l n="31">sed qualiscumque's, resonent mihi 'Cynthia' silvae,</l>
 <l n="32">nec deserta tuo nomine saxa vacent.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="19">
+<div type="textpart" subtype="poem" n="19">
 <l n="1">Non ego nunc tristis vereor, mea Cynthia, Manes,</l>
 <l n="2">nec moror extremo debita fata rogo;</l>
 <l n="3">sed ne forte tuo careat mihi funus amore,</l>
@@ -766,9 +771,9 @@
 <l n="24">flectitur assiduis certa puella minis.</l>
 <l n="25">quare,  dum licet, inter nos laetemur amantes:</l>
 <l n="26">non satis est ullo tempore longus amor.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="20">
+<div type="textpart" subtype="poem" n="20">
 <l n="1">Hoc pro continuo te, Galle, monemus amore,</l>
 <l n="2">quod tibi ne vacuo defluat ex animo:</l>
 <l n="3">saepe imprudenti fortuna occurrit amanti:</l>
@@ -821,9 +826,9 @@
 <l n="50">nomen  ab extremis montibus aura refert.</l>
 <l n="51">his, o Galle, tuos monitus servabis amores,</l>
 <l n="52">formosum ni vis perdere rursus Hylan.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="21">
+<div type="textpart" subtype="poem" n="21">
 <l n="1">Tu, qui consortem properas evadere casum,</l>
 <l n="2">miles ab Etruscis saucius aggeribus,</l>
 <l n="3">quid nostro gemitu turgentia lumina torques?</l>
@@ -834,9 +839,9 @@
 <l n="8">effugere ignotas non potuisse manus;</l>
 <l n="9">et quaecumque super dispersa invenerit ossa</l>
 <l n="10">montibus Etruscis, haec sciat esse mea.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="22">
+<div type="textpart" subtype="poem" n="22">
 <l n="1">Qualis et unde genus, qui sint mihi, Tulle, Penates,</l>
 <l n="2">quaeris pro nostra semper amicitia.</l>
 <l n="3">si Perusina tibi patriae sunt nota sepulcra,</l>
@@ -847,10 +852,10 @@
 <l n="8">tu nullo miseri contegis ossa solo—</l>
 <l n="9">proxima suppositos contingens Umbria campos</l>
 <l n="10">me genuit terris fertilis uberibus.</l>
-</div2>
-</div1>
-<div1 type="book" n="2">
-<div2 type="poem" n="1">
+</div>
+</div>
+<div type="textpart" subtype="book" n="2">
+<div type="textpart" subtype="poem" n="1">
 <l n="1">Quaeritis, unde mihi totiens scribantur amores,</l>
 <l n="2">unde meus veniat mollis in ore liber.</l>
 <l n="3">non haec Calliope, non haec mihi cantat Apollo.</l>
@@ -930,9 +935,9 @@
 <l n="77">esseda caelatis siste Britanna iugis,</l>
 <l n="78">taliaque illacrimans mutae iace verba favillae:</l>
 <l n="79">'Huic misero fatum dura puella fuit.'</l>
-</div2>
+</div>
 
-<div2 type="poem" n="2">
+<div type="textpart" subtype="poem" n="2">
 <l n="1">Liber eram et vacuo meditabar vivere lecto;</l>
 <l n="2">at me composita pace fefellit Amor.</l>
 <l n="3">cur haec in terris facies humana moratur?</l>
@@ -949,9 +954,9 @@
 <l n="14">Idaeis tunicas ponere verticibus!</l>
 <l n="15">hanc utinam faciem nolit mutare senectus,</l>
 <l n="16">etsi Cumaeae saecula vatis aget!</l>
-</div2>
+</div>
 
-<div2 type="poem" n="3">
+<div type="textpart" subtype="poem" n="3">
 <l n="1">'Qui nullum tibi dicebas iam posse nocere,</l>
 <l n="2">haesisti, cecidit spiritus ille tuus!</l>
 <l n="3">vix unum potes, infelix, requiescere mensem,</l>
@@ -1006,9 +1011,9 @@
 <l n="52">cognitus Iphicli surripuisse boves;</l>
 <l n="53">quem non lucra, magis Pero formosa coegit,</l>
 <l n="54">mox Amythaonia nupta futura domo.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="4">
+<div type="textpart" subtype="poem" n="4">
 <l n="1">Multa prius dominae delicta queraris oportet,</l>
 <l n="2">saepe roges aliquid, saepe repulsus eas,</l>
 <l n="3">et saepe immeritos corrumpas dentibus unguis,</l>
@@ -1031,9 +1036,9 @@
 <l n="20">quid tibi tam parvi litoris unda nocet?</l>
 <l n="21">alter saepe uno mutat praecordia Verbo,</l>
 <l n="22">altera vix ipso sanguine mollis erit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="5">
+<div type="textpart" subtype="poem" n="5">
 <l n="1">hoc verum est, tota te ferri, Cynthia, Roma,</l>
 <l n="2">et non ignota vivere nequitia?</l>
 <l n="3">haec merui sperare? dabis mihi, perfida, poenas;</l>
@@ -1064,9 +1069,9 @@
 <l n="28">'Cynthia, forma potens; Cynthia, verba levis.'</l>
 <l n="29">crede mihi, quamvis contemnas murmura famae,</l>
 <l n="30">hic tibi pallori, Cynthia, versus erit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="6">
+<div type="textpart" subtype="poem" n="6">
 <l n="1">non ita complebant Ephyraeae Laidos aedis,</l>
 <l n="2">ad cuius iacuit Graecia toea fores;</l>
 <l n="3">turba Menandreae fuerat nec Thaidos olim</l>
@@ -1109,9 +1114,9 @@
 <l n="40">quam peccare pudet, Cynthia, tuta sat est.</l>
 <l n="41">nos uxor numquam, numquam seducet amica:</l>
 <l n="42">semper amica mihi, semper et uxor eris.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="7">
+<div type="textpart" subtype="poem" n="7">
 <l n="1">gavisa est certe sublatam Cynthia legem,</l>
 <l n="2">qua quondam edicta flemus uterque diu,</l>
 <l n="3">ni nos divideret: quamvis diducere amantis</l>
@@ -1132,9 +1137,9 @@
 <l n="18">gloria ad hibernos lata Borysthenidas.</l>
 <l n="19">tu mihi sola places: placeam tibi, Cynthia, s:</l>
 <l n="20">hic erit et patrio nomine pluris amor.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="8">
+<div type="textpart" subtype="poem" n="8">
 <l n="1">eripitur nobis iam pridem cara puella:</l>
 <l n="2">et tu me lacrimas fundere, amice, vetas?</l>
 <l n="3">nullae sunt inimicitiae nisi amoris acerbae:</l>
@@ -1174,9 +1179,9 @@
 <l n="37">at postquam sera captiva est reddita poena,</l>
 <l n="38">fortem illum Haemoniis Hectora traxit equis.</l>
 <l n="39">inferior multo cum sim vel matre vel armis,</l>
-</div2>
+</div>
 
-<div2 type="poem" n="9">
+<div type="textpart" subtype="poem" n="9">
 <l n="1">iste quod est, ego saepe fui: sed fors et in hora</l>
 <l n="2">hoc ipso eiecto carior alter erit.</l>
 <l n="3">Penelope poterat bis denos salva per annos</l>
@@ -1225,14 +1230,14 @@
 <l n="46">s ero, quoniam non licet esse tuum.</l>
 <l n="47">atque utinam, si forte pios eduximus annos,</l>
 <l n="48">ille vir in medio fiat amore lapis!</l>
-<l n="49"> <gap/> </l>
+<l n="49"> <gap reason="omitted"/> </l>
 <l n="50">non ob regna magis diris cecidere sub armis</l>
 <l n="51">Thebani media non sine matre duces,</l>
 <l n="52">quam, mihi si media liceat pugnare puella,</l>
 <l n="53">mortem ego non fugiam morte subire tua.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="10">
+<div type="textpart" subtype="poem" n="10">
 <l n="1">sed tempus lustrare aliis Helicona choreis,</l>
 <l n="2">et campum Haemonio iam dare tempus equo.</l>
 <l n="3">iam libet et fortis memorare ad proelia turmas</l>
@@ -1259,18 +1264,18 @@
 <l n="24">pauperibus sacris vilia tura damus.</l>
 <l n="25">nondum etiam Ascraeos norunt mea carmina fontis,</l>
 <l n="26">sed modo Permessi flumine lavit Amor.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="11">
+<div type="textpart" subtype="poem" n="11">
 <l n="1">scribant de te alii vel sis ignota licebit:</l>
 <l n="2">laudet, qui sterili semina ponit humo.</l>
 <l n="3">omnia, crede mihi, tecum uno munera lecto</l>
 <l n="4">auferet extremi funeris atra dies;</l>
 <l n="5">et tua transibit contemnens ossa viator,</l>
 <l n="6">nec dicet 'Cinis hic docta puella fuit.'</l>
-</div2>
+</div>
 
-<div2 type="poem" n="12">
+<div type="textpart" subtype="poem" n="12">
 <l n="1">quicumque ille fuit, puerum qui pinxit Amorem,</l>
 <l n="2">nonne putas miras hunc habuisse manus?</l>
 <l n="3">is primum vidit sine sensu vivere amantis,</l>
@@ -1294,9 +1299,9 @@
 <l n="21">quam si perdideris, quis erit qui talia cantet,</l>
 <l n="22">(haec mea Musa levis gloria magna tua est),</l>
 <l n="23">qui caput et digitos et lumina nigra puellae,</l>
-</div2>
+</div>
 
-<div2 type="poem" n="13">
+<div type="textpart" subtype="poem" n="13">
 <l n="1">non tot Achaemeniis armantur etrusca sagittis</l>
 <l n="2">spicula quot nostro pectore fixit Amor.</l>
 <l n="3">hic me tam gracilis vetuit contemnere Musas,</l>
@@ -1313,9 +1318,9 @@
 <l n="14">fabula: nam domina iudice tutus ero.</l>
 <l n="15">quae si forte bonas ad pacem verterit auris,</l>
 <l n="16">possum inimicitias tunc ego ferre Iovis.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="13b">
+<div type="textpart" subtype="poem" n="13b">
 <l n="1">quandocumque igitur nostros mors claudet ocellos,</l>
 <l n="2">accipe quae serves funeris acta mei.</l>
 <l n="3">nec mea tunc longa spatietur imagine pompa</l>
@@ -1357,9 +1362,9 @@
 <l n="39">illis formosum iacuisse paludibus; illuc</l>
 <l n="40">diceris effusa tu, Venus, isse coma.</l>
 <l n="41">sed frustra mutos revocabis, Cynthia, Manis:</l>
-</div2>
+</div>
 
-<div2 type="poem" n="14">
+<div type="textpart" subtype="poem" n="14">
 <l n="1">non ita Dardanio gavisus Atrida triumpho est,</l>
 <l n="2">cum caderent magnae Laomedontis opes;</l>
 <l n="3">nec sic errore exacto laetatus Vlixes,</l>
@@ -1392,9 +1397,9 @@
 <l n="30">servato, an mediis sidat onusta vadis.</l>
 <l n="31">quod si forte aliqua nobis mutabere culpa,</l>
 <l n="32">vestibulum iaceam mortuus ante tuum!</l>
-</div2>
+</div>
 
-<div2 type="poem" n="15">
+<div type="textpart" subtype="poem" n="15">
 <l n="1">o me felicem! o nox mihi candida! et o tu</l>
 <l n="2">lectule deliciis facte beate meis!</l>
 <l n="3">quam multa apposita narramus verba lucerna,</l>
@@ -1449,9 +1454,9 @@
 <l n="52">quae passim calathis strata natare vides,</l>
 <l n="53">sic nobis, qui nunc magnum spiramus amantes,</l>
 <l n="54">forsitan includet crastina fata dies.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="16">
+<div type="textpart" subtype="poem" n="16">
 <l n="1">Praetor ab Illyricis venit modo, Cynthia, terris,</l>
 <l n="2">maxima praeda tibi, maxima cura mihi.</l>
 <l n="3">non potuit saxo vitam posuisse Cerauno?</l>
@@ -1508,9 +1513,9 @@
 <l n="54">deceptus quoniam flevit et ipse deus.</l>
 <l n="55">quare ne tibi sit tanti Sidonia vestis,</l>
 <l n="56">ut timeas, quotiens nubilus Auster erit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="17">
+<div type="textpart" subtype="poem" n="17">
 <l n="1">mentiri noctem, promissis ducere amantem,</l>
 <l n="2">hoc erit infectas sanguine habere manus!</l>
 <l n="3">horum ego sum vates, quotiens desertus amaras</l>
@@ -1529,16 +1534,16 @@
 <l n="16">aut per rimosas mittere verba fores.</l>
 <l n="17">quod quamvis ita sit, dominam mutare cavebo:</l>
 <l n="18">tum flebit, cum in me senserit esse fidem.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="18a">
+<div type="textpart" subtype="poem" n="18a">
 <l n="1">assiduae multis odium peperere querelae:</l>
 <l n="2">frangitur in tacito femina saepe viro.</l>
 <l n="3">si quid vidisti, semper vidisse negato!</l>
 <l n="4">aut si quid doluit forte, dolere nega!</l>
-</div2>
+</div>
 
-<div2 type="poem" n="18b">
+<div type="textpart" subtype="poem" n="18b">
 <l n="1">quid mea si canis aetas candesceret annis,</l>
 <l n="2">et faceret scissas languida ruga genas?</l>
 <l n="3">at non Tithoni spernens Aurora senectam</l>
@@ -1557,9 +1562,9 @@
 <l n="16">ipsa anus haud longa curva futura die.</l>
 <l n="17">quin ego deminuo curam, quod saepe Cupido</l>
 <l n="18">huic malus esse solet, cui bonus ante fuit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="18c">
+<div type="textpart" subtype="poem" n="18c">
 <l n="1">nunc etiam infectos demens imitare Britannos,</l>
 <l n="2">ludis et externo tincta nitore caput?</l>
 <l n="3">ut natura dedit, sic omnis recta figura est:</l>
@@ -1576,9 +1581,9 @@
 <l n="14">nec nimis ornata fronte sedere velis.</l>
 <l n="15">credam ego narranti, noli committere, famae:</l>
 <l n="16">et terram mmor transilit et maria.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="19">
+<div type="textpart" subtype="poem" n="19">
 <l n="1">ETSI me invito discedis, Cynthia, Roma,</l>
 <l n="2">laetor quod sine me devia rura coles.</l>
 <l n="3">nullus erit castis iuvenis corruptor in agris,</l>
@@ -1611,9 +1616,9 @@
 <l n="30">nec vaga muscosis flumina fusa iugis,</l>
 <l n="31">quin ego in assidua mutem tua nomina lingua:</l>
 <l n="32">absenti nemo non nocuisse velit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="20">
+<div type="textpart" subtype="poem" n="20">
 <l n="1">QVID fles abducta gravius Briseide? quid fles</l>
 <l n="2">anxia captiva tristius Andromacha?</l>
 <l n="3">quidve mea de fraude deos, insana, fatigas?</l>
@@ -1650,9 +1655,9 @@
 <l n="34">ultima talis erit quae mea prima fides.</l>
 <l n="35">hoc mihi perpetuo ius est, quod s amator</l>
 <l n="36">nec cito desisto nec temere incipio.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="21">
+<div type="textpart" subtype="poem" n="21">
 <l n="1">A QVANTVM de me Panthi tibi pagina finxit,</l>
 <l n="2">tantum illi Pantho ne sit amica Venus!</l>
 <l n="3">sed tibi iam videor Dodona verior augur.</l>
@@ -1673,9 +1678,9 @@
 <l n="18">experta in primo, stulta, cavere potes.</l>
 <l n="19">nos quocumque loco, nos omni tempore tecum</l>
 <l n="20">sive aegra pariter sive valellte sumus.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="22a">
+<div type="textpart" subtype="poem" n="22a">
 <l n="1">Scis here mi multas pariter placuisse puellas;</l>
 <l n="2">scis mihi, Demophoon, multa venire mala.</l>
 <l n="3">nulla meis frustra lustrantur compita plantis;</l>
@@ -1718,9 +1723,9 @@
 <l n="40">ut sciat esse aliam, quae velit esse mea!</l>
 <l n="41">nam melius duo defendunt retinacula navim,</l>
 <l n="42">tutius et geminos anxia mater alit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="22b">
+<div type="textpart" subtype="poem" n="22b">
 <l n="1">aut si es dura, nega: sin es non dura, venito!</l>
 <l n="2">quid iuvat haec nullo ponere verba loco?</l>
 <l n="3">hic unus dolor est ex omnibus acer amanti,</l>
@@ -1729,9 +1734,9 @@
 <l n="6">cum recipi, quae non venerit, ipsa vetat?</l>
 <l n="7">et rursus puerum quaerendo audita fatigat,</l>
 <l n="8">quem, quae scire timet, quaerere fata iubet.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="23">
+<div type="textpart" subtype="poem" n="23">
 <l n="1">cui fugienda fuit indocti semita vulgi,</l>
 <l n="2">ipsa petita lacu nunc mihi dulcis aqua est.</l>
 <l n="3">ingenuus quisquam alterius dat munera servo,</l>
@@ -1756,9 +1761,9 @@
 <l n="22">me iuerint: nolim furta pudica tori;</l>
 <l n="23">libertas quoniam nulli iam restat amanti:</l>
 <l n="24">nullus liber erit, si quis amare volet.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="24a">
+<div type="textpart" subtype="poem" n="24a">
 <l n="1">'tu loqueris, cum sis iam noto fabula libro</l>
 <l n="2">et tua sit toto Cynthia lecta foro?'</l>
 <l n="3">cui non his verbis aspergat tempora sudor?</l>
@@ -1769,16 +1774,16 @@
 <l n="8">urerer et quamvis, nomine verba darem.</l>
 <l n="9">quare ne tibi sit mirum me quaerere vilis:</l>
 <l n="10">parcius infamant: num tibi causa levis?</l>
-<l n="11"> <gap/> </l>
+  <l n="11"> <gap reason="omitted"/> </l>
 <l n="12">et modo pavonis caudae flabella superbae</l>
 <l n="13">et manibus dura frigus habere pila,</l>
 <l n="14">et cupit iratum talos me poscere eburnos,</l>
 <l n="15">quaeque nitent Sacra vilia dona Via.</l>
 <l n="16">a peream, si me ista movent dispendia, sed me</l>
 <l n="17">fallaci dominae iam pudet esse iocum!</l>
-</div2>
+</div>
 
-<div2 type="poem" n="24b">
+<div type="textpart" subtype="poem" n="24b">
 <l n="1">HOC erat in primis quod me gaudere iubebas?</l>
 <l n="2">tam te formosam non pudet esse levem?</l>
 <l n="3">una aut altera nox nondum est in amore peracta,</l>
@@ -1815,9 +1820,9 @@
 <l n="34">vix venit, extremo qui legat ossa die.</l>
 <l n="35">hi tibi nos erimus: sed tu potius precor ut me</l>
 <l n="36">demissis plangas pectora nuda comis.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="25">
+<div type="textpart" subtype="poem" n="25">
 <l n="1">unica nata meo pulcherrima cura dolori,</l>
 <l n="2">excludit quoniam sors mea 'saepe veni,'</l>
 <l n="3">ista meis fiet notissima forma libellis,</l>
@@ -1866,9 +1871,9 @@
 <l n="46">haec atque illa mali vulneris una via est.</l>
 <l n="47">cum satis una tuis insomnia portet ocellis,</l>
 <l n="48">una sat est cuivis femina multa mala.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="26a">
+<div type="textpart" subtype="poem" n="26a">
 <l n="1">VIDI te in somnis fracta, mea vita, carina</l>
 <l n="2">Ionio lassas ducere rore manus,</l>
 <l n="3">et quaecumque in me fueras mentita fateri,</l>
@@ -1889,9 +1894,9 @@
 <l n="18">qui, puto, Arioniam vexerat ante lyram.</l>
 <l n="19">iamque ego conabar summo me mittere saxo,</l>
 <l n="20">cum mihi discussit talia visa metus.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="26b">
+<div type="textpart" subtype="poem" n="26b">
 <l n="1">NUNC admirentur quod tam mihi pulchra puella</l>
 <l n="2">serviat et tota dicar in urbe potens!</l>
 <l n="3">non, si Cambysae redeant et flumina Croesi,</l>
@@ -1900,7 +1905,7 @@
 <l n="6">carmina tam sancte nulla puella colit.</l>
 <l n="7">multum in amore fides, multum constantia prodest:</l>
 <l n="8">qui dare multa potest, multa et amare potest</l>
-<l n="9">  <gap/> </l>
+  <l n="9">  <gap reason="omitted"/> </l>
 <l n="10">seu mare per longum mea cogitet ire puella,</l>
 <l n="11">hanc sequar et fidos una aget aura duos.</l>
 <l n="12">unum litus erit sopitis unaque tecto</l>
@@ -1931,9 +1936,9 @@
 <l n="37">purus et Orion, purus et Haedus erit.</l>
 <l n="38">quod mihi si ponenda tuo sit corpore vita,</l>
 <l n="39">exitus hic nobis non inhonestus erit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="27">
+<div type="textpart" subtype="poem" n="27">
 <l n="1">AT VOS incertam, mortales, funeris horam</l>
 <l n="2">quaeritis, et qua sit mors aditura via;</l>
 <l n="3">quaeritis et caelo Phoenicum inventa sereno,</l>
@@ -1942,7 +1947,7 @@
 <l n="6">et maris et terrae caeca pericla viae;</l>
 <l n="7">rursus et obiectum flemus caput esse tumultu</l>
 <l n="8">cum Mavors dubias miscet utrimque manus;</l>
-<l n="9"> <gap/> </l>
+  <l n="9"> <gap reason="omitted"/> </l>
 <l n="10">praeterea domibus flammam domibusque ruinas,</l>
 <l n="11">neu subeant labris pocula nigra tuis.</l>
 <l n="12">s amans novit, quando periturus et a qua</l>
@@ -1951,9 +1956,9 @@
 <l n="15">cernat et infernae tristia vela ratis:</l>
 <l n="16">si modo clamantis revocaverit aura puellae,</l>
 <l n="17">concessum nulla lege redibit iter.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="28a">
+<div type="textpart" subtype="poem" n="28a">
 <l n="1">IVPPITER, affectae tandem miserere puellae:</l>
 <l n="2">tam formosa tuum mortua crimen erit.</l>
 <l n="3">hoc tibi vel poterit coniunx ignoscere Iuno:</l>
@@ -1988,9 +1993,9 @@
 <l n="32">primus erit nulla non tribuente locus.</l>
 <l n="33">nunc, utcumque potes, fato gere saucia morem:</l>
 <l n="34">et deus et durus vertitur ipse dies.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="28b">
+<div type="textpart" subtype="poem" n="28b">
 <l n="1">DEFICIVNT magico torti sub carmine rhombi,</l>
 <l n="2">et iacet exstincto laurus adusta foco;</l>
 <l n="3">et iam Luna negat totiens descendere caelo,</l>
@@ -2003,9 +2008,9 @@
 <l n="10">scribam ego 'Per magnum est salva puella Iovem';</l>
 <l n="11">ante tuosque pedes illa ipsa operata sedebit,</l>
 <l n="12">narrabitque sedens longa pericla sua.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="28c">
+<div type="textpart" subtype="poem" n="28c">
 <l n="1">HAEC tua, Persephone, maneat clementia, nec tu,</l>
 <l n="2">Persephonae coniunx, saevior esse velis.</l>
 <l n="3">sunt apud infernos tot milia formosarum:</l>
@@ -2022,9 +2027,9 @@
 <l n="14">munera Dianae debita redde choros,</l>
 <l n="15">redde etiam excubias divae nunc, ante iuvencae;</l>
 <l n="16">votivas noctes, ei mihi solve decem!</l>
-</div2>
+</div>
 
-<div2 type="poem" n="29a">
+<div type="textpart" subtype="poem" n="29a">
 <l n="1">HESTERNA, mea lux, cum potus nocte vagarer,</l>
 <l n="2">nec me servorum duceret ulla manus,</l>
 <l n="3">obvia nescio quot pueri mihi turba minuta</l>
@@ -2035,7 +2040,7 @@
 <l n="8">'Arripite hunc,' inquit, 'iam bene nostis eum</l>
 <l n="9">hic erat, hunc mulier nobis irata locavit.'</l>
 <l n="10">dixit, et in collo iam mihi nodus erat.</l>
-<l n="11"> <gap/> <lb/>hic alter iubet in medium propellere, at alter,</l>
+  <l n="11"> <gap reason="omitted"/> <lb/>hic alter iubet in medium propellere, at alter,</l>
 <l n="12">'Intereat, qui nos non putat esse deos!</l>
 <l n="13">haec te non meritum totas exspectat in horas:</l>
 <l n="14">at tu nescio quas quaeris, inepte, fores.</l>
@@ -2047,9 +2052,9 @@
 <l n="20">et iam ad mandatam venimus ecce domum.'</l>
 <l n="21">atque ita me iniecto dixerunt rursus amictu:</l>
 <l n="22">'I nunc et noctes disce manere domi.'</l>
-</div2>
+</div>
 
-<div2 type="poem" n="29b">
+<div type="textpart" subtype="poem" n="29b">
 <l n="1">MANE erat, et volui, si sola quiesceret illa,</l>
 <l n="2">visere: at in lecto Cynthia sola fuit.</l>
 <l n="3">obstipui: non illa mihi formosior umquam</l>
@@ -2070,9 +2075,9 @@
 <l n="18">prosilit in laxa nixa pedem solea.</l>
 <l n="19">sic ego tarn sancti custos deludor amoris:</l>
 <l n="20">ex illo felix nox mihi nulla fuit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="30a">
+<div type="textpart" subtype="poem" n="30a">
 <l n="1">QVO fugis a demens? nulla est fuga: tu licet usque</l>
 <l n="2">ad Tanain fugias, usque sequetur Amor.</l>
 <l n="3">non si Pegaseo vecteris in aere dorso,</l>
@@ -2085,9 +2090,9 @@
 <l n="10">te patietur humo lumina capta semel.</l>
 <l n="11">et iam si pecces, deus exorabilis ille est</l>
 <l n="12">si modo praesentis viderit esse preces.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="30b">
+<div type="textpart" subtype="poem" n="30b">
 <l n="1">ISTA senes licet accusent convivia duri:</l>
 <l n="2">nos modo propositum, vita, teramus iter</l>
 <l n="3">illorum antiquis onerantur legibus aures:</l>
@@ -2116,9 +2121,9 @@
 <l n="26">et medius docta cuspide Bacchus erit,</l>
 <l n="27">tum capiti sacros patiar pendere corymbos:</l>
 <l n="28">nam sine te nostrum non valet ingenium.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="31">
+<div type="textpart" subtype="poem" n="31">
 <l n="1">QVAERIS, cur veniam tibi tardior? aurea Phoebi</l>
 <l n="2">porticus a magno Caesare aperta fuit.</l>
 <l n="3">tantam erat in speciem Poenis digesta columnis,</l>
@@ -2135,9 +2140,9 @@
 <l n="14">altera maerebat funera Tantalidos.</l>
 <l n="15">deinde inter matrem deus ipse interque sororem</l>
 <l n="16">Pythius in longa carmina veste sonat.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="32">
+<div type="textpart" subtype="poem" n="32">
 <l n="1">QUI videt, is peccat: qui te non viderit ergo,</l>
 <l n="2">non cupiet: facti lumina crimen habent.</l>
 <l n="3">nam quid Praenesti dubias, o Cynthia, sortis,</l>
@@ -2200,9 +2205,9 @@
 <l n="60">non potuit magno casta negare Iovi.</l>
 <l n="61">quod si tu Graias es tuque imitata Latinas,</l>
 <l n="62">semper vive meo libera iudicio!</l>
-</div2>
+</div>
 
-<div2 type="poem" n="33a">
+<div type="textpart" subtype="poem" n="33a">
 <l n="1">TRISTIA iam redeunt iterum sollemnia nobis:</l>
 <l n="2">Cynthia iam noctes est operata decem.</l>
 <l n="3">atque utinam pereant, Nilo quae sacra tepente</l>
@@ -2225,9 +2230,9 @@
 <l n="20">cum Tiberi Nilo gratia nulla fuit.</l>
 <l n="21">at tu, quae nostro nimium placata dolore es,</l>
 <l n="22">noctibus his vacui ter faciamus iter.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="33b">
+<div type="textpart" subtype="poem" n="33b">
 <l n="1">NON audis et verba sinis mea ludere, cum iam</l>
 <l n="2">flectant Icarii sidera tarda boves.</l>
 <l n="3">lenta bibis: mediae nequeunt te frangere noctes.</l>
@@ -2250,9 +2255,9 @@
 <l n="20">est quiddam, quod vos quaerere cogat Amor.</l>
 <l n="21">semper in absentis felicior aestus amantis:</l>
 <l n="22">elevat assiduos copia longa viros.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="34">
+<div type="textpart" subtype="poem" n="34">
 <l n="1">CVR quisquam faciem dominae iam credat Amori?</l>
 <l n="2">sic erepta mihi paene puella mea est.</l>
 <l n="3">expertus dico, nemo est in amore fidelis:</l>
@@ -2277,9 +2282,9 @@
 <l n="22">errabant multo quod tua verba mero.</l>
 <l n="23">sed numquam vitae fallet me ruga severae:</l>
 <l n="24">omnes iam norunt quam sit amare bonum.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="34b">
+<div type="textpart" subtype="poem" n="34b">
 <l n="1">LYNCEVS ipse meus seros insanit amores!</l>
 <l n="2">m te nostros laetor adire deos.</l>
 <l n="3">quid tua Socraticis tibi nunc sapientia libris</l>
@@ -2350,11 +2355,11 @@
 <l n="68">mortuus inferna vulnera lavit aqua!</l>
 <l n="69">Cynthia quin etiam versu laudata Properti,</l>
 <l n="70">hos inter si me ponere Fama volet.</l>
-</div2>
-</div1>
+</div>
+</div>
 
-<div1 type="book" n="3">
-<div2 type="poem" n="1">
+<div type="textpart" subtype="book" n="3">
+<div type="textpart" subtype="poem" n="1">
 <l n="1">Callimachi Manes et Coi sacra Philitae,</l>
 <l n="2">in vestrum, quaeso, me sinite ire nemus.</l>
 <l n="3">primus ego ingredior puro de fonte sacerdos</l>
@@ -2393,9 +2398,9 @@
 <l n="36">illum post cineres auguror ipse diem.</l>
 <l n="37">ne mea contempto lapis indicet ossa sepulcro</l>
 <l n="38">provisumst Lycio vota probante deo.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="2">
+<div type="textpart" subtype="poem" n="2">
 <l n="1">Carminis interea nostri redeamus in orbem,</l>
 <l n="2">gaudeat ut solito tacta puella sono.</l>
 <l n="3">Orphea delenisse feras et concita dicunt</l>
@@ -2422,9 +2427,9 @@
 <l n="24">annorum aut tacito pondere victa ruent.</l>
 <l n="25">at non ingenio quaesitum nomen ab aevo</l>
 <l n="26">excidet: ingenio stat sine morte decus.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="3">
+<div type="textpart" subtype="poem" n="3">
 <l n="1">Visus eram molli recubans Heliconis in umbra,</l>
 <l n="2">Bellerophontei qua fluit umor equi,</l>
 <l n="3">reges, Alba, tuos et regum facta tuorum,</l>
@@ -2477,9 +2482,9 @@
 <l n="50">qui volet austeros arte ferire viros.'</l>
 <l n="51">talia Calliope, lymphisque a fonte petitis</l>
 <l n="52">ora Philitea nostra rigavit aqua.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="4">
+<div type="textpart" subtype="poem" n="4">
 <l n="1">Arma deus Caesar dites meditatur ad Indos,</l>
 <l n="2">et freta gemmiferi findere classe maris.</l>
 <l n="3">magna, Quiris, merces: parat ultima terra triumphos;</l>
@@ -2502,9 +2507,9 @@
 <l n="20">cernis ab Aenea quod superesse caput.</l>
 <l n="21">praeda sit haec illis, quorum meruere labores:</l>
 <l n="22">me sat erit Sacra plaudere posse Via.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="5">
+<div type="textpart" subtype="poem" n="5">
 <l n="1">Pacis Amor deus est, pacem veneramur amantes:</l>
 <l n="2">sat mihi cum domina proelia dura mea.</l>
 <l n="3">nec mihi mille iugis Campania pinguis aratur,</l>
@@ -2553,9 +2558,9 @@
 <l n="46">et timor haud ultra quam rogus esse potest.</l>
 <l n="47">exitus hic vitae superet mihi: vos, quibus arma</l>
 <l n="48">grata magis, Crassi signa referte domum.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="6">
+<div type="textpart" subtype="poem" n="6">
 <l n="1">Dic mihi de nostra quae sensti vera puella:</l>
 <l n="2">sic tibi sint dominae, Lygdame, dempta iuga.</l>
 <l n="3">omnis enim debet sine vano nuntius esse,</l>
@@ -2598,9 +2603,9 @@
 <l n="40">iurabo bis sex integer esse dies.</l>
 <l n="41">quod mihi si e tanto felix concordia bello</l>
 <l n="42">exstiterit, per me, Lygdame, liber eris.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="7">
+<div type="textpart" subtype="poem" n="7">
 <l n="1">Ergo sollicitae tu causa, pecunia, vitae!</l>
 <l n="2">per te immaturum mortis adimus iter;</l>
 <l n="3">tu vitiis hominum crudelia pabula praebes;</l>
@@ -2673,9 +2678,9 @@
 <l n="70">in mare cui soliti non valuere doli.</l>
 <l n="71">at tu, saeve Aquilo, numquam mea vela videbis:</l>
 <l n="72">ante fores dominae condar oportet iners.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="8">
+<div type="textpart" subtype="poem" n="8">
 <l n="1">Dulcis ad hesternas fuerat mihi rixa lucernas</l>
 <l n="2">vocis et insanae tot maledicta tuae.</l>
 <l n="3">tu vero nostros audax invade capillos</l>
@@ -2716,9 +2721,9 @@
 <l n="38">sit socer aeternum nec sine matre domus!</l>
 <l n="39">cui nunc si qua datast furandae copia noctis,</l>
 <l n="40">offensa illa mihi, non tibi amica, dedit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="9">
+<div type="textpart" subtype="poem" n="9">
 <l n="1">Maecenas, eques Etrusco de sanguine regum,</l>
 <l n="2">intra fortunam qui cupis esse tuam,</l>
 <l n="3">quid me scribendi tam vastum mittis in aequor?</l>
@@ -2777,9 +2782,9 @@
 <l n="56">dexteraque immissis da mihi signa rotis.</l>
 <l n="57">hoc mihi, Maecenas, laudis concedis, et a test</l>
 <l n="58">quod ferar in partis ipse fuisse tuas.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="10">
+<div type="textpart" subtype="poem" n="10">
 <l n="1">Mirabar, quidnam visissent mane Camenae,</l>
 <l n="2">ante meum stantes sole rubente torum.</l>
 <l n="3">natalis nostrae signum misere puellae</l>
@@ -2812,9 +2817,9 @@
 <l n="30">noctis et instituet sacra ministra Venus,</l>
 <l n="31"> annua solvamus thalamo sollemnia nostro,</l>
 <l n="32">natalisque tui sic peragamus iter.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="11">
+<div type="textpart" subtype="poem" n="11">
 <l n="1">Quid mirare, meam si versat femina vitam</l>
 <l n="2">et trahit addictum sub sua iura virum,</l>
 <l n="3">criminaque ignavi capitis mihi turpia fingis,</l>
@@ -2887,9 +2892,9 @@
 <l n="70">tanti operis bellum sustulit una dies.</l>
 <l n="71">at tu, sive petes portus seu, navita, linques,</l>
 <l n="72">Caesaris in toto sis memor Ionio.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="12">
+<div type="textpart" subtype="poem" n="12">
 <l n="1">Postume, plorantem potuisti linquere Gallam,</l>
 <l n="2">miles et Augusti fortia signa sequi?</l>
 <l n="3">tantine ulla fuit spoliati gloria Parthi,</l>
@@ -2928,9 +2933,9 @@
 <l n="36">errorisque sui sic statuisse modum.</l>
 <l n="37">nec frustra, quia casta domi persederat uxor.</l>
 <l n="38">vincit Penelopes Aelia Galla fidem.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="13">
+<div type="textpart" subtype="poem" n="13">
 <l n="1">Quaeritis, unde avidis nox sit pretiosa puellis,</l>
 <l n="2">et Venere exhaustae damna querantur opes.</l>
 <l n="3">certa quidem tantis causa et manifesta ruinis:</l>
@@ -2997,9 +3002,9 @@
 <l n="64">fallacem Troiae serpere dixit equum.</l>
 <l n="65">ille furor patriae fuit utilis, ille parenti:</l>
 <l n="66">expertast veros irrita lingua deos.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="14">
+<div type="textpart" subtype="poem" n="14">
 <l n="1">Multa tuae, Sparte, miramur iura palaestrae,</l>
 <l n="2">sed mage virginei tot bona gymnasii,</l>
 <l n="3">quod non infamis exercet corpore ludos</l>
@@ -3034,9 +3039,9 @@
 <l n="32">invenias: caecum versat amator iter.</l>
 <l n="33">quod si iura fores pugnasque imitata Laconum,</l>
 <l n="34">carior hoc esses tu mihi, Roma, bono.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="15">
+<div type="textpart" subtype="poem" n="15">
 <l n="1">Sic ego non ullos iam norim in amore tumultus</l>
 <l n="2">nec veniat sine te nox vigilanda mihi,</l>
 <l n="3">fabula nulla tuas de nobis concitet aures;</l>
@@ -3083,9 +3088,9 @@
 <l n="44">ducitur in multis mortem habitura locis.</l>
 <l n="45">prata cruentantur Zethi, victorque canebat</l>
 <l n="46">paeana Amphion rupe, Aracynthe, tua.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="16">
+<div type="textpart" subtype="poem" n="16">
 <l n="1">Nox media, et dominae mihi venit epistula nostrae:</l>
 <l n="2">Tibure me missa iussit adesse mora,</l>
 <l n="3">candida qua geminas ostendunt culmina turres,</l>
@@ -3116,9 +3121,9 @@
 <l n="28">me tegat arborea devia terra coma,</l>
 <l n="29">aut humer ignotae cumulis vallatus harenae:</l>
 <l n="30">non iuvat in media nomen habere via.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="17">
+<div type="textpart" subtype="poem" n="17">
 <l n="1">Nunc, o Bacche, tuis humiles advolvimur aris:</l>
 <l n="2">da mihi pacato vela secunda, pater.</l>
 <l n="3">tu potes insanae Veneris compescere fastus,</l>
@@ -3161,9 +3166,9 @@
 <l n="40">qualis Pindarico spiritus ore tonat:</l>
 <l n="41">tu modo servitio vacuum me siste superbo,</l>
 <l n="42">atque hoc sollicitum vince sopore caput.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="18">
+<div type="textpart" subtype="poem" n="18">
 <l n="1">Clausus ab umbroso qua tundit pontus Averno</l>
 <l n="2">fumida Baiarum stagna tepentis aquae,</l>
 <l n="3">qua iacet et Troiae tubicen Misenus harena,</l>
@@ -3198,9 +3203,9 @@
 <l n="32">huc animae portet corpus inane tuae:</l>
 <l n="33">qua Siculae victor telluris Claudius et qua</l>
 <l n="34">Caesar, ab humana cessit in astra via.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="19">
+<div type="textpart" subtype="poem" n="19">
 <l n="1">Obicitur totiens a te mihi nostra libido:</l>
 <l n="2">crede mihi, vobis imperat ista magis.</l>
 <l n="3">vos, ubi contempti rupistis frena pudoris,</l>
@@ -3229,9 +3234,9 @@
 <l n="26">pendet Cretaea tracta puella rate.</l>
 <l n="27">non tamen immerito Minos sedet arbiter Orci:</l>
 <l n="28">victor erat quamvis, aequus in hoste fuit.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="20">
+<div type="textpart" subtype="poem" n="20">
 <l n="1">Credis eum iam posse tuae meminisse figurae,</l>
 <l n="2">vidisti a lecto quem dare vela tuo?</l>
 <l n="3">durus, qui lucro potuit mutare puellam!</l>
@@ -3262,9 +3267,9 @@
 <l n="28">et caput argutae praebeat historiae,</l>
 <l n="29">nec flenti dominae patefiant nocte fenestrae:</l>
 <l n="30">semper amet, fructu semper amoris egens.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="21">
+<div type="textpart" subtype="poem" n="21">
 <l n="1">Magnum iter ad doctas proficisci cogor Athenas</l>
 <l n="2">ut me longa gravi solvat amore via.</l>
 <l n="3">crescit enim assidue spectando cura puellae:</l>
@@ -3299,9 +3304,9 @@
 <l n="32">lenibunt tacito vulnera nostra sinu:</l>
 <l n="33">seu moriar, fato, non turpi fractus amore;</l>
 <l n="34">atque erit illa mihi mortis honesta dies.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="22">
+<div type="textpart" subtype="poem" n="22">
 <l n="1">Frigida tam multos placuit tibi Cyzicus annos,</l>
 <l n="2">Tulle, Propontiaca qua fluit isthmos aqua,</l>
 <l n="3">Dindymis et sacra fabricata in vite Cybebe,</l>
@@ -3338,16 +3343,16 @@
 <l n="34">nec solvit Danaas subdita cerva rates;</l>
 <l n="35">cornua nec valuit curvare in paelice Iuno</l>
 <l n="36">aut faciem turpi dedecorare bove;</l>
-<l n="37"> <gap/> </l>
+  <l n="37"> <gap reason="omitted"/> </l>
 <l n="38">arboreasque cruces Sinis, et non hospita Grais</l>
 <l n="39">saxa, et curtatas in fera fata trabes.</l>
 <l n="40">haec tibi, Tulle, parens, haec est pulcherrima sedes,</l>
 <l n="41">hic tibi pro digna gente petendus honos,</l>
 <l n="42">hic tibi ad eloquium cives, hic ampla nepotum</l>
 <l n="43">spes et venturae coniugis aptus amor.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="23">
+<div type="textpart" subtype="poem" n="23">
 <l n="1">Ergo tam doctae nobis periere tabellae,</l>
 <l n="2">scripta quibus pariter tot periere bona!</l>
 <l n="3">has quondam nostris manibus detriverat usus,</l>
@@ -3372,9 +3377,9 @@
 <l n="22">quisenta velit?</l>
 <l n="23">i puer, et citus haec aliqua propone columna,</l>
 <l n="24">et dominum Esquiliis scribe habitare tuum.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="24">
+<div type="textpart" subtype="poem" n="24">
 <l n="1">Falsast ista tuae, mulier, fiducia formae,</l>
 <l n="2">olim oculis nimium facta superba meis.</l>
 <l n="3">noster amor talis tribuit tibi, Cynthia, laudes:</l>
@@ -3395,9 +3400,9 @@
 <l n="18">vulneraque ad sanum nunc coiere mea.</l>
 <l n="19">Mens Bona, si qua dea's, tua me in sacraria dono!</l>
 <l n="20">exciderunt surdo tot mea vota Iovi.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="25">
+<div type="textpart" subtype="poem" n="25">
 <l n="1">Risus eram positis inter convivia mensis,</l>
 <l n="2">et de me poterat quilibet esse loquax.</l>
 <l n="3">quinque tibi potui servire fideliter annos:</l>
@@ -3416,11 +3421,11 @@
 <l n="16">et quae fecisti facta queraris anus!</l>
 <l n="17">has tibi fatalis cecinit mea pagina diras:</l>
 <l n="18">eventum formae disce timere tuae!</l>
-</div2>
-</div1>
+</div>
+</div>
 
-<div1 type="book" n="4">
-<div2 type="poem" n="1">
+<div type="textpart" subtype="book" n="4">
+<div type="textpart" subtype="poem" n="1">
 <l n="1">hoc, quodcumque uides, hospes, qua maxima Roma est,</l>
 <l n="2">ante Phrygem Aenean collis et herba fuit;</l>
 <l n="3">atque ubi Nauali stant sacra Palatia Phoebo,</l>
@@ -3492,9 +3497,9 @@
 <l n="69">sacra diesque canam et cognomina prisca locorum:</l>
 <l n="70">has meus ad metas sudet oportet equus.</l>
 
-</div2>
+</div>
 
-<div2 type="poem" n="1">
+<div type="textpart" subtype="poem" n="1">
 <l n="1">quo ruis imprudens, uage, dicere fata, Properti?</l>
 <l n="2">non sunt a dextro condita fila colo.</l>
 <l n="3">accersis lacrimas cantans, auersus Apollo:</l>
@@ -3575,9 +3580,9 @@
 <l n="78">uel licet armatis hostis inermis eas,</l>
 <l n="79">uel tremefacta cauo tellus diducat hiatum:</l>
 <l n="80">octipedis Cancri terga sinistra time.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="2">
+<div type="textpart" subtype="poem" n="2">
 <l n="1"> quid mirare meas tot in uno corpore formas,</l>
 <l n="2">accipe Vertumni signa paterna dei.</l>
 <l n="3">Tuscus ego <add>et</add> Tuscis orior, nec paenitet inter</l>
@@ -3588,7 +3593,7 @@
 <l n="8">remorum auditos per uada pulsa sonos:</l>
 <l n="9">at postquam ille suis tantum concessit alumnis,</l>
 <l n="10">Vertumnus uerso dicor ab amne deus.</l>
-<l n="11"><gap/></l>
+  <l n="11"><gap reason="omitted"/></l>
 <l n="12">seu, quia uertentis fructum praecepimus anni,</l>
 <l n="13">Vertumni rursus credidit esse sacrum.</l>
 <l n="14">prima mihi uariat liuentibus uua racemis,</l>
@@ -3643,9 +3648,9 @@
 <l n="63">tellus artifices ne terat Osca manus,</l>
 <l n="64">qui me tam docilis potuisti fundere in usus.</l>
 <l n="65">unum opus est, operi non datur unus honos.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="3">
+<div type="textpart" subtype="poem" n="3">
 <l n="1"> haec Arethusa suo mittit mandata Lycotae,</l>
 <l n="2">cum totiens absis, si potes esse meus.</l>
 <l n="3">si qua tamen tibi lecturo pars oblita derit,</l>
@@ -3718,9 +3723,9 @@
 <l n="70">hac ego te sola lege redisse uelim:</l>
 <l n="71">armaque cum tulero portae uotiua Capenae,</l>
 <l n="72">subscribam ‘salvo grata puella uiro.’</l>
-</div2>
+</div>
 
-<div2 type="poem" n="4">
+<div type="textpart" subtype="poem" n="4">
 <l n="1"> Tarpeium nemus et Tarpeiae turpe sepulcrum</l>
 <l n="2">fabor et antiqui limina capta Iouis.</l>
 <l n="3">lucus erat felix hederoso conditus antro,</l>
@@ -3816,9 +3821,9 @@
 <l n="93">a duce Tarpeia mons est cognomen adeptus:</l>
 <l n="94">o vigil, iniuste praemia sortis habes.</l>
 
-</div2>
+</div>
 
-<div2 type="poem" n="5">
+<div type="textpart" subtype="poem" n="5">
 <l n="1"> terra tuum spinis obducat, lena, sepulcrum,</l>
 <l n="2">et tua, quod non uis, sentiat umbra sitim;</l>
 <l n="3">nec sedeant cineri Manes, et Cerberus ultor</l>
@@ -3897,9 +3902,9 @@
 <l n="76">urgeat hunc supra uis, caprifice, tua.</l>
 <l n="77">quisquis amas, scabris hoc bustum caedite saxis,</l>
 <l n="78">mixtaque cum saxis addite verba mala.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="6">
+<div type="textpart" subtype="poem" n="6">
 <l n="1"> sacra facit uates: sint ora fauentia sacris,</l>
 <l n="2">et cadat ante meos icta iuuenca focos.</l>
 <l n="3">serta Philiteis certet Romana corymbis,</l>
@@ -3986,9 +3991,9 @@
 <l n="84">ire per Euphraten ad tua busta licet.’</l>
 <l n="85">sic noctem patera, sic ducam carmine, donec</l>
 <l n="86">iniciat radios in mea uia dies.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="7">
+<div type="textpart" subtype="poem" n="7">
 <l n="1"> Sunt aliquid Manes: letum non omnia finit,</l>
 <l n="2">luridaque euictos effugit umbra rogos.</l>
 <l n="3">Cynthia namque meo uisa est incumbere fulcro,</l>
@@ -4085,9 +4090,9 @@
 <l n="94">mecum eris, et mixtis ossibus ossa teram.’</l>
 <l n="95">haec postquam querula mecum sub lite peregit,</l>
 <l n="96">inter conplexus excidit umbra meos.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="8">
+<div type="textpart" subtype="poem" n="8">
 <l n="1"> disce, quid Esquilias hac nocte fugarit aquosas,</l>
 <l n="2">cum uicina nouis turba cucurrit agris.</l>
 <l n="3">Lanuuium annosi uetus est tutela draconis,</l>
@@ -4176,9 +4181,9 @@
 <l n="86">terque meum tetigit sulpuris igne caput.</l>
 <l n="87">atque ita mutato per singula pallia lecto</l>
 <l n="88">respondi, et toto solvimus arma toro.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="9">
+<div type="textpart" subtype="poem" n="9">
 <l n="1"> Amphitryoniades qua tempestate iuuencos</l>
 <l n="2">egerat a stabulis, o Erythea, tuis,</l>
 <l n="3">uenit ad inuictos pecorosa Palatia montis,</l>
@@ -4253,9 +4258,9 @@
 <l n="72">Sancte, velis libro dexter inesse meo.</l>
 <l n="73">huic, quoniam manibus purgatum sanxerat orbem,</l>
 <l n="74">sic Sanctum Tatiae composuere Cures.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="10">
+<div type="textpart" subtype="poem" n="10">
 <l n="1"> nunc Iouis incipiam causas aperire Feretri</l>
 <l n="2">armaque de ducibus trina recepta tribus.</l>
 <l n="3">magnum iter ascendo, sed dat mihi gloria uires:</l>
@@ -4304,9 +4309,9 @@
 <l n="46">omine quod certo dux ferit ense ducem;</l>
 <l n="47">seu quia uicta suis umeris haec arma ferebant,</l>
 <l n="48">hinc Feretri dictast ara superba Iovis.</l>
-</div2>
+</div>
 
-<div2 type="poem" n="11">
+<div type="textpart" subtype="poem" n="11">
 <l n="1"> desine, Paulle, meum lacrimis urgere sepulcrum:</l>
 <l n="2">panditur ad nullas ianua nigra preces;</l>
 <l n="3">cum semel infernas intrarunt funera leges,</l>
@@ -4409,4 +4414,5 @@
 <l n="100">dum pretium uitae grata rependit humus.</l>
 <l n="101">moribus et caelum patuit: sim digna merendo,</l>
 <l n="102">cuius honoratis ossa vehantur avis.</l>
-</div2></div1></body></text></TEI>
+</div>
+</div></div></body></text></TEI>
