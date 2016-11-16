@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.22/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.22/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
       <fileDesc>
          <titleStmt>
@@ -27,16 +31,21 @@
                   </imprint>
                </monogr>
             </biblStruct>
-            <p>Posted by Konrad Schroder on the Latin Library</p>
+            <!--<p>Posted by Konrad Schroder on the Latin Library</p>-->
          </sourceDesc>
       </fileDesc>
 
       <encodingDesc>
          <refsDecl n="CTS">
             <cRefPattern n="line"
+                         matchPattern="(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']//tei:l[@n='$2'])">
+                <p>This pointer pattern extracts book and poem and line</p>
+            </cRefPattern>
+            <cRefPattern n="poem"
                          matchPattern="(\w+)"
-                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div//tei:l[@n='$1'])">
-               <p>This pointer pattern extracts line</p>
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+                <p>This pointer pattern extracts book and poem</p>
             </cRefPattern>
          </refsDecl>
          <refsDecl n="TEI.2">
@@ -49,10 +58,13 @@
 
       <profileDesc>
          <langUsage>
-             <language ident="la">Latin</language>
-             <language ident="greek">Greek</language>
+             <language ident="lat">Latin</language>
+             <language ident="grc">Greek</language>
          </langUsage>
       </profileDesc>
+      <revisionDesc>
+        <change who="Thibault Clérice" when="2016-11-16">CapiTainS, Epidoc and Bump</change>
+      </revisionDesc>
   </teiHeader>
 
 

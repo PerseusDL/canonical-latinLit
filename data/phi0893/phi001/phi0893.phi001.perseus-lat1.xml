@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><TEI>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.22/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.22/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
    <teiHeader type="text">
       <fileDesc>
          <titleStmt>
@@ -42,91 +47,55 @@
 
       <encodingDesc>
          <refsDecl n="CTS">
-            <cRefPattern n="line" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div//tei:l[@n='$1'])">
-               <p>This pointer pattern extracts line</p>
+            <cRefPattern n="line"
+                         matchPattern="(\w+).(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']//tei:l[@n='$3'])">
+                <p>This pointer pattern extracts book and poem and line</p>
+            </cRefPattern>
+            <cRefPattern n="poem"
+                         matchPattern="(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+                <p>This pointer pattern extracts book and poem</p>
+            </cRefPattern>
+            <cRefPattern n="book"
+                         matchPattern="(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+                <p>This pointer pattern extracts book</p>
             </cRefPattern>
          </refsDecl>
-         <refsDecl n="TEI.2">
-            <step delim="." refunit="book" from="DESCENDANT (1 DIV1 N %1)"/>
-            <step delim="." refunit="poem" from="DESCENDANT (1 DIV2 N %2)" n="chunk"/>
-            <!--<step refunit="line" from="DESCENDANT (1 L N %3)"/>-->
-         </refsDecl>
-
       </encodingDesc>
 
       <profileDesc>
          <langUsage>
-            <language ident="la">Latin</language>
+            <language ident="lat">Latin</language>
          </langUsage>
       </profileDesc>
 
       <revisionDesc>
-         <change>
-            <date>July, 1997</date>
-            <respStmt>
-               <name>WM</name>
-               <resp>ed.</resp>
-            </respStmt>
-            <item>public domain text of Vollmer, Frederick,  _Q._Horati_Flacci_Carmina_  Leipzig: Teubner, 1912 Book 1
+            <change who="Thibault Clérice" when="2016-11-16">CapiTainS, Epidoc and Bump</change>
+            <change who="balmas01" when="2013-09-13">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change> 
+            <change who="gcrane" when="2013-06-08">TEI XML converted to facilitate CTS compatibility</change> 
+            <change who="gcrane" when="2011-01-15">base file for sdl</change> 
+            <change who="rsingh04" when="2009-11-24">moved more xml files around based on copyright status</change> 
+            <change who="lcerrato" when="2009-09-08">fixed typo</change> 
+            <change who="rsingh04" when="2009-08-03">fixed horace lat citation scheme and removed errors to that text</change> 
+            <change who="lcerrato" when="2008-11-14">fixed author name for consistent sorting</change> 
+            <change who="packel" when="2005-08-01">removed stray item tags</change> 
+            <change who="packel" when="2005-07-25">Converted to XML</change> 
+            <change who="yorkc" when="2003-07-01">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change> 
+            <change who="dasmith" when="2000-03-04">Added separate funder entity to TEI header.</change> 
+            <change who="dasmith" when="1999-10-19">Fixed refsDecl and titleStmt.</change> 
+            <change who="dasmith" when="1997-10-07">Added to repository. Passed SGML parse.</change> 
+            <change when="1997-07-01" who="WM">public domain text of Vollmer, Frederick,  _Q._Horati_Flacci_Carmina_  Leipzig: Teubner, 1912 Book 1
 downloaded from Libellus; Books 2-4 of Vollmer scanned and proofread by PE; entire text diffed with PHI and corrected to Shorey and Laing by WM.
-needs line nos.</item>
-         </change>
-         <change>
-            <date>10/7/97</date>
-            <respStmt>
-               <name>David Smith</name>
-               <resp>ed.</resp>
-            </respStmt>
-            <item>
-$Log: hor.carm_lat.xml,v $
-Revision 1.1  2013-09-13 11:17:39  balmas01
-moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory
-
-Revision 1.2  2013-06-08 12:13:34  gcrane
-TEI XML converted to facilitate CTS compatibility
-
-Revision 1.1  2011-01-15 23:36:28  gcrane
-base file for sdl
-
-Revision 1.1  2009/11/24 20:08:27  rsingh04
-moved more xml files around based on copyright status
-
-Revision 1.5  2009/09/08 20:30:41  lcerrato
-fixed typo
-
-Revision 1.4  2009/08/03 19:50:33  rsingh04
-fixed horace lat citation scheme and removed errors to that text
-
-Revision 1.3  2008/11/14 21:23:21  lcerrato
-fixed author name for consistent sorting
-
-Revision 1.2  2005/08/01 16:12:23  packel
-removed stray item tags
-
-Revision 1.1  2005/07/25 14:37:19  packel
-Converted to XML
-
-Revision 1.4  2003/07/01 22:17:02  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.3  2000/03/04 20:34:38  dasmith
-Added separate funder entity to TEI header.
-
-Revision 1.2  1999/10/19 15:12:55  dasmith
-Fixed refsDecl and titleStmt.
-
-Revision 1.1  1997/10/07 18:36:59  textgod
-Added to repository. Passed SGML parse.
-
-</item>
-         </change>
+needs line nos.</change>
       </revisionDesc>
    </teiHeader>
-   <text xml:lang="">
+   <text xml:lang="lat">
       <body>
          <div xml:lang="lat" type="edition" n="urn:cts:latinLit:phi0893.phi001.perseus-lat1">
-            <div type="textpart" n="1" subtype="Book">
-               <div type="textpart" n="1" met="First Asclepiadean" subtype="Poem">
+            <div type="textpart" n="1" subtype="book">
+               <div type="textpart" n="1" met="First Asclepiadean" subtype="poem">
                   <l n="1">Maecenas atavis edite regibus,</l>
                   <l n="2">o et praesidium et dulce decus meum:</l>
                   <l n="3">sunt quos curriculo pulverem Olympicum</l>
@@ -164,7 +133,7 @@ Added to repository. Passed SGML parse.
                   <l n="35">quodsi me lyricis vatibus inseres,</l>
                   <l n="36">sublimi feriam sidera vertice.</l>
                </div>
-               <div type="textpart" n="2" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="2" met="Sapphic Strophe" subtype="poem">
                   <lg type="stanza">
                      <l n="1">Iam satis terris nivis atque dirae</l>
                      <l n="2">grandinis misit pater et rubente</l>
@@ -244,7 +213,7 @@ Added to repository. Passed SGML parse.
                      <l n="52">te duce, Caesar.</l>
                   </lg>
                </div>
-               <div type="textpart" n="3" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="3" met="Second Asclepiadean" subtype="poem">
                   <l n="1">Sic te diva potens Cypri,</l>
                   <l n="2">sic fratres Helenae, lucida sidera,</l>
                   <l n="3">ventorumque regat pater</l>
@@ -286,7 +255,7 @@ Added to repository. Passed SGML parse.
                   <l n="39">per nostrum patimur scelus</l>
                   <l n="40">iracunda Iovem ponere fulmina.</l>
                </div>
-               <div type="textpart" n="4" met="Fourth Archilochian" subtype="Poem">
+               <div type="textpart" n="4" met="Fourth Archilochian" subtype="poem">
                   <l n="1">Solvitur acris hiems grata vice veris et Favoni</l>
                   <l n="2">trahuntque siccas machinae carinas</l>
                   <l n="3">ac neque iam stabulis gaudet pecus aut arator igni</l>
@@ -308,7 +277,7 @@ Added to repository. Passed SGML parse.
                   <l n="19">nec tenerum Lycidan mirabere, quo calet iuventus</l>
                   <l n="20">nunc omnis et mox virgines tepebunt.</l>
                </div>
-               <div type="textpart" n="5" met="Fourth Asclepiadean" subtype="Poem">
+               <div type="textpart" n="5" met="Fourth Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Quis multa gracilis te puer in rosa</l>
                      <l n="2">perfusus liquidis urget odoribus</l>
@@ -334,7 +303,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">vestimenta maris deo.</l>
                   </lg>
                </div>
-               <div type="textpart" n="6" met="Third Asclepiadean" subtype="Poem">
+               <div type="textpart" n="6" met="Third Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Scriberis Vario fortis et hostium</l>
                      <l n="2">victor Maeonii carminis alite,</l>
@@ -366,7 +335,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">non praeter solitum leves.</l>
                   </lg>
                </div>
-               <div type="textpart" n="7" met="Alcmanian Strophe" subtype="Poem">
+               <div type="textpart" n="7" met="Alcmanian Strophe" subtype="poem">
                   <l n="1">Laudabunt alii claram Rhodon aut Mytilenen</l>
                   <l n="2">aut Epheson bimarisve Corinthi</l>
                   <l n="3">moenia vel Baccho Thebas vel Apolline Delphos</l>
@@ -400,7 +369,7 @@ Added to repository. Passed SGML parse.
                   <l n="31">mecum saepe viri, nunc vino pellite curas;</l>
                   <l n="32">cras ingens iterabimus aequor.”</l>
                </div>
-               <div type="textpart" n="8" met="(Greater) Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="8" met="(Greater) Sapphic Strophe" subtype="poem">
                   <l n="1">Lydia, dic per omnis</l>
                   <l n="2">te deos oro, Sybarin cur properes amando</l>
                   <l n="3">perdere, cur apricum</l>
@@ -418,7 +387,7 @@ Added to repository. Passed SGML parse.
                   <l n="15">funera, ne virilis</l>
                   <l n="16">cultus in caedem et Lycias proriperet catervas?</l>
                </div>
-               <div type="textpart" n="9" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="9" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Vides ut alta stet nive candidum</l>
                      <l n="2">Soracte nec iam sustineant onus</l>
@@ -456,7 +425,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">aut digito male pertinaci.</l>
                   </lg>
                </div>
-               <div type="textpart" n="10" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="10" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Mercuri facunde nepos Atlantis,</l>
                      <l n="2">qui feros cultus hominum recentum</l>
@@ -488,7 +457,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">gratus et imis.</l>
                   </lg>
                </div>
-               <div type="textpart" n="11" met="Fifth (Greater) Asclepiadean" subtype="Poem">
+               <div type="textpart" n="11" met="Fifth (Greater) Asclepiadean" subtype="poem">
                   <l n="1">Tu ne quaesieris, scire nefas, quem mihi, quem tibi</l>
                   <l n="2">finem di dederint, Leuconoe, nec Babylonios</l>
                   <l n="3">temptaris numeros. ut melius, quidquid erit, pati.</l>
@@ -498,7 +467,7 @@ Added to repository. Passed SGML parse.
                   <l n="7">spem longam reseces. dum loquimur, fugerit invida</l>
                   <l n="8">aetas: carpe diem quam minimum credula postero.</l>
                </div>
-               <div type="textpart" n="12" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="12" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Quem virum aut heroa lyra vel acri</l>
                      <l n="2">tibia sumis celebrare, Clio?</l>
@@ -590,7 +559,7 @@ Added to repository. Passed SGML parse.
                      <l n="60">fulmina lucis.</l>
                   </lg>
                </div>
-               <div type="textpart" n="13" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="13" met="Second Asclepiadean" subtype="poem">
                   <l n="1">Cum tu, Lydia, Telephi</l>
                   <l n="2">cervicem roseam, cerea Telephi</l>
                   <l n="3">laudas bracchia, vae, meum</l>
@@ -612,7 +581,7 @@ Added to repository. Passed SGML parse.
                   <l n="19">divolsus querimoniis</l>
                   <l n="20">suprema citius solvet amor die.</l>
                </div>
-               <div type="textpart" n="14" met="Fourth Asclepiadean" subtype="Poem">
+               <div type="textpart" n="14" met="Fourth Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">O navis, referent in mare te novi</l>
                      <l n="2">fluctus. o quid agis? fortiter occupa</l>
@@ -644,7 +613,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">vites aequora Cycladas.</l>
                   </lg>
                </div>
-               <div type="textpart" n="15" met="Third Asclepiadean" subtype="Poem">
+               <div type="textpart" n="15" met="Third Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Pastor cum traheret per freta navibus</l>
                      <l n="2">Idaeis Helenen perfidus hospitam,</l>
@@ -700,7 +669,7 @@ Added to repository. Passed SGML parse.
                      <l n="36">ignis Iliacas domos.</l>
                   </lg>
                </div>
-               <div type="textpart" n="16" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="16" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">O matre pulcra filia pulchrior,</l>
                      <l n="2">quem criminosis cumque voles modum</l>
@@ -744,7 +713,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">opprobriis animumque reddas.</l>
                   </lg>
                </div>
-               <div type="textpart" n="17" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="17" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Velox amoenum saepe Lucretilem</l>
                      <l n="2">mutat Lycaeo Faunus et igneam</l>
@@ -788,7 +757,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">crinibus inmeritamque vestem.</l>
                   </lg>
                </div>
-               <div type="textpart" n="18" met="Fifth (Greater) Asclepiadean" subtype="Poem">
+               <div type="textpart" n="18" met="Fifth (Greater) Asclepiadean" subtype="poem">
                   <l n="1">Nullam, Vare, sacra vite prius severis arborem</l>
                   <l n="2">circa mite solum Tiburis et moenia Catili;</l>
                   <l n="3">siccis omnia nam dura deus proposuit neque</l>
@@ -806,7 +775,7 @@ Added to repository. Passed SGML parse.
                   <l n="15">et tollens vacuum plus nimio gloria verticem</l>
                   <l n="16">arcanique fides prodiga, perlucidior vitro.</l>
                </div>
-               <div type="textpart" n="19" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="19" met="Second Asclepiadean" subtype="poem">
                   <l n="1">Mater saeva Cupidinum</l>
                   <l n="2">Thebanaeque iubet me Semelae puer</l>
                   <l n="3">et lasciva Licentia</l>
@@ -824,7 +793,7 @@ Added to repository. Passed SGML parse.
                   <l n="15">bimi cum patera meri:</l>
                   <l n="16">mactata veniet lenior hostia.</l>
                </div>
-               <div type="textpart" n="20" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="20" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Vile potabis modicis Sabinum</l>
                      <l n="2">cantharis, Graeca quod ego ipse testa</l>
@@ -844,7 +813,7 @@ Added to repository. Passed SGML parse.
                      <l n="12">pocula colles.</l>
                   </lg>
                </div>
-               <div type="textpart" n="21" met="Fourth Asclepiadean" subtype="Poem">
+               <div type="textpart" n="21" met="Fourth Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Dianam tenerae dicite virgines,</l>
                      <l n="2">intonsum pueri dicite Cynthium</l>
@@ -870,7 +839,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">vestra motus aget prece.</l>
                   </lg>
                </div>
-               <div type="textpart" n="22" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="22" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Integer vitae scelerisque purus</l>
                      <l n="2">non eget Mauris iaculis neque arcu</l>
@@ -908,7 +877,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">dulce loquentem.</l>
                   </lg>
                </div>
-               <div type="textpart" n="23" met="Fourth Asclepiadean" subtype="Poem">
+               <div type="textpart" n="23" met="Fourth Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Vitas hinnuleo me similis, Chloe,</l>
                      <l n="2">quaerenti pavidam montibus aviis</l>
@@ -928,7 +897,7 @@ Added to repository. Passed SGML parse.
                      <l n="12">tempestiva sequi viro.</l>
                   </lg>
                </div>
-               <div type="textpart" n="24" met="Third Asclepiadean" subtype="Poem">
+               <div type="textpart" n="24" met="Third Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Quis desiderio sit pudor aut modus</l>
                      <l n="2">tam cari capitis? praecipe lugubris</l>
@@ -960,7 +929,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">quidquid corrigere est nefas.</l>
                   </lg>
                </div>
-               <div type="textpart" n="25" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="25" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Parcius iunctas quatiunt fenestras</l>
                      <l n="2">iactibus crebris iuvenes protervi</l>
@@ -992,7 +961,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">dedicet Euro.</l>
                   </lg>
                </div>
-               <div type="textpart" n="26" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="26" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Musis amicus tristitiam et metus</l>
                      <l n="2">tradam protervis in mare Creticum</l>
@@ -1012,7 +981,7 @@ Added to repository. Passed SGML parse.
                      <l n="12">teque tuasque decet sorores.</l>
                   </lg>
                </div>
-               <div type="textpart" n="27" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="27" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Natis in usum laetitiae scyphis</l>
                      <l n="2">pugnare Thracum est: tollite barbarum</l>
@@ -1050,7 +1019,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">Pegasus expediet Chimaera.</l>
                   </lg>
                </div>
-               <div type="textpart" n="28" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="28" met="Alcaic Strophe" subtype="poem">
                   <l n="1">Te maris et terrae numeroque carentis harenae</l>
                   <l n="2">mensorem cohibent, Archyta,</l>
                   <l n="3">pulveris exigui prope litus parva Matinum</l>
@@ -1088,7 +1057,7 @@ Added to repository. Passed SGML parse.
                   <l n="35">quamquam festinas, non est mora longa; licebit</l>
                   <l n="36">iniecto ter pulvere curras.</l>
                </div>
-               <div type="textpart" n="29" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="29" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Icci, beatis nunc Arabum invides</l>
                      <l n="2">gazis et acrem militiam paras</l>
@@ -1114,7 +1083,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">pollicitus meliora, tendis?</l>
                   </lg>
                </div>
-               <div type="textpart" n="30" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="30" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">O Venus regina Cnidi Paphique,</l>
                      <l n="2">sperne dilectam Cypron et vocantis</l>
@@ -1128,7 +1097,7 @@ Added to repository. Passed SGML parse.
                      <l n="8">Mercuriusque.</l>
                   </lg>
                </div>
-               <div type="textpart" n="31" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="31" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Quid dedicatum poscit Apollinem</l>
                      <l n="2">vates? quid orat de patera novum</l>
@@ -1160,7 +1129,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">degere nec cithara carentem.</l>
                   </lg>
                </div>
-               <div type="textpart" n="32" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="32" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Poscimur. si quid vacui sub umbra</l>
                      <l n="2">lusimus tecum, quod et hunc in annum</l>
@@ -1186,7 +1155,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">rite vocanti!</l>
                   </lg>
                </div>
-               <div type="textpart" n="33" met="Third Asclepiadean" subtype="Poem">
+               <div type="textpart" n="33" met="Third Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Albi, ne doleas plus nimio memor</l>
                      <l n="2">inmitis Glycerae neu miserabilis</l>
@@ -1212,7 +1181,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">curvantis Calabros sinus.</l>
                   </lg>
                </div>
-               <div type="textpart" n="34" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="34" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Parcus deorum cultor et infrequens,</l>
                      <l n="2">insanientis dum sapientiae</l>
@@ -1238,7 +1207,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">sustulit, hic posuisse gaudet.</l>
                   </lg>
                </div>
-               <div type="textpart" n="35" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="35" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">O diva, gratum quae regis Antium,</l>
                      <l n="2">praesens vel imo tollere de gradu</l>
@@ -1300,7 +1269,7 @@ Added to repository. Passed SGML parse.
                      <l n="40">Massagetas Arabasque ferrum.</l>
                   </lg>
                </div>
-               <div type="textpart" n="36" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="36" met="Second Asclepiadean" subtype="poem">
                   <l n="1">Et ture et fidibus iuvat</l>
                   <l n="2">placare et vituli sanguine debito</l>
                   <l n="3">custodes Numidae deos,</l>
@@ -1322,7 +1291,7 @@ Added to repository. Passed SGML parse.
                   <l n="19">divelletur adultero</l>
                   <l n="20">lascivis hederis ambitiosior.</l>
                </div>
-               <div type="textpart" n="37" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="37" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Nunc est bibendum, nunc pede libero</l>
                      <l n="2">pulsanda tellus; nunc Saliaribus</l>
@@ -1372,7 +1341,7 @@ Added to repository. Passed SGML parse.
                      <l n="32">non humilis mulier, triumpho.</l>
                   </lg>
                </div>
-               <div type="textpart" n="38" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="38" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Persicos odi, puer, adparatus,</l>
                      <l n="2">displicent nexae philyra coronae,</l>
@@ -1387,8 +1356,8 @@ Added to repository. Passed SGML parse.
                   </lg>
                </div>
             </div>
-            <div type="textpart" n="2" subtype="Book">
-               <div type="textpart" n="1" met="Alcaic Strophe" subtype="Poem">
+            <div type="textpart" n="2" subtype="book">
+               <div type="textpart" n="1" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Motum ex Metello consule civicum</l>
                      <l n="2">bellique causas et vitia et modos</l>
@@ -1450,7 +1419,7 @@ Added to repository. Passed SGML parse.
                      <l n="40">quaere modos leviore plectro.</l>
                   </lg>
                </div>
-               <div type="textpart" n="2" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="2" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Nullus argento color est avaris</l>
                      <l n="2">abdito terris, inimice lamnae</l>
@@ -1488,7 +1457,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">spectat acervos.</l>
                   </lg>
                </div>
-               <div type="textpart" n="3" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="3" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Aequam memento rebus in arduis</l>
                      <l n="2">servare mentem, non secus in bonis</l>
@@ -1532,7 +1501,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">exilium inpositura cumbae.</l>
                   </lg>
                </div>
-               <div type="textpart" n="4" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="4" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Ne sit ancillae tibi amor pudori,</l>
                      <l n="2">Xanthia Phoceu: prius insolentem</l>
@@ -1570,7 +1539,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">claudere lustrum.</l>
                   </lg>
                </div>
-               <div type="textpart" n="5" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="5" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Nondum subacta ferre iugum valet</l>
                      <l n="2">cervice, nondum munia conparis</l>
@@ -1608,7 +1577,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">crinibus ambiguoque voltu.</l>
                   </lg>
                </div>
-               <div type="textpart" n="6" met="Sapphic strophe" subtype="Poem">
+               <div type="textpart" n="6" met="Sapphic strophe" subtype="poem">
                   <lg>
                      <l n="1">Septimi, Gadis aditure mecum et</l>
                      <l n="2">Cantabrum indoctum iuga ferre nostra et</l>
@@ -1646,7 +1615,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">vatis amici.</l>
                   </lg>
                </div>
-               <div type="textpart" n="7" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="7" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">O saepe mecum tempus in ultimum</l>
                      <l n="2">deducte Bruto militiae duce,</l>
@@ -1690,7 +1659,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">dulce mihi furere est amico.</l>
                   </lg>
                </div>
-               <div type="textpart" n="8" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="8" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Vlla si iuris tibi peierati</l>
                      <l n="2">poena, Barine, nocuisset umquam,</l>
@@ -1728,7 +1697,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">aura maritos.</l>
                   </lg>
                </div>
-               <div type="textpart" n="9" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="9" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Non semper imbres nubibus hispidos</l>
                      <l n="2">manant in agros aut mare Caspium</l>
@@ -1766,7 +1735,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">exiguis equitare campis.</l>
                   </lg>
                </div>
-               <div type="textpart" n="10" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="10" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Rectius vives, Licini, neque altum</l>
                      <l n="2">semper urgendo neque, dum procellas</l>
@@ -1804,7 +1773,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">turgida vela.</l>
                   </lg>
                </div>
-               <div type="textpart" n="11" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="11" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Quid bellicosus Cantaber et Scythes,</l>
                      <l n="2">Hirpine Quinti, cogitet Hadria</l>
@@ -1842,7 +1811,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">more comam religata nodum.</l>
                   </lg>
                </div>
-               <div type="textpart" n="12" met="Third Asclepiadean" subtype="Poem">
+               <div type="textpart" n="12" met="Third Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Nolis longa ferae bella Numantiae</l>
                      <l n="2">nec durum Hannibalem nec Siculum mare</l>
@@ -1886,7 +1855,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">interdum rapere occupet?</l>
                   </lg>
                </div>
-               <div type="textpart" n="13" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="13" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Ille et nefasto te posuit die</l>
                      <l n="2">quicumque primum, et sacrilega manu</l>
@@ -1948,7 +1917,7 @@ Added to repository. Passed SGML parse.
                      <l n="40">aut timidos agitare lyncas</l>
                   </lg>
                </div>
-               <div type="textpart" n="14" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="14" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Eheu fugaces, Postume, Postume,</l>
                      <l n="2">labuntur anni nec pietas moram</l>
@@ -1992,7 +1961,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">pontificum potiore cenis.</l>
                   </lg>
                </div>
-               <div type="textpart" n="15" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="15" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Iam pauca aratro iugera regiae</l>
                      <l n="2">moles relinquent, undique latius</l>
@@ -2024,7 +1993,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">templa novo decorare saxo.</l>
                   </lg>
                </div>
-               <div type="textpart" n="16" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="16" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Otium divos rogat in patenti</l>
                      <l n="2">prensus Aegaeo, simul atra nubes</l>
@@ -2086,7 +2055,7 @@ Added to repository. Passed SGML parse.
                      <l n="40">spernere volgus.</l>
                   </lg>
                </div>
-               <div type="textpart" n="17" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="17" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Cur me querelis exanimas tuis?</l>
                      <l n="2">nec dis amicum est nec mihi te prius</l>
@@ -2136,7 +2105,7 @@ Added to repository. Passed SGML parse.
                      <l n="32">nos humilem feriemus agnam.</l>
                   </lg>
                </div>
-               <div type="textpart" n="18" met="Trochaic strophe" subtype="Poem">
+               <div type="textpart" n="18" met="Trochaic strophe" subtype="poem">
                   <lg>
                      <l n="1">Non ebur neque aureum</l>
                      <l n="2">mea renidet in domo lacunar,</l>
@@ -2198,7 +2167,7 @@ Added to repository. Passed SGML parse.
                      <l n="40">vocatus atque non vocatus audit.</l>
                   </lg>
                </div>
-               <div type="textpart" n="19" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="19" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Bacchum in remotis carmina rupibus</l>
                      <l n="2">vidi docentem, credite posteri,</l>
@@ -2248,7 +2217,7 @@ Added to repository. Passed SGML parse.
                      <l n="32">ore pedes tetigitque crura.</l>
                   </lg>
                </div>
-               <div type="textpart" n="20" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="20" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Non usitata nec tenui ferar</l>
                      <l n="2">penna biformis per liquidum aethera</l>
@@ -2287,8 +2256,8 @@ Added to repository. Passed SGML parse.
                   </lg>
                </div>
             </div>
-            <div type="textpart" n="3" subtype="Book">
-               <div type="textpart" n="1" met="Alcaic Strophe" subtype="Poem">
+            <div type="textpart" n="3" subtype="book">
+               <div type="textpart" n="1" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Odi profanum volgus et arceo.</l>
                      <l n="2">favete linguis: carmina non prius</l>
@@ -2362,7 +2331,7 @@ Added to repository. Passed SGML parse.
                      <l n="48">divitias operosiores?</l>
                   </lg>
                </div>
-               <div type="textpart" n="2" met="Alcaic Strophex" subtype="Poem">
+               <div type="textpart" n="2" met="Alcaic Strophex" subtype="poem">
                   <lg>
                      <l n="1">Angustam amice pauperiem pati</l>
                      <l n="2">robustus acri militia puer</l>
@@ -2412,7 +2381,7 @@ Added to repository. Passed SGML parse.
                      <l n="32">deseruit pede Poena claudo.</l>
                   </lg>
                </div>
-               <div type="textpart" n="3" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="3" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Iustum et tenacem propositi virum</l>
                      <l n="2">non civium ardor prava iubentium,</l>
@@ -2522,7 +2491,7 @@ Added to repository. Passed SGML parse.
                      <l n="72">magna modis tenuare parvis.</l>
                   </lg>
                </div>
-               <div type="textpart" n="4" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="4" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Descende caelo et dic age tibia</l>
                      <l n="2">regina longum Calliope melos,</l>
@@ -2644,7 +2613,7 @@ Added to repository. Passed SGML parse.
                      <l n="80">Pirithoum cohibent catenae.</l>
                   </lg>
                </div>
-               <div type="textpart" n="5" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="5" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Caelo tonantem credidimus Iovem</l>
                      <l n="2">regnare; praesens divus habebitur</l>
@@ -2730,7 +2699,7 @@ Added to repository. Passed SGML parse.
                      <l n="56">aut Lacedaemonium Tarentum.</l>
                   </lg>
                </div>
-               <div type="textpart" n="6" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="6" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Delicta maiorum inmeritus lues,</l>
                      <l n="2">Romane, donec templa refeceris</l>
@@ -2804,7 +2773,7 @@ Added to repository. Passed SGML parse.
                      <l n="48">progeniem vitiosiorem.</l>
                   </lg>
                </div>
-               <div type="textpart" n="7" met="Fourth Asclepiadean" subtype="Poem">
+               <div type="textpart" n="7" met="Fourth Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Quid fles, Asterie, quem tibi, candidi</l>
                      <l n="2">primo restituent vere Favonii</l>
@@ -2854,7 +2823,7 @@ Added to repository. Passed SGML parse.
                      <l n="32">duram difficilis mane.</l>
                   </lg>
                </div>
-               <div type="textpart" n="8" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="8" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Martiis caelebs quid agam kalendis,</l>
                      <l n="2">quid velint flores et acerra turis</l>
@@ -2898,7 +2867,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">linque severa.</l>
                   </lg>
                </div>
-               <div type="textpart" n="9" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="9" met="Second Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">“Donec gratus eram tibi</l>
                      <l n="2">nec quisquam potior bracchia candidae</l>
@@ -2936,7 +2905,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">tecum vivere amem, tecum obeam lubens.”</l>
                   </lg>
                </div>
-               <div type="textpart" n="10" met="Third Asclepiadean" subtype="Poem">
+               <div type="textpart" n="10" met="Third Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Extremum Tanain si biberes, Lyce,</l>
                      <l n="2">saevo nupta viro, me tamen asperas</l>
@@ -2968,7 +2937,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">caelestis patiens latus.</l>
                   </lg>
                </div>
-               <div type="textpart" n="11" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="11" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Mercuri, nam te docilis magistro</l>
                      <l n="2">movit Amphion lapides canendo,</l>
@@ -3048,7 +3017,7 @@ Added to repository. Passed SGML parse.
                      <l n="52">scalpe querelam.”</l>
                   </lg>
                </div>
-               <div type="textpart" n="12" met="Ten Ionici a minore" subtype="Poem">
+               <div type="textpart" n="12" met="Ten Ionici a minore" subtype="poem">
                   <lg>
                      <l n="1">Miserarum est neque amori dare ludum neque dulci</l>
                      <l n="2">mala vino lavere, aut exanimari metuentis</l>
@@ -3070,7 +3039,7 @@ Added to repository. Passed SGML parse.
                      <l n="12">fruticeto excipere aprum.</l>
                   </lg>
                </div>
-               <div type="textpart" n="13" met="Fourth Asclepiadean" subtype="Poem">
+               <div type="textpart" n="13" met="Fourth Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">O fons Bandusiae splendidior vitro,</l>
                      <l n="2">dulci digne mero non sine floribus,</l>
@@ -3096,7 +3065,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">lymphae desiliunt tuae.</l>
                   </lg>
                </div>
-               <div type="textpart" n="14" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="14" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Herculis ritu modo dictus, o plebs,</l>
                      <l n="2">morte venalem petiisse laurum</l>
@@ -3140,7 +3109,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">consule Planco.</l>
                   </lg>
                </div>
-               <div type="textpart" n="15" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="15" met="Second Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Uxor pauperis Ibyci,</l>
                      <l n="2">tandem nequitiae fige modum tuae</l>
@@ -3166,7 +3135,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">nec poti, vetulam, faece tenus cadi.</l>
                   </lg>
                </div>
-               <div type="textpart" n="16" met="Third Asclepiadean" subtype="Poem">
+               <div type="textpart" n="16" met="Third Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Inclusam Danaen turris aenea</l>
                      <l n="2">robustaeque fores et vigilum canum</l>
@@ -3234,7 +3203,7 @@ Added to repository. Passed SGML parse.
                      <l n="44">parca quod satis est manu.</l>
                   </lg>
                </div>
-               <div type="textpart" n="17" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="17" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Aeli vetusto nobilis ab Lamo,</l>
                      <l n="2">quando et priores hinc Lamias ferunt</l>
@@ -3260,7 +3229,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">cum famulis operum solutis.</l>
                   </lg>
                </div>
-               <div type="textpart" n="18" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="18" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Faune, Nympharum fugientum amator,</l>
                      <l n="2">per meos finis et aprica rura</l>
@@ -3286,7 +3255,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">ter pede terram.</l>
                   </lg>
                </div>
-               <div type="textpart" n="19" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="19" met="Second Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Quantum distet ab Inacho</l>
                      <l n="2">Codrus pro patria non timidus mori</l>
@@ -3330,7 +3299,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">me lentus Glycerae torret amor meae.</l>
                   </lg>
                </div>
-               <div type="textpart" n="20" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="20" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Non vides, quanto moveas periclo,</l>
                      <l n="2">Pyrrhe, Gaetulae catulos leaenae?</l>
@@ -3356,7 +3325,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">raptus ab Ida.</l>
                   </lg>
                </div>
-               <div type="textpart" n="21" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="21" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">O nata mecum consule Manlio,</l>
                      <l n="2">seu tu querellas sive geris iocos</l>
@@ -3394,7 +3363,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">dum rediens fugat astra Phoebus.</l>
                   </lg>
                </div>
-               <div type="textpart" n="22" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="22" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Montium custos nemorumque, virgo,</l>
                      <l n="2">quae laborantis utero puellas</l>
@@ -3408,7 +3377,7 @@ Added to repository. Passed SGML parse.
                      <l n="8">sanguine donem.</l>
                   </lg>
                </div>
-               <div type="textpart" n="23" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="23" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Caelo supinas si tuleris manus</l>
                      <l n="2">nascente luna, rustica Phidyle,</l>
@@ -3440,7 +3409,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">farre pio et saliente mica.</l>
                   </lg>
                </div>
-               <div type="textpart" n="24" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="24" met="Second Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Intactis opulentior</l>
                      <l n="2">thesauris Arabum et divitis Indiae</l>
@@ -3538,7 +3507,7 @@ Added to repository. Passed SGML parse.
                      <l n="64">curtae nescio quid semper abest rei.</l>
                   </lg>
                </div>
-               <div type="textpart" n="25" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="25" met="Second Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Quo me, Bacche, rapis tui</l>
                      <l n="2">plenum? quae nemora aut quos agor in specus,</l>
@@ -3570,7 +3539,7 @@ Added to repository. Passed SGML parse.
                      <l n="20">cingentem viridi tempora pampino.</l>
                   </lg>
                </div>
-               <div type="textpart" n="26" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="26" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Vixi puellis nuper idoneus</l>
                      <l n="2">et militavi non sine gloria;</l>
@@ -3590,7 +3559,7 @@ Added to repository. Passed SGML parse.
                      <l n="12">tange Chloen semel arrogantem.</l>
                   </lg>
                </div>
-               <div type="textpart" n="27" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="27" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Inpios parrae recinentis omen</l>
                      <l n="2">ducat et praegnans canis aut ab agro</l>
@@ -3706,7 +3675,7 @@ Added to repository. Passed SGML parse.
                      <l n="76">nomina ducet.”</l>
                   </lg>
                </div>
-               <div type="textpart" n="28" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="28" met="Second Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Festo quid potius die</l>
                      <l n="2">Neptuni faciam? prome reconditum,</l>
@@ -3732,7 +3701,7 @@ Added to repository. Passed SGML parse.
                      <l n="16">dicetur, merita Nox quoque nenia.</l>
                   </lg>
                </div>
-               <div type="textpart" n="29" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="29" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Tyrrhena regum progenies, tibi</l>
                      <l n="2">non ante verso lene merum cado</l>
@@ -3830,7 +3799,7 @@ Added to repository. Passed SGML parse.
                      <l n="64">aura feret geminusque Pollux.</l>
                   </lg>
                </div>
-               <div type="textpart" n="30" met="First Asclepiadean" subtype="Poem">
+               <div type="textpart" n="30" met="First Asclepiadean" subtype="poem">
                   <l n="1">Exegi monumentum aere perennius</l>
                   <l n="2">regalique situ pyramidum altius,</l>
                   <l n="3">quod non imber edax, non aquilo impotens</l>
@@ -3849,8 +3818,8 @@ Added to repository. Passed SGML parse.
                   <l n="16">lauro cinge volens, Melpomene, comam.</l>
                </div>
             </div>
-            <div type="textpart" n="4" subtype="Book">
-               <div type="textpart" n="1" met="Second Asclepiadean" subtype="Poem">
+            <div type="textpart" n="4" subtype="book">
+               <div type="textpart" n="1" met="Second Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Intermissa, Venus, diu</l>
                      <l n="2">rursus bella moves? parce, precor precor.</l>
@@ -3912,7 +3881,7 @@ Added to repository. Passed SGML parse.
                      <l n="40">campi, te per aquas, dure, volubilis.</l>
                   </lg>
                </div>
-               <div type="textpart" n="2" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="2" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Pindarum quisquis studet aemulari,</l>
                      <l n="2">Iulle, ceratis ope Daedalea</l>
@@ -4004,7 +3973,7 @@ Added to repository. Passed SGML parse.
                      <l n="60">cetera fulvos.</l>
                   </lg>
                </div>
-               <div type="textpart" n="3" met="Second Asclepiadean" subtype="Poem">
+               <div type="textpart" n="3" met="Second Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Quem tu, Melpomene, semel</l>
                      <l n="2">nascentem placido lumine videris,</l>
@@ -4042,7 +4011,7 @@ Added to repository. Passed SGML parse.
                      <l n="24">quod spiro et placeo, si placeo, tuum est.</l>
                   </lg>
                </div>
-               <div type="textpart" n="4" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="4" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Qualem ministrum fulminis alitem,</l>
                      <l n="2">cui rex deorum regnum in avis vagas</l>
@@ -4158,7 +4127,7 @@ Added to repository. Passed SGML parse.
                      <l n="76">expediunt per acuta belli”.</l>
                   </lg>
                </div>
-               <div type="textpart" n="5" met="Third Asclepiadean" subtype="Poem">
+               <div type="textpart" n="5" met="Third Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Divis orte bonis, optume Romulae</l>
                      <l n="2">custos gentis, abes iam nimium diu;</l>
@@ -4220,7 +4189,7 @@ Added to repository. Passed SGML parse.
                      </lg>
                   </lg>
                </div>
-               <div type="textpart" n="6" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="6" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Dive, quem proles Niobea magnae</l>
                      <l n="2">vindicem linguae Tityosque raptor</l>
@@ -4288,7 +4257,7 @@ Added to repository. Passed SGML parse.
                      <l n="44"> vatis Horati.”</l>
                   </lg>
                </div>
-               <div type="textpart" n="7" met="First Archilochian" subtype="Poem">
+               <div type="textpart" n="7" met="First Archilochian" subtype="poem">
                   <lg>
                      <l n="1">Diffugere nives, redeunt iam gramina campis</l>
                      <l n="2">arboribusque comae;</l>
@@ -4332,7 +4301,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">vincula Pirithoo.</l>
                   </lg>
                </div>
-               <div type="textpart" n="8" met="First Asclepiadean" subtype="Poem">
+               <div type="textpart" n="8" met="First Asclepiadean" subtype="poem">
                   <l n="1">Donarem pateras grataque commodus,</l>
                   <l n="2">Censorine, meis aera sodalibus,</l>
                   <l n="3">donarem tripodas, praemia fortium</l>
@@ -4368,7 +4337,7 @@ Added to repository. Passed SGML parse.
                   <l n="33">ornatus viridi tempora pampino</l>
                   <l n="34">Liber vota bonos ducit ad exitus.</l>
                </div>
-               <div type="textpart" n="9" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="9" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Ne forte credas interitura quae</l>
                      <l n="2">longe sonantem natus ad Aufidum</l>
@@ -4448,7 +4417,7 @@ Added to repository. Passed SGML parse.
                      </lg>
                   </lg>
                </div>
-               <div type="textpart" n="10" met="Fifth (Greater) Asclepiadean" subtype="Poem">
+               <div type="textpart" n="10" met="Fifth (Greater) Asclepiadean" subtype="poem">
                   <l n="1">O crudelis adhuc et Veneris muneribus potens,</l>
                   <l n="2">insperata tuae cum veniet pluma superbiae</l>
                   <l n="3">et, quae nunc umeris involitant, deciderint comae,</l>
@@ -4458,7 +4427,7 @@ Added to repository. Passed SGML parse.
                   <l n="7">“quae mens est hodie, cur eadem non puero fuit,</l>
                   <l n="8">vel cur his animis incolumes non redeunt genae?”</l>
                </div>
-               <div type="textpart" n="11" met="Sapphic Strophe" subtype="Poem">
+               <div type="textpart" n="11" met="Sapphic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Est mihi nonum superantis annum</l>
                      <l n="2">plenus Albani cadus, est in horto,</l>
@@ -4514,7 +4483,7 @@ Added to repository. Passed SGML parse.
                      <l n="36">carmine curae.</l>
                   </lg>
                </div>
-               <div type="textpart" n="12" met="Third Asclepiadean" subtype="Poem">
+               <div type="textpart" n="12" met="Third Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Iam veris comites, quae mare temperant,</l>
                      <l n="2">inpellunt animae lintea Thraciae,</l>
@@ -4558,7 +4527,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">dulce est desipere in loco.</l>
                   </lg>
                </div>
-               <div type="textpart" n="13" met="Fourth Asclepiadean" subtype="Poem">
+               <div type="textpart" n="13" met="Fourth Asclepiadean" subtype="poem">
                   <lg>
                      <l n="1">Audivere, Lyce, di mea vota, di</l>
                      <l n="2">audivere, Lyce: fis anus et tamen</l>
@@ -4602,7 +4571,7 @@ Added to repository. Passed SGML parse.
                      <l n="28">dilapsam in cineres facem.</l>
                   </lg>
                </div>
-               <div type="textpart" n="14" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="14" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Quae cura patrum quaeve Quiritium</l>
                      <l n="2">plenis honorum muneribus tuas,</l>
@@ -4682,7 +4651,7 @@ Added to repository. Passed SGML parse.
                      <l n="52">conpositis venerantur armis.</l>
                   </lg>
                </div>
-               <div type="textpart" n="15" met="Alcaic Strophe" subtype="Poem">
+               <div type="textpart" n="15" met="Alcaic Strophe" subtype="poem">
                   <lg>
                      <l n="1">Phoebus volentem proelia me loqui</l>
                      <l n="2">victas et urbis increpuit lyra,</l>

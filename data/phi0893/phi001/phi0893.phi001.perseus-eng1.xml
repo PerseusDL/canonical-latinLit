@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><TEI>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.22/tei-epidoc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/8.22/tei-epidoc.rng"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader type="text">
       <fileDesc>
          <titleStmt>
@@ -44,80 +49,52 @@
 
       <encodingDesc>
          <refsDecl n="CTS">
-            <cRefPattern n="line" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div//tei:l[@n='$1'])">
-               <p>This pointer pattern extracts line</p>
+            <cRefPattern n="line"
+                         matchPattern="(\w+).(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']//tei:l[@n='$3'])">
+                <p>This pointer pattern extracts book and poem and line</p>
+            </cRefPattern>
+            <cRefPattern n="poem"
+                         matchPattern="(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+                <p>This pointer pattern extracts book and poem</p>
+            </cRefPattern>
+            <cRefPattern n="book"
+                         matchPattern="(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+                <p>This pointer pattern extracts book</p>
             </cRefPattern>
          </refsDecl>
-         <refsDecl n="TEI.2">
-	           <step delim="." refunit="book" from="DESCENDANT (1 DIV1 N %1)"/>
-	           <step refunit="poem" from="DESCENDANT (1 DIV2 N %2)"/>
-         </refsDecl>
-      
       </encodingDesc>
 
       <profileDesc>
          <langUsage>
-	           <language ident="en">English
+	           <language ident="eng">English
       </language>
          </langUsage>
       </profileDesc>
       <revisionDesc>
-         <change>
-            <date>10/24/97</date>
-	           <respStmt>
-               <name>WM</name>
-               <resp>ed.</resp>
-            </respStmt>
-	           <item>Scanned by KD; proofread and tagged public domain text by WM. Notes: three ways of indenting lines (NB not the rhyme scheme) used by the translator are indicated in the DIV2 tag as "Meter": ab (elegy--one big LG), aaab (Sapphic), abba (Swedish rock) where the b line is indented. I used an entity expression &amp;*smcap; to indicate small capital letters. There remain the CS and xlator's notes from this edition, but tmw is another day. Odes 2.5 and 3.20 were not xlated.</item>
-         </change>
-         <change>
-            <date>4 August 1999</date>
-	           <respStmt>
-               <name>David Smith</name>
-               <resp>ed.</resp>
-            </respStmt>
-	           <item>
-$Log: hor.carm.con_eng.xml,v $
-Revision 1.1  2009-11-24 20:08:27  rsingh04
-moved more xml files around based on copyright status
-
-Revision 1.5  2009/06/19 17:14:09  rsingh04
-removed place name references to Neath
-
-Revision 1.4  2008/11/14 21:23:21  lcerrato
-fixed author name for consistent sorting
-
-Revision 1.3  2006/02/10 20:50:22  packel
-places/dates now actually tagged
-
-Revision 1.2  2005/08/01 16:12:23  packel
-removed stray item tags
-
-	Revision 1.1  2005/07/25 14:37:16  packel
-	Converted to XML
-	
-Revision 1.3  2003/07/01 22:17:02  yorkc
-Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)
-
-Revision 1.2  2000/03/04 20:34:37  dasmith
-Added separate funder entity to TEI header.
-
-Revision 1.1  1999/08/04 19:12:34  textgod
-Added to repository.
-
-
-</item>
-         </change>
+         <change who="Thibault Clérice" when="2016-11-16">CapiTainS, Epidoc and Bump</change>
+         <change who="rsingh04" when="2009-11-24">moved more xml files around based on copyright status</change> 
+         <change who="rsingh04" when="2009-06-19">removed place name references to Neath</change> 
+         <change who="lcerrato" when="2008-11-14">fixed author name for consistent sorting</change> 
+         <change who="packel" when="2006-02-10">places/dates now actually tagged</change> 
+         <change who="packel" when="2005-08-01">removed stray item tags</change> 
+         <change who="packel" when="2005-07-25">Converted to XML</change> 	
+         <change who="yorkc" when="2003-07-01">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change> 
+         <change who="dasmith" when="2000-03-04">Added separate funder entity to TEI header.</change> 
+         <change who="David Smith" when="1999-08-04">Added to repository.</change>
+         <change who="WM" when="1997-10-24">Scanned by KD; proofread and tagged public domain text by WM. Notes: three ways of indenting lines (NB not the rhyme scheme) used by the translator are indicated in the DIV2 tag as "Meter": ab (elegy--one big LG), aaab (Sapphic), abba (Swedish rock) where the b line is indented. I used an entity expression &amp;*smcap; to indicate small capital letters. There remain the CS and xlator's notes from this edition, but tmw is another day. Odes 2.5 and 3.20 were not xlated.</change>
       </revisionDesc>
   </teiHeader>
 
 
-   <text xml:lang="">
+   <text xml:lang="eng">
       <body>
-         <div xml:lang="lat" type="edition" n="urn:cts:latinLit:phi0893.phi001.perseus-eng1">
+         <div xml:lang="eng" type="translation" n="urn:cts:latinLit:phi0893.phi001.perseus-eng1">
 
-            <div type="textpart" n="1" subtype="Book">
-               <div type="textpart" n="1" met="abba" subtype="Poem">
+            <div type="textpart" n="1" subtype="book">
+               <div type="textpart" n="1" met="abba" subtype="poem">
                   <lg type="stanza">
                      <l n="1">Maecenas, born of monarch ancestors,</l>
                      <l n="2">The shield at once and glory of my life!</l>
@@ -173,7 +150,7 @@ Added to repository.
                      <l n="36">And my proud head shall strike upon the sky!</l>
                   </lg>
                </div>
-               <div type="textpart" n="2" met="aaab" subtype="Poem">
+               <div type="textpart" n="2" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Enough of snow and hail at last</l>
                      <l n="2">The sire has sent in vengeance down:</l>
@@ -253,7 +230,7 @@ Added to repository.
                      <l n="52">Our Caesar thou!</l>
                   </lg>
                </div>
-               <div type="textpart" n="3" met="ab" subtype="Poem">
+               <div type="textpart" n="3" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Thus may <placeName key="tgn,1000112">Cyprus</placeName>' heavenly queen,</l>
                      <l n="2">Thus Helen's brethren, stars of brightest sheen,</l>
@@ -298,7 +275,7 @@ Added to repository.
                      <l n="40">Nor lets the bolts of heavenly vengeance sleep.</l>
                   </lg>
                </div>
-               <div type="textpart" n="4" met="ab" subtype="Poem">
+               <div type="textpart" n="4" met="ab" subtype="poem">
                   <lg>
                      <l n="1">The touch of Zephyr and of Spring has loosen'd Winter's thrall;</l>
                      <l n="2">The well-dried keels are wheel'd again to sea:</l>
@@ -322,7 +299,7 @@ Added to repository.
                      <l n="20">For Lycidas, the star of every eye.</l>
                   </lg>
                </div>
-               <div type="textpart" n="5" met="aaab" subtype="Poem">
+               <div type="textpart" n="5" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">What slender youth, besprinkled with perfume,</l>
                      <l n="2">Courts you on roses in some grotto's shade?</l>
@@ -348,7 +325,7 @@ Added to repository.
                      <l n="16">To Him who curbs the main.</l>
                   </lg>
                </div>
-               <div type="textpart" n="6" met="aaab" subtype="Poem">
+               <div type="textpart" n="6" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Not I, but Varius:—he, of Homer's brood</l>
                      <l n="2">A tuneful swan, shall bear you on his wing,</l>
@@ -380,7 +357,7 @@ Added to repository.
                      <l n="20">Her temper still is light.</l>
                   </lg>
                </div>
-               <div type="textpart" n="7" met="ab" subtype="Poem">
+               <div type="textpart" n="7" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Let others <placeName key="tgn,2616128">Rhodes</placeName> or <placeName key="tgn,7002672">Mytilene</placeName> sing,</l>
                      <l n="2">Or <placeName key="tgn,7002499">Ephesus</placeName>, or <placeName key="tgn,7010734">Corinth</placeName>, set between</l>
@@ -416,7 +393,7 @@ Added to repository.
                      <l n="32">To-morrow we recross the wide, wide sea!”</l>
                   </lg>
                </div>
-               <div type="textpart" n="8" met="ab" subtype="Poem">
+               <div type="textpart" n="8" met="ab" subtype="poem">
                   <lg>
                      <l n="1">
                         <placeName key="tgn,7016631">Lydia</placeName>, by all above,</l>
@@ -438,7 +415,7 @@ Added to repository.
                      <l n="17">Lycian press?</l>
                   </lg>
                </div>
-               <div type="textpart" n="9" met="ab" subtype="Poem">
+               <div type="textpart" n="9" met="ab" subtype="poem">
                   <lg>
                      <l n="1">See, how it stands, one pile of snow,</l>
                      <l n="2">Soracte! 'neath the pressure yield</l>
@@ -466,7 +443,7 @@ Added to repository.
                      <l n="24">Or finger, that but ill rebels.</l>
                   </lg>
                </div>
-               <div type="textpart" n="10" met="aaab" subtype="Poem">
+               <div type="textpart" n="10" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Grandson of Atlas, wise of tongue,</l>
                      <l n="2">O Mercury, whose wit could tame</l>
@@ -498,7 +475,7 @@ Added to repository.
                      <l n="20">Above, below!</l>
                   </lg>
                </div>
-               <div type="textpart" n="11" met="ab" subtype="Poem">
+               <div type="textpart" n="11" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Ask not ('tis forbidden knowledge), what our destined term of years,</l>
                      <l n="2">Mine and yours; nor scan the tables of your Babylonish seers.</l>
@@ -511,7 +488,7 @@ Added to repository.
                      <l n="8">Seize the present; trust tomorrow e'en as little as you may.</l>
                   </lg>
                </div>
-               <div type="textpart" n="12" met="aaab" subtype="Poem">
+               <div type="textpart" n="12" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">What man, what hero, <placeName key="tgn,2244631">Clio</placeName> sweet,</l>
                      <l n="2">On harp or flute wilt thou proclaim?</l>
@@ -605,7 +582,7 @@ Added to repository.
                      <l n="60">Each guilty grove.</l>
                   </lg>
                </div>
-               <div type="textpart" n="13" met="ab" subtype="Poem">
+               <div type="textpart" n="13" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Telephus—you praise him still,</l>
                      <l n="2">His waxen arms, his rosy-tinted neck;</l>
@@ -629,7 +606,7 @@ Added to repository.
                      <l n="20">Nor parts asunder but with parting life!</l>
                   </lg>
                </div>
-               <div type="textpart" n="14" met="aaab" subtype="Poem">
+               <div type="textpart" n="14" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">O luckless bark! new waves will force you back</l>
                      <l n="2">To sea.  O, haste to make the haven yours!</l>
@@ -661,7 +638,7 @@ Added to repository.
                      <l n="20">The thick-sown <placeName key="tgn,7011270">Cyclades</placeName>!</l>
                   </lg>
                </div>
-               <div type="textpart" n="15" met="aaab" subtype="Poem">
+               <div type="textpart" n="15" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">When the false swain was hurrying o'er the deep</l>
                      <l n="2">His Spartan hostess in the Idaean bark,</l>
@@ -717,7 +694,7 @@ Added to repository.
                      <l n="36">Wrapp'd in Achaenan flames.”</l>
                   </lg>
                </div>
-               <div type="textpart" n="16" met="ab" subtype="Poem">
+               <div type="textpart" n="16" met="ab" subtype="poem">
                   <lg>
                      <l n="1">O lovelier than the lovely dame</l>
                      <l n="2">That bore you, sentence as you please</l>
@@ -750,7 +727,7 @@ Added to repository.
                      <l n="28">And give me back your heart once more.</l>
                   </lg>
                </div>
-               <div type="textpart" n="17" met="ab" subtype="Poem">
+               <div type="textpart" n="17" met="ab" subtype="poem">
                   <lg>
                      <l n="1">The pleasures of Lucretilis</l>
                      <l n="2">Tempt Faunus from his Grecian seat;</l>
@@ -782,7 +759,7 @@ Added to repository.
                      <l n="28">Or spoil your undeserving dress.</l>
                   </lg>
                </div>
-               <div type="textpart" n="18" met="ab" subtype="Poem">
+               <div type="textpart" n="18" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Varus, are your trees in planting? put in none before the vine,</l>
                      <l n="2">In the rich domain of <placeName key="perseus,Tibur">Tibur</placeName>, by the walls of Catilus;</l>
@@ -802,7 +779,7 @@ Added to repository.
                      <l n="16">And the Faith that keeps no secrets, with a window in its mind.</l>
                   </lg>
                </div>
-               <div type="textpart" n="19" met="ab" subtype="Poem">
+               <div type="textpart" n="19" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Cupid's mother, cruel dame,</l>
                      <l n="2">And Semele's Theban boy, and Licence bold,</l>
@@ -822,7 +799,7 @@ Added to repository.
                      <l n="16">A victim's blood will soothe her vehemence.</l>
                   </lg>
                </div>
-               <div type="textpart" n="20" met="aaab" subtype="Poem">
+               <div type="textpart" n="20" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Not large my cups, nor rich my cheer,</l>
                      <l n="2">This <placeName key="tgn,7021127">Sabine</placeName> wine, which erst I seal'd,</l>
@@ -842,7 +819,7 @@ Added to repository.
                      <l n="12">Nor Formian vine.</l>
                   </lg>
                </div>
-               <div type="textpart" n="21" met="21" subtype="Poem">
+               <div type="textpart" n="21" met="21" subtype="poem">
                   <lg>
                      <l n="1">Of Dian's praises, tender maidens, tell;</l>
                      <l n="2">Of Cynthus' unshorn god, young striplings, sing;</l>
@@ -868,7 +845,7 @@ Added to repository.
                      <l n="16">If you have zeal to pray.</l>
                   </lg>
                </div>
-               <div type="textpart" n="22" met="aaab" subtype="Poem">
+               <div type="textpart" n="22" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">No need of Moorish archer's craft</l>
                      <l n="2">To guard the pure and stainless liver;</l>
@@ -906,7 +883,7 @@ Added to repository.
                      <l n="24">Shall still enchant me.</l>
                   </lg>
                </div>
-               <div type="textpart" n="23" met="aaab" subtype="Poem">
+               <div type="textpart" n="23" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">You fly me, Chloe, as o'er trackless hills</l>
                      <l n="2">A young fawn runs her timorous dam to find,</l>
@@ -926,7 +903,7 @@ Added to repository.
                      <l n="12">For lover's kisses ripe.</l>
                   </lg>
                </div>
-               <div type="textpart" n="24" met="aaab" subtype="Poem">
+               <div type="textpart" n="24" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Why blush to let our tears unmeasured fall</l>
                      <l n="2">For one so dear?  Begin the mournful stave,</l>
@@ -959,7 +936,7 @@ Added to repository.
                      <l n="20">What sorrow may not heal.</l>
                   </lg>
                </div>
-               <div type="textpart" n="26" met="ab" subtype="Poem">
+               <div type="textpart" n="26" met="ab" subtype="poem">
                   <lg>
                      <l n="1">The Muses love me: fear and grief,</l>
                      <l n="2">The winds may blow them to the sea;</l>
@@ -975,7 +952,7 @@ Added to repository.
                      <l n="12">O goddess, with thy sister quire!</l>
                   </lg>
                </div>
-               <div type="textpart" n="27" met="ab" subtype="Poem">
+               <div type="textpart" n="27" met="ab" subtype="poem">
                   <lg>
                      <l n="1">What, fight with cups that should give joy?</l>
                      <l n="2">'Tis barbarous; leave such savage ways</l>
@@ -1003,7 +980,7 @@ Added to repository.
                      <l n="24">Would task another Pegasus.</l>
                   </lg>
                </div>
-               <div type="textpart" n="28" met="ab" subtype="Poem">
+               <div type="textpart" n="28" met="ab" subtype="poem">
                   <lg>
                      <l n="1">The sea, the earth, the innumerable sand,</l>
                      <l n="2">Archytas, thou couldst measure; now, alas!</l>
@@ -1043,7 +1020,7 @@ Added to repository.
                      <l n="36">Thrice sprinkle dust, then scud before the wind.</l>
                   </lg>
                </div>
-               <div type="textpart" n="29" met="ab" subtype="Poem">
+               <div type="textpart" n="29" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Your heart on Arab wealth is set,</l>
                      <l n="2">Good Iccius: you would try your steel</l>
@@ -1063,7 +1040,7 @@ Added to repository.
                      <l n="16">Whom once we thought a saner man?</l>
                   </lg>
                </div>
-               <div type="textpart" n="30" met="aaab" subtype="Poem">
+               <div type="textpart" n="30" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Come, Cnidian, Paphian Venus, come,</l>
                      <l n="2">Thy well-beloved <placeName key="tgn,1000112">Cyprus</placeName> spurn,</l>
@@ -1077,7 +1054,7 @@ Added to repository.
                      <l n="8">And Mercury.</l>
                   </lg>
                </div>
-               <div type="textpart" n="31" met="ab" subtype="Poem">
+               <div type="textpart" n="31" met="ab" subtype="poem">
                   <lg>
                      <l n="1">What blessing shall the bard entreat</l>
                      <l n="2">The god he hallows, as he pours</l>
@@ -1101,7 +1078,7 @@ Added to repository.
                      <l n="20">Nor unbefriended by the lyre!</l>
                   </lg>
                </div>
-               <div type="textpart" n="32" met="aaab" subtype="Poem">
+               <div type="textpart" n="32" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">They call;—if aught in shady dell</l>
                      <l n="2">We twain have warbled, to remain</l>
@@ -1127,7 +1104,7 @@ Added to repository.
                      <l n="16">Whene'er I call!</l>
                   </lg>
                </div>
-               <div type="textpart" n="33" met="aaab" subtype="Poem">
+               <div type="textpart" n="33" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">What, Albius! why this passionate despair</l>
                      <l n="2">For cruel Glycera? why melt your voice</l>
@@ -1153,7 +1130,7 @@ Added to repository.
                      <l n="16">That crests <placeName key="tgn,7007850">Calabria</placeName>'s wave.</l>
                   </lg>
                </div>
-               <div type="textpart" n="34" met="ab" subtype="Poem">
+               <div type="textpart" n="34" met="ab" subtype="poem">
                   <lg>
                      <l n="1">My prayers were scant, my offerings few,</l>
                      <l n="2">While witless wisdom fool'd my mind;</l>
@@ -1173,7 +1150,7 @@ Added to repository.
                      <l n="16">And decks therewith some meaner wight.</l>
                   </lg>
                </div>
-               <div type="textpart" n="35" met="ab" subtype="Poem">
+               <div type="textpart" n="35" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Lady of <placeName key="perseus,Antium">Antium</placeName>, grave and stern!</l>
                      <l n="2">O Goddess, who canst lift the low</l>
@@ -1218,7 +1195,7 @@ Added to repository.
                      <l n="40">On Arab and on Massagete!</l>
                   </lg>
                </div>
-               <div type="textpart" n="36" met="ab" subtype="Poem">
+               <div type="textpart" n="36" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Bid the lyre and cittern play;</l>
                      <l n="2">Enkindle incense, shed the victim's gore;</l>
@@ -1242,7 +1219,7 @@ Added to repository.
                      <l n="20">She clings, and clings, like ivy, round his heart.</l>
                   </lg>
                </div>
-               <div type="textpart" n="37" met="ab" subtype="Poem">
+               <div type="textpart" n="37" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Now drink we deep, now featly tread</l>
                      <l n="2">A measure; now before each shrine</l>
@@ -1278,7 +1255,7 @@ Added to repository.
                      <l n="32">A triumph, crownless, and a slave.</l>
                   </lg>
                </div>
-               <div type="textpart" n="38" met="aaab" subtype="Poem">
+               <div type="textpart" n="38" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">No Persian cumber, boy, for me;</l>
                      <l n="2">I hate your garlands linden-plaited;</l>
@@ -1293,8 +1270,8 @@ Added to repository.
                   </lg>
                </div>
             </div>
-            <div type="textpart" n="2" subtype="Book">
-               <div type="textpart" n="1" met="ab" subtype="Poem">
+            <div type="textpart" n="2" subtype="book">
+               <div type="textpart" n="1" met="ab" subtype="poem">
                   <lg>
                      <l n="1">The broils that from Metellus date,</l>
                      <l n="2">The secret springs, the dark intrigues,</l>
@@ -1338,7 +1315,7 @@ Added to repository.
                      <l n="40">And there attune a lighter string.</l>
                   </lg>
                </div>
-               <div type="textpart" n="2" met="aaab" subtype="Poem">
+               <div type="textpart" n="2" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">The silver, Sallust, shows not fair</l>
                      <l n="2">While buried in the greedy mine:</l>
@@ -1376,7 +1353,7 @@ Added to repository.
                      <l n="24">With unblench'd gaze.</l>
                   </lg>
                </div>
-               <div type="textpart" n="3" met="ab" subtype="Poem">
+               <div type="textpart" n="3" met="ab" subtype="poem">
                   <lg>
                      <l n="1">An equal mind, when storms o'ercloud,</l>
                      <l n="2">Maintain, nor 'neath a brighter sky</l>
@@ -1408,7 +1385,7 @@ Added to repository.
                      <l n="28">On board the exile-ship of Fate.</l>
                   </lg>
                </div>
-               <div type="textpart" n="4" met="aaab" subtype="Poem">
+               <div type="textpart" n="4" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Why, Xanthias, blush to own you love</l>
                      <l n="2">Your slave? Briseis, long ago,</l>
@@ -1446,7 +1423,7 @@ Added to repository.
                      <l n="24">His fortieth year.</l>
                   </lg>
                </div>
-               <div type="textpart" n="6" met="aaab" subtype="Poem">
+               <div type="textpart" n="6" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Septimius, who with me would brave</l>
                      <l n="2">Far <placeName key="tgn,7007512">Gades</placeName>, and Cantabrian land</l>
@@ -1485,7 +1462,7 @@ Added to repository.
                      <l n="24">Your bard and friend.</l>
                   </lg>
                </div>
-               <div type="textpart" n="7" met="ab" subtype="Poem">
+               <div type="textpart" n="7" met="ab" subtype="poem">
                   <lg>
                      <l n="1">O, oft with me in troublous time</l>
                      <l n="2">Involved, when Brutus warr'd in <placeName key="tgn,1000074">Greece</placeName>,</l>
@@ -1517,7 +1494,7 @@ Added to repository.
                      <l n="28">To fool, when friends come home again!</l>
                   </lg>
                </div>
-               <div type="textpart" n="8" met="aaab" subtype="Poem">
+               <div type="textpart" n="8" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Had chastisement for perjured truth,</l>
                      <l n="2">Barine, mark'd you with a curse—</l>
@@ -1555,7 +1532,7 @@ Added to repository.
                      <l n="24">Should leave her side.</l>
                   </lg>
                </div>
-               <div type="textpart" n="9" met="ab" subtype="Poem">
+               <div type="textpart" n="9" met="ab" subtype="poem">
                   <lg>
                      <l n="1">The rain, it rains not every day</l>
                      <l n="2">On the soak'd meads; the Caspian main</l>
@@ -1583,7 +1560,7 @@ Added to repository.
                      <l n="24">Henceforth o'er narrower steppes to ride.</l>
                   </lg>
                </div>
-               <div type="textpart" n="10" met="aaab" subtype="Poem">
+               <div type="textpart" n="10" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Licinius, trust a seaman's lore:</l>
                      <l n="2">Steer not too boldly to the deep,</l>
@@ -1621,7 +1598,7 @@ Added to repository.
                      <l n="24">And shorten sail.</l>
                   </lg>
                </div>
-               <div type="textpart" n="11" met="ab" subtype="Poem">
+               <div type="textpart" n="11" met="ab" subtype="poem">
                   <lg>
                      <l n="1">O ask not what those sons of war,</l>
                      <l n="2">Cantabrian, Scythian, each intend,</l>
@@ -1649,7 +1626,7 @@ Added to repository.
                      <l n="24">Her wild hair bound with Spartan tire.</l>
                   </lg>
                </div>
-               <div type="textpart" n="12" met="aaab" subtype="Poem">
+               <div type="textpart" n="12" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">The weary war where fierce <placeName key="tgn,7017511">Numantia</placeName> bled,</l>
                      <l n="2">Fell Hannibal, the swoln Sicilian main</l>
@@ -1693,7 +1670,7 @@ Added to repository.
                      <l n="28">Or snatches it from you?</l>
                   </lg>
                </div>
-               <div type="textpart" n="13" met="ab" subtype="Poem">
+               <div type="textpart" n="13" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Black day he chose for planting thee,</l>
                      <l n="2">Accurst he rear'd thee from the ground,</l>
@@ -1737,7 +1714,7 @@ Added to repository.
                      <l n="40">And lets the lynx and lion go.</l>
                   </lg>
                </div>
-               <div type="textpart" n="14" met="ab" subtype="Poem">
+               <div type="textpart" n="14" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Ah, Postumus! they fleet away,</l>
                      <l n="2">Our years, nor piety one hour</l>
@@ -1769,7 +1746,7 @@ Added to repository.
                      <l n="28">Than e'er at pontiff's supper ran.</l>
                   </lg>
                </div>
-               <div type="textpart" n="15" met="ab" subtype="Poem">
+               <div type="textpart" n="15" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Few roods of ground the piles we raise</l>
                      <l n="2">Will leave to plough; ponds wider spread</l>
@@ -1793,7 +1770,7 @@ Added to repository.
                      <l n="20">Were honour'd with the pomp of stone.</l>
                   </lg>
                </div>
-               <div type="textpart" n="16" met="aaab" subtype="Poem">
+               <div type="textpart" n="16" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">For ease, in wide <placeName key="tgn,7002675">Aegean</placeName> caught,</l>
                      <l n="2">The sailor prays, when clouds are hiding</l>
@@ -1855,7 +1832,7 @@ Added to repository.
                      <l n="40">Of ribald carping.</l>
                   </lg>
                </div>
-               <div type="textpart" n="17" met="ab" subtype="Poem">
+               <div type="textpart" n="17" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Why rend my heart with that sad sigh?</l>
                      <l n="2">It cannot please the gods or me</l>
@@ -1891,7 +1868,7 @@ Added to repository.
                      <l n="32">Your bard a humbler lamb will slay.</l>
                   </lg>
                </div>
-               <div type="textpart" n="18" met="ab" subtype="Poem">
+               <div type="textpart" n="18" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Carven ivory have I none</l>
                      <l n="2">No golden cornice in my dwelling shines;</l>
@@ -1936,7 +1913,7 @@ Added to repository.
                      <l n="40">Call'd or uncall'd, he hears and sets them free.</l>
                   </lg>
                </div>
-               <div type="textpart" n="19" met="ab" subtype="Poem">
+               <div type="textpart" n="19" met="ab" subtype="poem">
                   <lg>
                      <l n="1">
                         <placeName key="tgn,2097807">Bacchus</placeName> I saw in mountain glades</l>
@@ -1973,7 +1950,7 @@ Added to repository.
                      <l n="32">And lick'd thy feet with triple tongue.</l>
                   </lg>
                </div>
-               <div type="textpart" n="20" met="ab" subtype="Poem">
+               <div type="textpart" n="20" met="ab" subtype="poem">
                   <lg>
                      <l n="1">No vulgar wing, nor weakly plied,</l>
                      <l n="2">Shall bear me through the liquid sky;</l>
@@ -2002,8 +1979,8 @@ Added to repository.
                   </lg>
                </div>
             </div>
-            <div type="textpart" n="3" subtype="Book">
-               <div type="textpart" n="1" met="ab" subtype="Poem">
+            <div type="textpart" n="3" subtype="book">
+               <div type="textpart" n="1" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Bid the unhallow'd crowd avaunt!</l>
                      <l n="2">Keep holy silence; strains unknown</l>
@@ -2055,7 +2032,7 @@ Added to repository.
                      <l n="48">For more laborious luxury?</l>
                   </lg>
                </div>
-               <div type="textpart" n="2" met="ab" subtype="Poem">
+               <div type="textpart" n="2" met="ab" subtype="poem">
                   <lg>
                      <l n="1">To suffer hardness with good cheer,</l>
                      <l n="2">In sternest school of warfare bred,</l>
@@ -2092,7 +2069,7 @@ Added to repository.
                      <l n="32">The wretch whose flying steps she hounds.</l>
                   </lg>
                </div>
-               <div type="textpart" n="3" met="ab" subtype="Poem">
+               <div type="textpart" n="3" met="ab" subtype="poem">
                   <lg>
                      <l n="1">The man of firm and righteous will,</l>
                      <l n="2">No rabble, clamorous for the wrong,</l>
@@ -2171,7 +2148,7 @@ Added to repository.
                      <l n="72">And dwarf high themes in puny strain.</l>
                   </lg>
                </div>
-               <div type="textpart" n="4" met="ab" subtype="Poem">
+               <div type="textpart" n="4" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Come down, Calliope, from above:</l>
                      <l n="2">Breathe on the pipe a strain of fire:</l>
@@ -2256,7 +2233,7 @@ Added to repository.
                      <l n="80">By massive chains no hand may move.</l>
                   </lg>
                </div>
-               <div type="textpart" n="5" met="ab" subtype="Poem">
+               <div type="textpart" n="5" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Jove rules in heaven, his thunder shows;</l>
                      <l n="2">Henceforth Augustus earth shall own</l>
@@ -2316,7 +2293,7 @@ Added to repository.
                      <l n="56">Or Sparta-built <placeName key="tgn,7004100">Tarentum</placeName>'s bay.</l>
                   </lg>
                </div>
-               <div type="textpart" n="6" met="ab" subtype="Poem">
+               <div type="textpart" n="6" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Your fathers' guilt you still must pay,</l>
                      <l n="2">Till, Roman, you restore each shrine,</l>
@@ -2356,7 +2333,7 @@ Added to repository.
                      <l n="36">The world with offspring baser yet.</l>
                   </lg>
                </div>
-               <div type="textpart" n="7" met="aaab" subtype="Poem">
+               <div type="textpart" n="7" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Why weep for him whom sweet Favonian airs</l>
                      <l n="2">Will waft next spring, Asteria, back to you,</l>
@@ -2406,7 +2383,7 @@ Added to repository.
                      <l n="32">Remain obdurate still.</l>
                   </lg>
                </div>
-               <div type="textpart" n="8" met="aaab" subtype="Poem">
+               <div type="textpart" n="8" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">The first of March! a man unwed!</l>
                      <l n="2">What can these flowers, this censer mean?</l>
@@ -2451,7 +2428,7 @@ Added to repository.
                      <l n="28">And banish care.</l>
                   </lg>
                </div>
-               <div type="textpart" n="9" met="ab" subtype="Poem">
+               <div type="textpart" n="9" met="ab" subtype="poem">
                   <sp>
                      <speaker>Horace</speaker>
                      <l n="1">While I had power to bless you,</l>
@@ -2495,7 +2472,7 @@ Added to repository.
                      <l n="24">With you to live, to die, were bliss for me.</l>
                   </sp>
                </div>
-               <div type="textpart" n="10" met="aaab" subtype="Poem">
+               <div type="textpart" n="10" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Ah Lyce! though your drink were <placeName key="tgn,1123466">Tanais</placeName>,</l>
                      <l n="2">Your husband some rude savage, you would weep</l>
@@ -2527,7 +2504,7 @@ Added to repository.
                      <l n="20">Rain-water and cold stones.</l>
                   </lg>
                </div>
-               <div type="textpart" n="11" met="aaab" subtype="Poem">
+               <div type="textpart" n="11" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Come, Mercury, by whose minstrel spell</l>
                      <l n="2">Amphion raised the Theban stones,</l>
@@ -2607,7 +2584,7 @@ Added to repository.
                      <l n="52">This tale of woe.”</l>
                   </lg>
                </div>
-               <div type="textpart" n="12" met="ab" subtype="Poem">
+               <div type="textpart" n="12" met="ab" subtype="poem">
                   <lg>
                      <l n="1">How unhappy are the maidens who with Cupid may not play,</l>
                      <l n="2">Who may never touch the wine-cup, but must tremble all the day</l>
@@ -2623,7 +2600,7 @@ Added to repository.
                      <l n="12">As it couches in the thicket unaware.</l>
                   </lg>
                </div>
-               <div type="textpart" n="13" met="aaab" subtype="Poem">
+               <div type="textpart" n="13" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Bandusia's fount, in clearness crystalline,</l>
                      <l n="2">O worthy of the wine, the flowers we vow!</l>
@@ -2649,7 +2626,7 @@ Added to repository.
                      <l n="16">Thy babbling wavelets spring.</l>
                   </lg>
                </div>
-               <div type="textpart" n="14" met="aaab" subtype="Poem">
+               <div type="textpart" n="14" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Our Hercules, they told us, <placeName key="perseus,Rome">Rome</placeName>,</l>
                      <l n="2">Had sought the laurel Death bestows:</l>
@@ -2693,7 +2670,7 @@ Added to repository.
                      <l n="28">In Plancus' year!</l>
                   </lg>
                </div>
-               <div type="textpart" n="15" met="ab" subtype="Poem">
+               <div type="textpart" n="15" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Wife of Ibycus the poor,</l>
                      <l n="2">Let aged scandals have at length their bound:</l>
@@ -2713,7 +2690,7 @@ Added to repository.
                      <l n="16">Nor wither'd lips with emptied wine-jars suit.</l>
                   </lg>
                </div>
-               <div type="textpart" n="16" met="aaab" subtype="Poem">
+               <div type="textpart" n="16" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Full well had Danae been secured, in truth,</l>
                      <l n="2">By oaken portals, and a brazen tower,</l>
@@ -2782,7 +2759,7 @@ Added to repository.
                      <l n="44">No more than life requires.</l>
                   </lg>
                </div>
-               <div type="textpart" n="17" met="ab" subtype="Poem">
+               <div type="textpart" n="17" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Aelius, of Lamus' ancient name</l>
                      <l n="2">(For since from that high parentage</l>
@@ -2802,7 +2779,7 @@ Added to repository.
                      <l n="16">And lord and slave keep holyday.</l>
                   </lg>
                </div>
-               <div type="textpart" n="18" met="aaab" subtype="Poem">
+               <div type="textpart" n="18" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">O wont the flying Nymphs to woo,</l>
                      <l n="2">Good Faunus, through my sunny farm</l>
@@ -2828,7 +2805,7 @@ Added to repository.
                      <l n="16">His ancient foe.</l>
                   </lg>
                </div>
-               <div type="textpart" n="19" met="ab" subtype="Poem">
+               <div type="textpart" n="19" met="ab" subtype="poem">
                   <lg>
                      <l n="1">What the time from Inachus</l>
                      <l n="2">To Codrus, who in patriot battle fell,</l>
@@ -2860,7 +2837,7 @@ Added to repository.
                      <l n="28">I for my Glycera slowly, slowly die.</l>
                   </lg>
                </div>
-               <div type="textpart" n="21" met="ab" subtype="Poem">
+               <div type="textpart" n="21" met="ab" subtype="poem">
                   <lg>
                      <l n="1">O born in Manlius' year with me,</l>
                      <l n="2">Whate'er you bring us, plaint or jest,</l>
@@ -2889,7 +2866,7 @@ Added to repository.
                      <l n="24">Till stars before the sunrise flit.</l>
                   </lg>
                </div>
-               <div type="textpart" n="22" met="aaab" subtype="Poem">
+               <div type="textpart" n="22" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Guardian of hill and woodland, Maid,</l>
                      <l n="2">Who to young wives in childbirth's hour</l>
@@ -2903,7 +2880,7 @@ Added to repository.
                      <l n="8">The side-long wound.</l>
                   </lg>
                </div>
-               <div type="textpart" n="23" met="ab" subtype="Poem">
+               <div type="textpart" n="23" met="ab" subtype="poem">
                   <lg>
                      <l n="1">If, Phidyle, your hands you lift</l>
                      <l n="2">To heaven, as each new moon is born,</l>
@@ -2927,7 +2904,7 @@ Added to repository.
                      <l n="20">As all the pomp of heifers slain.</l>
                   </lg>
                </div>
-               <div type="textpart" n="24" met="ab" subtype="Poem">
+               <div type="textpart" n="24" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Though your buried wealth surpass</l>
                      <l n="2">The unsunn'd gold of Ind or Araby,</l>
@@ -2995,7 +2972,7 @@ Added to repository.
                      <l n="64">Yet the scant heap has somewhat lacking still.</l>
                   </lg>
                </div>
-               <div type="textpart" n="25" met="ab" subtype="Poem">
+               <div type="textpart" n="25" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Whither, <placeName key="tgn,2097807">Bacchus</placeName>, tear'st thou me.</l>
                      <l n="2">FiIl'd with thy strength? What dens, what forests these,</l>
@@ -3019,7 +2996,7 @@ Added to repository.
                      <l n="20">Making the vine-branch round thy temples meet!</l>
                   </lg>
                </div>
-               <div type="textpart" n="26" met="ab" subtype="Poem">
+               <div type="textpart" n="26" met="ab" subtype="poem">
                   <lg>
                      <l n="1">For ladies' love I late was fit,</l>
                      <l n="2">And good success my warfare blest,</l>
@@ -3035,7 +3012,7 @@ Added to repository.
                      <l n="12">That haughty Chloe just one blow!</l>
                   </lg>
                </div>
-               <div type="textpart" n="27" met="aaab" subtype="Poem">
+               <div type="textpart" n="27" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">When guilt goes forth, let lapwings shrill,</l>
                      <l n="2">And dogs and foxes great with young,</l>
@@ -3152,7 +3129,7 @@ Added to repository.
                      <l n="76">To half mankind.”</l>
                   </lg>
                </div>
-               <div type="textpart" n="28" met="ab" subtype="Poem">
+               <div type="textpart" n="28" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Neptune's feast-day! what should man</l>
                      <l n="2">Think first of doing? Lyde mine, be bold,</l>
@@ -3174,7 +3151,7 @@ Added to repository.
                      <l n="16">Night too shall claim the homage music owes.</l>
                   </lg>
                </div>
-               <div type="textpart" n="29" met="ab" subtype="Poem">
+               <div type="textpart" n="29" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Heir of Tyrrhenian kings, for you</l>
                      <l n="2">A mellow cask, unbroach'd as yet,</l>
@@ -3242,7 +3219,7 @@ Added to repository.
                      <l n="64">Shall waft my little boat ashore.</l>
                   </lg>
                </div>
-               <div type="textpart" n="30" met="abba" subtype="Poem">
+               <div type="textpart" n="30" met="abba" subtype="poem">
                   <lg>
                      <l n="1">And now 'tis done: more durable than brass</l>
                      <l n="2">My monument shall be, and raise its head</l>
@@ -3269,8 +3246,8 @@ Added to repository.
                   </lg>
                </div>
             </div>
-            <div type="textpart" n="4" subtype="Book">
-               <div type="textpart" n="1" met="ab" subtype="Poem">
+            <div type="textpart" n="4" subtype="book">
+               <div type="textpart" n="1" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Yet again thou wak'st the flame</l>
                      <l n="2">That long had slumber'd!  Spare me, Venus, spare!</l>
@@ -3314,7 +3291,7 @@ Added to repository.
                      <l n="40">I chase you; now, ah cruel! down the stream.</l>
                   </lg>
                </div>
-               <div type="textpart" n="2" met="aaab" subtype="Poem">
+               <div type="textpart" n="2" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Who fain at Pindar's flight would aim,</l>
                      <l n="2">On waxen wings, Iulus, he</l>
@@ -3406,7 +3383,7 @@ Added to repository.
                      <l n="60">The rest all red.</l>
                   </lg>
                </div>
-               <div type="textpart" n="3" met="ab" subtype="Poem">
+               <div type="textpart" n="3" met="ab" subtype="poem">
                   <lg>
                      <l n="1">He whom thou, Melpomene,</l>
                      <l n="2">Hast welcomed with thy smile, in life arriving,</l>
@@ -3435,7 +3412,7 @@ Added to repository.
                      <l n="24">Breath, power to charm, if mine, are thy bestowing!</l>
                   </lg>
                </div>
-               <div type="textpart" n="4" met="ab" subtype="Poem">
+               <div type="textpart" n="4" met="ab" subtype="poem">
                   <lg>
                      <l n="1">E'en as the lightning's minister,</l>
                      <l n="2">Whom Jove o'er all the feather'd breed</l>
@@ -3517,7 +3494,7 @@ Added to repository.
                      <l n="76">For them the tangled paths of war.</l>
                   </lg>
                </div>
-               <div type="textpart" n="5" met="aaab" subtype="Poem">
+               <div type="textpart" n="5" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Best guardian of <placeName key="perseus,Rome">Rome</placeName>'s people, dearest boon</l>
                      <l n="2">Of a kind Heaven, thou lingerest all too long:</l>
@@ -3580,7 +3557,7 @@ Added to repository.
                      <l n="40">When ocean hides the day.</l>
                   </lg>
                </div>
-               <div type="textpart" n="6" met="aaab" subtype="Poem">
+               <div type="textpart" n="6" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Thou who didst make thy vengeful might</l>
                      <l n="2">To Niobe and Tityos known,</l>
@@ -3648,7 +3625,7 @@ Added to repository.
                      <l n="44">By <name>Horace</name> taught.”</l>
                   </lg>
                </div>
-               <div type="textpart" n="7" met="ab" subtype="Poem">
+               <div type="textpart" n="7" met="ab" subtype="poem">
                   <lg>
                      <l n="1">The snow is fled: the trees their leaves put on,</l>
                      <l n="2">The fields their green:</l>
@@ -3680,7 +3657,7 @@ Added to repository.
                      <l n="28">From Lethe's thrall.</l>
                   </lg>
                </div>
-               <div type="textpart" n="8" met="abba" subtype="Poem">
+               <div type="textpart" n="8" met="abba" subtype="poem">
                   <lg>
                      <l n="1">Ah Censorinus! to my comrades true</l>
                      <l n="2">Rich cups, rare bronzes, gladly would I send:</l>
@@ -3734,7 +3711,7 @@ Added to repository.
                      <l n="34">Gives prosperous issue to his votary's prayer.</l>
                   </lg>
                </div>
-               <div type="textpart" n="9" met="ab" subtype="Poem">
+               <div type="textpart" n="9" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Think not those strains can e'er expire,</l>
                      <l n="2">Which, cradled 'mid the echoing roar</l>
@@ -3791,7 +3768,7 @@ Added to repository.
                      <l n="52">In cause of country or of kin.</l>
                   </lg>
                </div>
-               <div type="textpart" n="11" met="aaab" subtype="Poem">
+               <div type="textpart" n="11" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">Here is a cask of <placeName key="tgn,1031727">Alban</placeName>, more</l>
                      <l n="2">Than nine years old: here grows for you</l>
@@ -3847,7 +3824,7 @@ Added to repository.
                      <l n="36">Shall yield its sting.</l>
                   </lg>
                </div>
-               <div type="textpart" n="12" met="aaab" subtype="Poem">
+               <div type="textpart" n="12" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">The gales of <placeName key="tgn,7002756">Thrace</placeName>, that hush the unquiet sea,</l>
                      <l n="2">Spring's comrades, on the bellying canvas blow:</l>
@@ -3891,7 +3868,7 @@ Added to repository.
                      <l n="28">'Tis sweet the fool to play.</l>
                   </lg>
                </div>
-               <div type="textpart" n="13" met="aaab" subtype="Poem">
+               <div type="textpart" n="13" met="aaab" subtype="poem">
                   <lg>
                      <l n="1">The gods have heard, the gods have heard my prayer;</l>
                      <l n="2">Yes, Lyce! you are growing old, and still</l>
@@ -3935,7 +3912,7 @@ Added to repository.
                      <l n="28">Now smouldering in grey dust.</l>
                   </lg>
                </div>
-               <div type="textpart" n="14" met="ab" subtype="Poem">
+               <div type="textpart" n="14" met="ab" subtype="poem">
                   <lg>
                      <l n="1">What honours can a grateful <placeName key="perseus,Rome">Rome</placeName>,</l>
                      <l n="2">A grateful senate, Caesar, give</l>
@@ -3992,7 +3969,7 @@ Added to repository.
                      <l n="52">And drops his arms to worship thee.</l>
                   </lg>
                </div>
-               <div type="textpart" n="15" met="ab" subtype="Poem">
+               <div type="textpart" n="15" met="ab" subtype="poem">
                   <lg>
                      <l n="1">Of battles fought I fain had told,</l>
                      <l n="2">And conquer'd towns, when Phoebus smote</l>
