@@ -10,13 +10,8 @@ do
 	echo "Greek"
 	python3 ../../../tei-numberer/__greek__.py $i $i
 	echo "Lang"
-	sed -i "s/lang\=\"la\"/lang\=\"lat\"/" $i
-	sed -i "s/lang\=\"en\"/lang\=\"eng\"/" $i
-	sed -i "s/lang\=\"fr\"/lang\=\"fre\"/" $i
-	sed -i "s/lang\=\"it\"/lang\=\"ita\"/" $i
-	sed -i "s/lang\=\"de\"/lang\=\"ger\"/" $i
-	sed -i "s/ lang\=/ xml\:lang\=/" $i
-	sed -i "s/\"TLN line\"/\"line\"/" $i
+	sed -i "s/ lang=/ xml:lang=/g" $i
+	sed -i "s/\"TLN line\"/\"line\"/g" $i
 	echo "Changes"
 	python3 change.py $i $i
 done
