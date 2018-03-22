@@ -8,7 +8,9 @@
 Canonical - Latin Literature
 =========
 
-This will be the base repo for all text and annotation data published in the PDL
+This will be the base repo for all text and annotation data published in the PDL.
+
+**Please [read the Wiki](https://github.com/PerseusDL/canonical-latinLit/wiki) for information on contacting us and submitting corrections, etc.**
 
 Tufts University holds the overall copyright to the Perseus Digital Library; the materials therein 
 (including all texts, translations, images, descriptions, drawings, etc.) are provided for the 
