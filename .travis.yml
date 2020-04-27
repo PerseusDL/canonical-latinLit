@@ -6,6 +6,7 @@
 # fixes the problem.
 filter_secrets: false
 language: python
+dist: xenial
 
 python:
   - '3.5'
@@ -13,7 +14,7 @@ python:
 install:
   - pip3 install HookTest>=1.0.0
 
-script: hooktest ./ --scheme epidoc --workers 3 --verbose 10 --manifest --console --countword --allowfailure --hookUI "http://ci.perseids.org/api/hook/v2.0/user/repositories/PerseusDL/canonical-latinLit"
+script: hooktest ./ --scheme epidoc --workers 3 --verbose 10 --manifest --console --countword --allowfailure --hookUI "https://ci.perseids.org/api/hook/v2.0/user/repositories/PerseusDL/canonical-latinLit"
 
 before_deploy:
   - hooktest-build --travis --txt ./
@@ -31,7 +32,6 @@ before_deploy:
 deploy:
   provider: releases
   api_key: $GITPERM
-  skip_cleanup: true
   on:
     repo: PerseusDL/canonical-latinLit
     branch: master
