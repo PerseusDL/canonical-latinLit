@@ -1,12 +1,16 @@
-[![Hook Status](http://ci.perseids.org/api/rest/v1.0/code/PerseusDL/canonical-latinLit/status.svg?branch=refs%2Fheads%2Fmaster)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
-[![Hook Coverage](http://ci.perseids.org/api/rest/v1.0/code/PerseusDL/canonical-latinLit/coverage.svg?branch=refs%2Fheads%2Fmaster)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
-[![Hook Texts](http://ci.perseids.org/api/rest/v1.0/code/PerseusDL/canonical-latinLit/cts.svg?branch=refs%2Fheads%2Fmaster)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
-
+[![DOI](https://zenodo.org/badge/36303583.svg)](https://zenodo.org/badge/latestdoi/36303583)
+[![Hook Coverage](http://ci.perseids.org/api/hook/v2.0/badges/PerseusDL/canonical-latinLit/coverage.svg)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
+[![Hook Texts](http://ci.perseids.org/api/hook/v2.0/badges/PerseusDL/canonical-latinLit/texts.svg)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
+[![Hook Metadata](http://ci.perseids.org/api/hook/v2.0/badges/PerseusDL/canonical-latinLit/metadata.svg)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
+[![Total words](http://ci.perseids.org/api/hook/v2.0/badges/PerseusDL/canonical-latinLit/words.svg)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
+[![Latin Words](http://ci.perseids.org/api/hook/v2.0/badges/PerseusDL/canonical-latinLit/words.svg?lang=lat)](http://ci.perseids.org/repo/PerseusDL/canonical-latinLit)
 
 Canonical - Latin Literature
 =========
 
-This will be the base repo for all text and annotation data published in the PDL
+This will be the base repo for all text and annotation data published in the PDL. Please note: this is a work in progress. Not all headers have been checked for accuracy. Changes may be made at any time to any files and data.
+
+**Please [read the Wiki](https://github.com/PerseusDL/canonical-latinLit/wiki) for information on contacting us and submitting corrections, etc.**
 
 Tufts University holds the overall copyright to the Perseus Digital Library; the materials therein 
 (including all texts, translations, images, descriptions, drawings, etc.) are provided for the 

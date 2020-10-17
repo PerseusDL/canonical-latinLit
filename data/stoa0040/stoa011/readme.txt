@@ -1,0 +1,1 @@
+It appears that lat2 = lat1 file with minor pre-CTS changes.
