@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
-	<teiHeader xml:lang="eng" type="text">
+	<teiHeader xml:lang="eng">
 		<fileDesc>
 			<titleStmt>
 				<title>On Behalf of Marcus Claudius Marcellus </title>
@@ -50,32 +51,25 @@
 		</fileDesc>
 
 		<encodingDesc>
-			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState delim="." n="chunk" unit="chapter"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Phil.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Phil.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState delim="." n="chunk" unit="chapter"/>
-				<refState unit="section"/>
+			<editorialDecl>
+				<quotation marks="none"/>
+			</editorialDecl>
+			<editorialDecl>
+				<p>Notes may contain errors</p>
+			</editorialDecl>
+			<refsDecl n="CTS">
+				<cRefPattern matchPattern="(\w+)"
+					replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])"
+					n="section">
+					<p>This pointer pattern extracts section</p>
+				</cRefPattern>
 			</refsDecl>
 		</encodingDesc>
-
+		
 		<profileDesc>
 			<langUsage>
-				<language ident="la">Latin </language>
-				<language ident="greek">Greek </language>
+				<language ident="lat">Latin</language>
+				<language ident="grc">Greek</language>
 			</langUsage>
 		</profileDesc>
 
@@ -112,8 +106,9 @@ to a clean copy</change>
 <change when="1997-05-09" who="cjsu">Added to repository. Passes SGML validation.</change>
 		</revisionDesc>
 	</teiHeader>
-	<text xml:lang="la">
+	<text>
 		<body>
+			<div type="edition" n="urn:cts:latinLit:phi0474.phi032.perseus-lat1" xml:lang="lat">
 			<head>PRO M. MARCELLO ORATIO</head>
 
 			
@@ -444,7 +439,7 @@ to a clean copy</change>
 	<div n="19" type="textpart" subtype="section">
 		<p rend="indent">
 	
-			<reg>qua</reg> re gaude tuo<note><lemma>gaude tuo</lemma> gaudeto <hi rend="italics"
+			<reg>qua</reg> re gaude tuo<note><w type="lemma">gaude tuo</w> gaudeto <hi rend="italics"
 						>A</hi></note> isto tam excellenti bono et fruere cum fortuna et gloria tum
 				etiam natura et moribus tuis; ex quo quidem maximus est fructus iucunditasque
 				sapienti. <reg>cetera</reg> cum tua recordabere, etsi persaepe virtuti, tamen
@@ -467,7 +462,7 @@ to a clean copy</change>
 					>b</foreign></note> defetigari<note>defet. <hi rend="italics">BDH</hi>: defat.
 						<hi rend="italics">AVEh</hi></note>, non cupiditate praesertim aliqua aut
 				pravitate lapsis, sed opinione offici stulta fortasse, certe non improba, et
-						specie<note><lemma>specie</lemma> facie <hi rend="italics">hm</hi> (-ce <hi
+						specie<note><w type="lemma">specie</w> facie <hi rend="italics">hm</hi> (-ce <hi
 						rend="italics">m</hi>)</note> quadam rei publicae. <reg>non</reg> enim tua
 				ulla culpa<note>culpa ulla <foreign xml:lang="grc">g</foreign></note> est, si te
 				aliqui timuerunt, contraque summa laus, quod minime timendum fuisse senserunt.
@@ -505,7 +500,7 @@ to a clean copy</change>
 				tam rudis in re publica, tam nihil umquam nec de sua nec de communi<note>communi
 						<foreign xml:lang="grc">ab</foreign>: omnium <hi rend="italics">hm</hi>:
 					communi omnium <hi rend="italics">a</hi></note> salute cogitans, qui
-						non<note><lemma>qui non</lemma> quin <hi rend="italics">AV</hi></note>
+						non<note><w type="lemma">qui non</w> quin <hi rend="italics">AV</hi></note>
 				intellegat tua salute contineri suam et ex unius tua vita pendere
 					omnium<note>pendere omnia <hi rend="italics"><foreign xml:lang="grc">a</foreign>
 						et Schol. Lucani</hi> v. 686</note>? <reg>equidem</reg> de te dies
@@ -593,7 +588,7 @@ to a clean copy</change>
 				in hoc elaborandum est ut rem publicam constituas, eaque tu in primis summa
 				tranquillitate et otio perfruare: tum te, si voles, cum et patriae<note>cum patriae
 						<foreign xml:lang="grc">b</foreign></note> quod debes solveris et naturam
-				ipsam expleveris satietate vivendi, satis diu vixisse<note><lemma>vixisse</lemma> te
+				ipsam expleveris satietate vivendi, satis diu vixisse<note><w type="lemma">vixisse</w> te
 					vixisse <hi rend="italics">H</hi>: vixisse <hi rend="italics">in ras. hab.
 						A</hi> est enim <hi rend="italics">Schol. et Servius Aen.</hi> x. 467</note>
 				dicito. <reg>quid</reg> enim est omnino<note>omnino <hi rend="italics">om. Schol. et
@@ -729,6 +724,7 @@ to a clean copy</change>
 					<foreign xml:lang="grc">ag</foreign></note> innumerabilia merita, quod fieri iam
 				posse non arbitrabar, magnus<note>maximus <foreign xml:lang="grc">b</foreign></note>
 				hoc tuo facto cumulus accesserit. </p>
+			</div>
 			</div>
 		</body>
 	</text>
