@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader xml:lang="eng">
 		<fileDesc>
@@ -50,34 +51,29 @@
 		</fileDesc>
 
 		<encodingDesc>
-			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState delim="." n="chunk" unit="chapter"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Phil.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Phil.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState delim="." n="chunk" unit="chapter"/>
-				<refState unit="section"/>
+			<editorialDecl>
+				<quotation marks="none"/>
+			</editorialDecl>
+			<editorialDecl>
+				<p>Notes may contain errors</p>
+			</editorialDecl>
+			<refsDecl n="CTS">
+				<cRefPattern matchPattern="(\w+)"
+					replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])"
+					n="section">
+					<p>This pointer pattern extracts section</p>
+				</cRefPattern>
 			</refsDecl>
 		</encodingDesc>
-
+		
 		<profileDesc>
 			<langUsage>
-				<language ident="la">Latin </language>
-				<language ident="greek">Greek </language>
+				<language ident="lat">Latin</language>
+				<language ident="grc">Greek</language>
 			</langUsage>
 		</profileDesc>
+		
+		
 
 		<revisionDesc>
 			<change who="Thibault Clérice" when="2021-01-29">Capitains + Epidoc</change>
@@ -124,8 +120,9 @@
 				validation.</change>
 		</revisionDesc>
 	</teiHeader>
-	<text xml:lang="la">
+	<text>
 		<body>
+			<div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi033.perseus-lat1">
 			<head>PRO Q. LIGARIO ORATIO</head>
 
 	<div n="1" type="textpart" subtype="section">
@@ -874,7 +871,7 @@
 					daturum<note>te his daturum <foreign xml:lang="grc">a</foreign>: his te dat.
 						<foreign xml:lang="grc">g</foreign>: his omnibus dat. <foreign
 						xml:lang="grc">b</foreign></note>. </p>
-	</div>
+	</div></div>
 		</body>
 	</text>
 </TEI>
