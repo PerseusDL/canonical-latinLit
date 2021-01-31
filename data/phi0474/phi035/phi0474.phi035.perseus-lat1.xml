@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" 
+	schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader xml:lang="eng">
 		<fileDesc>
@@ -50,37 +52,35 @@
 		</fileDesc>
 
 		<encodingDesc>
-			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl>
-				<refState delim=" " unit="text"/>
-				<refState delim="." n="chunk" unit="chapter"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Phil.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState unit="section"/>
-			</refsDecl>
-			<refsDecl n="text=Phil.">
-				<refState delim=" " unit="text"/>
-				<refState delim="." unit="speech"/>
-				<refState delim="." n="chunk" unit="chapter"/>
-				<refState unit="section"/>
-			</refsDecl>
+			<editorialDecl>
+				<quotation marks="none"/>
+			</editorialDecl>
+			<editorialDecl>
+				<p>Notes may contain errors</p>
+			</editorialDecl>
+         <refsDecl n="CTS">
+            <cRefPattern n="section"
+                         matchPattern="(\w+).(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+               <p>This pointer pattern extracts section</p>
+            </cRefPattern>
+            <cRefPattern n="speech"
+                         matchPattern="(\w+)"
+                         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+               <p>This pointer pattern extracts chapter</p>
+            </cRefPattern>
+         </refsDecl>
 		</encodingDesc>
 
 		<profileDesc>
 			<langUsage>
-				<language ident="la">Latin </language>
-				<language ident="greek">Greek </language>
+				<language ident="lat">Latin </language>
+				<language ident="grc">Greek </language>
 			</langUsage>
 		</profileDesc>
 
 		<revisionDesc>
-			<change who="Thibault Clérice" when="2021-01-30">Capitains + Epidoc</change>
+			<change who="Thibault Clérice" when="2021-01-31">Capitains + Epidoc</change>
 			<change who="Stella Dee" when="2014-08-01">edited markup</change>
 			<change who="Stella Dee" when="2014-07-01">split composite text and converted to
 				unicode</change>
@@ -126,6 +126,7 @@
 	</teiHeader>
 	<text xml:lang="la">
 		<body>
+			<div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi035.perseus-lat1">
 			<head>Philippicae Orationes in M. Antonium</head>
 			<div type="textpart" subtype="speech" n="1">
 				<head>IN M. ANTONIVM ORATIO PHILIPPICA PRIMA</head>
@@ -11077,6 +11078,7 @@
 							>Ernesti</hi>: si illi vicissent <hi rend="italics">bhs1v</hi>: si illi
 						vixissent <hi rend="italics">os2</hi>: si illi viverent <foreign
 							xml:lang="grc">p</foreign></note> qui morte vicerunt. </p>
+			</div>
 			</div>
 			</div>
 		</body>
