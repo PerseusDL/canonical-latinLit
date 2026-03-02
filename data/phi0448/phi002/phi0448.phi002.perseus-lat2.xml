@@ -1,102 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
-    <teiHeader xml:lang="eng">
-        <fileDesc>
-            <titleStmt>
-                <title xml:lang="lat">De Bello Civili</title>
-               <author>Julius Caesar</author>
-                <editor>Renatus du Pontet</editor>
-                <sponsor>Perseus Project, Tufts University</sponsor>
-                <principal>Gregory Crane</principal>
-                <respStmt>
-                    <resp>Prepared under the supervision of</resp>
-                    <name>Lisa Cerrato</name>
-                    <name>David Smith</name>
-                </respStmt>
-                <respStmt>
-                    <persName>Benedikt Blumenfelder</persName>
-                    <orgName/>
-                    <resp>CTS and EpiDoc conversion</resp>
-                </respStmt>
-                <funder n="org:Tufts">Tufts University</funder>
-            </titleStmt>
-            <publicationStmt>
-                <publisher>Trustees of Tufts University</publisher>
-                <pubPlace>Medford, MA</pubPlace>
-                <authority>Perseus Project</authority>
-        <date type="release" notBefore="2000-12-01"/>
+ <teiHeader xml:lang="eng">
+ <fileDesc>
+ <titleStmt>
+     <title xml:lang="lat">De Bello Civili</title>
+    <author>Julius Caesar</author>
+     <editor>Renatus du Pontet</editor>
+     <sponsor>Perseus Project, Tufts University</sponsor>
+     <principal>Gregory Crane</principal>
+     <respStmt>
+         <resp>Prepared under the supervision of</resp>
+         <name>Lisa Cerrato</name>
+         <name>David Smith</name>
+     </respStmt>
+     <respStmt>
+         <persName>Benedikt Blumenfelder</persName>
+         <orgName/>
+         <resp>CTS and EpiDoc conversion</resp>
+     </respStmt>
+     <funder n="org:Tufts">Tufts University</funder>
+ </titleStmt>
+     
+ <publicationStmt>
+     <publisher>Trustees of Tufts University</publisher>
+     <pubPlace>Medford, MA</pubPlace>
+     <authority>Perseus Project</authority>
+     <date type="release" when="2000-08-01" cert="medium">Perseus 2.5</date>
+     <availability>
+         <licence target="https://creativecommons.org/licenses/by-sa/4.0/">Available under a Creative Commons Attribution-ShareAlike 4.0 International License</licence></availability>
     </publicationStmt>
-            <sourceDesc>
-                <biblStruct>
-                    <monogr>
-                       <author>Julius Caesar</author>
-                        <title xml:lang="lat">C. Iuli Caesaris Commentariorum, pars posterior</title>
-                        <editor>Renatus du Pontet</editor>                      
-                        <imprint>
-                            <pubPlace>Oxford</pubPlace>
-                            <publisher>Clarendon</publisher>
-                            <date>1901</date>
-                        </imprint>
-                    </monogr>
-                    <series>
-                        <title>Scriptorum Classicorum Bibliotheca Oxoniensis</title>
-                    </series>
-                    <ref target="https://archive.org/details/commentariorumpa02caesuoft">Internet Archive</ref>
-                </biblStruct>
-            </sourceDesc>
+     
+ <sourceDesc>
+     <biblStruct>
+  <monogr>
+ <author>Julius Caesar</author>
+  <title xml:lang="lat">C. Iuli Caesaris Commentariorum, pars posterior</title>
+  <editor>Renatus du Pontet</editor>
+  <imprint>
+      <pubPlace>Oxford</pubPlace>
+      <publisher>Clarendon</publisher>
+      <date>1901</date>
+  </imprint>
+         </monogr>
+         <series> <title>Scriptorum Classicorum Bibliotheca Oxoniensis</title> </series>
+         <ref target="https://archive.org/details/commentariorumpa02caesuoft">Internet Archive</ref>
+     </biblStruct>
+ </sourceDesc>
         </fileDesc>
 
         <encodingDesc>
-            <refsDecl n="CTS">
-                <cRefPattern n="Section" matchPattern="(\w+).(\w+).(\w+)"
-                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:div[@n='$3'])">
-                    <p>This pointer pattern extracts Book and Chapter and Section</p>
-                </cRefPattern>
-                <cRefPattern n="Chapter" matchPattern="(\w+).(\w+)"
-                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
-                    <p>This pointer pattern extracts Book and Chapter</p>
-                </cRefPattern>
-                <cRefPattern n="Book" matchPattern="(\w+)"
-                    replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
-                    <p>This pointer pattern extracts Book</p>
-                </cRefPattern>
-            </refsDecl>
-            <refsDecl>
-                <refState unit="book" delim="."/>
-                <refState unit="chapter" delim="."/>
-                <refState unit="section"/>
-            </refsDecl>
+ <refsDecl n="CTS">
+     <cRefPattern n="section" matchPattern="(\w+).(\w+).(\w+)"
+         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:div[@n='$3'])">
+         <p>This pointer pattern extracts book and chapter and section.</p>
+     </cRefPattern>
+     <cRefPattern n="chapter" matchPattern="(\w+).(\w+)"
+         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+         <p>This pointer pattern extracts book and chapter.</p>
+     </cRefPattern>
+     <cRefPattern n="book" matchPattern="(\w+)"
+         replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+         <p>This pointer pattern extracts book.</p>
+     </cRefPattern>
+ </refsDecl>
+ <refsDecl>
+     <refState unit="book" delim="."/>
+     <refState unit="chapter" delim="."/>
+     <refState unit="section"/>
+ </refsDecl>
         </encodingDesc>
 
         <profileDesc>
-            <langUsage>
-                <language ident="lat">Latin</language>
-            </langUsage>
+ <langUsage>
+     <language ident="lat">Latin</language>
+ </langUsage>
         </profileDesc>
 
-        <revisionDesc>
-            <change when="2018-09-07" who="Lisa Cerrato">minor header fixes; bumped URNs; div ending checks; quotes</change>
-            <change when="2018-08-27" who="bblumenfelder">transformed to CTS-compliant format, convert html-entities to utf-8</change>
-            <change when="2013-09-13" who="balmas01">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change>
-            <change when="2013-06-08"  who="gcrane">TEI XML converted to facilitate CTS compatibility </change>
-            <change when="2011-01-17" who="gcrane">base SDL file</change>
-            <change when="2009-10-09" who="rsingh04">more reorganizing of texts module by
-                collection</change>
-            <change when="2005-08-01" who="packel">removed stray item tags</change>
-            <change when="2005-07-25" who="packel">Converted to XML</change>
-            <change when="2003-07-01" who="yorkc">Updated texts to TEI P4 and Perseus P4 extensions;
-                minor cleanup (esp. character encodings and typos.)</change>
-            <change when="2000-11-30" who="amahoney">correct the ISBN</change>
-            <change when="2000-11-30" who="amahoney">add the ISBN</change>
-            <change when="2000-11-30" who="amahoney">finished proofreading and tidying up</change>
-            <change when="2000-11-28" who="amahoney">English is basically done; more proofing on
-                Latin</change>
-            <change when="2000-11-27" who="amahoney">get the English version going; more
-                proofreading on the Latin</change>
-            <change when="2000-11-22" who="amahoney">rough text; needs to be collated against Du
-                Pontet's edition, which is out of copyright</change>
-        </revisionDesc>
+<revisionDesc>
+ <change when="2018-09-07" who="Lisa Cerrato">minor header fixes; bumped URNs; div ending checks; quotes</change>
+ <change when="2018-08-27" who="bblumenfelder">transformed to CTS-compliant format, convert html-entities to utf-8</change>
+ <change when="2013-09-13" who="balmas01">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change>
+ <change when="2013-06-08"  who="gcrane">TEI XML converted to facilitate CTS compatibility </change>
+ <change when="2011-01-17" who="gcrane">base SDL file</change>
+ <change when="2009-10-09" who="rsingh04">more reorganizing of texts module by collection</change>
+ <change when="2005-08-01" who="packel">removed stray item tags</change>
+ <change when="2005-07-25" who="packel">Converted to XML</change>
+<change when="2003-07-01" who="yorkc">Updated texts to TEI P4 and Perseus P4 extensions; minor cleanup (esp. character encodings and typos.)</change>
+ <change when="2000-11-30" who="amahoney">correct the ISBN</change>
+ <change when="2000-11-30" who="amahoney">add the ISBN</change>
+ <change when="2000-11-30" who="amahoney">finished proofreading and tidying up</change>
+<change when="2000-11-28" who="amahoney">English is basically done; more proofing on Latin</change>
+<change when="2000-11-27" who="amahoney">get the English version going; more proofreading on the Latin</change>
+ <change when="2000-11-22" who="amahoney">rough text; needs to be collated against Du Pontet's edition, which is out of copyright</change>
+</revisionDesc>
     </teiHeader>
 
     <text xml:lang="lat">
