@@ -75,7 +75,16 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
 		    		<refState unit="poem"/>
 		    		<refState unit="line"/>
 		    	</refsDecl>
-		    </encodingDesc>
+		    		    <refsDecl xml:id="CTS">
+		    		      <citeStructure match="/TEI/text/body" use="@xml:base">
+		    		        <citeStructure unit="book" delim=":" match="div/div[@subtype='book']" use="@n">
+		    		          <citeStructure unit="poem" delim="." match="div[@subtype='poem']" use="@n">
+		    		            <citeStructure unit="line" delim="." match="l" use="@n"/>
+		    		          </citeStructure>
+		    		        </citeStructure>
+		    		      </citeStructure>
+		    		    </refsDecl>
+</encodingDesc>
 
 		    <profileDesc>
 			      <langUsage default="false">
@@ -84,12 +93,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
 		    </profileDesc>
 
       <revisionDesc>
+        <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
          <change when="2015-03-06" who="Thibault Clérice">converted to EpiDoc/CTS/Unicode</change>
       </revisionDesc>
 	  </teiHeader>
-	  <text>
-		    <body>
-		    	<div type="edition" n="urn:cts:latinLit:phi0959.phi001.perseus-lat2" xml:lang="lat">
+	  <text xml:lang="lat">
+		    <body xml:base="urn:cts:latinLit:phi0959.phi001.perseus-lat2">
+		    	<div type="edition" xml:lang="lat">
 			         <head>Amores</head>
 			         <div type="textpart" subtype="book" n="1">
 				           <head>Liber primus</head>

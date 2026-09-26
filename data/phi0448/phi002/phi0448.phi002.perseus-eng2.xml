@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader xml:lang="eng">
     <fileDesc>
@@ -59,7 +59,14 @@
           <p>This pointer pattern extracts book.</p>
         </cRefPattern>
       </refsDecl>    
-    </encodingDesc>
+        <refsDecl xml:id="CTS">
+          <citeStructure match="/TEI/text/body" use="@xml:base">
+            <citeStructure unit="book" delim=":" match="div/div[@subtype='book']" use="@n">
+              <citeStructure unit="chapter" delim="." match="div[@subtype='chapter']" use="@n" n="chunk"/>
+            </citeStructure>
+          </citeStructure>
+        </refsDecl>
+</encodingDesc>
 
     <profileDesc>
       <langUsage>
@@ -70,13 +77,14 @@
     </profileDesc>
     
     <revisionDesc>
+      <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
       <change when="2026-01-31" who="Lisa Cerrato">Updated to CTS and EpiDoc; bumped URN. Formerly unused and unpublished file.</change>
     </revisionDesc>
   </teiHeader>
 
-<text>
-<body>
-<div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0448.phi002.perseus-eng2">
+<text xml:lang="eng">
+<body xml:base="urn:cts:latinLit:phi0448.phi002.perseus-eng2">
+<div type="translation" xml:lang="eng">
 <pb n="p.3"/>
 <div type="textpart" subtype="book" xml:base="urn:cts:latinLit:phi0448.phi002.perseus-eng2" n="1">
 <div type="textpart" subtype="chapter" xml:base="urn:cts:latinLit:phi0448.phi002.perseus-eng2:1" n="1">

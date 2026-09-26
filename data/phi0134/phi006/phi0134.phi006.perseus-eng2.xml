@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
 <teiHeader xml:lang="eng">
 <fileDesc>
@@ -71,6 +71,15 @@
 <p>professional data entry</p>
 </correction>
 </editorialDecl>
+<refsDecl xml:id="CTS">
+  <citeStructure match="/TEI/text/body" use="@xml:base">
+    <citeStructure unit="act" delim=":" match="div/div[@subtype='act']" use="@n">
+      <citeStructure unit="scene" delim="." match="div[@subtype='scene']" use="@n">
+        <citeStructure unit="line" delim="." match="l" use="@n"/>
+      </citeStructure>
+    </citeStructure>
+  </citeStructure>
+</refsDecl>
 </encodingDesc>
 <profileDesc>
 <langUsage>
@@ -80,6 +89,7 @@
 </langUsage>
 </profileDesc>
 <revisionDesc>
+  <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
  <change who="Lisa Cerrato" when="2026-01-09">Added line numbers, fixed encoding issues, quote marks and notes.</change>
 <change who="Thibault Clérice" when="2016-11-18">CapiTains, Epidoc and Bump</change>
 <change who="balmas01" when="2013-09-13">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change>
@@ -109,9 +119,9 @@
 </revisionDesc>
 </teiHeader>
 
-<text>
-<body>
-<div xml:lang="eng" type="translation" n="urn:cts:latinLit:phi0134.phi006.perseus-eng2">
+<text xml:lang="eng">
+<body xml:base="urn:cts:latinLit:phi0134.phi006.perseus-eng2">
+<div xml:lang="eng" type="translation">
 <div type="textpart" subtype="act" n="front">
 
 <l xml:base="urn:cts:latinLit:phi0134.phi006.perseus-eng2" n="cast">

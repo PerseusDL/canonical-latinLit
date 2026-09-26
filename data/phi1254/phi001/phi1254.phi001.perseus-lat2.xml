@@ -71,7 +71,16 @@
                 <refState unit="chapter" delim="."/>
                 <refState unit="section"/>
             </refsDecl>
-        </encodingDesc>
+                <refsDecl xml:id="CTS">
+                  <citeStructure match="/TEI/text/body" use="@xml:base">
+                    <citeStructure unit="book" delim=":" match="div/div[@subtype='book']" use="@n">
+                      <citeStructure unit="chapter" delim="." match="div[@subtype='chapter']" use="@n">
+                        <citeStructure unit="section" delim="." match="div[@subtype='section']" use="@n"/>
+                      </citeStructure>
+                    </citeStructure>
+                  </citeStructure>
+                </refsDecl>
+</encodingDesc>
 	<profileDesc>
 		<langUsage>
 			<language ident="lat">Latin</language>
@@ -79,6 +88,7 @@
 		</langUsage>
 	</profileDesc>
         <revisionDesc>
+          <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
         	<change when="2024-07-01" who="Lisa Cerrato">Commented out TOC. Chapter headings were captured in place and this seems superfluous.</change>
         	<change when="2022-03-29" who="Alison Babeu">Updated header and bibliographic description</change>
         	<change when="2019-09-13" who="Aurélien Berra">Corrected errors</change>
@@ -89,8 +99,8 @@
 	</teiHeader>
 	
 	<text xml:lang="lat">
-		<body> 
-<div type="edition" n="urn:cts:latinLit:phi1254.phi001.perseus-lat2" xml:lang="lat"> 
+		<body xml:base="urn:cts:latinLit:phi1254.phi001.perseus-lat2"> 
+<div type="edition" xml:lang="lat"> 
 <!--<div type="textpart" n="capitula" subtype="book"> <pb xml:id="v1.p.xxxviii"/> 
 <div type="textpart" n="1sum" subtype="book"><head>Capitula Libri Primi <note><hi rend="italic">For variants see the chapters to which the headings belong. The headings are divided among the separate volumes.</hi></note> </head> 
 <div type="textpart" n="1" subtype="chapter"><head>I</head> <p>Quali proportione quibusque collectionibus Plutarchus ratiocinatum esse Pythagoram philosophum dixerit de comprehendenda corporis proceritate qua fuit Hercules, cum vitam inter homines viveret. <ref target="v1.p.2">2</ref> </p> </div> 

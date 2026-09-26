@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
    <teiHeader xml:lang="eng">
       <fileDesc>
@@ -71,7 +71,16 @@
             <refState unit="scene" delim="."/>
             <refState unit="line"/>
          </refsDecl>
-      </encodingDesc>
+            <refsDecl xml:id="CTS">
+              <citeStructure match="/TEI/text/body" use="@xml:base">
+                <citeStructure unit="act" delim=":" match="div/div[@subtype='act']" use="@n">
+                  <citeStructure unit="scene" delim="." match="div[@subtype='scene']" use="@n">
+                    <citeStructure unit="line" delim="." match="l" use="@n"/>
+                  </citeStructure>
+                </citeStructure>
+              </citeStructure>
+            </refsDecl>
+</encodingDesc>
 
       <profileDesc>
          <langUsage>
@@ -81,6 +90,7 @@
       </profileDesc>
 
       <revisionDesc>
+        <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
          <change who="Lisa Cerrato" when="2025-07-21">Fixed front matter issues, revised quotation marks, speaker tags and names, fixed line split encoding where numbers were absent, fixed orphaned lines that existed outside of speaker tags.</change>  
          <change who="Thibault Clérice" when="2016-11-18">CapiTains, Epidoc and Bump</change>
          <change when="2016-02-19" who="Lisa Cerrato">changed replacement pattern to find all lines</change>
@@ -105,9 +115,9 @@
       </revisionDesc>
    </teiHeader>
 
-   <text>
-      <body>
-         <div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0134.phi002.perseus-lat2" subtype="edition">
+   <text xml:lang="lat">
+      <body xml:base="urn:cts:latinLit:phi0134.phi002.perseus-lat2">
+         <div type="edition" xml:lang="lat" subtype="edition">
             <div type="textpart" subtype="act" n="front">
                <l xml:base="urn:cts:latinLit:phi0134.phi002.perseus-lat2" rend="bulletted" n="cast">
                <listPerson>

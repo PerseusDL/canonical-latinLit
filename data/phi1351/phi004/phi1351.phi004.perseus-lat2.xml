@@ -43,7 +43,14 @@
             <cRefPattern n="chapter" matchPattern="(.+).(.+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div[@type='edition']/tei:div[@n='$1']/tei:div[@n='$2'])"/>
             <cRefPattern n="book" matchPattern="(.+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div[@type='edition']/tei:div[@n='$1'])"/>
          </refsDecl>
-      </encodingDesc>
+            <refsDecl xml:id="CTS">
+              <citeStructure match="/TEI/text/body" use="@xml:base">
+                <citeStructure unit="book" delim=":" match="div/div[@subtype='book']" use="@n">
+                  <citeStructure unit="chapter" delim="." match="div[@subtype='chapter']" use="@n"/>
+                </citeStructure>
+              </citeStructure>
+            </refsDecl>
+</encodingDesc>
 
       <profileDesc>
          <langUsage default="false">
@@ -52,11 +59,14 @@
       </language>
          </langUsage>
       </profileDesc>
-  </teiHeader>
+    <revisionDesc>
+    <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
+  </revisionDesc>
+</teiHeader>
 
    <text xml:lang="lat">
-      <body>
-          <div type="edition" n="urn:cts:latinLit:phi1351.phi004.perseus-lat2" xml:lang="lat">
+      <body xml:base="urn:cts:latinLit:phi1351.phi004.perseus-lat2">
+          <div type="edition" xml:lang="lat">
                <div type="textpart" subtype="book" n="1">
                      <head>LIBER I</head>
                   <div type="textpart" subtype="chapter" n="1"><p>

@@ -65,7 +65,16 @@
                 <p>This pointer pattern extracts book</p>
             </cRefPattern>
          </refsDecl>
-      </encodingDesc>
+            <refsDecl xml:id="CTS">
+              <citeStructure match="/TEI/text/body" use="@xml:base">
+                <citeStructure unit="book" delim=":" match="div/div[@subtype='book']" use="@n">
+                  <citeStructure unit="poem" delim="." match="div[@subtype='poem']" use="@n">
+                    <citeStructure unit="line" delim="." match="l" use="@n"/>
+                  </citeStructure>
+                </citeStructure>
+              </citeStructure>
+            </refsDecl>
+</encodingDesc>
 
       <profileDesc>
          <langUsage>
@@ -74,6 +83,7 @@
       </profileDesc>
 
       <revisionDesc>
+        <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
             <change who="Thibault Clérice" when="2016-11-16">CapiTainS, Epidoc and Bump</change>
             <change who="balmas01" when="2013-09-13">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change> 
             <change who="gcrane" when="2013-06-08">TEI XML converted to facilitate CTS compatibility</change> 
@@ -94,8 +104,8 @@ needs line nos.</change>
       </revisionDesc>
    </teiHeader>
    <text xml:lang="lat">
-      <body>
-         <div xml:lang="lat" type="edition" n="urn:cts:latinLit:phi0893.phi001.perseus-lat2">
+      <body xml:base="urn:cts:latinLit:phi0893.phi001.perseus-lat2">
+         <div xml:lang="lat" type="edition">
             <div type="textpart" n="1" subtype="book">
                <div type="textpart" n="1" met="First Asclepiadean" subtype="poem">
                   <l n="1">Maecenas atavis edite regibus,</l>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader xml:lang="eng">
         <fileDesc>
@@ -64,7 +64,14 @@
                 <refState unit="chapter" delim="."/>
                 <!--<refState unit="section"/>-->
             </refsDecl>
-        </encodingDesc>
+                <refsDecl xml:id="CTS">
+                  <citeStructure match="/TEI/text/body" use="@xml:base">
+                    <citeStructure unit="book" delim=":" match="div/div[@subtype='book']" use="@n">
+                      <citeStructure unit="chapter" delim="." match="div[@subtype='chapter']" use="@n" n="chunk"/>
+                    </citeStructure>
+                  </citeStructure>
+                </refsDecl>
+</encodingDesc>
 
         <profileDesc>
             <langUsage>
@@ -73,6 +80,7 @@
         </profileDesc>
 
         <revisionDesc>
+          <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
             <change when="2026-01-28" who="Lisa Cerrato">Refinements to header and other markup.</change>
             <change when="2016-01-25" who="Lisa Cerrato">EpiDoc and CTS conversion first pass including divs and refsDecl and revision of name tag converting reg to n as temp fix </change>
             <change when="2010-07-06" who="rsingh04">fixed CVS log keyword some more</change>
@@ -94,9 +102,9 @@
         </revisionDesc>
     </teiHeader>
     
-<text>
-<body>
-<div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi0448.phi001.perseus-eng2">
+<text xml:lang="eng">
+<body xml:base="urn:cts:latinLit:phi0448.phi001.perseus-eng2">
+<div type="translation" xml:lang="eng">
             
 <div n="1" type="textpart" subtype="book" xml:base="urn:cts:latinLit:phi0448.phi001.perseus-eng2:1"> 
 <div type="textpart" subtype="chapter" xml:base="urn:cts:latinLit:phi0448.phi001.perseus-eng2:1" n="1"> 

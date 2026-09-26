@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
  <teiHeader xml:lang="eng">
  <fileDesc>
@@ -69,7 +69,16 @@
      <refState unit="chapter" delim="."/>
      <refState unit="section"/>
  </refsDecl>
-        </encodingDesc>
+                <refsDecl xml:id="CTS">
+                  <citeStructure match="/TEI/text/body" use="@xml:base">
+                    <citeStructure unit="book" delim=":" match="div/div[@subtype='book']" use="@n">
+                      <citeStructure unit="chapter" delim="." match="div[@subtype='chapter']" use="@n">
+                        <citeStructure unit="section" delim="." match="div[@subtype='section']" use="@n" n="chunk"/>
+                      </citeStructure>
+                    </citeStructure>
+                  </citeStructure>
+                </refsDecl>
+</encodingDesc>
 
         <profileDesc>
  <langUsage>
@@ -78,6 +87,7 @@
         </profileDesc>
 
 <revisionDesc>
+  <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
  <change when="2018-09-07" who="Lisa Cerrato">minor header fixes; bumped URNs; div ending checks; quotes</change>
  <change when="2018-08-27" who="bblumenfelder">transformed to CTS-compliant format, convert html-entities to utf-8</change>
  <change when="2013-09-13" who="balmas01">moving Greg's work-in-progress on CTS-izing greco-roman collection texts to a Work directory</change>
@@ -97,8 +107,8 @@
     </teiHeader>
 
     <text xml:lang="lat">
-        <body> 
-<div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0448.phi002.perseus-lat2"> 
+        <body xml:base="urn:cts:latinLit:phi0448.phi002.perseus-lat2"> 
+<div type="edition" xml:lang="lat"> 
 <div type="textpart" subtype="book" n="1"> <head>C. Iuli Caesaris Commentariorum De Bello Civili, Liber Primus</head> 
 <div type="textpart" subtype="chapter" n="1"> 
 <div type="textpart" subtype="section" n="1"><p><gap reason="lost"/> Litteris <del>a Fabio</del> C. Caesaris consulibus redditis aegre ab his impetratum est summa tribunorum plebis contentione ut in senatu recitarentur; ut vero ex litteris ad senatum referretur, impetrari non potuit.</p></div> 
