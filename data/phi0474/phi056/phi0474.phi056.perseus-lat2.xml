@@ -57,10 +57,10 @@
          
          <refsDecl n="CTS">
             <cRefPattern n="section" matchPattern="(\w+).(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']/tei:div[@n='$3'])">
-               <p>This pointer pattern extracts section.</p>
+               <p>This pointer pattern extracts book and letter and section.</p>
             </cRefPattern>
             <cRefPattern n="letter" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
-               <p>This pointer pattern extracts letter.</p>
+               <p>This pointer pattern extracts book and letter.</p>
             </cRefPattern>
             <cRefPattern n="book" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
                <p>This pointer pattern extracts book.</p>
@@ -71,13 +71,17 @@
             <refState delim="." unit="letter"/>
             <refState unit="section"/>
          </refsDecl>
-            <refsDecl xml:id="CTS">
-              <citeStructure match="/TEI/text/body" use="@xml:base">
-                <citeStructure unit="book" delim=":" match="div/div[@subtype='Book']" use="@n">
-                  <citeStructure unit="section" delim="." match="div/div[@subtype='section']" use="@n"/>
-                </citeStructure>
-              </citeStructure>
-            </refsDecl>
+         
+         <refsDecl xml:id="CTS">
+            <citeStructure match="/TEI/text/body" use="@xml:base">
+               <citeStructure unit="book" delim=":" match="div/div[@subtype='book']" use="@n">
+                  <citeStructure unit="letter" delim="." match="div[@subtype='letter']" use="@n">
+                     <citeStructure unit="section" delim="." match="div[@subtype='section']" use="@n"/>
+                  </citeStructure>
+               </citeStructure>
+            </citeStructure>
+         </refsDecl>
+         
       </encodingDesc>
       <profileDesc>
        <langUsage> 
@@ -87,6 +91,7 @@
       </profileDesc>
       
       <revisionDesc>
+ <change when="2026-09" who="Lisa Cerrato">Header, encoding fixes and various corrections to markup to conform to best practices. Bumped URN. Reformatted fragments, etc.</change>
 <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
 <change who="Lisa Cerrato" when="2019-09-03">readded missing pages 232-233 (end of 8.11 and beginning of 8.12)</change>
  <change when="2016-11-20" who="Thibault Clérice">CapiTainS and Epidoc</change>
