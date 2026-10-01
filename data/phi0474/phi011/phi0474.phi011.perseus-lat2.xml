@@ -58,24 +58,29 @@
 		</fileDesc>
 		
 <encodingDesc>
-	<refsDecl n="CTS">
-	<cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
-	<p>This pointer pattern extracts speech and section.</p>
-	</cRefPattern>
-	<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
-	<p>This pointer pattern extracts speech.</p>
-	</cRefPattern>
-			</refsDecl>
-			<refsDecl>
-				<refState unit="speech" delim="."/>
-				<refState unit="section"/>
-			</refsDecl>
-				<refsDecl xml:id="CTS">
-				  <citeStructure match="/TEI/text/body" use="@xml:base">
-				    <citeStructure unit="section" delim=":" match="div/div/div[@subtype='section']" use="@n"/>
-				  </citeStructure>
-				</refsDecl>
-</encodingDesc>
+<refsDecl n="CTS">
+<cRefPattern n="section" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
+<p>This pointer pattern extracts speech and section.</p>
+</cRefPattern>
+<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+<p>This pointer pattern extracts speech.</p>
+</cRefPattern>
+</refsDecl>
+	<refsDecl>
+	<refState unit="speech" delim="."/>
+	<refState unit="section"/>
+	</refsDecl>
+<refsDecl xml:id="CTS">
+	<citeStructure match="/TEI/text/body" use="@xml:base">
+	<citeStructure unit="speech" delim=":" match="div/div[@subtype='speech']" use="@n">
+	<citeStructure unit="section" delim="." match="div[@subtype='section']" use="@n" n="chunk"/>
+	</citeStructure>
+	</citeStructure>
+</refsDecl>
+</encodingDesc>		
+		
+			
+				
 		
 		<profileDesc>
 			<langUsage>
@@ -121,7 +126,7 @@
 	
 	<text xml:lang="lat">
 	<body xml:base="urn:cts:latinLit:phi0474.phi011.perseus-lat2">
-	<div type="edition" xml:lang="lat" subtype="edition">
+		<div type="edition" xml:lang="lat" n="urn:cts:latinLit:phi0474.phi011.perseus-lat2">
 	<head rend="align(center)">Orationes de Lege Agraria</head>
 	
 <div type="textpart" subtype="speech" xml:base="urn:cts:latinLit:phi0474.phi011.perseus-lat2" n="1"> 
