@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
-    <teiHeader>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader xml:lang="eng">
 		<fileDesc>
 			<titleStmt>
 				<title>Agricola (abridged)</title>
@@ -23,7 +24,11 @@
 				<publisher>Trustees of Tufts University</publisher>
 				<pubPlace>Medford, MA</pubPlace>
 				<authority>Perseus Project</authority>
-				<date type="release" cert="unknown">2000-08-01</date>
+				<date type="release" when="2000-08-01" cert="unknown">Perseus 2.0</date>
+				<idno type="filename">phi1351.phi001.perseus-eng1.xml</idno>
+				<availability>
+					<licence target="https://creativecommons.org/licenses/by-sa/4.0/">Available under a Creative Commons Attribution-ShareAlike 4.0 International License</licence>
+				</availability>
 			</publicationStmt>
 
 
@@ -48,32 +53,38 @@
 			<editorialDecl>
 				<correction method="silent" status="low"><p>Perseus OCR</p></correction>
 			</editorialDecl>
-			<refsDecl>
-				<!--<refState delim=" " unit="life"/>-->
-				<refState unit="chapter"/>
+			<refsDecl n="CTS">
+				<cRefPattern n="chapter" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1'])">
+					<p>This pointer pattern extracts chapter.</p>
+				</cRefPattern>
+			</refsDecl>
+			<refsDecl n="TEI.2">
+				<refState n="chunk" unit="chapter"/>
 			</refsDecl>
 				<refsDecl xml:id="CTS">
 				  <citeStructure match="/TEI/text/body" use="@xml:base">
-				    <citeStructure unit="chapter" delim=":" match="div[@type='chapter']" use="@n"/>
+				    <citeStructure unit="chapter" delim=":" match="div[@type='translation']/div[@subtype='chapter']" use="@n"/>
 				  </citeStructure>
 				</refsDecl>
 </encodingDesc>
 
 		<profileDesc>
 			<langUsage>
-				<language ident="en">English </language>
-				<language ident="la">Latin </language>
+				<language ident="eng">English</language>
+				<language ident="lat">Latin</language>
 				<language ident="grc">Greek </language>
-				<language ident="fr">French </language>
+				<language ident="fre">French</language>
 			</langUsage>
 		</profileDesc>
 		<revisionDesc>
+	  <change when="2026-09-28">Updated the header and text structure for EpiDoc, CTS, HookTest, and MVP compatibility.</change>
 	  <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
 	</revisionDesc>
 </teiHeader>
 	<text xml:lang="eng">
 		<body xml:base="urn:cts:latinLit:phi1351.phi001.perseus-eng1">
-			<div type="chapter" n="4">
+			<div type="translation" xml:lang="eng" n="urn:cts:latinLit:phi1351.phi001.perseus-eng1">
+			<div type="textpart" subtype="chapter" n="4">
 				<p>CNAEUS JULIUS AGRICOLA was born at the ancient and respectable colony of
 					Forojulium. His grandfather, by the maternal as well as the paternal line,
 					served the office of imperial procurator, a trust of importance, which always
@@ -89,7 +100,7 @@
 					learning, where the refinements of Greece were happily blended with the sober
 					manners of provincial economy.</p>
 			</div>
-			<div type="chapter" n="5">
+			<div type="textpart" subtype="chapter" n="5">
 				<p>His first rudiments of military knowledge were acquired in Britain, under the
 					conduct of Suetonius Paulinus, that experienced officer, active, vigilant, yet
 					mild in command. Agricola was soon distinguished by his general, and selected to
@@ -110,7 +121,7 @@
 					improve a young officer, and plant in his mind the early seeds of military
 					ambition.</p>
 			</div>
-			<div type="chapter" n="6">
+			<div type="textpart" subtype="chapter" n="6">
 				<p>He returned from Britain to enter on the gradations of the civil magistracy, and
 					married Domitia Decidiana, a lady of high rank and splendid descent. By that
 					alliance he gained an accession of strength and credit, that served to forward
@@ -135,7 +146,7 @@
 					spectacles, which belonged to his department, he conducted with economy and
 					magnificence, short of profusion, yet with due regard to popularity.</p>
 			</div>
-			<div type="chapter" n="7">
+			<div type="textpart" subtype="chapter" n="7">
 				<p>In the course of the following year (<date when="0069">A. D. 69</date>), a
 					dreadful misfortune happened in his family, and proved to him a severe stroke of
 					affliction. A descent, from Otho's fleet, which roved about in quest of
@@ -157,7 +168,7 @@
 					the legion, and to the task of punishing the guilty. He acquitted himself with
 					consummate address and singular moderation.</p>
 			</div>
-			<div type="chapter" n="8">
+			<div type="textpart" subtype="chapter" n="8">
 				<p>The government of Britain was at that time committed to Vettius Bolanus, a man of
 					milder disposition than consisted with the genius of those ferocious islanders.
 					Agricola, that he might not seem to eclipse his superior officer, restrained his
@@ -174,7 +185,7 @@
 					conduct, vigorous in action, but modest in the report of his exploits, he gained
 					a brilliant reputation, secure from the envy that attends it.</p>
 			</div>
-			<div type="chapter" n="9">
+			<div type="textpart" subtype="chapter" n="9">
 				<p>On his return to Rome, Vespasian advanced him to the patrician rank, and soon
 					after to the government of the province of Aquitania; an appointment of the
 					first importance, leading directly to the honours of the consulship, to which he
@@ -192,7 +203,7 @@
 					consulship expired. In a short time after, he was appointed governor of Britain,
 					with the additional honour of a seat in the pontifical college.</p>
 			</div>
-			<div type="chapter" n="18">
+			<div type="textpart" subtype="chapter" n="18">
 				<p>When Agricola arrived, about the middle of the summer (<date when="0078">A. D.
 						78</date>), to take upon him the command, he found an army lulled in
 					indolence and security, as if the campaign was at an end, while the enemy was on
@@ -233,7 +244,7 @@
 					his letters, according to custom, decorated with sprigs of laurel: but this
 					self-denial served only to enhance his fame.</p>
 			</div>
-			<div type="chapter" n="19">
+			<div type="textpart" subtype="chapter" n="19">
 				<p>Agricola knew by the experience of past events, that conquest, while it loads the
 					vanquished with injury and oppression, can never be secure and permanent. He
 					determined, therefore, to suppress the seeds of future hostility. He began a
@@ -248,7 +259,7 @@
 					providing at the same time against the extortion of the tax-gatherer, more
 					odious and intolerable than even the tax itself.</p>
 			</div>
-			<div type="chapter" n="20">
+			<div type="textpart" subtype="chapter" n="20">
 				<p>The consequence was, that peace, which, through the neglect or connivance of
 					former governors was no less terrible than war itself, began to diffuse its
 					blessings, and to be relished by all. As soon as the summer opened, he assembled
@@ -262,14 +273,14 @@
 					no part of the country could think itself secure from the vigour of the
 					conqueror.</p>
 			</div>
-			<div type="chapter" n="21">
+			<div type="textpart" subtype="chapter" n="21">
 				<p>To introduce a system of new and wise regulations was the business of the
 					following winter. To establish a plan of education, and give the sons of the
 					leading chiefs a tincture of letters, was part of his policy. By way of
 					encouragement, he praised their talents, and already saw them, by the force of
 					their natural genius, rising superior to the attainments of the Gauls.</p>
 			</div>
-			<div type="chapter" n="22">
+			<div type="textpart" subtype="chapter" n="22">
 				<p>In the course of the third year the progress of the Roman arms discovered new
 					nations, whose territories were laid waste as far as the estuary called the
 					Firth of Tay. The legions had to struggle with all the difficulties of a
@@ -283,7 +294,7 @@
 					summer, now saw no difference of seasons; they were defeated everywhere, and
 					reduced to the last despair.</p>
 			</div>
-			<div type="chapter" n="24">
+			<div type="textpart" subtype="chapter" n="24">
 				<p>In the fifth summer Agricola made an expedition by sea. He embarked in the first
 					Roman vessel that ever crossed the estuary of the Clyde, and having penetrated
 					into regions till then unknown, he defeated the inhabitants in several
@@ -294,7 +305,7 @@
 					capable of giving an easy communication, and, of course, strength and union to
 					provinces disjoined by nature.</p>
 			</div>
-			<div type="chapter" n="25">
+			<div type="textpart" subtype="chapter" n="25">
 				<p>In the campaign which began in the sixth summer, having reason to apprehend a
 					general confederacy of the nations beyond the Firth of Bodotria, and fearing, in
 					a country not yet explored, the danger of a surprise, Agricola ordered his ships
@@ -315,7 +326,7 @@
 					passes, should be able to surround him, he divided his army, and marched forward
 					in three columns.</p>
 			</div>
-			<div type="chapter" n="26">
+			<div type="textpart" subtype="chapter" n="26">
 				<p>The Caledonians, informed of this arrangement, changed their plan, and in the
 					dead of night fell with their united force upon the ninth legion, then the
 					weakest of the Roman army. They surprised the advanced guard, and having, in the
@@ -331,7 +342,7 @@
 					The Caledonians were put to the rout, and if the woods and marshes had not
 					favoured their escape, that single action had put an end to the war.</p>
 			</div>
-			<div type="chapter" n="27">
+			<div type="textpart" subtype="chapter" n="27">
 				<p>By this victory, so complete and glorious, the Roman army was inspired with
 					confidence to such a degree, that they now pronounced themselves invincible. The
 					Caledonians, notwithstanding their defeat, abated nothing from their ferocity.
@@ -341,7 +352,7 @@
 					campaign ended in this manner, and the two armies, inflamed with mutual
 					animosity, retired into winter quarters.</p>
 			</div>
-			<div type="chapter" n="29">
+			<div type="textpart" subtype="chapter" n="29">
 				<p>In the beginning of the following summer Agricola met with a stroke of
 					affliction, by the loss of a son about a year old. He did not upon this occasion
 					affect, like many others, the character of a man superior to the feelings of
@@ -360,7 +371,7 @@
 					multitude gathered around him, eager for action, and burning with uncommon
 					ardour.</p>
 			</div>
-			<div type="chapter" n="30">
+			<div type="textpart" subtype="chapter" n="30">
 				<p>He harangued them to the following effect: "All that can inspire the human heart,
 					every motive that can excite us to deeds of valour, is on our side The Romans
 					have no wives in the field to animate their drooping spirit; no parents to
@@ -374,7 +385,7 @@
 					by our ancestors; and let each man think that upon his sword depends the fate of
 					all posterity."</p>
 			</div>
-			<div type="chapter" n="33">
+			<div type="textpart" subtype="chapter" n="33">
 				<p>This speech was received with war songs, with savage howlings, and a wild uproar
 					of military applause. Their battalions began to form a line of battle; the brave
 					and warlike rushed forward to the front, and the field glittered with the blaze
@@ -382,7 +393,7 @@
 					impatient spirit of his men, but did not think proper to begin the engagement
 					till he confirmed their courage by a speech in which he said:</p>
 			</div>
-			<div type="chapter" n="34">
+			<div type="textpart" subtype="chapter" n="34">
 				<p>"If our present struggle were with nations wholly unknown; if we had to do with
 					an enemy new to our swords, I should call to mind the example of other armies.
 					At present what can I propose so bright and animating as your own exploits? I
@@ -397,7 +408,7 @@
 					Britain has been a lingering work, if the seeds of rebellion have not been
 					crushed, that we at least have done our duty."</p>
 			</div>
-			<div type="chapter" n="35">
+			<div type="textpart" subtype="chapter" n="35">
 				<p>As soon as the general ended, the field rung with shouts of applause. Impatient
 					for the onset, the soldiers grasped their arms. Agricola restrained their
 					violence, till he formed his order of battle. The auxiliary infantry, in number
@@ -412,7 +423,7 @@
 					filled with the charioteers and cavalry of the Britons, rushing to and fro in
 					wild career, and traversing the plain with noise and tumult.</p>
 			</div>
-			<div type="chapter" n="36">
+			<div type="textpart" subtype="chapter" n="36">
 				<p>The battle began, and at first was maintained at a distance. The Britons wanted
 					neither skill nor resolution. With their long swords, and targets of small
 					dimension, they had the address to elude the missive weapons of the Romans, and
@@ -438,7 +449,7 @@
 					urged, they overwhelmed their own files and trampled down all who came in their
 					way.</p>
 			</div>
-			<div type="chapter" n="37">
+			<div type="textpart" subtype="chapter" n="37">
 				<p>Meanwhile, the Britons who had hitherto kept their post on the hills, began to
 					quit their station. Descending slowly, they hoped, by wheeling round the field
 					of battle, to attack the victors in the rear. To counteract their design,
@@ -463,7 +474,7 @@
 					this engagement; on the part of the Romans, the number of slain did not exceed
 					three hundred and forty.</p>
 			</div>
-			<div type="chapter" n="38">
+			<div type="textpart" subtype="chapter" n="38">
 				<p>The Roman army, elated with success, and enriched with plunder, passed the night
 					in exultation. The Britons, on the other hand, wandered about, uncertain which
 					way to turn, helpless and disconsolate. The mingled cries of men and women
@@ -471,7 +482,7 @@
 					laid violent hands upon their wives and children, determined with savage
 					compassion to end their misery.</p>
 			</div>
-			<div type="chapter" n="39">
+			<div type="textpart" subtype="chapter" n="39">
 				<p>The account of these transactions, sent to Rome by Agricola, was plain and
 					simple, without any decoration of language to heighten the narrative. Domitian
 					received it in the true spirit of his character, with a smile on his
@@ -482,7 +493,7 @@
 					and the affection of the army had time to cool. Agricola was still in Britain,
 					and had the command of the army and the province.</p>
 			</div>
-			<div type="chapter" n="40">
+			<div type="textpart" subtype="chapter" n="40">
 				<p>Domitian, in the meantime, caused a decree to pass the Senate, by which triumphal
 					ornaments, the honour of a statue crowned with laurel, and all other marks of
 					distinction usually substituted in the place of a real triumph were granted to
@@ -504,7 +515,7 @@
 					attended by more than one or two friends, he was remarkable for nothing but the
 					simplicity of his appearance.</p>
 			</div>
-			<div type="chapter" n="41">
+			<div type="textpart" subtype="chapter" n="41">
 				<p>But in the distress of public affairs which soon after followed, the name of
 					Agricola could not be suffered to remain in obscurity. By the rashness or
 					inactivity of the commanders-in-chief, the armies of the empire were lost in
@@ -515,7 +526,7 @@
 					and slaughter of armies, the voice of the people called aloud for Agricola to be
 					employed in the public service.</p>
 			</div>
-			<div type="chapter" n="42">
+			<div type="textpart" subtype="chapter" n="42">
 				<p>The year was now at hand in which Agricola was to have by lot the proconsulship
 					of Asia or of Africa; but the death of Civica, who had been lately murdered in
 					his government, gave at once a warning to Agricola. and a precedent to Domitian.
@@ -535,7 +546,7 @@
 					solicited, or the better reason might be, that the prince might not seem to gain
 					by compromise what he had a right to command.</p>
 			</div>
-			<div type="chapter" n="43">
+			<div type="textpart" subtype="chapter" n="43">
 				<p>The death of Agricola (<date when="0093">A. D. 93</date>) was felt by his family
 					with the deepest sorrow, by his friends with tender concern, and even by
 					foreigners with universal regret. During his illness, the common people were
@@ -561,7 +572,7 @@
 					perceive that by a good father, none but an evil prince is ever called to a
 					share in the succession.</p>
 			</div>
-			<div type="chapter" n="44">
+			<div type="textpart" subtype="chapter" n="44">
 				<p>Agricola was born on the ides of June, in the third consulship of Caligula; he
 					died on the tenth before the calends of September, during the consulship of
 					Collega and Priscus, in the fifty-sixth year of his age.<note anchored="true"
@@ -596,6 +607,7 @@
 					broke out in sudden fits and starts of cruelty, but, throwing off all restraint,
 					proceeded in one continued course of unrelenting fury, as if determined to crush
 					the commonwealth at a blow. </p>
+			</div>
 			</div>
 		</body>
 	</text>
