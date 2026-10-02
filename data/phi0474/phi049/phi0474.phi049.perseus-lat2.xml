@@ -55,7 +55,7 @@
             <cRefPattern n="section"
                          matchPattern="(\w+).(\w+)"
                          replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])">
-               <p>This pointer pattern extracts section.</p>
+               <p>This pointer pattern extracts chapter and section.</p>
             </cRefPattern>
             <cRefPattern n="chapter"
                          matchPattern="(\w+)"
@@ -66,6 +66,14 @@
          <refsDecl n="TEI.2">
             <refState unit="book"/>
             <refState unit="section"/>
+         </refsDecl>
+         
+         <refsDecl xml:id="CTS">
+            <citeStructure match="/TEI/text/body" use="@xml:base">
+               <citeStructure  unit="chapter" delim=":" match="div/div[@subtype='chapter']" use="@n">
+                  <citeStructure unit="section" delim="." match="div[@subtype='section']" use="@n" n="chunk"/>
+               </citeStructure>
+            </citeStructure> 
          </refsDecl>
       </encodingDesc>
       
@@ -94,7 +102,7 @@
    </teiHeader>
    
    <text xml:lang="lat">
-      <body>
+      <body xml:base="phi0474.phi049.perseus-lat2.xml">
        <div xml:lang="lat" type="edition" n="urn:cts:latinLit:phi0474.phi049.perseus-lat2">
          
            
