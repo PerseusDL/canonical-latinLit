@@ -1,14 +1,12 @@
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Prose//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" >
-%PersProse;
-]>
-<TEI.2>
-  <teiHeader>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader xml:lang="eng">
     <fileDesc>
       <titleStmt>
-        <title>Catalepton, Appendix Vergiliana</title>
-    <editor>Robinson Ellis</editor>
+        <title xml:lang="lat">Catalepton</title>
+        <author>Anonymous</author>
+        <editor>Robinson Ellis</editor>
         <sponsor>Perseus Project, Tufts University</sponsor>
         <principal>Gregory Crane</principal>
         <respStmt>
@@ -23,12 +21,16 @@
         <publisher>Trustees of Tufts University</publisher>
         <pubPlace>Medford, MA</pubPlace>
         <authority>Perseus Project</authority>
-        <date type="release"/>
+        <date type="release" when="2026-10-27">Perseus 5.0</date>
+        <idno type="filename">phi0692.phi009.perseus-lat1.xml</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-sa/4.0/">Available under a Creative Commons Attribution-ShareAlike 4.0 International License</licence>
+        </availability>
       </publicationStmt>
       <sourceDesc>
         <biblStruct>
           <monogr>
-            <title>Appendix Vergiliana, sive carmina minora Vergilio adtributa</title>
+            <title xml:lang="lat">Appendix Vergiliana, sive carmina minora Vergilio adtributa</title>
             <editor>Robinson Ellis</editor>
             <imprint>
               <publisher>e Typographeo Clarendoniano</publisher>
@@ -36,384 +38,329 @@
               <date>1907</date>
             </imprint>
           </monogr>
+          <ref target="https://archive.org/details/appendixvergilia00elliuoft/page/n105/mode/2up">Internet Archive</ref>
         </biblStruct>
-        
-        <p>Keyboarding</p></sourceDesc>
+      </sourceDesc>
     </fileDesc>
-
+    
     <encodingDesc>
-      <editorialDesc>
+      <editorialDecl>
         <p>Keyboarding</p>
-      </editorialDesc>
-<refsDecl n="text=1"  doctype="TEI.2">
-<state unit="text"/>
-<state unit="book"/>
-<state unit="chapter" n="chunk"/>
-<state unit="section"/>
-</refsDecl>
-
-        <refsDecl xml:id="CTS">
-          <citeStructure match="/TEI/text/body" use="@xml:base">
-            <citeStructure match="div1[@type='poem']" use="@n" unit="poem" delim=":" n="chunk">
-              <citeStructure match=".//lb" use="@n" unit="line" delim="."/>
-            </citeStructure>
+      </editorialDecl>
+      
+      <refsDecl n="CTS">
+        <cRefPattern n="line" matchPattern="(\w+).(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@type='textpart' and @subtype='poem' and @n='$1']//tei:l[@n='$2'])">
+          <p>This pointer pattern extracts line by poem and line number.</p>
+        </cRefPattern>
+        <cRefPattern n="poem" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@type='textpart' and @subtype='poem' and @n='$1'])">
+          <p>This pointer pattern extracts an entire poem.</p>
+        </cRefPattern>
+      </refsDecl>
+      
+      <refsDecl xml:id="CTS">
+        <citeStructure match="/TEI/text/body" use="@xml:base" n="chunk" unit="work">
+          <citeStructure match="div[@type='textpart' and @subtype='poem']" use="@n" unit="poem" delim=":">
+            <citeStructure match="l" use="@n" unit="line"/>
           </citeStructure>
-        </refsDecl>
-</encodingDesc>
-
+        </citeStructure>
+      </refsDecl>       
+    </encodingDesc>
+    
     <profileDesc>
       <langUsage>
-	<language id="la">Latin</language>
-	<language id="greek">Greek</language>
+        <language ident="lat">Latin</language>
       </langUsage>
     </profileDesc>
-    <change>Added to repository November, 2011. Unreleased.</change>
     <revisionDesc>
-    <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
-  </revisionDesc>
-</teiHeader>
-
-<text xml:lang="lat"><group>
-
-
-
+      <change who="Alison Babeu" when="2026-10-30">Converted to standard Epidoc format, updated XML base, added edition div, replaced daggers with actual dagger characters, replaced double hyphens with em-dashes, kept notes, and removed indents.</change>
+      <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
+      <change who="Bridget Almas" when="2011">Added to repository November, 2011. Unreleased.</change>
+    </revisionDesc>
+  </teiHeader>
   
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <text n="catalepton" id="phi0692.phi009.perseus.lat1"><body xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1">
-    <head>Catalepton</head>
-
-<div1 type="poem" n="1"><p>
-<lb n="1"/>Delia saepe tibi uenit. sed, Tucca, uidere
-<lb n="2"/>non licet: occulitur limine clausa uiri.
-<lb n="3"/>Delia saepe tibi, non uenit adhuc mihi: namque
-<lb n="4"/>si occulitur, longe est tangere quod nequeas.
-<lb n="5"/>uenerit: audiui. sed iam mihi nuntius iste 
-<lb n="6"/>quid prodest? illi dicite, quoi rediit.
-</p></div1>
-
-<div1 type="poem" n="2"><p>
-<lb n="1"/>Corinthiorum amator iste uerborum,
-<lb n="2"/>iste iste rhetor! namque quatenus totus
-
-
-
-<lb n="3"/>Thucydides, tyrannus Atticaest febris,
-<lb n="4"/>tau Gallicum min et psin et 'male illi sit'&mdash;
-<lb n="5"/>ista omnia ista uerba miscuit fratri. 
-</p></div1>
-
-<div1 type="poem" n="3"><p>
-<lb n="1"/>Aspice, quem ualido subnixum gloria regno
-<lb n="2"/>altius et caeli sedibus extulerat:
-
-
-
-<lb n="3"/>terrarum hic bello magnum concusserat orbem,
-<lb n="4"/>hic reges Asiae fregerat, hic populos;
-<lb n="5"/>hic graue seruitium tibi, iam tibi, Roma, ferebat 
-<lb n="6"/>(cetera namque uiri cuspide conciderant):
-<lb n="7"/>cum subito in medio rerum certamine praeceps
-<lb n="8"/>corruit, ex patria pulsus in exilium.
-<lb n="9"/>tale deae numen; tali mortalia nutu
-<lb n="10"/>fallax momento temporis hora terit. 
-</p></div1>
-
-<div1 type="poem" n="4"><p>
-<lb n="1"/>Quocumque ire ferunt uariae nos tempora uitae,
-<lb n="2"/>tangere quas terras quosque uidere homines,
-<lb n="3"/>dispeream, si te fuerit mihi carior alter.
-<lb n="4"/>alter enim quis te dulcior esse potest,
-<lb n="5"/>cui iuueni ante alios diui diuumque sorores 
-<lb n="6"/>cuncta, neque indigno, Musa, dedere bona,
-<lb n="7"/>cuncta, quibus gaudet Phoebi chorus ipseque Phoebus?
-<lb n="8"/>doctior o quis te, Musa, fuisse potest?
-<lb n="9"/>o quis te in terris loquitur iucundior uno?
-<lb n="10"/>Clio nam certe candida non loquitur. 
-
-
-
-<lb n="11"/>quare illud satis est, si te permittis amari;
-<lb n="12"/>nam contra ut sit amor mutuus, unde mihi?
-</p></div1>
-
-<div1 type="poem" n="5"><p>
-<lb n="1"/>Ite hinc, inanes, ite, rhetorum ampullae,
-<lb n="2"/>inflata &dagger;rhoso non Achaico uerba,
-<lb n="3"/>et uos, Selique Tarquitique Varroque,
-<lb n="4"/>scholasticorum natio madens pingui,
-<lb n="5"/>ite hinc, inanis cymbalon iuuentutis. 
-<lb n="6"/>tuque, o mearum cura, Sexte, curarum
-<lb n="7"/>uale, Sabine; iam ualete, formosi.
-<lb n="8"/>nos ad beatos uela mittimus portus,
-<lb n="9"/>magni petentes docta dicta Sironis,
-<lb n="10"/>uitamque ab omni uindicabimus cura. 
-<lb n="11"/>ite hinc, Camenae, uos quoque ite saluete,
-
-
-
-<lb n="12"/>dulces Camenae, nam fatebimur uerum,
-<lb n="13"/>dulces fuistis, et tamen meas chartas
-<lb n="14"/>reuisitote, sed pudenter et raro
-</p></div1>
-
-<div1 type="poem" n="6"><p>
-<lb n="1"/>Socer, beate nec tibi nec alteri,
-<lb n="2"/>generque Noctuine, putidum caput,
-<lb n="3"/>tuone nunc puella talis et tuo
-<lb n="4"/>stupore pressa rus abiuit? ei mihi,
-<lb n="5"/>ut ille uersus usquequaque pertinet: 
-<lb n="6"/>'gener socerque, perdidistis omnia.'
-</p></div1>
-
-<div1 type="poem" n="7"><p>
-<lb n="1"/>Scilicet hoc sine fraude, Vari dulcissime, dicam:
-<lb n="2"/>dispeream, nisi me perdidit iste putus.
-<lb n="3"/>sin autem praecepta uetant me dicere, sane
-<lb n="4"/>non dicam, sed me perdidit iste puer.
-
-
-
-</p></div1>
-
-<div1 type="poem" n="8"><p>
-<lb n="1"/>Villula, quae Sironis eras, et pauper agelle,
-<lb n="2"/>uerum illi domino tu quoque diuitiae,
-<lb n="3"/>me tibi et hos una mecum, quos semper amaui,
-<lb n="4"/>si quid de patria tristius audiero,
-<lb n="5"/>commendo, in primisque patrem. tu nunc eris illi, 
-<lb n="6"/>Mantua quod fuerat quodque Cremona prius.
-</p></div1>
-
-<div1 type="poem" n="9"><p>
-<lb n="1"/>Pauca mihi, niueo sed non incognita Phoebo,
-<lb n="2"/>pauca mihi doctae dicite Pegasides.
-<lb n="3"/>uictor adest, magni magnum decus ecce triumphi,
-<lb n="4"/>uictor, qua terrae quaque patent maria,
-<lb n="5"/>horrida barbaricae portans insignia pugnae, 
-<lb n="6"/>magnus ut Oenides utque superbus Eryx;
-<lb n="7"/>nec minus idcirco uestros expromere cantus
-<lb n="8"/>maximus et sanctos dignus inire choros.
-<lb n="9"/>hoc itaque insuetis iactor magis, optime, curis,
-<lb n="10"/>quid de te possim scribere quidue tibi. 
-<lb n="11"/>namque (fatebor enim) quae maxima deterrendi
-<lb n="12"/>debuit, hortandi maxima causa fuit.
-<lb n="13"/>pauca tua in nostras uenerunt carmina chartas,
-
-
-
-<lb n="14"/>carmina cum lingua, tum sale Cecropio,
-<lb n="15"/>carmina, quae Phrygium, saeclis accepta futuris, 
-<lb n="16"/>carmina, quae Pylium uincere digna senem.
-<lb n="17"/>molliter hic uiridi patulae sub tegmine quercus
-<lb n="18"/>Moeris pastores et Meliboeus erant,
-<lb n="19"/>dulcia iactantes alterno carmina uersu,
-<lb n="20"/>qualia Trinacriae doctus amat iuuenis. 
-<lb n="21"/>certatim ornabant omnes heroida diui,
-<lb n="22"/>certatim diuae munere quoque suo.
-<lb n="23"/>felicem ante alias o te scriptore puellam!
-<lb n="24"/>altera non fama dixerit esse prior:
-<lb n="25"/>non illa, Hesperidum ni munere capta fuisset, 
-<lb n="26"/>quae uolucrem cursu uicerat Hippomenen;
-<lb n="27"/>candida cycneo non edita Tyndaris ouo,
-<lb n="28"/>non supero fulgens Cassiopea polo,
-<lb n="29"/>non defensa diu &dagger;multum certamine equorum
-<lb n="30"/>optabant &dagger;grauidae quod sibi quaeque manus&dagger;, 
-<lb n="31"/>saepe animam generi pro qua pater impius hausit,
-
-
-
-<lb n="32"/>saepe rubrae similis sanguine fluxit humus;
-<lb n="33"/>regia non Semele, non Inachis Acrisione,
-<lb n="34"/>immiti expertae fulmine et imbre Iouem;
-<lb n="35"/>non cuius raptu pulsi liquere penatis 
-<lb n="36"/>Tarquinii patrios, filius atque pater,
-<lb n="37"/>illo quo primum dominatus Roma superbos
-<lb n="38"/>mutauit placidis tempore consulibus.
-<lb n="39"/>multa neque immeritis donauit praemia alumnis,
-<lb n="40"/>praemia Messallis maxima Publicolis. 
-<lb n="41"/>nam quid ego immensi memorem studia ista laboris?
-<lb n="42"/>horrida quid durae tempora militiae?
-<lb n="43"/>castra foro toties, urbi praeponere castra,
-<lb n="44"/>tam procul haec gnato, tam procul haec patria?
-<lb n="45"/>immoderata pati iam sidera, iamque calores? 
-<lb n="46"/>sternere uel dura posse super silice?
-<lb n="47"/>saepe trucem aduerso perlabi sidere pontum?
-<lb n="48"/>saepe mare audendo uincere, saepe hiemem?
-<lb n="49"/>saepe etiam densos immittere corpus in hostis,
-<lb n="50"/>communem belli nec meminisse deum? 
-<lb n="51"/>nunc celeres Afros, periurae milia gentis,
-
-
-
-<lb n="52"/>aurea nunc rapidi flumina adire Tagi?
-<lb n="53"/>nunc aliam ex alia bellando quaerere gentem,
-<lb n="54"/>uincere et Oceani finibus ulterius?
-<lb n="55"/>non nostrum est tantas, non, inquam, attingere laudes 
-<lb n="56"/>quin ausim hoc etiam dicere, uix hominum est.
-<lb n="57"/>ipsa haec, ipsa ferent rerum monumenta per orbem,
-<lb n="58"/>ipsa sibi egregium facta decus parient.
-<lb n="59"/>nos ea, quae tecum finxerunt carmina diui,
-<lb n="60"/>Cynthius et Musae, Bacchus et Aglaie, 
-<lb n="61"/>si laude aspirare humilis et adire Cyrenas,
-<lb n="62"/>si patrio Graios carmine adire sales
-<lb n="63"/>possumus, optatis plus iam procedimus ipsis.
-<lb n="64"/>hoc satis est; pingui nil mihi cum populo.
-</p></div1>
-
-<div1 type="poem" n="10"><p>
-<lb n="1"/>Sabinus ille, quem uidetis, hospites,
-<lb n="2"/>ait fuisse mulio celerrimus,
-<lb n="3"/>neque ullius uolantis impetum cisi
-<lb n="4"/>nequisse praeterire, siue Mantuam
-<lb n="5"/>opus foret uolare siue Brixiam. 
-<lb n="6"/>et hoc negat Tryphonis-aemuli domum
-
-
-
-<lb n="7"/>negare nobilem insulamue Caeruli,
-<lb n="8"/>ubi iste post Sabinus ante Quintio
-<lb n="9"/>bidente dicit attodisse forcipe
-<lb n="10"/>comata colla, ne Cytorio iugo 
-<lb n="11"/>premente dura uulnus ederet iuba.
-<lb n="12"/>Cremona frigida et lutosa Gallia,
-<lb n="13"/>tibi haec fuisse et esse cognitissima
-<lb n="14"/>ait Sabinus: ultima ex origine
-<lb n="15"/>tua stetisse dicit in uoragine, 
-<lb n="16"/>tua in palude deposisse sarcinas,
-<lb n="17"/>et inde tot per orbitosa milia
-<lb n="18"/>iugum tulisse, laeua siue dextera
-<lb n="19"/>strigare mula siue utrumque coeperat
-<lb n="20"/> <gap/> <lb n="21"/>neque ulla uota semitalibus deis
-<lb n="22"/>sibi esse facta, praeter hoc nouissimum,
-<lb n="23"/>paterna lora proximumque pectinem.
-<lb n="24"/>sed haec prius fuere: nunc eburnea
-<lb n="25"/>sedetque sede seque dedicat tibi, 
-<lb n="26"/>gemelle Castor et gemelle Castoris.
-
-
-
-</p></div1>
-
-<div1 type="poem" n="11"><p>
-<lb n="1"/>Quis deus, Octaui, te nobis abstulit? an quae
-<lb n="2"/>dicunt, a, nimio pocula dura mero?
-<lb n="3"/>'uobiscum, si est culpa, bibi. sua quemque sequuntur
-<lb n="4"/>fata : quid immeriti crimen habent cyathi?'
-<lb n="5"/>scripta quidem tua nos multum mirabimur et te 
-<lb n="6"/>raptum et Romanam flebimus historiam,
-<lb n="7"/>sed tu nullus eris. peruersi dicite manes,
-<lb n="8"/>hunc superesse patri quae fuit inuidia?
-
-
-
-</p></div1>
-
-<div1 type="poem" n="12"><p>
-<lb n="1"/>Superbe Noctuine, putidum caput,
-<lb n="2"/>datur tibi puella, quam petis, datur;
-<lb n="3"/>datur, superbe Noctuine, quam petis.
-<lb n="4"/>sed, o superbe Noctuine, non uides
-<lb n="5"/>duas habere filias Atilium, 
-<lb n="6"/>duas, et hanc et alteram, tibi dari.
-<lb n="7"/>adeste nunc, adeste : ducit, ut decet,
-<lb n="8"/>superbus ecce Noctuinus hirneam.
-<lb n="9"/>Talasio, Talasio, Talasio!
-</p></div1>
-
-<div1 type="poem" n="13"><p>
-<lb n="1"/>Iacere me, quod alta non possim, putas,
-<lb n="2"/>ut ante, uectari freta,
-<lb n="3"/>nec ferre durum frigus aut aestum pati
-<lb n="4"/>neque arma uictoris sequi?
-<lb n="5"/>ualent, ualent mihi ira et antiquus furor 
-<lb n="6"/>et lingua, qua mas sim tibi,
-<lb n="7"/>et prostitutae turpe contubernium
-
-
-
-<lb n="8"/>sororis. o quid me incitas?
-<lb n="9"/>quid, impudice et improbande Caesari,
-<lb n="10"/>si furta dicantur tua, 
-<lb n="11"/>et helluato sera patrimonio
-<lb n="12"/>in fratre parsimonia,
-<lb n="13"/>uel acta puero cum uiris conuiuia,
-<lb n="14"/>udaeque per somnum nates,
-<lb n="15"/>et inscio repente clamatum insuper 
-<lb n="16"/>Talasio, Talasio?
-<lb n="17"/>quid palluisti, femina? an ioci dolent?
-<lb n="18"/>an facta cognoscis tua?
-<lb n="19"/>non me uocabis pulchra per Cotyttia
-<lb n="20"/>ad feriatos fascinos, 
-<lb n="21"/>nec dein mouere lumbulos in caltula
-<lb n="22"/>prensis uidebo altaribus,
-<lb n="23"/>flauumque propter Thybrim olentis nauticum
-
-
-
-<lb n="24"/>uocare, ubi adpulsae rates
-<lb n="25"/>stant in uadis caeno retentae sordido, 
-<lb n="26"/>macraque luctantes aqua;
-<lb n="27"/>neque in culinam et uncta compitalia
-<lb n="28"/>dapesque duces sordidas,
-<lb n="29"/>quibus repletus ut saliuosis &dagger;aquis
-<lb n="30"/>obesam ad uxorem redis, 
-<lb n="31"/>exaestuantes dote soluis pantices,
-<lb n="32"/>os crusque lambis sauiis.
-<lb n="33"/>nunc laede, nunc lacesse, si quicquam uales!
-<lb n="34"/>et nomen ascribo tuum.
-<lb n="35"/>cinaede Luci, iamne te liquere opes, 
-<lb n="36"/>fameque genuini crepant?
-<lb n="37"/>uidebo habentem praeter ignauos nihil
-<lb n="38"/>fratres et iratum Iouem,
-<lb n="39"/>scissumque uentrem et hirneosi patrui
-<lb n="40"/>pedes inedia turgidos. 
-
-
-
-</p></div1>
-
-<div1 type="poem" n="13a"><p>
-<lb n="1"/>Palladis arce sub hac Itali est iniuria saecli,
-<lb n="2"/>antiquis hospes non minor ingeniis,
-<lb n="3"/>et quo Roma uiro doctis certaret Athenis;
-<lb n="4"/>ferrea sed nulli uincere fata datur.
-</p></div1>
-
-<div1 type="poem" n="14"><p>
-<lb n="1"/>Si mihi susceptum fuerit decurrere munus,
-<lb n="2"/>o Paphon, o sedes quae colis Idalias,
-<lb n="3"/>Troius Aeneas Romana per oppida digno
-<lb n="4"/>iam tandem ut tecum carmine uectus eat:
-<lb n="5"/>non ego ture modo aut picta tua templa tabella 
-<lb n="6"/>ornabo et puris serta feram manibus;
-<lb n="7"/>corniger hos aries humilis, sed maxima, taurus,
-<lb n="8"/>uictima sacratos sparget honore focos,
-<lb n="9"/>marmoreusque tibi caput, ignicolorius alas,
-<lb n="10"/>in morem picta stabit Amor pharetra. 
-<lb n="11"/>adsis, o Cytherea: tuus te Caesar Olympo
-<lb n="12"/>et Surrentini litoris ara uocat.
-
-
-
-</p></div1>
-
-<div1 type="poem" n="14a"><p>
-<lb n="1"/>Vate Syracosio qui dulcior, Hesiodoque
-<lb n="2"/>maior, Homereo non minor ore fuit,
-<lb n="3"/>illius haec quoque sunt diuini elementa poetae
-<lb n="4"/>et rudis in uario carmine Calliope.
-
-
-
-
-</p></div1></body></text></TEI.2>
+  <text xml:lang="lat">
+    <body xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1">
+      <div type="edition" n="urn:cts:latinLit:phi0692.phi009.perseus-lat1" xml:lang="lat">
+        <lb/>
+        <head>Catalepton</head>
+        <div type="textpart" subtype="poem" n="1">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:1" n="1">DELIA saepe tibi uenit. sed, Tucca, uidere</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:1" n="2"  rend="indent">non licet: occulitur limine clausa uiri.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:1" n="3">Delia saepe tibi, non uenit adhuc mihi: namque</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:1" n="4" rend="indent">si occulitur, longe est tangere quod nequeas.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:1" n="5">uenerit: audiui. sed iam mihi nuntius iste</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:1" n="6" rend="indent">quid prodest? illi dicite, quoi rediit.</l>
+        </div>
+        <div type="textpart" subtype="poem" n="2">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:2" n="1" rend="indent">Corinthiorum amator iste uerborum,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:2" n="2">iste iste rhetor! namque quatenus totus</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:2" n="3">Thucydides, tyrannus Atticaest febris,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:2" n="4">tau Gallicum min et psin et <q rend="single">male illi sit</q>—</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:2" n="5">ista omnia ista uerba miscuit fratri.</l>
+        </div>
+        <div type="textpart" subtype="poem" n="3">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="1">Aspice, quem ualido subnixum gloria regno</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="2" rend="indent">altius et caeli sedibus extulerat:</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="3">terrarum hic bello magnum concusserat orbem,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="4" rend="indent">hic reges Asiae fregerat, hic populos;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="5">hic graue seruitium tibi, iam tibi, Roma, ferebat</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="6" rend="indent">(cetera namque uiri cuspide conciderant):</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="7">cum subito in medio rerum certamine praeceps</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="8" rend="indent">corruit, ex patria pulsus in exilium.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="9">tale deae numen; tali mortalia nutu</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:3" n="10" rend="indent">fallax momento temporis hora terit.</l>
+        </div>
+        <div type="textpart" subtype="poem" n="4">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="1">Quocumque ire ferunt uariae nos tempora uitae,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="2" rend="indent">tangere quas terras quosque uidere homines,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="3">dispeream, si te fuerit mihi carior alter.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="4" rend="indent">alter enim quis te dulcior esse potest,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="5">cui iuueni ante alios diui diuumque sorores</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="6" rend="indent">cuncta, neque indigno, Musa, dedere bona,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="7">cuncta, quibus gaudet Phoebi chorus ipseque Phoebus?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="8" rend="indent">doctior o quis te, Musa, fuisse potest?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="9">o quis te in terris loquitur iucundior uno?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="10" rend="indent">Clio nam certe candida non loquitur.</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="11">quare illud satis est, si te permittis amari;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:4" n="12" rend="indent">nam contra ut sit amor mutuus, unde mihi?</l>
+        </div>
+        <div type="textpart" subtype="poem" n="5">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="1" rend="indent">Ite hinc, inanes, ite, rhetorum ampullae,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="2">inflata †rhoso non Achaico uerba,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="3">et uos, Selique Tarquitique Varroque,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="4">scholasticorum natio madens pingui,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="5">ite hinc, inanis cymbalon iuuentutis.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="6">tuque, o mearum cura, Sexte, curarum</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="7">uale, Sabine; iam ualete, formosi.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="8">nos ad beatos uela mittimus portus,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="9">magni petentes docta dicta Sironis,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="10">uitamque ab omni uindicabimus cura.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="11">ite hinc, Camenae, uos quoque ite saluete,</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="12">dulces Camenae, nam fatebimur uerum,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="13">dulces fuistis, et tamen meas chartas</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:5" n="14">reuisitote, sed pudenter et raro</l>
+        </div>
+        <div type="textpart" subtype="poem" n="6">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:6" n="1"  rend="indent">Socer, beate nec tibi nec alteri,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:6" n="2">generque Noctuine, putidum caput,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:6" n="3">tuone nunc puella talis et tuo</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:6" n="4">stupore pressa rus abiuit? ei mihi,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:6" n="5">ut ille uersus usquequaque pertinet:</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:6" n="6"><q rend="single">gener socerque, perdidistis omnia.</q></l>
+        </div>
+        <div type="textpart" subtype="poem" n="7">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:7" n="1">Scilicet hoc sine fraude, Vari dulcissime, dicam:</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:7" n="2" rend="indent">dispeream, nisi me perdidit iste putus.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:7" n="3">sin autem praecepta uetant me dicere, sane</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:7" n="4" rend="indent">non dicam, sed me perdidit iste puer.</l>
+          <lb/>
+        </div>
+        <div type="textpart" subtype="poem" n="8">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:8" n="1">Villula, quae Sironis eras, et pauper agelle,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:8" n="2" rend="indent">uerum illi domino tu quoque diuitiae,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:8" n="3">me tibi et hos una mecum, quos semper amaui,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:8" n="4" rend="indent">si quid de patria tristius audiero,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:8" n="5">commendo, in primisque patrem. tu nunc eris illi,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:8" n="6" rend="indent">Mantua quod fuerat quodque Cremona prius.</l>
+        </div>
+        <div type="textpart" subtype="poem" n="9">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="1">Pauca mihi, niueo sed non incognita Phoebo,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="2" rend="indent">pauca mihi doctae dicite Pegasides.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="3">uictor adest, magni magnum decus ecce triumphi,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="4" rend="indent">uictor, qua terrae quaque patent maria,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="5">horrida barbaricae portans insignia pugnae,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="6" rend="indent">magnus ut Oenides utque superbus Eryx;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="7">nec minus idcirco uestros expromere cantus</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="8" rend="indent">maximus et sanctos dignus inire choros.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="9">hoc itaque insuetis iactor magis, optime, curis,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="10" rend="indent">quid de te possim scribere quidue tibi.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="11">namque (fatebor enim) quae maxima deterrendi</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="12" rend="indent">debuit, hortandi maxima causa fuit.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="13">pauca tua in nostras uenerunt carmina chartas,</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="14" rend="indent">carmina cum lingua, tum sale Cecropio,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="15">carmina, quae Phrygium, saeclis accepta futuris,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="16" rend="indent">carmina, quae Pylium uincere digna senem.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="17">molliter hic uiridi patulae sub tegmine quercus</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="18" rend="indent">Moeris pastores et Meliboeus erant,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="19">dulcia iactantes alterno carmina uersu,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="20" rend="indent">qualia Trinacriae doctus amat iuuenis.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="21">certatim ornabant omnes heroida diui,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="22" rend="indent">certatim diuae munere quoque suo.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="23">felicem ante alias o te scriptore puellam!</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="24" rend="indent">altera non fama dixerit esse prior:</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="25">non illa, Hesperidum ni munere capta fuisset,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="26" rend="indent">quae uolucrem cursu uicerat Hippomenen;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="27">candida cycneo non edita Tyndaris ouo,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="28" rend="indent">non supero fulgens Cassiopea polo,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="29">non defensa diu †multum certamine equorum</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="30" rend="indent">optabant †grauidae quod sibi quaeque manus†,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="31">saepe animam generi pro qua pater impius hausit,</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="32" rend="indent">saepe rubrae similis sanguine fluxit humus;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="33">regia non Semele, non Inachis Acrisione,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="34" rend="indent">immiti expertae fulmine et imbre Iouem;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="35">non cuius raptu pulsi liquere penatis</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="36" rend="indent">Tarquinii patrios, filius atque pater,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="37">illo quo primum dominatus Roma superbos</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="38" rend="indent">mutauit placidis tempore consulibus.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="39">multa neque immeritis donauit praemia alumnis,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="40" rend="indent">praemia Messallis maxima Publicolis.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="41">nam quid ego immensi memorem studia ista laboris?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="42" rend="indent">horrida quid durae tempora militiae?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="43">castra foro toties, urbi praeponere castra,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="44" rend="indent">tam procul haec gnato, tam procul haec patria?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="45">immoderata pati iam sidera, iamque calores?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="46" rend="indent">sternere uel dura posse super silice?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="47">saepe trucem aduerso perlabi sidere pontum?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="48" rend="indent">saepe mare audendo uincere, saepe hiemem?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="49">saepe etiam densos immittere corpus in hostis,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="50" rend="indent">communem belli nec meminisse deum?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="51">nunc celeres Afros, periurae milia gentis,</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="52" rend="indent">aurea nunc rapidi flumina adire Tagi?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="53">nunc aliam ex alia bellando quaerere gentem,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="54" rend="indent">uincere et Oceani finibus ulterius?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="55">non nostrum est tantas, non, inquam, attingere laudes</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="56" rend="indent">quin ausim hoc etiam dicere, uix hominum est.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="57">ipsa haec, ipsa ferent rerum monumenta per orbem,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="58" rend="indent">ipsa sibi egregium facta decus parient.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="59">nos ea, quae tecum finxerunt carmina diui,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="60" rend="indent">Cynthius et Musae, Bacchus et Aglaie,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="61">si laude aspirare humilis et adire Cyrenas,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="62" rend="indent">si patrio Graios carmine adire sales</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="63">possumus, optatis plus iam procedimus ipsis.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:9" n="64" rend="indent">hoc satis est; pingui nil mihi cum populo.</l>
+        </div>
+        <div type="textpart" subtype="poem" n="10">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="1" rend="indent">Sabinus ille, quem uidetis, hospites,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="2">ait fuisse mulio celerrimus,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="3">neque ullius uolantis impetum cisi</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="4">nequisse praeterire, siue Mantuam</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="5">opus foret uolare siue Brixiam.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="6">et hoc negat Tryphonis-aemuli domum</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="7">negare nobilem insulamue Caeruli,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="8">ubi iste post Sabinus ante Quintio</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="9">bidente dicit attodisse forcipe</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="10">comata colla, ne Cytorio iugo</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="11">premente dura uulnus ederet iuba.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="12">Cremona frigida et lutosa Gallia,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="13">tibi haec fuisse et esse cognitissima</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="14">ait Sabinus: ultima ex origine</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="15">tua stetisse dicit in uoragine,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="16">tua in palude deposisse sarcinas,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="17">et inde tot per orbitosa milia</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="18">iugum tulisse, laeua siue dextera</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="19">strigare mula siue utrumque coeperat</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="20"><gap reason="ellipsis" rend=". . . . . . "></gap> </l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="21">neque ulla uota semitalibus deis</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="22">sibi esse facta, praeter hoc nouissimum,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="23">paterna lora proximumque pectinem.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="24">sed haec prius fuere: nunc eburnea</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="25">sedetque sede seque dedicat tibi,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:10" n="26">gemelle Castor et gemelle Castoris.</l>
+          <lb/>
+        </div>
+        <div type="textpart" subtype="poem" n="11">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:11" n="1">Quis deus, Octaui, te nobis abstulit? an quae</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:11" n="2" rend="indent">dicunt, a, nimio pocula dura mero?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:11" n="3"><q rend="single">uobiscum, si est culpa, bibi. sua quemque sequuntur</q></l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:11" n="4" rend="indent"><q>fata : quid immeriti crimen habent cyathi?</q></l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:11" n="5">scripta quidem tua nos multum mirabimur et te</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:11" n="6" rend="indent">raptum et Romanam flebimus historiam,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:11" n="7">sed tu nullus eris. peruersi dicite manes,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:11" n="8" rend="indent">hunc superesse patri quae fuit inuidia?</l>
+        </div>
+        <lb/>
+        <div type="textpart" subtype="poem" n="12">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:12" n="1" rend="indent">Superbe Noctuine, putidum caput,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:12" n="2">datur tibi puella, quam petis, datur;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:12" n="3">datur, superbe Noctuine, quam petis.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:12" n="4">sed, o superbe Noctuine, non uides</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:12" n="5">duas habere filias Atilium,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:12" n="6">duas, et hanc et alteram, tibi dari.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:12" n="7">adeste nunc, adeste : ducit, ut decet,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:12" n="8">superbus ecce Noctuinus hirneam.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:12" n="9">Talasio, Talasio, Talasio!</l>
+        </div>
+        <div type="textpart" subtype="poem" n="13">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="1">Iacere me, quod alta non possim, putas,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="2" rend="indent">ut ante, uectari freta,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="3">nec ferre durum frigus aut aestum pati</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="4" rend="indent">neque arma uictoris sequi?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="5">ualent, ualent mihi ira et antiquus furor</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="6" rend="indent">et lingua, qua mas sim tibi,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="7">et prostitutae turpe contubernium</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="8" rend="indent">sororis. o quid me incitas?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="9">quid, impudice et improbande Caesari,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="10" rend="indent">si furta dicantur tua,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="11">et helluato sera patrimonio</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="12" rend="indent">in fratre parsimonia,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="13">uel acta puero cum uiris conuiuia,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="14" rend="indent">udaeque per somnum nates,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="15">et inscio repente clamatum insuper</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="16" rend="indent">Talasio, Talasio?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="17">quid palluisti, femina? an ioci dolent?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="18" rend="indent">an facta cognoscis tua?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="19">non me uocabis pulchra per Cotyttia</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="20" rend="indent">ad feriatos fascinos,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="21">nec dein mouere lumbulos in caltula</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="22" rend="indent">prensis uidebo altaribus,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="23">flauumque propter Thybrim olentis nauticum</l>
+          <lb/>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="24" rend="indent">uocare, ubi adpulsae rates</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="25">stant in uadis caeno retentae sordido,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="26" rend="indent">macraque luctantes aqua;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="27">neque in culinam et uncta compitalia</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="28" rend="indent">dapesque duces sordidas,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="29">quibus repletus ut saliuosis †aquis</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="30" rend="indent">obesam ad uxorem redis,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="31">exaestuantes dote soluis pantices,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="32" rend="indent">os crusque lambis sauiis.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="33">nunc laede, nunc lacesse, si quicquam uales!</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="34" rend="indent">et nomen ascribo tuum.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="35">cinaede Luci, iamne te liquere opes,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="36" rend="indent">fameque genuini crepant?</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="37">uidebo habentem praeter ignauos nihil</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="38" rend="indent">fratres et iratum Iouem,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="39">scissumque uentrem et hirneosi patrui</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13" n="40" rend="indent">pedes inedia turgidos.</l>
+          <lb/>
+        </div>
+        <div type="textpart" subtype="poem" n="13a">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13a" n="1">Palladis arce sub hac Itali est iniuria saecli,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13a" n="2" rend="indent">antiquis hospes non minor ingeniis,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13a" n="3">et quo Roma uiro doctis certaret Athenis;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:13a" n="4" rend="indent">ferrea sed nulli uincere fata datur.</l>
+        </div>
+        <div type="textpart" subtype="poem" n="14">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="1">Si mihi susceptum fuerit decurrere munus,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="2" rend="indent">o Paphon, o sedes quae colis Idalias,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="3">Troius Aeneas Romana per oppida digno</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="4" rend="indent">iam tandem ut tecum carmine uectus eat:</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="5">non ego ture modo aut picta tua templa tabella</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="6" rend="indent">ornabo et puris serta feram manibus;</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="7">corniger hos aries humilis, sed maxima, taurus,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="8" rend="indent">uictima sacratos sparget honore focos,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="9">marmoreusque tibi caput, ignicolorius alas,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="10" rend="indent">in morem picta stabit Amor pharetra.</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="11">adsis, o Cytherea: tuus te Caesar Olympo</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14" n="12" rend="indent">et Surrentini litoris ara uocat.</l>
+          <lb/>
+        </div>
+        <div type="textpart" subtype="poem" n="14a">
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14a" n="1">Vate Syracosio qui dulcior, Hesiodoque</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14a" n="2" rend="indent">maior, Homereo non minor ore fuit,</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14a" n="3">illius haec quoque sunt diuini elementa poetae</l>
+          <l xml:base="urn:cts:latinLit:phi0692.phi009.perseus-lat1:14a" n="4" rend="indent">et rudis in uario carmine Calliope.</l>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>
