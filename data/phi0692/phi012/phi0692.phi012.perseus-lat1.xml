@@ -1,14 +1,12 @@
-<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Main DTD Driver File//EN" "http://www.tei-c.org/Guidelines/DTD/tei2.dtd" [
-<!ENTITY % TEI.XML "INCLUDE">
-<!ENTITY % PersProse PUBLIC "-//Perseus P4//DTD Perseus Prose//EN" "http://www.perseus.tufts.edu/DTD/1.0/PersProse.dtd" >
-%PersProse;
-]>
-<TEI.2>
-  <teiHeader>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader xml:lang="eng">
     <fileDesc>
       <titleStmt>
-        <title>De Institutione Viri Boni, Appendix Vergiliana</title>
-    <editor>Robinson Ellis</editor>
+        <title xml:lang="lat">Vir Bonus</title>
+        <author>Anonymous</author>
+        <editor>Robinson Ellis</editor>
         <sponsor>Perseus Project, Tufts University</sponsor>
         <principal>Gregory Crane</principal>
         <respStmt>
@@ -23,12 +21,17 @@
         <publisher>Trustees of Tufts University</publisher>
         <pubPlace>Medford, MA</pubPlace>
         <authority>Perseus Project</authority>
-        <date type="release"/>
+        <date type="release" when="2026-10-27">Perseus 5.0</date>
+        <idno type="filename">phi0692.phi012.perseus-lat1.xml</idno>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by-sa/4.0/">Available under a Creative Commons Attribution-ShareAlike 4.0 International License</licence>
+        </availability>
       </publicationStmt>
       <sourceDesc>
         <biblStruct>
           <monogr>
-            <title>Appendix Vergiliana, sive carmina minora Vergilio adtributa</title>
+            <title xml:lang="lat">Appendix Vergiliana</title>
+            <title xml:lang="lat" type="sub">sive Carmina Minora Vergilio adtributa</title>
             <editor>Robinson Ellis</editor>
             <imprint>
               <publisher>e Typographeo Clarendoniano</publisher>
@@ -36,76 +39,74 @@
               <date>1907</date>
             </imprint>
           </monogr>
+          <ref target="https://archive.org/details/appendixvergilia00elliuoft/page/n125/mode/2up">Internet Archive</ref>
         </biblStruct>
-        
-        <p>Keyboarding</p></sourceDesc>
+      </sourceDesc>
     </fileDesc>
-
+    
     <encodingDesc>
-      <editorialDesc>
+      <editorialDecl>
         <p>Keyboarding</p>
-      </editorialDesc>
-<refsDecl n="text=1"  doctype="TEI.2">
-<state unit="text"/>
-<state unit="book"/>
-<state unit="chapter" n="chunk"/>
-<state unit="section"/>
-</refsDecl>
-
-        <refsDecl xml:id="CTS">
-          <citeStructure match="/TEI/text/body" use="@xml:base">
-            <citeStructure match=".//lb" use="@n" unit="line" delim=":"/>
-          </citeStructure>
-        </refsDecl>
-</encodingDesc>
-
+      </editorialDecl>
+      
+      <refsDecl n="CTS">
+        <cRefPattern n="line" matchPattern="(\w+)" replacementPattern="#xpath(/tei:TEI/tei:text/tei:body/tei:div//tei:l[@n='$1'])">
+          <p>This pointer pattern extracts line.</p>
+        </cRefPattern>
+      </refsDecl>
+      
+      <refsDecl xml:id="CTS">
+        <citeStructure match="/TEI/text/body" use="@xml:base" n="chunk" unit="work">
+          <citeStructure match="div/l" use="@n" unit="line" delim=":"/>
+        </citeStructure>
+      </refsDecl>    
+    </encodingDesc>
+    
     <profileDesc>
       <langUsage>
-	<language id="la">Latin</language>
-	<language id="greek">Greek</language>
+        <language ident="lat">Latin</language>
       </langUsage>
     </profileDesc>
-    <change>Added to repository November, 2011. Unreleased.</change>
     <revisionDesc>
-    <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
-  </revisionDesc>
-</teiHeader>
-
-  <text xml:lang="lat" n="vir bonus" id="phi0692.phi012.perseus.lat1"><body xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1">
-    <head>De Institutione Viri Boni</head>
-    <p>
-<lb n="1"/>vir bonus et sapiens, qualem uix repperit unum
-<lb n="2"/>milibus e cunctis hominum consultus Apollo,
-<lb n="3"/>iudex ipse sui totum se explorat ad unguem,
-<lb n="4"/>quid proceres, uanique leuis quid opinio uulgi,
-<lb n="5"/>securus, mundi instar habens, teres atque rotundus, 
-<lb n="6"/>externae ne quid labis per leuia sidat.
-<lb n="7"/>ille diem quam longus erit sub sidere Cancri,
-<lb n="8"/>quantaque nox tropico se porrigit in Capricorno,
-<lb n="9"/>cogitat et iusto trutinae se examine pendit,
-<lb n="10"/>ne quid hiet, ne quid protuberet, angulus aequis 
-<lb n="11"/>partibus ut coeat, nil ut deliret amussis,
-<lb n="12"/>sit solidum quodcumque subest nec inania subtus
-<lb n="13"/><del>indicet admotus digitis pellentibus ictus</del>,
-<lb n="14"/>non prius in dulcem declinans lumina somnum
-<lb n="15"/>omnia quam longi reputauerit acta diei. 
-<lb n="16"/>quo praetergressus, quid gestum in tempore, quid non.
-<lb n="17"/>cur isti facto decus afuit aut ratio illi?
-<lb n="18"/>quid mihi praeteritum, cur haec sententia sedit
-
-
-
-<lb n="19"/>quam melius mutare fuit? miseratus egentem
-<lb n="20"/>cur aliquem fracta persensi mente dolorem? 
-<lb n="21"/>quid uolui quod nolle bonum foret? utile honesto
-<lb n="22"/>cur malus antetuli? num dicto aut denique uultu
-<lb n="23"/>perstrictus quisquam? cur me natura magis quam
-<lb n="24"/>disciplina trahit? sic dicta et facta per omnia
-<lb n="25"/>ingrediensque ortoque a uespere cuncta reuoluens 
-<lb n="26"/>offensus prauis dat palmam et praemia rectis.
-
-
-
-</p></body></text>
-
-</TEI.2>
+      <change who="Alison Babeu" when="2026-10-30">Converted to standard Epidoc format, updated XML base, added edition div, replaced daggers with actual dagger characters, replaced double hyphens with em-dashes, kept notes, and removed indents.</change>
+      <change who="Charles Pletcher" when="2026-08-26">Add citeStructure refsDecl</change>
+      <change who="Bridget Almas" when="2011">Added to repository November, 2011. Unreleased.</change>
+    </revisionDesc>
+  </teiHeader>
+  
+  <text xml:lang="lat">
+    <body xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1">
+      <div type="edition" n="urn:cts:latinLit:phi0692.phi012.perseus-lat1" xml:lang="lat">
+        <lb/>
+        <head>Vir Bonus</head>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="1">Vir bonus et sapiens, qualem uix repperit unum</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="2">milibus e cunctis hominum consultus Apollo,</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="3">iudex ipse sui totum se explorat ad unguem,</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="4">quid proceres, uanique leuis quid opinio uulgi,</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="5">securus, mundi instar habens, teres atque rotundus,</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="6">externae ne quid labis per leuia sidat.</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="7">ille diem quam longus erit sub sidere Cancri,</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="8">quantaque nox tropico se porrigit in Capricorno,</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="9">cogitat et iusto trutinae se examine pendit,</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="10">ne quid hiet, ne quid protuberet, angulus aequis</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="11">partibus ut coeat, nil ut deliret amussis,</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="12">sit solidum quodcumque subest nec inania subtus</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="13"><del>indicet admotus digitis pellentibus ictus</del>,</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="14">non prius in dulcem declinans lumina somnum</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="15">omnia quam longi reputauerit acta diei.</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="16">quo praetergressus, quid gestum in tempore, quid non.</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="17">cur isti facto decus afuit aut ratio illi?</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="18">quid mihi praeteritum, cur haec sententia sedit</l>
+        <lb/>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="19">quam melius mutare fuit? miseratus egentem</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="20">cur aliquem fracta persensi mente dolorem?</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="21">quid uolui quod nolle bonum foret? utile honesto</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="22">cur malus antetuli? num dicto aut denique uultu</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="23">perstrictus quisquam? cur me natura magis quam</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="24">disciplina trahit? sic dicta et facta per omnia</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="25">ingrediensque ortoque a uespere cuncta reuoluens</l>
+        <l xml:base="urn:cts:latinLit:phi0692.phi012.perseus-lat1" n="26">offensus prauis dat palmam et praemia rectis.</l>
+      </div>
+    </body>
+  </text>
+</TEI>
